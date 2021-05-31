@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+Page 6: 2(a), 3(a), 6, 7 \\
+Page 13: 2
+
+Page 6: \\
+
+2(a): Let $\vec{A} = (3,-2,4)$ and $\vec{B} = (-5,7,1)$. Then we must start with a point on the line (either positions provided by $\vec{A}$ or $\vec{B}$) and add to it all scalar multiples of the vector connecting positions $\vec{A}$ and $\vec{B}$. Such a vector is the any difference between the two vectors $\vec{A}$ and $\vec{B}$. Thus the vector equation for the line passing through the points is $$\boxed{\vec{r} = \vec{A} + t\br{\vec{B}-\vec{A}}}$$ where $t\in\mathbb{R}$ and $\vec{r}$ is just the position vector for points on the line.
+
+3(a): Similarly to 2(a), give $\vec{A} = (2,-5,-1)$, $\vec{B} = (0,4,6)$, and $\vec{C} = (-3,7,1)$. Then start with any point (I will use $\vec{A}$) and then add to it all linear combinations of $\vec{B} - \vec{A}$ and $\vec{C} - \vec{A}$ (these vectors are not multiples of each other). The vector equation for the plane is $$\boxed{\vec{r} = \vec{A} + s\br{\vec{B} - \vec{A}} + t\br{\vec{C} - \vec{A}}}$$ for $s,t\in \mathbb{R}$ and $\vec{r}$ is just the position vector for points on the plane.
+
+6. Give $\vec{A} = (a,b)$ and $\vec{B} = (c,d)$. Then form the vector $\vec{B} - \vec{A}$, which represents graphically the directed line segment connecting positions given by $\vec{A}$ and $\vec{B}$. Multiplying (via scalar multiplication) the vector by $\frac{1}{2}$ will return a directed line segment that would bisect this line segment. But to find the actual coordinates of the midpoint $\vec{m}$ in space, we must add back the vector $A$. $$\boxed{\vec{m} = \vec{A} + \frac{1}{2}\br{\vec{B} - \vec{A}} = \frac{1}{2}\br{\vec{A} + \vec{B}} = \frac{1}{2}\br{a+c, b+d} = \br{\frac{a+c}{2}, \frac{b+d}{2}}}$$
+
+7. Give three positions in $\mathbb{R}^n$-space as vectors, $\vec{A}$, $\vec{B}$, and $\vec{C}$. Then to form a parallelogram in space, we need a fourth position, which we can obtain through the following addition (like following the parallelogram rule):
+$\vec{D} = \vec{A} + \br{\vec{B} - \vec{A}} + \br{\vec{C} - \vec{A}} = \vec{B}+\vec{C}-\vec{A}$. This vector can also be modified to find a diagonal (a directed line segment) of the parallelogram (in the sense where we might center a coordinate system about $\vec{A}$) by removing the vector $\vec{A}$ from it (it would be $\br{\vec{B} - \vec{A}} + \br{\vec{C} - \vec{A}}$). Similarly to find another diagonal we can take the diagonal connecting $\vec{B}$ to $\vec{C}$ (in that order), which is $\vec{C}-\vec{B}$. 
+
+If we halve both of these diagonals and add them back to their starting position vectors, we can show that they coincide and hence bisect each other (since we have halved the diagonals as directed line segments):
+\begin{align*}
+    \frac{1}{2}\br{\br{\vec{B} - \vec{A}} + \br{\vec{C} - \vec{A}}} + A &= \frac{1}{2}\br{\vec{C}+\vec{B}} \\ \frac{1}{2}\br{\vec{C}-\vec{B}} + B &= \frac{1}{2}\br{\vec{C}+\vec{B}}
+\end{align*}
+Hence the diagonals of a parallelogram bisect each other.
+
+Page 13: \\
+
+2. This is the matrix whose elements in all positions are $0$: $$\boxed{\vec{0} = \begin{pmatrix}
+    0&0&0&0 \\
+    0&0&0&0 \\
+    0&0&0&0
+\end{pmatrix}}$$
+
+\end{document}

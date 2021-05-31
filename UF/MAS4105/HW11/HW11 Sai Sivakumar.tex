@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW11}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\begin{document}
+3.2: 6(a), 11, 12, 17, 18
+
+3.3: 10
+
+3.4: 10 \\
+
+3.2:
+
+6. Determine if $\mathsf{T}$ is invertible and compute the inverse if it is.
+
+(a) The transformation $\mathsf{T}$ is invertible if the matrix $\sbr{\mathsf{T}}_{\beta}$ is invertible ($\beta = \cbr{1,x,x^2}$ is the standard ordered basis for $\mathsf{P}_2(\mathbb{R})$). The matrix is found by applying the transformation to each vector in $\beta$ in order to for the columns, and we find that $$\sbr{\mathsf{T}}_{\beta} = \begin{pmatrix}
+    -1 & 2 & 2 \\
+    0 & -1 & 2 \\
+    0 & 0 & -1
+\end{pmatrix}$$ which from inspection (see the diagonal entries) we see has rank $3$, so it is invertible. Then consider the augmented matrix $$\left(\begin{array}{ccc|ccc}
+    -1 & 2 & 2 & 1 & 0 & 0 \\
+    0 & -1 & 2 & 0 & 1 & 0 \\
+    0 & 0 & -1 & 0 & 0 & 1 
+  \end{array}\right)$$ and use row reduction ($R1+2R2$, $R1+6R3$, $R2+2R2$, negate all rows) applied to both parts of the matrix to find $$\left(\begin{array}{ccc|ccc}
+    1 & 0 & 0 & -1 & -2 & -6 \\
+    0 & 1 & 0 & 0 & -1 & -2 \\
+    0 & 0 & 1 & 0 & 0 & -1 
+  \end{array}\right),$$ which means that $$\sbr{\mathsf{T}}_{\beta}^{-1} = \begin{pmatrix}
+    -1 & -2 & -6 \\
+    0 & -1 & -2 \\
+    0 & 0 & -1
+\end{pmatrix}.$$
+
+11. If $\rank(B) = r$, then there are $r$ linearly independent columns of $B$. However, notice that the first column of $B$ is $e_1$, and so $B^{\prime}$ in the context of $B$ (we include the elements in the first row of $B$ in the columns of $B^{\prime}$) consists of only vectors which are in $\Span(\cbr{e_2,e_3,\dots, e_{r}}$). So the first column of $B$ is linearly independent from the remaining columns of $B$, which all have zero in the first component.
+
+Because we still require the rank of $B$ to be $r$, we will find $r-1$ other columns of $B$ that are linearly independent - but all of these columns have zeros as the first component so that means that these columns can be truncated to fit entirely into $B^{\prime}$. Therefore $B^{\prime}$ contains $r-1$ linearly independent columns (in the set $\Span(\cbr{e_2,e_3,\dots, e_{r}}$), and so $\rank(B^{\prime}) = r-1$.
+
+12. For the row case, let $D^{\prime} = E^{\prime}B^{\prime}$, where $E^{\prime}$ encodes the row operation. Then define the same row operation encoded into the bigger matrix $$E = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & E^{\prime}\\
+    0
+\end{pmatrix},$$ so that $$EB = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & E^{\prime}\\
+    0
+\end{pmatrix}\begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & B^{\prime}\\
+    0
+\end{pmatrix}.$$ We may deduce that the first row of the resulting matrix is $\begin{pmatrix}
+    1 & 0 & \cdots & 0
+\end{pmatrix}$, but for the remaining rows apply the normal definition of matrix multiplication to find that the first column will be $\begin{pmatrix}
+    1 \\ 0 \\\vdots \\ 0
+\end{pmatrix}$ (the first entry of both of these coincide, and form a row/column ``L'' shape like in the definition of $B$ and $D$). Then for the remaining entries, say $EB_{ij}$ where $i,j \geq 2$, notice that $EB_{ij} = (0~ E^{\prime}_i)\cdot (0~ B^{\prime}_j) = 0\cdot 0 + E^{\prime}_i\cdot B^{\prime}_j = E^{\prime}_i\cdot B^{\prime}_j$, where $E^{\prime}_i$ are those entries from the $i$-th row of $E^{\prime}$ and $B^{\prime}_j$ are those entries from the $j$-th column of $B^{\prime}_j$.
+
+Therefore we know that the remaining entries are really just the matrix formed by $E^{\prime}B^{\prime} = D^{\prime}$. So $$EB = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & E^{\prime}\\
+    0
+\end{pmatrix}\begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & B^{\prime}\\
+    0
+\end{pmatrix} = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & D^{\prime}\\
+    0
+\end{pmatrix} = D.$$ Similarly, if $E^{\prime}$ and $E$ were instead used to encode column operations (so that $B^{\prime}E^{\prime} = D^{\prime}$) we could find in pretty much the exact same way as before (just different due to the order of the product) the following product: $$BE = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & B^{\prime}\\
+    0
+\end{pmatrix}\begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & E^{\prime}\\
+    0
+\end{pmatrix} = \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 \\
+    \vdots & & D^{\prime}\\
+    0
+\end{pmatrix} = D.$$ Hence $B$ can be transformed into $D$ by an elementary row (column) operation given by $E$.
+
+17. Let $B = \begin{pmatrix}
+    b_1\\b_2\\b_3
+\end{pmatrix}$ and $C = \begin{pmatrix}
+    c_1 & c_2 & c_3
+\end{pmatrix}$. (in this case, all $b_i,c_i\neq 0$) Then $$BC = \begin{pmatrix}
+    b_1c_1 & b_1c_2 & b_1c_3 \\
+    b_2c_1 & b_2c_2 & b_2c_3 \\
+    b_3c_1 & b_3c_2 & b_3c_3
+\end{pmatrix}$$ and so it is evident by inspection that each of the columns are simply multiples of $B$, which means that $BC$ only has one linearly independent column, so $\rank(BC) = 1$. When either of $B$ or $C$ are zero matrices (all components are zero) then the rank immediately becomes zero because all columns of $BC$ become zero columns. Hence $\rank(BC)\leq 1$. This can also be easily shown by use of a theorem from before, so tha t$\rank(BC)\leq \rank(B) \leq 1$. 
+
+Then to consider a matrix $A$ with rank of $1$, apply the same definition. $A$ should only have one column that is linearly independent, meaning the other two columns are multiples of the one column. $$A = \begin{pmatrix}
+    a & \lambda_1 a & \lambda_2 a \\
+    b & \lambda_1 b & \lambda_2 b \\
+    c & \lambda_1 c & \lambda_2 c
+\end{pmatrix} = \begin{pmatrix}
+    a \\ b\\ c
+\end{pmatrix}\begin{pmatrix}
+    1 & \lambda_1 & \lambda_2
+\end{pmatrix} = BC$$ where $$B = \begin{pmatrix}
+    a \\ b\\ c
+\end{pmatrix}, C = \begin{pmatrix}
+1 & \lambda_1 & \lambda_2
+\end{pmatrix}$$ (all quantities in the matrices are nonzero to make sure $A$ has nonzero rank)
+
+18. This is a similar concept to the last problem. We need to decompose $A$ and $B$ in a certain way that allows us to multiply them (we use our secret weapon) so that we form a sum of matrices whose ranks are all $1$.
+
+So decompose $A$ into $\begin{pmatrix}
+    a_1 & a_2 & \cdots & a_n
+\end{pmatrix}$ where each $a_i$ is a $m\times 1$ column of $A$ with $m$ components, and similarly, decompose $B$ into $\begin{pmatrix}
+    b_1 \\ b_2 \\ \cdots \\ b_n
+\end{pmatrix}$ where each $b_i$ is a $1 \times p$ row of $B$ with $p$ components each. Then by use of the secret weapon and matrix multiplication rules $$AB = \begin{pmatrix}
+    a_1 & a_2 & \cdots & a_n
+\end{pmatrix}\begin{pmatrix}
+    b_1 \\ b_2 \\ \cdots \\ b_n
+\end{pmatrix} = a_1b_1 + a_2b_2 + \cdots +  a_nb_n.$$ But since each $b_i$ is a row of $B$, we have that $b_i = \begin{pmatrix} b_{i1} & b_{i2} & \cdots & b_{ip} \end{pmatrix}$ (each $b_{ij}$ is a constant), so that $$= a_1b_1 + a_2b_2 + \cdots +  a_nb_n = \sum_{i=1}^n a_i\begin{pmatrix} b_{i1} & b_{i2} & \cdots & b_{ip} \end{pmatrix} = \sum_{i=1}^n \begin{pmatrix} b_{i1}a_i & b_{i2}a_i & \cdots & b_{ip}a_i \end{pmatrix}.$$ Each $a_i$ is a column, so then the matrices of the form $\begin{pmatrix} b_{i1}a_i & b_{i2}a_i & \cdots & b_{ip}a_i \end{pmatrix}$ are all of rank 1 since each column is just a multiple of $a_i$. Therefore $AB$ can be written as a sum of $n$ (see the upper limit of the sum) matrices of rank one.
+
+3.3:
+
+10. This statement is true. The coefficient matrix of the system will be an $m\times n$ matrix, call it $A$, and form a matrix $\vec{b}\in \mathbb{R}^m$ from the values on the right hand side of the system. Then we can make the matrix form of the linear system of equations into the form $A\vec{x} = \vec{b}$, where we need to solve for $\vec{x}\in\mathbb{R}^n$. 
+
+So then there will be some linear transformation $\mathsf{L}_A : \mathbb{R}^n \to \mathbb{R}^m$. Since the rank of $A$ is $m$, we also know that the rank of $\mathsf{L}_A$ is also $m$, meaning that this transformation is surjective.
+
+The surjectivity of $\mathsf{L}_A$ means that for any vector $\vec{b}\in\mathbb{R}^m$, there is a preimage $\vec{x}_0\in\mathbb{R}^n$ such that $\mathsf{L}_A(\vec{x}_0) = A\vec{x}_0 = \vec{b}$, which is essentially saying that the original system actually has a solution, namely the solution given by the preimage of $\vec{b}$ under $\mathsf{L}_A$, which I called $\vec{x}_0$.
+
+3.4:
+
+10. Let $\mathsf{V} = \cbr{(x_1,x_2,x_3,x_4,x_5)\in\mathbb{R}^5 : x_1 - 2x_2 + 3x_3 - x_4 + 2x_5 = 0}$. 
+
+(a) $S$ contains only one nonzero vector, and all that we need to show then is that $(0,1,1,1,0)$ is an element of $\mathsf{V}$. We simply need to check that $0 - 2(1) + 3(1) - (1) + 2(0) = 0$, and it does, so $(0,1,1,1,0)\in\mathsf{V}$. We know that if a subset contains one nonzero vector it is linearly independent. Hence $S$ is a linearly independent subset of $\mathsf{V}$.
+
+(b) We can solve the equation by noting that since there is only one equation, the associated rank of the matrix $A$ that goes with the system is one and so we have four free variables, which without loss of generality will be $x_2,x_3,x_4,x_5$. Then $x_1 = 2x_2 - 3x_3 + x_4 - 2x_5$, and so solutions come in the form $$(2x_2 - 3x_3 + x_4 - 2x_5, x_2,x_3,x_4,x_5).$$ Then to form linearly independent vectors, take convenient values for the free variables such that we get different vectors which are not linear combinations of other vectors (means we take four cases where we set one free variable to 1 and the rest to zero at a time). Thus a basis for $\mathsf{V}$ is $$\cbr{(2,1,0,0,0),(-3,0,1,0,0),(1,0,0,1,0),(-2,0,0,0,1)}.$$ So then observe that since $(0,1,1,1,0) = (2,1,0,0,0) + (-3,0,1,0,0) + (1,0,0,1,0)$ we may replace one of the first three vectors in the basis for $\mathsf{V}$ with $(0,1,1,1,0)$, say, the first one (this is all we need since there is only one vector in $S$ to consider). So then we extend $S$ into a basis for $\mathsf{V}$ by appending vectors (in a similar way to the replacement theorem) to form $$\cbr{(0,1,1,1,0), (-3,0,1,0,0),(1,0,0,1,0),(-2,0,0,0,1)}.$$
+\end{document}

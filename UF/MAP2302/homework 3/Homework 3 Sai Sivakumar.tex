@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+
+\usepackage{physics}
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP2302 Professor Jury}
+\fancyhead[R]{Sai Sivakumar 9/23/20}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\setcounter{page}{1}
+
+\begin{document}
+Section 2.3 Problems 7, 9, 17, 18, 34 and Exercises from the Week 3 Supplement, Episode II\\
+
+7. $\dv{y}{x}-y-e^{3x} = 0$ Solve.
+
+No equilibria. The corresponding homogeneous differential equation is $\dv{y}{x} = y$, whose general solution is $y = \exp\br{\int_0^x 1\dd{t}} = \exp\br{x}$. Then the solution to the above inhomogeneous differential equation is some $y = c(x)\exp\br{x}$. Then:
+$$\br{c(x)\exp\br{x}}^\prime = \br{c(x)\exp\br{x}} + e^{3x} \to c^{\prime} (x)\exp\br{x} + c(x)\exp\br{x} = c(x)\exp\br{x} + e^{3x} \to c^{\prime}(x) = \frac{e^{3x}}{e^x}$$
+
+Hence $c(x) = \frac{e^{2x}}{2}$ and so the solution to the above inhomogeneous differential equation is $y = c(x)\exp\br{x} = \frac{e^{3x}}{2}$.\\
+
+9. $\dv{r}{\theta} + r\tan(\theta) = \sec(\theta)$ Solve.
+
+No equilibria. The corresponding homogeneous differential equation is $\dv{r}{\theta} = -r\tan(\theta)$, whose general solution is $r = \exp\br{\int_{\frac{\pi}{2}}^{\theta}\frac{-\sin(t)}{\cos(t)}\dd{t}} = \cos(\theta)$. Then the solution to the above inhomogeneous differential equation is some $r = c(\theta)\cos(\theta)$. Then:
+$$\br{c(\theta)\cos(\theta)}^{\prime} = -\cos(\theta)\tan(\theta) + \sec(\theta) \to c^{\prime}(\theta)\cos(\theta) - c(\theta)\sin(\theta) = - c(\theta)\sin(\theta) + \sec(\theta) \to c^{\prime}(\theta) = \sec^2(\theta)$$
+
+Hence $c(\theta) = \tan{\theta}$ and so the solution to the above inhomogeneous differential equation is $y = c(\theta)\cos(\theta) = \sin(\theta)$.\\
+
+17. $\dv{y}{x} - \frac{y}{x} = xe^{x}$, $y(1) = e-1$ Solve.
+
+Multiply both sides of the differential equation by the generic integrating factor $\mu(x) = \exp\br{\int -x^{-1}\dd{x}} = x^{-1}$ and simplify:
+$$\frac{1}{x}\dv{y}{x}-\frac{y}{x^2} = e^x \to \dv{x}\br{\frac{y}{x}} = e^x \to \frac{y}{x} = \int 1 \dd{\br{\frac{y}{x}}} = \int e^x \dd{x} \to y = xe^x + Cx$$
+
+Then use the initial data to find $C$:
+$$e-1 = e + C \to C = -1$$
+
+Hence the solution curve is $y = xe^x - x$.\\
+
+18. $\dv{y}{x} +4y-e^{-x} = 0$ Solve.
+
+Multiply both sides of the differential equation by the generic integrating factor $\mu(x) = \exp\br{\int 4 \dd{x}} = e^{4x}$ and simplify:
+$$e^{4x}\dv{y}{x} + 4e^{4x}y = e^{3x} \to \dv{x}\br{ye^{4x}} = e^{3x} \to \int 1 \dd{\br{ye^{4x}}} = \int e^{3x}\dd{x} \to ye^{4x} = \frac{e^{3x}}{3} + C \to y = \frac{1}{3e^x} +Ce^{-4x}$$
+
+Then use the initial data to find $C$:
+$$\frac{4}{3} = \frac{1}{3} +C \to C = 1$$
+
+Hence the solution curve is $y = \frac{1}{3e^x} +e^{-4x}$.\\
+
+34. 
+
+(a) The integral of a continuous function is continuous, and compositions of continuous functions are also continuous. Hence the integrating factor, $\mu(x)$, is continuous on the same interval $(a,b)$. Exponentiation produces positive numbers for real arguments.
+
+(b) The derivative of y(x) as it is in Equation (8) is:
+$$\dv{x} y(x) = \dv{x} \frac{1}{\mu(x)}\sbr{\int \mu(x) Q(x)\dd{x} + C} \to \dv{y}{x} = \frac{-P(x)}{\mu(x)}\sbr{\int \mu(x) Q(x)\dd{x} + C} + \frac{1}{\mu(x)}\sbr{\mu(x) Q(x)}$$
+
+Substitute back Equation (8):
+$$\dv{y}{x} = -P(x)y(x) + Q(x)$$
+
+The above is just Equation (4) with the $P(x)y(x)$ term moved over to the right hand side.
+
+(c) We will produce something of this form:
+$$y(x) = \frac{1}{\mu(x)}\sbr{\int \mu(x)Q(x)\dd{x} + y_0\mu(x_0)}$$
+
+Then at $x= x_0$ we have what we want:
+$$y(x_0) = \frac{1}{\mu(x_0)}\sbr{0 + y_0\mu(x_0)} \to y(x_0) = y_0$$
+
+(d) Since we're using nice functions $P(x)$ and $Q(x)$, the integrating factor is also nice (as outlined in (a)). Then we know by working backwards from the general solution in (b), we can show equation (8) is indeed a solution. Finally in part (c) we showed that with a suitable value for $C$, we can show that the modified solution curve satisfies the initial data. This means that the choice of $C$ changes if the curve passes through the initial data point, and likewise this dependence should mean that the initial data informs our choice of $C$, that is unique. \\
+
+Exercise 1 from the Week 3 Supplement:
+
+a) Around $(0,1)$, $\pdv{v}{x} = \frac{2}{3x^{\frac{1}{3}}}$ (and the $t$ partial derivative is 0) exists in any rectangle created that does not include $x=0$. Thus, in some neighborhood around that point there is a unique solution curve that exists.
+
+b) The solution curve cannot be guaranteed to exist nor be unique because when $x=0$, $\pdv{v}{x}$ does not exist.
+
+c) Around $(1,1)$, $\pdv{v}{x} = t^{\frac{1}{2}}$ and $\pdv{v}{t} = \frac{x}{2\sqrt{t}}$, which both exist in any rectangle created that does not include $t=0$. Thus, in some neighborhood around that point there is a unique solution curve that exists.
+
+d) The solution curve cannot be guaranteed to exist nor be unique because when $t=0$, $\pdv{v}{t}$ does not exist.
+
+e) The partial derivative $\pdv{v}{t}$ is continuous for all $(t,x)$, while $\pdv{v}{x}$ is not continuous at $x=0$ which is the initial value given. Hence we have no guarantee that a solution curve is unique there or if it exists.
+
+f) Within some rectangle around the point $(0,1)$ that does not contain $x=0$, the partial derivaties are continuous and hence a unique solution curve passes through that point in some neighborhood around it. \\
+
+Exercise 2 from the Week 3 Supplement: 
+
+In light of Proposition 2.2, the blow-up equation satisfying the initial data $(t_0,x_0) = (0,2)$ will have a unique solution in the interval $t\in \sbr{t_0-\gamma, t_0+\delta}$. We found $\delta$ in the Week 3 Supplement, and using a similar method we can find $\gamma$. Let us choose the interval $x\in\sbr{a,3}$ for example. Using Proposition 2.2, we have that $\gamma$ can be found with the integral:
+$$\gamma = \int_a^{x_0} \frac{1}{\xi^2}\dd{\xi}$$
+$$\gamma = \eval{\frac{-1}{\xi}}_a^2 = -\frac{1}{2} - \frac{1}{a}$$
+
+As $a$ tends to $0$ it is evident that $\gamma$ tends to $-\infty$ and hence the unique solution curve can be continued backwards in time indefinitely. Combining the result from the Week 3 Supplement, and our observation here, we now know that the working domain of the solution curve passing through $(0,2)$ is $t\in\br{-\infty,\frac{1}{2}}$.
+
+\end{document}

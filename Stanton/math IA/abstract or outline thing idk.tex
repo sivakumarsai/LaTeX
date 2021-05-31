@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Sai Sivakumar 1B}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{8pt}
+\renewcommand{\baselinestretch}{2}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+
+\begin{document}
+I: Topic\\I want to explore the proofs of Cauchy's Integral Theorem (CIT) and Cauchy's Integral Formula (CIF) that use Green's Theorem (GT).
+
+CIT: $\displaystyle{\oint_{\gamma} f(z)\mathrm{d}z = 0}$ for any closed loop $\gamma$ of any parameterization and holomorphic $f$.
+
+CIF: $\displaystyle{\frac{1}{2\pi i}\oint_{\gamma}\frac{f(z)}{z-a}\mathrm{d}z = f(a)}$ for a single 	 closed loop $\gamma$ centered at $a$ and holomorphic $f$.
+
+GT: $\displaystyle{\oint_C \vec{F}\cdot\mathrm{d}\vec{r}}$ or $\displaystyle{\oint_C P\mathrm{d}x + Q\mathrm{d}y = \iint_R \left(\frac{\partial Q}{\partial y} - \frac{\partial P}{\partial x}\right) \mathrm{d}A}$ for all vector fields $\vec{F} = P\ihat + Q\jhat$
+
+II: Outline/Abstract\\a) I chose this topic because complex analysis and vector calculus interest me heavily, and this merges the two nicely.\\b) The topic relates to mathematics in that this is a common exercise students of complex analysis/variables do. It \textit{is} mathematics.\\c) Calculus found in complex analysis and vector calculus will be needed.\\d) The key mathematical concepts are line integration (specifically parameterizing for integrating over a real parameter) and applying Green's theorem to line integrals over $\mathbb{C}$.\\e) I will primarily need to know how to write formal proofs and integrate over parameterized and unparameterized curves, operations with complex numbers, partial differentiation, the Cauchy-Riemann equations/conditions, multivariate limits, etc.\\f) See previous points - nearly everything is outside of the syllabus.\\g) I will be using Texmaker to typeset the IA (like for this document), and computerized mathematics programs like Desmos, Geogebra, or even Mathematica if I can get my hands on it, for visuals.\\h) The new mathematical terminology to know is too much to include here, but it is not limited to vector valued functions, complex valued functions, partial derivatives, holomorphic, analytic, line integral, contour, contour integration, closed loop, parameterization of line integrals, curl, etc.
+
+III: Sources\\As for my sourcing, I have several in mind. I can use Paul Dawkins' notes for the vector calculus portion, then for the complex analysis part I can use multiple sources online as well and some books: \textit{An Imaginary Tale} by Paul J. Nahin (Yanna used this for her Extended Essay) and \textit{Complex Variables and Applications} (2nd ed.) by Ruel V. Churchill. I should have no trouble getting several sources. I also have notes from a friend in England who goes to the University of Southampton, who had taken its MATH3088 course on complex analysis under Prof. Bernhard Koeck in 2018/19. The notes are quite dense and provide incredibly detailed proofs of nearly everything nontrivial.
+
+\end{document}

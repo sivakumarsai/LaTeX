@@ -1,0 +1,216 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\begin{document}
+2.5: 2(a), 3(a), 7, 8, 13
+
+3.1: 12 \\
+
+2.5:
+
+2. Find the change of coordinate matrix that changes $\beta^{\prime}$-coordinates into $\beta$-coordinates. (This amounts to finding $Q = \sbr{\mathsf{I}}_{\beta^{\prime}}^{\beta}$ such that for $v\in\mathbb{R}^2$, $\sbr{v}_{\beta} = \sbr{\mathsf{I}}_{\beta^{\prime}}^{\beta}\sbr{v}_{\beta^{\prime}}$.)
+
+(a) Note that $(a_1,a_2) = a_1e_1 + a_2e_2$ and $(b_1,b_2) = b_1e_1+b_2e_2$. Then $$Q = \begin{pmatrix}
+    a_1 & b_1 \\
+    a_2 & b_2
+\end{pmatrix}.$$
+
+3. Find the change of coordinate matrix that changes $\beta^{\prime}$-coordinates into $\beta$-coordinates. (This amounts to finding $Q = \sbr{\mathsf{I}}_{\beta^{\prime}}^{\beta}$ such that for $v\in\mathsf{P}_2(\mathbb{R})$, $\sbr{v}_{\beta} = \sbr{\mathsf{I}}_{\beta^{\prime}}^{\beta}\sbr{v}_{\beta^{\prime}}$.)
+
+(a) Note that $a_2x^2+a_1x+a_0 = a_2(x^2)+a_1(x)+a_0(1)$, $b_2x^2+b_1x+b_0 = b_2(x^2)+b_1(x)+b_0(1)$, and $c_2x^2+c_1x+c_0 = c_2(x^2)+c_1(x)+c_0(1)$. Then $$Q = \begin{pmatrix}
+    a_2 & b_2 & c_2 \\
+    a_1 & b_1 & c_1 \\
+    a_0 & b_0 & c_0
+\end{pmatrix}.$$
+
+7. In $\mathbb{R}^2$, let $L$ be the line $y=mx$, where $m\neq 0$. Find and expression for $\mathsf{T}(x,y)$, where
+
+(a) $\mathsf{T}$ is the reflection of $\mathbb{R}^2$ about $L$.
+
+Find the change of coordinate matrix $Q$ to the standard basis $\beta = \cbr{e_1,e_2}$ from the basis given by $$\beta^{\prime} = \cbr{\begin{pmatrix} 1 \\ m \end{pmatrix}, \begin{pmatrix} -m \\ 1 \end{pmatrix}},$$ which is $$Q = \begin{pmatrix}
+    1 & -m \\
+    m & 1
+\end{pmatrix}, Q^{-1} = \frac{1}{1+m^2}\begin{pmatrix}
+    1 & m \\
+    -m & 1
+\end{pmatrix}$$
+
+We also know that the reflection is given by $$\sbr{\mathsf{T}}_{\beta^{\prime}} = \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix}.$$ Then by change of coordinates, we have that $Q^{-1}\sbr{\mathsf{T}}_{\beta}Q = \sbr{\mathsf{T}}_{\beta^{\prime}} \implies \sbr{\mathsf{T}}_{\beta} = Q\sbr{\mathsf{T}}_{\beta^{\prime}}Q^{-1}$. So $$\sbr{\mathsf{T}}_{\beta} = \begin{pmatrix}
+    1 & -m \\
+    m & 1
+\end{pmatrix} \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix} \br{\frac{1}{1+m^2}\begin{pmatrix}
+    1 & m \\
+    -m & 1
+\end{pmatrix}} = \frac{1}{1+m^2}\begin{pmatrix}
+    1 & -m \\
+    m & 1
+\end{pmatrix} \begin{pmatrix}
+    1 & m \\
+    m & -1
+\end{pmatrix}$$
+$$\sbr{\mathsf{T}}_{\beta} = \frac{1}{1+m^2}\begin{pmatrix}
+    1-m^2 & 2m \\
+    2m & -(1-m^2)
+\end{pmatrix}$$
+$$\implies \mathsf{T} \begin{pmatrix} x \\ y \end{pmatrix} = \frac{1}{1+m^2}\begin{pmatrix}
+    1-m^2 & 2m \\
+    2m & -(1-m^2)
+\end{pmatrix} \begin{pmatrix}
+    x \\ y
+\end{pmatrix} = \frac{1}{1+m^2}\begin{pmatrix}
+    (1-m^2)x + 2my \\
+    2mx  -(1-m^2)y
+\end{pmatrix}$$
+
+(b) $\mathsf{T}$ is the projection on $L$ along the line perpendicular to $L$. 
+
+Use the same bases and change of coordinate matrices as in part (a). Then we have $$\sbr{T}_{\beta^{\prime}} = \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+\end{pmatrix}.$$
+
+Then by change of coordinates, we have that $Q^{-1}\sbr{\mathsf{T}}_{\beta}Q = \sbr{\mathsf{T}}_{\beta^{\prime}} \implies \sbr{\mathsf{T}}_{\beta} = Q\sbr{\mathsf{T}}_{\beta^{\prime}}Q^{-1}$. So $$\sbr{\mathsf{T}}_{\beta} = \begin{pmatrix}
+    1 & -m \\
+    m & 1
+\end{pmatrix} \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+\end{pmatrix} \br{\frac{1}{1+m^2}\begin{pmatrix}
+    1 & m \\
+    -m & 1
+\end{pmatrix}} = \frac{1}{1+m^2}\begin{pmatrix}
+    1 & -m \\
+    m & 1
+\end{pmatrix} \begin{pmatrix}
+    1 & m \\
+    0 & 0
+\end{pmatrix}$$
+$$\sbr{\mathsf{T}}_{\beta} = \frac{1}{1+m^2}\begin{pmatrix}
+    1 & m \\
+    m & m^2
+\end{pmatrix}$$
+$$\implies \mathsf{T} \begin{pmatrix}
+    x \\ y
+\end{pmatrix} = \frac{1}{1+m^2}\begin{pmatrix}
+    1 & m \\
+    m & m^2
+\end{pmatrix}\begin{pmatrix}
+    x \\ y
+\end{pmatrix} = \frac{1}{1+m^2}\begin{pmatrix}
+    x+my \\ mx+m^2y 
+\end{pmatrix}$$
+
+8. Let $\mathsf{T} : \mathsf{V} \to \mathsf{W}$ be a linear transformation from a finite-dimensional vector space $\mathsf{V}$ to a finite-dimensional vector space $\mathsf{W}$. Let $\beta$ and $\beta^{\prime}$ be ordered bases for $\mathsf{V}$ and let $\gamma$ and $\gamma^{\prime}$ be ordered bases for $\mathsf{W}$. Then $\sbr{\mathsf{T}}_{\beta^{\prime}}^{\gamma^{\prime}} = P^{-1}\sbr{\mathsf{T}}_{\beta}^{\gamma}Q$, where $Q$ is the matrix that changes $\beta^{\prime}$-coordinates into $\beta$-coordinates and $P$ is the matrix that changes $\gamma^{\prime}$-coordinates into $\gamma$-coordinates.
+
+\begin{proof}
+    Write $\mathsf{T}$ as $\mathsf{T}\mathsf{I_V}$ and also as $\mathsf{I_W}\mathsf{T}$. Then $$\highlight{P\sbr{\mathsf{T}}_{\beta^{\prime}}^{\gamma^{\prime}}} = \sbr{\mathsf{I_W}}_{\gamma^{\prime}}^{\gamma}\sbr{\mathsf{T}}_{\beta^{\prime}}^{\gamma^{\prime}} = \sbr{\mathsf{I_W T}}_{\beta^{\prime}}^{\gamma} = \sbr{TI_V}_{\beta^{\prime}}^{\gamma} = \sbr{\mathsf{T}}_{\beta}^{\gamma} \sbr{I_V}_{\beta^{\prime}}^{\beta} = \highlight{\sbr{\mathsf{T}}_{\beta}^{\gamma}Q}$$
+
+    Thus $\sbr{\mathsf{T}}_{\beta^{\prime}}^{\gamma^{\prime}} = P^{-1}\sbr{\mathsf{T}}_{\beta}^{\gamma}Q.$
+\end{proof}
+
+13.$^{\dagger}$ Let $\mathsf{V}$ be a finite-dimensional vector space over a field $\mathbb{F}$, and let $\beta = \cbr{x_1,x_2,\dots,x_n}$ be an ordered basis for $\mathsf{V}$. Let $Q$ be an $n\times n$ invertible matrix with entries from $\mathbb{F}$. Define $$x_j^{\prime} = \sum_{i=1}^n  Q_{ij}x_i \text{ for } 1\leq j \leq n$$ and set $\beta^{\prime} = \cbr{x_1^{\prime},x_2^{\prime}, \dots, x_n^{\prime}}$. Prove that $\beta^{\prime}$ is a basis for $\mathsf{V}$ and hence that $Q$ is the change of coordinate matrix changing $\beta^{\prime}$-coordinates into $\beta$-coordinates.
+
+\begin{proof}
+    Since the dimension of $\mathsf{V}$ is $n$, it suffices to show that $\beta^{\prime}$ contains $n$ linearly independent vectors. 
+
+    The columns of $Q$ are $[x_j^{\prime}]_{\beta}$, and so $Q$ takes vectors represented as $n$-tuples with the $\beta^{\prime}$ basis to vectors represented as $n$-tuples with the $\beta$ basis. Since $Q$ is invertible, it follows that there is an automorphism $\mathsf{L}_Q$ from $\mathbb{F}^n$ to itself. Furthermore, there are isomorphisms $\phi_{\beta}$ and $\phi_{\beta^{\prime}}$ from $\mathsf{V}$ to $\mathbb{F}^n$. So let $\mathsf{T}: \mathsf{V} \to \mathsf{V}$ be an isomorphism given by $\mathsf{T} = \phi_{\beta}^{-1}\mathsf{L}_Q\phi_{\beta^{\prime}}$. 
+    
+    Since $\mathsf{T}$ and $\mathsf{T}^{-1}$ are isomorphisms, they will carry linearly independent subsets of $\mathsf{V}$ into linearly independent subsets of $\mathsf{V}$. So then $\mathsf{T}^{-1}(\beta) = \beta^{\prime}$ and so $\beta^{\prime}$ is linearly independent and contains $n = \dim(\mathsf{V})$ vectors. Therefore $\beta^{\prime}$ is a basis for $\mathsf{V}$ and so $Q$ is the change of coordinate matrix changing $\beta^{\prime}$-coordinates into $\beta$-coordinates.
+\end{proof}
+
+\newpage
+3.1:
+
+12. We may only interchange two rows/columns of $A$ (type 1) or we can add any scalar multiple of a row/column of $A$ to another row/column of $A$ (type 3).
+
+(1) So consider starting with the entry in the first row and column, $A_{11}$. If it is zero, interchange this column with another column with a nonzero entry in the first row (type 1). If no such column exists, interchange this first row of zeros with the last row (below this row) which has a nonzero element, and interchange columns if needed to move a nonzero element into the $A_{11}$ position. If there is no such row with a nonzero element below this first row, then terminate.
+
+(2) We now have a nonzero element in the $A_{11}$ position. Using a finite sequence of type 3 row operations we may eliminate all of the $A_{i1}$ entries where $1<i\leq m$. So the first column is filled with zeros outside of the first row's entry. 
+
+So consider the entries $A_{ij}$ where $i,j \geq > 1$ if they exist, i.e. those entries not in the first row/column. These entries form a $(m-1) \times (n-1)$ matrix $A^{\prime}$, and so similarly, we may eliminate the first column of such a matrix in a finite number of type 1 and type 3 operations. So for this ``nested" matrix, eliminate entries under the first entry in the top left (i.e. $A_{22}$, then with the next nested matrix, $A_{33}$, and so on) using steps similar to (1) and (2) where the indices are adjusted to match those of the remaining entries. 
+
+Essentially, the goal is to continue iteratively in this manner until each $A_{kk}$, for $1 \leq k \leq \min(m,n)$ contains only zeroes in each entry below it, forming an upper triangular matrix. This process terminates since $m,n$ are finite.
+\end{document}

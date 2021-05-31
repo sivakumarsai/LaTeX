@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW13}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% mathtools
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\vardbtilde}[1]{\tilde{\raisebox{0pt}[0.85\height]{$\tilde{#1}$}}}
+
+\begin{document}
+5.1: 8, 9, 15(a), 19 \\
+
+8. 
+
+(a) Prove that a linear operator $\mathsf{T}$ on a finite-dimensional vector space is invertible if and only if zero is not an eigenvalue of $\mathsf{T}$.
+
+\begin{proof}
+  Forwards direction. Suppose zero is not an eigenvalue of $\mathsf{T}$. That means that for any nonzero vector, $\mathsf{T}(v) = 0v = \vec{0}$ will never be true. This is equivalent to saying that the null space of the transformation $\mathsf{T}$ is just the zero vector, so that it has dimension zero. Then by the dimension theorem we have that the rank of $\mathsf{T}$ is equivalent to the dimension of the vector space, so that $\mathsf{T}$ is invertible (it is injective and because the space is finite dimensional we have that the range of $\mathsf{T}$ is indeed the same vector space as the domain space). 
+
+  Conversely, suppose $\mathsf{T}$ is invertible. Then it is injective, which means the only vector which maps into the zero vector is the zero vector itself. Then this means there are no nonzero vectors which get mapped into the zero vector, i.e., there are no nonzero vectors $v$ such that $\mathsf{T}(v) = \vec{0} = 0v$, and so zero can never be an eigenvalue for these nonzero vectors.
+
+  Hence $\mathsf{T}$ on a finite-dimensional vector space is invertible if and only if zero is not an eigenvalue of $\mathsf{T}$.
+\end{proof}
+
+(b) Let $\mathsf{T}$ be an invertible linear operator. Prove that a scalar $\lambda$ is an eigenvalue of $\mathsf{T}$ if and only if $\lambda^{-1}$ is an eigenvalue of $\mathsf{T}^{-1}$.
+
+\begin{proof}
+  Forwards direction. Suppose $\lambda^{-1}$ is an eigenvalue of $\mathsf{T}^{-1}$. Then for some nonzero vector $u$, $\mathsf{T}^{-1}(u) = \lambda^{-1}u$. But then notice that if we apply $\mathsf{T}$ to both sides of the equality, we have that $\mathsf{T}(\mathsf{T}^{-1}(u)) = u = \mathsf{T}(\lambda^{-1}u) = \lambda^{-1}\mathsf{T}(u)$.
+
+  We have that $u = \lambda^{-1}\mathsf{T}(u)$, so multiply by $\lambda$ to both sides to find $\mathsf{T}(u) = \lambda u$. This means that $\lambda$ is an eigenvalue for $\mathsf{T}$.
+
+  Conversely, suppose $\lambda$ is an eigenvalue of $\mathsf{T}$ so that $\mathsf{T}(u) = \lambda u$ for some nonzero vector $u$. Similarly, apply $\mathsf{T}^{-1}$ to both sides and so $\mathsf{T}^{-1}(\mathsf{T}(u)) = u = \mathsf{T^{-1}}(\lambda u) = \lambda \mathsf{T}^{-1}(u)$. Then divide through by $\lambda$ so that $\lambda^{-1}u = \mathsf{T}^{-1}(u)$, which implies $\lambda^{-1}$ is an eigenvalue of $\mathsf{T}^{-1}$.
+\end{proof}
+
+(c) Prove that an $n\times n$ matrix $A$ is invertible if and only if zero is not an eigenvalue of $\mathsf{T}$ (1). Then prove that when $A$ is invertible, a scalar $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^{-1}$ is an eigenvalue of $A^{-1}$ (2).
+
+\begin{proof}
+   (1) Forwards direction. Suppose zero is not an eigenvalue for $A$. Hence $Av = 0v = \vec{0}$ is never true, meaning that $A$ sends every nonzero vector to another nonzero vector. This system is only solvable (for nonzero $v$) if the zero column is a linear combination of columns of $A$, meaning that $A$ would then have less than full rank - this is not true here, since we know this system cannot be solved. Hence $A$ has full rank. From a previous section we know that a matrix with full rank is invertible, so $A$ is invertible.
+
+  Conversely suppose that $A$ is invertible, meaning it has full rank and the only vector in its null space is the zero vector. This means that for any nonzer0 vector $v$, it will be sent to another nonzero vector, which by definition of eigenvalue means that zero cannot be an eigenvalue for any of these vectors $v$, because none of them get scaled down into the zero vector (we will never have that $Av = \vec{0}$, meaning we will never have $Av = 0v$). Hence zero is not an eigenvalue of $A$.
+
+  Hence $A$ is invertible if and only if zero is not an eigenvalue of $\mathsf{T}$.
+
+  (2) Forwards direction. Suppose $\lambda^{-1}$ is an eigenvalue of $A^{-1}$. Then for some nonzero vector $u$, $A^{-1}u = \lambda^{-1}u$. Consider then applying $A$ to both sides. Then $A(A^{-1}u) = A(\lambda^{-1}u) \iff (AA^{-1})u = Iu = u = \lambda^{-1}Au \iff \lambda u = Au$ (where we multiplied both sides by $\lambda$ on the last step). So $\lambda$ is an eigenvalue of $A$.
+
+  Conversely suppose $\lambda$ is an eigenvalue of $A$. Then for some nonzero vector $u$, $Au = \lambda u$. Then similarly apply $A^{-1}$ to both sides to find that $A^{-1}(Au) = A^{-1}(\lambda u) \iff u = \lambda A^{-1}u \iff \lambda^{-1} u = A^{-1}u$ (where in the last step we divide by lambda). Hence $\lambda^{-1}$ is an eigenvalue for $A^{-1}$.
+
+  Therefore $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^{-1}$ is an eigenvalue of $A^{-1}$.
+\end{proof}
+
+9. Prove that the eigenvalues of an upper triangular matrix $M$ are the diagonal entries of $M$.
+
+\begin{proof}
+  Suppose $M$ is an upper triangular $n\times n$ matrix. Then we can compute the characteristic polynomial $f(t)$ for this matrix, given by $\det(M-tI_n)$.
+
+  Let the diagonal entries of $M$ be given by $\lambda_i$ for $1\leq i\leq n $. Observe that $M-tI_n$ remains upper triangular, and so the determinant becomes the product $\prod_{i=1}^n (\lambda_i-t)$, and so the zeroes of this characteristic polynomial give the eigenvalues for $M$.
+
+  So $f(t) = \prod_{i=1}^n (\lambda_i-t)$, and its zeroes are precisely all of $\lambda_i$, for $1\leq i \leq n$. These are the diagonal entries of $M$. 
+
+  Therefore the eigenvalues of an upper triangular matrix $M$ are the diagonal entries of $M$.
+\end{proof}
+
+15.$^{\dagger}$
+
+(a) Let $\mathsf{T}$ be a linear operator on a vector space $\mathsf{V}$, and let $x$ be an eigenvector of $\mathsf{T}$ corresponding to the eigenvalue $\lambda$. For any positive integer $m$, prove that $x$ is an eigenvector of $\mathsf{T}^m$ corresponding to the eigenvalue $\lambda^m$.
+
+\begin{proof}
+  Suppose $\mathsf{T}$ be a linear operator on a vector space $\mathsf{V}$, and let $x$ be an eigenvector of $\mathsf{T}$ corresponding to the eigenvalue $\lambda$. Then $\mathsf{T}(x) = \lambda x$. We can apply $\mathsf{T}$ to both sides once more and use linearity to find that $\mathsf{T}^2(x) = \lambda \mathsf{T}(x) = \lambda^2 x$. We proceed by induction. Suppose that $x$ is an eigenvector of $\mathsf{T}^{m-1}$ corresponding to $\lambda^{m-1}$. Then $\mathsf{T}^{m-1}(x) = \lambda^{m-1} x$. Apply $\mathsf{T}$ to both sides of the equality. So then $\mathsf{T}(\mathsf{T}^{m-1}(x)) = \mathsf{T}^m(x) = \mathsf{T}(\lambda^{m-1} x) = \lambda^{m-1}\mathsf{T}(x) = \lambda^{m-1}\br{\lambda x} = \lambda^m x$. 
+  
+  Hence by the inductive step we have that $\mathsf{T}^m(x) = \lambda^m x$ for all $m\in\mathbb{Z}^{+}$, so that $x$ is an eigenvector of $\mathsf{T}^m$ corresponding to $\lambda^m$.
+
+  The above result is interpreted as saying that if we apply $\mathsf{T}$ on an eigenvector $m$ times, then the same vector is an eigenvector to the new operator (formed out of successive composition of $\mathsf{T}$) $\mathsf{T}^m$ corresponding to what will end up being the scalar $\lambda^m$ as each successive application of $\mathsf{T}$ introduces a multiplication of $\lambda$ due to linearity of $\mathsf{T}$.
+\end{proof}
+
+(b) Let $A$ be an $n\times n$ matrix, and let $x$ be an eigenvector of $A$ corresponding to the eigenvalue $\lambda$. For any positive integer $m$, prove that $x$ is an eigenvector of $A^m$ corresponding to the eigenvalue $\lambda^m$.
+
+\begin{proof}
+  We will induct over $m$. When $m=1$, it is easy to see how we can apply $A$ to both sides of $Ax = \lambda x$ to find that $A(Ax) = A^2 x = A(\lambda x) = \lambda Ax = \lambda^2 x$. Then suppose this is true at the $m-1$ case, so that $x$ is an eigenvector of $A^{m-1}$ corresponding to $\lambda^{m-1}$. Then apply $A$ to both sides of $A^{m-1}x = \lambda^{m-1}x$ to find $A(A^{m-1}x) = A^m x = A(\lambda^{m-1}x) = \lambda^{m-1} Ax = \lambda^m$. Thus by induction we see that $x$ is an eigenvector of $A^m$ corresponding to $\lambda^m$. (for any $m\in\mathbb{Z}^{+}$)
+\end{proof}
+
+19.$^{\dagger}$ Let $A$ and $B$ be similar $n\times n$ matrices. Prove that there exists an $n$-dimensional vector space $\mathsf{V}$, a linear operator $\mathsf{T}$ on $\mathsf{V}$, and ordered bases $\beta$ and $\gamma$ for $\mathsf{V}$ such that $A=\sbr{\mathsf{T}}_{\beta}$ and $B=\sbr{\mathsf{T}}_{\gamma}$. 
+
+\begin{proof}
+  Let $A$ and $B$ be similar $n\times n$ matrices. Because $A$ and $B$ are similar, there exists an $n\times n$ invertible matrix $Q$ such that $A = QBQ^{-1}$. 
+
+  Let $\mathsf{V} = \mathbb{F}^n$ and give two different ordered bases for $\mathbb{F}^n$, $\beta = \cbr{x_1,x_2,\dots,x_n}$ and $\gamma = \cbr{x^{\prime}_1,x^{\prime}_2,\dots,x^{\prime}_n}$. So then we can denote $\mathsf{V}$ as two equal vector spaces, $\mathbb{F}^n_{\beta}$ and $\mathbb{F}^n_{\gamma}$, just with different bases. Then from our matrices $A$ and $B$ let $\mathsf{T} = \mathsf{L}_A : \mathbb{F}^n_{\beta} \to \mathbb{F}^n_{\beta}$ and $\mathsf{L}_B: \mathbb{F}^n_{\gamma} \to \mathbb{F}^n_{\gamma}$.
+
+  What remains is to formulate $Q$ such that we can form a transformation $\mathsf{L}_Q : \mathbb{F}^n_{\gamma}\to \mathbb{F}^n_{\beta}$, which is a change of coordinates transformation. So $Q = \sbr{\mathsf{I}_n}^{\beta}_{\gamma}$, and $\mathsf{I}_n = \mathsf{L}_Q$.
+  
+  Let $Q$ be defined as the invertible matrix where $$x^{\prime}_j = \sum_{i=1}^n Q_{ij}x_i,$$ so that each column of $Q$ is really just each vector in $\gamma$ expressed as a linear combination of vectors in $\beta$. The corresponding isomorphism (automorphism) for this matrix is $\mathsf{L}_Q : \mathbb{F}^n_{\gamma}\to \mathbb{F}^n_{\beta}$, and we can use $Q^{-1} = \br{\sbr{\mathsf{I}_n}^{\beta}_{\gamma}}^{-1} = \sbr{\mathsf{I}_n}^{\gamma}_{\beta}$ to form the inverse $\mathsf{L}_{Q^{-1}} = \mathsf{L}^{-1}_Q : \mathbb{F}^n_{\beta}\to  \mathbb{F}^n_{\gamma}$ ($=\mathsf{I}_n^{-1} = \mathsf{I}_n$). This means we can translate the statement that matrices $A$ and $B$ are similar via $A = QBQ^{-1}$ into $\mathsf{L}_A = \mathsf{L}_Q\mathsf{L}_B\mathsf{L}^{-1}_Q = \mathsf{T}$. 
+  
+  Then since $\mathsf{T} = \mathsf{L}_A \iff \sbr{\mathsf{T}}_{\beta} = \sbr{\mathsf{L}_A}_{\beta} = A \iff \sbr{\mathsf{T}}_{\beta} = A$, we have that $\sbr{\mathsf{T}}_{\beta} = \sbr{\mathsf{I}_n}^{\beta}_{\gamma} B \sbr{\mathsf{I}_n}^{\gamma}_{\beta}$. We can change this into $B = \sbr{\mathsf{I}_n}^{\gamma}_{\beta}\sbr{\mathsf{T}}_{\beta}\sbr{\mathsf{I}_n}^{\beta}_{\gamma} = \sbr{\mathsf{T}}_{\gamma} $. 
+  
+  Hence there exists an $n$-dimensional vector space $\mathsf{V} = \mathbb{F}^n$, a linear operator $\mathsf{T}$ on $\mathsf{V}$, and ordered bases $\beta$ and $\gamma$ for $\mathsf{V}$ such that $A=\sbr{\mathsf{T}}_{\beta}$ and $B=\sbr{\mathsf{T}}_{\gamma}$.
+\end{proof}
+
+\end{document}

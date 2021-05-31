@@ -1,0 +1,86 @@
+% LaTeX Book Template - using defaults
+\documentclass[12pt]{amsbook}
+%\textwidth 220 mm
+%\documentclass[12pt]{amsbook}
+\usepackage{pinlabel}
+\usepackage{amsfonts}   %for \blacksquare
+\usepackage{amssymb}    %for \mathbb{ }
+\usepackage{mathrsfs}   %for \mathscr
+\usepackage{fancyhdr}
+\usepackage{color}      %for colored fonts
+\usepackage{amsmath}       %for \dfrac
+\usepackage{graphicx}
+\usepackage{subcaption} 
+\usepackage{graphics}
+\usepackage{epsfig}
+\let\cal\mathcal
+
+
+
+\newtheorem{corollary}{\sc Corollary}
+\newtheorem{lemma}{\sc Lemma}
+\newtheorem{example}{\sc Example}
+\newtheorem{problem}{\sf Problem}
+
+
+\newtheorem{theorem}{\sc Theorem}
+\newtheorem{proposition}{\sc Proposition}
+\newenvironment{solution}{\noindent{\sc Solution:}}{\hfill{$\square$}}
+
+
+\newenvironment{remark}{\vspace*{6pt}\noindent{\bf Remark.}}{} %%%exelent infolab
+\usepackage{INTAQ-V1.0} %%%%%%%%%exelent infolab
+
+\newtheorem{definition}{\sc Definition}
+\newcommand{\mbf}[1]{\mbox{\boldmath$ #1$}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\pl}{\partial}
+\newcommand{\tint}{\int\!\!\!\int\!\!\!\int}
+\newcommand{\dint}{\int\!\!\!\int}
+\renewcommand{\thedefinition}{\thesection.{\small\bf \arabic{definition}}}
+\renewcommand{\thetheorem}{\thesection.{\small\bf \arabic{theorem}}}
+\renewcommand{\theexample}{\thesection.{\small\bf \arabic{example}}}
+\renewcommand{\thecorollary}{\thesection.{\small\bf \arabic{corollary}}}
+\renewcommand{\theproblem}{\thesection.{\small\bf \arabic{problem}}}
+\renewcommand{\thefigure}{\thesection.{\small\bf \arabic{figure}}}
+\renewcommand{\theequation}{\thesection.{\small\bf \arabic{equation}}}
+% Set the beginning of a LaTeX document
+
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+{\huge\bf Concepts in Calculus III}
+\vskip 0.5cm
+{\LARGE\bf Multivariable Calculus}
+\vskip 0.5cm
+{\huge\bf Solution Manual}
+
+\vskip 3 cm
+{\Large\bf K. DeMason, S. V. Shabanov, N. Kapsos, M. Schrank, and S. Sivakumar}
+
+\vskip 3 cm
+{\large\sf Department of Mathematics, University of Florida, Gainesville, FL 32611
+USA}
+
+\end{center}
+\vskip 5cm
+\begin{center}
+For the Latest Edition of the Textbook: 2019
+
+First Edition of the Textbook:
+University of Florida Press, Gainesville, 2012
+
+ISBN 978--1--61610--162--6 
+
+\vskip 1cm
+{\small\sf\copyright\ 2017 Sergei Shabanov,   All Rights Reserved}
+\end{center}
+
+\newpage
+Helloj
+
+\end{document}

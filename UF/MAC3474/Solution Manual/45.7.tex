@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{45.7 Exercises}
+
+\subsection{45.7.1}
+
+To compute the circulation of $\vec{F}$ along $\partial S$, we must choose an orientation for the boundary curve that is given by our own choice for the orientation of $S$. For this problem it seems natural to take the outward orientation, so we take the curve given by the intersection of the plane $z=1$ and the sphere $x^2+y^2+z^2 = 2$. The curve itself is the unit circle suspended above where $z=1$, so the path may be given as $\vec{r}(t) = \langle \cos(t), \sin(t) , 1\rangle$ for $0\leq t \leq 2\pi$ (counterclockwise since the surface is oriented outwards).
+
+The line integral is then $$\oint_{\partial S} \vec{F}\cdot d\vec{r} \to \int_{0}^{2\pi}\langle \sin(t), -\cos(t) ,1 \rangle \cdot \langle -\sin(t), \cos(t) ,0 \rangle dt$$
+$$ \to \int_0^{2\pi} (-1)dt = -2\pi$$
+
+Then to compute the equivalent flux integral the surface $S$ given by the graph $z = \sqrt{1-x^2-y^2}$ is again oriented outward. Thus the normal vector $\vec{n}$ (not the unit normal, because computing the norm of $\vec{n}$ is unnecessary) is given by:
+$$\vec{n} = \langle -z^{\prime}_x, -z^{\prime}_y ,1 \rangle = \bigg\langle \frac{x}{\sqrt{1-x^2-y^2}}, \frac{y}{\sqrt{1-x^2-y^2}} ,1 \bigg\rangle$$
+
+Then to compute the curl of $\vec{F}$:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{e}_1 & \hat{e}_1 & \hat{e}_1 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    y & -x & z
+\end{pmatrix} = \langle 0, 0 ,-2 \rangle$$
+
+In computing the flux integral we will be making a transformation to integrate over a planar region. The region of integration will be the disk of unit radius $D$, since that is the projection of the surface itself onto the $xy$ plane. The integral becomes:
+$$\iint_S \left(\nabla\times \vec{F}\right) \cdot \hat{n}dS \to \iint_D \left(\nabla\times \vec{F}\right)\cdot \vec{n}dA$$
+$$ \to \iint_D \langle 0, 0 ,-2 \rangle \cdot \bigg\langle \frac{x}{\sqrt{1-x^2-y^2}}, \frac{y}{\sqrt{1-x^2-y^2}} ,1 \bigg\rangle dA$$
+$$\to -2\iint_D dA = -2\pi$$
+
+The last integral is just the surface area of the disk, which was then scaled by $-2$ (geometry). Both methods result with the same value, so we seem to be correct.
+
+\subsection{45.7.6}
+
+Graphically it may be helpful to imagine that the $x$ axis is the vertically aligned one, since the cylinder is oriented in this manner. As for the line integral, we wish to use Stokes' theorem to evaluate it. So we need to have a surface that the curve $C$ is the boundary of. We shall choose the simplest one, that is, the plane $x+y=1$ (or $x = 1-y$) that is bounded by the curve $C$. Call this surface $S$, and because the curve $C$ is oriented counterclockwise when viewed from above, the orientation of $S$ is upward.
+
+Since the vertical axis is the $x$ axis, give the unit normal vector $\hat{n}$ as $$\hat{n} = \frac{\vec{n}}{||\vec{n}||} = \frac{1}{||\langle 1, -x^{\prime}_y ,-x^{\prime}_z \rangle||}\langle 1, -x^{\prime}_y ,-x^{\prime}_z \rangle = \frac{1}{\sqrt{2}}\langle 1, 1 ,0 \rangle$$
+
+The curl of the vector field $\vec{F}$ can be computed like so:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{e}_1 & \hat{e}_1 & \hat{e}_1 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    xy & 3z & 3y
+\end{pmatrix} = \langle 0, 0 ,-x \rangle$$
+
+Then the integral so far is given as follows:
+$$\oint_C \vec{F}\cdot d\vec{r} = \iint_S \left(\nabla\times\vec{F}\right)\cdot \hat{n}dS \to \iint_S \langle 0, 0 ,-x \rangle \cdot \frac{1}{\sqrt{2}}\langle 1, 1 ,0 \rangle dS $$
+$$\to \iint_S (0) dS = 0$$
+
+The integral vanishes.
+
+\subsection{45.7.10}
+
+The surface $S$ given by the graph $z=x^2+(y-1)^2$ is oriented upwards because its boundary curve is oriented counterclockwise when viewed from above. We would also like to take note of the region that it maps to when we take a vertical projection of this surface onto the $xy$ plane since we will be making a transformation to change the surface integral to a normal double integral. Such a region is the unit disk $D$, because the cylinder bounds both the surface and the disk in that manner.
+
+We would like to find the normal vector (not the unit normal vector since the normalization factor will be canceled out by the Jacobian of transformation from the disk $D$ to the surface $S$). The normal vector $\vec{n}$ is given by:
+$$\vec{n} = \langle -z^{\prime}_x, -z^{\prime}_y ,1 \rangle = \langle -2x,-2(y-1) ,1 \rangle$$
+
+The curl of the vector field is computed as follows:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{e}_1 & \hat{e}_1 & \hat{e}_1 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    y-z & -x & x
+\end{pmatrix} = \langle 0, -2 ,-2 \rangle$$
+
+Then the integral is computed:
+$$\oint_C \vec{F}\cdot d\vec{r} = \iint_S \left(\nabla\times\vec{F}\right)\cdot \hat{n}dS \to \iint_D \left(\nabla\times\vec{F}\right)\cdot \vec{n}dA $$
+$$\to \iint_D \langle 0, -2 ,-2 \rangle\cdot \langle -2x,-2(y-1) ,1 \rangle dA \to -2\iint_D (-2y+3)dA$$
+$$\to -2\int_0^{2\pi}\int_0^1 r(-2r\sin(\theta)+3)drd\theta = -6\pi$$
+
+\subsection{45.7.19}
+
+From the vector field it seems pretty unreasonable to take the line integral normally. So we will use Stokes' theorem to help.
+
+Notice that the field is conservative, which is shown by taking the curl of the vector field like so:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{e}_1 & \hat{e}_1 & \hat{e}_1 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    e^{x^2}-yz & e^{y^2}-xz & z^2-xy
+\end{pmatrix} = \langle -x+x, -y+y ,-z+z \rangle = \vec{0}$$
+
+We can use this to our advantage by making the contour $C$ closed by taking the union of $C$ with a straight line segment $BA$ from $(a,0,h)$ to $(a,0,0)$. From the fundamental theorem of line integrals or Stokes' theorem it follows that this line integral over the closed contour is zero. But what we add to the contour we must also remove. It follows from the additivity of the line integral that:
+$$\int_C \vec{F}\cdot d\vec{r} = \oint_{C\cup BA} \vec{F}\cdot d\vec{r} - \int_{BA} \vec{F}\cdot d\vec{r}  = 0-\int_{BA} \vec{F}\cdot d\vec{r}$$
+
+So all we need to compute is the last integral over the line segment. Because the parameterization does not matter we may choose the easiest one, namely $\vec{r}(t) = (1-t)\langle a, 0 ,h \rangle + t\langle a, 0 ,0 \rangle = \langle a, 0, h-th\rangle$ where $0 \leq t \leq 1$. Then it follows that the line integral is computed as follows:
+$$-\int_{BA} \vec{F}\cdot d\vec{r} \to -\int_0^1 \langle e^{a^2}, 1-a(h-th) ,(h-th)^2 \rangle \cdot \langle 0,0,-h\rangle dt$$
+$$\to h^3\int_0^1 (1-t)^2dt = h^3\int_0^1 u^2 du = \frac{1}{3}h^3$$
+
+\end{document}

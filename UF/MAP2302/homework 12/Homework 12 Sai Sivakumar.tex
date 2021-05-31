@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+
+\usepackage{physics}
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP2302 Professor Jury}
+\fancyhead[R]{Sai Sivakumar 12/07/20}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+Section 7.9: 13, 31, Section 8.3: 11, 17, 19
+
+Section 7.9\\
+
+13. $w^{\dprime}+w = \delta(t-\pi)$ for $w(0) = 0,~ w^{\prime}(0) = 0$ Solve.
+
+Take the Laplace transform of both sides to find:
+$$s^2W(s)+W(s) = e^{-\pi s} \to W(s) = \frac{1}{1+s^2}e^{-\pi s}$$
+From the translation property $\mathcal{L}^{-1}[e^{-as}F(s)]](t) = f(t-a)u(t-a)$ to find a solution for $w(t)$:
+$$w(t) = \sin(t-\pi)u(t-\pi)$$
+
+31. Since the system has zero initial conditions it is convenient when computing the transfer function $H(s)$ and the impulse response function $h(t)$:
+$$ay^{\dprime}+by^{\prime}+cy = \delta(t) \to \br{as^2+bs+c}Y(s) = 1 \to \frac{Y(s)}{(1)} = H(s) = \frac{1}{as^2+bs+c}$$
+
+Give the roots of the polynomial $s^2+\frac{b}{a}s+\frac{c}{a}$ as $r_1$ and $r_2$. Then proceed:
+$$H(s) = \frac{1}{as^2+bs+c} = \frac{1}{a(s-r_1)(s-r_2)} \to H(s) = \frac{1}{a}\sbr{\frac{\frac{1}{r_1-r_2}}{s-r_1} - \frac{\frac{1}{r_1-r_2}}{s-r_2}} \to h(t) = \frac{e^{r_1 t}-e^{r_2 t}}{a\br{r_1-r_2}}$$
+
+The impulse response function $h(t)$ involves exponentials which as $t\to \infty$ should converge, in order to bound $h(t)$ from above. This will only happen when $\Re(r_1) \leq 0$ and $\Re(r_2) \leq 0$, and so the linear system governed by $ay^{\dprime}+by^{\prime}+cy = \delta(t)$ is made stable.
+
+Section 8.3\\
+
+11. The point $x=0$ is an ordinary point for the function $p(x) = x+2$, so we may continue with our series expansion methods. Give $y(x)$ and $y^{\prime}(x)$ as generic power series:
+$$y(x) = \lim_{n\to \infty}\sum_{k=0}^{n} a_k x^k, ~ y^{\prime}(x) = \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1}$$
+$$y^{\prime} + (x+2)y = 0 \to \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1} + (x+2)\lim_{n\to \infty}\sum_{k=0}^{n} a_k x^k = 0$$
+$$\to \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1} + \lim_{n\to \infty}\sum_{k=0}^{n} a_k x^{k+1} + \lim_{n\to \infty}\sum_{k=0}^{n} 2a_k x^k = 0$$
+$$\to \lim_{n\to \infty}\sum_{k=-1}^n \br{k+1}a_{k+1}x^{k} + \lim_{n\to \infty}\sum_{k=1}^{n} a_{k-1} x^{k} + \lim_{n\to \infty}\sum_{k=0}^{n} 2a_k x^k = 0$$
+$$\to \lim_{n\to \infty}\sum_{k=1}^n \br{k+1}a_{k+1}x^{k} + a_1 + \lim_{n\to \infty}\sum_{k=1}^{n} a_{k-1} x^{k} + \lim_{n\to \infty}\sum_{k=1}^{n} 2a_k x^k + 2a_0 = 0$$
+$$\to 2a_0 + a_1 + \lim_{n\to \infty}\sum_{k=1}^n\br{ \br{k+1}a_{k+1} + a_{k-1} + 2a_k}x^k = 0$$
+
+Then the following recurrence relation is formed:
+$$2a_0 + a_1 = 0, ~ \br{k+1}a_{k+1} + a_{k-1} + 2a_k = 0$$
+
+Generate four more terms in terms of $a_0$ by finding a general formula for $a_{k+1}$, then using the first value given by $-2a_0 = a_1$ to find subsequent terms.
+$$a_{k+1} = \frac{-1}{k+1}\br{2a_k+a_{k-1}} \to a_2 = \frac{3a_0}{2}, ~a_3 = \frac{-a_0}{3}$$
+
+The first four terms of $y(x)$ as given by the generic series above in terms of $a_0$ are:
+$$y(x) \approx \sum_{k=0}^3 a_k x^k = a_0 - 2a_0 x + \frac{3a_0}{2}x^2 - \frac{a_0}{3}x^3$$
+
+17. The point $x=0$ is an ordinary point for the function $p(x) = -x^2$ and $q(x) = 1$, so we may continue with our series expansion methods. Give $w(x)$, $w^{\prime}(x)$, and $w^{\dprime}(x)$ as generic power series:
+$$w(x) = \lim_{n\to \infty}\sum_{k=0}^{n} a_k x^k, ~ w^{\prime}(x) = \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1}, ~ w^{\dprime}(x) = \lim_{n\to \infty}\sum_{k=0}^n k(k-1)a_kx^{k-2}$$
+$$w^{\dprime} -x^2w^{\prime}+ w = 0 \to \lim_{n\to \infty}\sum_{k=0}^n k(k-1)a_kx^{k-2}  -\lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k+1} + \lim_{n\to \infty}\sum_{k=0}^{n} a_k x^k = 0$$
+$$\to \lim_{n\to \infty}\sum_{k=1}^n (k+2)(k+1)a_{k+2}x^{k} + 2a_{2}  -\lim_{n\to \infty}\sum_{k=1}^n (k-1)a_{k-1}x^{k} + \lim_{n\to \infty}\sum_{k=1}^{n} a_k x^k + a_0 = 0$$
+$$\to a_0 + 2a_2 + \lim_{n\to \infty}\sum_{k=1}^n\br{(k+2)(k+1)a_{k+2} - (k-1)a_{k-1} + a_k}x^k = 0$$
+
+Then the following recurrence relation is formed, which we use to form more terms (in terms of $a_0$ and $a_1$ since there are two initial conditions not given):
+$$a_2 = -\frac{1}{2}a_0,~ (k+2)(k+1)a_{k+2} - (k-1)a_{k-1} + a_k = 0$$
+$$\to a_{k+2} = \frac{(k-1)a_{k-1} - a_k}{(k+2)(k+1)} \to  a_3 = \frac{-a_1}{6}$$
+
+Then an approximation for $w(x)$ to four terms is given by:
+$$w(x) \approx \sum_{k=0}^3 a_k x^k = a_0 + a_1x -\frac{1}{2}a_0x^2 -\frac{1}{6}a_1x^3$$
+
+19. The point $x=0$ is an ordinary point for the function $p(x) = -2x$, so we may continue with our series expansion methods. Give $y(x)$ and $y^{\prime}(x)$ as generic power series:
+$$y(x) = \lim_{n\to \infty}\sum_{k=0}^{n} a_k x^k, ~ y^{\prime}(x) = \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1}$$
+$$y^{\prime}-2xy = 0 \to \lim_{n\to \infty}\sum_{k=0}^n ka_kx^{k-1} -2\lim_{n\to \infty}\sum_{k=0}^{n} a_k x^{k+1} = 0$$
+$$\to \lim_{n\to \infty}\sum_{k=1}^n (k+1)a_{k+1}x^{k} + a_1 -2\lim_{n\to \infty}\sum_{k=1}^{n} a_{k-1} x^{k} = 0$$
+$$\to a_1 + \lim_{n\to \infty}\sum_{k=1}^n \br{(k+1)a_{k+1}-2a_{k-1}}x^k = 0$$
+
+The following recurrence relation is found, with its general formula:
+$$a_1 = 0,~ (k+1)a_{k+1}-2a_{k-1} = 0 \to a_{k+1} = \frac{2a_{k-1}}{k+1} \to a_{k} = \frac{2a_{k-2}}{k}$$
+
+Because $a_1 = 0$, any subsequent $a_k$ for odd $k$ are going to be $0$. Then also notice that since the recurrence relation only works for even numbers, change the indexing variable into $k = 2c$ for natural numbers $c$. Then find that the recurrence relation can be written as $a_{2c} = \frac{a_{2(c-1)}}{c}$ (sort of suspicious notation, but ignoring the '$2$' as part the literal index of the sequence, treat these terms as adjacent since we iterate over integers $c$). Taking $a_0$ to be the first element of this sequence, we can find that the explicit formula for $a_k$ can be $a_k = \frac{a_0}{c!}$ where $k=2c$. Then we can rewrite the series (where we sum over $c$ instead) for $y$ as:
+$$y(x) = \lim_{n\to \infty}\sum_{c=0}^n a_0 \frac{x^{2c}}{c!} = a_0e^{x^2}$$
+\end{document}

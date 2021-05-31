@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+2.2: 8, 10, 11 
+
+2.3: 11, 12, 13 \\
+
+2.2: 
+
+8. Let $\mathsf{V}$ be an $n$-dimensional vector space with an ordered basis $\beta$. Define $\mathsf{T} : \mathsf{V}\to\mathbb{F}^n$ by $\mathsf{T}(x) = \sbr{x}_{\beta}$. Prove that $\mathsf{T}$ is linear.
+
+\begin{proof}
+    The transformation $\mathsf{T}$ is linear iff $\mathsf{T}(ax+y) = a\mathsf{T}(x) + \mathsf{T}(y)$ for vectors $x,y\in\mathsf{V}$ and scalar $a\in\mathbb{F}$.
+
+    So $\mathsf{T}(ax+y) = \sbr{ax+y}_{\beta}$, which is the coordinate vector representation of $ax+y$ in terms of the ordered basis given by $\beta$.
+
+    We can represent the vector given by $\sbr{ax+y}_{\beta}$ as a linear combination of other vectors relative to the same basis, namely $\sbr{x}_{\beta}$ and $\sbr{y}_{\beta}$. It is true that $a\sbr{x}_{\beta} + \sbr{y}_{\beta} = \sbr{ax}_{\beta} + \sbr{y}_{\beta} = \sbr{ax+y}_{\beta}$, so then we can express $a\sbr{x}_{\beta} + \sbr{y}_{\beta}$ as $a\mathsf{T}(x) + \mathsf{T}(y)$. Therefore $\mathsf{T}$ is linear.
+\end{proof}
+
+10. For every vector $v_j$ in the ordered basis $\beta$, we have that $\mathsf{T}(v_j) = v_j+v_{j-1}$. The matrix $\sbr{\mathsf{T}}_{\beta}$ can be expressed as $\br{\sbr{\mathsf{T}(v_1)}_{\beta} \sbr{\mathsf{T}(v_2)}_{\beta} \cdots \sbr{\mathsf{T}(v_n)}_{\beta}}$, where each $\sbr{\mathsf{T}(v_i)}_{\beta}$ is a column.
+
+The first column is unique since $v_{1-1} = v_0 = \vec{0}$, so we have that $$\sbr{\mathsf{T}(v_1)}_{\beta} = v_1+v_0 = v_1 = \begin{pmatrix}
+    1 \\
+    0 \\
+    \vdots \\
+    0
+\end{pmatrix}.$$
+
+However, the other columns are in the form where there is an extra '$1$' in the position above the '$1$' meant to carry $v_j$ to itself. So for example, $$\sbr{\mathsf{T}(v_2)}_{\beta} = v_2+v_1 = \begin{pmatrix}
+    1 \\
+    1 \\
+    \vdots \\
+    0
+\end{pmatrix}, \sbr{\mathsf{T}(v_3)}_{\beta} = v_3+v_2 = \begin{pmatrix}
+    0 \\
+    1 \\
+    1 \\
+    \vdots \\
+    0
+\end{pmatrix},$$
+$$\sbr{\mathsf{T}(v_{n-1})}_{\beta} = v_{n-1}+v_{n-2} = \begin{pmatrix}
+    0 \\
+    \vdots \\
+    1 \\
+    1 \\
+    0
+\end{pmatrix}, \text{ and } \sbr{\mathsf{T}(v_n)}_{\beta} = v_n+v_{n-1} = \begin{pmatrix}
+    0 \\
+    \vdots \\
+    1 \\
+    1
+\end{pmatrix}$$
+
+Thus by construction $$\sbr{\mathsf{T}}_{\beta} = \br{\sbr{\mathsf{T}(v_1)}_{\beta} \sbr{\mathsf{T}(v_2)}_{\beta} \cdots \sbr{\mathsf{T}(v_n)}_{\beta}} = \begin{pmatrix}
+    1 & 1 & 0 & \cdots & 0 & 0 \\
+    0 & 1 & 1 & \cdots & 0 & 0 \\
+    0 & 0 & 1 & \ddots & \vdots & \vdots \\
+    \vdots & \vdots & \ddots & \ddots & 1 & 0 \\
+    0 & 0 & \cdots & 0 & 1 & 1 \\
+    0 & 0 & \cdots & 0 & 0 & 1
+\end{pmatrix}.$$
+
+11. Let $\mathsf{V}$ be an $n$-dimensional vector space, and let $\mathsf{T} : \mathsf{V}\to \mathsf{V}$ be a linear transformation. Suppose that $\mathsf{W}$ is a $\mathsf{T}$-invariant subspace of $\mathsf{V}$ having dimension $k$. Show that there is a basis $\beta$ for $\mathsf{V}$ such that $\sbr{\mathsf{T}}_{\beta}$ has the form $$\begin{pmatrix}
+    A & B \\
+    O & C
+\end{pmatrix},$$
+
+where $A$ is a $k\times k$ matrix and $O$ is the $\br{n-k}\times k$ zero matrix.
+
+\begin{proof}
+    Consider a basis for $\mathsf{W}$ given by $\cbr{w_1,w_2,\dots,w_k}$. Then by the replacement theorem we can extend this basis for $\mathsf{W}$ into a basis for $\mathsf{V}$ by adding $n-k$ many linearly independent vectors into the basis, resulting in the ordered basis $\beta$ given by $\cbr{w_1,w_2,\dots,w_k,v_1,v_2,\dots,v_{n-k}}$.
+    
+    Since $\mathsf{W}$ is $\mathsf{T}$-invariant, the construction of $\sbr{\mathsf{T}}_{\beta}$ is greatly simplified, as the transformations $\mathsf{T}(w_i)$ will always be in the form $$\mathsf{T}(w_i) = \begin{pmatrix}
+        c_{1i} \\
+        c_{2i} \\
+        \vdots \\
+        c_{ki} \\
+        0_{1} \\
+        0_{2} \\
+        \vdots \\
+        0_{(n-k)}
+    \end{pmatrix},$$
+
+    where because $\mathsf{T}(w_i)\in\mathsf{W}$, and each $v_i$ are not in $\mathsf{W}$, we have that the corresponding entries for each $v_i$ in the coordinate vector must be zero (denoted by $0_{i}$). Consider the construction for the first part of $\sbr{\mathsf{T}}_{\beta}$, given by
+    
+    $$\br{\sbr{\mathsf{T}(w_1)}_{\beta} \sbr{\mathsf{T}(w_2)}_{\beta} \dots \sbr{\mathsf{T}(w_k)}_{\beta}} = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1k} \\
+        a_{21} & a_{22} & \cdots & a_{2k} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{k1} & a_{k2} & \cdots & a_{kk} \\
+        0_{1} & 0_{1} & \cdots & 0_{1} \\
+        0_{2} & 0_{2} & \cdots & 0_{2} \\
+        \vdots  & \vdots & \cdots & \vdots \\
+        0_{(n-k)} & 0_{(n-k)} & \cdots & 0_{(n-k)}
+    \end{pmatrix} = \begin{pmatrix}
+        A \\
+        O
+    \end{pmatrix}.$$
+
+    Then for the remaining vectors $v_i$ in $\beta$, we construct $\br{\sbr{\mathsf{T}(v_1)}_{\beta} \sbr{\mathsf{T}(v_2)}_{\beta} \dots \sbr{\mathsf{T}(v_{n-k})}_{\beta}}$ and adjoin it to the previous matrix. Here the matrix will not have any special conditions since naturally each $v_i$ can be expressed as a linear combination of vectors in $\beta$. $$\br{\sbr{\mathsf{T}(v_1)}_{\beta} \sbr{\mathsf{T}(v_2)}_{\beta} \dots \sbr{\mathsf{T}(v_{n-k})}_{\beta}} = \begin{pmatrix}
+        b_{11} & b_{12} & \cdots & b_{1(n-k)} \\
+        b_{21} & b_{22} & \cdots & b_{2(n-k)} \\
+        \vdots & \vdots & \cdots & \vdots \\
+        b_{k1} & b_{k2} & \cdots & b_{k(n-k)} \\
+        c_{11} & c_{12} & \cdots & c_{1(n-k)} \\
+        c_{21} & c_{22} & \cdots & c_{2(n-k)} \\
+        \vdots  & \vdots & \ddots & \vdots \\
+        c_{(n-k)1} & c_{(n-k)2} & \cdots & c_{(n-k)(n-k)}
+    \end{pmatrix} = \begin{pmatrix}
+        B \\
+        C
+    \end{pmatrix}.$$
+
+    Thus $$\sbr{\mathsf{T}}_{\beta} = \br{\sbr{\mathsf{T}(w_1)}_{\beta} \sbr{\mathsf{T}(w_2)}_{\beta} \dots \sbr{\mathsf{T}(w_k)}_{\beta} \sbr{\mathsf{T}(v_1)}_{\beta} \sbr{\mathsf{T}(v_2)}_{\beta} \dots \sbr{\mathsf{T}(v_{n-k})}_{\beta}} = \begin{pmatrix}
+        A & B \\
+        O & C
+    \end{pmatrix},$$ so there is a basis $\beta = \cbr{w_1,w_2,\dots,w_k,v_1,v_2,\dots,v_{n-k}}$ for $\mathsf{V}$ that gives $\sbr{\mathsf{T}}_{\beta}$ this form.
+\end{proof}
+2.3: 
+
+11. Let $\mathsf{V}$ be a vector space, and let $\mathsf{T} : \mathsf{V} \to \mathsf{V}$ be linear. Prove that $\mathsf{T}^2 = \mathsf{T}_0$ if and only if $\mathsf{R(T)} \subseteq \mathsf{N(T)}$. 
+
+\begin{proof}
+    Forwards direction. Suppose $\mathsf{R(T)} \subseteq \mathsf{N(T)}$. Then for all $v\in\mathsf{V}$, $\mathsf{T}(v) \in \mathsf{R(T)}$ whenever $\mathsf{T}(v) \neq \vec{0}$ (in which case $\mathsf{T}(\vec{0}) = \vec{0}$ and nothing needs to be done). Then by assumption $\mathsf{T}(v)\in\mathsf{N(T)}$, so that $\mathsf{T}(\mathsf{T}(v)) = \vec{0} = \mathsf{T}^2(v)$. Since this holds for all $v\in\mathsf{V}$, $\mathsf{T}^2$ must be the zero transformation.
+
+    Converse. Suppose $\mathsf{T}^2 = \mathsf{T}_0$. Then for all $v\in\mathsf{V}$, $\mathsf{T}^2(v) = \vec{0} = \mathsf{T}(\mathsf{T}(v))$. We know that for $v\neq \vec{0}$ (the trivial case), $\mathsf{T}(v)\in\mathsf{R(T)}$, so then if all such elements of $\mathsf{R}(T)$ map into the zero vector (by $\mathsf{T}(\mathsf{T}(v)) = \vec{0}$), then all elements of $\mathsf{R(T)}$ must belong to the null space. Therefore $\mathsf{R(T)}\subseteq \mathsf{N(T)}$.
+
+    Hence $\mathsf{T}^2 = \mathsf{T}_0$ if and only if $\mathsf{R(T)} \subseteq \mathsf{N(T)}$.
+\end{proof}
+
+12. Let $\mathsf{V}$, $\mathsf{W}$, and $\mathsf{Z}$ be vector spaces, and let $\mathsf{T} : \mathsf{V}\to \mathsf{W}$ and $\mathsf{U} : \mathsf{W} \to \mathsf{Z}$ be linear.
+
+(a) Prove that if $\mathsf{UT}$ is one-to-one, then $\mathsf{T}$ is one-to-one. Must $\mathsf{U}$ also be one-to-one?
+
+\begin{proof}
+    Suppose $\mathsf{UT}$ is one-to-one. Then suppose by way of contradiction that $\mathsf{T}$ is not one-to-one, that is, there are two distinct vectors $x,y\in\mathsf{V}$ such that $\mathsf{T}(x) = \mathsf{T}(y)$.
+    
+    Consider $\mathsf{UT}(x) = \mathsf{U}(\mathsf{T}(x)) = \mathsf{U}(\mathsf{T}(y)) = \mathsf{UT}(y)$,for two distinct vectors $x,y$. So $\mathsf{UT}$ is not injective as assumed, which is a contradiction. Therefore $\mathsf{T}$ must be injective.
+\end{proof}
+
+No, $\mathsf{U}$ need not be one-to-one, since if $\mathsf{T}(x) = \mathsf{T}(y)$, then $\mathsf{U}(\mathsf{T}(x)) = \mathsf{U}(\mathsf{T}(y))$. So then $\mathsf{UT}(x) = \mathsf{UT}(y)$, which means $x=y$, regardless of what $\mathsf{U}$ is (provided $\mathsf{UT}$ is injective).
+
+(b) Prove that if $\mathsf{UT}$ is onto, then $\mathsf{U}$ is onto. Must $\mathsf{T}$ also be onto?
+
+\begin{proof}
+    Suppose $\mathsf{UT}$ is onto. Then suppose by way of contradiction that $\mathsf{U}$ is not onto, that is, there exists a vector $z$ in $\mathsf{Z}$ that is not the image of any vector in $\mathsf{W}$. 
+    
+    Then it is impossible for $\mathsf{UT}$ to be onto because for any vector $v\in\mathsf{V}$, $\mathsf{T}(v)\in\mathsf{W}$ but no such vector $\mathsf{T}(v)$ can be the preimage of $z$ under $\mathsf{U}$. This is in contradiction to the assumption that $\mathsf{UT}$ is onto and so we must have that $\mathsf{U}$ is onto.
+\end{proof}
+
+No, $\mathsf{T}$ need not be onto, because for any $\mathsf{T}$ we still know that $\mathsf{UT}$ will be onto. Then this means that there exists a $v\in\mathsf{V}$ such that for every $z\in\mathsf{Z}$, $z = \mathsf{UT}(v) = \mathsf{U}(\mathsf{T}(v))$, where $\mathsf{T}(v)$ is guaranteed to map to $z$ due to $\mathsf{U}$ being surjective, so $\mathsf{T}$ need not be onto.
+
+(c) Prove that if $\mathsf{U}$ and $\mathsf{T}$ are bijective, then $\mathsf{UT}$ is also.
+
+\begin{proof}
+    Suppose $\mathsf{U}$ and $\mathsf{T}$ are bijective. Then show that $\mathsf{UT}$ is injective and surjective.
+
+    Injectivity. Suppose $x,y$ are distinct vectors in $\mathsf{V}$. Then $\mathsf{UT}(x) = \mathsf{U}(\mathsf{T}(x))$ and $\mathsf{UT}(y) = \mathsf{U}(\mathsf{T}(y))$, where $\mathsf{T}(x) \neq \mathsf{T}(y)$ due to the injectivity of $\mathsf{T}$. Then similarly by injectivity of $\mathsf{U}$, $\mathsf{U}(\mathsf{T}(x)) \neq \mathsf{U}(\mathsf{T}(y))$ and so $\mathsf{UT}(x) \neq \mathsf{UT}(y)$, which implies $\mathsf{UT}$ is injective.
+
+    Surjectivity. We wish to show that for all $z\in\mathsf{Z}$, there is an element $v\in\mathsf{V}$ such that $\mathsf{UT}(v) = z$. Since $\mathsf{U}$ is surjective, there exists a vector $w\in\mathsf{W}$ such that $\mathsf{U}(w) = z$. Then similarly since $\mathsf{T}$ is surjective, then there exists a vector $v\in\mathsf{V}$ such that $\mathsf{T}(v) = w$. Then $\mathsf{U}(\mathsf{T}(v)) = \mathsf{UT}(v) = z$ for all $z\in\mathsf{Z}$. Hence $\mathsf{UT}$ is surjective.
+
+    Therefore $\mathsf{UT}$ is bijective.
+\end{proof}
+
+13. Let $A$ and $B$ be $n\times n$ matrices. Prove that $\trace\br{AB} = \trace\br{BA}$ and $\trace\br{A} = \trace\br{A^t}$.
+
+\begin{proof} (1)
+    Each entry of $AB$ is given by $(AB)_{ij} = \sum_{k=1}^n A_{ik}B_{kj}$, by rules of matrix multiplication. Then the elements on the diagonal are $(AB)_{ii} = \sum_{k=1}^n A_{ik}B_{ki}$, and so $$\trace\br{AB} = \sum_{i = 1}^n\br{\sum_{k=1}^n A_{ik}B_{ki}}.$$ But by swapping the order of summation and commuting the term in the summand we can show that $$\trace\br{AB} = \sum_{k = 1}^n\br{\sum_{i=1}^n B_{ki}A_{ik}}.$$
+
+    However, entries of $BA$ take on the form $(BA)_{ij} = \sum_{k=1}^n B_{ik}A_{kj}$, and the entries in the diagonal are $(BA)_{ii} = \sum_{k=1}^n B_{ik}A_{ki}$. So the trace of $BA$ can be expressed as $$\trace\br{BA} = \sum_{i=1}^n\br{\sum_{k=1}^n B_{ik}A_{ki}},$$ but because summation variables are dummy variables we may replace $k$ by $i$ and vice versa to find that $$\trace\br{BA} = \sum_{k = 1}^n\br{\sum_{i=1}^n B_{ki}A_{ik}} = \trace\br{AB}.$$
+
+    Hence $\trace\br{AB} = \trace\br{BA}$.
+\end{proof}
+
+\begin{proof} (2) The trace of $A$ is $\sum_{i=1}^n A_{ii}$, since elements of $A$ in position $ij$ are $A_{ij}$ and elements on the diagonal are where $i=j$. Similarly elements of $A^t$ are $\br{A^t}_{ij} = A_{ji}$, and the elements on the diagonal are also where $i=j$, so the trace of $A^t$ is $\sum_{i=1}^n \br{A^t}_{ii} = \sum_{i=1}^n A_{ii}$
+    
+Hence $\trace\br{A} = \trace\br{A^t}$.
+\end{proof}
+
+\end{document}

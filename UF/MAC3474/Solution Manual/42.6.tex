@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{42.6 Exercises}
+
+\subsection{42.6.1}
+
+$\star$ The curl of a vector field $\vec{F} = \langle F_1, F_2 ,F_3 \rangle$ is given by the following formal determinant:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    F_1 & F_2 & F_3
+\end{pmatrix}$$
+
+Using this definition we may compute the curl of the vector field $\vec{F} = \langle xyz, -y^2x,0 \rangle$:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    \\
+    xyz & -y^2x & 0
+\end{pmatrix} = \langle 0, xy , -y^2-xz \rangle$$
+
+\subsection{42.6.4}
+
+The curl of a vector field $\vec{F} = \langle F_1, F_2 ,F_3 \rangle$ is given by the following formal determinant:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    F_1 & F_2 & F_3
+\end{pmatrix}$$
+
+Using this definition we may compute the curl of the vector field $\vec{F} = \langle \ln(xyz), \ln(yz),\ln(z) \rangle$:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    \\
+    \ln(xyz) & \ln(yz) & \ln(z)
+\end{pmatrix} = \bigg\langle -\frac{1}{z}, \frac{1}{z} ,-\frac{1}{y} \bigg\rangle$$
+
+\subsection{42.6.10}
+
+This vector field does not have any domain restriction. The curl of the vector field must be identically zero in order for the field to be conservative.
+
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    \\
+    yz & xz+2y\cos(z) & xy-y^2\sin(z)
+\end{pmatrix}$$
+$$ = \langle x-2y\sin(z) - (x-2y\sin(z)), y-y ,z-z \rangle = \vec{0}$$
+
+Evidently the vector field is conservative. Then to construct the potential function the following process involving taking integrals and partial derivatives and comparing with the given components of the vector field take place.
+
+Take the integral with respect to $x$ of the first component to find one representation of $f$:
+$$\frac{\partial f}{\partial x} = yz \implies f = xyz + a(y,z)$$
+
+Take the partial derivative of $f$ given above with respect to $y$ and compare with the second component of the vector field similar to find $a(y,z)$. Then integrate this known partial derivative with respect to $y$:
+$$xz + 2y\cos(z) = xz + a^{\prime}_y$$
+$$ \implies f^{\prime}_y = xz + 2y\cos(z) \implies f = xyz + y^2\cos(z) + b(x,z)$$
+
+Repeat like above with the last component:
+$$xy-y^2\sin(z) = xy-y^2\sin(z)+ b^{\prime}_z \implies f^{\prime}_z = xy-y^2\sin(z)$$
+$$\implies f = xyz + y^2\cos(z) + c$$
+
+\subsection{42.6.17}
+
+To determine if the vector field is conservative we can check to see if on its domain the curl of the vector field is identically the zero vector, which it is:
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    y^2z^2+2x+2y & 2xyz^2 + 2x & 2xy^2z + 1
+\end{pmatrix}$$
+$$ = \langle 4xyz-4xyz, 2y^2z-2y^2z , (2yz^2+2)-(2yz^2+2) \rangle = \vec{0}$$
+
+Then reconstruct the potential function (which is in a sense like an antiderivative) $f(x,y,z)$ like so:
+$$\frac{\partial f}{\partial x} = y^2z^2+2x+2y \to f(x,y,z) = xy^2z^2+x^2+2xy + a(y,z)$$
+$$\frac{\partial f}{\partial y} = 2xyz^2 + 2x = 2xyz^2+2x + a^{\prime}_y(y,z) \to a^{\prime}_y(y,z) = 0$$
+
+The last result means that $a(y,z)$ is constant with respect to $y$ so we may write $a(y,z)$ instead as $a(z)$. Then:
+$$\frac{\partial f}{\partial z} = 2xy^2z + 1 = 2xy^2z + a^{\prime}_z(z) \to a^{\prime}_z(z) = 1 \to a(z) = z+C$$
+$$\to f(x,y,z) = xy^2z^2+x^2+2xy + z+C$$
+
+Using the fundamental theorem of line integrals we can use this potential function and evaluate it at the endpoints of the curve $C$. The initial point of $C$ is $(1,1,1)$, and the terminal point is $(1,2,3)$. Find that:
+$$\int_C \vec{F}\cdot d\vec{r} = f(1,2,3)-f(1,1,1)$$
+$$ = \left((1)(2)^2(3)^2+(1)^2+2(1)(2) + (3) + C\right) $$
+$$- \left((1)(1)^2(1)^2+(1)^2+2(1)(1) + (1) + C\right)$$
+$$ = 44-5 = 39$$
+
+\subsection{42.6.18}
+
+All components of the vector field are polynomials, so the domain is all real numbers for all variables. Knowing this it is sufficient to show that the curl of the vector field is identically zero to determine if the field is conservative.
+$$\nabla \times \vec{F} = \det \begin{pmatrix}
+    \hat{\mathbf{e}}_1 & \hat{\mathbf{e}}_2 & \hat{\mathbf{e}}_3 \\
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+    zx & yz & z^2
+\end{pmatrix} = \langle -y, x ,0 \rangle \neq \vec{0}$$
+
+Evidently the field is not conservative so the path given in the problem is the one we must use in the line integral.
+
+The path given is part of the helix that lies in the ellipsoid, but no bounds on $t$ were given. To find them substitute the parameterization into the ellipsoid (make it an inequality because the path should be within the ellipsoid) to find bounds of $t$:
+$$(2\sin(t))^2 + (-2\cos(t))^2 +2(t)^2 \leq 6 \to -1 \leq t \leq 1$$
+
+The integral becomes $$\int_C\vec{F}\cdot d\vec{r} \to \int_{-1}^1 \langle 2t\sin(t), -2t\cos(t) ,t^2 \rangle \cdot \langle 2\cos(t), 2\sin(t) ,1 \rangle dt$$
+$$\to \int_{-1}^1t^2dt = \frac{2}{3}$$
+
+\end{document}

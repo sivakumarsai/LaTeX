@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{32.5 Exercises}
+
+\subsection{32.5.1}
+
+From the bounds it is apparent that the radius $r$ is bounded above by $2$ and below by $1$, while the angle $\theta$ is bounded above by $\pi$ and below by $0$. This means that we have points that lie on the top (positive) half of an annulus (a ring or a washer) lying in the $xy$ plane.
+
+The area is (by geometry) $\frac{3}{2}\pi$.
+
+\subsection{32.5.4}
+
+The bounds indicate that the region is the full cardioid given by $r = 1+\cos(\theta)$. The area of the region is given by evaluating the double integral into the single integral and continuing the computation: $$\frac{1}{2}\int_{-\pi}^{\pi}\left(1+\cos(\theta)\right)^2 d\theta \to  \frac{1}{4}\int_{-\pi}^{\pi} \left(3 + 4 \cos(\theta) + \cos(2 \theta)\right)d\theta = \frac{3}{2}\pi$$
+
+\subsection{32.5.7}
+
+\subsection{32.5.10}
+
+It is apparent from the disk $D$ that the radius is bounded above by $a$ and bounded below by $0$, and that we have the full range in $\theta$, that is $0$ to $2\pi$. Using the known equations for transforming coordinates from the cartesian coordinate system to the polar coordinate system (not forgetting the extra $r$ in the integrand), the double integral becomes $$\int_{0}^{2\pi}\int_{0}^{a}\left(\sin(r^2)\right)rdrd\theta \to \int_{0}^{2\pi} \frac{1}{2}\left(1-\cos(a^2)\right)d\theta = \pi(1-\cos(a^2))$$
+
+\subsection{32.5.13}
+
+\subsection{32.5.16}
+
+\subsection{32.5.19}
+
+From the bounds it is found that $ 0 \leq x \leq \sqrt{1-(y-1)^2}$ while $y$ is in the closed interval $[0,2]$. It is apparent that the shape of the region is the right half of a disk centered at the point $(0,1)$ with radius $1$.
+
+Converting the integral to polar coordinates, the bounds change such that $0 \leq r \leq 2\sin(\theta)$ so long as $0 \leq \theta \leq \frac{\pi}{2}$. Knowing that $x^2+y^2 = r$ in polar coordinates, and changing $dxdy$ to $rdrd\theta$, the integral becomes $$\int_{0}^{\frac{\pi}{2}}\int_{0}^{2\sin(\theta)} \left(r\right)rdrd\theta \to \int_{0}^{\frac{\pi}{2}}\frac{8}{3}\sin^3(\theta) d\theta$$
+$$\to -
+\frac{8}{3}\int_{0}^{\frac{\pi}{2}}(1-\cos^2(\theta))(-\sin(\theta))d\theta = \frac{16}{9}$$
+
+\subsection{32.5.22}
+
+\subsection{32.5.25}
+
+\subsection{32.5.28}
+
+From the statement of the problem we find that $\theta/4 \leq r \leq \theta/2$, which we can use to express the original region in polar coordinates. Directly transforming, the region becomes the triangle bounded by the same values given in the problem (think two linear functions starting from the origin with different slopes meeting at a vertical line, and the triangle that forms from that relationship). The double integral that finds the area of the original region is $$\int_{0}^{2\pi}\int_{\frac{\theta}{4}}^{\frac{\theta}{2}} rdrd\theta \to \frac{1}{2}\int_{0}^{2\pi}\left(\frac{\theta}{2}\right)^2-\left(\frac{\theta}{4}\right)^2 d\theta = \frac{1}{4}\pi^3$$
+
+\subsection{32.5.31}
+
+\subsection{32.5.34}
+
+Observing the two functions it becomes apparent that a solid forms where the surface $z_{top} = 4-\sqrt{x^2-y^2}$ is greater than or equal to $z_{bot} = 3\sqrt{x^2-y^2}$. The region of integration in the rectangular plane is given by the closed set whose boundary is the level set $z_{top} - z_{bot} = 0$, which is when $x^2+y^2 = 1$, meaning the region of integration is the disk given by $x^2+y^2 \leq 1$. We may convert to polar coordinates by bounding $r$ from $0$ to $1$ and by bounding $\theta$ from $0$ to $2\pi$. The double integral becomes $$\int_{0}^{2\pi}\int_{0}^{1} \left(4-r-3r\right)rdrd\theta \to \int_{0}^{2\pi}\frac{2}{3}d\theta = \frac{4}{3}\pi$$
+
+\subsection{32.5.35}
+
+The region of integration is the annulus with inner radius $1$ and outer radius $2$. The integrand is simply the equation for the cone, since we are captuiring the signed volume under it.
+
+Since we have the annulus as defined above, it is evident that $1\leq r \leq 2$ and that $\theta$ takes on its natural range.
+
+Replacing the equation for the cone with $z=r$, the double integral becomes $$\int_0^{2\pi}\int_1^2 r (r)drd\theta \to \int_0^{2\pi} \frac{7}{3}d\theta= \frac{14}{3}\pi$$
+
+\subsection{32.5.37}
+
+Evidently the solid is formed when values attained by the plane are greater than or equal to the values attained by the upper sheet of the hyperboloid. This means that the region of integration happens on the set bounded by the level set where both surfaces attain the same value. So from $x^2+y^2 - 4 = -1$ we deduce that $x^2 + y^2 \leq 3$ is the region of integration. It will help to rewrite the upper sheet of the hyperboloid as the surface $z = \sqrt{x^2+y^2+1}$
+
+Converting to polar coordinates, we find that $r$ is bounded from $0$ to $\sqrt{3}$, and then $\theta$ can take on the full range of values from $0$ to $2\pi$. The integral becomes $$\int_{0}^{2\pi}\int_{0}^{\sqrt{3}} \left(2-\sqrt{r^2+1}\right)rdrd\theta \to \int_{0}^{2\pi} \frac{2}{3}d\theta = \frac{4}{3}\pi$$
+
+\end{document}

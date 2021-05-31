@@ -1,0 +1,219 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{SINGLE-VARIABLE INTEGRATION AND LINE INTEGRATION}
+\fancyhead[R]{\thepage}
+\fancypagestyle{firstpage}{\lhead{Running head: SINGLE-VARIABLE INTEGRATION AND LINE INTEGRATION}\rhead{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{8pt}
+\renewcommand{\baselinestretch}{2}
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+\begin{document}
+
+\thispagestyle{firstpage}
+\setcounter{page}{1}
+\null
+\vspace{2.5cm}
+\begin{center}
+
+Single-variable integration and line integration over conservative vector fields: an analysis of the Fundamental Theorem of Calculus and the Fundamental Theorem for Line Integrals
+
+How is the intuition in taking integrals of single variable functions and line integrals over conservative vector fields related by the Fundamental Theorem of Calculus and the Fundamental Theorem for Line Integrals?
+
+Mathematics
+
+\#\#\#\# Words
+
+Candidate Number: 000000-0000
+
+\end{center}
+\vfill
+\pagebreak
+
+Integration by antidifferentiation is a process with many intuitive interpretations; the most popular being a geometric one that connects the rate of change of the accumulation of area with the function one is integrating over. Upon considering multivariable functions, one notices that there are many more interpretations of integrals. Area under the curve could instead be volume, surface area, or arclength (in a higher dimensional sense). With vector-valued functions, one can make use of vector operations and take sums of dot products; they can be interpreted as the total work done on an object, for example.
+
+
+There are theorems that govern integrating single variable functions and multivariable functions, most famously the Fundamental Theorem of Calculus (FTC). For multivariable functions, the simplest one is the Fundamental Theorem for Line Integrals (FTLI). This theorem can be considered as a “higher-dimensional version" (Stewart, 2015) of the FTC, for particular vector-valued functions. It concerns itself with a unique kind of integral because it does not simply take an integral over a closed interval in one independent variable, but rather one that integrates a dot product of a gradient (a vector-valued function) and a separate vector-valued function.
+
+The results of both of these theorems indicate that we can simplify the definite integral of a function  into a difference of the antiderivatives of the function evaluated at each endpoint of the domain. Both processes involve taking an antiderivative to form an accumulation function. For single-variable functions the accumulation function represents signed area under the curve, whereas line integrals represent an accumulation of the sum of scalar quantities that come from a dot product. In particular, the intuition in the FTC and the FTLI is connected, because the line integrals for which the FTLI apply to are in a form that we can alternatively represent as an integral of a composite "single-variable" function for which the evaluation theorem of the FTC applies to. This idea only works as a result of fulfilling the conditions of the FTLI; furthermore, the nature of these integrals is still fundamentally different because the functions are multivariate. 
+
+{\centering{}\Huge{}\textbf{[REDACTED]}\normalsize{}
+
+}
+
+To show that the definite integral is evaluated through antidifferentiation, we invoke the FTC. The theorem and its proof are as follows:
+
+Theorem:
+
+\Large{}$$f(x) = \frac{\mathrm{d}}{\mathrm{d}x}\int_{a}^{x}{f(t)\mathrm{d}t}$$\normalsize{}
+
+Proof: Start with a function that represents the accumulation of area under a curve:
+
+\Large{}$$F(x) = \int_{a}^{x}{f(t)\mathrm{d}t}$$\normalsize{}
+
+The continuous function $F$ represents the total area under the curve formed by the continuous function $f(t)$ bounded by the "$t$" axis from $a$ to $x$.(Johnson, 2010) We can let $f(t)$ be defined over any interval so long as it is Riemann integrable over the closed interval $[a,b]$ where $a\leq{x}\leq{b}$. We take the derivative of $F$ using the limit definition of the derivative:\pagebreak
+
+\Large{}$$\frac{\mathrm{d}F}{\mathrm{d}x} = \frac{\mathrm{d}}{\mathrm{d}x}\int_{a}^{x}{f(t)\mathrm{d}t}$$
+
+$$\frac{\mathrm{d}F}{\mathrm{d}x} = \lim_{h\to{0}}{\frac{\int_{a}^{x+h}{f(t)\mathrm{d}t}-\int_{a}^{x}{f(t)\mathrm{d}t}}{h}}$$
+
+$$\frac{\mathrm{d}F}{\mathrm{d}x} = \lim_{h\to{0}}{\frac{\int_{a}^{x}{f(t)\mathrm{d}t}+\int_{x}^{x+h}{f(t)\mathrm{d}t}-\int_{a}^{x}{f(t)\mathrm{d}t}}{h}}$$
+
+\Large{}$$\frac{\mathrm{d}F}{\mathrm{d}x} = \lim_{h\to{0}}{\frac{\int_{x}^{x+h}{f(t)\mathrm{d}t}}{h}}$$
+\begin{center}
+or
+\end{center}
+$$\frac{\mathrm{d}F}{\mathrm{d}x} = \lim_{h\to{0}}{\frac{1}{h}\int_{x}^{x+h}{f(t)\mathrm{d}t}}$$\pagebreak
+
+\Large{}$$\lim_{h\to{0}}f(c) = \lim_{h\to{0}}{\frac{1}{h}\int_{x}^{x+h}{f(t)\mathrm{d}t}}$$
+\begin{center}
+or more clearly:
+\end{center}
+$$\lim_{h\to{0}}f(c) = \lim_{h\to{0}}{\frac{1}{(x+h)-(x)}\int_{x}^{x+h}{f(t)\mathrm{d}t}}$$
+$$\lim_{h\to 0} x\leq \lim_{h\to 0} c\leq \lim_{h\to 0} (x+h)$$
+$$x\leq c\leq x$$
+$$c = x$$
+\begin{center}
+thus
+\end{center}
+$$\lim_{h\to 0}f(c) = f(x)$$
+\begin{center}
+Therefore:
+\end{center}
+$$f(x) = \frac{\mathrm{d}}{\mathrm{d}x}\int_{a}^{x}{f(t)\mathrm{d}t}$$\normalsize{}
+
+It then follows logically that the integral in this form must be an antiderivative, since it returns the same class of function (Peyam, 2019) $f$ after differentiation. Most functions are antidifferentiable if they're continuous over whatever interval is being integrated over.
+
+Now that we know the integral of a function $f$ is its antiderivative $F$, we can use this fact to evaluate definite integrals like so:
+
+Theorem:
+
+\Large{}$$\int_{a}^{b}f(t)\mathrm{d}t = F(b) - F(a)$$\normalsize{}
+
+Proof: Let $\displaystyle{G(x) = \int_{a}^{x}f(t)\mathrm{d}t}$ be some antiderivative of $f(x)$, however, we know that both $F(x)$ and $G(x)$ are antiderivatives of $f(x)$. Using the MVT for derivatives, we know that since the difference between $\displaystyle{\frac{\mathrm{d}G}{\mathrm{d}x}}$ and $\displaystyle{\frac{\mathrm{d}F}{\mathrm{d}x}}$ is zero for all $x$, $G(x)$ and $F(x)$ must differ by a constant, $C$. (Jerison. 2010)
+
+\Large{}$$F(x)-G(x)=C$$
+
+$$F(x)=G(x)+C$$\normalsize{}
+
+From that fact, we can work backwards from the result $F(b)-F(a)$ to show:
+
+\Large{}$$F(b)-F(a) = (G(b)+C) - (G(a)+C) = G(b)-G(a)$$
+
+$$G(b) - G(a) = \int_{a}^{b}f(t)\mathrm{d}t - \int_{a}^{a}f(t)\mathrm{d}t$$\normalsize{}
+
+A definite integral over a single point is equal to $0$
+
+\Large{}$$G(b) - G(a) = \int_{a}^{b}f(t)\mathrm{d}t$$\normalsize{}
+
+Therefore
+
+\Large{}$$\int_{a}^{b}f(t)\mathrm{d}t = F(b) - F(a)$$\normalsize{}
+
+%section needs pictures reeeEEEEE
+Alternatively one might want to prove this using Riemann sums. Let $P$ be some partition of the interval $[a,b]$ with elements ${c_k}$ for successive $k\in\mathbb{N}$ and let $G(x)$ be defined as $\displaystyle{\int_{a}^{x}f(t)\mathrm{d}t}$. Suppose the following sum captures perfectly the area under the curve $f(t)$ from $a$ to $b$: (the following is inspired by Botsko, M., and  Gosser, R.'s (1986) proof) 
+\pagebreak
+
+\Large{}(1)$$G(b)-G(a) = \sum_k{G(c_k)-G(c_{k-1})}$$ 
+
+$$f(p_k)\leq \frac{G(x_k)-G(x_{k-1})}{x_k-x_{k-1}}\leq f(q_k)$$
+
+$$f(p_k)(x_k-x_{k-1})\leq G(x_k)-G(x_{k-1})\leq f(q_k)(x_k-x_{k-1})$$
+
+$$\sum_k f(p_k)(x_k-x_{k-1})\leq \sum_k G(x_k)-G(x_{k-1})\leq \sum_k f(q_k)(x_k-x_{k-1})$$
+\pagebreak
+\begin{center}
+For:
+\end{center}
+$$\lim_{||P||\to 0}\sum_k f(p_k)(x_k-x_{k-1}) = \int_{a}^{b}{f(t)\mathrm{d}t}$$
+
+$$\lim_{||P||\to 0}\sum_k f(q_k)(x_k-x_{k-1}) = \int_{a}^{b}{f(t)\mathrm{d}t}$$
+\begin{center}
+Then:
+\end{center}
+$$\lim_{||P||\to 0}\sum_k f(p_k)(x_k-x_{k-1})\leq \lim_{||P||\to 0} \sum_k G(x_k)-G(x_{k-1})\leq \lim_{||P||\to 0}\sum_k f(q_k)(x_k-x_{k-1})$$
+
+$$\int_{a}^{b}{f(t)\mathrm{d}t}\leq G(b)-G(a)\leq \int_{a}^{b}{f(t)\mathrm{d}t}$$
+\begin{center}
+Therefore:
+\end{center}
+$$\int_{a}^{b}{f(t)\mathrm{d}t} = G(b)-G(a)$$\normalsize
+
+where $G$ is an antiderivative of $f$ as a result of the first part of the FTC.
+
+With these proofs we see that antidifferentiating a function returns an accumulation function of the area under its curve, because the derivative of accumulation of area for a perfect approximation is the same class of function (Peyam, 2019) as the integrand. Furthermore, since we have a function to represent accumulation of area, it is intuitive to see how differences in area accumulation correspond with areas of specific regions under the curve. The second proof strengthens this idea by bounding the supposed area defined by antiderivatives of the section under an upper and lower Riemann sum for the area under the curve; then letting the norm of the partition tend to zero. The result confirms the evaluation theorem. Keep this geometric interpretation in mind as we compare it to the (close) intuition found in the FTLI.
+
+\Large{}$$\int_C \nabla f(x,y)\cdot \mathrm{d}\vec{r}(t)$$
+\begin{center}
+For:
+\end{center}
+$$\vec{r}(t)=x(t)\ihat+y(t)\jhat$$
+$$y=y(t)$$
+$$x=x(t)$$
+\begin{center}
+Then:
+\end{center}
+$$\int_C \nabla f(x(t),y(t))\cdot \mathrm{d}\vec{r}(t)$$
+\begin{center}
+And:
+\end{center}
+$$\displaystyle{\frac{\mathrm{d}\vec{r}(t)}{\mathrm{d}t}=\dr}$$
+$$\mathrm{d}\vec{r}(t)=\dr\mathrm{d}t$$\pagebreak
+\begin{center}
+Then:
+\end{center}
+$$\int_a^b \nabla f(x(t),y(t))\cdot \dr\mathrm{d}t$$
+
+$$\int_a^b \left[ \left(\frac{\partial f}{\partial x(t)}\ihat+\frac{\partial f(t)}{\partial y(t)}\jhat\right)\cdot (\dx\ihat+\dy\jhat)\right]\mathrm{d}t$$
+
+$$\int_a^b\left[\frac{\partial f}{\partial x(t)}\frac{\mathrm{d}x(t)}{\mathrm{d}t}+\frac{\partial f}{\partial y}\frac{\mathrm{d}y(t)}{\mathrm{d}t}\right]\mathrm{d}t$$
+
+$$\int_a^b \left[\frac{\mathrm{d}f}{\mathrm{d}t}\right]\mathrm{d}t$$
+
+$$f(b)-f(a)$$
+\begin{center}
+or more clearly
+\end{center}
+$$f(x(b),y(b))-f(x(a),y(a))$$\normalsize{}
+
+kek
+
+\Large{}$$\int_C \nabla f(x(t),y(t))\cdot \mathrm{d}\vec{r}(t) = f(x(b),y(b))-f(x(a),y(a))$$\normalsize{}
+\pagebreak
+
+{\centering{}References
+
+}
+\begin{hangparas}{0.5in}{1}
+Botsko, M, \& Gosser, R. (1986). Stronger Versions of the Fundamental Theorem of Calculus. \textit{The American Mathematical Monthly, 93}(4), 294-296. doi:10.2307/2323686
+
+Finney, R. L., Demana, F. D., Waits, B. K., \& Kennedy, D. (2012). \textit{Calculus: Graphical, numerical, algebraic}(4th ed.). Boston, MA: Prentice Hall.
+
+David Jerison. \textit{.01SC Single Variable Calculus.} Fall 2010. Massachusetts Institute of Technology: MIT OpenCourseWare, https://ocw.mit.edu. License: Creative Commons BY-NC-SA.
+
+Johnson, H. (2010). Investigating the Fundamental Theorem of CALCULUS. \textit{The Mathematics Teacher,} 103(6), 430-435. Retrieved from http://www.jstor.org/stable/20876657
+
+Stewart, J. (2016). \textit{Calculus} (8th ed.). Boston, MA: Cengage Learning.
+
+Tabrizian, P. R. (2019, January 23). Retrieved February 14, 2019, from https://www.youtube.com/
+watch?v=H2ytsTrKmvI
+\end{hangparas}
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{43.5 Exercises}
+
+\subsection{43.5.3}
+
+The region is a multiply connected region, so we could take the line integral in the positive sense around the circle of radius 2 and add to it the line integral taken in the negative sense around the circle of radius 1. But we want to use Green's theorem, so it is not necessary to do that.
+
+Our region is an annulus (call it $D$), which we can easily use polar coordinates to give a rectangular region of integration: $(r,\theta) \in [1,2]\times[0,2\pi]$
+
+The integral is rewritten in this manner:
+$$\int_C x\sin(x^2)dx + (xy^2-x^8)dy \to \iint_D  \frac{\partial}{\partial x}\left(xy^2-x^8\right) - \frac{\partial}{\partial y}\left(x\sin(x^2) \right)dA $$
+$$\to \iint_D y^2- 8x^7 dA \to \int_{0}^{2\pi}\int_1^2 \left(r^3\sin^2(\theta)-8r^8\cos^7(\theta)\right)drd\theta$$
+$$\to \int_{0}^{2\pi}\left(\frac{15}{4}\sin^2(\theta)\right)d\theta - \int_{0}^{2\pi}\left(\frac{8(2^9-1)}{9}\cos^7(\theta)\right)d\theta$$
+$$= \frac{15}{4}\pi$$
+
+It is useful to use trigonometric identities and substitutions to help make part of (or all of) some of the integrals vanish.
+
+\subsection{43.5.6}
+
+Call the region within the circle $D$. Then apply Green's theorem directly to the line integral to find that the integral becomes:
+$$\int_C (y^4-\ln(x^2+y^2))dx + 2\arctan\left(\frac{y}{x}\right)dy$$
+$$ = \iint_D \frac{\partial}{\partial x}\left(2\arctan\left(\frac{y}{x}\right)\right) - \frac{\partial}{\partial y}\left(y^4-\ln(x^2+y^2)\right)dA$$
+$$ = \iint_D \left(-\frac{2y}{x^2+y^2}\right) - \left(4y^3-\frac{2y}{x^2+y^2}\right)dA$$
+$$ = -4\iint_D y^3 dA$$
+
+From here it may be useful to apply the transformation $(x,y)\to (x-x_0,y-y_0)$ in order to shift the disk $D$ (so $D\to D^{\prime}$ and $dA \to dA^{\prime}$) so that it is centered at the origin. Then we have:
+$$-4\iint_{D^{\prime}} (y-y_0)^3dA^{\prime} \to -4\iint_{D^{\prime}}(y^3 - 3 y_0 y^2 + 3 y_0^2 y - y_0^3)dA^{\prime}$$
+
+Notice that the odd terms in $y$ vanish due to skew symmetry over the new disk centered at the origin. Then the integral becomes $$-4\iint_{D^{\prime}}(- 3 y_0 y^2 - y_0^3)dA^{\prime} \to 4y_0^3\pi a^2 + 12y_0\iint_{D^{\prime}} y^2 dA^{\prime}$$
+which for the remaining integral we will convert to polar coordinates, knowing that by construction of the disk $0\leq r \leq a$ and $0 \leq \theta \leq 2\pi$:
+$$12y_0\int_0^{2\pi}\int_0^a r\left(r^2\sin^2(\theta)\right)drd\theta \to 3y_0a^4\int_0^{2\pi}\left(\frac{1-\cos(2\theta)}{2}\right)d\theta = 3y_0\pi a^4$$
+
+Adding the result from before the final answer is $4y_0^3\pi a^2 + 3y_0\pi a^4$.
+
+\subsection{43.5.11}
+
+Let $D$ be the disk whose boundary is $C$. Then apply Green's theorem directly and change the integral as follows:
+$$\int_C e^{-x^2+y^2}\left[\cos(2xy)dx - \sin(2xy)dy\right]$$
+$$ = \iint_D \frac{\partial}{\partial x}\left(-e^{-x^2+y^2}\sin(2xy)\right) - \frac{\partial}{\partial y}\left( e^{-x^2+y^2}\cos(2xy)\right)dA$$
+$$= \iint_D \left(-4 e^{-x^2 + y^2} y \cos(2 x y) + 4 e^{-x^2 + y^2} x \sin(2 x y)\right)dA$$
+
+The region of integration is a disk that is symmetric across the coordinate axes. We will consider quarters of the disk lying in each of the quadrants of the coordinate plane, because this integral is not easy to do without a symmetry argument.
+
+Consider evaluating the integrand over the parts of the disk that lie on quadrants $1$ and $3$. The signs of the integrand evaluated on these regions are opposite, so they nullify each other (represents the transformation $(x,y)\to (-x,-y)$). Similarly the integrand evaluated on the part of the disk lying on quadrants $2$ and $4$ are opposite in sign, so the integrals over those two regions nullify each other. Thus the integral vanishes.
+
+\subsection{43.5.16}
+
+One way to solve this is by simply taking this line integral:
+$$\oint_{\partial D}xdy$$
+
+The problem gives us the parametric equations for the path, which we can use to find $x$ and $dy$. Those quantities are $x=a\cos(t)$ and $dy = b\cos(t)dt$, for $0\leq t \leq 2\pi$. Then the integral becomes $$ab\int_0^{2\pi} \cos^2(t)dt = \pi ab$$
+
+\subsection{43.5.21}
+
+Using the hint, put $y=tx$. Then find that the equation becomes $$x^3+t^3x^3 = 3ax^2t$$ which implies that $$x=\frac{3at}{1+t^3},~ y=\frac{3at^2}{1+t^3}$$ and so bounds in $t$ are found by finding two values of $t$ that produce the same coordinates $(x,y)$, and taking all values of $t$ between (possibly even including these endpoints).
+
+Notice that when $t=0$ the curve starts at the origin. then as $t$ tends to $\infty$, it is also found that both $x$ and $y$ tend to $0$. Thus $0\leq t \infty$.
+
+The form of the line integral we want to use is $$-\oint_{\partial D} ydx$$ since:$$y=\frac{3at^2}{1+t^3},~ dx=-\frac{3 a (-1 + 2 t^3)}{(1 + t^3)^2} $$
+
+Then the integral becomes:
+$$(3a)^2\int_0^{\infty}\frac{t^2(2t^3-1)}{(1+t^3)^3}dt$$
+
+Using the substitution $u=t^3+1$, the integral changes into:
+$$\frac{(3a)^2}{3}\int_1^{\infty}\frac{2(u-1)-1}{u^3}du \to \frac{(3a)^2}{3}\int_1^{\infty}\left(2u^{-2}-3u^{-3}\right)du = \frac{3a^2}{2}$$
+
+\end{document}

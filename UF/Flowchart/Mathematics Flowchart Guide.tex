@@ -1,0 +1,277 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors\
+\usepackage{xcolor}
+\definecolor{gold}{HTML}{FFF2CC}
+\definecolor{comp}{HTML}{DAE8FC}
+\definecolor{phys}{HTML}{F8CECC}
+\definecolor{anal}{HTML}{E1D5E7}
+\definecolor{alg}{HTML}{FAD7AC}
+\definecolor{topo}{HTML}{B0E3E6}
+\definecolor{combi}{HTML}{CDEB8B}
+\definecolor{prob}{HTML}{FFFF88}
+\definecolor{bio}{HTML}{D5E8D4}
+\definecolor{diffG}{HTML}{BAC8D3}
+\definecolor{logos}{HTML}{F9F7ED}
+%\definecolor{}{HTML}{}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{UF Mathematics Flowchart Guide (2019-2021)}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+The purpose of this document is to help incoming or younger mathematics majors at UF get a birds-eye view of the course progression in the mathematics department. It is subject to change often due to suggestions from the community and possibly from changes in the course offerings in future semesters.
+
+The following will be a guide on how to read the flowchart itself, along with a sectioned list of the math courses found in the flowchart along with the description that the Schedule of Courses (\texttt{https://one.uf.edu/soc/}) provides, along with any special notes obtained elsewhere.
+
+\textit{Many thanks to Silas Rickards and Benedict Andal for aiding in the production of the flowchart.}
+
+\section{Reading the Flowchart}
+
+\subsection{Cells and Arrows}
+Each cell represents a course offered, where the course number, title, number of credits in parentheses, and prerequisites are listed. 
+
+Rounded rectanglular cells represent lower divison, early undergraduate courses, and regularly cornered rectangular cells are more of the upper division courses, mostly graduate level courses offered. 
+
+The colors of cells denote which overarching group of mathematics courses they belong to\footnote{These groupings may not be entirely accurate, since I have not taken \textit{several} of these courses nor am I an older student with more mathematical background. Furthermore, any overlapping in subject areas was something I did not know how to incorporate nicely.}.
+
+Arrows going out of a cell means that the course is a prerequisite for other courses, where the arrowheads point to such courses.
+
+Arrows that converge together to point to the same course mean that those courses (whose outward arrows converge in this manner) are simulatenously required for entrance into the next course.
+
+There are two kinds of arrows, black and green ones. Black arrows indicate that the course (that it points out of) is a required prerequisite. Green arrows mean that there is an OR, or ``choose one", relationship\footnote{For two pairs of courses I have introduced a ``choose one" cell that the courses lead into via green arrows, to represent the same OR relationship. This was just to improve the flowchart's aesthetics.} between those prerequisite courses, while still mandating those prerequisite courses with black arrows that converge in the same course. A good example of a course with this complex behavior is \texttt{MAP4413 - Fourier Analysis}.
+
+\subsection{List of Courses}
+
+In the flowchart I decided not to include seminars (I have no idea how seminars work) or most of the special topics (since many are just duplicates of the graduate level courses). These courses were taken from the schedule of courses listings from Fall 2019, Spring 2020, Fall 2020, and Spring 2021. These offerings \textit{will} change in some form or another in the future.
+
+\subsubsection{\colorbox{white}{Ungrouped}}
+
+\textbf{MAC2311 - Calculus 1 (4)}: Introduces analytic geometry; limits; continuity; differentiation of algebraic, trigonometric, exponential and logarithmic functions; applications of the derivative; inverse trigonometric functions; differentials; introduction to integration; and the fundamental theorem of calculus. (M) Credit will be given for, at most, one of MAC 2233, MAC 2311 and MAC 3472.
+
+\textbf{MAC2312 - Calculus 2 (4)}: Techniques of integration; applications of integration; differentiation and integration of inverse trigonometric, exponential and logarithmic functions; sequences and series. (M) Credit will be given for, at most, one of MAC 2312, MAC 2512 and MAC 3473.
+
+\textbf{MAC2313 - Calculus 3 (4)}: Solid analytic geometry, vectors, partial derivatives and multiple integrals. (M) Credit will be given for, at most, MAC 2313 or MAC 3474.
+
+\textbf{MAC3474 - Calculus 3 Honors (4)}: Continues the honors calculus sequence. (M) Credit will be given for, at most, MAC 2313 or MAC 3474. Grades in this class ``may later be used by the department to evaluate mathematics honors students upon graduation or for admittance to graduate level mathematics courses"\footnote{Taken from Dr. Shabanov's syllabus.}. This means that students who do very well in this class can take more advanced classes down the road, though this is not a necessary condition to do so.
+
+\textbf{MAP2302 - Elementary Differential Equations (3)}: First-order ordinary differential equations, theory of linear ordinary differential equations, solution of linear ordinary differential equations with constant coefficients, the Laplace transform and its application to solving linear ordinary differential equations. (M)
+
+\textbf{MTG3212 - Geometry (3)}: Axiomatic treatment of topics in Euclidean, non-Euclidean, projective geometry and (time permitting) fractal geometry. Particularly useful for prospective secondary-school mathematics teachers.
+
+\textbf{MAT4930 - Spec. Topics: History of Math (VAR)}: The goal is to expose students to the historical development of mathematical ideas, over time and across cultures, and to acquaint them with some of the basic techniques,
+as they were historically developed. We will emphasize primarily the mathematics that influenced the
+development of algebra, geometry, trigonometry, calculus, and (if time permits) we will look into selected
+topics from contemporary mathematics.
+
+\textbf{MTG6401 - Ergodic Theory and Dynamical Systems I*}: Periodic points, recurrence, nonwandering and chain recurrent sets, topological conjugacy, minimal sets. Topological entropy, metric entropy. Measure preserving transformations, ergodicity, mixing. Birkhoff's ergodic theorem. Bernouilli shifts. Anosov diffeomorphisms, structural stability, hyperbolic sets. Basic sets, symbolic dynamics, Markov partitions. Lyapunov exponents, KAM (Kolmogorov, Arnold, Moser) theory.
+
+\textbf{MTG6402 - Ergodic Theory and Dynamical Systems II*}: This is a continuation of MTG 6401.
+
+* I have no idea what this subject is so I didn't know where to group it.
+
+\subsubsection{\colorbox{comp}{Computer Science-Adjacent}}
+
+\textbf{MAD2502 - Intro to Computational Math (3)}: Introduces mathematical computation and the Python programming language. Emphasizes using mathematical algorithms to solve problems in analysis, number theory, combinatorics, algebra, linear algebra, numerical analysis, and probability.
+
+\textbf{MAD3107 - Discrete Mathematics (3)}: Logic, sets, functions; algorithms and complexity; integers and algorithms; mathematical reasoning and induction; counting principles; permutations and combinations; discrete probability. Advanced counting techniques and inclusion-exclusion. 
+
+\textbf{MAS3114 - Computational Linear Algebra (3)}: Linear equations, matrices and determinants. Vector spaces and linear transformations. Inner products and eigenvalues. Emphasizes computational aspects of linear algebra.
+
+\textbf{MAD4401 - Intro to Numerical Analysis (3)}: Numerical integration, nonlinear equations, linear and nonlinear systems of equations, differential equations and interpolation.
+
+\textbf{MAD6407 - Numerical Analysis (3)}: Numerical techniques to solve systems of nonlinear equations to approximate functions, to compute derivatives, to evaluate integrals, and to integrate systems of differential equations. Introduction to numerical techniques for partial differential equations. Companion to MAD 6406.
+
+\textbf{MAD6406 - Numerical Linear Algebra (3)}: Topics most useful in applications with emphasis on numerical techniques: systems of linear equations, positive definite and toeplitz systems, least squares problems, singular value decomposition, and eigenvalues. Numerical stability and efficiency of algorithms as well as effect of perturbations on the problem. Companion to MAD 6407.
+
+\textbf{MAP6408 - Numerical Optimization (3)}: Unconstrained and constrained optimization, linear and nonlinear programming, gradient, multiplier, and quasi-Newton methods. Penalty, multiplier, and projection methods for constrained problems.
+
+\textbf{MAP6375 - Numerical Partial Differential Equations (3)}: Introduction to partial differential equations and fundamental concepts. Parabolic equations: finite differences, consistency, convergence and stability, 2- and 3-dimensional problems. Elliptic equations: finite differences, solution to linear equations, boundary integral equation methods. Hyperbolic equations: finite differences and method of characteristics. Introduction to finite elements. Methods of lines.
+
+\subsubsection{\colorbox{phys}{Mathematical Physics or Engineering-Adjacent}}
+
+\textbf{MAP4413 - Fourier Analysis (3)}: Introduces linear systems and transforms; Laplace, Fourier and Z transforms and their mutual relationship; convolutions. Operational calculus; computational methods including the fast Fourier transform; second-order stationary processes and their autocorrelation functions; and problems of interpolation, extrapolation, filtering and smoothing of second-order stationary processes.
+
+\textbf{MAA5104/4102 - Adv. Calc for Eng. \& Phy Scientists 1 (3)}: Theory of real numbers, functions of one variable, sequences, limits, continuity and differentiation; continuity and differentiability of functions of several variables. Those who plan to do graduate work in mathematics should take MAA 4211. Credit will be given for, at most, one of MAA 4102, MAA 4211, or MAA 5104.
+
+\textbf{MAA5105/4103 - Adv. Calc for Eng. \& Phy Scientists 2 (3)}: Continues the advanced calculus for engineers and physical scientists sequence. Theory of integration, transcendental functions and infinite series. MAA 4102 is not recommended for those who plan to do graduate work in mathematics; these students should take MAA 4212. Credit will be given for, at most, one of MAA 4103, MAA 4212 and MAA 5105.
+
+\textbf{MAP5304/4305 - Differential Equations for Eng. \& Phy. Scientists (3)}: The second course in differential equations. Topics include systems of linear differential equations, stability theory and phase plane analysis, power series solutions of differential equations, Sturm-Liouville boundary-value problems and special functions. Credit will be given for, at most, MAP 4305 or MAP 5304.
+
+\textbf{MAA5404/4402 - Functions of a Complex Variable (3)}: Complex numbers, analytic functions, Cauchy-Riemann equations, harmonic functions, elementary functions, integration, Cauchy-Goursat theorem, Cauchy integral formula, infinite series, residues and poles, conformal mapping. Credit will be given for, at most, MAA 4402 or MAA 5404.
+
+\textbf{MAP5345/4341 - Elements of Partial Differential Equations (3)}: Introduces second-order linear partial differential equations (heat, wave and Laplace equations), separation of variables in PDEs, Sturm-Liouville eigenvalue problems, method of eigenfunction expansions (Fourier analysis) and Green's functions. Possible introduction to first-order PDEs and the method of characteristics. Credit will be given for, at most, MAP 4341 or MAP 5345.
+
+\textbf{MAP6505 - Mathematical Methods of Phys. \& Eng. 1 (3)}: Orthogonal functions; theory of distributions; integral equations; eigenfunctions and Green's functions; special functions; boundary and initial value problems, with emphasis on potential theory (Laplace and Poisson equations); the wave equation; and the diffusion equation.
+
+\textbf{MAP6506 - Mathematical Methods of Phys. \& Eng. 2 (3)}: This is a continuation of MAP6505.
+
+\textbf{MAP6356 - Partial Differential Equations 1 (3)}: Cauchy-Kowalewski theorem, first order equations, classification of equations, hyperbolic equations, elliptic equations, parabolic equations, hyperbolic systems, nonlinear hyperbolic systems, existence theory based on functional analysis. Applications to physical sciences.
+
+\textbf{MAP6357 - Partial Differential Equations 2 (3)}: This is a continuation of MAP6356.
+
+\subsubsection{\colorbox{anal}{Analysis}}
+
+\textbf{MAA4211 - Advanced Calculus 1 (3)}: Advanced treatment of limits, differentiation, integration and series. Includes calculus of functions of several variables. Credit will be given for, at most, one of MAA 4211, MAA 4102 and MAA 5104.
+
+\textbf{MAA4212 - Advanced Calculus 2 (3)}: Continues the advanced calculus sequence in limits, differentiation, integration and series. Credit will be given for, at most, one of MAA 4212, MAA 4103 and MAA 5105.
+
+\textbf{MAA5228/4226 - Modern Analysis 1 (3)}: Topology of metric spaces, numerical sequences and series, continuity, differentiation, the Riemann-Stieltjes integral, sequences and series of functions, the Stone-Weierstrass theorem, functions of several variables, Stokes' theorem and the Lebesgue theory. Credit will be given for, at most, MAA 4226 or MAA 5228.
+
+\textbf{MAA5229/4227 - Modern Analysis 2 (3)}: Continues the modern analysis sequence discussing the topology of metric spaces, numerical sequences and series, continuity, differentiation, the Riemann-Stieltjes integral, sequences and series of functions, the Stone-Weierstrass theorem, functions of several variables, Stokes' theorem and the Lebesgue theory. Credit will be given for, at most, MAA 4227 or MAA 5229.
+
+\textbf{MAA6406 - Complex Analysis 1 (3)}: Rapid survey of properties of complex numbers, linear transformations, geometric forms and necessary concepts from topology. Complex integration. Cauchy's theorem and its corollaries. Taylor series and the implicit function theorem in complex form. Conformality and the Riemann-Caratheodory mapping theorem. Theorems of Bloch, Schottky, and the big and little theorems of Picard. Harmonicity and Dirichlet's problems.
+
+\textbf{MAA6407 - Complex Analysis 2 (3)}: This is a continuation of MAA6406.
+
+\textbf{MAA6616 - Analysis 1 (3)}: Fundamentals of measure and integration theory, including Lp spaces and the Radon-Nikodym theorem. Introduction to functional analysis: Banach spaces, Hilbert spaces, and the theory of linear operators.
+
+\textbf{MAA6617 - Analysis 2 (3)}: This is a continuation of MAA6616 Analysis I.
+
+\textbf{MAA7526 - Advanced Topics in Functional Analysis 1 (3)}: Algebraic and topological approach to current material and methods in analysis.
+
+\textbf{MAA7527 - Advanced Topics in Functional Analysis 2 (3)}: This is a continuation of MAA7526.
+
+\subsubsection{\colorbox{alg}{Algebra or Number Theory}}
+
+\textbf{MAS4105 - Linear Algebra 1 (4)}: Linear equations, matrices, vector spaces, linear transformations, determinants, eigenvalues and inner-product spaces. Includes both theory and computational skills. Develops the ability to reason through, and coherently write, proofs of theorems. For math majors, this course serves as a transition from a study of techniques into more conceptual math; for engineering and science majors, it serves also as a coherent foundation in linear algebra. This course serves as the ``gate to mathematics'', essentially.
+
+\textbf{MAS4203 - Intro to Number Theory (3)
+}: Introduces elementary number theory and its applications to computer science and cryptology. Divisibility, primes, Euclidean Algorithm, congruences, Chinese Remainder Theorem, Euler-Fermat Theorem and primitive roots. Selected applications to decimal fractions, continued fractions, computer file storage and hashing functions, and public-key cryptography.
+
+\textbf{MAS4301 - Abstract Algebra 1 (3)}: Sets and mappings, groups and subgroups, homomorphisms and isomorphisms, permutations, rings and domains, arithmetic properties of domains, and fields. Requires facility in writing proofs.
+
+\textbf{MAS5311 - Intro Algebra 1 (3)}: The basic algebraic systems: groups, rings, vector spaces, and modules. Linear transformations, matrices, and determinants.
+
+\textbf{MAS5312 - Intro Algebra 2 (3)}: 
+This is a continuation of MAS5311.
+
+\textbf{MAS6331 - Algebra 1 (3)}: Solvable and nilpotent groups, Jordan-Holder theorem, abelian groups, Galois theory, Noetherian rings, Dedekind domains, Jacobson radical, Jacobson density theorem, Wedderburn-Artin theorem.
+
+\textbf{MAS6332 - Algebra 2 (3)}: This is a continuation of MAS6331.
+
+\textbf{MAS7396 - Advanced Topics in Algebra I (3)}: Current topics in algebra.
+
+\textbf{MAS7397 - Advanced Topics in Algebra II (3)}: This is a continuation of MAS7396.
+
+\textbf{MAS7215 - Theory of Numbers I}: Introduction to theory of numbers; theorems on divisibility; congruence, number-theoretic functions; primitive roots and indices; quadratic reciprocity law; Diophantine equations and continued functions.
+
+\textbf{MAS7216 - Theory of Numbers II}: This is a continuation of MAS7215. 
+
+\subsubsection{\colorbox{topo}{Topology}}
+
+\textbf{MTG5316/4302 - Intro Topology 1 (3)}: Basic concepts of general topology. Credit will be given for, at most, MTG 4302 or MTG 5316.
+
+Basic axioms and concepts of point-set topology, compactness, connectedness, separation axioms, metric spaces, metrization. Tietze extension theorem. Urysohn lemma, Tychonoff theorem, fundamental group.
+
+\textbf{MTG5317/4303 - Intro Topology 2 (3)}: Continues the basic concepts of general topology. Credit will be given for, at most, MTG 4303 or MTG 5317.
+
+\textbf{MTG6346 - Topology 1 (3)}: A basic introduction to advanced topology. Topics covered include general topology, algebraic topology, homotopy theory and topology of manifolds.
+
+\textbf{MTG6347 - Topology 2 (3)}: This is a continuation of MTG6346.
+
+\textbf{MTG7396 - Advanced Topics in Topology 1 (3)}: Topics change yearly.
+
+\textbf{MTG7397 - Advanced Topics in Topology 2 (3)}: Discussion of advanced topics in topology and its applications.
+
+%\subsubsection{\colorbox{found}{}}
+
+\subsubsection{\colorbox{combi}{Combinatorics}}
+
+\textbf{MAD4203 - Intro to Combinatorics 1 (3)}: Permutations and combinations, binomial coefficients, inclusion-exclusion, recurrence relations, Fibonacci sequences, generating functions and graph theory.
+
+\textbf{MAD4204 - Intro to Combinatorics 2 (3)
+}: Matching theory, block designs, finite projective planes and error-correcting codes. Does not require MAD 4203.
+
+\textbf{MAD6206/7396 - Topics in Combinatorial Theory 1 (3)}: Topics chosen from among graph theory, coding theory, matroid theory, finite geometries, projective geometry, difference methods, and Latin squares.
+
+\textbf{MAD6207/7397 - Topics in Combinatorial Theory 2 (3)}: This is a continuation of MAD6206/7396.
+
+\subsubsection{\colorbox{prob}{Probability and Statistics}}
+
+\textbf{STA4321 - Intro to Probability (3)}: Introduces the theory of probability, counting rules, conditional probability, independence, additive and multiplicative laws, Bayes Rule. Discrete and continuous random variables, their distributions, moments and moment generating functions. Multivariate probability distributions, independence, covariance. Distributions of functions of random variables, sampling distributions, central limit theorem.
+
+\textbf{MAP4102 - Probability Theory and Stochastic Processes 2 (3)}: Random walks and Poisson processes, martingales, Markov chains, Brownian motion, stochastic integrals and Ito's formula.
+
+\textbf{STA6326 - Intro to Theoretical Statistics (3)}: Theory of probability. Probability spaces, continuous and discrete distributions, functions of random variables, multivariate distributions, expectation, conditional expectation, central limit theorem, useful convergence results, sampling distributions, distributions of order statistics, empirical distribution function.
+
+\textbf{MAP6472 - Probability and Potential Theory 1 (3)}: Random variables, independence and conditioning. Laws of large numbers and the Central Limit Theorem. Stochastic processes, martingales, Gaussian processes, Markov processes, potentials and excessive functions.
+
+\textbf{MAP6473 - Probability and Potential Theory 2 (3)}: this is a continuation of MAP6472.
+
+\textbf{MAP6467 - Stochastic Differential Equations and Filtering Theory 1 (3)}: Introduction to random functions; Brownian motion process. Ito's stochastic integral; Ito's stochastic calculus; stochastic differential equations. Linear filtering; Kalman filtering; nonlinear filtering theory.
+
+\textbf{MAP6468 - Stochastic Differential Equations and Filtering Theory 2 (3)}: This is a continuation of MAP6467
+
+\subsubsection{\colorbox{bio}{Mathematical Biology}}
+
+\textbf{MAP4484/5489 - Modeling in Mathematical Biology}: Mathematical models of biological systems. Topics include models of growth, predator-prey populations, competition, the chemostat, epidemics, excitable systems and analytical tools such as linearization, phase-plane analysis, Poincare-Bendixson theory, Lyapunov functions and bifurcation analysis. 
+
+\subsection{\colorbox{diffG}{Differential Geometry}}
+
+\textbf{MTG6256 - Differential Geometry 1 (3)}: Foundations of the theory of smooth manifolds, vector fields, and differential forms. Topics chosen from a list including differential topology, Lie groups, symplectic geometry, Riemannian geometry, and applications to physics.
+
+\textbf{MTG6257 - Differential Geometry 2 (3)}: This is a continuation of MTG6256.
+
+\subsection{\colorbox{logos}{Set Theory/Logic/Foundations}}
+
+\textbf{MHF3202 - Sets and Logic (3)}: Examples of sets, operations on sets, set algebra, Venn diagrams, truth tables, tautologies, applications to mathematical arguments and mathematical induction. Taking one, but not both, of MAS 3300 or MHF 3202 is required of mathematics majors. MHF 3202 can also be very useful for prospective and in-service secondary and middle school teachers. (M) I recommend more advanced math majors that are seeking to take upper division courses during their time here to take this in their first semester.
+
+\textbf{MHF5107/4102 - Elements of Set Theory (3)}: Basic axioms and concepts of set theory. Students present proofs. Credit will be given for, at most, MHF 4102 or MHF 5107. Basic axioms and concepts of set theory, axiom of choice, Zorn's lemma, Schroder-Bernstein theorem, cardinal numbers, ordinal numbers, and the continuum hypothesis.
+
+\textbf{MHF5207/4203 - Foundations of Mathematics (3)}: Models and proofs. Foundations of real and natural numbers, algorithms, Turing machines, undecidability and independence. Examples and applications in algebra, analysis, geometry and topology. Credit will be given for, at most, MHF 4203 or MHF 5207.
+
+\textbf{MHF6306 - Mathematical Logic 1 (3)}: Languages, models, and theories; Godel's completeness and incompleteness theorems; formal number theory and axiomatic set theory; applications to other areas of mathematics.
+
+\textbf{MHF6307 - Mathematical Logic 2 (3)}: This course is the second of a two-part introduction to mathematical logic at the graduate level. The main topics we will cover are model theory, computability theory, and set theory.
+
+\end{document}

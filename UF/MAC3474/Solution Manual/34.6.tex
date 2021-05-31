@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{34.6 Exercises}
+
+\subsection{34.6.1}
+
+Since the solid region $E$ is given by a rectangular prism, the bounds of the integral are easy to set up. The integral becomes $$\int_{0}^{2}\int_{1}^{2}\int_{0}^{1} (xy-3z^2) dxdydz \to \int_{0}^{2}\int_{1}^{2} \left(\frac{1}{2}y-3z^2\right) dydz$$
+$$\to \int_{0}^{2} \left(\frac{3}{4}-3z^2\right) dz = -\frac{13}{2}$$
+
+\subsection{34.6.4}
+
+The region is vertically simple (vertical meaning parallel to the $\vec{e}_3$ basis vector). We can find the bounds for $z$ in the vertically simple manner quickly from the problem statement. So the following inequality holds: $0 \leq z \leq x + y + 1$. 
+
+The planar region in the $xy$ plane that we wish to find bounds for in $x$ and $y$ is part of the interior side of a parabola. Note that since $x=0$ and $y=1$ are part of the bounds, it follows that the parabola given by $x = \sqrt{y}$ can only be traced out so long as $0 \leq y \leq 1$. It is also known that $0\leq x \leq \sqrt{y}$. We may set up the triple integral as follows:
+$$\int_{0}^{1}\int_{0}^{\sqrt{y}}\int_{0}^{x+y+1}\left(6xy\right) dzdxdy \to \int_{0}^{1}\int_{0}^{\sqrt{y}} (6x^2y + 6xy^2 + 6xy)dxdy$$
+$$\to \int_{0}^{1}\left(3 y^2 + 2 y^{\frac{5}{2}} + 3 y^3\right)dy = \frac{65}{28}$$
+
+\subsection{34.6.7}
+
+We want to find out what the region of integration is. Imagine the positive portion of the cylinder $z = \sqrt{1-y^2}$ is sliced by the planes $x = y$ and $x = 0$. we essentially have just a slice of the cylinder that lies in the first octant, much like the image in Figure \textbf{34.3 Right} (for Study Problem \textbf{34.1}).
+
+So we know that for $z$ we have $0\leq z \leq \sqrt{1-y^2}$. Then for the planar region we need to find bounds. We know that the cylinder intersects the line $x = y$ when $y = 1$. We can also deduce that $y$ may only drop to $0$ and nothing less. So bounds on $y$ are $0\leq y \leq 1$. As for $x$, we have a line $x = 0$ and another $x = y$ that give us bounds $0\leq x \leq y$.
+
+So the triple integral becomes $$\int_{0}^{1}\int_{0}^{y}\int_{0}^{\sqrt{1-y^2}}\left(zx\right)dzdxdy \to \frac{1}{2}\int_{0}^{1}\int_{0}^{y} \left(x-xy^2\right)dxdy$$
+$$\to \frac{1}{4}\int_0^1 \left(y^2-y^4\right)dy = \frac{1}{30}$$
+
+\subsection{34.6.12}
+
+The plane $z=1-x$ intersects with the plane $z=0$ when $x = 1$. This constitutes an upper bound for $x$, where $y^2$ is the lower bound. So $y^2 \leq x \leq 1$. Then we wish to find out how much $y$ can vary. Notice that due to $x=1=y^2$, $-1\leq y \leq 1$. It is also known from the start that $0 \leq z \leq 1-x$. So we may set up the integral and evaluate it as follows:
+$$\int_{-1}^{1}\int_{y^2}^{1}\int_{0}^{1-x} (1) dzdxdy \to \int_{-1}^{1}\int_{y^2}^{1} (1-x)dxdy \to \int_{-1}^{1} \left( \frac{1}{2}-y^2+\frac{y^4}{2}\right)dy$$
+$$= \frac{8}{15}$$
+
+\subsection{34.6.13}
+
+To find the region of integration it is easiest to find it in the vertically simple way. The bounds in $z$ are straightforward, they are $0\leq z \leq 4-y^2$. We may find the bounds for the $x$ values by rearranging the equations for the lines given to find out the bounds. So $\frac{1}{2}y \leq x \leq y$. The parabolic sheet intersects the $xy$ plane where $y=2$ (omitting the negative root since we are in the first octant) and the lines $y = x$ and $y = 2x$ intersect at the origin so bounds on $y$ are $0\leq y \leq 2$.
+
+We have the following triple integral:
+$$\int_{0}^{2}\int_{\frac{1}{2}y}^{y}\int_{0}^{4-y^2}dzdxdy\to \int_{0}^{2}\int_{\frac{1}{2}y}^{y}(4-y^2)dxdy \to \frac{1}{2}\int_0^2 4y-y^3dy = 2$$
+
+\subsection{34.6.16}
+
+\subsection{34.6.19}
+
+\subsection{34.6.22}
+
+The region $E$ is symmetric axross the planes $z=0$ and $x = 0$, and we may use this to our advantage. Notice that the integrand contains terms multiplied by $x$ or $z^3$, which is skew symmetric across those planes. Even when multiplied together, skew symmetry holds. So automatically the integral over the region $E$ with the rectangular cavity not made vanishes.
+
+Notice that by construction the integral we wish to find can be represented like so:
+$$\iiint_E 24xy^2z^3 dA$$
+$$ = \iiint_{\text{E without cavity}}24xy^2z^3 dA - \iiint_{[0,1]\times[-1,1]\times[0,1]}24xy^2z^3 dA$$
+$$ = 0 - \iiint_{[0,1]\times[-1,1]\times[0,1]}24xy^2z^3 dA$$
+
+So really all we are tasked to do is to find out what the integral over the rectangular cavity (as a solid) would have been.
+$$-\int_{0}^{1}\int_{-1}^{1}\int_{0}^{1}(24xy^2z^3)dxdydz \to -\int_{0}^{1}\int_{-1}^{1} (12y^2z^3)dydz \to -\int_{0}^{1} (8z^3)dz$$
+$$= -2$$
+
+\subsection{34.6.21}
+
+The surface $z = 6-x^2-y^2$ is a paraboloid and the surface $z = \sqrt{x^2+y^2}$ is a single cone opening upwards. The intersection of these surfaces happens where $z=2$ (you may combine the equations for the surfaces into $z=6-z^2$ and solve for the positive root). At $z=2$, the intersection is a circle of radius $2$ centered at the origin. So the region of integration is given by $x^2+y^2 \leq 4$ where $\sqrt{x^2+y^2} \leq z \leq 6-(x^2+y^2)$.
+
+We will opt to use polar coordinates to evaluate this integral. Knowing that $x^2+y^2\leq 4$, it is apparent that $0\leq r \leq 2$ and $0 \leq \theta \leq 2\pi$. The triple integral becomes $$\int_{0}^{2\pi}\int_{0}^{2}\int_{\sqrt{x^2+y^2}}^{6-(x^2+y^2)} (1) dz(r)drd\theta \to \int_{0}^{2\pi}\int_{0}^{2} (6r-r^3-r^2)drd\theta \to \int_0^{2\pi}\frac{16}{3}d\theta $$
+$$= \frac{32}{3}\pi$$
+
+\subsection{34.6.24}
+
+Rewite the integrand as $1+\sin^2(xz) - \sin^2(xy)$. Apply linearity to find the two integrals given by $$\iiint_E  dV + \iiint_E (\sin^2(xz) - \sin^2(xy)) dV$$
+
+Notice that the integrand of the second integral is skew symmetric about the same plane $z=y$, because if we apply the transformation $(x,y,z)\to (x,z,y)$ the sign of the integrand is flipped. The region $E$ itself is a region between two spheres, which is symmetric across the plane $z=y$, so we can conclude that the second integral will vanish. 
+
+We simply compute the first integral by geometry: $$\iiint_E  dV = \frac{4}{3}\pi (2^3-1^3) = \frac{28}{3}\pi$$
+
+\subsection{34.6.31}
+
+\subsection{34.6.34}
+
+\end{document}

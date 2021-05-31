@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{44.5 Exercises}
+
+\subsection{44.5.1}
+
+There are three cases to consider, depending on which coordinate plane the rectangle lies in. Suppose we take the case where the rectangle lies on the $xy$ plane. Then by the geometric interpretation of the flux, only the component of the constant vector field $\vec{F}$ normal to the $xy$ plane contributes to the flux. The component of the vector field that is normal is indeed the component parallel to $\hat{e}_3$, which is $c$. Since the rectangle maps onto itself (this is a technicality that means nothing but that the rectangle is just a rectangle), the flux can be found by taking the product of the area $A$ and $c$, so the flux is $cA$.
+
+Similarly we find the flux for the other two cases. When the rectangle lies in the $xz$ plane, then the component normal to the rectangle is $b$, so we have $bA$. Then for the case when the rectangle lies in the $yz$ plane, the flux is $aA$.
+
+\subsection{44.5.4}
+
+Consider the symmetry of the cylinder. To start we may consider taking a vertical strip of the cylinder and computing the flux there, and then comparing it with the flux computed on the opposite end (opposite meaning that the $x$ and $y$ coordinates of the strip were both negated). The flux computed over the first strip comes out to be some value, but whatever it is, it is immediately nullified by the flux found on the opposite strip since the normal vector is flipped around while locally the geometry is the same. Thus if we took a sum of the flux on all opposite strips in this manner they would all nullify each other and so the flux is $0$.
+
+\subsection{44.5.9}
+
+We first need to find the unit normal vector $\hat{n}$ by taking some partial derivatives and noting the given orientation of the surface. Because the paraboloid is oriented downward, we need the third (vertical) component of the unit normal to be negative. Then $\hat{n} = \frac{\vec{n}}{||\vec{n}||}$ where $\vec{n} = \langle z^{\prime}_x, z^{\prime}_y ,-1 \rangle$.
+
+We also know that $||\vec{n}|| = J$ where $J$ is the Jacobian of transformation satisfying $dS = JdA$. So it is sufficient to compute $\vec{n}$:
+$$\vec{n} = \langle -2x, -2y ,-1 \rangle$$
+
+In trying to go from a surface integral to a double integral we also want to find a region of integration. Here the region of integration will be a unit disk $D$ centered at the origin since the boundary is where the paraboloid intersects the $xy$ plane. Making sure to substitute the equation of the paraboloid in for $z$, the integral becomes:
+$$\iint_S \vec{F}\cdot \hat{n}dS\to \iint_D \vec{F}\cdot \vec{n}dA \to \iint_D \langle y, -x, (1-x^2-y^2)^2 \rangle\cdot \langle -2x, -2y ,-1 \rangle dA$$
+$$\to -\iint_D (x^2+y^2-1)^2dA \to -\int_0^{2\pi}\int_0^1 r(r^2-1)^2drd\theta = -\frac{\pi}{3}$$
+
+\subsection{44.5.12}
+
+This integral may be computed without actually taking an integral. In trying to find a unit normal vector it becomes apparent that the unit normal vector $\hat{n}$ is in fact parallel to $\vec{r}$. 
+
+To illustrate the significance of this, give $\hat{n} = k\vec{r}$ for some real $k$. Then the integral becomes $$\iint_S (\vec{a}\times \vec{r})\cdot k\vec{r} dS = 0$$ which vanishes due to the properties of the triple product (use a cyclic transformation of the triple product in the integrand or just know that because two of the vectors are coplanar the triple product vanishes).
+
+Alternatively to see how this integral vanishes, notice that the cross product $\vec{a}\times \vec{r}$ produces a vector that is perpendicular to $\vec{r}$ itself and similarly $\hat{n}$. Thus any dot product (like the one in the integrand) will be zero and the integral is zero.
+
+\subsection{44.5.18}
+
+The surface seems to be only the outer sphere and the inner sphere. We will take each of these surfaces individually (due to the additivity of the integral) to simplify computation.
+
+The surface of the outer sphere is the surface of a sphere of radius $R$. To construct the unit normal vector the easiest way, simply take the position vector $\vec{r} = \langle x, y, z\rangle$ and divide through by the radius of the sphere itself (this is due to the geometry of the sphere). Thus $\hat{n} = R^{-1}\vec{r}$.
+
+We may opt to use a symmetry argument to simplify the integral, because the surface is oriented outward. Notice that we may give the sphere as $z=\pm \sqrt{R^2-x^2-y^2}$, and so for the hemisphere that contains negative $z$ values, an extra negative sign must be introduced into the unit normal vector in order to retain the outward orientation. Thus the surface integral over the positive hemisphere is equivalent to the bottom hemisphere. We can double the flux integral for the positive hemisphere and obtain the same result, which is how we will proceed.
+
+To actually go about taking the integral convert the surface integral into a generic double integral. So first find $dS$ in terms of $dA$:
+$$dS = JdA,~ J = \sqrt{1+ \left(z^{\prime}_x\right)^2+\left(z^{\prime}_y\right)^2} = \sqrt{1+\left(-\frac{x}{z}\right)^2+\left(-\frac{y}{z}\right)^2}$$
+$$J = z^{-1}\sqrt{z^2+x^2+y^2} = Rz^{-1}$$
+
+Now piece together the integral:
+$$2\iint_S \vec{F}\cdot \hat{n}dS = 2\iint_D \langle x, y ,z \rangle\cdot R^{-1}\langle x,y,z\rangle (z^{-1}R)dA $$
+$$\to \iint_D \frac{1}{z}(x^2+y^2+y^2)dA \to 2R^2\iint_D \frac{1}{\sqrt{R^2-x^2-y^2}}dA$$
+$$2R^2\int_0^{2\pi}\int_0^R \frac{r}{\sqrt{R^2-r^2}}drd\theta = 4\pi R^3$$
+
+To compute the flux over the inner sphere oriented in the opposite way, the steps are identical to the above except that we replace $R$ with $a$, and due to the normal vector being oriented in the opposite direction, the quantity found is negated. Find that the flux over the inner sphere is:
+$$2\iint_S \vec{F}\cdot \hat{n}dS = 2\iint_D \langle x, y ,z \rangle\cdot -a^{-1}\langle x,y,z\rangle (z^{-1}a)dA $$
+$$\to -\iint_D \frac{1}{z}(x^2+y^2+y^2)dA \to -2a^2\iint_D \frac{1}{\sqrt{a^2-x^2-y^2}}dA$$
+$$-2a^2\int_0^{2\pi}\int_0^a \frac{r}{\sqrt{a^2-r^2}}drd\theta = -4\pi a^3$$
+
+Add the two results together to find that the flux is $4\pi(R^3-a^3)$.
+
+\end{document}

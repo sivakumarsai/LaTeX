@@ -1,0 +1,55 @@
+% LaTeX Book Template - using defaults
+\documentclass[12pt]{amsbook}
+%\documentclass[12pt]{amsbook}
+\usepackage{pinlabel}
+\usepackage{amsfonts}   %for \blacksquare
+\usepackage{amssymb}    %for \mathbb{ }
+%\usepackage{mathrsfs}   %for \mathscr
+\usepackage{color}      %for colored fonts
+%\usepackage{amsmath}       %for \dfrac
+\usepackage{graphicx}
+%\usepackage{graphics}
+%\usepackage{epsfig}
+\let\cal\mathcal
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+\newtheorem{corollary}{\sc Corollary}
+\newtheorem{lemma}{\sc Lemma}
+\newtheorem{example}{\sc Example}
+\newtheorem{problem}{\sf Problem}
+
+
+\newtheorem{theorem}{\sc Theorem}
+\newtheorem{proposition}{\sc Proposition}
+\newenvironment{solution}{\noindent{\sc Solution:}}{\hfill{$\square$}}
+\renewenvironment{proof}{\noindent{\sc Proof.}}{\hfill{$\square$}}
+%{$\diamondsuit$}
+
+\newenvironment{remark}{\vspace*{6pt}\noindent{\bf Remark.}}{} %%%exelent infolab
+\usepackage{INTAQ-V1.0} %%%%%%%%%exelent infolab
+
+\newtheorem{definition}{\sc Definition}
+\newcommand{\mbf}[1]{\mbox{\boldmath$ #1$}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\pl}{\partial}
+\newcommand{\tint}{\int\!\!\!\int\!\!\!\int}
+\newcommand{\dint}{\int\!\!\!\int}
+\renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
+\renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
+\renewcommand{\theexample}{\thechapter.\arabic{example}}
+\renewcommand{\thecorollary}{\thechapter.\arabic{corollary}}
+\renewcommand{\theproblem}{\thechapter.\arabic{problem}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+
+% Set the beginning of a LaTeX document
+
+\nofiles
+
+\includeonly{prelims}
+
+\begin{document}
+\include{prelims}
+\pagenumbering{arabic} \setcounter{page}{1}
+\include{calculus3a}
+\end{document}

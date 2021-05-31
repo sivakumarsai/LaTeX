@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{38.3 Exercises}
+
+\subsection{38.3.1}
+
+First we need to find out the parameterization for $C$. So give $x=2\cos(t)$ and $y=2\sin(t)$, but in order to ensure that $x$ remains nonnegative and we only trace out a half circle, we give the parameter the range $t\in[-\frac{\pi}{2},\frac{\pi}{2}]$.
+
+The arclength element $ds$ for this problem is $\sqrt{(-2\sin(t))^2+(2\cos(t))^2}dt = 2dt$ (this parameterization is a natural one). So then we may substitute in the line integral like so:
+$$16\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\sin^2(t)\cos(t)dt = \frac{32}{3}$$
+
+\subsection{38.3.2}
+
+Recall that a line segment with initial point $\vec{r}_0$ and terminal point $\vec{r}_1$ are most easily parameterized as $\vec{r}(t) = (1-t)\vec{r}_0 + t\vec{r}_1$, for $0\leq t \leq 1$. Apply this definition to the line segment given in the problem to find that $\vec{r}(t) = \langle bt,(1-t)a \rangle$, for $t$ in that same interval as before.
+Then find $ds$:
+$$ds = \sqrt{(-a)^2 + (b)^2} = \sqrt{a^2+b^2}$$
+
+Then the integral becomes
+$$\int_C x\sin(y)ds \to \sqrt{a^2+b^2}\int_0^1 bt\sin((1-t)a)dt$$
+
+Give $u=1-t$ so that $t=1-u$ and $du=-dt$. Change the bounds as well (they actually remain unchanged):
+$$\sqrt{a^2+b^2}\int_0^1 (1-u)b\sin(au)du \to \sqrt{a^2+b^2}\int_0^1 \left(b\sin(au)-bu\sin(au)\right)du$$
+$$ = \frac{b}{a}\sqrt{a^2+b^2}\left[1-\frac{\sin(a)}{a}\right]$$
+
+\subsection{38.3.4}
+
+We are given the parameterization for the curve $C$ from the get go, and it is easy to deduce that the range of $t$ is from $0$ to $1$. Then the arclength element $ds$ is given by $\sqrt{(1)^2 + (2t)^2 + (3t^2)^2}dt = \sqrt{9t^4 + 4t^2 + 1}dt$.
+
+Substitute into the line integral and resolve:
+$$\int_0^1 (2t + 9t^3)(\sqrt{9t^4 + 4t^2 + 1})dt \to \frac{1}{4}\int_1^{14}\sqrt{u}du = \frac{1}{6}\left(14^{\frac{3}{2}}-1\right)$$
+
+\subsection{38.3.18}
+
+We seek to take a line integral over the path given by an arc of the parabola in the problem where the integrand is the linear mass density.
+
+Give $t=y$ and $x = \frac{t^2}{2a}$. Since $0\leq \frac{t^2}{2a} \leq \frac{a}{2}$ (from substitution) it is apparent that $-a\leq t \leq a$. Find the arclength element $ds$ as $\sqrt{(1)^2 + \left(\frac{t}{a}\right)^2}dt = \frac{1}{a}\sqrt{a^2+t^2}$. Then we may substitute to find the following:
+$$\frac{1}{a}\int_{-a}^a |t|\sqrt{a^2+t^2} dt \to \frac{1}{a}\int_{a^2}^{2a^2}u^{\frac{1}{2}}du = \frac{2}{3}a^2(2\sqrt{2}-1)$$
+
+
+The evaluation of the integral may be done in the piecewise manner or by symmetry (and substitution) as above.
+
+\end{document}

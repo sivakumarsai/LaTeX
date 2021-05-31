@@ -1,0 +1,652 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                               INTAQ-V1.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+ %                ****************************************                 %
+ %                *             AUTHOR QUERIES           *                 %
+ %                ****************************************                 %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                 ****************************************
+%                 *           Query COMMANDS             *
+%                 ****************************************
+%
+% \AQ{NOTE}       : User command to insert a query.
+%
+% \AQ[NUM]{NOTE}  : User command to insert a query numbered
+%                         NUM, where NUM is a number -- 1, 2,
+%                         etc.  For example, if querys are numbered
+%                         *, **, etc. within pages, then  \query[2]{...}
+%                         produces query '**'.  This command does  not
+%                         step the query counter.
+%
+% \FAQ[NUM]{NUM to Raise}{NOTE}: User command to insert a query in floats.
+%
+% \RHAQ[NUM]{NUM to Raise}{NOTE}: User command to insert a query in running heads.
+%
+% \querymark[NUM]    : Command to produce just the query mark in
+%                         the text, but no query.  With no argument,
+%                         it steps the query counter before  generating
+%                         the mark.
+%
+% \querytext[NUM]{TEXT} : Command to produce the query but no
+%                         mark.  \query is equivalent to
+%                         \querymark \querytext .
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%             ****************************************
+%             *         Query USER COMMANDS          *
+%             ****************************************
+%
+%   Query use the following parameters, similar to those relating
+%   to endnotes:
+%
+%   \querysize   : Size-changing command for querys.
+%
+%   \thequery : In usual LaTeX style, produces the query number.
+%
+%   \theqymark : Holds the current query's mark--e.g., \dag or '1' or 'a'.
+%                      (You don't want to set this yourself, as it comes
+%                      either from the autonumbering of notes or from
+%                      the optional argument to \query. But you'll need
+%                      to use it if you define your own \makeqymark.)
+%
+%   \makeqymark : A macro to generate the query marker from  \theqymark
+%                      The default definition is \hbox{$^\theqymark$}.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{INTAQ-V1.0}[2007/01/22 v1.0 Generation of Authro Queries]
+
+\newif\if@elsevier
+\newif\if@springer
+\newif\if@wiley
+\newif\ifaqprelims\global\aqprelimsfalse
+\newif\if@aqoff
+\newif\if@lineoff
+\newif\ifnopgnoln\global\nopgnolnfalse
+
+
+\DeclareOption{elsevier}{\@elseviertrue}
+\DeclareOption{aqprelims}{\aqprelimstrue}
+\DeclareOption{springer}{\@springertrue}
+\DeclareOption{wiley}{\@wileytrue}
+\DeclareOption{aqoff}{\@aqofftrue}
+\DeclareOption{lineoff}{\@lineofftrue}
+\DeclareOption{nopgnoln}{\nopgnolntrue}
+
+
+\ExecuteOptions{wiley}
+\ProcessOptions
+
+\def\@queryerr{\@latexerr{Use rfquery in floats instead query or rhquery}\@ehb}
+
+%\def\qsprtitle{\vspace*{8pt}\noindent\parbox{\textwidth}{\noindent
+%          {\bf QUERIES TO BE ANSWERED (SEE MARGINAL MARKS)-Springer}\par\vspace*{10pt}
+%\noindent {\bf IMPORTANT NOTE: Please mark your corrections and answers to these
+%          queries directly onto the proof at the relevant place. Do NOT mark your
+%          corrections on this query sheet.}\par\vspace*{30pt}
+%\noindent {\bf Chapter-\thechapter}}\\[10pt]}
+
+\def\qsprtitle{\vspace*{8pt}\noindent\parbox{\textwidth}{\noindent
+%\par\vspace*{30pt}
+\ifaqprelims
+\noindent {\bf Prelims}
+\else
+\noindent {\bf Chapter-\thechapter}
+\fi}\\[10pt]}
+
+
+\def\qwileytitle{\vspace*{8pt}\noindent\parbox{\textwidth}{\noindent
+          QUERIES TO BE ANSWERED BY AUTHOR (SEE MARGINAL MARKS)\par\vspace*{10pt}
+\noindent IMPORTANT NOTE: Please mark your corrections and answer to these
+          queries directly onto the proof at the relevant place. Do NOT mark your
+          corrections on this query sheet.\par\vspace*{30pt}
+\noindent Chapter \thechapter}\\[10pt]}
+
+\ifnopgnoln%
+  \def\qsprthead{\hline\\[-5pt]\hspace*{-2pt} {\bf Query No.}& &
+   & {\kern15pt}{\bf Query}\\[3pt]\hline\\[-10pt]}
+\else%
+  \def\qsprthead{\hline\\[-5pt]\hspace*{-2pt} {\bf Query No.}& \hspace*{-29pt}{\bf Page No.}&
+  \hspace*{-44pt}{\bf Line No.} & {\kern30pt}{\bf Query}\\[3pt]\hline\\[-10pt]}
+\fi%
+
+\def\qwileythead{\hline\\[-5pt]\hspace*{-2pt} Query No.& \hspace*{-48pt} Page No.&
+\hspace*{-52pt} Line No. & {\kern30pt} Query\\[3pt]\hline\\[-10pt]}
+
+\def\qsprhead{\querysize\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{54pt}}llll}
+                  \qsprthead
+\end{tabular*}}
+
+\def\qelshead{\querysize\noindent {\bf Chapter No: \thechapter}\\[10pt]
+\begin{tabular}{@{\extracolsep{54pt}}llll}
+                  \\[-22pt]{\bf Query No.}& \hspace*{-40pt}{\bf Query}&
+\end{tabular}}
+
+\def\qelscthead{\hspace*{-6pt}{\querysize{\bf Query No.}\hspace*{24pt}{\bf Query}}\\[-7pt]}
+
+\def\qwileyhead{\querysize\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{54pt}}llll}
+                 \qwileythead
+\end{tabular*}}
+
+\@definecounter{query}
+\def\thequery{\@arabic\c@query}
+
+\def\@makeqymark{\qidsize\@theqymark}
+\def\makeqymark{\@makeqymark}
+
+\def\theqymark{\@querymark}
+
+\newdimen\querysep
+
+\def\qidsize{\fontsize{8}{10}\selectfont}
+
+\def\AQ{%
+\@ifnextchar[\@AQquery{\stepcounter{query}%
+        \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+        \marginpar{\@querymark}\@querytext}}
+
+\def\@AQquery[#1]{%
+\begingroup%
+        \qlineno{#1}\stepcounter{query}%
+        \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup%
+       \marginpar{\hspace*{3pt}\@querymark}\@querytext}
+
+\def\RHAQ{%
+\@ifnextchar[\@RHAQquery{\stepcounter{query}%
+       \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+       \marginpar{\@querymark}\@querytext}}
+
+\def\@RHAQquery[#1][#2]{%
+\begingroup%
+       \qlineno{#1}\stepcounter{query}%
+       \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup%
+       \marginpar{\vspace*{#2pt}\@querymark}\@querytext}
+
+\def\FAQ{%
+\@ifnextchar[\@FAQquery{\stepcounter{query}%
+       \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+       \@querymark\@querytext}}
+
+\def\@FAQquery[#1][#2]{%
+\begingroup%
+       \qlineno{#1}\stepcounter{query}%
+       \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup%
+      \leftskip-.25\textwidth
+      \noindent\begin{tabular}{@{}l}
+      \multirow{1}{3pc}[#2pt]{\@querymark}
+      \end{tabular}\@querytext}
+
+\let\@doanquery=0
+\let\@endanquery=0
+
+\newwrite\@querys
+\newif\if@querysopen
+\global\@querysopenfalse
+
+\def\qlineno#1{\gdef\@qline{#1}}\def\@qline{}
+
+\def\@openquerys{\immediate\openout\@querys=\jobname.aqy\relax\global\@querysopentrue}
+
+\long\def\@querytext#1{%
+\if@querysopen
+\else
+                \@openquerys
+\fi%
+                \immediate\write\@querys{\@doanquery{%
+\if@elsevier%
+                \hbox to 5.85pc{\@theqymark:}%
+\else%
+\if@springer%
+\ifnopgnoln%
+                \hbox to 6.1pc{\@theqymark}%
+                \hbox to 4pc{\llap{}}\hbox to 2.6pc{\llap{}}%
+\else%
+                \hbox to 6.1pc{\@theqymark}%
+                \hbox to 4pc{\llap{\thepage}}\hbox to 2.6pc{\llap{\ifx\@qline\undefined\else\@qline\fi}}%
+\fi%
+\else%
+                \hbox to 6.1pc{\@theqymark}%
+                \hbox to 4pc{\llap{\thepage}}\hbox to 2.6pc{\llap{\ifx\@qline\undefined\else\@qline\fi}}\fi\fi}}%
+\begingroup%
+                \def\next{#1}%
+                \newlinechar='40%
+                \immediate\write\@querys{\meaning\next}%
+\endgroup%
+                \immediate\write\@querys{\@endanquery}}
+
+\long\def\addtoquerys#1{%
+\if@querysopen
+\else           \@openquerys
+\fi
+\begingroup
+                \newlinechar='40
+                \let\protect\string
+                \immediate\write\@querys{#1}%
+\endgroup}
+
+\def\querymark{\@ifnextchar[\@xquerymark{\stepcounter{query}%
+                \protected@xdef\@theqymark{\thequery}\@querymark}}
+
+\def\@xquerymark[#1]{%
+\begingroup
+                \c@query #1\relax
+                \unrestored@protected@xdef\@theqymark{\thequery}%
+\endgroup
+                \@querymark}
+
+\def\@querymark{\leavevmode
+                \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
+                \parbox{20pt}{\makeqymark}
+                \ifhmode\spacefactor\@x@sf\fi
+                \relax}
+
+\def\querytext{\@ifnextchar[\@xquerynext
+               {\protected@xdef\@theqymark{\relax}%
+               \@querytext}}
+
+\def\@xquerynext[#1]{
+\begingroup
+               \c@query=#1\relax
+               \xdef\@theqymark{\thequery}
+\endgroup
+               \@querytext}
+
+\def\@xquerynext[#1]{%
+\begingroup
+               \c@query=#1\relax
+               \unrestored@protected@xdef\@theqymark{\thequery}%
+\endgroup
+               \@querytext}
+
+\def\queryformat{%
+\if@elsevier%
+               \fboxrule0pt\rightskip\z@ \leftskip\z@ %
+               \parindent68pt\hangindent68pt\parskip2pt%
+               \leavevmode\llap{\makeqymark}%
+\else%
+\if@springer%
+               \fboxrule0pt\rightskip\z@ \leftskip\z@%
+               \parindent150pt\hangindent160pt\parskip2pt%
+               \leavevmode\llap{\makeqymark}%
+\else%
+               \fboxrule0pt\rightskip\z@ \leftskip\z@%
+               \parindent150pt\hangindent150pt\parskip2pt%
+               \leavevmode\llap{\makeqymark}%
+\fi\fi}
+
+\def\querysize{\fontsize{8}{10}\selectfont}
+%
+\def\ps@AQrunningtext{\let\@mkboth\@gobbletwo
+   \let\@oddfoot\@empty\let\@evenfoot\@empty
+   \def\@evenhead{\textcolor{white}{This is an Author Query Page Integra}\hfill}%
+   \def\@oddhead{\textcolor{white}{This is an Author Query Page Integra}\hfill}%
+   \let\chaptermark\@gobble
+   \let\sectionmark\@gobble
+   \let\subsectionmark\@gobble}
+%
+\def\showquery{\clearpage\thispagestyle{AQrunningtext}\pagestyle{AQrunningtext}\addtocounter{page}{-1}
+\immediate\closeout\@querys\global\@querysopenfalse
+\begingroup
+              \makeatletter
+              \edef\@tempa{`\string >}%
+\ifnum\catcode\@tempa=12%
+              \let\@ResetGT\relax
+\else
+              \edef\@ResetGT{\noexpand\catcode\@tempa=\the\catcode\@tempa}%
+              \@makeother\>%
+\fi
+              \def\@doanquery##1##2>{\def\@theqymark{##1}\par
+\begingroup
+              \@ResetGT
+              \edef\@currentlabel{\csname p@query\endcsname\@theqymark}%
+              \queryformat}%
+              \def\@endanquery{\par\endgroup}%
+              \begin{queryframe}%
+\if@elsevier
+              \qelshead
+\else
+\if@springer
+              \qsprtitle\qsprhead
+\else
+              \qwileytitle\qwileyhead
+\fi\fi%
+              \querysize%
+              \input{\jobname.aqy}%
+\if@elsevier
+\else
+\if@springer  \vspace*{3pt}\hrule height1pt
+\else
+              \vspace*{3pt}\hrule height1pt
+\fi\fi%
+              \end{queryframe}%
+              \endgroup\pagestyle{headings}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%To off the quries%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@aqoff
+
+\def\AQ{%
+\@ifnextchar[\@AQquery{\stepcounter{query}%
+             \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+             \@querytext}}
+
+\def\@AQquery[#1]{%
+\begingroup%
+             \qlineno{#1}\stepcounter{query}%
+             \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup%
+            \@querytext}
+
+\def\RHAQ{%
+\@ifnextchar[\@RHAQquery{\stepcounter{query}%
+            \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+            \@querytext}}
+
+\def\@RHAQquery[#1][#2]{%
+\begingroup%
+            \qlineno{#1}\stepcounter{query}%
+            \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup%
+           \@querytext}
+
+\def\FAQ{%
+\@ifnextchar[\@FAQquery{\stepcounter{query}%
+           \protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+          \@querytext}}
+
+\def\@FAQquery[#1][#2]{%
+\begingroup%
+          \qlineno{#1}\stepcounter{query}%
+          \unrestored@protected@xdef\@theqymark{\if@elsevier
+                                \fbox{AU\thequery}%
+                                \else%
+                                \if@springer%
+                                \fbox{AQ\thequery}%
+                                \else%
+                                \fbox{AQ\thequery}%
+                                \fi\fi}%
+\endgroup
+          \@querytext}
+
+\def\showquery{\relax}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%To off the quries%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@lineoff
+\def\qlineno#1{\gdef\@qline{\relax}}\def\@qline{}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{queryframe}
+           {\MakequeryFramed {\advance\hsize-\width \queryFrameRestore}}%
+{\endMakequeryFramed}
+
+\chardef\queryFrameRestore=\catcode`\|
+\catcode`\|=\catcode`\
+
+\def\MakequeryFramed#1{
+           \setbox\z@\vbox{\vskip-1in \hbox{\hskip-1in
+           \queryFrameCommand{\hbox{\vrule \@height .7in \@depth.3in \@width 1in}}}\vskip\z@skip}%
+           \def\width{\wd\z@}\def\height{\ht\z@}%
+           \edef\fb@frw{\the\width}\edef\fb@frh{\the\height}%
+\begingroup
+           \skip@\lastskip
+\if@nobreak\else
+           \penalty9999
+\ifdim\pagefilstretch=\z@
+\ifdim\pagefillstretch=\z@
+           \edef\@tempa{\the\skip@}%
+\ifx\@tempa\zero@glue
+           \penalty-30
+\else
+           \vskip-\skip@ \penalty-30 \vskip\skip@
+\fi\fi\fi
+           \penalty\z@
+           \advance\skip@ \z@ plus-.5\baselineskip
+           \advance\skip@ \z@ plus-.231\height
+           \advance\skip@ \z@ plus-.231\skip@
+           \advance\skip@ \z@ plus-.231\topsep
+           \vskip-\skip@ \penalty 1800 \vskip\skip@
+\fi
+           \addvspace{\topsep}%
+\endgroup
+           \penalty\@M \vskip 2\baselineskip \vskip\height
+           \penalty9999 \vskip -2\baselineskip \vskip-\height
+           \penalty9999 % updates \pagetotal
+           |\message{After clearout, \pagetotal=\the\pagetotal, \pagegoal=\the\pagegoal. }%
+           \fb@queryadjheight\vskip-10pt
+           \setbox\@tempboxa\vbox\bgroup#1
+           \textwidth\hsize \columnwidth\hsize}
+
+\def\endMakequeryFramed{\par
+           \kern\z@ \penalty-100
+           \egroup
+\begingroup
+           \put@queryframe
+\endgroup}
+
+\def\put@queryframe{\relax
+\ifdim\pagegoal=\maxdimen
+           \pagegoal\vsize
+\fi
+           |   \message{=============== Entering putframe ====================^^J
+           |     \pagegoal=\the\pagegoal,  \pagetotal=\the\pagetotal. }%
+\ifinner
+\else
+           \dimen@\pagegoal \advance\dimen@-\pagetotal
+\ifdim\dimen@<2\baselineskip
+           |   \message{Page has only \the\dimen@\space room left; eject. }%
+           \eject \fb@queryadjheight \put@queryframe
+\else
+           |    \message{\string\pagetotal=\the\pagetotal,
+           |        \string\pagegoal=\the\pagegoal,
+           |        \string\pagestretch=\the\pagestretch,
+           |        \string\pageshrink=\the\pageshrink,
+           |        \string\fb@frh=\fb@frh. \space}
+           |    \message{Box of size \the\ht\@tempboxa\space + \fb@frh}%
+\begingroup
+           \advance\dimen@.8\pageshrink
+           \advance\dimen@-\fb@frh\relax
+           \expandafter\endgroup
+\ifdim\dimen@>\ht\@tempboxa
+           |       \message{fits in \the\dimen@. }%
+\else
+           |       \message{must be split to fit in \the\dimen@. }%
+\setbox\@tempboxa\vbox{\vskip \fb@frh \@plus\pagestretch \@minus.8\pageshrink
+           \kern137sp\kern-137sp\penalty-30
+           \unvbox\@tempboxa}%
+           \setbox\tw@\vsplit\@tempboxa to\dimen@
+           \setbox\tw@\vbox{\unvbox\tw@\vspace*{4pt}}
+           |       \message{Box of size \the\ht\@tempboxa\space split to \the\dimen@.
+           |          Natural height of split box is \the\ht\tw@. }%
+\begingroup
+           \advance\dimen@\topskip
+           \expandafter\endgroup
+\ifdim\dimen@>\pagegoal
+           |         \message{Frame is big -- Use up the full column. }%
+           \dimen@ii\pagegoal
+           \advance\dimen@ii -\topskip
+           \advance\dimen@ii \queryFrameHeightAdjust\relax
+\else
+           \advance\dimen@.8\pageshrink
+           \ifdim\ht\tw@>\dimen@
+           |           \message{Box too tall; rebox it to \the\dimen@. }%
+           \dimen@ii\dimen@
+\else
+           \dimen@ii\ht\tw@
+\fi\fi
+           \advance\dimen@ii -\fb@frh
+           \setbox\tw@\vbox to\dimen@ii \bgroup
+           \vskip -\fb@frh \@plus-\pagestretch \@minus-.8\pageshrink
+           \unvbox\tw@ \unpenalty\unpenalty
+\ifdim\lastkern=-137sp
+           |          \message{box split at beginning! }%
+           \egroup \eject
+           \fb@queryadjheight
+\else %
+           \egroup
+\ifvoid\@tempboxa
+           |             \message{box split at end! }%
+           \setbox\@tempboxa\box\tw@
+\else
+           |             \message{box split as expected. Its reboxed height is \the\ht\tw@. }%
+\ifdim\wd\tw@>\z@
+           \centerline{\queryFrameCommand{\box\tw@}}
+\else
+           \message{Zero width means likely blank. Don't frame it (guess)}%
+           \box\tw@
+\fi
+           \par\vspace*{8pt}
+\if@elsevier
+           \hrule\@height\z@
+\else
+           \hrule\@height1\p@
+\fi
+           \addtocounter{page}{-1}
+           \eject
+\if@elsevier
+           \qelscthead\thispagestyle{AQrunningtext}
+\else
+\if@springer
+           \qsprhead\thispagestyle{AQrunningtext}
+\else
+           \qwileyhead\thispagestyle{AQrunningtext}
+\fi\fi
+           \fb@queryadjheight
+           \put@queryframe
+\fi\fi\fi\fi\fi
+\ifvoid\@tempboxa
+\else
+           \centerline{\queryFrameCommand{\box\@tempboxa}}%
+           \nointerlineskip \null
+           \penalty-30 \vskip\topsep
+\fi}
+
+\def\fb@queryadjheight{%
+           \vbox to\queryFrameHeightAdjust{}
+           \vskip-\queryFrameHeightAdjust
+           \penalty\@M}
+
+\edef\zero@glue{\the\z@skip}
+
+\catcode`\|=\queryFrameRestore
+
+\providecommand\queryFrameCommand{\fboxrule=\queryFrameRule\fboxsep=\queryFrameSep \fbox}
+           \@ifundefined{queryFrameRule}{\newdimen\queryFrameRule \queryFrameRule=0pt}{}
+           \@ifundefined{queryFrameSep} {\newdimen\queryFrameSep  \queryFrameSep =\fboxsep}{}
+
+\ifodd\c@page
+           \providecommand\queryFrameHeightAdjust{6.35pt}
+\else
+           \providecommand\queryFrameHeightAdjust{3pt}
+\fi
+
+\def\queryFrameRestore{%
+           \let\if@nobreak\iffalse
+           \let\if@noskipsec\iffalse
+           \let\-\@dischyph
+           \let\'\@acci\let\`\@accii\let\=\@acciii
+           \linewidth\hsize
+           \sloppy}
+
+\let\fram@d=\MakequeryFramed
+\let\endfram@d=\endMakequeryFramed
+
+\marginparsep=24pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

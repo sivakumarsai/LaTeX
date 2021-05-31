@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{29.1 Exercises}
+
+\subsection{29.1.1}
+
+We may give $D$ as the set difference of the square $\left[-2,2\right]\times\left[-2,2\right]$ and of the open disk $\{(x,y)|~x^2+y^2<1\}$. Then it becomes apparent that due to the additivity of the double integral we may simply take the double integral of the function $f(x,y) = k$ over the square and subtract from that value the value of the double integral of the same function over the open disk. Using geometry it is apparent that the value of the double integral is $16k-\pi k$.
+
+\subsection{29.1.4}
+
+The linearity of the double integral allows us to take the double integral of each term in the integrand and add them together. Using this fact, observe that the term $\sqrt{4-x^2-y^2}$ represents the top hemisphere of a sphere of radius 2 centered at the origin, and on $D$ we are taking a quarter of that volume. Likewise notice that the term given by $2$ represents a constant value, so on $D$ it looks like a slice of a cylinder of radius 2 and height 2.
+
+Hence the double integral is equal to $\frac{4}{3}\pi - 2\pi$.
+
+\subsection{29.1.7}
+
+We will first want to partition the disk using polar coordinates. Give $$\Delta r = \frac{1}{N}, ~ r_k = k\Delta r$$ and $$\Delta \theta = \frac{2\pi}{M}, ~ \theta_j = j\Delta \theta$$ for natural numbers $k,j,N,M$. Following the method of Example $\mathbf{29.1}$ we can give each area element in the partition as $\overline{r}_k\Delta r \Delta \theta$ where $\overline{r}_k = \frac{1}{2}(r_k+r_{k+1})$.
+
+Given that $r^2 = x^2 + y^2$, $|x|\leq r$, and $|y|\leq r$, it is apparent that $$ax^2 + by^2\leq r^2(a+b)$$ and so we may proceed by using a midpoint (meaning the sample points occur at $(\overline{r}_k,\theta_j)$) Riemann sum to find the double integral:
+$$\iint_D r^2(a+b)dA = \lim_{\substack{N\to \infty \\M\to \infty }} \sum_{k=1}^{N}\sum_{j=1}^{M} (\overline{r}_k)^2(a+b)\overline{r}_k\Delta r \Delta \theta$$
+
+We can pull out the quantity $(a+b)$ from both sums since it is a constant. Then replace $\Delta \theta$ with $\frac{2\pi}{M}$ (definition we gave above). 
+
+Then we can sum with respect to $j$ first and find $$(a+b)\lim_{\substack{N\to \infty \\M\to \infty }} \sum_{k=1}^{N}(\overline{r}_k)^3\Delta r\frac{2\pi}{M}(M)$$ which we then sum over $k$ using the definition of the single variable Riemann sum:
+$$2\pi (a+b)\lim_{N\to \infty} \sum_{k=1}^{N}(\overline{r}_k)^3\Delta r = 2\pi (a+b)\int_0^1r^3dr = (a+b)\frac{\pi}{2}$$
+
+So it is true that $$\iint_D (ax^2+by^2)dA \leq (a+b)\frac{\pi}{2}$$
+
+\subsection{29.1.10}
+
+It is known that the sine function takes on a maximal value of $1$ when its argument is $\frac{\pi}{2}+2\pi k$ for integers $k$ and minimal values of $-1$ when its argument is $-\frac{\pi}{2}+2\pi j$ for integers $j$. The sine function also takes on the value of $0$ when its argument is $0+\pi k\ell$ for integers $\ell$.
+
+Evidently for the integrand the maximum values occur where $x+y = \frac{\pi}{2}+2\pi k$, and minimal ones where $x+y = -\frac{\pi}{2}+2\pi j$, and zero values where $x+y = 0+\pi k\ell$. Since values on $D$ are bounded by the $x$ and $y$ axes and by a line passing through $(0,\pi)$ and $(\frac{\pi}{4},0)$, it is apparent that we will never have negative values of $x+y$, and we may omit the auxiliary integer variables and simply find where the sum of $x$ and $y$ form principal angles where the max/zero values are.
+
+$$x_m+y_m = \frac{\pi}{2}, ~x_0+y_0 = 0$$
+
+The first equation indicates that maximum values are given by the line passing through $(0,\frac{\pi}{2})$ and $(\frac{\pi}{2},0)$, which partially lies in $D$, which is sufficient to say that the maximum value of $f$ on $D$ is $1$. Likewise at the origin the second equation is satisfied which is sufficient to know that the minimum value of $f$ on $D$ is $0$. Thus the integral is bounded above and below by the area of $D$ (which you can get using elementary geometry) times the min/max values:
+$$0 \leq \iint_D \sin(x+y)dA \leq \frac{\pi^2}{8}$$
+
+\subsection{29.1.13}
+
+We will first want to partition the disk using polar coordinates. Give $$\Delta r = \frac{1}{N}, ~ r_k = k\Delta r$$ and $$\Delta \theta = \frac{2\pi}{M}, ~ \theta_j = j\Delta \theta$$ for natural numbers $k,j,N,M$. Following the method of Example $\mathbf{29.1}$ we can give each area element in the partition as $\overline{r}_k\Delta r \Delta \theta$ where $\overline{r}_k = \frac{1}{2}(r_k+r_{k+1})$.
+
+Given that $r^2 = x^2 + y^2$, $|x|\leq r$, and $|y|\leq r$, it is apparent that we may take the midpoint Riemann sum to find the double integral:
+$$\iint_D e^{x^2+y^2}dA = \lim_{\substack{N\to \infty\\M\to \infty}} \sum_{k=1}^{N}\sum_{j=1}^{M} e^{(\overline{r}_k)^2} \overline{r}_k\Delta r \Delta \theta$$
+
+Using the defintions of $\Delta r$ and $\Delta \theta$ and taking the sum in $j$ first, we obtain the following sum:
+$$\lim_{\substack{N\to \infty\\M\to \infty}} \sum_{k=1}^{N} e^{(\overline{r}_k)^2} \overline{r}_k\Delta r \frac{2\pi}{M}(M) = \lim_{N\to \infty} 2\pi \sum_{k=1}^{N}  \overline{r}_k e^{(\overline{r}_k)^2}\Delta r$$
+
+The sum on the right is a one dimensional Riemann sum that is by definition the following integral:
+$$2\pi \int_0^1 re^{r^2}dr = (e-1)\pi$$
+
+\subsection{29.1.16}
+
+Notice that the graph of the integrand is unlike any geometrical shape we are used to dealing with, so an alternative argument is needed to determine the sign of the double integral. Notice that the integrand takes on both positive and negative values on $D$. Particularly for $(x,y)$ beyond the disk $x^2+y^2 \leq 1$ (that is, $(x,y)$ where $1 < x^2+y^2 \leq 4$), the function takes on negative values while anywhere on that disk the function takes on nonnegative values.
+
+So we will try to compare the signed volumes that each portion of the graph forms on $D$. Suppose that the overall sign of the integral is negative. That means that the signed volume under the surface on the washer $1 < x^2+y^2 \leq 4$ is negative and is of greater magnitude than the signed volume of the surface on the disk $x^2+y^2 \leq 1$. We do not have the tools currently to find these volumes directly, but I will pose the following idea. 
+
+Suppose we find an underestimate for the volume ($V_2$) under the $xy$ plane by applying known methods of calculating volumes of solids of revolution, and then compare that value with an overestimate of the volume ($V_1$) above the $xy$ plane found using geometry. If $|V_2| \geq |V_1|$ then the overall sign of the double integral is negative. Keep in mind that if we had instead taken an overestimate for $V_2$ and an underestimate for $V_1$ and compared them that way, then we do not have a way to determine if the sign of the double integral is negative.
+
+To find $V_1$, it is easy to give it as the cylinder of height $1$ with its base as the disk $x^2+y^2 \leq 1$. By geometry $V_1$ equals $\pi$.
+
+To find $V_2$, we need to investigate a radial cross section of the surface. We can accomplish this by giving $r^2 = x^2+y^2$, which transforms the integrand (a function of $(x,y)$) into a function of one variable, $r$. The function becomes $z(r) = \sqrt[3]{1-r^2}$ We may plot this function where $r$ is the horizontal axis and $z$ is the vertical axis (form points $(r,z)$) and find that the curve passes through the points $(1,0)$ and $(2,-\sqrt[3]{3})$ in this system. Using the linear function $r = 1-3^{-\frac{1}{3}}z$ that passes through those points, we can use it to find $V_2$ by using the washer method for finding the volume of the solid of revolution that forms by revolving $z(r)$ through $2\pi$ radians.
+
+The integral for the solid of revolution (which is identical to the volume of the original integrand under the $xy$ plane) is:
+$$\pi\int_0^{-\sqrt[3]{3}}\left[(2)^2-(1-3^{-\frac{1}{3}}z)^2\right]dz$$
+$$= \pi\int_0^{-\sqrt[3]{3}}\left[3 + \frac{2 z}{3^{\frac{1}{3}}} - \frac{z^2}{3^{\frac{2}{3}}}\right]dz = \pi\left[3z + \frac{ z^2}{3^{\frac{1}{3}}} - \frac{z^3}{3^{\frac{5}{3}}}\right]_0^{-\sqrt[3]{3}}$$
+$$ = \left(3^{-\frac{2}{3}} - 2\sqrt[3]{3}\right) \pi = -\frac{5}{3^{\frac{2}{3}}}\pi$$
+
+We can verify however we like that indeed $|-\frac{5}{3^{\frac{2}{3}}}\pi| \geq |\pi|$, which means that the sign of the double integral is indeed negative.
+
+\end{document}

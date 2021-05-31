@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage{physics}
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP2302 Professor Jury}
+\fancyhead[R]{Sai Sivakumar 9/30/20}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\setcounter{page}{1}
+
+\begin{document}
+Section 2.4 Problems 9, 13, 32, Section 2.6 Problems 9, 11, 23 and Exercise from Section 2 of the Week 4 Supplement\\
+
+Section 2.4
+
+9. $\br{2xy + 3}\dd{x} + \br{x^2-1}\dd{y} = 0$ Solve.
+
+Confirm if the mixed partial derivatives are equal to see if the differential equation is exact:
+$$\pdv{y}\br{2xy + 3} = 2x = \pdv{x}\br{x^2-1} = 2x$$
+
+Hence it is exact. Then integrate:
+$$\int 2xy+3 \dd{x} = x^2 + 3x + c(y) = F(x,y)$$
+
+Differentiate and compare with the other partial derivative of $F(x,y)$:
+$$\pdv{y}\br{x^2y + 3x + c(y)} = x^2 + c^{\prime}(y) = x^2-1 \to c^{\prime}(y) = -1 \to c(y) = -y + C$$
+
+Hence the solution curve is of the form:
+$$F(x,y) = x^2y + 3x -y = C$$ \\
+
+13. $e^t\br{y-t}\dd{t} + \br{1+e^t}\dd{y} = 0$ Solve.
+
+Confirm if the mixed partial derivatives are equal to see if the differential equation is exact:
+$$\pdv{y}e^t\br{y-t} = e^t = \pdv{t}\br{1+e^t} = e^t$$
+
+Hence it is exact. Then integrate:
+$$\int 1+e^t \dd{y} = y + ye^t + c(t) = F(t,y)$$
+
+Differentiate and compare with the other partial derivative of $F(t,y)$:
+$$\pdv{t} \br{y + ye^t + c(t)} = ye^t + c^{\prime}(t) = e^t\br{y-t} \to c^{\prime}(t) = -te^t$$
+$$c(t) = \int -te^t\dd{t} = -te^t + e^t + C$$
+
+Hence the solution curve is of the form:
+$$F(t,y) = y + ye^t - te^t + e^t = C$$ \\
+
+32.
+
+(a) Take the negative reciprocal of $\dv{y}{x}$ and resolve terms:
+$$\text{new } \dv{y}{x} = \frac{\pdv{F}{y}}{\pdv{F}{x}} \to \pdv{F}{x}\dd{y} = \pdv{F}{y}\dd{x}$$
+
+Immediately the above equality shows that $$\pdv{F}{x}\dd{y} - \pdv{F}{y}\dd{x} = 0$$
+since both terms are just equal to each other.\\
+
+(b) Substitute the partial derivatives and solve for explicit solutions $y = \phi(x)$.
+$$2y\dd{x} - 2x\dd{y} = 0 \to \int \frac{1}{x}\dd{x} = \int \frac{1}{y}\dd{y} \to \ln\abs{x} + C = \ln\abs{y}$$
+
+Hence the solution curve is of the form
+$$y = C\abs{x}$$
+which are straight lines through the origin (It might be okay to omit the absolute value signs). \\
+
+(c) Substitute the partial derivatives and solve for implicit solutions $F(x,y) = C$.
+$$x\dd{x} - y\dd{y} = 0 \to \int x\dd{x} = \int y\dd{y} = x^2 = y^2 + C$$
+
+Hence the solution curve is of the form
+$$x^2 - y^2 = C$$
+which are hyperbolas. \\
+
+Section 2.6
+
+9. $\br{xy + y^2}\dd{x} - x^2\dd{y} = 0$ Solve.
+
+This is homogeneous, so substitute $v = \frac{y}{x}$ and $\dv{y}{x} = v + x\dv{v}{x}$ and solve.
+$$v + v^2  = v + x\dv{v}{x} \to \int \frac{1}{x}\dd{x} = \int \frac{1}{v^2}\dd{v} \to \ln\abs{x} + C = -\frac{x}{y}$$
+
+Hence the solution curve is of the form:
+$$y = -\frac{x}{\ln\abs{x} + C}$$ \\
+
+11. $\br{y^2-xy}\dd{x} + x^2\dd{y} = 0$ Solve.
+
+This is homogeneous, so substitute $v = \frac{y}{x}$ and $\dv{y}{x} = v + x\dv{v}{x}$ and solve.
+$$v - v^2  = v + x\dv{v}{x} \to \int \frac{1}{x}\dd{x} = \int -\frac{1}{v^2}\dd{v} \to \ln\abs{x} + C = \frac{x}{y}$$
+
+Hence the solution curve is of the form:
+$$y = \frac{x}{\ln\abs{x} + C}$$ \\
+
+23. $\dv{y}{x} - \frac{2y}{x} = -x^2y^2$ Solve.
+
+Multiply through by $x^2y^{-2}$ and apply the Bernoulli substitution $v = y^{-1}$ and $\dv{v}{x} = -y^{-2}\dv{y}{x}$:
+$$-x^2y^{-2}\dv{y}{x} + \frac{2x}{y} = x^4 \to x^2\dv{v}{x} + 2xv = x^4 \to \br{x^2v}^{\prime} = x^4$$
+$$\int 1 \dd{\br{x^2v}} = \int x^4 \dd{x} \to y^{-1} = \frac{x^3}{5} + Cx^{-2}$$
+
+Hence the solution curve is of the form:
+$$y = \br{\frac{x^3}{5} + Cx^{-2}}^{-1}$$ \\
+
+Exercise from Section 2 of the Week 4 Supplement:
+
+1) Since $F(t,x)$ is a polynomial in $t$ and $x$, it is smooth and so we have:
+$$\varphi^{\prime}(t) = \frac{-\br{4t\br{t^2+x^2}-8t}}{4x\br{t^2+x^2}+8x}$$
+
+We can express the level curve as an explicit function $x = \varphi(t)$ so long as the denominator in the derivative above does not vanish. So for a neighborhood around $\br{\sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}}$, the denominator does not vanish and so we can, but around both $\br{2,0}$ and $\br{0,0}$ the denominator vanishes and so we cannot conclude anything for sure.
+
+2) Likewise we can do the same for trying to express the level curve as $t = \psi(x)$, by checking the denominator of its derivative:
+$$\psi^{\prime}(x) = \frac{-\br{4x\br{t^2+x^2}+8x}}{4t\br{t^2+x^2}-8t}$$
+
+Around $\br{\sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}}$ the denominator vanishes so we cannot conclude anything for sure, likewise around $\br{0,0}$. We can, however, around $\br{2,0}$ since the denominator does not vanish.
+
+\end{document}

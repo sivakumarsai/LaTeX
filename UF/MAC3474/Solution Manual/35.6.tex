@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{35.6 Exercises}
+
+\subsection{35.6.4}
+
+We do not need to change anything for the $z$ bounds since they are given directly save for just applying $r = x^2+y^2$. Then $0\leq z \leq r^2$. Then since the region is bounded by a cylinder of unit radius it is apparent that $0\leq r \leq 1$ and that $0\leq \theta \leq 2\pi$.
+
+\subsection{35.6.7}
+
+Since E is the sphere of radius $a$ in the first octant, it is easy to see that $\theta$ may only vary from $0$ to $\frac{\pi}{2}$. Furthermore since the radius of the sphere is $a$, the quantity $r$ may only vary from $0$ to $a$. The surfaces for $z$ that bound the surface is the plane $z=0$ and $z=\sqrt{a^2-x^2-y^2}=\sqrt{a^2-r^2}$. So $0\leq z \leq \sqrt{a^2-r^2}$
+
+\subsection{35.6.10}
+
+The region of integraion is a cylinder with a cylindrical cut out, where its base sits on the $xy$ plane and is cut off above by the plane $z=x+y+5$. This plane does not cut off the cylinder short on the $xy$ plane, so the base is given by an annulus of inner radius 1 and outer radius 2. This is enough to deduce that $1\leq r \leq 2$ and $0\leq \theta \leq 2\pi$.
+
+To find bounds in $z$ apply the transformation $(x,y) \to (r\cos(\theta),r\sin(\theta))$ to the plane $z = x+y+5$. The bottom bound is still $0$. The upper bound becomes $r\cos(\theta)+r\sin(\theta)+5$. Applying the same transformation to the integrand, the triple integral becomes: $$\int_{0}^{2\pi}\int_{1}^{2}\int_{0}^{r\cos(\theta)+r\sin(\theta)+5}r\sin(\theta)dz(r)drd\theta $$
+$$\to \int_{0}^{2\pi}\int_{1}^{2} \left(r^3\sin(\theta)\cos(\theta) + r^3\sin^2(\theta) + 5r^2\sin(\theta)\right) drd\theta$$
+$$\to \int_{0}^{2\pi}\int_{1}^{2} \left(\frac{r^3}{2} + \frac{r^3}{2}\left(\sin(2\theta) - \cos(2\theta)\right) + 5r^2\sin(\theta)\right) drd\theta$$
+
+The last two terms will vanish due to the periodicity of the sine and cosine. Then the remaining integral is $$\int_{0}^{2\pi}\int_{1}^{2} \frac{r^3}{2}drd\theta \to \pi \frac{r^4}{4}\bigg|_1^2 = \frac{15}{4}\pi$$
+
+\subsection{35.6.13}
+
+The region is bounded above by the plane and below by the paraboloid. Rewrite the paraboloid equation as $z = \frac{1}{2}r^2$. The region of integration in the $xy$ plane is the disk of radius $2$ (find the boundary by solving $2=\frac{1}{2}r^2$). Then it follows that $0\leq r \leq 2$ and $0\leq \theta \leq 2\pi$. The triple integral becomes $$\int_{0}^{2\pi}\int_{0}^{2}\int_{\frac{1}{2}r^2}^{2} (r^2)dz(r)drd\theta \to \int_{0}^{2\pi}\int_{0}^{2}\left(2r^3-\frac{1}{2}r^5\right)drd\theta \to \int_0^{2\pi}\frac{8}{3}d\theta = \frac{16}{3}\pi$$
+
+\subsection{35.6.20}
+
+The sphere indicates that $\rho$ varies from $0$ to $a$. Then the half planes (since $x\geq 0$) may be rewritten as $$\frac{1}{2}y = \frac{\sqrt{3}}{2}x \implies \cos(\theta) = \frac{1}{2} \implies \theta = \frac{\pi}{3}$$
+$$\frac{\sqrt{3}}{2}y = \frac{1}{2}x \implies \sin(\theta) = \frac{1}{2}\implies \theta = \frac{\pi}{6}$$
+
+This means that $\frac{\pi}{6}\leq \theta \leq \frac{\pi}{3}$. These half planes make it so that it intersects a half arc of the greatest circle of the sphere of radius $a$. This means that $\phi$ varies from $0$ to $\pi$, since only half of the full circumference is traced out by the intersection of the half planes and the sphere.
+
+\subsection{35.6.23}
+
+Give $x=\rho\cos(\phi)$, $y = \rho\sin(\phi)\cos(\theta)$, and $z = \rho\sin(\phi)\sin(\theta)$, where $\phi$ is the angle from the $x$ axis outwards and $\theta$ is the angle swept from the positive $y$ axis around towards the positive $z$ axis. Also give $r = \sqrt{y^2+z^2}$ Then $x = \sqrt{1-r^2}$ and $x = \sqrt{4-r^2}$ are the hemispheres, of radius $1$ and $2$ respectively. So $1\leq \rho \leq 2$. Then since these are positive hemispheres, they stop forming the rest of the sphere where $x$ is negative. So $\phi$ varies from $0$ to $\frac{\pi}{2}$. And conveniently since the hemispheres are fully formed about the $x$ axis, $\theta$ takes on its natural range.
+
+The triple integral becomes $$\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}\int_{1}^{2}\left(\rho\sin(\phi)\cos(\theta)\right)^2\left(\rho^2\sin(\phi)\right)d\rho d\phi d\theta$$
+$$\to \left(\int_{0}^{2\pi} \cos^2(\theta) d\theta \right)\left(\int_{0}^{\frac{\pi}{2}} \sin^3(\phi) d\phi \right)\left(\int_{1}^{2} \rho^4 d\rho \right)$$
+$$\to (\pi)\left(\frac{2}{3}\right)\left(\frac{31}{5}\right) = \frac{62}{15}\pi$$
+
+\subsection{35.6.30}
+
+Form these three inequalities directly from the bounds of integration:
+$$0 \leq \rho \leq \frac{2}{\cos(\phi)}\to 0\leq z \leq 2$$
+$$0 \leq \phi \leq \frac{\pi}{4} \to z = r \text{ is a conical boundary}$$
+$$0 \leq \theta \leq \frac{\pi}{2}$$
+
+From these we can deduce that the solid region is the part of the cone in the first octant that is bounded below by $z=r$ and above by $z=2$ for $r = \sqrt{x^2+ y^2}$. The region of integration in the $xy$ plane is quickly found to be the disk of radius $2$ (since z=r=2). The triple integral for the volume in cylindrical coordinates is given below:
+$$\int_{0}^{\frac{\pi}{2}}\int_{0}^{2}\int_{r}^{2}dz(r)drd\theta \to \int_{0}^{\frac{\pi}{2}}\int_{0}^{2} (2r-r^2)drd\theta \to \int_{0}^{\frac{\pi}{2}} \frac{4}{3}d\theta = \frac{2}{3}\pi$$
+
+\end{document}

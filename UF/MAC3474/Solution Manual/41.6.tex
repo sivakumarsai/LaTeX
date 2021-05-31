@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{41.6 Exercises}
+
+\subsection{41.6.1}
+
+Evidently it seems like the vector field involves motion that diverges from the origin. After drawing the vector field it is possible to draw flow lines by just tracing out the direction but it may be more enlightening to find an equation that models \textit{a} flow line.
+
+Since the vectors in the vector field are always going to be tangent to these flow line curves, we can find the following system of differential equations:
+$$x^{\prime}_t = ax,~ y^{\prime}_t = by$$
+
+We can avoid having to find the actual trajectory of any particles put in the vector field by combining the system into one single differential equation like so:
+$$\frac{dy}{dx} = \frac{by}{ax} \to y = C(\pm x)^{\frac{b}{a}}$$
+
+The explicit form here does not give us direction, but we already know the direction given by the vector field itself (outwards from the origin).
+
+The exercise does not ask us to do this (since this process involves some unmotivated elementary differential equations theory) but it is helpful to compare with a given solution.
+
+\subsection{41.6.4}
+
+The gradient is $$\bigg\langle \frac{-y}{r^2},\frac{x}{r^2} \bigg\rangle$$
+
+Notice that this gradient is like one we have seen before in that the motion is circular in the counterclockwise direction, except here the magnitudes of the tangent vectors to these circles shrinks with respect to squared distance from the origin.
+
+It is also enlightening to interpret this gradient as the direction of greatest ascent of the function $u$ at points on the domain $(x,y)$. The function $u$ in this problem represents the polar angle from transformations from the rectangular coordinate system to the polar coordinate system. Using this knowledge and a visual of the vector (or gradient) field, it is apparent that flow lines are circles oriented counterclockwise (as that is how the polar angle itself increases the most, assuming we take the appropriate branches of arctangent throughout motion in the path).
+
+\subsection{41.6.11}
+
+The gradient is $$\bigg\langle -\frac{x}{||\vec{r}||^3},-\frac{y}{||\vec{r}||^3}, -\frac{z}{||\vec{r}||^3} \bigg\rangle$$
+
+It may be useful to consider that level sets of the function we took the gradient of are spheres, and the gradient is always going to be perpendicular to these spheres. Evidently paths are given by straight lines towards the origin.
+
+\subsection{41.6.18}
+
+Give the path as $\vec{r}(t) = \langle a\cos(t),b\sin(t),0 \rangle$ for $0\leq t < 2\pi$. This path is oriented counterclockwise, so in order to do the integral just throw an extra negative sign in front. Then:
+$$-\oint_C \vec{F}\cdot d\vec{r} \to -\int_0^{2\pi} \vec{F}(\vec{r}(t))\cdot \vec{r}~^{\prime}(t)dt \to$$
+$$ -\int_0^{2\pi} \langle 0, ab\cos(t)\sin(t) ,0 \rangle \cdot \langle -a\sin(t),b\cos(t) ,0 \rangle dt$$
+$$ \to -ab^2\int_0^{2\pi}\cos^2(t)\sin(t)dt = 0$$
+
+\subsection{41.6.21}
+
+Parameterize the boundary as three curves (the boundary is piecewise continuous); give $C_1 = \langle a\cos(t),a\sin(t) ,0 \rangle$, $C_2 = \langle 0,a\cos(t) ,a\sin(t) \rangle$, and $C_3 = \langle a\sin(t),0 ,a\cos(t) \rangle$. These curves are in the positive (counterclockwise) sense, so we must negate the integrals that are taken on these curves. For each curve $0\leq t < \frac{\pi}{2}$. Then the line integral (by the additivity of Riemann integration) becomes:
+$$\oint_C \vec{F}\cdot d\vec{r}= \left(-\int_{C_1} \vec{F}\cdot d\vec{r}\right) + \left(-\int_{C_2} \vec{F}\cdot d\vec{r}\right) + \left(-\int_{C_3} \vec{F}\cdot d\vec{r}\right)$$
+
+Consider each integral:
+$$-\int_{C_1} \vec{F}\cdot d\vec{r} = -\int_0^{\frac{\pi}{2}} \langle 0, 0 ,a\cos(t) \rangle \cdot \langle -a\sin(t), a\cos(t) ,0 \rangle dt = 0$$
+$$-\int_{C_2} \vec{F}\cdot d\vec{r} = -\int_0^{\frac{\pi}{2}} \langle -a\sin(t), 0 ,0 \rangle \cdot \langle 0, -a\sin(t) ,a\cos(t) \rangle dt = 0$$
+$$-\int_{C_3} \vec{F}\cdot d\vec{r} = -\int_0^{\frac{\pi}{2}} \langle -a\cos(t), 0 ,a\sin(t) \rangle \cdot \langle a\cos(t), 0 ,-a\sin(t) \rangle dt = \dots$$
+
+The last integral is all we have to evaluate. Find that it is $$a^2\int_0^{\frac{\pi}{2}}1dt = \frac{\pi}{2}a^2$$
+
+\subsection{41.6.24}
+
+From the surfaces given we can parameterize the curve in steps. First give $x=\cos(t)$ and $z=\sin(t)$. Give the bounds in $t$ as $0 \leq t\leq 2\pi$ (full period since the plane does not cut the path short). Then using the equation for the plane find that $y=1-\cos(t)-\sin(t)$. The integral (which is rather long in this presentation) becomes:
+$$\int_C \vec{F}\cdot d\vec{r}$$
+$$ = \int_{-\pi}^{\pi}\bigg\langle 1-\sin(t)-\cos(t), -\cos(t)\sin(t) ,(1-\sin(t)-\cos(t))(\cos^2(t) + \sin^2(t)) \bigg\rangle$$
+$$ \cdot \langle -\sin(t), \sin(t)-\cos(t),\cos(t) \rangle dt$$
+
+After taking the dot product and simplifying, the integral becomes a linear combination of sines and cosines of varying frequency, which when integrated over any number of periods will return $0$.
+
+$$= \int_0^{2\pi}(\cos(t)-\sin(t)-\cos(2t) + \cos^2(t)\sin(t) - \sin^2(t)\cos(t))dt = 0$$
+
+\end{document}

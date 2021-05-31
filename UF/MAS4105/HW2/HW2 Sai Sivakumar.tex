@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+Page 14: 9, 12, 13, 17, 20 \\
+Page 20: 4, 5
+
+Page 14: \\
+
+9.
+
+\textbf{Corollary 1:} The additive identity element of a vector space is unique. 
+\begin{proof}
+    Suppose there are two distinct additive identities $\vec{e}_1, \vec{e}_2 \in \mathsf{V}$, where $\mathsf{V}$ is an any vector space. Both satisfy \begin{align*}
+        \vec{a} + \vec{e}_1 &= \vec{a} \\
+        \vec{a} + \vec{e}_2 &= \vec{a}
+    \end{align*}
+    where $\vec{a}\in\mathsf{V}$. Then we can do the following: \begin{align*}
+        \br{\vec{e}_1 + \vec{a}} + \vec{e}_2 &= \vec{e}_1 + \br{\vec{a} + \vec{e}_2} &\text{ (by VS 2)}\\
+        \vec{a} + \vec{e}_2 &= \vec{e}_1 + \vec{a} \\
+        \br{-\vec{a}} + \vec{a} + \vec{e}_2 &= \vec{e}_1 + \vec{a} + \br{-\vec{a}} &\text{ (by VS 1 and VS 4)} \\
+        \vec{e}_2 &= \vec{e}_1
+    \end{align*} This is a contradiction since we supposed that the additive inverses were distinct. Therefore they are not distinct from each other and hence are the same, so there is really only one unique additive identity element $e$, otherwise denoted as $\vec{0}$.
+\end{proof}
+
+\textbf{Corollary 2:} For any element in a vector space, there is a unique additive inverse.
+\begin{proof}
+    For some element $\vec{a}\in\mathsf{V}$, suppose there are two distinct additive inverses $-\vec{a}_1$ and $-\vec{a}_1$ also in $\mathsf{V}$. Then we can add both to $\vec{a}$ like so: \begin{align*}
+        \br{\br{-\vec{a}_1} + \vec{a}} + \br{-\vec{a}_2} &= \br{-\vec{a}_1} + \br{\vec{a} + \br{-\vec{a}_2}} &\text{ (by VS 2)} \\
+        \vec{0} + \br{-\vec{a}_2} &= \br{-\vec{a}_1} + \vec{0} \\
+        \br{-\vec{a}_2} &= \br{-\vec{a}_1} &\text{ (by VS 1 and VS 3)}
+    \end{align*} This is a contradiction since we supposed these two additive inverses were distinct, but they were really not. Hence every element in the vector space has a unique additive inverse.
+\end{proof}
+
+\textbf{Theorem 1.2 (c):} For each $a\in\mathbb{F}$, we have $a\vec{0} = \vec{0}$.
+\begin{proof} 
+    \begin{align*}
+        a\vec{0} &= a\br{\vec{0} + \vec{0}} &\text{ (by VS 3)} \\
+        a\vec{0} &= a\vec{0} + a\vec{0} &\text{ (by VS 7)} \\
+        a\vec{0} + \br{-a\vec{0}} &= a\vec{0} + a\vec{0} + \br{-a\vec{0}} &\text{ (by VS 4)} \\
+        \vec{0} &= a\vec{0} + \vec{0} \\ 
+        \vec{0} &= a\vec{0} &\text{ (by VS 3)}
+    \end{align*} Hence $a\vec{0} = \vec{0}$.
+\end{proof}
+
+12. Let $\mathcal{E}$ be the set of real valued even functions defined on the real line. The set $\mathcal{E}$ under the same operations of addition and scalar multiplication defined in Example 3 is closed under those operations and obeys the eight properties of a vector space.
+
+\begin{proof} Let $f,g,h\in \mathcal{E}$ and $f(t),g(t),h(t),a,b,t\in\mathbb{R}$. Note that $f = g \iff f(t) = g(t)$.
+
+VS 1: $$\br{f+g}(t) = f(t)+g(t) = g(t)+f(t) = \br{g+f}(t)$$ We also have closure under addition: $$\br{f+g}(-t) = f(-t)+g(-t) = f(t)+g(t) = \br{f+g}(t) \implies f+g\in\mathcal{E}$$
+
+VS 2: $$\br{\br{f+g} + h}(t) = \br{f+g}(t) + h(t) = f(t)+g(t)+h(t) = f(t) + \br{g+h}(t) = \br{f+\br{g+h}}(t)$$
+
+VS 3: Let $\mathbf{0}$ be the identically zero function (maps all elements in the domain to zero). Then we have $$\br{f+\mathbf{0}}(t) = f(t) + \mathbf{0}(t) = f(t) = \sbr{f}(t)$$
+
+VS 4: Let $-f$ be the function such that $\sbr{-f}(t) = -f(t)$. Then we have $$\br{f+-f}(t) = f(t)-f(t) = 0 = \mathbf{0}(t) = \sbr{\mathbf{0}}(t)$$
+
+VS 5: Take $1\in\mathbb{R}$. Then $$\br{1f}(t) = 1f(t) = f(t) = \sbr{f}(t)$$ Keep in mind that we also have closure under scalar multiplication: $$\br{af}(-t) = af(-t) = af(t) = \br{af}(t)$$
+
+VS 6: $$\br{\br{ab}f}(t) = \br{ab}f(t) = abf(t) = a\br{bf(t)} = a\br{\br{bf}(t)} = \sbr{a\br{bf}}(t)$$
+
+VS 7: $$\br{a\br{f+g}}(t) = a\br{f+g}(t) = a\br{f(t)+g(t)} = af(t)+ag(t) = \br{af+ag}(t)$$
+
+VS 8: $$\br{\br{a+b}f}(t) = \br{a+b}f(t) = af(t)+bf(t) = \br{af+bf}(t)$$
+Hence $\mathcal{E}$ is a vector space.
+\end{proof}
+
+13. No. We have failure when we attempt to verify VS 8, supposing that all of the properties of a vector space hold. Take real numbers $a,b$ and a vector $(s,t)$. Then $$(a+b)(s,t) = ((a+b)s,t)$$
+But then $$(a+b)(s,t) = a(s,t)+b(s,t) = (as,t) + (bs,t) = (as+bs,t^2)$$ Ordered pairs are equivalent iff all of their components are equal. Immediately by the second component we have inequality, so we have failed VS 8. Therefore $\mathsf{V}$ is not a vector space.
+
+17. No. We have failure when we try to produce a multiplicative identity for vectors whose second component is nonzero. Let $c,a\in\mathbb{R}$ but $b\in\mathbb{R}^{+}$. Then we must try to satisfy the equation $$c(a,b) = (a,b)$$ which results in trying to satisfy $0=b$ which is impossible. Thus $\mathsf{V}$ is not a vector space.
+
+20. Let $\mathsf{V} = \cbr{\cbr{x_n}: x\in\mathbb{R}, n\in\mathbb{Z}^{+}}$, the set of sequences of real numbers. The set $\mathsf{V}$ is a vector space over $\mathbb{R}$.
+
+\begin{proof}
+    Let $\cbr{a_n}, \cbr{b_n}, \cbr{c_n}\in\mathsf{V}$ and $s,t\in\mathbb{R}$. Then we run through all eight properties of a vector space and determine closure under both given operations.
+
+    VS 1: $$\cbr{a_n}+ \cbr{b_n} = \cbr{a_n+b_n} = \cbr{b_n+a_n} = \cbr{a_n}+ \cbr{b_n}$$ Furthermore note that because real numbers are closed under ordinary addition, $\cbr{a_n+b_n}\in\mathsf{V}$.
+
+    VS 2: $$\br{\cbr{a_n}+ \cbr{b_n}}+ \cbr{c_n} = \cbr{a_n+b_n}+ \cbr{c_n} = \cbr{a_n+b_n+c_n} = \cbr{a_n}+ \cbr{b_n+c_n} = \cbr{a_n}+ \br{\cbr{b_n}+ \cbr{c_n}}$$
+
+    VS 3: Let $\cbr{0}$ be the sequence comprised of zeros only. Then $$\cbr{a_n}+\cbr{0} = \cbr{a_n+0} = \cbr{a_n}$$
+
+    VS 4: Let $-\cbr{a_n}$ be the sequence whose terms are the negative of the corresponding terms in $\cbr{a_n}$ (that is, the $n$-th item in the sequence is $-a_n$, or we may denote the sequence as $\cbr{-a_n}$). Then $$\cbr{a_n} + \br{-\cbr{a_n}} = \cbr{a_n-a_n} = \cbr{0}$$ which is the zero sequence (all terms are zero)
+
+    VS 5: $$1\cbr{a_n} = \cbr{1a_n} = \cbr{a_n}$$ Another thing to note is that $\mathsf{V}$ is closed under scalar multiplication, since $s\cbr{a_n} = \cbr{sa_n}$ is in $\mathsf{V}$.
+
+    VS 6: $$\br{st}\cbr{a_n} = \cbr{sta_n} = s\br{\cbr{ta_n}} = s\br{t\cbr{a_n}}$$
+
+    VS 7: $$s\br{\cbr{a_n}+\cbr{b_n}} = s\cbr{a_n+b_n} = \cbr{s\br{a_n+b_n}} = \cbr{sa_n+sb_n} = \cbr{sa_n} + \cbr{sb_n} = s\cbr{a_n} + s\cbr{b_n}$$
+
+    VS 8: $$\br{s+t}\cbr{a_n} = \cbr{\br{s+t}a_n} = \cbr{sa_n+ta_n} = \cbr{sa_n}+\cbr{ta_n} = s\cbr{a_n}+t\cbr{a_n}$$
+
+    Hence $\mathsf{V}$ is a vector space.
+\end{proof}
+
+Page 20: \\
+
+4. Prove that the transpose of the transpose of a matrix is the same matrix, that is, that $\br{A^t}^t = A$, where $A\in \mathsf{M}_{m\times n}\br{\mathbb{F}}$.
+
+\begin{proof}
+    Let $B$ be a matrix in $\mathsf{M}_{n\times m}\br{\mathbb{F}}$, and let $B = A^t$. Then $B_{ij} = \br{A^t}_{ij} = A_{ji}$. Taking the transpose of $B$ we find that $\br{B_{ij}}^t = B_{ji} = \br{A^t}_{ji} = A_{ij}$. Thus $B^t = \br{A^t}^t = A$.
+\end{proof}
+
+5. Prove that $A+A^t$ is symmetric for any square matrix $A$.
+
+\begin{proof}
+    Matrices are symmetric if they are equivalent to their transpose. Let $B = \br{A+A^t}$, so we have $B_{ij} = \br{A_{ij} + \br{A^t}_{ij}}$. Then transpose entries in $B$ like so: $\br{B_{ij}}^t = B_{ji} = \br{A_{ji} + \br{A^t}_{ji}} = \br{\br{A^t}_{ij} + A_{ij}} = \br{A_{ij} + \br{A^t}_{ij}}$. Therefore we have that $B^t = \br{A^t+A}^t = \br{A^t+A}$. Hence $A+A^t$ is symmetric.
+\end{proof}
+
+\end{document}

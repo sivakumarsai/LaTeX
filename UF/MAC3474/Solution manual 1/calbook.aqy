@@ -1,0 +1,18 @@
+\@doanquery {\hbox to 6.1pc{\unhbox \voidb@x \setbox \@tempboxa \hbox {\color@begingroup \kern \fboxsep {AQ1}\kern \fboxsep \endgraf \endgroup }\@tempdima \fboxrule \advance \@tempdima \fboxsep \advance \@tempdima \dp \@tempboxa \hbox {\lower \@tempdima \hbox {\vbox {\hrule height\fboxrule \hbox {\vrule width\fboxrule \relax \vbox {\vskip \fboxsep \box \@tempboxa \vskip \fboxsep }\relax \vrule width\fboxrule }\hrule height\fboxrule }}}}\hbox to 4pc{\hbox to\z@ {\hss 265}}\hbox to 2.6pc{\hbox to\z@ {\hss }}}
+macro:->Au:
+Add
+primes
+to
+the
+O,
+A,
+and
+B,
+here?
+Yes.
+Please
+add
+primes
+to
+them.
+\@endanquery 

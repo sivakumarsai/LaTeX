@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+Page 20:  8 (a,b,c,f), 10, 11, 13, 18, 20
+
+Page 20: \\
+
+8.
+
+(a). The set $\mathsf{W}_1$ is a subspace of $\mathbb{R}^3$. 
+
+We can rewrite vectors in this set as $\br{3a_2, a_2, -1a_2}$ for any $a_2\in\mathbb{R}$. By choosing $a_2 = 0$, we can produce the zero vector $\br{0,0,0}$. So $\mathsf{W}_1$ contains the zero vector.
+
+To show that the set is closed under addition, take two vectors, $\br{3a_2, a_2, -1a_2}$ and $\br{3b_2, b_2, -1b_2}$, where $a_2,b_2\in\mathbb{R}$. Then we may add them: \\ $\br{3a_2, a_2, -1a_2} + \br{3b_2, b_2, -1b_2} = \br{3a_2 + 3b_2, a_2 + b_2, -1a_2 + -1b_2} = \br{3(a_2+b_2), (a_2+b_2), -1(a_2+b_2)}$ Since the real numbers form a field, $a_2+b_2\in\mathbb{R}$, and so $\br{3a_2, a_2, -1a_2} + \br{3b_2, b_2, -1b_2} \in \mathsf{W}_1$.
+
+Similarly show that the set is closed under scalar multiplication. Take the vector $\br{3a_2, a_2, -1a_2}$, where $a_2\in\mathbb{R}$. Then for some $c\in\mathbb{R}$, $c\br{3a_2, a_2, -1a_2} = \br{3a_2c, a_2c, -1a_2c} = \br{3(a_2c), (a_2c), -1(a_2c)}$. Again, since $a_2c \in\mathbb{R}$, $c\br{3a_2, a_2, -1a_2}\in\mathsf{W}_1$.
+
+Hence $\mathsf{W}_1$ is a subspace of $\mathbb{R}^3$.
+
+(b). The set $\mathsf{W}_2$ is not a subspace of $\mathbb{R}^3$.
+
+Rewrite vectors in $\mathsf{W}_2$ as $\br{a_3+3, a_2, a_3}$. We cannot produce the zero vector $\br{0,0,0}$, since there is no choice of $a_3$ that makes $a_3$ and $a_3+3$ simultaneously $0$ (even if $a_2=0$). Therefore the set is not a subspace of $\mathbb{R}^3$.
+
+(c). The set $\mathsf{W}_3$ is a subspace of $\mathbb{R}^3$.
+
+Choosing $a_1,a_2,a_3 = 0$ satisfies the equation $2a_1-7a_2+a_3=0$ and produces the zero vector $\br{0,0,0}$. So $\mathsf{W}_3$ contains the zero vector.
+
+Take two vectors $\br{a_1,a_2,a_3}$ and $\br{b_1,b_2,b_3}$ (where all components of these vectors are real numbers) and add them to find $\br{a_1+b_1, a_2+b_2, a_3+b_3}$. Then to check to see if $\mathsf{W}_3$ contains this vector, the components must satisfy the contraining equation (which it does): $2\br{a_1+b_1} - 7\br{a_2+b_2} + \br{a_3+b_3} = 2a_1 - 7a_2+a_3 + 2b_1-7b_2+b_3 = 0+0 = 0$. Therefore $\mathsf{W}_3$ is closed under addition.
+
+Take any real number $c$ and a vector $\br{a_1,a_2,a_3}$ (whose components are real numbers), and perform the following scalar multiplication: $c\br{a_1,a_2,a_3} = \br{ca_1,ca_2,ca_3}$. Then again, to check to see if $\mathsf{W}_3$ contains this vector, the components must satisfy the contraining equation (which it does): $2(ca_1)-7(ca_2)+(ca_3) = c\br{2a_1-7a_2+a_3}= c\br{0} = 0$. Therefore $\mathsf{W}_3$ is closed under scalar multiplication.
+
+Hence $\mathsf{W}_3$ is a subspace of $\mathbb{R}^3$.
+
+(f). The set $\mathsf{W}_6 = \cbr{\br{a_1,a_2,a_3}\in\mathbb{R}^3 : 5a_1^2-3a_2^2+6a_3^2 = 0}$ is not a subspace of $\mathbb{R}^3$ because we fail to have closure under addition. Consider the vectors $\br{\sqrt{3}, \sqrt{7}, 1}$ and $\br{\sqrt{3}, \sqrt{7}, -1}$ which are both in $\mathsf{W}_6$ (obtained via inspection). If we added these two together, we would find a third vector $\br{2\sqrt{3}, 2\sqrt{7}, 0}$. This vector is not in $\mathsf{W}_6$ because $5\br{2\sqrt{3}}^2-3\br{2\sqrt{7}}^2+6\br{0}^2 = 60-84 \neq 0$.
+
+10. The set $\mathsf{W}_1 = \cbr{\br{a_1,a_2,\dots, a_n}\in\mathbb{F}^n : a_1+a_2+\cdots + a_n = 0}$ is a subspace.
+
+\begin{proof}
+    The set $\mathsf{W}_1$ contains the zero vector: For some vector $\br{a_1,a_2,\dots, a_n}$, choose $a_1,a_2,\dots, a_n\in\mathbb{F}$ to all be $0$.
+    
+    Then the vector is rewritten as $\br{0,0,\dots, 0}$, and this vector satisfies the property that zero vectors should.
+    
+    For $b_1,b_2,\dots, b_n\in\mathbb{F}$, $\br{b_1,b_2,\dots, b_n} + \br{0,0,\dots, 0} = \br{b_1 + 0,b_2+0,\dots, b_n+0} = \br{b_1,b_2,\dots, b_n}$ (similarly if zero was added to the left). This zero vector also satisfies the condition imposed on vectors in the set $\mathsf{W}_1$, that is the sum of the components is zero: $0+0+\cdots+0 = 0$. Hence there is a zero vector contained in $\mathsf{W}_1$.
+
+    The set $\mathsf{W}_1$ is closed under vector addition. Take two vectors in $\mathsf{W}_1$, $\br{a_1,a_2,\dots, a_n}$ and $\br{b_1,b_2,\dots, b_n}$, then $\br{a_1,a_2,\dots, a_n} + \br{b_1,b_2,\dots, b_n} = \br{a_1+b_1,a_2+b_2,\dots,a_n+b_n}$. So to check if this vector is in $\mathsf{W}_1$, it must satisfy the condition that the components must sum to zero, which it does. Observe that $\br{a_1+b_1} + \br{a_2+b_2} + \cdots +\br{a_n+b_n} = a_1+b_1+a_2+b_2+\cdots+a_n+b_n = \br{a_1+a_2+\cdots + a_n} + \br{b_1+b_2+\cdots + b_n} = 0+0 = 0$. Hence $\mathsf{W}_1$ is closed under addition.
+
+    The set $\mathsf{W}_1$ is closed under scalar multiplication. Take some constant $c\in\mathbb{F}$ and then some vector in $\mathsf{W}_1$, $\br{a_1,a_2,\dots, a_n}$. Then $c\br{a_1,a_2,\dots, a_n} = \br{ca_1,ca_2,\dots, ca_n}$. To show that this resulting vector is in $\mathsf{W}_1$, we must show that its components sum to zero, which it does: $ca_1+ca_2+\cdots+ca_n = c\br{a_1+a_2+\cdots + a_n} = c\br{0} = 0$. Hence $\mathsf{W}_1$ is closed under scalar multiplication.
+
+    Therefore $\mathsf{W}_1$ is a subspace of $\mathbb{F}^n$.
+\end{proof}
+
+The set $\mathsf{W}_2 = \cbr{\br{a_1,a_2,\dots, a_n}\in\mathbb{F}^n : a_1+a_2+\cdots + a_n = 1}$ is not a subspace.
+
+\begin{proof}
+    We immediately fail to produce a normal vector. Consider the same normal vector that I mentioned earlier, $\br{0,0,\dots, 0}$. This vector is not actually in $\mathsf{W}_2$ because its components do not sum to $1$ : $0+0+\cdots+0 \neq 1$. Therefore $\mathsf{W}_2$ is not a subspace of $\mathbb{F}^n$.
+\end{proof}
+
+11. The set $\mathsf{W} = \cbr{f(x)\in\mathsf{P}(\mathbb{F}) : f(x) = 0 \text{ or } f(x) \text{ has degree n}}$ if $n\geq 1$ is not a subspace of $\mathsf{P}(\mathbb{F})$ because we fail to have closure under addition. Let $f(x)$ be a vector in $\mathsf{W}$, and then let $p(x) = C + f(x)$, where $C\in\mathbb{F}$. The vector $p(x)$ is indeed in $\mathsf{W}$ because adding constants of degree zero to these polynomials will not change the degree of the polynomial. Similarly, consider another vector $-f(x)$ in $\mathsf{W}$ (because $-f(x)$ is an additive inverse of $f(x)$, this would be equivalent to taking $f(x)$ and negating all of the terms in the polynomial expansion, and so the degree of the polynomial is unchanged). Let us add $p(x)$ and $-f(x)$: $\br{p+\br{-f}}(x) = p(x)+ \br{-f(x)} = C + f(x) + \br{-f(x)} = C+ \vec{0} = C$. So we added two vectors in $\mathsf{W}$ and found a vector $C$ which is not in $\mathsf{W}$ because its degree is zero ($\leq 1$) but it is not the zero function (where $f(x) = 0$). Therefore $\mathsf{W}$ is not a subspace of $\mathsf{P}(\mathbb{F})$.
+
+13. Let $S$ be a nonempty set and $\mathbb{F}$ a field. Prove that for any $s_0\in S$, $\mathcal{F}_0 = \cbr{f\in\mathcal{F}\br{S,\mathbb{F}} : f(s_0) = 0}$ is a subspace of $\mathcal{F}\br{S,\mathbb{F}}$.
+
+\begin{proof}
+    The zero vector is contained in $\mathcal{F}_0$, because there is a zero function $f = \vec{0}$ that maps any element of $S$ to $0$, and it behaves like a zero vector (that is, that $\vec{x} + \vec{0} = \vec{0}$ due to the definition of vector addition and vector/function equality). Furthermore we also know that the zero vector is unique, even in subspaces.
+
+    The set $\mathcal{F}_0$ is closed under scalar multiplication: for some $c\in\mathbb{F}$ and $x\in S$, $\br{c\vec{0}}(x) = c\br{0} = 0 = \br{\vec{0}}(x) \implies c\vec{0} = \vec{0}$ and since $\vec{0}\in\mathcal{F}_0$, we have closure under scalar multiplication.
+
+    The set $\mathcal{F}_0$ is closed under addition. Suppose we took $\vec{x},\vec{y}\in\mathcal{F}_0$ (not necessarily distinct, and not even distinct since the zero vector is unique, so both are really $\vec{0}$). Then for $t\in S$, $\br{\vec{x} + \vec{y}}(t) = \br{\vec{x}}(t) + \br{\vec{y}}(t) = \br{\vec{0}}(t) + \br{\vec{0}}(t) = 0 + 0 = 0 = \br{\vec{0}}(t) \implies \vec{x} + \vec{y} = \vec{0} \implies \vec{x} + \vec{y} \in \mathcal{F}_0$
+
+    Therefore $\mathcal{F}_0$ is a subspace of $\mathcal{F}\br{S,\mathbb{F}}$.
+\end{proof}
+
+18. Prove that a subset $\mathsf{W}$ of a vector space $\mathsf{V}$ is a subspace of $\mathsf{V}$ if and only if $\vec{0}\in\mathsf{W}$ and $a\vec{x}+\vec{y}\in \mathsf{W}$ whenever $a\in\mathbb{F}$ and $\vec{x},\vec{y}\in\mathsf{W}$.
+
+\begin{proof}
+    Forwards direction: If $\mathsf{W}$ is a subspace of $\mathsf{V}$, then it contains the zero vector and it is closed under addition and scalar multiplication. Then indeed, $\vec{0}\in\mathsf{W}$. Then if we choose $a = 1$, then $a\vec{x}+\vec{y} = \vec{x}+\vec{y}$, and since $\vec{x},\vec{y}\in\mathsf{W}$, $\vec{x}+\vec{y}\in\mathsf{W}$. Similarly, if we choose $\vec{y} = \vec{0}$ (since the zero vector is contained in $\mathsf{W}$), then $a\vec{x}+\vec{y} = a\vec{x}$, and since $\mathsf{W}$ is closed under scalar multiplication, $a\vec{x}\in\mathsf{W}$. So then the linear combination $a\vec{x}+\vec{y}\in\mathsf{W}$.
+
+    Reverse direction. If $\vec{0}\in\mathsf{W}$, then the set contains the zero vector. Similarly, if we choose $a = 1$, then $a\vec{x}+\vec{y} = \vec{x}+\vec{y}$, which is in $\mathsf{W}$, meaning it is closed under addition. Again, if we choose $\vec{y} = \vec{0}$ (since the zero vector is contained in $\mathsf{W}$), then $a\vec{x}+\vec{y} = a\vec{x}$, meaning that all scalar multiples of a vector are in $\mathsf{W}$. Hence the set $\mathsf{W}$ is closed under scalar multiplication. Thus with the three qualities of having the zero vector, being closed under addition, and being closed under scalar multiplication, $\mathsf{W}$ is a subspace of $\mathsf{V}$.
+\end{proof}
+
+20. Prove that if $\mathsf{W}$ is a subspace of a vector space $\mathsf{V}$ and $w_1, w_2, \dots, w_n$ are in $\mathsf{W}$, then $a_1w_1 + a_2w_2 + \cdots + a_nw_n \in \mathsf{W}$ for any scalars $a_1,a_2,\dots,a_n$.
+
+\begin{proof}
+    Let us use induction. 
+    
+    Take the base case where $n=2$ ($n=0,1$ are trivial cases, we want to know this for natural numbers upwards and equal to $2$). When $n=2$, we have $a_1w_1 + a_2w_2$, which is a linear combination of vectors in $\mathsf{W}$, and since $\mathsf{W}$ is closed under addition and scalar multiplication (by definition of subspace), $a_1w_1 + a_2w_2\in\mathsf{W}$. 
+    
+    Then suppose the $n-1$-th case is true. So this means that $a_1w_1 + a_2w_2 + \cdots + a_{n-1}w_{n-1} \in \mathsf{W}$, and then we use this to show that the $n$-th case holds. The $n$-th case is that $a_1w_1 + a_2w_2 + \cdots + a_{n-1}w_{n-1}+  a_nw_n$, and we can see that the quantity $a_nw_n$ is in $\mathsf{W}$ due to closure under scalar multiplication, and the quantity $a_1w_1 + a_2w_2 + \cdots + a_{n-1}w_{n-1}$ is as well due to the inductive hypothesis. So we can see the summation instead as a linear combination of two vectors in $\mathsf{W}$, which is closed under scalar multiplication and addition. So $\br{a_1w_1 + a_2w_2 + \cdots + a_{n-1}w_{n-1}} + a_nw_n \in \mathsf{W}$, which means $a_1w_1 + a_2w_2 + \cdots + a_nw_n \in \mathsf{W}$. 
+\end{proof}
+
+\end{document}

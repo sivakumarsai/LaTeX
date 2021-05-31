@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{36.6 Exercises}
+
+\subsection{36.6.1}
+
+This is fairly direct.
+
+$$J = \bigg|\det \begin{pmatrix}
+    x^{\prime}_u &x^{\prime}_v &x^{\prime}_w  \\
+    y^{\prime}_u &y^{\prime}_v &y^{\prime}_w  \\
+    z^{\prime}_u &z^{\prime}_v &z^{\prime}_w 
+\end{pmatrix} \bigg| = \bigg|\det \begin{pmatrix}
+   \frac{1}{v} &-\frac{u}{v^2} &0 \\
+   \\
+   0 &\frac{1}{w} &-\frac{v}{w^2} \\
+   \\
+   -\frac{w}{u^2}&0 &\frac{1}{u}
+\end{pmatrix} \bigg| = 0$$
+
+\subsection{36.6.6}
+
+First change the variables to find that $u+v+w\leq a$, which is the region under a plane that intersects the $u$, $v$, and $w$ axes at $a$ (meaning the points are $(0,0,a)$, $(0,a,0)$, $(a,0,0)$). It is easiest to give the bounds in a vertically simple manner, meaning to start with $0\leq w\leq a-u-v$. Then to find the bounds in $v$ we may give the line where the plane intersects with the $uv$ plane as $v=5-u$, so evidently $0\leq v\leq a-u$. And $u$ will then vary from $0$ to $a$.
+
+Then we compute the Jacobian as follows for $dxdy = Jdudv$. We must rewrite the equations given into $x=u^2$, $y=v^2$, and $z=w^2$.
+Then:
+$$J = \bigg|\det \begin{pmatrix}
+    2u &0 &0 \\
+    0 &2v &0 \\
+    0 &0 &2w 
+ \end{pmatrix} \bigg| = 8uvw$$
+
+ Then the triple integral becomes
+ $$\int_{0}^{a}\int_{0}^{a-u}\int_{0}^{a-u-v} (8uvw) dwdvdu$$
+ $$ \to \int_{0}^{a} 4u \int_{0}^{a-u}(a^2 v - 2 a u v + u^2 v - 2 a v^2 + 2 u v^2 + v^3)dvdu$$
+ $$\frac{1}{3}\int_0^a u(a - u)^4 du = \frac{1}{90}a^6$$
+
+ It may be helpful to use auxiliary substitutions for the later integrals.
+
+\subsection{36.6.13}
+
+From the bounds give $u=\frac{x}{3}$, $v=\frac{y}{2}$, and $w=z$. The Jacobian is given by $\frac{1}{J}$ where $J$ is given by $$J = \bigg| \det \begin{pmatrix}
+    \frac{1}{3} & 0 & 0 \\
+    \\
+    0 & \frac{1}{2} & 0 \\
+    \\
+    0 &0 & 1
+\end{pmatrix}\bigg| = \frac{1}{6}$$
+
+The bound given by the paraboloid remains a paraboloid, but it becomes a circular paraboloid $w = u^2+v^2$ that intersects with the same plane $z=w=10$. Call this region $E^{\prime}$.
+
+The triple integral after substitution becomes $$216\iiint_{E^{\prime}} (u^2-v^2)dA^{\prime}$$
+
+However, notice that there is symmetry of both the integrand (skew symmetry) and the region of integration (geometric symmetry) across the line $u=v$, so we may apply the transformation $(u,v,w)\to (v,u,w)$ to find that the sign of the integral will flip and so the integral vanishes.
+
+\end{document}

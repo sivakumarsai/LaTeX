@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{27.8 Exercises}
+
+\subsection{27.8.1}
+
+Find the gradient of $f(x,y) = xy$ and the gradient of $g(x,y) = x+y$:
+
+$$\vec{\nabla}f(x,y) = \langle y,x \rangle$$
+$$\vec{\nabla}g(x,y) = \langle 1,1 \rangle$$
+
+It is known that $f(x,y)$ attains extrema when $\vec{\nabla}f(x,y) = \lambda \vec{\nabla}g(x,y)$, that is at points $(x,y)$ that satisfy the following system using Lagrange multipliers (recall one of the equations is the constraint itself):
+
+$$y=\lambda $$
+$$x=\lambda $$
+$$x+y=1$$
+
+Evidently the only critical point is $(\frac{1}{2},\frac{1}{2})$ - but because it is the only one we may choose to use the second derivative test or to use the properties of the function $f$ under the constraint (for instance, parameterize $(x,y)$ as $(t,1-t)$ as given by the constraint to show that we have a downwards opening parabola) to determine that it is a maximum. Thus $f(x,y)$ constrained to $g(x,y) = 1$ has a maximum $f(\frac{1}{2},\frac{1}{2}) = \frac{1}{4}$ at that point.
+
+\subsection{27.8.3}
+
+Find the gradient of $f(x,y) = xy^2$ and the gradient of $g(x,y) = 2x^2+y^2$:
+
+$$\vec{\nabla}f(x,y) = \langle y^2,2xy \rangle$$
+$$\vec{\nabla}g(x,y) = \langle 4x,2y \rangle$$
+
+It is known that $f(x,y)$ attains extrema when $\vec{\nabla}f(x,y) = \lambda \vec{\nabla}g(x,y)$, that is at points $(x,y)$ that satisfy the following system using Lagrange multipliers (recall one of the equations is the constraint itself):
+
+$$y^2 = 4\lambda x$$
+$$2xy = 2\lambda y$$
+$$2x^2+y^2 = 6$$
+
+With some algebra (resolve the middle equation for $x$, then substitute $x$ for lambda in the first equation, and then substitute $4x^2$ for $y^2$ and solve for $x$), it is apparent that $x = \pm 1$ $y = \pm 2$ (both still satisfy the constraint). Thus we have critical points at $(1,\pm 2)$, where $f(1,\pm 2) = 4$, and at $(- 1, \pm 2)$, where $f(-1,\pm 2) = -4$. Hence we have $\max f = 4$ and $\min f = -4$
+
+\subsection{27.8.7}
+
+Find the gradient of $f(x,y) = Ax^2 + 2Bxy + Cy^2$ and the gradient of $g(x,y) = x^2 + y^2$:
+
+$$\vec{\nabla}f(x,y) = \langle 2Ax + 2By ,2Bx + 2Cy \rangle$$
+$$\vec{\nabla}g(x,y) = \langle 2x,2y \rangle$$
+
+It is known that $f(x,y)$ attains extrema when $\vec{\nabla}f(x,y) = \lambda \vec{\nabla}g(x,y)$, that is at points $(x,y)$ that satisfy the following system using Lagrange multipliers (recall one of the equations is the constraint itself):
+
+$$2Ax + 2By = 2\lambda x$$
+$$2Bx + 2Cy = 2\lambda y$$
+$$x^2 + y^2 = 1$$
+
+There is a bit of algebra we have to do to find critical values. First, we can add the first two equations together and divide through by $2$ to find $$Ax+By+Bx+Cy = \lambda x + \lambda y \to (A+B)x + (B+C)y = \lambda x + \lambda y$$
+
+This tells us that $A+B = \lambda$ and $B+C = \lambda$, furthermore that $A=C$ and $A \text{ or C } = \lambda - B$. Then substitute that last equality in for $A$ and $C$ in the first equations like so:
+$$(\lambda - B)x+By = \lambda x$$
+$$Bx + (\lambda - B)y = \lambda y$$
+
+Deduce then that $x = y$. Using the third equation it is apparent that critical points occur at $(\pm\frac{\sqrt{2}}{2}, \pm\frac{\sqrt{2}}{2})$, and what kind of extrema they form entirely depend on the choice of $A, ~B, ~C$.
+
+\subsection{27.8.10}
+
+\subsection{27.8.13}
+
+\subsection{27.8.16}
+
+\subsection{27.8.19}
+
+\subsection{27.8.22}
+
+\subsection{27.8.25}
+
+\subsection{27.8.28}
+
+\subsection{27.8.31}
+
+\subsection{27.8.34}
+
+\subsection{27.8.37}
+
+\end{document}

@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{26.6 Exercises}
+
+\subsection{26.6.1}
+
+The function $f(x,y,z) = x^2+y^2+z^2+2x + 4y-8z$ has the gradient $$\vec{\nabla}f(x,y,z) = \langle 2x+2, 2y+4 ,2z-8 \rangle$$ which implies a critical point are located at $(-1,-2,4)$. Compute the second derivatives $f^{\prime \prime}_{xx} = 2$, $f^{\prime \prime}_{yy} = 2$, $f^{\prime \prime}_{zz} = 2$, $f^{\prime \prime}_{xy} = 0$, $f^{\prime \prime}_{yz} = 0$, $f^{\prime \prime}_{zx} = 0$ at the point. Then use the characteristic polynomial for the second derivative matrix given by $$P_3(\lambda) = \det \begin{pmatrix}
+    2-\lambda & 0 & 0 \\
+    0 & 2-\lambda & 0 \\
+    0 & 0 & 2-\lambda 
+\end{pmatrix} = (2-\lambda)^3 = 0$$ whose roots are obviously $\lambda = 2$ with multiplicity $3$. All of these roots are positive so it is apparent that we have a local minimum at $(-1,-2,4)$. Interestingly, this point is the center of all of the level sets (spheres) that this function takes on, so this is intuitively true.
+\subsection{26.6.4}
+
+The function $f(x, y, z) = \sin (x) + z \sin (y)$ has the gradient $$\langle \cos(x), z\cos(y) ,\sin(y) \rangle$$ which tells us that critical points are located at $(\frac{\pi}{2}+n\pi,m\pi ,0)$ for integers $n,m$. Compute the second derivatives $f^{\prime \prime}_{xx} = -\sin(x)$, $f^{\prime \prime}_{yy} = -z\sin(y)$, $f^{\prime \prime}_{zz} = 0$, $f^{\prime \prime}_{xy} = 0$, $f^{\prime \prime}_{yz} = \cos(y)$, $f^{\prime \prime}_{zx} = 0$ at those points. Then use the characteristic polynomial for the second derivative matrix given by $$P_3(\lambda) = \det \begin{pmatrix}
+    -\sin(\frac{\pi}{2}+n\pi)-\lambda & 0 & 0 \\
+    0 & -(0)\sin(m\pi)-\lambda & \cos(m\pi) \\
+    0 & \cos(m\pi) & 0-\lambda
+\end{pmatrix}$$
+$$ =  (\mp 1 - \lambda)(\lambda^2 - 1) = 0 $$
+
+From the $(\lambda^2 - 1)$ term it is apparent that two roots will not have the same sign, so automatically all points $(\frac{\pi}{2}+n\pi,m\pi ,0)$ are saddle points.
+
+\subsection{26.6.7}
+
+\subsection{26.6.10}
+
+\subsection{26.6.14}
+
+For $f(x,y) = \ln(1+x^2y^2)$ it is apparent that $df(0,0)$ vanishes, so the origin is a critical point. Put $u = x^2y^2$, and then use the known Maclaurin polynomial for $\ln(1+u)$
+$$T_n = \sum_1^n (-1)^{n+1}\frac{u^n}{n} = u + O(u^2)$$ to investigate $f(x,y) - f(0,0)$: 
+$$f(x,y) - f(0,0) = f(x,y)  = u + O(u^2)$$
+
+It is evident that since $u = x^2y^2$ is always positive for $(x,y) \neq (0,0)$, in any neighborhood around the origin the function is positive and so origin is a local minimum.
+
+\subsection{26.6.17}
+
+For $f(x,y) = (x^2+2y^2)\arctan(x+y)$ it is apparent that $df(0,0)$ vanishes so the origin is a critical point. Put $u = x+y$, and then use the known Maclaurin polynomial for $\arctan{u}$
+$$T_n = \sum_0^n (-1)^n\frac{u^{2n+1}}{2n+1} = u+O(u^3) $$ to investigate $f(x,y) - f(0,0)$: 
+$$f(x,y) - f(0,0) = f(x,y) = (x^2+2y^2)(u+O(u^3)) = (x^2+2y^2)(x+y) + O(u^5)$$
+
+It is evident that since in a neighborhood around $(0,0)$ the quantity $u = x+y$ can take on both positive and negative values, the first term will as well, thus there cannot be a local extremum at the origin.
+
+\subsection{26.6.20}
+
+For $f(x,y) = e^{x+y^2}-1-\sin(x-y^2)$ it is apparent that $df(0,0)$ vanishes so the origin is a critical point. Put $u = x+y^2$ and $v = x-y^2$ and use known Maclaurin polynomials for $e^u$ and $\sin(v)$ 
+$$e^u = 1 + u + O(u^2)$$
+$$\sin(v) = v + O(v^3)$$ to investigate $f(x,y) - f(0,0)$:
+$$f(x,y) - f(0,0) = f(x,y) = u-v +O(u^2) +O(v^3) \text{ (neglect these terms)}$$
+$$\approx x+y^2 - x+y^2 + \varepsilon(x,y) \approx 2y^2$$
+
+Evidently we will always have a positive number, so we have a local minimum at the origin.
+
+\subsection{26.6.22}
+
+For $f(x,y,z) = 2 - 2 \cos(x + y + z) - x^2 - y^2 - z^2$ it is apparent that $df(0,0,0)$ vanishes so the origin is a critical point. Put $u=x+y+z$ and use the known Maclaurin series for the cosine $$\cos(u) = 1-u^2+O(u^4)$$ to investigate $f(x,y,z) - f(0,0,0)$:
+$$f(x,y,z) - f(0,0,0) = f(x,y) = 2-2(1-u^2+O(u^4))-x^2-y^2-z^2$$
+$$\approx 2-2+(x+y+z)^2-x^2-y^2-z^2 = 2 x y + 2 x z + 2 y z $$
+
+In a small neighborhood around the origin it is apparent that possible to get negative and positive values depending on the octant the portion of the neighborhood occupies (consider when $x,y,z > 0$ versus when $y,z>0$ and $x < 0$). Therefore the origin cannot be a local extremum.
+
+\subsection{26.6.28}
+
+First we compute the gradient of $f(x,y) = x^2+y^2+xy^2-1$:
+$$\vec{\nabla}f(x,y) = \langle 2x +y^2,2y(1+x) \rangle$$
+
+Set the gradient equal to the zero vector to find the critical points $(0,0)$, $(-1,\sqrt{2})$, and $(-1,-\sqrt{2})$, which all lie in the rectangle given by $\{(x, y)|~|x| \leq 1, |y| \leq 2\}$. Find the values of the function at those critical points:
+
+$f(0,0) = -1$
+
+$f(-1,\sqrt{2}) = 0$
+
+$f(-1,-\sqrt{2}) = 0$
+
+Next we have to consider the boundary, made of four line segments that are given by the inequalities that form the rectangle, by holding one value at a constant and varying the other:
+$$|x| \leq 1, y = \pm 2$$
+$$x = \pm 1, |y| \leq 2$$
+
+If we take the first segment as $|x| \leq 1, y = 2$, we find extrema by doing a one-variable search for absolute extrema by locating critical points and checking the boundaries.
+$$|x| \leq 1, y = 2 \to f(x,2) = x^2+4x+3 $$
+
+That quadratic has a critical point at $x=-2$, but $|x| \leq 1$ so we can discard it. Repeat this process for the other 3 segments to find potential absolute extrema.
+
+You may wish to save time by computing the value of the function at the corners of the rectangles first and then locating critical points on the 4 line segments and evaluating them.
+
+The points and function values that we should find are:
+
+$f(1,2) = 8$
+
+$f(1,-2) = 8$
+
+$f(-1,2) = 0$
+
+$f(-1,-2) = 0$
+
+$f(1,0) = 0$
+
+Do not forget these points as well:
+
+$f(0,0) = -1$
+
+$f(-1,\sqrt{2}) = 0$
+
+$f(-1,-\sqrt{2}) = 0$
+
+Hence the absolute minimum is located at $(0,0)$ and the absolute maxima are located at $(1,\pm 2)$.
+
+\subsection{26.6.31}
+
+Give the gradient of $f(x,y,z) = xy^2+z$ as $$\langle y^2, 2xy ,1 \rangle$$ and set it equal to the zero vector to find that there are no critical points. We must then investigate the values it attains on the boundary of the set $D = \{(x,y,z)|~1\leq x^2+y^2\leq 4, -2+x\leq z \leq 2-x\}$ 
+
+The first condition for $D$ is a cylindrical washer with included inner radius 1 and included outer radius 2. The second condition is equivalent to $|z| \leq 2-x$, so the cylindrical washer is bounded above and below by the planes given by $z = \pm (2-x)$. So there are four surfaces that make up the boundary, and we can give some equations for $x,y,z$ for each surface:
+
+$$\text{top skewed washer } S_t = \{(x,y,x) |~z=2-x,~ 1\leq x^2+y^2\leq 4\}$$
+$$\text{bottom skewed washer } S_b = \{(x,y,x) |~z=-2+x,~ 1\leq x^2+y^2\leq 4\}$$
+$$\text{outer shell } S_o = \{(x,y,x) |~ x=2\cos(t),~ y=2\sin(t), |z| \leq 2-2\cos(t)\}$$
+$$\text{inner shell } S_i = \{(x,y,x) |~ x=\cos(t),~ y=\sin(t), |z| \leq 2-\cos(t) \}$$
+
+For $S_t$ and $S_b$ the problem becomes a two-variable extrema problem on that surface, which we know how to do. We find that for $S_t$ $$f(x,y,2-x) = f_t(x,y) = xy^2+2-x$$ which has the absolute maximum $4$ at $(-2,0)$ and an absolute minimum $0$ at $(2,0)$ (use parametric equations for $(x,y)$ on the washer to find them). Using the definition for $z$, we may want to rewrite these points as $(-2,0,4)$ and $(2,0,0)$. Likewise for $S_b$ we need to find extrema on $f(x,y,2-x) = xy^2-2+x$, which will be (there are more maximum points (6 on this surface), come back to this)
+
+INCOMPLETE
+
+\subsection{26.6.34}
+
+The volume of the first octant that is cut off by the plane is determined by the intersection of the plane with the three coordinate axes in the first octant and is given by $$V = \frac{x_iy_iz_i}{2}$$ where $(x_i,0,0)$, $(0,y_i,0)$, and $(0,0,z_i)$ are where the plane passing through the point $(3,2,1)$ intersect with the coordinate axes (this is clear through construction and symmetry of the division of the rectangular prism whose largest diagonal is the vector from the origin to $(x_i,y_i,z_i)$)
+
+The values of $x_i,~y_i,~z_i$ are determined by the choice of the normal vector $\vec{n} = \langle n_1, n_2 ,n_3 \rangle$, and the relationship is given by the definition of points that satisfy the plane:
+$$\vec{n}\cdot \langle x-3, y-2 ,z-1 \rangle = 0$$
+
+This means the three points where the plane intersected with the coordinate axes form the following equalities:
+
+$$n_1(x_i-3)+n_2(-2)+n_3(-1) = 0 \to x_i = \frac{n_3+2n_2}{n_1}+3$$
+$$n_1(-3)+n_2(y_i-2)+n_3(-1) = 0 \to y_i = \frac{n_3+3n_1}{n_2}+2$$
+$$n_1(-3)+n_2(-2)+n_3(z_i-1) = 0 \to z_i = \frac{2n_2+3n_1}{n_3}+1$$
+
+Using the above equations for $x_i, ~y_i,~ z_i$ we can substitute back into the volume equation to find:
+$$V(n_1,n_2,n_3) = \frac{\left(\frac{n_3+2n_2}{n_1}+3\right)\left(\frac{n_3+3n_1}{n_2}+2\right)\left(\frac{2n_2+3n_1}{n_3}+1\right)}{2}$$
+$$= \frac{1}{2}\left( \right)$$
+
+The goal now is to find $n_1,~n_2,~n_3$ that minimize the volume function given above.
+
+INCOMPLETE
+
+\subsection{26.6.37}
+
+\subsection{26.6.39}
+
+\end{document}

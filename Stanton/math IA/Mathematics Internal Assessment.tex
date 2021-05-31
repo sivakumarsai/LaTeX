@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+
+\usepackage{physics}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{ON PROVING CAUCHY'S INTEGRAL THEOREM}
+\fancyhead[R]{\thepage}
+\fancypagestyle{firstpage}{\lhead{Running head: ON PROVING CAUCHY'S INTEGRAL THEOREM}\rhead{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\thispagestyle{firstpage}
+\setcounter{page}{1}
+\null
+\vspace{2.5cm}
+
+\begin{document}
+
+\begin{center}
+
+On proving Cauchy's Integral Theorem (the Cauchy-Goursat Theorem): exploring the different approaches to proving it, and the merits/fallbacks in those approaches, namely through the use of Green's Theorem or the ML Inequality.
+
+Mathematics IA
+
+\end{center}
+\vfill
+\pagebreak
+
+{\centering{}Table of Contents
+
+}
+\begin{tabbing}
+Introduction \hspace{13.98cm} \= 3\\
+The Cauchy-Goursat Theorem \> 3\\
+~~~~Naive method \> 4\\
+~~~~Using Green's Theorem and the Cauchy-Riemann equations \> 6\\
+~~~~Using rudimentary methods \> 7\\
+The importance of the Cauchy-Goursat Theorem \> 12\\
+%Comments \> 13\\
+References \> 14\\
+\end{tabbing}
+\pagebreak
+
+{\centering{}Introduction
+
+}
+
+I have always been interested in learning calculus since my introduction to it in AP Calculus AB, and from there I explored parts of multivariable calculus (mainly vector calculus) and with some help from some friends on the Internet I was able to pick up a little bit of complex variables. My free time is usually spent trying to understand higher mathematics that I will eventually relearn in a proper class, and I decided to spend more time on whatever complex variables I could learn with what I had. I chose to investigate proofs of Cauchy's Integral Theorem (or the Cauchy-Goursat Theorem as I will call it henceforth) because it is one of the most fundamental results to come from the building blocks of complex analysis, and is used in other important theorems in complex analysis, plus it just looks so elegant on paper - but is so profound and far-reaching.
+
+I will be demonstrating two proofs of the theorem using different methods, and discussing the merits and disadvantages to each. The first method that does not work is the naive approach that one might naturally stumble across as a result of having been exposed to line integrals previously. The second, more common method, uses an application of Green's Theorem for real valued line integrals and the Cauchy-Riemann partial differential equations to prove the same result. The final method is a more mechanical proof that uses the ML Inequality (sometimes called the Estimation Lemma) and one other lemma as the driving force. During the course of this investigation all contours defined are simple and closed, and are integrated over counterclockwise, just to keep things simple - other cases do exist but most can degenerate into the cases demonstrated here.
+
+{\centering{}The Cauchy-Goursat Theorem
+
+}
+
+For some smooth contour $C$ in $\mathbb{C}$ in which a function $f: \mathbb{C}\to\mathbb{C}$ is analytic on all points on and within the contour, the following is true (See Picture 1):
+
+$$\oint_C f(z)\dd{z} = 0$$
+
+The naive approach is to simply treat this as you would any old line integral and just try to apply the fundamental theorem of calculus (FTC) in order to get this result. (in this case we use the complex FTC or what is similar to the fundamental theorem of line integrals, a method inspired by Hamcke, 2015.) Let $C$ be parameterized by $r(t) = u(t) + iv(t)$ for $t\in [a,b]$, and $F(z)$ be some antiderivative of  $f(z)$. Let the ordered set $\{ t_0, t_1, t_2, ... , t_n\}$ be a partition of $[a,b]$. Keep in mind that since $C$ is a closed loop, $r(b) = r(a)$.
+
+$$\oint_C f(z)\dd{z}$$
+\centerline{From C being smooth, we have:}
+$$\int_a^b f(r(t))r^{\prime}(t)\dd(t)$$
+\centerline{Then from the partition of $[a,b]$ and the definition of F:}
+$$\sum_{k=1}^n\int_{t_{k-1}}^{t_k} f(r(t))r^{\prime}(t)\dd{t}$$
+$$\sum_{k=1}^n\int_{t_{k-1}}^{t_k} (F\circ r)^{\prime}(t)\dd{t}$$
+\centerline{Splitting F into its real and imaginary parts:}
+$$\sum_{k=1}^n\int_{t_{k-1}}^{t_k} \Re(F\circ r)^{\prime}(t)\dd{t} + i\sum_{k=1}^n\int_{t_{k-1}}^{t_k} \Im(F\circ r)^{\prime}(t)\dd{t}$$
+\centerline{Derivatives are taken by components, so we have the following:}
+$$\sum_{k=1}^n\int_{t_{k-1}}^{t_k} (\Re F\circ r)^{\prime}(t)\dd{t} + i\sum_{k=1}^n\int_{t_{k-1}}^{t_k} (\Im F\circ r)^{\prime}(t)\dd{t}$$
+\centerline{As per the FTC:}
+$$\sum_{k=1}^n \Re F(r(t_k)) - \Re F(r(t_{k-1})) + i\sum_{k=1}^n \Im f(r(t_k)) - \Im F(r(t_{k-1}))$$
+\centerline{This telescopes into the familiar result:}
+$$\Re F(r(b)) - \Re F(r(a)) + i\Im F(r(b)) - i\Im F(r(a))$$
+$$F(r(b)) - F(r(a)) = 0$$
+\centerline{Hence}
+$$\oint_C f(z)\dd{z} = 0$$
+
+This is a poor method of proving the Cauchy-Goursat theorem because (quite glaringly), it does not prove the Cauchy-Goursat theorem. While the results are similar the most important difference between these two results is that the naive approach requires the integrand to have a known antiderivative, which is a separate process. The actual Cauchy-Goursat theorem does not require the integrand to be integrable, but only analytic. Analytic functions are those that are holomorphic (complex differentiable), and can be represented by a nicely behaving power series; the Looman-Menchoff Theorem has more detail on analyticity. (Gray, J. D., \& Morris, S. A., 1978)
+
+The following method (inspired by Shapiro, 2005) using Green's Theorem for real valued line integrals takes advantage of the ability to split complex valued functions into their real and imaginary parts. Green's Theorem is as follows (Dawkins, 2019), where the contour $C$ encloses a region $D$ and $P(x,y)$ and $Q(x,y)$ have \textit{continuous} first order partial derivatives:
+
+$$\oint_C P(x,y)\dd{x} + Q(x,y)\dd{y} = \iint\limits_D\left( \pdv{Q}{x} - \pdv{P}{y}\right)\dd{x}\dd{y}$$
+
+In being able to separate components of complex valued functions, the Cauchy-Riemann partial differential equations are used cleverly to prove the above result. The Cauchy-Riemann equations (below) apply because $f$ is analytic on and within the region $D$ enclosed by the contour $C$, so their derivatives exist (but for the proof we suppose they are also continuous to satisfy Green's theorem). For $f(z) = P(x,y) + iQ(x,y)$ and points on and within $C$ given by $z = x + iy$, the Cauchy-Riemann equations are (Churchill, 1960):
+
+$$\pdv{P}{x} = \pdv{Q}{y} \text{  and  } \pdv{P}{y} = -\pdv{Q}{x}$$
+
+The proof of the Cauchy-Goursat theorem using Green's Theorem and the Cauchy-Riemann equations are as follows: The function $f$ is defined the same as before, and since C is smooth, $z = x+iy \implies \dd{z} = \dd{x}+ i\dd{y}$.
+
+$$\oint_C f(z)\dd{z}$$
+$$\oint_C (P(x,y)+iQ(x,y))(\dd{x}+ i\dd{y})$$
+\centerline{We split the line integral into components and form two real line integrals}
+$$\oint_C P(x,y)\dd{x} - Q(x,y)\dd{y} + iQ(x,y)\dd{x} + iP(x,y)\dd{y}$$
+$$\oint_C P(x,y)\dd{x} - Q(x,y)\dd{y} +\oint_C  iQ(x,y)\dd{x} + iP(x,y)\dd{y}$$
+$$\oint_C P(x,y)\dd{x} - Q(x,y)\dd{y} +i\oint_C  Q(x,y)\dd{x} +P(x,y)\dd{y}$$
+
+Both components are in the form for which we can apply Green's theorem to, because for our analytic function $f$ we had supposed that the derivatives of $P$ and $Q$ are continuous. We then find the last statement is equivalent to the following:
+
+$$\iint\limits_D\left(- \pdv{Q}{x} - \pdv{P}{y}\right)\dd{x}\dd{y} + i\iint\limits_D\left( \pdv{P}{x} - \pdv{Q}{y}\right)\dd{x}\dd{y}$$
+
+Using the Cauchy-Riemann equations, we can simplify the above as follows:
+
+$$\iint\limits_D -\left( \pdv{Q}{x} - \pdv{Q}{x}\right)\dd{x}\dd{y} + i\iint\limits_D\left( \pdv{P}{x} - \pdv{P}{x}\right)\dd{x}\dd{y}$$
+$$\iint\limits_D (0)\dd{x}\dd{y} + i\iint\limits_D(0)\dd{x}\dd{y} = 0$$
+\centerline{Hence}
+$$\oint_C f(z)\dd{z} = 0$$
+
+While this method does legitimately prove the Cauchy-Goursat Theorem using only the analytic quality of $f$, the catch is that we had to suppose that $f$'s partial derivatives were continuous - which for analytic functions $f$ this is always true, so there is no real loss to proving the theorem this way. The reason the partial derivatives are always continuous is that for those functions $f$ that are analytic, they can be represented by a Taylor series as follows (Churchill, 1960) with center $z_0$ ($f^{(n)}(z)$ represents the nth derivative of $f$):
+
+$$f(z) = \sum_{n=0}^\infty \frac{f^{(n)}(z)}{n!}(z-z_0)^n$$
+
+This implies that all the derivatives exist, which helps for this particular situation. The first derivative of $f$ is hence differentiable and implies that it is continuous - bypassing the requirement given by Green's theorem every time. The proof of the Cauchy-Goursat method above is fine for all analytic functions $f$, but we do not need to seek higher theorems like Green's Theorem to prove the same result. A rudimentary alternative to this proof uses only the definition of differentiation and the ML Inequality, or the Estimation Lemma, for line integrals.
+
+The proof using rudimentary methods is as follows (using the method found in Churchill, 1960). Consider the epsilon-delta definition of the derivative, in which for some $f$ analytic at $z_0$ the derivative $f^{\prime}(z_0)$ has the following property:
+
+$$\left|\frac{f(z) - f(z_0)}{z-z_0} - f^{\prime}(z_0)\right| < \epsilon$$
+\centerline{while for some arbitrary nonzero $\delta_0$ the following is true:}
+$$|z-z_0|<\delta_0$$
+
+The key is to break up a region $D$ in $\mathbb{C}$ made up of the contour $C$ and the region inside of it into squares or incomplete squares (See Picture 2; the shape ideally could have an easily computable maximum perimeter, so squares are not mandatory) such that the squares form particular neighborhoods where points $z$ around a chosen $z_0$ in or on the boundary of each square satisfy the inequalities above for some $\epsilon$ and $\delta_0$.
+
+The lemma to prove is that we need to be able to break down this region into a finite number of subdivisions - squares and incomplete squares denoted by $C_k$ ($k\in \mathbb{N}$) - such that the inequality
+$$\left|\frac{f(z) - f(z_k)}{z-z_k} - f^{\prime}(z_k)\right| < \epsilon$$is true for those $z$ not equal to $z_k$ on or within $C_k$.
+
+Divide $D$ up into the first set of subdivisions by cutting it up into squares whose sides are parallel to the axes (Again, see Picture 2). If the portion of the region cut out does not form a full square, it is okay - this is an incomplete square. Suppose, then, that for some positive $\epsilon$ at least one $C_k$ there is no $z_k$ to find within or on it which satisfies the above inequality. Take that region and divide it further by cutting it into equal fourths (for incomplete squares just cut it as if it were a full square anyway). Repeat the process until we can satisfy the above inequality for all $C_k$ subdivisions.
+
+We prove via contradiction that the process above terminates in a finite number of steps by supposing that after a finite number of subdivisions we still cannot find a $z_k$ in a particular $C_k$ that works, and hence must keep subdividing. Without loss of generality, divide the particular problematic $C_k$ into fourths once more and choose the bottom left square/incomplete square. If the problem still persists, repeat the process. Note that for these subdivisions, following the bottom left square/incomplete square always has some specific point $z_0$ within or on it. Then for the neighborhood of $|z-z_0|<\delta_0$, we can choose a $\delta_0$ large enough or subdivide further such that the diagonal of the bottom left square/incomplete square $C_k$ formed by the last subdivision is less than the size of $\delta_0$, in which $z_0$ and all the points $z$ on and within satisfies the epsilon delta definition of the derivative above (See Picture 3). Hence we do not need to subdivide further for any such problem spots, and the process terminates - there will be a finite number $n$ of $C_k$ formed.
+
+Now to prove the actual Cauchy-Goursat Theorem, start with the same region $D$ and contour $C$ divided according to the previous result above. Let us define functions for each $C_k$ as follows:
+
+$$\epsilon_k(z) = \frac{f(z) - f(z_k)}{z-z_k} - f^{\prime}(z_k)$$ which satisfy the same inequality as before: $$|\epsilon_k(z)|<\epsilon$$
+
+Note that we should define $\epsilon_k(z_k) = 0$ to keep $\epsilon_k(z)$ continuous to avoid having to deal with annoying improper integrals later. Doing some manipulation of $\epsilon_k(z)$, we see that points f(z) can be represented in the locally linear form (with error) as:
+
+$$f(z) = f^{\prime}(z_k) (z-z_k) + f(z_k) + (z-z_k)\epsilon_k(z)$$
+
+We proceed to integrate the following, letting $z$ be the points on the contour bounding whichever $C_k$ is chosen:
+
+$$\oint_{C_k} f(z)\dd{z} = \oint_{C_k} f^{\prime}(z_k) (z-z_k) + f(z_k) + (z-z_k)\epsilon_k(z)\dd{z}$$
+$$\oint_{C_k} f(z)\dd{z} = f^{\prime}(z_k) \oint_{C_k}z\dd{z} -z_k f^{\prime}(z_k)\oint_{C_k}\dd{z} + f(z_k)\oint_{C_k}\dd{z} + \oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z}$$
+
+The first three terms on the right side of the above equation, $f^{\prime}(z_k) \oint_{C_k}z\dd{z} -z_k f^{\prime}(z_k)\oint_{C_k}\dd{z} + f(z_k)\oint_{C_k}\dd{z}$, evaluate to zero via the complex FTC (because 1 and z have antiderivatives; found using methods not discussed here). We are left with:
+
+$$\oint_{C_k} f(z)\dd{z} = \oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z}$$
+
+Sum up all $n$ (from the terminating process in the previous lemma) of these integrals that form the entire closed curve $C$ that originally bounded the region $D$ - the reason they are equivalent is that because we integrate counterclockwise, the integrals over the sides of the squares that are shared by another square cancel out, and so we are simply left with the outside boundaries of the incomplete squares which sum up to form the entirety of the contour $C$.
+
+$$\sum_{k=0}^n \oint_{C_k} f(z)\dd{z} = \sum_{k=0}^n \oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z} = \oint_{C} f(z)\dd{z}$$
+
+The following procedure finds a maximum value to $\displaystyle{\oint_{C} f(z)\dd{z}}$ using the ML Inequality/Estimation Lemma, which states that the maximum value of any line integral is given by the product of the maximum value of the integrand on its contour and the arclength of its contour. This is proven with the triangle inequality (proof not given here).
+
+$$\int_{C} f(z)\dd{z} \leq f(z)_{\text{max}}\int_C |\dd{z}|$$
+
+For our proof we continue with the following:
+
+$$\left|\oint_{C} f(z)\dd{z}\right| \leq \sum_{k=0}^n \left|\oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z}\right| \leq \sum_{k=0}^n \oint_{C_k}|(z-z_k)||\epsilon_k(z)||\dd{z}|$$
+
+The value of $|\epsilon_k(z)|$ is always bounded above by $\epsilon$, and because the square $C_k$ is always covered by the neighborhood $|z-z_k|$, the maximum it can be is the length of the diagonal of $C_k$. Let $s_k$ represent the length of a side of $C_k$, so the diagonal length is $s_k\sqrt{2}$. Thus:
+
+$$\sum_{k=0}^n\left|\oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z}\right| \leq \epsilon \sum_{k=0}^n s_k\sqrt{2}\oint_{C_k}|\dd{z}|$$
+
+The value of $\displaystyle{\oint_{C_k}|\dd{z}|}$ depends on if the $C_k$ is a normal square or an incomplete square. For normal squares, the maximum arclength is $4s_k$, but for incomplete squares the maximum arclength is $(4s_k + L_k)$ (See Picture 4), where $L_k$ is the length of the irregular, non-square part of $C_k$. So in general the arclength is some finite value.
+%picture very important for incomplete square
+
+$$\sum_{k=0}^n\left|\oint_{C_k}(z-z_k)\epsilon_k(z)\dd{z}\right| \leq \epsilon \sum_{k=0}^n s_k\sqrt{2}(4s_k) \text{  or  } \epsilon \sum_{k=0}^n s_k\sqrt{2}(4s_k + L_k)$$
+
+Both sums evaluate to some finite value because there are a finite number of $C_k$ formed in the subdivision process, so the only thing left that determines the maximum value of the integral is $\epsilon$. We make it arbitrarily small, so essentially it goes to zero. Hence:
+
+$$\oint_C f(z)\dd{z} = 0$$
+
+This proof is probably the most ideal method, because it requires the "lowest tech" theorems that we can build up pretty easily, and it makes for a clean statement of the Cauchy-Goursat theorem free of unnecessary conditions. This proof does not require the first order partial derivatives of $f$ to be continuous (even if that requirement is bypassed), which only came about because we used a relatively "high tech" theorem instead of the method we used last. The downside of this method is that it is super mechanical, requiring more machinery from the outset (referring to the preliminary lemma), because everything is being built from the ground up. However, consider how large the proof using Green's Theorem would be if it included the proof to Green's Theorem before using it - so it is not a really huge loss, in my opinion.
+
+{\centering{}The importance of the Cauchy-Goursat Theorem
+
+}
+
+The main importance of this theorem stems from its very fundamental nature in complex analysis. Having been built up ideally out of simpler tools like the definition of the derivative and the ML Inequality, it serves as one more tool that we can use for larger theorems. The successors to the Cauchy-Goursat theorem are the Cauchy Integral Formula, which then evolves into the Residue Theorem - these two theorems take into account situations in which $f$ is not entirely analytic on some region $D$, where the contour $C$ encloses a number of singularities. The Cauchy-Goursat theorem is a huge player in evaluating integrals using the Cauchy Integral Formula or the Residue Theorem, because the very first step is to make the original contour become the sum of multiple contours, those clockwise around the singularities in a very small neighborhood around it plus one more which surrounds the singularities in the other direction.
+
+The Cauchy Integral Formula and the Residue Theorem are famously used to solve real valued integrals with less work by projecting them onto the complex plane and manipulating contour integrals around along with using the ML inequality to return the value of the component that represents the original real valued integral. An example result is the classical exercise,
+
+$$\int_0^\infty \frac{1}{x^n+1}\dd{x} = \frac{\pi / n}{\sin{\pi / n}}$$which is true for nonzero positive integers $n$. It is even more so powerful when we realize that the converse is true (Nahin, 2016). If $f(z)$ is continuous over some region $D$ like before, and over any closed contour $C$ within the region $\displaystyle{\oint_C f(z)\dd{z} = 0}$, then $f(z)$ is analytic on $D$.  A clean definition of analyticity is quite nice. Suffice to say, a lot is to be gained from the proof of this theorem.
+
+%\pagebreak
+
+%{\centering{}Comments
+
+%}
+
+\pagebreak
+
+\centerline{References}
+\begin{hangparas}{0.5in}{1}
+Churchill, R. V. (1960). \textit{Complex Variables and Applications} (2nd ed.). New York: McGraw-Hill.
+
+Dawkins, P. (2019, February 22). Section 5-7 : Green's Theorem. Retrieved from 
+http://tutorial.\\math.lamar.edu/Classes/CalcIII/GreensTheorem.aspx.
+
+Gray, J. D., \& Morris, S. A. (1978). When Is a Function That Satisfies the Cauchy-Riemann Equations Analytic? \textit{The American Mathematical Monthly, 85}(4), 246–256. 
+doi: 10.1080/\\00029890.1978.11994567
+
+Hamcke, S. (2015, September 14). Fundamental theorem of calculus for complex analysis, proof. Retrieved from https://math.stackexchange.com/questions/958774/fundamental-theorem-\\of-calculus-for-complex-analysis-proof.
+
+Nahin, P. J. (2016). \textit{An imaginary tale : the story of $\sqrt{-1}$}. Princeton: Princeton University Press.
+
+Shapiro, J. H. (2005). PDF.
+\end{hangparas}
+
+
+\end{document}

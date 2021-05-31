@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+\usepackage{physics}
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP2302 Professor Jury}
+\fancyhead[R]{Sai Sivakumar 11/16/20}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+Section 7.2: 11, 29 (a,f,i,j)
+
+Section 7.3: 7, 13, 29
+
+Section 7.2\\
+
+11. The Laplace transform of $f(t)$ is defined as:
+$$\lap{f(t)}{s} = \lim_{b\to \infty}\int_0^b e^{-st}f(t) \dd{t}$$
+
+For this problem we will need to take the integral over two parts of the domain, invoking the additivity of the Riemann integral. Since the function is not asymptotic around the point of discontinuity ($t = \pi$), we can give the bounds of integration more directly:
+$$\lap{f(t)}{s} = \int_0^{\pi} e^{-st}\sin(t)\dd{t} + \lim_{b\to \infty}\int_0^b e^{-st}(0)\dd{t}$$
+
+Evidently the second integral vanishes, so we are left to integrate the first integral. It is nicer to use complex numbers to evaluate the integral.
+
+$$\lap{f(t)}{s} = \int_0^{\pi} e^{-st}\sin(t)\dd{t} \to \Im \br{\int_0^{\pi}e^{-st}e^{it}}\to \Im\br{\eval{\frac{e^{-st}e^{it}}{i-s}}_0^{\pi}} = \frac{e^{-\pi s}+1}{s-i}$$ \\
+
+29. I suppose we are supposed to prove that the following functions are of exponential order(?):
+
+(a) $t^3\sin(t) \to  \abs{t^3\sin(t)} \leq \abs{t^3(1)} = t^3$ for $t > 0$. And indeed, $0\leq \lim_{t\to \infty}t^3Me^{-\alpha t} \leq \lim_{t\to \infty}M\br{O(t^{-1})}$ implies that $t^3\sin(t)$ is of exponential order. \\
+
+(f) $\br{t^2+1}^{-1} \to \abs{\br{t^2+1}^{-1}}\leq \abs{\br{t^{-2}}} = t^{-2}$ for $t>0$. Similarly it is true that $0 \leq \lim_{t\to \infty} t^{-2} Me^{\alpha t} \leq \lim_{t\to \infty} M \br{O(t^{-1})}$, so the function is of exponential order.\\
+
+(i) $\exp \br{t^2(t+1)^{-1}} \to \abs{\exp \br{t^2(t+1)^{-1}}} \leq \abs{\exp \br{t^2t^{-1}}} \leq e^t$ for $t>0$. The original function is evidently of exponential order because we can find $M$ and $\alpha$ such that $e^t\leq Me^{\alpha t}$ (for example, choose both $M$ and $\alpha$ as $1$).\\
+
+(j) $\sin(e^{t^2}) + e^{\sin(t)}\to \abs{\sin(e^{t^2}) + e^{\sin(t)}} \leq \abs{1 + e}$. Since the function is bounded above by a constant, it is enough to conclude that the function is of exponential order.\\
+
+Section 7.3\\
+
+7. It may not be the nicest way to find the Laplace transform, but it works. Expand $(t-1)^4$ into $1 - 4 t + 6 t^2 - 4 t^3 + t^4$ and invoke the linearity of the Laplace transform to find that (using Table 7.1) the Laplace transform is:
+$$\lap{(t-1)^4}{s} = \frac{1}{s} -4 \frac{1}{s^2} + 6\frac{2}{s^3} -4 \frac{6}{s^4} + \frac{24}{s^5} = \frac{1}{s} - \frac{4}{s^2} + \frac{12}{s^3} - \frac{24}{s^4} + \frac{24}{s^5}, ~ s>0$$ \\
+
+13. Use the power reduction identity for the sine and apply linearity and use Table 7.1:
+$$\lap{\sin^2(t)}{s} = \frac{1}{2}\lap{1-\cos(2t)}{s} = \frac{1}{2}\br{\frac{1}{s}-\frac{s}{s^2+4}},~ s>0$$ \\
+
+29. Apply the Laplace transform to both sides of the differential equation given, using Table 7.2.
+
+$$\lap{y^{\dprime}(t) + 6y^{\prime}(t) + 10y(t)}{s} = \lap{g(t)}{s} \to s^2Y(s) + 6sY(s) + 10Y(s) = G(s)$$
+$$\to Y(s)\br{s^2+6s+10} = G(s) \to \frac{Y(s)}{G(s)} = H(s) = \frac{1}{s^2+6s+10}$$
+
+\end{document}

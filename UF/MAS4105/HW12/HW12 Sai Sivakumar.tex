@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW12}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% mathtools
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\vardbtilde}[1]{\tilde{\raisebox{0pt}[0.85\height]{$\tilde{#1}$}}}
+
+\begin{document}
+4.1: 12
+
+4.2: 26, 30
+
+4.3: 10, 11, 15 \\
+
+4.1 
+
+12. Let $\cbr{u,v}$ be an ordered basis for $\mathbb{R}^2$. Prove that $$O\begin{pmatrix}
+    u \\ v
+\end{pmatrix} = 1$$ if and only if $\cbr{u,v}$ form a right-handed coordinate system.
+
+\begin{proof}
+    Forwards direction. Suppose $\cbr{u,v}$ form a right-handed coordinate system (this also implies they are linearly independent, and so neither $u,v = \vec{0}$). This means that $u$ can be rotated in a counterclockwise direction through and angle $\theta$ ($\theta \in \br{0,\pi}$) so that it becomes parallel (specifically parallel and not antiparallel, the direction should also match) to $v$.
+
+    So first we can scale $u = (u_1,u_2)$ by some constant $k>0$ such that $\abs{u} = \abs{v}$. Then apply the counterclockwise rotation by $\theta$ matrix to $ku$ and this becomes equivalent to $v = (v_1,v_2)$ (make $u,v$ into column vectors for this computation). $$\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix}
+        \cos(\theta) & -\sin(\theta) \\
+        \sin(\theta) & \cos(\theta)
+    \end{pmatrix} \begin{pmatrix} ku_1 \\ ku_2 \end{pmatrix}$$
+    $$\implies v_1 = k\br{u_1\cos(\theta) - u_2\sin(\theta)}, v_2 = k\br{u_1\sin(\theta) + u_2\cos(\theta)}$$ So $v = k\cdot (u_1\cos(\theta) - u_2\sin(\theta), u_1\sin(\theta) + u_2\cos(\theta))$ and $u = (u_1,u_2)$. Then compute first the following determinant: 
+    \begin{align*}
+        \det\begin{pmatrix}
+        u \\ v
+        \end{pmatrix} &= \det\begin{pmatrix}
+        u_1 & u_2 \\
+        k\br{u_1\cos(\theta) - u_2\sin(\theta)} & k\br{u_1\sin(\theta) + u_2\cos(\theta)}
+        \end{pmatrix} \\
+        &= k\br{u_1^2\sin(\theta) + u_1u_2\cos(\theta)} - k\br{u_1u_2\cos(\theta) - u_2^2\sin(\theta)} \\
+        &= k\sin(\theta)\br{u_1^2+u_2^2}
+    \end{align*}
+
+    Since $\theta\in\br{0,\pi}$, $\sin(\theta)> 0$, furthermore, $k\br{u_1^2+u_2^2} > 0$. Then $$O\begin{pmatrix}
+        u \\ v
+    \end{pmatrix} = \frac{\det\begin{pmatrix}
+        u \\ v
+    \end{pmatrix}}{\abs{\det\begin{pmatrix}
+        u \\ v
+    \end{pmatrix}}} = \frac{k\sin(\theta)\br{u_1^2+u_2^2}}{\abs{k\sin(\theta)\br{u_1^2+u_2^2}}} = \frac{k\sin(\theta)\br{u_1^2+u_2^2}}{k\sin(\theta)\br{u_1^2+u_2^2}} = 1.$$
+
+    Reverse direction. Suppose $$O\begin{pmatrix}
+        u \\ v
+    \end{pmatrix} = 1,$$ and so this means that $$O\begin{pmatrix}
+        u \\ v
+    \end{pmatrix} = \frac{\det\begin{pmatrix}
+        u \\ v
+    \end{pmatrix}}{\abs{\det\begin{pmatrix}
+        u \\ v
+    \end{pmatrix}}} = \frac{u_1v_2-v_1u_2}{\abs{u_1v_2-v_1u_2}} = 1\implies u_1v_2-v_1u_2 = c, c> 0.$$ So then $u,v$ are linearly independent and so they form an angle $\theta$ between $u$ and $v$ (in that order) such that $\theta \neq 0,\pi$.
+
+    Then suppose by way of contradiction that $\theta \notin (0,\pi)$ (and is not equal to $0$ or $\pi$ either), so that we have a left-handed coordinate system. Then we can rotate counterclockwise by $\theta$ to find that $v = k\cdot (u_1\cos(\theta) - u_2\sin(\theta), u_1\sin(\theta) + u_2\cos(\theta))$, so that the determinant (computed earlier), $k\sin(\theta)\br{u_1^2+u_2^2}$ becomes negative since $\sin(\theta) < 0$. Thus the orientation is equivalent to $$\frac{-\abs{k\sin(\theta)\br{u_1^2+u_2^2}}}{\abs{k\sin(\theta)\br{u_1^2+u_2^2}}} = -1$$ which is in contradiction to the orientation being established as 1. Therefore $\theta\in(0,\pi)$ and so we have a right-handed coordinate system.
+
+    Hence $$O\begin{pmatrix}
+        u \\ v
+    \end{pmatrix} = 1$$ if and only if $\cbr{u,v}$ form a right-handed coordinate system.
+\end{proof}
+
+4.2
+
+26. Let $A\in\mathsf{M}_{n\times n}(\mathbb{F})$. Under what conditions is $\det(-A) = \det(A)$?
+
+The condition we seek is for $n$ to be even. \begin{proof}
+    Induction over the even natural numbers.
+
+    The base case for a $2\times 2$ matrix holds, as $$\det\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix} = ad-bc = \det\begin{pmatrix}
+        -a & -b \\ -c & -d
+    \end{pmatrix}.$$
+
+    Suppose $A\in\mathsf{M}_{n\times n}(\mathbb{F})$, where $n$ is even. Then compute the determinant as expanded from the first row of $-A$, and show that this determinant is equivalent to the determinant of $A$. $$\det(-A) = \sum_{j=1}^n (-1)^{1+j}(-A_{1j})\cdot \det(-\tilde{A}_{1j})$$ and $$\det(-\tilde{A}_{1j}) = \sum_{k = 1}^{n-1} (-1)^{1+k}\br{\br{-\tilde{A}_{1j}}_{1k}}\cdot \det(\br{-\vardbtilde{A}_{1j}}_{1k}),$$ but $$\det(\br{-\vardbtilde{A}_{1j}}_{1k}) = \det(\br{\vardbtilde{A}_{1j}}_{1k})$$ by induction ($n-2$ is an even number less than $n$). So then \begin{align*}
+        \det(-A) &= \sum_{j=1}^n (-1)^{1+j}(-A_{1j})\cdot \br{\sum_{k = 1}^{n-1} (-1)^{1+k}\br{\br{-\tilde{A}_{1j}}_{1k}}\cdot \det(\br{\vardbtilde{A}_{1j}}_{1k})} \\
+        &= -1\sum_{j=1}^n (-1)^{1+j}(A_{1j})\cdot -1\br{\sum_{k = 1}^{n-1} (-1)^{1+k}\br{\br{\tilde{A}_{1j}}_{1k}}\cdot \det(\br{\vardbtilde{A}_{1j}}_{1k})} \\
+        &= (-1)^2\sum_{j=1}^n (-1)^{1+j}(A_{1j})\cdot \det(\tilde{A}_{1j}) \\
+        &= 1 \cdot \det(A)
+    \end{align*}
+
+    Hence $n$ being even is a sufficient condition for $A\in\mathsf{M}_{n\times n}(\mathbb{F})$ to have the property that $\det(-A) = \det(A)$.
+\end{proof}
+
+30. Let the rows of $A\in\mathsf{M}_{n\times n}(\mathbb{F})$ be $a_1,a_2,\dots,a_n$ and let $B$ be the matrix in which the rows are $a_n,a_{n-1},\dots, a_1$. Calculate $\det(B)$ in terms of $\det(A)$.
+
+Consider swapping $a_1$ with $a_n$, and then $a_2$ with $a_{n-1}$, and so on until there are no more rows to swap (i.e. there are zero rows left to swap or there is one row that is not paired with another row).
+
+Since swapping two rows negates the determinant, notice that when $n$ is even we swap $\frac{n}{2}$ rows together. So then $\det(B) = (-1)^{\frac{n}{2}}\det(A)$. When $n$ is odd (and $n-1$ is even), we only swap $\frac{n-1}{2}$ times since the middle row is left alone. So we can summarize this result as $$\det(B) = (-1)^{\floor*{\frac{n}{2}}}\det(A).$$
+
+This is equivalent because when $n$ is even, $\floor*{\frac{n}{2}} = \frac{n}{2}$, and when $n$ is odd, then $\floor*{\frac{n}{2}} = \floor*{\frac{n-1 + 1}{2}} = \floor*{\frac{n-1}{2} + \frac{1}{2}} = \frac{n-1}{2}$.
+
+4.3
+
+10. A matrix $M\in\mathsf{M}_{n\times n}(\mathbb{C})$ is called \textbf{nilpotent} if, for some positive integer $k$, $M^k = O$, where $O$ is the $n\times n$ zero matrix. Prove that if $M$ is nilpotent, then $\det(M) = 0$.
+
+\begin{proof}
+    Suppose $M\in\mathsf{M}_{n\times n}(\mathbb{C})$ is nilpotent. So for $k\in\mathbb{Z}^{+}$, $M^k = O$ where $O$ is the $n\times n$ zero matrix. Then consider taking the determinant of $M^k$ --- we have that $$\det(M^k) = \det(O) = 0,$$ but since the determinant is a multiplicative function we have that $\det(M^k) = \br{\det(M)}^k = 0,$ which forces $\det(M)$ to be equal to zero, since $k$ is a positive integer.
+
+    Hence if $M$ is nilpotent, $\det(M) = 0$.
+\end{proof}
+
+11. A matrix $M\in\mathsf{M}_{n\times n}(\mathbb{C})$ is called \textbf{skew-symmetric} if $M^t = -M$. Prove that if $M$ is skew-symmetric and $n$ is odd, then $M$ is not invertible. What happens if $n$ is even?
+
+\begin{proof}
+    Suppose $M\in\mathsf{M}_{n\times n}(C)$ is skew-symmetric, and $n$ is odd. We can show that $M$ is not invertible by showing its determinant is zero.
+
+    For any matrix in $\mathsf{M}_{n\times n}(\mathbb{C})$ ($\mathbb{C}$ is a field), its determinant is equivalent to the determinant of its transpose. So $\det(M) = \det(M^t)$. But $M^t = -M$, so $\det(M) = \det(M^t) = \det(-M)$.
+
+    A remark. When $n$ is odd, $\det{-M} = -1^n\det(M)$ since $-M = -I_n M$, where $-I_n$ is the $n\times n$ matrix with only $-1$ as entries in the diagonals (so the identity matrix $I_n$ but negated). $\det(-M) = \det(-I_n M) = \det(-I_n)\det(M) = (-1)^n\det(M)$. Similarly, when $n$ is even $\det(M) = \det(-M)$.
+
+    Then $\det(M) = \det(-M) = -\det(M)$ when $n$ is odd and when $n$ is even $\det(M) = \det(-M)$. When $\det(M) = -\det(M)$ (so $n$ is odd), we are forced to have that $\det(M) = 0$ and so $M$ is not invertible. (When $n$ is even there are no problems and so we can have invertibility)
+\end{proof}
+
+15.$^{\dagger}$ Prove that if $A,B\in\mathsf{M}_{n\times n}(\mathbb{F})$ are similar, then $\det(A) = \det(B)$.
+
+\begin{proof}
+    Let $A,B\in\mathsf{M}_{n\times n}(\mathbb{F})$ be similar matrices so that $A = Q^{-1}BQ$ for some $n\times n$ invertible matrix $Q$. Then $$\det(A) = \det(Q^{-1}BQ) = \det(Q^{-1})\det(B)\det(Q) = \frac{1}{\det(Q)}\det(B)\det(Q) = \det(B),$$ which is true since $Q$ is an invertible matrix.
+
+    Hence $\det(A) = \det(B)$ whenever $A$ and $B$ are similar.
+\end{proof}
+
+\end{document}

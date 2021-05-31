@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{musixtex}
+
+% colors\
+\usepackage{xcolor}
+\definecolor{Go}{HTML}{00AAFF}
+\definecolor{Gators}{HTML}{FF5500}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{sai sivakumar}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+Let $f(t)$ be piecewise continuous on $[0,\infty)$ and of exponential order. Find $$\lim_{s\to \infty}\mathcal{L}\{f\}$$ where $\mathcal{L}\{f\}$ is the Laplace transform of $f(t)$. \textit{Let $s$ be real.}\vspace{1cm}
+
+$\mathcal{L}\cbr{f} = 0$.
+
+\begin{proof}
+Since $f(t)$ is of exponential order, there exist $\alpha, M>0, T>0 \in\mathbb{R}$ such that $\abs{f(t)}\leq Me^{\alpha{t}}$ for all $t>T$.
+
+With $$\mathcal{L}\cbr{f} = \int_0^{\infty}e^{-st}f(t)\dd{t},$$ observe that since $f(t)$ is of exponential order, $\mathcal{L}\cbr{f}$ exists for all $s>\alpha$ (the integral converges). We have that $$\abs{\mathcal{L}\cbr{f}} = \abs{\int_0^{\infty}e^{-st}f(t)\dd{t}} \leq \int_0^{\infty}\abs{e^{-st}f(t)}\dd{t} = \int_0^{\infty}\abs{e^{-st}}\abs{f(t)}\dd{t}$$ $$\leq \int_0^{T}e^{-st}\abs{f(t)}\dd{t} + \int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t}.$$
+
+Then since $f(t)$ is piecewise continuous on $[0,\infty)$, we have that there exists a real value $C\geq 0$ such that for $t\in\sbr{0,T}$, $\abs{f(t)}\leq C$. Then $$\int_0^{T}e^{-st}\abs{f(t)}\dd{t} + \int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t} \leq \int_0^{T}e^{-st} C\dd{t} + \int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t},$$ and so what remains is to take the limit as $s$ tends to infinity.
+
+Since $e^{-st}$ and $e^{(\alpha -s)t}$ converge uniformly to the identically zero function as $s\to \infty$, we can compute the limit $$\lim_{s\to\infty} \br{\int_0^{T}e^{-st} C\dd{t} + \int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t}} = \lim_{s\to\infty}\int_0^{T}e^{-st} C\dd{t} + \lim_{s\to\infty}\int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t}$$ by passing the limit into the integral. Then $$\lim_{s\to\infty}\int_0^{T}e^{-st} C\dd{t} + \lim_{s\to\infty}\int_T^{\infty}e^{-st}Me^{\alpha t}\dd{t} = C\int_0^{T}\lim_{s\to\infty}\br{e^{-st}} \dd{t} + M\int_T^{\infty}\lim_{s\to\infty}\br{e^{(\alpha-s)t}}\dd{t}$$ $$= C\int_0^T \br{0}\dd{t} + M\int_T^{\infty}\br{0}\dd{t} = 0.$$
+
+Hence $$\lim_{s\to \infty} \abs{\mathcal{L}\cbr{f}}\leq 0,$$ and so by the squeeze theorem (and continuity of absolute value), $\mathcal{L}\cbr{f} = 0$.
+\end{proof}
+
+\end{document}

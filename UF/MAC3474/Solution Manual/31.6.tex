@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{31.6 Exercises}
+
+\subsection{31.6.1}
+
+Integrating over $y$ first and then over $x$: it is apparent that the bounds in $x$ are just going to be $-2\leq x \leq 2$. For the bounds in $y$ we will need to make two, since the two legs of the triangle that intersect at the origin form line segments of different slopes. We should find that while $x$ is nonnegative we have $\frac{1}{2}x \leq y \leq 1$ and while $x$ is negative we have $-\frac{1}{2}x \leq y \leq 1$. So the double integral becomes $$\int_{-2}^{0}\int_{-\frac{1}{2}x}^{1}f(x,y)dydx + \int_{0}^{2}\int_{\frac{1}{2}x}^{1}f(x,y)dydx$$
+
+When integrating with respect to $x$ first and then $y$ it is apparent that the bounds in $y$ are $0\leq y\leq 1$, and that for $x$ we have $-2y\leq x \leq 2y$. The integral is $$\int_0^1\int_{-2y}^{2y}f(x,y)dxdy$$
+
+\subsection{31.6.4}
+
+The region describes a disk of radius $\frac{1}{2}$ centered at $(0,\frac{1}{2})$ (note that the left hand side forces $y$ to be positive so this conclusion is legitimate). Knowing this the bounds of integration are not too bad to find. Evidently the boundary $x^2 + (y-\frac{1}{2})^2 = \frac{1}{4}$ can be rewritten as $x = \pm\sqrt{\frac{1}{4}-(y-\frac{1}{2})^2}$ or $y = \pm\sqrt{\frac{1}{4}-x^2} + \frac{1}{2}$. Since we know that both $|x|$ or $|y-\frac{1}{2}|$ may not exceed the value of the radius of the disk we find that the integral can be represented as $$\int_{0}^{1}\int_{-\sqrt{\frac{1}{4}-(y-\frac{1}{2})^2}}^{\sqrt{\frac{1}{4}-(y-\frac{1}{2})^2}} f(x,y)dxdy$$ or $$\int_{-\frac{1}{2}}^{\frac{1}{2}}\int_{-\sqrt{\frac{1}{4}-x^2} + \frac{1}{2}}^{\sqrt{\frac{1}{4}-x^2} + \frac{1}{2}} f(x,y)dydx$$
+
+\subsection{31.6.7}
+
+It is sensible to integrate the function with respect to $x$ first and then $y$. Note that the intersection of the line $x = 3$ and the quadratic $x = 4-y^2$ occur at $y = \pm 1$. The integral becomes $$\int_{-1}^1\int_3^{4-y^2}(2+y)dxdy \to \int_{-1}^1 (2x+yx)\bigg|_3^{4-y^2}dy \to \int_{-1}^1 (-y^3-2y^2+y+2)dy$$
+$$ = \frac{8}{3}$$
+
+\subsection{31.6.10}
+
+It is sensible to integrate the function with respect to $y$ first and then $x$. Note that the intersection between the curves given for the bounds in $y$ occur at $x = \pm 1$. The integral becomes $$\int_{-1}^1\int_{2+x^2}^{4-x^2}(x^2y)dydx \to \int_{-1}^1 (x^2\frac{y^2}{2})\bigg|_{2+x^2}^{4-x^2}dx\to \int_{-1}^1 (6 x^2 - 6 x^4)dx$$
+$$ = \frac{8}{5}$$
+
+\subsection{31.6.13}
+
+The triangle is convenient in the sense that we do not have to split the double integral up into multiple double integrals. This is because we can give the hypotenuse as the line segment given by the line $y = x$ for $0\leq x \leq 1$. The leg of the triangle on the $x$ axis can be our lower $y$ bound.
+
+So it is apparent that we should integrate with respect to $y$ first (it is also easier that way) and then $x$. The integral becomes $$\int_0^1\int_{0}^{x}y\sqrt{x^2-y^2}dydx \to -\frac{1}{3}\int_0^1((x^2+y^2)^{\frac{3}{2}})\bigg|_{0}^{x}\to \int_0^1 \left(\frac{1}{3} |x|^3\right)dx$$
+$$ = \frac{1}{12}$$
+
+\subsection{31.6.14}
+
+Choose the vertically simple region of integration. Then $0\leq x \leq a$, and then $0\leq y \leq -\sqrt{2ax-x^{2}}+a$. The double integral becomes:
+$$\int_{0}^{a}\int_{0}^{-\sqrt{2ax-x^{2}}+a} (2a-x)^{-\frac{1}{2}}dydx \to \int_0^a -\sqrt{x} + a(2a-x)^{-\frac{1}{2}}dx$$
+$$= \left[2\left(\sqrt{2}-1\right)-\frac{2}{3}\right]a^{\frac{3}{2}}$$
+
+\subsection{31.6.16}
+
+Upon sketching this parallelogram it is apparent that some divisions need to be made such that we can integrate on this region correctly. The four vertices of the parallelogram are given by $(0,a)$, $(a,a)$, $(2a,3a)$, and $(3a,3a)$. Split up the parallelogram into two triangles and a middle section.
+
+Give the left triangular section as the triangle bounded by the line segment (lying in $y = a$) connecting $(0,a)$ and $(a,a)$, the line given by $y = x+a$ for $0\leq x \leq a$, and a line segment starting at $(a,a)$ going in the positive $y$ direction until it intersects the line given by $y = x+a$. The double integral over this region is given by $$\int_0^a\int_a^{x+a}(x^2+y^2)dydx \to \int_0^a \left(a^2 x + a x^2 + \frac{4 x^3}{3}\right)dx = \frac{7a^4}{6}$$
+
+Then the middle section of the parallelogram is given by a parallelogram itself, but the sides to the left and right are just straight lines occupying only the $y$ axis. The bounds in $x$ for this section are $a \leq x \leq 2a$, and the bounds in $y$ are $x \leq y \leq x+a$. The double integral here is $$\int_a^{2a}\int_{x}^{x+a}(x^2+y^2)dydx \to \int_a^{2a} \left(\frac{a^3}{3} + a^2 x + 2 a x^2\right)dx = \frac{13 a^4}{2}$$
+
+Finally the right triangle is given using bounds in $x$ as $2a\leq x \leq 3a$, where the upper $y$ curve is given by $y=3a$ and the lower curve is given by the line $y=x$. The double integral is given by $$\int_{2a}^{3a}\int_x^{3a} (x^2+y^2) dydx \to \int_{2a}^{3a} \left(9 a^3 + 3 a x^2 - \frac{4 x^3}{3}\right)dx = \frac{19a^4}{3}$$
+
+We must sum up the three results, and find that the double integral is equal to $14a^4$.
+
+\subsection{31.6.19}
+
+\subsection{31.6.22}
+
+The integrand represents the top half of an ellipsoid (as in the half occupying the positive $z$ axis). Such an ellipsoid intersects the $z$ axis at $z=1$, the $y$ axis at $y = 3$, and the $x$ axis at $x=2$. The boundary of the set $D$ is conveniently also the trace of the integrand where $z=0$. It is apparent then that the solid region is just the positive half of an ellipsoid including the inside of that half.
+
+\subsection{31.6.25}
+
+The shape of the object is that of a cylinder of radius $1$ whose base is situated on the $xy$ plane, but it is as if the cylinder is stopped from even developing three-fourths of it (due to the restriction of lying in the first octant). It looks similar to a slice of cheese, due to the solid being bounded above by the plane $z=y$. The point is that the base of this solid the hemisphere $x^2+y^2=1$, $y>0$, and the surface that bounds the solid from above directly is the plane $z=y$.
+
+The double integral here is given then by $$\int_{0}^1\int_0^{\sqrt{1-x^2}}(y)dydx \to \frac{1}{2}\int_{0}^1 (1-x^2)dx = \frac{1}{3}$$
+
+\subsection{31.6.28}
+
+\subsection{31.6.31}
+
+The region is the area between the constant function $y = 1$ and the curve $y = e^x$ when $0\leq x \leq 1$. We may invert the exponential function into $x = \ln(y)$ (omit the absolute value bars since we are in the first quadrant). Knowing the bounds from before, it is apparent that the new bounds are $\ln(y) \leq x \leq 1$ while $1 \leq y \leq e$. The double integral becomes $$\int_1^e\int_{\ln(y)}^{1}f(x,y)dxdy$$
+
+\subsection{31.6.34}
+
+The region of integration is given as the inequalities $\sqrt{x} \leq y \leq 2$ while $0 \leq x \leq 4$. This is essentially the region above the square root curve under the constant $y=2$ until they intersect, for $x$ and $y$ being positive.
+
+To swap the order of integration we need to notice that the region expressed differently is the region under the parabola $x=y^2$ so long as $y$ does not exceed $2$. Evidently $x$ and $y$ have to be bounded below by zero.
+
+So the integral can be rewritten as $$\int_0^2\int_0^{y^2}(1+y^3)^{-1}dxdy \to \int_0^2 y^2(1+y^3)^{-1} dy = \frac{2}{3}\ln(3)$$
+
+\subsection{31.6.37}
+
+The curves $y = \sqrt{2ax}$ and $y = \sqrt{2ax-x^{2}}$ represent a parabola and a hemisphere of radius $a$, respectively. The region itself is just the region between those two curves while $x$ does not exceed $2a$. Both are located in the first quadrant, and we may rewrite each as $x = \frac{y^2}{2a}$ and $x = \pm\sqrt{a^{2}-y^{2}}+a$. 
+
+Evidently in this perspective we do not have an $x$-simple region, so we must split the integral in 3 pieces around the point where it ceases to be simple, at $(a,a)$. So now we may give three sets of bounds: $0 \leq y \leq a$ and $\frac{y^{2}}{2a} \leq x \leq -\sqrt{a^{2}-y^{2}} + a $ for the first section, and then $0 \leq y \leq a$ and $\sqrt{a^{2}-y^{2}}+a \leq x \leq 2a$ for the section adjacent to it. Finally the last section has bounds $a \leq y \leq 2a$ and $\frac{y^{2}}{2a} \leq x \leq 2a$. The double integral is thus equal to $$\int_{0}^{a}\int_{\frac{y^{2}}{2a}}^{-\sqrt{a^{2}-y^{2}} + a} f(x,y) dxdy + \int_{0}^{a}\int_{\sqrt{a^{2}-y^{2}}+a}^{2a} f(x,y) dxdy $$
+$$+ \int_{a}^{2a}\int_{\frac{y^{2}}{2a}}^{2a} f(x,y) dxdy$$
+
+\subsection{31.6.40}
+
+It is not really necessary to consider the shape of the set $D$ itself, rather we may consider each quadrant individually. It is also important to note that the integrand is a saddle raised to the $9^{\text{th}}$ power, where the axes of symmetry are the $x$ and $y$ axes. Since $9$ is an odd number, the sign of the values of the function are retained on the whole domain, so it is only necessary to investigate the saddle itself and we may omit the exponentiation entirely.
+
+With that in mind, consider how the function changes sign around the lines given by $|x| = |y|$ - this information is sufficient (due to symmetry in all quadrants) to know that the double integral on $D$ is going to vanish, it equals $0$. 
+
+\subsection{31.6.44}
+
+\end{document}

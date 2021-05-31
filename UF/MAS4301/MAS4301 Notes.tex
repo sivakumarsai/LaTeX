@@ -1,0 +1,287 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4301 Abstract Algebra 1}
+\fancyhead[C]{Dr. Garvan}
+\fancyhead[R]{Spring 2021}
+\fancyfoot[R]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma/definition/etc.
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Note}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{exercise}{Exercise}
+
+% sections starting from zero
+\setcounter{section}{-1}
+
+\begin{document}
+\section{Preliminaries}
+
+\subsection*{Properties of Integers}
+\begin{theorem}[Well Ordering Principle] Every non-empty subset of the positive integers has a least element.
+\end{theorem}
+
+\begin{theorem}[Division Algorithm]
+  Let $a,b\in\mathbb{Z}$ with $b>0$. Then there exist unique integers $q,r$ such that $$a = bq+r\text{ and } 0\leq r < b.$$
+\end{theorem}
+
+\begin{example}\ \\
+  (i) $a = 13, b=5$. We have that $13 = 5\cdot 2 + 3$. \\
+  (ii) $a = -13, b=5$. We have that $-13 = 5\cdot (-3) + 2$.
+\end{example}
+
+\textit{Sketch of Proof of Theorem.} Let $a, b \in\mathbb{Z}$ and $b>0$. let $S = \cbr{a-bk\mid k\in\mathbb{Z}, a-bk\geq 0}$.\\
+\textit{Case 1:} $0\in S$. Then $a-bk = 0$ for some $k\in\mathbb{Z}$ and $a = bk$ and $a = bq+r$ where $q=k$ and $r = 0$.\\
+\textit{Case 2:} $0\notin S$. Then S is a subset of the positive integers. \begin{exercise} Show $S$ is nonempty. \end{exercise}
+
+By the Well Ordering Principle, $S$ has a least element. Let $r$ be this least element. Then $r =a-bq$ for some $q\in\mathbb{Z}$. Show $r<b$, and show uniqueness of $q$ and $r$.
+
+\begin{definition}
+  Let $a,b\in \mathbb{Z}$. We say $a$ divides $b$ and write $a\divides b$ if $b = ac$ for some $c\in\mathbb{Z}$. We say $a$ is a divisor of $b$.
+\end{definition}
+
+\begin{example}
+  $8\divides 24$ since $24 = 8\cdot 3$ and $3\in\mathbb{Z}$.
+\end{example}
+
+\begin{definition}
+  Let $a,b\in\mathbb{Z}$ where $a,b$ are not both zero. Then the greatest common divisor of $a$ and $b$, denoted by $\gcd(a,b)$, is the largest integer $d$ such that $d\divides a$ and $d\divides b$.
+
+  \begin{note}
+    In number theory $\gcd(a,b)$ is denoted by $(a,b)$.
+  \end{note}
+\end{definition}
+
+\begin{example}
+  $\gcd(8,60) = 4$.
+\end{example}
+
+\begin{theorem}
+  Let $a,b\in\mathbb{Z}$, where $a,b$ are not both zero. Then $\gcd(a,b) = \min\{ax+by\mid x,y\in\mathbb{Z}, ax+by> 0\}$
+\end{theorem}
+
+\textit{Sketch of Proof.} Let $a,b\in\mathbb{Z}$ not both be zero. Then let $S = \cbr{as+bt\mid s,t\in\mathbb{Z}, as+bt>0}$. See that $S$ is nonempty because $a,-a,b,-b\in S$. \\
+So $S$ is a nonempty set of positive integers. By the Well Ordering Principle, $S$ has a least element $d$. We show $d = \gcd(a,b)$. \\
+So $d = as+bt$ for some $s,t\in\mathbb{Z}$. Then by the Division Algorithm, $a = dq+r$ fo some integers $q,r$ where $0\leq r < d$. \\
+
+
+
+
+\section{previous chapters TODO}
+\section{previous chapters TODO}
+
+\newpage
+\section{Cyclic Groups}
+
+Let $a\in G$ where $G$ is a group. The cyclic group generated by $a$ is $$\abr{a} \coloneqq \cbr{a^n : n\in\mathbb{Z}}. $$
+
+\begin{theorem}
+    Let $G$ be a group and suppose $a\in G$. \\ (1) If $a$ has infinite order then $a^i = a^j$ ($i,j\in\mathbb{Z}$) if and only if $i=j$. \\ (2) If $a$ has finite order $n$, then $$\abr{a} = \cbr{e,a^1,a^2,\dots,a^{n-1}},$$ and $a^i = a^j$ ($i,j\in\mathbb{Z}$) if and only if $i \equiv j \pmod n$
+\end{theorem}
+
+\begin{proof}
+    Let $G$ be a group and suppose $a\in G$.
+    
+    (1) Suppose $a$ has infinite order. If $n$ is a positive integer then $a^n \neq e$. Suppose $a^i = a^j$ where $i,j\in\mathbb{Z}$, and without loss of generality, $i\leq j$. Then $a^{j-i} = a^j\br{a^i}^-1 = a^i\br{a^i}^-1 = e$. It follows that $j-i = 0$ since $j-i\in\mathbb{Z}$ and $j-i\geq 0$, so $i=j$.
+
+    Conversely, if $i=j$, then $a^i = a^j$.
+
+    (2) Suppose $a$ has finite order $n$.
+
+    Case 1: $n = 1$. Then $a^1 = a = e$, so $$\abr{a} = \cbr{e^n : n\in\mathbb{Z}} = \cbr{e}.$$ Note that 
+\end{proof}
+
+\section{Isomorphisms?}
+\dots
+
+\begin{example}
+  Find $\Aut(\mathbb{Z}_8)$.
+
+  Suppose $\alpha\in\Aut(\mathbb{Z}_8)$. Then $\alpha : \mathbb{Z}_8\to \mathbb{Z}_8$ is an isomorphism. \begin{align*}
+    &x = x\cdot 1 &|x| = \frac{8}{\gcd(x,8)}\\
+    &0 &1 \\
+    &1 &8 \\
+    &2 &4 \\
+    &3 &8 \\
+    &4 &2 \\
+    &5 &8 \\
+    &6 &4 \\
+    &7 &8 
+  \end{align*}
+  $\abs{1} = 8$ and $1$ is a generator of $\mathbb{Z}_8$.
+  
+  By a previous theorem, $\abs{\alpha(1)} = 8$ and hence $\alpha(1) = 1,3,5,$ or $7$.
+
+  Let $x\in\mathbb{Z}_8$. Then $x = x\cdot 1 = \overbrace{1+\cdots+ 1}^{x\text{-times}}$. So $\alpha(x) = \alpha(1) + \cdots + \alpha(1) = x\alpha(1)$.
+
+  The automorphism $\alpha$ is completely determined by the value of $\alpha(1)$.
+
+  For $j = 1,3,5,$ or $7$, we define $\alpha_j : \mathbb{Z}_8 \to \mathbb{Z}_8$ by $\alpha_j(x) = xj \pmod{8} = \overbrace{j+\cdots+ j}^{x\text{-times}}\pmod{8}$.
+
+  We show that each $\alpha_j$ is an automorphism of $\mathbb{Z}_8$. Clearly each $\alpha_j$ is well-defined. Let $j = 1,3,5,$ or $7$. Suppose $x_1,x_2\in\mathbb{Z}_8$ and $\alpha_j(x_1) = \alpha_j(x_2)$. Then $jx_1 \equiv jx_2 \pmod{8}$.
+
+  Observe that $j\in\cbr{1,3,5,7} = U(8)$. The operation in $U(8)$ is multiplication mod $8$. Each $j$ has a multiplicative inverse $\bar{j} \pmod{8}$, i.e. $\bar{j}j \equiv 1 \pmod{8}$.
+
+  In this example, $\bar{j} = j$. Then \begin{align*}
+    \bar{j}\br{jx_1} &\equiv \bar{j}\br{jx_2}\pmod{8} \\
+    \br{\bar{j}j}x_1 &\equiv \br{\bar{j}j}x_2\pmod{8} \\
+    1x_1 &\equiv 1x_2\pmod{8} \\
+    x_1 &\equiv x_2\pmod{8}
+  \end{align*} so that $x_1=x_2$ in $\mathbb{Z}_8$. So $\alpha_j$ is one-to-one. 
+
+  Let $y\in\mathbb{Z}_8$. Then $\alpha_j(\bar{j}y) = j\br{\bar{j}y} \pmod{8} = \br{j\bar{j}}y \pmod{8} = y \pmod{8}$. Then $\alpha_j(\bar{j}y) = y$, so $\alpha_j$ is onto.
+
+  Then \begin{align*}
+    \alpha_j(x_1+x_2) &= j(x_1+x_2) \pmod{8} \\
+    &= \br{jx_1+jx_2}\pmod{8}\\
+    &= \br{jx_1\pmod{8}} + \br{jx_1\pmod{8}} \\
+    &= \alpha_j(x_1) + \alpha_j(x_2)
+  \end{align*}
+  So $\alpha_j$ preserves the group operation and $\alpha_j$ is an automorphism.
+  \begin{note}
+    $\alpha_1, \alpha_3, \alpha_5, \alpha_7$ are the automorphisms of $\mathbb{Z}_8$, i.e. $$\Aut{\mathbb{Z}_8} = \cbr{\alpha_1, \alpha_3, \alpha_5, \alpha_7}.$$
+  \end{note}
+\end{example}
+
+\begin{note}
+  $\Aut{\mathbb{Z}_8} \approx U(8)$.
+\end{note}
+\begin{proof}
+  Define $T : \cbr{\alpha_1, \alpha_3, \alpha_5, \alpha_7} \to U(8)$ by $T(\alpha_j) = j$. So \begin{align*}
+    \alpha_1 &\to 1 \\
+    \alpha_3 &\to 3 \\
+    \alpha_5 &\to 5 \\
+    \alpha_7 &\to 7 
+  \end{align*}
+  T is clearly well-defined, one-to-one, and onto. Let $i,j\in U(8)$. Suppose $ij=k$ in $U(8)$, i.e. $ij \equiv k \pmod{8}$.
+
+  Then $$T(\alpha_i\circ \alpha_j) = T(\alpha_k) = k$$ $$= i\cdot j \pmod{8} = T(\alpha_i)T(\alpha_j)\pmod{8}$$ since $\alpha_i\circ\alpha_j = \alpha_k$, which is true because $$(\alpha_i\circ\alpha_j)(x) \equiv \alpha_i(\alpha_j(x)) \equiv i(jx) \pmod{8}$$ $$\equiv (ij)x \equiv kx \pmod{8} = \alpha_k(x)$$ for any $x\in U(8)$. Hence $T$ is an isomorphism and so $\Aut(\mathbb{Z}_8)\approx U(8)$. 
+\end{proof}
+
+Similarly, we have the following theorem:
+\begin{theorem}
+  $\Aut(\mathbb{Z}_n)\approx U(n)$.
+\end{theorem}
+
+\begin{example}
+  Suppose $\Phi : \mathbb{Z}_8 \to \mathbb{Z}_8$ is an automorphism and $\Phi(5) = 7$. Find a formula for $\Phi(x)$.
+
+  \textit{Hint.} $5\cdot5 = 1$ in $\mathbb{Z}_8$.
+
+  To find a formula for $\Phi(x)$ we only need to find $\Phi(1)$ since $\Phi(x) = \Phi(x\cdot 1) = x\Phi(1)$. So from the hint given we find that $\Phi(1) = \Phi(5\cdot 5) = 5\Phi(5) = 5\cdot 7 = 35 \equiv 3 \pmod{8}$. So $\Phi(1) = 3$, which means $\Phi(x) = x\Phi(1) = x\cdot3$.
+
+  Hence $\Phi(x) = 3x \pmod{8}$.
+\end{example}
+
+\section{Cosets and Lagrange's Theorem (ch7)}
+
+\begin{definition}
+  Let $H$ be a subset of a group $G$. Let $a\in G$. Define $$aH = \cbr{ah : h\in H}$$ and $$Ha = \cbr{ha : h\in H}.$$ When $H$ is a subgroup of $G$ the set $aH$ is called the left coset of $H$ in $G$ containing $a$, and $Ha$ is called the right coset of $H$ in $G$ containing $a$.
+\end{definition}
+
+\begin{example}
+  Let $H = \cbr{e,\pmt*{(12)}} = \abr{\pmt*{(12)}}$ and $G = S_3 = \cbr{e,\pmt*{(12)}, \pmt*{(13)}, \pmt*{(23)}, \pmt*{(123)}, \pmt*{(132)} }$.
+
+  Then \begin{align*}
+    eH &= H = \cbr{e,\pmt*{(12)}}\\
+    \pmt*{(12)}H &= \cbr{\pmt*{(12)},e} = H\\ 
+    \pmt*{(13)}H &= \cbr{\pmt*{(13)}, \pmt*{(13)}\pmt*{(12)}} = \cbr{\pmt*{(12)}, \pmt*{(123)}} \\
+    \pmt*{(23)}H &= \cbr{}
+  \end{align*}
+\end{example}
+
+Testing the git repository updating mechanism.
+
+not sure how to get this to automatically push changes when i exit vscode.
+
+\end{document}

@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+2.1: 6, 9(b,c), 10, 13, 14(a,b) \\
+
+6. Prove that $\mathsf{T}$ is a linear transformation, and find bases for both $\mathsf{N(T)}$ and $\mathsf{R(T)}$. Then compute the nullity and rank of $\mathsf{T}$, and verify the dimension theorem. Finally, determine if $\mathsf{T}$ is one-to-one or onto.
+
+The transformation $\mathsf{T}$ is linear iff $\mathsf{T}(cA+B) = c\mathsf{T}(A) + \mathsf{T}(B)$, for $c\in\mathbb{F}$ and $A,B\in \mathsf{M}_{n\times n}(\mathbb{F})$.
+$$\mathsf{T}(cA+B) = \trace\br{cA+B} = \sum_{i=1}^n \br{cA+B}_{ii} = \sum_{i=1}^n \sbr{\br{cA}_{ii} + B_{ii}} = \sum_{i=1}^n c\br{A_{ii}} + \sum_{i=1}^n B_{ii}$$
+$$= c\sum_{i=1}^n \br{A_{ii}} + \sum_{i=1}^n B_{ii} = c\trace\br{A} + \trace\br{B} = c\mathsf{T}(A) + \mathsf{T}(B)$$
+
+Hence $\mathsf{T}$ is linear.
+
+The zero vector in $\mathbb{F}$ is the scalar $0$ itself, so we must find all those matrices in $\mathsf{M}_{n\times n}(\mathbb{F})$ whose trace is zero.
+
+So let $e_{ij}$ be the matrix where in position $ij$ there is a $1$ and in any other position the matrix contains zeros.
+
+So matrices that easily has a trace of zero are those in the set $\cbr{e_{ij} : i\neq j}$, since all the diagonal entries will be zero. This set is easily seen to be linearly independent since each matrix here will have $1$ in \textit{different} positions (but not on the diagonal!) and $0$ everywhere else. Then to form the other ones, take the set of matrices in the form $\cbr{e_{ii} - e_{(i+1)(i+1)} : 1 \leq i \leq n-1}$. We must show that this set is linearly independent, by showing the only linear combination of these matrices that produce the zero matrix is the trivial combination: Take scalars $a_i \in \mathbb{F}$ and see that $$a_1\br{e_{11} - e_{22}} + a_2\br{e_{22} - e_{33}} + \cdots + a_{n-1}\br{e_{(n-1)(n-1)} - e_{nn}}$$
+$$= a_1\begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 & -1 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0 
+\end{pmatrix} + a_2\begin{pmatrix}
+    0 & 0 & 0 & \cdots & 0 \\
+    0 & 1 & 0 & \cdots & 0 \\
+    0 & 0 & -1 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 
+\end{pmatrix} + \cdots + a_{n-1}\begin{pmatrix}
+    0 & \cdots & 0 & 0 \\
+    \vdots & \ddots & \vdots & \vdots \\
+    0 & \cdots & 1 & 0 \\
+    0 & \cdots & 0 & -1 
+\end{pmatrix}$$
+$$ = \begin{pmatrix}
+    a_1 & 0 & \cdots & 0 \\
+    0 & -a_1 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0 
+\end{pmatrix} + \begin{pmatrix}
+    0 & 0 & 0 & \cdots & 0 \\
+    0 & a_2 & 0 & \cdots & 0 \\
+    0 & 0 & -a_2 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 
+\end{pmatrix} + \cdots + \begin{pmatrix}
+    0 & \cdots & 0 & 0 \\
+    \vdots & \ddots & \vdots & \vdots \\
+    0 & \cdots & a_{n-1} & 0 \\
+    0 & \cdots & 0 & -a_{n-1} 
+\end{pmatrix}$$
+$$= \begin{pmatrix}
+    a_1 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & a_2 - a_1 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & a_3 - a_2 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & a_{n-1} - a_{n-2} & 0 \\
+    0 & 0 & 0 & \cdots & 0 & -a_{n-1}
+\end{pmatrix} = \mathbf{0}_{n\times n}$$
+
+This forms the following systems of equations:
+\begin{align*}
+    a_1 &= 0 \\
+    a_2-a_1 &= 0\\
+    &~~\vdots\\
+    a_{n-1}-a_{n-2} &= 0\\
+    -a_{n-1} &= 0
+\end{align*}
+
+It is easily seen that this forces all the $a_i$ to be zero and so $\cbr{e_{ii} - e_{(i+1)(i+1)} : 1 \leq i \leq n-1}$ is linearly independent. Furthermore $\cbr{e_{ii} - e_{(i+1)(i+1)} : 1 \leq i \leq n-1}$ is not in the span of $\cbr{e_{ij} : i\neq j}$ and vice versa, so the union of the two is linearly independent. Therefore a basis for $\mathsf{N(T)}$ is $\cbr{e_{ij} : i\neq j} \cup \cbr{e_{ii} - e_{(i+1)(i+1)} : 1 \leq i \leq n-1}$. The nullity then will be $\br{n^2-n} + \br{n-1} = n^2 - 1$.
+
+The basis for $\mathsf{R(T)}$ will just be the basis for $\mathbb{F}$, since $\mathbb{F}$ is the codomain for the transformation $\mathsf{T}$. A basis for $\mathbb{F}$ will simply be $\cbr{1}$, since $\mathbb{F}$ is just a field. Then the rank of $\mathsf{T}$ is $1$ since there is one item in the basis for $\mathsf{R(T)}$.
+
+To confirm the dimension theorem, we must check to see that the sum of the nullity and the rank of $\mathsf{T}$ is equivalent to the dimension of $\mathsf{M}_{n\times n}(\mathbb{F})$ (which is equal to $n^2$). Indeed, $\br{n^2-1} + 1 = n^2$ as expected. 
+
+Linear transformations are only one-to-one iff the nullity is $0$. Here the nullity is $1 \neq 0$, so $\mathsf{T}$ is not one-to-one. To see if $\mathsf{T}$ is onto, for every element $c$ in $\mathbb{F}$, we must be able to produce an element (preimage) $A$ in $\mathsf{M}_{n\times n}(\mathbb{F})$ such that $\mathsf{T}(A) = c$. So take some $c$ in $\mathbb{F}$ and observe that we can choose $A = ce_{11}$ so that $\mathsf{T}(A) = \mathsf{T}(ce_{11}) = c\cdot \trace\br{e_{11}} = c\cdot 1 = c$. Therefore $\mathsf{T}$ is onto.
+
+9. 
+
+(b) If the transformation $\mathsf{T}$ is linear, then $\mathsf{T}(sx+y) = s\mathsf{T}(x) + \mathsf{T}(y)$, for vectors $x,y\in\mathbb{R}^2$, $s\in\mathbb{R}$. We will show this is not the case.
+
+Let $x = (a,b)$, and $y = (c,d)$ for $a,b,c,d\in\mathbb{R}$. Then $\mathsf{T}(sx+y) = \mathsf{T}(s(a,b)+(c,d)) = \mathsf{T}((sa+c,sb+d)) = (sa+c,(sa+c)^2) = (sa+c, (sa)^2+2sac+c^2)$. This is not equal to $(sa+c,sa^2+c^2) = s\mathsf{T}(x) + \mathsf{T}(y)$, so we fail linearity - $\mathsf{T}$ is not linear.
+
+(c) If the transformation $\mathsf{T}$ is linear, then $\mathsf{T}(sx+y) = s\mathsf{T}(x) + \mathsf{T}(y)$, for vectors $x,y\in\mathbb{R}^2$, $s\in\mathbb{R}$. We will show this is not the case.
+
+Let $x = (a,b)$, and $y = (c,d)$ for $a,b,c,d\in\mathbb{R}$. Then $\mathsf{T}(sx+y) = \mathsf{T}(s(a,b)+(c,d)) = \mathsf{T}((sa+c,sb+d)) = (\sin(sa+c), 0)$. This is not equal to $(s\sin(a) + \sin(c), 0) = \mathsf{T}(x) + \mathsf{T}(y)$ (it is known that $\sin(sa+c) \neq s\sin(a) + \sin(c)$), so we fail linearity - $\mathsf{T}$ is not linear.
+
+10. We may decompose $(1,1)$ into $(1,0) + (0,1)$, so that by linearity of $\mathsf{T}$ we have $\mathsf{T}((1,1)) = \mathsf{T}((1,0) + (0,1)) = \mathsf{T}((1,0)) + \mathsf{T}((0,1)) = (1,4) + \mathsf{T}((0,1)) = (2,5)$. Then since $\mathbb{R}^2$ forms a vector space we may add to both sides the correct inverse to find $\mathsf{T}((0,1)) = (1,1)$. Since $\cbr{(1,0),(0,1)}$ form a basis for $\mathbb{R}^2$, we know all of the information about $\mathsf{T}$. Similarly decompose $(2,3)$ into $2(1,0) + 3(0,1)$. Then $\mathsf{T}((2,3)) = \mathsf{T}(2(1,0) + 3(0,1)) = 2\mathsf{T}((1,0)) + 3\mathsf{T}((0,1)) = 2(1,4) + 3(1,1) = (5,11)$.
+
+To show that $\mathsf{T}$ is one-to-one, we can show that only the zero vector belongs to $\mathsf{N(T)}$, so that the nullity becomes zero. This amounts to showing that for any $(x,y)$ (where $x,y\in\mathbb{R}$), the only $(x,y)$ that satisfies $\mathsf{T}((x,y)) = (0,0)$ is $(0,0)$. To show this consider the system of equations that form out of the linearity of $\mathsf{T}$:
+\begin{align*}
+    x + y = 0 \\
+    4x + y = 0
+\end{align*}
+
+The solutions to this system (by elimination) are that $x=0$ and $y=0$. Therefore the only vector that gets mapped into the zero vector is the zero vector itself and so the nullity is zero, which implies that $\mathsf{T}$ is one-to-one.
+
+13. Let $\mathsf{V}$ and $\mathsf{W}$ be vector spaces, let $\mathsf{T} : \mathsf{V} \to \mathsf{W}$ be linear, and let $\cbr{w_1,w_2,\dots,w_k}$ be a linearly independent subset of $\mathsf{R(T)}$. Prove that if $S = \cbr{v_1,v_2,\dots,v_k}$ is chosen so that $\mathsf{T}(v_i) = w_i$ for $i = 1,2,\dots,k$, then $S$ is linearly independent.
+
+\begin{proof}
+    Suppose by way of contradiction that $S$ was instead linearly dependent, so that without loss of generality, $v_k = c_1v_1 + c_2v_2 + \cdots + c_{k-1}v_{k-1}$. Then notice that $w_k = \mathsf{T}(v_k) = \mathsf{T}(c_1v_1 + c_2v_2 + \cdots + c_{k-1}v_{k-1}) = c_1\mathsf{T}(v_1) + c_2\mathsf{T}(v_2) + \cdots + c_{k-1}\mathsf{T}(v_{k-1}) = c_1w_1 + c_2w_2 + \cdots + c_{k-1}w_{k-1}$. Thus $w_k$ can be expressed as a linear combination of other vectors in $\cbr{w_1,w_2,\dots,w_k}$, which is in contradiction to the assumption that $\cbr{w_1,w_2,\dots,w_k}$ was linearly independent. 
+    
+    Hence if $S = \cbr{v_1,v_2,\dots,v_k}$ is chosen so that $\mathsf{T}(v_i) = w_i$ for $i = 1,2,\dots,k$, then $S$ is linearly independent.
+\end{proof}
+
+14. Let $\mathsf{V}$ and $\mathsf{W}$ be vector spaces and $\mathsf{T} : \mathsf{V} \to \mathsf{W}$ be linear.
+
+(a) Prove that $\mathsf{T}$ is one-to-one if and only if $\mathsf{T}$ carries linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$.
+
+\begin{proof}
+    Forwards direction. Suppose $\mathsf{T}$ carries linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$, that is if we take a linearly independent subset $\cbr{v_1,v_2,\dots,v_n}$ of $\mathsf{V}$, then \\$\mathsf{T}(\cbr{v_1,v_2,\dots,v_n}) = \cbr{\mathsf{T}(v_1),\mathsf{T}(v_2),\dots,\mathsf{T}(v_n)}$ is a linearly independent subset of $\mathsf{W}$. 
+    
+    Suppose by way of contradiction that $\mathsf{T}$ is not one-to-one, that is, the nullity of $\mathsf{T}$ is nonzero and so there exists a nonzero vector $v$ in $\mathsf{V}$ that maps to the zero vector in $\mathsf{W}$. However, $\cbr{v}$ is a linearly independent subset of $\mathsf{V}$ because $v$ is not the zero vector. But $\mathsf{T}(\cbr{v}) = \cbr{\vec{0}_{\mathsf{W}}}$, which is not a linearly independent subset of $\mathsf{W}$ since a nontrivial combination of the zero vector is still the zero vector. This is in contradiction with the assumption that Suppose $\mathsf{T}$ carries linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$, and so we must have that $\mathsf{T}$ is one-to-one.
+
+    Converse. Suppose $\mathsf{T}$ is one-to-one. 
+    
+    Then suppose by way of contradiction that $\mathsf{T}$ does not always carry linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$, that is, there is a subset $\cbr{v_1,v_2,\dots,v_n}$ of $\mathsf{V}$ that is linearly independent whose image formed a linearly dependent subset $\cbr{w_1,w_2,\dots,w_n}$ of $\mathsf{W}$. Without loss of generality, let $w_n = c_1w_1 + c_2w_2 + \cdots + c_{n-1}w_{n-1}$. Then since each $w_i = \mathsf{T}(v_i)$, we may substitute and use the linearity of $\mathsf{T}$ to simplify: $w_n = \mathsf{T}(v_n) = c_1\mathsf{T}(v_1) + c_2\mathsf{T}(v_2) + \cdots + c_{n-1}\mathsf{T}(v_{n-1}) = \mathsf{T}(c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1})$. Since $\mathsf{T}$ is one to one, we can deduce that $v_n = c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1}$, which is in contradiction to the assumption that $\cbr{v_1,v_2,\dots,v_n}$ is linearly independent. Thus we must have that $\mathsf{T}$ carries linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$.
+
+    Therefore $\mathsf{T}$ is one-to-one if and only if $\mathsf{T}$ carries linearly independent subsets of $\mathsf{V}$ onto linearly independent subsets of $\mathsf{W}$.
+\end{proof}
+
+(b) Suppose that $\mathsf{T}$ is one-to-one and that $S$ is a subset of $\mathsf{V}$. Prove that $S$ is linearly independent if and only if $\mathsf{T}(S)$ is linearly independent. For convenience let $S = \cbr{v_1,v_2,\dots,v_n}$ and $\mathsf{T}(S) = \cbr{w_1,w_2,\dots,w_n}$, and $w_i = \mathsf{T}(v_i)$.
+
+\begin{proof}
+    Forwards direction. Suppose $\mathsf{T}(S)$ is linearly independent. 
+
+    By way of contradiction, suppose $S$ is linearly dependent, so that without loss of generality we can say $v_n = c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1}$. Then by construction and linearity of $\mathsf{T}$, $w_n = \mathsf{T}(v_n) = \mathsf{T}(c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1}) = c_1\mathsf{T}(v_1) + c_2\mathsf{T}(v_2) + \cdots + c_{n-1}\mathsf{T}(v_{n-1}) = \mathsf{T}(c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1}) = c_1w_1 + c_2w_2 + \cdots + c_{n-1}w_{n-1}$. This means that $w_n$ can be expressed as a linear combination of vectors in $\cbr{w_1,w_2,\dots,w_n}$, which means $\cbr{w_1,w_2,\dots,w_n}$ is linearly dependent. This is a contradiction so we must have that $S$ is linearly independent.
+
+    Converse. Suppose $S$ is linearly independent, and again by way of contradiction suppose $\mathsf{T}(S)$ is linearly dependent. Then without loss of generality $w_n = \mathsf{T}(v_n) = c_1w_1 + c_2w_2 + \cdots + c_{n-1}w_{n-1} = c_1\mathsf{T}(v_1) + c_2\mathsf{T}(v_2) + \cdots + c_{n-1}\mathsf{T}(v_{n-1}) = \mathsf{T}(c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1})$. Since $\mathsf{T}$ is one-to-one we may deduce that $v_n = c_1v_1 + c_2v_2 + \cdots + c_{n-1}v_{n-1}$, which means that $v_n$ can be expressed as a linear combination of the other vectors in $S$ and so $S$ is not linearly independent This is in contradiction to the assumption that $S$ is linearly independent. Therefore $\mathsf{T}(S)$ must be linearly independent.
+    
+    Hence $S$ is linearly independent if and only if $\mathsf{T}(S)$ is linearly independent.
+\end{proof}
+
+\end{document}

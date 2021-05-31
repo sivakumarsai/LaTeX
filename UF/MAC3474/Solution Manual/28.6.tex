@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{28.6 Exercises}
+
+\subsection{28.6.1}
+
+Because the function is constant on $D$, the lower and upper sums are equal (thus the double integral converges). The double integral is equal to (by geometrical means) $(b-a)(d-c)k$.
+
+\subsection{28.6.2}
+
+Split $D$ into two sections over $y=0$ (we will use the additivity of the double integral) so that we have $D_1 = [0,1]\times[-1,0]$ and $D_2 = [0,1]\times[0,1]$. In taking the double integral over both of those regions, we may split the integral like so:
+$$\iiint_D f(x,y)dA = \iiint_{D_1} f(x,y)dA + \iiint_{D_2} f(x,y)dA$$
+
+The problem degenerates into the same kind of problem as \textbf{1.}
+
+Since the value of the function is constant on both of those sets, the lower and upper Riemann sums on those sets are equal to each other (they converge) and by geometrical means the first integral over $D_1$ is equal to $k_2$, and the second integral over $D_2$ is equal to $k_1$. The sum (the value of the original integral) is $k_1+k_2$.
+
+\subsection{28.6.4}
+
+The set $D$ describes a right triangle whose legs have lengths 1 that lie on the $x$ and $y$ axes with one vertex at the origin. The hypotenuse is a line segment from $(0,1)$ to $(1,0)$. Since $f(x,y) = 1-(x+y) = z$, it is apparent that we can rearrange it into the standard form for a continuous plane with normal vector $\langle 1,1,1 \rangle$ passing through the line $y+x = 1$ ($z=0$ on the plane). 
+
+Since the plane is continuous the upper and lower sums converge to the same value.
+
+So the volume bounded is a triangular pyramid that we can geometrically find the integral. We just need to find out where the plane intersects with the $z$-axis, which is at $z=1$. The other three important vertices are $(0,1,0)$, $(1,0,0)$, and the origin. The double integral is given by $V = \frac{1}{2}(1)(1)(1) = \frac{1}{2}$.
+
+\subsection{28.6.7}
+
+For the partition, give $\Delta x = 1$ and $\Delta y = 2$. So there are really only a few points where we need to find the value of the function (since $N_1$ and $N_2$ are comparable in size with the dimensions of the rectangular domain). 
+
+Those coordinates are: $(0,0)$, $(1,0)$, $(0,2)$ and $(1,2)$. The function values at those locations are $0$, $1$, $4$, and $5$, respectively. We can just sum those up and multiply by the area of each partition rectangle, which is $2$. The estimated volume is thus $10$.
+
+\subsection{28.6.10}
+
+This integral represents the volume of a cylinder with radius $1$ and height $k$. The double integral is equal to $k\pi$.
+
+\subsection{28.6.13}
+
+The integrand represents a plane whose normal vector is given by $\langle cb, ca, ab\rangle$. This plane intersects the $z$-axis at the point $(0,0,c)$, and coincides with the line given by $bx+ay=ab$ (which contains the hypotenuse of the triangular domain's boundary triangle, and intersects at the points $(0,b)$ and $(a,0)$).
+
+The figure that the double integral finds the volume of is a pyramid whose base vertices are given in the problem and whose upper vertex is $(0,0,c)$. By geometry the volume of such a pyramid is given by $V = \frac{1}{2}(a)(b)(c) = \frac{abc}{2}$.
+
+\subsection{28.6.16}
+
+can't use linearity of the double integral yet buddy :sadCat:
+
+\end{document}

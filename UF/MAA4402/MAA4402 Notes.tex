@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA4402 Functions of a Complex Variable}
+\fancyhead[C]{Dr. Garvan}
+\fancyhead[R]{Spring 2021}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% theorem/corollary/lemma/definition/etc.
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Note}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{exercise}{Exercise}
+
+\begin{document}
+\section{previous chapters TODO}
+
+\newpage
+\section{(ch2)}
+\subsection{Analytic Functions}
+
+A function is analytic
+
+\section{Elementary Functions}
+\dots
+
+\subsection{Branches of the Logarithm}
+Let $\alpha\in\mathbb{R}$. Let $$D_{\alpha} = \cbr{z = re^{i\theta} : r > 0, \alpha < \theta < \alpha + 2\pi}.$$
+
+% The domain $D_{\alpha}$ (image)
+
+For $z\in D_{\alpha}$ define $$\log_{\alpha}(z) \coloneqq \log(\abs{z}) + i\arg(z) $$ where $\alpha < \arg(z) < \alpha + 2\pi$
+
+\begin{note} In the notation for $\log_{\alpha}(z)$, $\alpha$ does \underline{NOT} denote the base of the logarithm. This function is called a branch of the logarithm function. \end{note}
+
+\begin{theorem}
+  Let $\alpha\in\mathbb{R}$. The function $$\log_{\alpha} : D_{\alpha}\to \mathbb{C}$$ is analytic and $$\dv{z}\log_{\alpha}(z) = \frac{1}{z}.$$
+\end{theorem}
+
+\begin{example}
+  Let $\alpha = \frac{\pi}{2}$. Find \\
+  (i) $\log_{\frac{\pi}{2}}(-i)$ and (ii) $\log_{\frac{\pi}{2}}(1)$.
+
+  % diagram
+  (i) $\arg(-i) = \frac{-\pi}{2} + 2\pi n$ ($n\in\mathbb{Z}$) Choose $n=1$. Then $\arg(-i) = \frac{-\pi}{2} + 2\pi = \frac{3\pi}{2}$. Then $\log_{\frac{\pi}{2}}(-i) = \log(\abs{-i}) + i\br{\frac{3\pi}{2}} = \log(1) + \frac{3\pi i}{2} = \frac{3\pi i}{2}$.
+
+  (2) $\log_{\frac{\pi}{2}}(1) = \log(\abs{1}) + i\br{0+2\pi} = 2\pi i$.
+
+  Note that $\log_{\frac{\pi}{2}}(z) = \log(\abs{z}) + i\arg(z)$, where $\frac{\pi}{2} < \arg(z) < \frac{5\pi}{2} = \frac{\pi}{2} + 2\pi$.
+\end{example}
+
+\begin{note}
+  The principal branch of the logarithm, $\Log(z)$, is equal to $\log_{-\pi}(z)$. (Choose $\alpha = -\pi$)
+\end{note}
+
+\subsection*{Properties} Let $z,z_1,z_2\in\mathbb{C}$. \begin{enumerate}
+  \item $\exp(\log(z)) = z$ if $z\neq 0$.
+  \item $\log(\exp(z)) = z + 2\pi n i$ where $n\in\mathbb{Z}$.
+  \item $\Log(\exp(z)) = z$ if $-\pi < \Im(z) \leq \pi$.
+  \item $\log(z_1z_2) = \log(z_1) + \log(z_2)$ if $z_1,z_2\neq 0$.
+\end{enumerate}
+
+\begin{proof}
+  (3.) Let $z=x+iy$, where $x,y\in\mathbb{R}$. Then $\Log(\exp(z)) = \Log(e^xe^{iy}) = \log(\abs{e^xe^{iy}}) + i\Arg(e^xe^{iy}) = \log(e^x) + iy = x+iy = z$ when $-\pi < y = \Im(z) \leq \pi$.
+\end{proof}
+
+\begin{note}
+  In general it is \underline{NOT TRUE} that $$\Log{z_1z_2} = \Log(z_1) + \Log(z_2).$$ But $\log(z_1z_2) = \log(z_1) + \log(z_2)$ if $z_1,z_2\neq 0$.
+\end{note}
+
+\begin{example}
+  Let $z_1=z_2 = -1+i$. % figure
+
+  Then $\abs{z_1} = \abs{z_2} = \sqrt(2)$ and $\Arg(z_1) = \Arg(z_2) = \frac{3\pi}{4}\in\left(-\pi,\pi\right]$.
+  
+  Also $z_1z_2 = \br{-1+i}^2 = 1-2i+i^2 = -2i$, so $\abs{z_1z_2} = \abs{-2i} = 2$, and $\Arg(z_1z_2) = \Arg(-2i) = \frac{-\pi}{2}$.
+
+  Thus $\highlight[g]{\Log(z_1z_2)} = \log(\abs{z_1z_2}) + i\Arg(z_1z_2) = \highlight{\log(2) + i\br{\frac{-\pi}{2}}}$.
+
+  However, $\highlight[g]{\Log(z_1) + \Log(z_2)} = 2\Log(z_1) = 2\br{\log(\abs{z_1}) + i\Arg(z_1)} = 2\br{\log(\sqrt(2)) + i\br{\frac{3\pi}{4}}} = \highlight{\log(2) + i\br{\frac{3\pi}{2}}}$.
+
+  So for $z_1=z_2=-1+i$, $\Log(z_1z_2)\neq \Log(z_1) + \Log(z_2)$.
+\end{example}
+
+\subsection{Trigonometric Functions} Let $\theta\in\mathbb{R}$. Then 
+\begin{align*} 
+  e^{i\theta} &= \cos(\theta) + i\sin(\theta) \\ 
+  e^{-i\theta} &= \cos(-\theta) + i\sin(-\theta) = \cos(\theta) - i\sin(\theta) \\
+  2\cos(\theta) &= e^{i\theta} + e^{-i\theta} \\
+  2i\sin(\theta) &= e^{i\theta} - e^{-i\theta}
+\end{align*}
+
+We find that $$\highlight[g]{\cos(\theta) = \frac{1}{2}\br{e^{i\theta} + e^{-i\theta}}}$$ and $$\highlight[g]{\sin(\theta) = \frac{1}{2i}\br{e^{i\theta} - e^{-i\theta}}}$$
+
+\begin{definition}
+  Let $z\in\mathbb{C}$. We define 
+  $$\cos(\theta) \coloneqq \frac{1}{2}\br{e^{i\theta} + e^{-i\theta}}$$ and $$\sin(\theta) \coloneqq \frac{1}{2i}\br{e^{i\theta} - e^{-i\theta}}.$$
+\end{definition}
+
+\subsection*{Properties}\begin{enumerate}
+  \item $\sin(z)$ and $\cos(z)$ are entire functions.
+  \item $\dv{z}\sin(z) = \cos(z)$ and $\dv{z}\cos(z) = -\sin(z)$.
+  \item $\sin(z_1+z_2) = \sin(z_1)\cos(z_2) + \cos(z_1)\sin(z_2)$.
+  \item $\cos(z_1+z_2) = \cos(z_1)\cos(z_2) - \sin(z_1)\sin(z_2)$.
+  \item $\sin^2(z) + \cos^2(z) = 1$.
+  \item $\sin(z+\frac{\pi}{2}) = \cos(z)$.
+  \item $\sin(z+\pi) = -\sin(z)$.
+  \item $\cos(z+\pi) = -\cos(z)$.
+  \item $\sin(z+2\pi) = \sin(z)$ and $\cos(z+2\pi) = \cos(z)$
+  \item $\abs{\sin(z)}^2 = $
+  \item $\abs{\cos(z)}^2 = $
+\end{enumerate}
+
+\begin{proof}
+  (1.) Since $\exp(z)$ is entire, so is $\exp(iz)$ and $\exp(-iz)$. Hence \begin{align*}
+    \sin(z) &= \frac{1}{2i}\br{\exp(iz)-\exp(-iz)} \\
+    \cos(z) &= \frac{1}{2}\br{\exp(iz)+\exp(-iz)}
+  \end{align*} are entire. 
+
+  (2.) \begin{align*}
+    \sin(z) &= \frac{1}{2i}\br{\exp(iz) - \exp(-iz)} \\
+    \dv{z}\sin(z) &= \frac{1}{2i}\br{i\exp(iz)-\br{-i\exp(-iz)}} \\
+    &= \frac{i}{2i}\br{\exp(iz)+\exp(-iz)} \\
+    &= \frac{1}{2}\br{\exp(iz)+\exp(-iz)} \\
+    &= \cos(z)
+  \end{align*}
+
+  \begin{exercise}
+    Show $\dv{z}\cos(z) = -\sin(z)$.
+  \end{exercise}
+  
+  (3.) $\sin(z_1+z_2) = \frac{1}{2i}\br{\exp(i(z_1+z_2)) - \exp(-i(z_1+z_2))}$ But $\sin(z_1)\cos(z_2) + \cos(z_1)\sin(z_2) =$ 
+  
+  $\frac{1}{4i}\br{\exp(iz_1)-\exp(-iz_2)}\br{\exp(iz_2)+\exp(-iz_1)}$... fix and simplify
+
+  (5.) 
+\end{proof}
+
+\subsection{Review of Hyperbolic Functions} Let $x\in\mathbb{R}$. Define $$\sinh(x) \coloneqq \frac{1}{2}\br{e^x-e^{-x}}$$ and $$\cosh(x) \coloneqq \frac{1}{2}\br{e^{x}+e^{-x}}.$$ Then $$\dv{x}\sinh(x) = \frac{1}{2}\br{e^{x}+e^{-x}} = \cosh(x)$$ and $$\dv{x}\cosh(x) = \frac{1}{2}\br{e^x-e^{-x}} = \sinh(x)$$
+
+% graphs
+
+See that $\sinh^2(x) = \br{\frac{1}{2}\br{e^x-e^{-x}}}^2 = \frac{1}{4}\br{e^{2x}-2+e^{2x}}$ and $\cosh^2(x) = \br{\frac{1}{2}\br{e^{x}+e^{-x}}}^2 = $. Then $\cosh^2(x)-\sinh^2(x) = stuff = 1$.
+
+% hyperbola diagram
+
+some more stuff\dots
+
+$$\overline{\exp(z)} = \exp(\overline{z})$$
+
+\end{document}

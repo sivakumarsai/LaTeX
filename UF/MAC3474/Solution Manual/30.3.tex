@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{30.3 Exercises}
+
+\subsection{30.3.1}
+
+We have a continuous function over a rectangular region so we may apply Fubini's theorem directly. The integral becomes $$\int_0^2\int_0^1(x+y)dxdy$$ which we can integrate iteratively to find $$\int_0^2\int_0^1(x+y)dxdy \to \int_0^2 \left(\frac{x^2}{2}+xy\right)\bigg|_{x=0}^{x=1}dy \to \int_0^2 \left(\frac{1}{2}+y\right)dy$$
+$$\int_0^2 \left(\frac{1}{2}+y\right)dy \to \left(\frac{y}{2} + \frac{y^2}{2}\right)\bigg|_0^2 = 3$$
+
+\subsection{30.3.4}
+
+We have a continuous function over a rectangular region so we may apply Fubini's theorem directly. The integral becomes $$\int_0^2\int_0^1 (1+3x^2y)dxdy$$ which we can integrate iteratively to find $$\int_0^2\int_0^1 (1+3x^2y)dxdy \to \int_0^2 (x+x^3y)\bigg|_{x=0}^{x=1}dy \to \int_0^2(1+y)dy = 4$$
+
+\subsection{30.3.5}
+
+Integrate with respect to $y$ first and then $x$ to make it easier:
+$$\int_0^1\int_0^1 xe^{yx}dydx \to \int_0^1 (e^x-1)dx = e-2$$
+
+\subsection{30.3.7}
+
+We have a continuous function over a rectangular region so we may apply Fubini's theorem directly. The integral becomes $$\int_0^1\int_0^1 \frac{1+2x}{1+y^2}dxdy$$ which we can integrate iteratively to find $$\int_0^1\int_0^1 \frac{1+2x}{1+y^2}dydx \to \int_0^1(1+2x)\arctan(y)\bigg|_{y=0}^{y=1}dx \to \frac{\pi}{4}\int_0^1 (1+2x)dx$$
+$$= \frac{\pi}{2}$$
+
+\subsection{30.3.10}
+
+We have a continuous function over a rectangular region so we may apply Fubini's theorem directly. The integral becomes $$\int_0^2\int_0^1 e^x\sqrt{y+e^x}dxdy$$ which we can integrate iteratively to find $$\int_0^2\int_0^1 e^x\sqrt{y+e^x}dxdy \to \int_0^2 \frac{2}{3}(y+e^x)^{\frac{3}{2}}\bigg|_{x=0}^{x=1}dy \to \frac{2}{3}\int_0^2 ((y+e)^{\frac{3}{2}} - (y+1)^{\frac{3}{2}})dy$$
+$$\frac{2}{3}\int_0^2 ((y+e)^{\frac{3}{2}} - (y+1)^{\frac{3}{2}})dy = \frac{4}{15} (1 - 9 \sqrt{3} - e^{\frac{5}{2}} + (2 + e)^{\frac{5}{2}})$$
+
+\subsection{30.3.13}
+
+We have a continuous function over a rectangular region so we may apply Fubini's theorem directly. The integral becomes $$\int_1^2\int_0^1 \frac{1}{2x+y}dxdy$$ which we can integrate iteratively to find $$\int_1^2\int_0^1 \frac{1}{2x+y}dxdy\to \frac{1}{2}\int_1^2 \ln(2x+y)\bigg|_{x=0}^{x=1}dy \to \frac{1}{2}\int_1^2 (\ln(2+y) - \ln(y))dy$$
+(use integration by parts)
+$$\frac{1}{2}\int_1^2 (\ln(2+y) - \ln(y))dy = \left(-\frac{1}{2} y \ln(y) + \ln(2 + y) + \frac{1}{2} y \ln(2 + y)\right)\bigg|_1^2$$
+$$ = \frac{1}{2}\ln\left(\frac{64}{27}\right)$$
+
+\subsection{30.3.16}
+
+The volume of such a solid is given by the double integral $$\int_0^2\int_{-1}^1 (1+3x^2+6y^2)dxdy$$ which taken iteratively we find $$\int_0^2\int_{-1}^1 (1+3x^2+6y^2)dxdy \to \int_0^2 (4+12y^2) dy = 40$$
+
+\subsection{30.3.19}
+
+The surface $z=xy$ is symmetric across the lines $y=\pm x$, but more importantly the parts of the surface in each quadrant are really just reflected versions of the surface in other quadrants. For example, the portion of the surface in the first quadrant is really just a vertically flipped (negated) version of the part of the surface in the second or fourth quadrant. So the signed volume captured by a double integral over any square $[-a,a]\times[-a,a]$ is going to be by symmetry 0.
+
+We are asked to find the value of the double integral on the part of the square $[-1,1]\times[-1,1]$ that is not in the first quadrant, so using what we know of the symmetry of the integrand, it is sufficient to find the double integral over the square $[-1,0]\times[0,1]$ (alternatively choose the similar square in the fourth quadrant). The value of such an integral is given by the double integral $$\int_{-1}^0\int_0^1(xy)dydx = -\frac{1}{4}$$
+
+\subsection{30.3.22}
+
+First we will change coordinates by applying the transformation at every point: $(x,y) \to (x+a, y+b)$. Then the problem becomes finding the average squared distance from the point $(a,b)$ to every point on a disk of radius $R$ centered at the new origin. We will then change some coordinates into polar coordinates. The points $(x,y)$ on the disk centered at the origin are represented alternatively as $(r\cos(\theta), r\sin(\theta))$. It is clear from construction that $ 0\leq r\leq R$ and $0\leq \theta < 2\pi $.
+
+The squared distance between points on the disk and $(a,b)$ is $(r\cos(\theta)-a)^2+(r\sin(\theta)-b)^2$. Taking the sum over all points on the disk by varying $r$ and $\theta$ the total sum of the squared distance (recall $dA = r drd\theta$) is $$\int_0^{2\pi}\int_0^R\left((r\cos(\theta)-a)^2+(r\sin(\theta)-b)^2\right) r drd\theta$$ and the average value is that integral divided by the area of the disk:
+$$\frac{1}{\pi R^2}\int_0^{2\pi}\int_0^R\left((r\cos(\theta)-a)^2+(r\sin(\theta)-b)^2\right) r drd\theta$$
+$$=\frac{1}{2} (2 a^2 + 2 b^2 + R^2)$$
+
+\end{document}

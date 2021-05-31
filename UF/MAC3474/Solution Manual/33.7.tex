@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{33.7 Exercises}
+
+\subsection{33.7.1}
+
+\subsection{33.7.4}
+
+\subsection{33.7.7}
+
+We are asked to transform from the $(u,v)$ coordinates into the $(x,y)$ coordinates. Since the region $D^{\prime}$ is a square, we may represent the boundary of the square with four line segments lying on these four lines: $u = 0$, $u = 1$, $v = 0$, and $v = 1$.
+
+Using the equations given in the problem we may solve for the boundary of $D$ in the $(x,y)$ coordinate system. It is immediate that $x = 0$ and $x = 1$ are lines that form part of the new boundary.
+
+Since $y$ depends on both $u$ and $v$, we may want to hold one of those variables constant and observe what happens if we vary the other (while still maintaining the bounds given by $D^{\prime}$). Trying with $v = 0$, it is apparent that $y = 0$. That is fine. Then if we try with $v = 1$, we can still vary $u$. According to the definition of $D^{\prime}$, $u$ varies from $0$ to $1$, exactly as $x$ does (as per $x=u$). Therefore we may give $y = 1-x^2$.
+
+Hence $D$ is the area bounded by the line $x=0$, $y=0$, and $y=1-x^2$. (the area under the parabola in the first quadrant)
+
+\subsection{33.7.11}
+
+We first find equations of lines passing through those four coordinate points. They are given by $y=x+4$, $y=x-4$, $y=-\frac{1}{3}x+\frac{8}{3}$, and $y=-\frac{1}{3}x$. We may convert each of these lines to their corresponding lines in the $(u,v)$ coordinate system using the transformation given in the problem. Simply substitute the given equations for $y$ and $x$ into each of the lines and resolve into coordinate curves.
+
+We find the following curves:
+$u=\pm 4$, $v=0$, and $v=8$. This is a rectangular region so it is convenient in the integral. The Jacobian of transformation for this change of variables is given by the determinant: $$\bigg| \det \begin{pmatrix}
+    -\frac{3}{4} && \frac{1}{4} \\
+    \frac{1}{4} && \frac{1}{4}
+\end{pmatrix}\bigg| = \frac{1}{4}$$
+
+The integral becomes $$\int_{0}^{8}\int_{-4}^{4} \left(8\left(\frac{v-3u}{4}\right) + 4\left(\frac{u+v}{4}\right)\right)\left(\frac{1}{4}\right)dudv \to 6\int_0^8 v dv = 192$$
+
+\subsection{33.7.13}
+
+We first want to find the new bounds in the $(u,v)$ coordinate system. Observe that $$1 = x^2-y^2 = (u\cosh(v))^2-(u\sinh(v))^2 = u^2$$
+$$4 = x^2-y^2 = (u\cosh(v))^2-(u\sinh(v))^2 = u^2$$ and since we are in the first quadrant we will also take $u$ to be positive, so $1\leq u \leq 2$. Then for $v$ we use the other two equations given earlier: $$x = 2y \to u\cosh(v) = 2u\sinh(v) \to \frac{1}{2} = \tanh(v) \to v = \tanh^{-1}\left(\frac{1}{2}\right)$$
+$$x = 4y \to u\cosh(v) = 4u\sinh(v) \to \frac{1}{4} = \tanh(v) \to v = \tanh^{-1}\left(\frac{1}{4}\right)$$
+
+Using the known equation for the inverse hyperbolic tangent $$\tanh^{-1}(z) = \frac{1}{2}\ln\left(\frac{1+z}{1-z}\right)$$ deduce that $\frac{1}{2}\ln\left(\frac{5}{3}\right)\leq v \leq \frac{1}{2}\ln(3)$. This is a square region in the new coordinate system, which is convenient. Compute the Jacobian matrix for the coordinate transformation given in the problem:
+$$J = \bigg|\det \begin{pmatrix}
+    x^{\prime}_u && y^{\prime}_u \\
+    x^{\prime}_v && y^{\prime}_v
+\end{pmatrix}\bigg| = \bigg|\det \begin{pmatrix}
+    \cosh(v) && \sinh(v) \\
+    u\sinh(v) && u\cosh(v)
+\end{pmatrix}\bigg|$$
+
+Find that $J = |u(\cosh^2(v) - \sinh^2(v))| = u$. Now we may set up the new integral and solve:
+$$\int_{\frac{1}{2}\ln\left(\frac{5}{3}\right)}^{\frac{1}{2}\ln(3)}\int_{1}^{2} (u^2\cosh^2(v) - u^2\cosh^2(v))^{-\frac{1}{2}} ududv = \int_{\frac{1}{2}\ln\left(\frac{5}{3}\right)}^{\frac{1}{2}\ln(3)}\int_{1}^{2} (1) dudv$$
+$$\int_{\frac{1}{2}\ln\left(\frac{5}{3}\right)}^{\frac{1}{2}\ln(3)} (1) dv = \ln(3) - \frac{1}{2}\ln(5)$$
+
+\subsection{33.7.14}
+
+From the original bounds we can rewrite them as $\frac{x}{y}=1$, $\frac{x}{y}=\frac{1}{2}$, $x+y=1$, and $x+y=2$. Then knowing that $u=\frac{x}{y}$ and $v=x+y$, it is apparent that $\frac{1}{2}\leq u \leq 1$ and $1\leq v \leq 2$. The Jacobian of transformation is found by observing the following:
+$$dudv = J dxdy \to \frac{1}{J}dudv = dxdy$$
+$$J = \bigg| \det \begin{pmatrix}
+   u^{\prime}_x && v^{\prime}_x \\
+   u^{\prime}_y && v^{\prime}_y
+\end{pmatrix} \bigg| = \bigg| \det \begin{pmatrix}
+    \frac{1}{y} && 1 \\
+    \frac{-x}{y^2} && 1
+ \end{pmatrix} \bigg| = \frac{x+y}{y^2}$$
+
+ Remembering to take the reciprocal of $J$, the integral becomes $$\iint e^{\frac{x}{y}}\frac{(x+y)^3}{y^2}\left(\frac{y^2}{x+y}\right)dudv \to \int_1^2\int_{\frac{1}{2}}^1 e^u v^2 dudv \to \left(e^u|_1^2\right)\left(\frac{v^3}{3}\bigg|_1^2\right) $$
+ $$= \frac{7}{3}(e-\sqrt{e})$$
+
+\subsection{33.7.19}
+
+The lazy way out is sometimes the easiest way out. Give $u = xy$ and $v = xy^2$. Then it is evident that $1\leq u \leq 2$ and $1\leq v \leq 2$ from the definitions of the bounding curves in the $(x,y)$ coordinate system. Then to compute the Jacobian we may want to compute it for the reverse transformation, that is to compute $J$ for $$dudv = Jdxdy$$
+
+So compute partial derivatives of $u$ and $v$ and compute the following determinant: $$J = \bigg|\det \begin{pmatrix}
+    y && 2xy \\
+    x && x^2
+\end{pmatrix}\bigg| = yx^2$$
+
+So $dudv = (yx^2)dxdy$, which is already in the integral. Conveniently the integral becomes $$\int_1^2\int_1^2 dudv = 1$$
+
+\subsection{33.7.21}
+
+Give $u=x+y$ and $v=y-x^3$, so that $1\leq u \leq 2$ and $0 \leq v \leq 1$. Computing the Jacobian $J$ that satisfies $\frac{1}{J}dudv = dydx$ by taking the partial derivatives of $u$ and $v$, we find $$J = \bigg| \det \begin{pmatrix}
+    1 && -3x^2 \\
+    1 && 1
+\end{pmatrix} \bigg| = 1+3x^2$$
+
+This makes the integral convenient since it makes the new integrand $1$. The double integral becomes (by geometry) $$\int_{0}^{1}\int_{1}^{2} dudv = 1$$
+
+\subsection{33.7.22}
+
+With some rearranging of the parabola equations it becomes apparent that we may give $u = xy$ and $v = y-x^2$ to find that $-1\leq u \leq 1$ and $1 \leq v \leq 2$. Then we may compute the Jacobian where $$dudv = Jdxdy$$  This is given by the following determinant: $$J = \bigg|\det \begin{pmatrix}
+    u^{\prime}_x && v^{\prime}_x \\
+    u^{\prime}_y && v^{\prime}_y
+\end{pmatrix} \bigg| = \bigg|\det \begin{pmatrix}
+    y && -2x \\
+    x && 1
+\end{pmatrix} \bigg| = y+2x^2$$
+
+So $dudv = (y+2x^2)dxdy$, which is conveniently already in the integral. The integral then becomes $$\int_1^2\int_{-1}^1 dudv = 2$$
+
+\subsection{33.7.25}
+
+\subsection{33.7.28}
+
+\subsection{33.7.31}
+
+\subsection{33.7.34}
+
+\subsection{33.7.37}
+
+\subsection{33.7.40}
+
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS4105 Dr. Zhang}
+\fancyhead[C]{HW6}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\{#1\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+Page 54: 7, 9, 12, 13, 20
+
+Page 54: \\
+
+7. A basis for $\mathbb{R}^3$ will have exactly $3$ vectors. To construct this basis we may pick one of the vectors, say $u_1 = (2,-3,1)$. Then we simply need to pick another vector not in the spanning set of $u_1$, that is a vector not in $\cbr{cu_1 : c \in \mathbb{R}}$. By inspection we can find that $u_2 = (1,4,-2)$ is a vector that satisfies this criteria, since $\frac{1}{2}u_1 \neq u_2$. Then all that remains is to find one more vector that is not in $\Span\br{\cbr{u_1,u_2}}$.
+
+The spanning set for $\Span\br{\cbr{u_1,u_2}}$ is $\cbr{(2a+b, -3a + 4b, a-2b) : a,b\in\mathbb{R}}$. We can exhaust through the other vectors and find that $u_5$ is not in the spanning set. The vector $u_5$ cannot be expressed as a linear combination of $u_1,u_2$, as demonstrated by the result of row reducing the following linear system:
+\begin{equation*}
+    \sysdelim..\systeme{
+    2a + b = -3,
+    -3a + 4b = -5,
+    a -2b = 8  
+    }
+    \to
+    \sysdelim..\systeme{
+    a + 0b = 0,
+    0a + b = 0,
+    0a + 0b = 1  
+    }
+\end{equation*}
+
+The system is unsolvable, so we may take $u_5$ and include it within the set that should now be our basis: $\boxed{\cbr{u_1,u_2,u_5}}$.
+
+9. Because $\cbr{u_1,u_2,u_3,u_4}$ form a basis for $\mathbb{F}^4$, then if we can find a representation of $(a_1,a_2,a_3,a_4)$ as a linear combination of $u_1,u_2,u_3,u_4$, then it will be unique due to the linear independence of the basis.
+
+All that remains is to find a solution to the linear system of equations $c_1u_1 + c_2u_2 + c_3u_3 + c_4u_4 = (a_1,a_2,a_3,a_4)$, for $c_i \in \mathbb{F}$, represented like so:
+\begin{equation*}
+    \sysdelim..\systeme{
+    c_1+0c_2+0c_3+0c_4 = a_1,
+    c_1+c_2+0c_3+0c_4 = a_2,
+    c_1+c_2+c_3+0c_4 = a_3,
+    c_1+c_2+c_3+c_4 = a_4
+    }
+\end{equation*}
+
+Since the system is already expressed in some kind of lower triangular reduced form we can immediately deduce the solutions are:
+\begin{align*}
+    c_1 &= a_1 \\
+    c_2 &= a_2 - a_1 \\
+    c_3 &= a_3 - a_2 \\
+    c_4 &= a_4 - a_3 \\
+\end{align*}
+
+Thus $\br{a_1}u_1 + \br{a_2 - a_1}u_2 + \br{a_3 - a_2}u_3 + \br{a_4 - a_3}u_4$ is the unique linear combination representing $(a_1,a_2,a_3,a_4)$.
+
+12. Prove that if $\cbr{u,v,w}$ is a basis for $\mathsf{V}$, then $\cbr{u+v+w,v+w,w}$ is also a basis for $\mathsf{V}$.
+
+\begin{proof}
+    Suppose $\cbr{u,v,w}$ is a basis for $\mathsf{V}$. Then $\cbr{u,v,w}$ is a linearly independent generator of $\mathsf{V}$. So then the goal is to show that $\cbr{u+v+w,v+w,w}$ is also a linearly independent generator of $\mathsf{V}$.
+
+    \textbf{Linear independence of $\cbr{u+v+w,v+w,w}$:} Suppose by way of contradiction that $\cbr{u+v+w,v+w,w}$ is not linearly independent, that is, that there exist scalars $a,b,c\in\mathbb{F}$, not all zero, such that $a\br{u+v+w} + b\br{v+w} + c\br{w} = 0$. With some simplification we may rewrite this combination as $\br{a}u + \br{a+b}v + \br{a+b+c}w = 0$. Then since not all of $a,b,c$ were zero, this implies that at least one of $a,a+b,a+b+c$ is not zero, which means that there is some nontrivial linear combination of $u,v,w$ that produced the zero vector. This is in contradiction with the assumption that $\cbr{u,v,w}$ is linearly independent, so we must have that $\cbr{u+v+w,v+w,w}$ is linearly independent.
+
+    \textbf{Showing $\Span\br{\cbr{u+v+w,v+w,w}} = \mathsf{V}$:} Take some arbitrary vector $v\in\mathsf{V}$. We know that since $\cbr{u,v,w}$ is a basis for $\mathsf{V}$, there exist scalars $a,b,c\in\mathbb{F}$ such that $v = au+bv+cw$. 
+    
+    Notice that $u = \br{u+v+w} - \br{v+w}$ and $v = \br{v+w}-\br{w}$. Then we may rewrite the linear combination as follows: $v = a\br{\br{u+v+w} - \br{v+w}} + b\br{\br{v+w}-\br{w}} + c\br{w} = a\br{u+v+w} + \br{b-a}\br{v+w} + \br{c-b}\br{w}$. We can deduce then that this vector is really an element of the spanning set for $\cbr{u+v+w,v+w,w}$. So $\mathsf{V}\subseteq \Span\br{\cbr{u+v+w,v+w,w}}$.
+
+    Similarly, take any vector in $\Span\br{\cbr{u+v+w,v+w,w}}$, say $v = a\br{u+v+w} + b\br{v+w} + c\br{w}$ for scalars $a,b,c\in\mathbb{F}$. Then we may rewrite the combination as $\br{a}u+\br{a+b}v+\br{a+b+c}w$. Since $\cbr{u,v,w}$ is a basis for $\mathsf{V}$, then $\Span\br{\cbr{u,v,w}} = \mathsf{V}$. Then $\br{a}u+\br{a+b}v+\br{a+b+c}w \in \Span\br{\cbr{u,v,w}}$, so really $\Span\br{\cbr{u+v+w,v+w,w}} \subseteq \Span\br{\cbr{u,v,w}} \implies \Span\br{\cbr{u+v+w,v+w,w}} \subseteq \mathsf{V}$.
+
+    Hence $\Span\br{\cbr{u+v+w,v+w,w}} = \mathsf{V}$.
+
+    Therefore $\cbr{u+v+w,v+w,w}$ is a basis for $\mathsf{V}$.
+\end{proof}
+
+13. We are tasked with finding the set of solutions expressed in the form $\br{x_1,x_2,x_3}$, and to find a basis for the subspace of $\mathbb{R}^3$ that the set of solutions forms.
+
+First solve the system of linear equations like so:
+\begin{equation*}
+    \sysdelim..\systeme{
+    x_1-2x_2+x_3 = 0,
+    2x_1-3x_2+x_3 = 0
+    }\to
+    \sysdelim..\systeme{
+    1x_1+0x_2-1x_3 = 0,
+    0x_1+1x_2-1x_3 = 0
+    }
+\end{equation*}
+
+Deduce that $x_1=x_3$ and $x_2=x_3$. Then all solutions of the form $(x_1,x_2,x_3)$ are really just $(x_3,x_3,x_3)$. This solution set is actually just the span of $\br{1,1,1}$, since $(x_3,x_3,x_3) = x_3\br{1,1,1}$, and $x_3$ can take on any real value. So a basis for the subspace of $\mathbb{R}^3$ that is the solution set for this system of linear equations is $\cbr{\br{1,1,1}}$.
+
+20. Let $\mathsf{V}$ be a vector space having dimension $n$, and let $S$ be a subset of $V$ that generates $\mathsf{V}$.
+
+(a). Prove that there is a subset of $S$ that is a basis for $\mathsf{V}$.
+\begin{proof}
+    We can construct a subset of $S$ by the following algorithm: Take one nonzero vector from $S$, and put it in a set, call it $B$. Then $B$ contains one nonzero vector, and as deduced from earlier, $B$ will be linearly independent. Then check to see if $\Span\br{B} = \mathsf{V}$. If this is true, then we can halt and nothing more needs to be done, as this subset of $S$ generates $\mathsf{V}$ and is linearly independent. If this is not true, we find another vector in $S$ that is not contained within $\Span\br{B}$ (to ensure linear independence of $B$), and add it to $B$. Then again check to see if $B$ generates $\mathsf{V}$, and again stop if it does or add another vector from $S$ not in $\Span\br{B}$ to $B$. Keep checking and repeating (if needed) to see if this linearly independent set generates $\mathsf{V}$. This process terminates, because if there are $n$ linearly independent vectors in $B$, a subset of $S$ and therefore a subset of $\mathsf{V}$, then $B$ is a basis for $\mathsf{V}$. Thus we have constructed a subset of $S$ that is a basis for $\mathsf{V}$.
+\end{proof}
+
+(b). Prove that $S$ contains at least $n$ vectors.
+\begin{proof}
+    From the proof of (a), we know that the set $B$, which is a basis for $\mathsf{V}$, is a subset of $S$ and contains exactly $n$ vectors by construction. Therefore $S$ contains at least $n$ vectors.
+\end{proof}
+
+\end{document}

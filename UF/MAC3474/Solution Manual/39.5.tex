@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solution Manual}
+\author{N. Kapsos, M. Schrank, S. Sivakumar}
+\date{}
+
+\begin{document}
+
+\maketitle
+\setcounter{secnumdepth}{0}
+
+\section{39.5 Exercises}
+
+\subsection{39.5.1}
+
+Give the equation of this plane as $abz+acy+bcx=abc$, or otherwise $z=c-\frac{c}{b}y-\frac{c}{a}x$. Then find the surface area element $dS$ by finding $$dS = \sqrt{1+\left(-\frac{c}{a}\right)^2+\left(-\frac{c}{b}\right)^2}dA = \sqrt{1+\frac{c^2}{a^2}+\frac{c^2}{b^2}}dA$$
+where $dA$ is the rectangular area element within the triangle whose vertices are $(0,0)$, $(0,b)$, and $(a,0)$. We can give the integration region here by bounding $x$ from $0$ to $a$ and giving the curves in $y$ to be from $0$ to $b-\frac{b}{a}x$. The double integral becomes $$\int_0^a\int_0^{b-\frac{b}{a}x}\sqrt{1+\frac{c^2}{a^2}+\frac{c^2}{b^2}} dydx \to \int_0^a (b-\frac{b}{a}x)\sqrt{1+\frac{c^2}{a^2}+\frac{c^2}{b^2}}dx$$
+$$ = \frac{1}{2}\sqrt{a^2b^2+b^2c^2+a^2c^2}$$
+
+\subsection{39.5.4}
+
+We are already given the equation for the surface. To find the area of integration it is sufficient to equate the two values of $z$ given for the planes with the paraboloid expression and find that the region is an annulus of inner radius $1$ and outer radius $3$, where $\theta$ takes on the natural range (we will be using polar coordinates).
+
+To find the surface area elements $dS$ find $$dS = \sqrt{1+(-2x)^2+(2y)^2}dA = \sqrt{1+4r^2}dA$$
+
+Then the double integral is given in the polar form:
+$$\int_0^{2\pi}\int_1^3 \sqrt{1-4r^2}rdrd\theta \to \frac{\pi}{4}\int_5^{37} \sqrt{u}du = \frac{\pi}{6}\left(37^{\frac{3}{2}}-5^{\frac{3}{2}}\right)$$
+
+\subsection{39.5.7}
+
+Like before to find the region of integration simply equate the given values of $z$ for the planes to the cone expression to find that the region of integration is the annulus of inner radius $1$ and outer radius $2$. It is also seen that $\theta$ ranges from $0$ to $2\pi$. We will be using polar coordinates to evaluate this surface integral.
+
+Then the surface area element $dS$ is found as:
+$$dS = \sqrt{1+\left(\frac{x}{\sqrt{x^2+y^2}}\right)^2+\left(\frac{y}{\sqrt{x^2+y^2}}\right)^2}dA$$
+$$ = \sqrt{1+\left(\frac{r\cos(\theta)}{r}\right)^2+\left(\frac{r\sin(\theta)}{r}\right)^2}dA= \sqrt{2}dA$$
+
+After writing everything in polar coordinates, noting that $z=r$ due to $S$ being a part of a cone, the double integral becomes:
+$$\sqrt{2}\int_0^{2\pi}\int_1^2 (r)r^4\cos^2(\theta)drd\theta \to \frac{2}{\sqrt{2}}\left(\int_0^{2\pi}\cos^2(\theta)d\theta\right)\left(\int_1^2 r^5dr\right)$$
+$$= \frac{21\pi}{\sqrt{2}}$$
+
+\subsection{39.5.10}
+
+Find the surface area element $dS$ as:
+$$dS = \sqrt{1+4(x^2+y^2)dA}$$ where $dA$ is an area element over the portion of the unit disk in the first octant (since the paraboloid forms the unit circle as the boundary of the disk at $z=0$). Then rewrite the double integral as $$\iint_S (1-x^2-y^2)(\sin(x^2)-\sin(y^2))\sqrt{1-4(x^2+y^2)}dA$$
+
+Notice that the integral exhibits skew symmetry as the integrand switches sign completely (due to the trigonometric terms) if we apply the transformation $(x,y)\to (y,x)$, otherwise a reflection over $x=y$. Note that the region of integration is symmetric across this line as well and hence the integral vanishes.
+
+\end{document}
