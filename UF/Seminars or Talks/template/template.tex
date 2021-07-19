@@ -1,0 +1,104 @@
+\documentclass[mathserif]{beamer}
+\usepackage[utf8]{inputenc}
+
+% packages
+\usepackage{physics}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{mathtools}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the title page
+\title[title] %optional
+{title}
+
+\subtitle{subtitle}
+
+\author[Sai Sivakumar] % (optional)
+{Sai Sivakumar}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+%This block of code is for the table of contents after the title page
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{section name}
+
+\begin{frame}
+  \frametitle{frametitle}
+  content
+\end{frame}
+
+\begin{frame}
+  \frametitle{new frame}
+
+  \begin{columns}
+
+    \column{0.5\textwidth}
+    column
+    
+    \column{0.5\textwidth}
+    right column
+  \end{columns}
+\end{frame}
+
+\section{another section}
+
+\begin{frame}
+  \frametitle{last frame}
+\end{frame}
+
+%\end{document} <prevent compiling>
