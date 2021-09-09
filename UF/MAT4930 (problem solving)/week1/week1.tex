@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Parity Problems}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{1. and 2.} (they are paired together) Let $a,b,c$ be odd integers. Show that $ax^2+bx+c$ has no rational root. \begin{proof}
+    Let $a,b,c$ be odd integers as given. We will prove the contrapositive is true, so we suppose $ax^2+bx+c$ has a rational root $\frac{p}{q}$ where without loss of generality, $\gcd(p,q) = 1$ (reduced fraction), for $p,q\in\mathbb{Z}$. We wish to show that at least one of $a,b,c$ must be even.
+    
+    We have that \[a\frac{p^2}{q^2} + b\frac{p}{q} + c = ap^2+bpq + cq^2 = 0.\] Observe that a sum of three numbers is zero if and only if all three numbers are even or if one is even and the other two are odd. Of the parities of $p$ and $q$, one case occurs when both parities are odd, and then the other case is when the parities are different (due to symmetry in $p$ and $q$ this is really just one case) Because $\gcd(p,q) = 1$, there are only two cases to consider.
+
+    Suppose $p$ and $q$ are both odd. Then in order for $ap^2+bpq + cq^2$ to vanish, \textit{all} of $a,b,c$ must be even since $p^2,pq,q^2$ are odd. Similarly, without loss of generality, let $p$ be odd and $q$ be even. Then $q^2$ is the only odd quantity of $p^2,pq,q^2$, which forces $c$ to be even.
+
+    Hence at least one of $a,b,c$ is even, and by the contrapositive, $ax^2+bx+c$ for odd integers $a,b,c$ has no rational root.
+\end{proof} Furthermore, let $f(x) = a_ns^x + \cdots + a_1x + a_0$ be a polynomial with integer coefficients. Assume that $a_0,a_n$, and $f(1)$ are all odd. Show that $f(x)$ has no rational root. \begin{proof}
+    Let $f$ be as given, with $a_0,a_1,f(1)$ odd. Then we will argue in a similar manner to the previous proof. Suppose by way of contradiction that $f$ has a rational root $\frac{p}{q}$ where without loss of generality, $\gcd(p,q) = 1$.
+
+    A sum of numbers is odd if and only if there are an odd number of odd terms. Since $f(1)$ is odd, and \[f(1) = a_n+\cdots +a_0,\] deduce that since $a_n,a_0$ are already odd, that a positive odd number of the terms $a_{n-1},\dots,a_1$ is odd. So in total there are an odd number of terms $a_i$ for $0 \leq i \leq n$, now including the two terms $a_n$ and $a_0$.
+
+    Then \[f\left(\frac{p}{q}\right) = a_n\frac{p^n}{q^n} + a_{n-1}\frac{p^{n-1}}{q^{n-1}} + \cdots + a_1\frac{p}{q} + a_0 = a_np^n + a_{n-1}p^{n-1}q + \cdots + a_1pq^{n-1} + a_0q^n = 0,\] which for brevity, write \[\sum_{i=0}^n a_np^{i}q^{n-i} = 0.\] For this sum to vanish, there must be an even number of odd terms. We have two cases as before, when $p$ and $q$ are both odd, or when $p$ and $q$ have opposite parities (the sum is still symmetric in $p$ and $q$ so we may take the one case where $p$ is even and $q$ is odd).
+
+    In the first case where $p$ and $q$ are both odd, all of the quantities $p^{i}q^{n-i}$ are odd, and since there are an odd number of $a_i$ which are odd, there are an odd number of odd terms in the sum \[\sum_{i=0}^n a_np^{i}q^{n-i},\] which makes vanishing impossible - our first contradiction in this case.
+
+    In the second case, let $p$ be even and $q$ be odd so that $p^{i}q^{n-i}$ is even for all $i\geq 1$. Hence the only odd term in the sum \[\sum_{i=0}^n a_np^{i}q^{n-i}\] is $a_0q^n$, which also makes vanishing impossible. Hence in both cases we have reached a contradiction and so there are no rational roots for $f$.
+\end{proof}
+
+\textbf{7.} Let $P_1,\dots,P_9$ be $9$ different lattice points in space. Show that we may choose two of these points so that the line segment joining them has a lattice point in its interior.
+
+\begin{proof}
+    Let $P_1,\dots,P_9$ be lattice points in $\mathbb{R}^3$, so that $P_i = (a_i,b_i,c_i)$ for $1\leq i \leq 9$, and $a_i,b_i,c_i\in\mathbb{Z}$. Then for a line segment joining $P_i$ and $P_j$ for $i\neq j$, the line does \textit{not} contain a lattice point in its interior if $\gcd(a_i-a_j, b_i-b_j, c_i-c_j) = 1$, so that we cannot ``factor out'' an integer from the vector connecting the points. This motivates dividing up the set of lattice points ($\mathbb{Z}^3$) into eight sections based on the parity of each component of the point. The following notation is not the cleanest but the meaning is clear. We may identify the points in these eight sections based on the parity of their components, which look like:\begin{align*}
+        (\text{even},\text{even},\text{even}) &~, (\text{even},\text{even},\text{odd}) \\
+        (\text{even},\text{odd},\text{odd}) &~, (\text{odd},\text{odd},\text{even}) \\
+        (\text{odd},\text{even},\text{odd}) &~, (\text{even},\text{odd},\text{even}) \\
+        (\text{odd},\text{even},\text{even}) &~, (\text{odd},\text{odd},\text{odd}) .\end{align*} If two points are in two different sections, then by the earlier criterion there will not be a lattice point in the line connecting the points because not all of the differences of the components will match in parity, which forces the greatest common divisor to be $1$.
+
+        Then because we have $9$ points, the pigeonhole principle tells us that at least one of these sections will have two points in them. This means that the differences in the components of these two points will all be even and so the greatest common divisor of these quantities will be at least $2$ - meaning a lattice point lies in the line connecting these two points.
+\end{proof}
+
+\end{document}

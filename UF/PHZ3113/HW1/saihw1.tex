@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item Consider a pendulum consisting of a massless chord of length $l$ and a bob of mass $m$, in a gravitational field with acceleration due to gravity $g$.\vspace*{5cm}
+    
+    From Newton's second law, the equation of motion derived from casting everything into angular quantities is given by the nonlinear second order ODE \[m\ddot{\theta} + m\frac{g}{l}\sin(\theta) = 0.\]
+    Then the Lagrangian for this system is given by $\mathcal{L} = KE-PE$, where \[\mathcal{L} = \frac{1}{2}ml^2\dot{\theta}^2 - mgl\br{1-\cos(\theta)}.\]
+
+    Of course, we compute \[\pdv{\mathcal{L}}{\theta} = -mgl\sin(\theta)\] and \[\dv{t} \pdv{\mathcal{L}}{\dot{\theta}} = ml^2\ddot{\theta}\] which from the Euler-Lagrange equations are equal. 
+    
+    So we obtain the same result after some algebra, that \[m\ddot{\theta} + m\frac{g}{l}\sin(\theta) = 0.\]
+    
+    The methods were different as using the Lagrangian required more calculus, but about the same amount of geometry I feel. The results of course are (and should be) the same.
+
+    \item Consider a particle of mass $m$ sliding down a frictionless inclined plane of angle $\theta$.\vspace*{5cm}
+    
+    Choose new coordinates $(u,v)$ (rotated coordinates) where $u$ is parallel to the inclined plane and $v$ is perpendicular to the inclined plane, and the direction that the mass is sliding in is the positive $u$ direction. Then by inspection, the equation of motion from Newton's second law is the second order linear ODE \[m\ddot{u} = mg\sin(\theta).\]
+
+    Then for the Lagrangian, we should find that \[\mathcal{L} = \frac{1}{2}m\dot{u}^2 + mgu\sin(\theta),\] and then \[\pdv{\mathcal{L}}{u} = mg\sin(\theta),\] and \[\dv{t} \pdv{\mathcal{L}}{\dot{u}} =m\ddot{u}.\]
+    Then equating these two results we find with some algebra the same equation of motion as above, \[m\ddot{u} = mg\sin(\theta).\] 
+
+    The similarities/differences here were the same as before with the first problem, since I chose a convenient coordinate system for this problem as well and had probably the same amount of trigonometry to consider in both ways of finding the equation of motion. The same coordinates were used in both methods which made it easier to see that both methods produced the same result.
+\end{enumerate}
+\end{document}

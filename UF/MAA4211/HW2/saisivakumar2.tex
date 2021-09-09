@@ -1,0 +1,44 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+
+\title{Homework 2}
+\author{Sai Sivakumar}
+
+\begin{document}
+\maketitle
+
+For $n\in \mathbb{N}$, let $a_n = \sum_{j = 1}^n j^{-3}$. Prove by induction that $a_n \leq 2-\frac{1}{n^2}$ for all $n\in\mathbb{N}$.
+
+\begin{proof}
+    We use mathematical induction. Let $a_n = \sum_{j = 1}^n j^{-3}$ for $n\in\mathbb{N}$ be as given. Observe for $n = 1$, \[1 = a_1 \leq 1 = 2-\frac{1}{1^2}.\] Then suppose $n\in \mathbb{N}$ and $a_n\leq 2-\frac{1}{n^2}$, that is, $2-a_n \geq \frac{1}{n^2}$. It follows that \begin{align*}
+        2-\frac{1}{(n+1)^2}-a_{n+1} &= \left( 2-a_n\right) -\frac{1}{(n+1)^2} - \frac{1}{(n+1)^3} \\
+        &\geq \frac{1}{n^2}-\frac{1}{(n+1)^2} - \frac{1}{(n+1)^3} \\
+        &= \frac{1}{n^2} - \frac{n+2}{(n+1)^3} \\
+        &= \frac{(n+1)^3 - n^2(n+2)}{n^2(n+1)^3} \\
+        &= \frac{n^2 + 3n+1}{n^2(n+1)^3},
+    \end{align*} where we used the inductive hypothesis in writing the inequality. Since $n\geq 1$ ($n\in\mathbb{N}$), \[\frac{n^2 + 3n+1}{n^2(n+1)^3}\geq 0,\] which implies that \[2-\frac{1}{(n+1)^2}-a_{n+1} \geq 0.\] This is equivalent to writing \[a_{n+1}\leq 2-\frac{1}{(n+1)^2},\] and so by induction we have that $a_n\leq 2-\frac{1}{n^2}$ for all $n\in\mathbb{N}$.
+\end{proof}
+
+\end{document}

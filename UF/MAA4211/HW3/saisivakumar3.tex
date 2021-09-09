@@ -1,0 +1,82 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+
+\title{Homework 3}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\begin{document}
+\maketitle
+
+As a suggested problem, prove the following proposition.
+
+\begin{proposition}
+ Suppose $X\subseteq Y\subseteq \mathbb{R}.$ If $X$ is not empty and $Y$ is bounded
+ above, then $X$ and $Y$ both have suprema and
+\[
+ \sup(X)\le \sup(Y).
+\]
+\end{proposition}
+
+
+\bigskip
+
+
+Let $A_1,A_2,\dots$ be a collection of subsets of $\mathbb{R}$  such that $A_n$
+ is not  empty for each $n.$ Suppose $A=\cup_{n=1}^\infty A_n$ is bounded above. 
+ Since, $A_n\subseteq A,$ 
+ from the Proposition above,  $A,$ and each $A_n,$ has a supremum  and moreover
+ $\sup(A_n)\le \sup(A)$ for all $n\in \mathbb{N}.$ 
+
+ Let $\alpha_n=\sup(A_n)$ (thus $\alpha_n \le \sup(A)$).
+  Let $B=\{\alpha_n: n\in \mathbb{N}\}$ and note $\sup(A)$ is an upper 
+ bound for $B.$ Since $B$ is not empty,  it follows that $B$ has 
+  a supremum and moreover $\sup(B)\le \sup(A).$
+
+ For homework 3, 
+ complete the steps below (or otherwise) to show
+\[
+ \sup(A)=\sup(B).
+\]
+
+\begin{enumerate}[(i)]
+% \item  Show that $\sup(A)$ is an upper bound for $B.$
+% \item Show  $B$ has a supremum and   $\beta=\sup(B)\le \alpha=sup(A).$ 
+ \item  Show, if $y<\sup(A),$ then there is a $k\in\mathbb{N}$
+ that $y<\alpha_k.$  %Thus $y<\alpha_k$.
+
+ \vspace*{5pt}\noindent Since $y< \sup(A)$, it follows that there exists $x\in A$ such that $y<x< \sup(A)$. Then since $x\in A$, there exists $k\in\mathbb{N}$ such that $x\in A_k$. So $y < x \leq \alpha_k$.\vspace*{5pt}
+ \item Show, if $y<\sup(A),$ then   $y<\sup(B).$
+ 
+ \vspace*{5pt}\noindent If $y<\sup(A)$, we saw that there exists $k\in\mathbb{N}$ such that $y <\alpha_k$. Since $\alpha_k \leq \sup(B)$, it follows that $y < \sup(B)$.\vspace*{5pt}
+ \item Show $\sup(A)\le \sup(B).$
+ 
+ \vspace*{5pt}\noindent If $y<\sup(A)$ implies $y<\sup(B)$, then it follows that $\sup(A)\leq \sup(B)$. \vspace*{5pt}
+
+ Hence $\sup(A) = \sup(B)$.\qed
+\end{enumerate} 
+\end{document}

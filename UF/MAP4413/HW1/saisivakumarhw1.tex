@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.23: 3, 4, 5, 6, 8, 10, 11
+
+3.\begin{enumerate}[label=(\alph*)]
+  \item \begin{proof}
+    Suppose via contradiction that for a converging sequence of complex numbers $\cbr{w_n}_{n=1}^{\infty}$, there is more than one limit of the sequence. So we can choose any two of these limits, $w_1,w_2\in \mathbb{C}$ such that \[\lim_{n\to\infty}\abs{w_n-w_1} = 0 \text{ and } \lim_{n\to\infty}\abs{w_n-w_2} = 0.\] The goal is to find a contradiction. First, let $\varepsilon = \abs{w_2-w_1}/2$. Then by definition there exists $N_1,N_2 \in \mathbb{N}$ such that $\abs{w_n-w_1} < \varepsilon$ whenever $n > N_1$ and $\abs{w_n-w_2} < \varepsilon$ whenever $n > N_2$. Then let $N = \max\{N_1,N_2\}$, and so whenever $n>N$, we have that $\abs{w_n-w_1} < \varepsilon$ and $\abs{w_n-w_2} < \varepsilon$ hold.
+
+    Then consider the quantity $\abs{w_2-w_1}$. Note that by the triangle inequality \[\abs{w_2-w_1} = \abs{w_2-w_n-(w_1-w_n)}\leq \abs{w_n-w_1} + \abs{w_n-w_2} < 2\cdot\abs{w_2-w_1}/2,\] where the last inequality holds as long as $n>N$. A real number cannot be less than itself, so we have our contradiction. Hence converging sequences in $\mathbb{C}$ have unique limits.
+  \end{proof}
+
+  \item \begin{proof}
+    Forwards direction. Suppose that a sequence $\cbr{w_n}_{n=1}^{\infty}$ is a Cauchy sequence. Then this means that there exists a positive integer $N$ such that \[\abs{w_n-w_m} < \varepsilon\] whenever $n,m > N$. Write $w_n = x_n+iy_n$ and $w_m = x_m-iy_m$, and see that \[\abs{w_n-w_m} = \abs{x_n-x_m+i(y_n-y_m)} \leq \abs{x_n-x_m} + \abs{y_n-y_m} \leq \varepsilon\] whenever $n,m$ exceed $N$. Hence $\cbr{x_n}_{n=1}^{\infty}$ and $\cbr{y_n}_{n=1}^{\infty}$ are real Cauchy sequences, so they converge to limits $x$ and $y$ respectively. Hence the Cauchy sequence $\cbr{w_n}_{n=1}^{\infty}$ converges to $w = x+iy$. 
+
+    Reverse direction. Conversely, suppose a complex valued sequence $\cbr{w_n}_{n=1}^{\infty}$ converges to a limit $w$. Then for every $\varepsilon/2$ there exist $N_n,N_m$ such that $\abs{w_n-w} < \varepsilon/2$ whenever $n>N_n$ and $\abs{w_m-w} < \varepsilon/2$ whenever $m>N_m$. Then see that \[\abs{w_n-w_m} = \abs{w_n-w+w-w_m}\leq \abs{w_n-w} + \abs{w_m-w} < \varepsilon\] whenever $n > \max\{N_n,N_m\}$. Hence the sequence $\cbr{w_n}_{n=1}^{\infty}$ is a Cauchy sequence.
+  \end{proof}
+
+  \item \begin{proof}
+    Let $\cbr{a_n}_{n=1}^{\infty}$ be a non-negative real-valued sequence as given, so that the series $\sum_n a_n$ converges (Note that the limit of this sequence is $0$). Then let $\cbr{z_n}_{n=1}^{\infty}$ be a complex valued sequence where $\abs{z_n} \leq a_n$ for all $n$.
+
+    Then the sequence \[S_N = \sum_{n=1}^N a_n\] converges. For any $\varepsilon >0$, there exists $m,n > N$, where without loss of generality let $m\leq n$, such that \[\abs{\sum_{i=1}^n z_i-\sum_{i=1}^m z_i} = \abs{\sum_{i = m+1}^n z_i} \leq \sum_{i=m+1}^n\abs{z_i}\leq \sum_{i=m+1}^n a_i = \abs{S_n-S_m}\leq \varepsilon,\] where we use the convergence of Cauchy sequences to see that $\sum_n z_n$ converges.
+  \end{proof}
+\end{enumerate}
+
+4. \begin{enumerate}[label=(\alph*)]
+  \item \begin{proof}
+    Use the ratio test directly: \[\lim_{n\to\infty}\abs{\frac{z^{n+1}/(n+1)!}{z^n/n!}} = \abs{\lim_{n\to\infty}\frac{z}{n+1}} = 0,\] which means that for any choice of $z\in\mathbb{C}$, the complex exponential converges. To show uniform convergence on every bounded subset $S$ of $\mathbb{C}$, consider any $\varepsilon >0$, and let $f_n(z) = \sum_{k=1}^n z^k/k!$. Then let $M = \max\{ \abs{z}\colon z\in S\}$. Then \[\abs{f_n(z)-e^z} = \abs{\sum_{k=0}^n z^k/k! - \sum_{k=0}^{\infty} z^k/k!}\leq \abs{\sum_{k=n+1}^{\infty}\frac{z^k}{k!}}\leq \sum_{k=n+1}^{\infty}\frac{M^k}{k!},\] where the last sum tends to $0$ as $n$ becomes arbitrarily large. Hence we can pick a large enough $n$ to ensure that the error is smaller than $\varepsilon$, thus the exponential function converges uniformly on every bounded subset of $\mathbb{C}$.
+  \end{proof}
+
+  \item \begin{proof}
+    Let $z_1,z_2\in\mathbb{C}$ be as given. From the definition of the exponential function, see that \[e^{z_1+z_2} = \sum_{k=0}^{\infty}\frac{(z_1+z_2)^k}{k!} = \sum_{k=0}^{\infty}\frac{\sum_{i=0}^k\binom{k}{i}z_1^iz_2^{k-i}}{k!} = \sum_{k=0}^{\infty}\sum_{i=0}^k\frac{z_1^i}{i!}\cdot\frac{z_2^{k-i}}{(k-i)!},\] which we can compare with \[e^{z_1}e^{z_2} = \br{1 + \frac{z_1^2}{2!} + \frac{z_1^3}{3!} + \cdots}\br{1 + \frac{z_2^2}{2!} + \frac{z_2^3}{3!} + \cdots}\] to see that they are the same (counting argument).
+  \end{proof}
+
+  \item \begin{proof}
+    Let $z = iy$ with $z\in\mathbb{C}$ and $y\in \mathbb{R}$ as given. Then \[e^{iy} = \sum_{k=0}^\infty \frac{(iy)^k}{k!} = 1+iy-\frac{y^2}{2} - \frac{iy^3}{6} + \frac{y^4}{24} + \frac{iy^5}{120} + \cdots = \sum_{k=0}^\infty\frac{(-1)^ky^{2k}}{(2k)!}+i\sum_{k=0}^\infty\frac{(-1)^ky^{2k+1}}{(2k+1)!} = \cos(y) + i\sin(y)\]
+  \end{proof}
+
+  \item \begin{proof}
+    Let $x,y\in\mathbb{R}$ as given. Then \[\abs{e^{x+iy}} = \abs{e^x\br{\cos(y) + i\sin(y)}} = \abs{e^x}\abs{\cos(y) + i\sin(y)} = e^x\sqrt{\sin^2(y) + \cos^2(y)} = e^x.\]
+  \end{proof}
+
+  \item \begin{proof}
+    Forwards direction. Suppose $z = 2\pi k i$ for some integer $k$. Then \[e^z = e^{2\pi k i} = \cos(2\pi k) + i\sin(2\pi k) = 1 + i(0) = 1.\] Conversely (reverse direction), suppose $e^z = 1$. Then see that $\abs{1} = 1$, so that $\abs{e^z}$ must also be $1$. Thus $e^{\Re(z)} = 1$, and since the real-valued logarithm is injective, $\Re(z) = \log(1) = 0$. Then we still need $e^{i\Im(z)} = 1$, which is only possible when $\Im(z) = 2\pi k$ ($k$ is any integer), since $e^{i\Im(z)} = \cos(\Im(z)) + i\sin(\Im(z))$, and we demand that the sine part vanishes (and the cosine part goes to $1$). Hence $z = 2\pi k i$ for any integer $k$.
+  \end{proof}
+
+  \item \begin{proof}
+    Let $z = x+iy$ for $x,y\in \mathbb{R}$. Then let $r = \sqrt{x^2+y^2}$ and $\tan(\theta) = y/x$. Observe that by trigonometry that $\sin(\theta) = y/\sqrt{x^2+y^2}$ and $\cos(\theta) = x/\sqrt{x^2+y^2}$. Then \[z = x+iy = \sqrt{x^2+y^2}\br{\frac{x}{\sqrt{x^2+y^2}} + i\frac{y}{\sqrt{x^2+y^2}}} = r\br{\cos(\theta) + i\sin(\theta)},\] where because the square root is surjective every complex number has a $r$ that corresponds with its real and imaginary parts, and that solutions to $\tan(\theta) = y/x$ differ by multiples of $2\pi$ we may unambiguously take the least nonnegative value for $\theta$ to establish uniqueness classes (so we compute the principal value for $\arctan(y/x) = \theta$). Of course for $z=0$ we do not compute $\theta$ as $r=0$ and because $\arctan(0)$ is not defined.
+  \end{proof}
+
+  \item The geometric meaning of multiplying a complex number by $i$ is to rotate that complex number by $\pi/2$ radians about the origin, counterclockwise. If instead we multiply by $e^{i\theta}$, where $\theta \in \mathbb{R}$, the complex number rotates through $\theta$ radians about the origin, counterclockwise.
+  
+  \item See that (keep in mind the odd/even properties of the trigonometric functions) \[\frac{1}{2}\br{e^{i\theta} + e^{i(-\theta)}} = \frac{1}{2}\br{\cos(\theta)+i\sin(\theta) + \cos(-\theta)+i\sin(-\theta)} = \frac{1}{2}\cdot 2\cos(\theta) = \cos(\theta)\] and \[\frac{1}{2i}\br{e^{i\theta} - e^{i(-\theta)}} = \frac{1}{2i}\br{\cos(\theta)+i\sin(\theta)-\cos(-\theta)-i\sin(-\theta)} = \frac{1}{2i}\cdot 2i\sin(\theta) = \sin(\theta).\]
+
+  \item First give $\cos(\theta + \vartheta)$ as $\Re(e^{i(\theta + \vartheta)})$. Then \[e^{i(\theta + \vartheta)} = e^{i\theta}e^{i\vartheta} = \br{\cos(\theta) + i\sin(\theta)}\br{\cos(\vartheta) + i\sin(\vartheta)},\] and we only need to compute the real part of this product which is $\cos(\theta)\cos(\vartheta) - \sin(\theta)\sin(\vartheta)$, so $\cos(\theta + \vartheta) = \cos(\theta)\cos(\vartheta) - \sin(\theta)\sin(\vartheta)$. The imaginary part, $\sin(\theta + \vartheta)$, is thus equal to the imaginary part of the product, $\sin(\theta)\cos(\vartheta)+\cos(\theta)\sin(\vartheta)$.
+  
+  Then \[\cos(\theta-\varphi)-\cos(\theta +\varphi) = \cos(\theta)\cos(-\varphi) - \sin(\theta)\sin(-\varphi) - \cos(\theta)\cos(\varphi) + \sin(\theta)\sin(\varphi) = 2\sin(\theta)\sin(\varphi)\] and \[\sin(\theta+\varphi) + \sin(\theta-\varphi) = \sin(\theta)\cos(\varphi)+\cos(\theta)\sin(\varphi) + \sin(\theta)\cos(-\varphi)+\cos(\theta)\sin(-\varphi) = 2\sin(\theta)\cos(\varphi).\]
+\end{enumerate}
+
+5. We can compare $e^{inx}$ with $e^{in(x+2\pi)}$ ($n\in \mathbb{Z}$): \begin{multline*}e^{in(x+2\pi)} = \cos(n(x+2\pi)) + i\sin(n(x+2\pi)) \\ = \cos(nx)\cos(2\pi n) - \sin(nx)\sin(2\pi n) + i\sin(nx)\cos(2\pi n)+i\cos(nx)\sin(2\pi n) \\ = \cos(nx)+ i\sin(nx) = e^{inx}\end{multline*} and see that they are equal, so $e^{inx}$ is periodic with period $2\pi$. Then see that for $n \neq 0$, \[\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{inx}\dd{x} = \eval{\frac{e^{inx}}{2\pi i n}}_{-\pi}^{\pi} = \frac{\cos(n\pi) + i\sin(n\pi) - \cos(-n\pi) - i\sin(-n\pi)}{2\pi i n}\] \[ = 0\] And then naturally when $n=0$, the integral becomes \[\frac{1}{2\pi}\int_{-\pi}^{\pi}1\dd{x} = \frac{2\pi}{2\pi} = 1.\]
+  
+Then from the hint we compute \[e^{inx}e^{-imx} + e^{inx}e^{imx} = 2 \cos(m x) \cos(n x) + 2 i \cos(m x) \sin(n x)\] and \[e^{inx}e^{-imx}-e^{inx}e^{imx} = -2 i \cos(n x) \sin(m x) + 2 \sin(m x) \sin(n x).\]
+
+So evidently, \[I_1 = \frac{1}{2\pi}\int_{-\pi}^{\pi}2\cos(nx)\cos(mx)\dd{x} = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{e^{inx}e^{-imx} + e^{inx}e^{imx}}\dd{x}},\] and when $n-m = 0 \iff n = m$, \[I_1 = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{1 + e^{i(n+m)x}}\dd{x}} = \frac{1}{2\pi}\Re\br{2\pi + \eval{\frac{e^{i(n+m)x}}{i(n+m)}}_{-\pi}^{\pi}} = 1,\] and when $n-m \neq 0 \iff n\neq m$, so that $n-m$ and $n+m$ are both nonzero use the earlier result to see that \[I_1 = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{e^{i(n-m)x} + e^{i(n+m)x}}\dd{x}} = \frac{1}{2\pi}\Re\br{\eval{\frac{e^{i(n-m)x}}{i(n-m)}}_{-\pi}^{\pi} + \eval{\frac{e^{i(n+m)x}}{i(n+m)}}_{-\pi}^{\pi}} = 0.\]
+
+Similarly we can reduce the next integral like so: \[I_2 = \frac{1}{2\pi}\int_{-\pi}^{\pi}2\sin(nx)\sin(mx)\dd{x} = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{e^{inx}e^{-imx} - e^{inx}e^{imx}}\dd{x}},\] so that similarly if $n-m = 0$, \[I_2 = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{1 - e^{i(n+m)x}}\dd{x}} = \frac{1}{2\pi}\Re\br{2\pi - \eval{\frac{e^{i(n+m)x}}{i(n+m)}}_{-\pi}^{\pi}} = 1,\] and likewise when $n-m\neq 0$, \[I_2 = \frac{1}{2\pi}\Re\br{\int_{-\pi}^{\pi}\br{e^{i(n-m)x} - e^{i(n+m)x}}\dd{x}} = \frac{1}{2\pi}\Re\br{\eval{\frac{e^{i(n-m)x}}{i(n-m)}}_{-\pi}^{\pi} - \eval{\frac{e^{i(n+m)x}}{i(n+m)}}_{-\pi}^{\pi}} = 0.\] 
+
+Then \[I_3 = \int_{-\pi}^{\pi}2\sin(nx)\cos(mx)\dd{x} = \Im\br{\int_{-\pi}^{\pi}\br{e^{inx}e^{-imx} + e^{inx}e^{imx}}\dd{x}} = \Im\br{\eval{\frac{e^{i(n-m)x}}{i(n-m)}}_{-\pi}^{\pi} + \eval{\frac{e^{i(n+m)x}}{i(n+m)}}_{-\pi}^{\pi}}\] \[= 0\] since in every case the imaginary part is zero.
+
+6. \begin{proof}
+  Let $f$ be a twice continuously differentiable function on $\mathbb{R}$ which is a solution to the equation $f^{\prime \prime}(t)+ c^2f(t) = 0$.
+
+  Then let $g(t) = f(t)\cos(ct) - c^{-1}f^{\prime}(t)\sin(ct)$ and $h(t) = f(t)\sin(ct) + c^{-1}f^{\prime}(t)\cos(ct)$, and see that \[-cg^{\prime}(t) = c^2f(t)\sin(ct) + f^{\prime \prime}\sin(t) = 0 \implies g^{\prime}(t) = 0 \implies g(t) = a,\] and \[ch^{\prime}(t) = c^2f(t)\cos(ct) + f^{\prime \prime}\cos(t) = 0 \implies h^{\prime}(t) = 0 \implies h(t) = b,\] for some  $a,b\in \mathbb{R}$. Then \begin{multline*}a\cos(t) + b\sin(t) = g(t)\cos(ct) + h(t)\sin(ct)\\ = f(t)\cos^2(ct) - c^{-1}f^{\prime}(t)\sin(ct)\cos(ct) + f(t)\sin^2(ct) + c^{-1}f^{\prime}(t)\sin(ct)\cos(ct)\\ = f(t)\end{multline*} Hence there exist constants $a,b\in \mathbb{R}$ such that $f(t) = a\cos(ct) + b\sin(ct)$.
+\end{proof}
+
+8. Use Taylor expansion centered at $a$: \[F(x) = \sum_{k = 0}^{\infty}\frac{F^{(n)}(a)}{k!}(x-a)^k, \] and center the series at $x$ so that \[F(t) = \sum_{k = 0}^{\infty}\frac{F^{(n)}(x)}{k!}(t-x)^k.\] Then \[F(x+h) = \sum_{k = 0}^{\infty}\frac{h^k}{k!}F^{(n)}(x) = F(x) + hF^{\prime}(x) + \frac{h^2}{2}F^{\prime \prime}(x) + h^2\varphi(h),\] where $h^2\varphi(h)\in O(h^3)$ (it is the remaining terms in the infinite sum) so that $\varphi(h)$ is at least linear in degree so that $\varphi(h)\to 0$ as $h\to 0$.
+
+Then using this series expansion, see that \begin{align*}&\frac{F(x+h) + F(x-h)-2F(x)}{h^2} \\ &= \frac{F(x) + hF^{\prime}(x) + \frac{h^2}{2}F^{\prime \prime}(x) + h^2\varphi_{+}(h) + F(x) - hF^{\prime}(x) + \frac{h^2}{2}F^{\prime \prime}(x) - h^2\varphi_{-}(h) - 2F(x)}{h^2} \\ &= F^{\prime\prime}(x) + \br{\varphi_{+}(h) - \varphi_{-}(h)},\end{align*} where this quantity tends to $F^{\prime\prime}(x)$ as $h\to 0$ since $\br{\varphi_{+}(h) - \varphi_{-}(h)}$ tends to zero (each $\varphi$ is at least linear and each tends to zero individually).
+
+10. Let $u(x,y)$ be a function of two variables as given, which is sufficiently differentiable. For $x = r\cos(\theta)$ and $y = r\sin(\theta)$, see that \begin{align*}\pdv{u}{x} &= \pdv{u}{r}\dv{r}{x} + \pdv{u}{\theta}\dv{\theta}{x} \\ \pdv{u}{y} &= \pdv{u}{r}\dv{r}{y} + \pdv{u}{\theta}\dv{\theta}{y},\end{align*} then that \begin{align*}\pdv{r}{r} = 1 &= \pdv{r}{x}\pdv{x}{r} + \pdv{r}{y}\pdv{y}{r}\\ \pdv{r}{\theta} = 0 &= \pdv{r}{x}\pdv{x}{\theta} + \pdv{r}{y}\pdv{y}{\theta}\\ \pdv{\theta}{r} = 0 &= \pdv{\theta}{x}\pdv{x}{r} + \pdv{\theta}{y}\pdv{y}{r}\\ \pdv{\theta}{\theta} = 1 &= \pdv{\theta}{x}\pdv{x}{\theta} + \pdv{\theta}{y}\pdv{y}{\theta}\\.\end{align*} We can then form the following matrix product: \[\begin{pmatrix}
+  \pdv{r}{x} & \pdv{r}{y} \\ 
+  \pdv{\theta}{x} & \pdv{\theta}{y}
+\end{pmatrix}\begin{pmatrix}
+  \pdv{x}{r} & \pdv{x}{\theta} \\
+  \pdv{y}{r} & \pdv{y}{\theta}
+\end{pmatrix} = \begin{pmatrix}
+  \pdv{r}{x} & \pdv{r}{y} \\ 
+  \pdv{\theta}{x} & \pdv{\theta}{y}
+\end{pmatrix}\begin{pmatrix}
+  \cos(\theta) & -r\sin(\theta) \\
+  \sin(\theta) & r\cos(\theta)
+\end{pmatrix} = \begin{pmatrix}
+  1 & 0 \\ 0 & 1
+\end{pmatrix}\] so that \[\begin{pmatrix}
+  \pdv{r}{x} & \pdv{r}{y} \\ 
+  \pdv{\theta}{x} & \pdv{\theta}{y}
+\end{pmatrix} = \begin{pmatrix}
+  \cos(\theta) & -r\sin(\theta) \\
+  \sin(\theta) & r\cos(\theta)
+\end{pmatrix}^{-1} = \begin{pmatrix}
+  \cos(\theta) & \sin(\theta) \\
+  -r^{-1}\sin(\theta) & r^{-1}\cos(\theta)
+\end{pmatrix}.\] Hence \[
+  \pdv{r}{x} = \cos(\theta),
+  \pdv{r}{y} = \sin(\theta),
+  \pdv{\theta}{x} = -r^{-1}\sin(\theta),
+  \pdv{\theta}{y} = r^{-1}\cos(\theta),
+\] so that \begin{align*}\pdv{u}{x} &= \pdv{u}{r}\cos(\theta) - \pdv{u}{\theta}r^{-1}\sin(\theta) \\ \pdv{u}{y} &= \pdv{u}{r}\sin(\theta) + \pdv{u}{\theta}r^{-1}\cos(\theta).\end{align*} Then take derivatives again: \begin{align*}\pdv[2]{u}{x} &= \pdv{r}\br{\pdv{u}{r}\cos(\theta) - \pdv{u}{\theta}r^{-1}\sin(\theta)}\dv{r}{x} + \pdv{\theta}\br{\pdv{u}{r}\cos(\theta) - \pdv{u}{\theta}r^{-1}\sin(\theta)}\dv{\theta}{x} \\ \pdv[2]{u}{y} &= \pdv{r}\br{\pdv{u}{r}\sin(\theta) + \pdv{u}{\theta}r^{-1}\cos(\theta)}\dv{r}{y} + \pdv{\theta}\br{\pdv{u}{r}\sin(\theta) + \pdv{u}{\theta}r^{-1}\cos(\theta)}\dv{\theta}{y}.\end{align*} \begin{align*}
+  \implies \\
+  \pdv[2]{u}{x} &= \pdv[2]{u}{r}\cos^2(\theta)-\pdv[2]{u}{\theta}{r}r^{-1}\sin(\theta)\cos(\theta)+\pdv{u}{\theta}r^{-2}\sin{\theta}\cos(\theta)\\
+  - \pdv[2]{u}{r}{\theta}r^{-1}\sin(\theta)\cos(\theta) &+ \pdv{u}{r}r^{-1}\sin^2(\theta) + \pdv[2]{u}{\theta}r^{-2}\sin^2(\theta) +\pdv{u}{\theta}r^{-2}\sin(\theta)\cos(\theta)\\
+  \pdv[2]{u}{y} &= \pdv[2]{u}{r}\sin^2(\theta) + \pdv[2]{u}{\theta}{r}r^{-1}\sin(\theta)\cos(\theta)-\pdv{u}{\theta}r^{-2}\sin(\theta)\cos(\theta)\\
+  +\pdv[2]{u}{r}{\theta}r^{-1}\sin(\theta)\cos(\theta) &+ \pdv{u}{r}r^{-1}\cos^2(\theta) + \pdv[2]{u}{\theta}r^{-2}\cos^2(\theta) - \pdv{u}{\theta}r^{-2}\sin(\theta)\cos(\theta)\\
+\end{align*}
+
+And so finally $\Delta u(x,y)$ given in polar coordinates is \[\Delta U(r,\theta) = \pdv[2]{U}{r} + \frac{1}{r}\pdv{U}{r} + \frac{1}{r^2}\pdv[2]{U}{\theta}.\]
+
+Then use results from earlier to see that \begin{multline*}\abs{\pdv{u}{x}}^2 + \abs{\pdv{u}{y}}^2 = \abs{\pdv{u}{r}}^2\cos(\theta) - 2\abs{\pdv{u}{r}}\abs{\pdv{u}{\theta}}\sin(\theta)\cos(\theta) +\abs{\pdv{u}{\theta}}^2r^{-2}\sin^2(\theta)\\ + \abs{\pdv{u}{r}}^2\sin(\theta) + 2\abs{\pdv{u}{r}}\abs{\pdv{u}{\theta}}\sin(\theta)\cos(\theta) +\abs{\pdv{u}{\theta}}^2r^{-2}\cos^2(\theta) \\ = \abs{\pdv{u}{r}}^2 + \frac{1}{r^2}\abs{\pdv{u}{\theta}}^2.\end{multline*}
+
+11. Examining solutions to $r^2F^{\prime \prime}(r) + rF^{\prime}(r) - n^2F(r) = 0$, where $r>0$.
+
+Suppose for a twice differentiable solution $F(r)$ we can write $F(r) = g(r)r^n$, and substitute to find after dividing through by $r^n$, and doing some algebra, that $g^{\prime \prime}(t)r + g^{\prime}(t) + 2g(t)n = \br{g^{\prime}(t)r}^{\prime} + 2ng^{\prime} = 0 $, which implies that for some $c$, $2ng(t) + g^{\prime}(t)r = c$.
+
+When $n = 0$, we solve $g^{\prime}(t)r = c$ and find that $g(r)$ is a linear combination be one of $\log(r)$ or $1$ (from the previous equation), so $F(r)$ in this case takes a linear combination of $1$ or $\log(r)$. If $n$ is nonzero, then we can find that $g(r)$ is a linear combination of $1$ and $r^{-2n}$, so that $F(r)$ is a linear combination of $r^n$ and $r^{-n}$.
+
+\end{document}

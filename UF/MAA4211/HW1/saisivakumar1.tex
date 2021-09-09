@@ -1,0 +1,42 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+
+\title{Homework 1}
+\author{Sai Sivakumar}
+
+\begin{document}
+\maketitle
+
+Show, if $s\in \mathbb{Q}$, that $s^3 \neq 5$.
+
+\begin{proof}
+    Let $s\in \mathbb{Q}$, and assume via contradiction that $s^3 = 5$. We cannot have that $s \leq 0$, since non-positive quantities cubed could not produce $5$, as $5$ is positive. Thus $s$ must be a strictly positive rational number.
+    
+    Since $s$ is a positive rational number, there exists $n,m\in \mathbb{N}$ such that we may write $s =n/m$, where without loss of generality we may also choose $n$ and $m$ so that $\gcd(n,m) = 1$.
+
+    Then since $s^3 = n^3/m^3 = 5$, $n^3 = 5m^3$, and from the definition of divisibility $5\mid n^3$. Since $5$ is a prime number, we can use the fact that integers have unique prime factorizations to find that $5\mid n$, so that there exists $k\in\mathbb{Z}$ such that $5k = n$. So then $n^3 = 125k^3 = 5m^3$ implies that $25k^3 = m^3$, from which we find that $25\mid m^3$. But $5\mid 25$, and because divisibility is transitive, $5\mid m^3$ and like before we find that $5\mid m$. We have arrived at a contradiction, since $\gcd(n,m)\geq 5$.
+\end{proof}
+
+\end{document}

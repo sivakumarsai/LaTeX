@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.58: 1, 2, 4, 5, 6, 7, 11
+
+1. \begin{proof}
+    (1) For $x\in\mathbb{R}$, observe that $f(x) = f(x+2\pi) = f(x-2\pi)$ because $f$ is $2\pi$-periodic. Then in the integral \[\int_{a+2\pi}^{b+2\pi}f(x)\dd{x},\] make the change of variables $u = x-2\pi$, $\dd{u}= \dd{x}$, so that \[\int_{a+2\pi}^{b+2\pi}f(x)\dd{x} = \int_a^b f(u+2\pi)\dd{u} = \int_a^b f(u)\dd{u} = \int_a^b f(x)\dd{x}.\] Similarly apply the change of variables $u = x+2\pi$, $\dd{u}= \dd{x}$ to \[\int_{a-2\pi}^{b-2\pi}f(x)\dd{x}\] to find \[\int_{a-2\pi}^{b-2\pi}f(x)\dd{x} = \int_a^b f(u-2\pi)\dd{u} = \int_a^b f(u)\dd{u} = \int_a^bf(x)\dd{x}.\]
+\end{proof} \begin{proof}
+    (2) Using the change of variables $u = x+a$, $\dd{u} = \dd{x}$, we have that \[\int_{-\pi}^{\pi}f(x+a)\dd{x} = \int_{-\pi+a}^{\pi+a}f(u)\dd{u} = \int_{-\pi+a}^{\pi+a}f(x)\dd{x}.\] Then for any $a$ the following is true: \[\int_{-\pi+a}^{\pi+a}f(x)\dd{x} = \int_{-\pi+a}^{-\pi}f(x)\dd{x} + \int_{-\pi}^{\pi}f(x)\dd{x} + \int_{\pi}^{\pi+a}f(x)\dd{x}.\] But from (1), we can adjust the bounds of the first integral in the sum, so that \[\int_{-\pi+a}^{-\pi}f(x)\dd{x} = \int_{-\pi+a+2\pi}^{-\pi+2\pi}f(x)\dd{x} = \int_{\pi+a}^{\pi}f(x)\dd{x} = -\int_{\pi}^{\pi+a}f(x)\dd{x}.\] So the summation becomes \[\int_{-\pi+a}^{\pi+a}f(x)\dd{x} = -\int_{\pi}^{\pi+a}f(x)\dd{x} + \int_{-\pi}^{\pi}f(x)\dd{x} + \int_{\pi}^{\pi+a}f(x)\dd{x} = \int_{-\pi}^{\pi}f(x)\dd{x}.\]
+\end{proof}
+
+2. \begin{enumerate}[label=(\alph*)]
+    \item \begin{proof}
+        The Fourier series for the $2\pi$-periodic function $f$ is written as \[f(\theta)\sim\sum_{n=-\infty}^{\infty}\hat{f}(n)e^{in\theta},\] where \[\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-in\theta}\dd{\theta}.\] For $n\geq 1$, \begin{align*}
+            \hat{f}(n) &= \frac{1}{2}\sbr{\hat{f}(n)+\hat{f}(-n) + \hat{f}(n)-\hat{f}(-n)} \\
+            \hat{f}(-n) &= \frac{1}{2}\sbr{\hat{f}(-n)+\hat{f}(n) + \hat{f}(-n)-\hat{f}(n)},
+        \end{align*} so that \begin{align*}
+            \hat{f}(n)e^{in\theta} &= \frac{1}{2}\sbr{\hat{f}(n)+\hat{f}(-n)}e^{in\theta} + \frac{1}{2}\sbr{\hat{f}(n)-\hat{f}(-n)}e^{in\theta} \\
+            \hat{f}(-n)e^{-in\theta} &= \frac{1}{2}\sbr{\hat{f}(n)+\hat{f}(-n)}e^{-in\theta} - \frac{1}{2}\sbr{\hat{f}(n)-\hat{f}(-n)}e^{-in\theta} \\
+            \hat{f}(n)e^{in\theta} + \hat{f}(-n)e^{-in\theta} &= \sbr{\hat{f}(n)+\hat{f}(-n)}\cos(n\theta) + i\sbr{\hat{f}(n)-\hat{f}(-n)}\sin(n\theta).
+        \end{align*} Then by pairing up the $n$ and $-n$ terms in the Fourier series for $f(\theta)$, \begin{multline*} f(\theta)\sim\sum_{n=-\infty}^{\infty}\hat{f}(n)e^{in\theta} = \hat{f}(0) + \sum_{n\geq 1}\br{\hat{f}(n)e^{in\theta} + \hat{f}(-n)e^{-in\theta}}\\ = \hat{f}(0) + \sum_{n\geq 1}\br{\sbr{\hat{f}(n)+\hat{f}(-n)}\cos(n\theta) + i\sbr{\hat{f}(n)-\hat{f}(-n)}\sin(n\theta)}.\end{multline*}
+    \end{proof}
+    \item \begin{proof}
+        If $f$ is even, then \[\hat{f}(n)-\hat{f}(-n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}-f(\theta)\br{e^{in\theta}-e^{-in\theta}}\dd{\theta} = i\frac{1}{\pi}\int_{-\pi}^{\pi}-f(\theta)\sin(\theta)\dd{\theta} = 0,\] because the product of an even function and an odd function is still odd and so the integral vanishes over the symmetric bounds, so $\hat{f}(n)=\hat{f}(-n)$, and the sine component of the sum above vanishes. Similarly the integrand in $\hat{f}(n)+\hat{f}(-n)$ is an even function, so the integral will not vanish and so the cosine terms will not vanish unless $f$ is the zero function. Thus the series above becomes a cosine series.
+    \end{proof}
+    \item \begin{proof}
+        If $f$ is odd, then \[\hat{f}(n)+\hat{f}(-n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)\br{e^{in\theta}+e^{-in\theta}}\dd{\theta} = \frac{1}{\pi}\int_{-\pi}^{\pi}f(\theta)\cos(\theta)\dd{\theta} = 0,\] because the product of an even function and an odd function is still odd and so the integral vanishes over the symmetric bounds, so $\hat{f}(n)=-\hat{f}(-n)$, and the cosine component of the sum above vanishes. Similarly the integrand in $\hat{f}(n)-\hat{f}(-n)$ is an even function, so the integral will not vanish and so the sine terms will not vanish unless $f$ is the zero function. Thus the series above becomes a sine series.
+    \end{proof}
+    \item \begin{proof}
+        For odd $n$, write $n= 2k+1$ where $k\in\mathbb{Z}$. Then \[\hat{f}(n) = \hat{f}(2k+1) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-i(2k+1)\theta}\dd{\theta},\] and by the change of variables $\phi = \theta -\pi$ and $\dd{\phi} = \dd{\theta}$, \[\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-i(2k+1)\theta}\dd{\theta} = \frac{1}{2\pi}\int_{-2\pi}^{0}-f(\phi+\pi)e^{-i(2k+1)\phi}\dd{\phi} = \frac{1}{2\pi}\int_{-2\pi}^{0}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta}.\] Note that because $f$ is $\pi$-periodic, then it is also $2\pi$ periodic, and we can use earlier results to find that \begin{align*}\frac{1}{2\pi}\int_{-2\pi}^{0}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta} &= \frac{1}{2\pi}\int_{-2\pi}^{-\pi}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta}+ \frac{1}{2\pi}\int_{-\pi}^{0}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta} \\ &= \frac{1}{2\pi}\int_{0}^{\pi}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta}+ \frac{1}{2\pi}\int_{-\pi}^{0}-f(\theta)e^{-i(2k+1)\theta}\dd{\theta} \\ &= -\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-i(2k+1)\theta}\dd{\theta} = -\hat{f}(n).\end{align*} So for all odd $n$, $\hat{f}(n) = -\hat{f}(n)$, which implies that $\hat{f}(n)$ = $0$.
+    \end{proof}
+    \item \begin{proof}
+        Forwards direction. Suppose $\overline{\hat{f}(n)} = \hat{f}(-n)$ for all $n$. Then \[\overline{\hat{f}(n)} = \overline{\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-in\theta}\dd{\theta}} = \frac{1}{2\pi}\int_{-\pi}^{\pi}\overline{f(\theta)}e^{in\theta}\dd{\theta} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{in\theta}\dd{\theta} = \hat{f}(-n),\] and we can rearrange terms to find that \[\frac{1}{2\pi}\int_{-\pi}^{\pi}\br{f(\theta)-\overline{f(\theta)}}e^{in\theta}\dd{\theta} = \frac{i}{\pi}\int_{-\pi}^{\pi}\Im(f(\theta))e^{in\theta}\dd{\theta} = 0.\] This integral can only vanish when $\Im(f(\theta))$ is simultaneously even and odd, which forces $\Im(f(\theta))$ to be zero. This means $f(\theta)$ is real valued.
+    \end{proof}
+\end{enumerate}
+
+4. \begin{enumerate}[label=(\alph*)]
+    \item 
+    
+    \item \vspace*{5cm} The Fourier coefficients of $f$ are \[\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{0}\theta(\pi+\theta)e^{-in\theta}\dd{\theta} + \frac{1}{2\pi}\int_{0}^{\pi}\theta(\pi-\theta)e^{-in\theta}\dd{\theta},\] which with a substitution in the first integral (shift theta forwards by $\pi$), see that \[\hat{f}(n) = \frac{1+(-1)^{n+1}}{2\pi}\int_{0}^{\pi}\theta(\pi-\theta)e^{-in\theta}\dd{\theta}.\] Clearly for all even $n$ the integral vanishes, so we take $n$ to be an odd integer. Then since $\theta(\pi-\theta)$ has roots at $0$ and $\pi$, it is easy to compute the Fourier coefficients: \[\hat{f}(n) = \frac{1+(-1)^{n+1}}{2\pi}\int_{0}^{\pi}\theta(\pi-\theta)e^{-in\theta}\dd{\theta} = \frac{1}{2\pi}\br{\eval{\frac{\theta(\pi-\theta)e^{-in\theta}}{-in}}_{0}^{\pi} +\eval{\frac{-(\pi-2\theta)e^{-in\theta}}{(-in)^2}}_{0}^{\pi} + \eval{\frac{-2e^{-in\theta}}{(-in)^3}}_{0}^{\pi}}\]\[= -\frac{4i}{\pi n^3}.\] Then the Fourier series for $f$ is \[\sum_{n \text{ odd}} -\frac{4i}{\pi n^3}e^{in\theta} = \sum_{n \text{ odd}} \br{\frac{4\sin(n\theta)}{\pi n^3} - \frac{4i\cos(n\theta)}{\pi n^3}} = \frac{8}{\pi}\sum_{n \text{ odd } \geq 1} \frac{\sin(n\theta)}{n^3},\] where in the last equality because both sine and the cubing function are odd we may join the negative $n$ sine terms with the positive $n$ sine terms, and similarly, the imaginary part vanishes because the cosine function is even but the cubing function is odd. Observe that the series absolutely converges due to the $n^3$ term in the denominator, so we may say that \[f(\theta) = \frac{8}{\pi}\sum_{n \text{ odd } \geq 1} \frac{\sin(n\theta)}{n^3}.\]
+\end{enumerate}
+
+5. Compute the Fourier coefficients of $f$, \[\hat{f}(n) = \frac{1}{2\pi}\int_{-\delta}^{0}\br{1+\frac{\theta}{\delta}}e^{-in\theta}\dd{\theta} + \frac{1}{2\pi}\int_{0}^{\delta}\br{1-\frac{\theta}{\delta}}e^{-in\theta}\dd{\theta}.\] In the first integral observe that changing variables from $\theta$ to $-\theta$ makes it so that \[\hat{f}(n) = \frac{1}{2\pi}\int_0^{\delta}\br{1-\frac{\theta}{\delta}}\br{e^{in\theta} + e^{-in\theta}}\dd{\theta} = \frac{1}{\pi}\int_0^{\delta}\br{1-\frac{\theta}{\delta}}\cos(n\theta)\dd{\theta},\] and observe that $\hat{f}(0) = \delta/2\pi$. Then \[\hat{f}(n) = \frac{1}{\pi}\int_0^{\delta}\br{1-\frac{\theta}{\delta}}\cos(n\theta)\dd{\theta} = \frac{1}{\pi} \br{ \eval{\frac{\br{1-\frac{\theta}{\delta}}\sin(n\theta)}{n}}_0^{\delta} + \eval{\frac{-\cos(n\theta)}{n^2\delta}}_0^{\delta} } = \frac{1-\cos(n\delta)}{n^2\pi\delta}.\] The Fourier series for $f$ is given by \[\frac{\delta}{2\pi} + \sum_{n=-\infty}^{-1} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}e^{in\theta} + \sum_{n=1}^{\infty} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}e^{in\theta},\] where because squaring and the cosine function are even, we rewrite the first sum instead to find the following more convenient form: \[\frac{\delta}{2\pi} + \sum_{n=1}^{\infty} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}e^{-in\theta} + \sum_{n=1}^{\infty} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}e^{in\theta} = \frac{\delta}{2\pi} + 2\sum_{n=1}^{\infty} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}\cos(n\theta).\] The sum converges absolutely because of the $n^2$ term in the denominator, so we may write \[f(\theta) = \frac{\delta}{2\pi} + 2\sum_{n=1}^{\infty} \br{\frac{1-\cos(n\delta)}{n^2\pi\delta}}\cos(n\theta).\]
+
+6. \begin{enumerate}[label=(\alph*)]
+    \item 
+    \item \vspace*{5cm} The Fourier coefficients of $f$ are \[\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{0} (-\theta) e^{-in\theta}\dd{\theta} + \frac{1}{2\pi}\int_{0}^{\pi} \theta e^{-in\theta}\dd{\theta}.\] In the first integral change variables from $\theta$ to $-\theta$ to find that \[\hat{f}(n) = \frac{1}{2\pi}\int_{0}^{\pi} \theta e^{in\theta}\dd{\theta} + \frac{1}{2\pi}\int_{0}^{\pi} \theta e^{-in\theta}\dd{\theta} = \frac{1}{\pi}\int_0^{\pi}\theta\cos(n\theta)\dd{\theta}\] \[ = \frac{-1+(-1)^n}{\pi n^2}\text{ for } n \neq 0.\] Observe that $\hat{f}(0) = \pi/2$ as a result.
+    \item Then the Fourier series of $f$ in terms of sines and cosines is \[f(\theta)\sim \frac{\pi}{2} + \sum_{n=-\infty}^{-1} \br{\frac{-1+(-1)^n}{\pi n^2}}e^{in\theta} + \sum_{n=1}^{\infty} \br{\frac{-1+(-1)^n}{\pi n^2}}e^{in\theta}, \] and we again flip the first summation to the positive integers by replacing $n$ with $-n$ to see that \[f(\theta)\sim \frac{\pi}{2} + \sum_{n=1}^{\infty} \br{\frac{-1+(-1)^n}{\pi n^2}}e^{-in\theta} + \sum_{n=1}^{\infty} \br{\frac{-1+(-1)^n}{\pi n^2}}e^{in\theta} = \frac{\pi}{2} + 2\sum_{n=1}^{\infty}\br{\frac{-1+(-1)^n}{\pi n^2}}\cos(n\theta),\] but the inner fraction vanishes for all even $n$, so we can sum over the odd $n$ (when $n$ is odd the fraction is $-2/\pi n^2$). Furthermore this sum converges absolutely due to the $n^2$ term in the denominator, so we may write \[f(\theta) = \frac{\pi}{2} - \frac{4}{\pi}\sum_{n \text{ odd }\geq 1} \frac{\cos(n\theta)}{n^2}.\]
+    \item Let $\theta =0$. Then \[f(0) = 0 = \frac{\pi}{2} - \frac{4}{\pi}\sum_{n \text{ odd }\geq 1} \frac{1}{n^2} \implies \frac{\pi^2}{8} = \sum_{n \text{ odd }\geq 1} \frac{1}{n^2}.\] Furthermore, \[\sum_{n=1}^{\infty} \frac{1}{n^2} = \sum_{n \text{ odd }\geq 1} \frac{1}{n^2} + \sum_{n \text{ even }\geq 1} \frac{1}{n^2},\] but in the third sum since $n$ is even ($2\mid n$ yields $4\mid n^2$), we may factor out $1/4$ from it to find the first sum. So \[\sum_{n=1}^{\infty} \frac{1}{n^2} = \sum_{n \text{ odd }\geq 1} \frac{1}{n^2} + \frac{1}{4}\sum_{n =1}^{\infty} \frac{1}{n^2} \implies \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{4}{3}\cdot\frac{\pi^2}{8} = \frac{\pi^2}{6}.\]
+\end{enumerate}
+
+7. \begin{enumerate}[label=(\alph*)]
+    \item \begin{proof}
+        Let $\cbr{a_n}_{n=1}^N, \cbr{b_n}_{n=1}^N$ be finite sequences of complex numbers as given. Then \begin{align*}
+            \sum_{n=M}^N a_nb_n &= \sum_{n=M}^N a_n(B_n - B_{n-1}) \\
+            &= \sum_{n=M}^N a_nB_n - \sum_{n=M}^N a_nB_{n-1} \\
+            &= a_NB_N + \sum_{n=M}^{N-1} a_nB_n - \sum_{n=M-1}^{N-1} a_{n+1}B_{n} \\
+            &= a_NB_N - a_MB_{M-1} + \sum_{n=M}^{N-1} a_nB_n - \sum_{n=M}^{N-1} a_{n+1}B_{n} \\
+            &= a_NB_N - a_MB_{M-1} - \sum_{n=M}^{N-1} (a_{n+1} - a_n)B_n.
+        \end{align*} Thus the summation by parts formula holds.
+    \end{proof}
+    \item \begin{proof}
+        Let the partial sums $B_n$ be bounded above by $B$, and let $\cbr{a_n}_{n=1}^{N}$ be a sequence of (positive) real numbers decreasing monotonically to $0$. Also require that $N\geq M$. Then \begin{align*}\abs{\sum_{n=M}^N a_nb_n} &= \abs{a_NB_N - a_MB_{M-1} - \sum_{n=M}^{N-1} (a_{n+1} - a_n)B_n} \\
+        &\leq B\br{a_N+a_M+\sum_{n=M}^{N-1}(a_{n+1} - a_n)} \\
+        &= B\br{a_N+a_M+\sum_{n=M}^{N-1} a_n - \sum_{n=M+1}^{N} a_{n}} \\
+        &= 2Ba_M, \end{align*} but because we can choose $M$, we can make $2Ba_M$ arbitrarily small and so the sequence of partial sums of $\sum a_nb_n$ is a Cauchy sequence as a result, which converges.
+    \end{proof}
+\end{enumerate}
+
+11. \begin{proof}
+    Let $\cbr{f_k}_{k=1}^{\infty}$ be a sequence of Riemann integrable functions on the interval $[0,1]$ such that \[\int_0^1 \abs{f_k(x)-f(x)}\dd{x} \to 0\text{ as } k\to \infty.\] Then for every $\varepsilon > 0$ there exists $K\in \mathbb{N}$ such that for $k>K$, $\int_0^1 \abs{f_k(x)-f(x)}\dd{x} < \varepsilon$. So for any $\varepsilon$, take $k> K$ and see that \[\abs{\hat{f}_k(n) - \hat{f}(n)} = \abs{\int_0^1\br{f_k(x)-f(x)}e^{-2\pi inx}\dd{x}}\leq \int_0^1\abs{f_k(x)-f(x)}\dd{x} < \varepsilon,\] which means that $\hat{f}_k(n)\to \hat{f}(n)$ uniformly in $n$ as $k\to \infty$.
+\end{proof}
+\end{document}

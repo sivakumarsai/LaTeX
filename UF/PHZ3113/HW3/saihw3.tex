@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item A particle of mass $m$ moves under the influence of gravity on the inner surface of a frictionless paraboloid of revolution $x^2+y^2 = az$.
+    
+    (a) In cylindrical coordinates the constraint is written as $r^2 - az = 0$. The coefficient for the Lagrange multipliers will be $(r^2-az)$.
+
+    (b) To find the kinetic energy of this mass we must differentiate position, but to do so we can take time derivatives of $x= r\cos(\theta)$ and $y = r\sin(\theta)$. Then the kinetic energy is given by $\frac{1}{2}m\dot{z}^2 + \frac{1}{2}m(\dot{r}\cos(\theta)-r\sin(\theta)\dot{\theta})^2 + \frac{1}{2}m(\dot{r}\sin(\theta)+ r\cos(\theta)\dot{\theta})^2 = \frac{1}{2}m\dot{z}^2 + \frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\theta}^2$ (this is like using angular velocity and radial velocity and extracting kinetic energy from these coordinates) and the potential energy of this mass is given by $mgz$. 
+    
+    (c) Then $\mathcal{L} = \frac{1}{2}m\dot{z}^2 + \frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\theta}^2 - mgz + \lambda(r^2-az)$, so \begin{align*}
+        S &= \int_{t_i}^{t_f}\br{\frac{1}{2}m\dot{z}^2 + \frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\theta}^2 - mgz + \lambda(r^2-az)}\dd{t} \\
+        &\hspace*{6pt}\vdots \\
+        \implies& \pdv{\mathcal{L}}{r}-\dv{t}\pdv{\mathcal{L}}{\dot{r}} = mr\dot{\theta}^2 + 2\lambda r -m\ddot{r} = 0\\
+        & \pdv{\mathcal{L}}{\theta}-\dv{t}\pdv{\mathcal{L}}{\dot{\theta}} = -2mr\dot{r}\dot{\theta}-mr^2\ddot{\theta} = 0\\
+        & \pdv{\mathcal{L}}{z}-\dv{t}\pdv{\mathcal{L}}{\dot{z}} = -\lambda a-mg-m\ddot{z} = 0\\
+        & \pdv{\mathcal{L}}{\lambda}-\dv{t}\pdv{\mathcal{L}}{\dot{\lambda}} = r^2-az = 0
+    \end{align*} 
+
+    \item The frictional force is given by $f$, and so the work done by this force is given by the negative of displacement times $f$. So say an object with mass $m$ moves along the $x$ axis, where its displacement is given by $\phi$ (the potential energy does not change so along this axis so we can say it is $0$). Then to ``retrofit'' the Lagrangian, we take off from the kinetic energy the energy lost to friction at a given position, so \[\mathcal{L}(\phi,\dot{\phi};t) = \frac{1}{2}m\dot{\phi}^2 - f\phi.\] Then in taking derivatives, see that \[\pdv{\mathcal{L}}{\phi} = -f \text{ and } \dv{t}\pdv{\mathcal{L}}{\dot{\phi}} = m\ddot{\phi},\] so the equation of motion matches with what we would expect from Newtonian mechanics, \[m\ddot{\phi} = -f.\] This does not work if the mass changes direction.
+\end{enumerate}
+\end{document}
