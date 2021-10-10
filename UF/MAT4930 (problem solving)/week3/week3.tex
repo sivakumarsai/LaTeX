@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Induction}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{8.} Let $n\geq 0$ and $x\in[0,\pi]$. Prove that $\abs{\sin(nx)}\leq n\sin(x)$. \begin{proof}
+    We will show this by induction. Observe for $n = 0$, $\abs{\sin(0x)} = 0 \leq 0 = 0\sin(x)$. Then suppose that $\abs{\sin(nx)}\leq n\sin(x)$, and we will show that $\abs{\sin((n+1)x)}\leq (n+1)\sin(x)$. So
+    \begin{align*}
+        \abs{\sin((n+1)x)} = \abs{\sin(nx+x)} &= \abs{\sin(nx)\cos(x) + \sin(x)\cos(nx)}\\
+        &\leq \abs{\sin(nx)\cos(x)}+\abs{\sin(x)\cos(nx)}\\
+        &= \abs{\sin(nx)}\abs{\cos(x)}+\sin(x)\abs{\cos(nx)},
+        \intertext{where the triangle inequality was used as well as omitting the absolute value bars for $\sin(x)$ since on $[0,\pi]$, $\sin(x)$ is nonnegative. Then from the inductive hypothesis,}
+        &\leq n\sin(x)\abs{\cos(x)} + \sin(x)\abs{\cos(nx)}\\
+        &\leq n\sin(x) + \sin(x) = (n+1)\sin(x),
+    \end{align*} because $\cos(x)$ and $\cos(nx)$ are bounded functions so we may bound them above by $1$.
+    
+    Hence $\abs{\sin((n+1)x)}\leq (n+1)\sin(x)$, and by induction we have that for all $n\geq 0$ and $x\in[0,\pi]$, $\abs{\sin(nx)}\leq n\sin(x)$.
+\end{proof}
+
+\textbf{13.} Find the $100$-th derivative of $f(x) = 1/(5-x^2)$. 
+
+The $100$-th derivative of $f(x)$ is $\frac{\sqrt{5}}{10}\left(\frac{100!}{(x+\sqrt{5})^{101}} -\frac{100!}{(x-\sqrt{5})^{101}}\right)$.
+
+We can find a closed form for the $n$-th derivative of $f(x)$ (where $n = 0$ means to take no derivatives). First we can rewrite $f(x)$ by partial fraction decomposition, so that 
+\[f(x) = \frac{1}{5-x^2} = \frac{\sqrt{5}}{10}\left(\frac{1}{x+\sqrt{5}} -\frac{1}{x-\sqrt{5}}\right).\] Then by taking successive derivatives, we find that 
+\[f^{(n)}(x) = \frac{\sqrt{5}}{10}\left(\frac{(-1)^nn!}{(x+\sqrt{5})^{n+1}} -\frac{(-1)^nn!}{(x-\sqrt{5})^{n+1}}\right),\] and we prove that this is the closed form for the $n$-th derivative of $f(x)$.
+\begin{proof}
+    Let $f$ be given as above. Then for $n = 0$, we saw earlier that 
+    \[f(x) = \frac{1}{5-x^2} = \frac{\sqrt{5}}{10}\left(\frac{1}{x+\sqrt{5}} -\frac{1}{x-\sqrt{5}}\right),\] and for $n=1$ we also have 
+    \[f^{\prime}(x) = \frac{2x}{(5-x^2)^2} = \frac{\sqrt{5}}{10}\left(\frac{(-1)}{(x+\sqrt{5})^2} -\frac{(-1)}{(x-\sqrt{5})^2}\right).\]
+
+    Then suppose that the $n$-th derivative of $f$ is given as above, so that $f^{(n)}(x) = \frac{\sqrt{5}}{10}\left(\frac{(-1)^nn!}{(x+\sqrt{5})^{n+1}} -\frac{(-1)^nn!}{(x-\sqrt{5})^{n+1}}\right)$. Then to show that this formula holds for the $n+1$-th derivative, see that \begin{align*}
+        f^{(n+1)}(x) = \dv{x}f^{(n)}(x) &= \dv{x} \frac{\sqrt{5}}{10}\left(\frac{(-1)^nn!}{(x+\sqrt{5})^{n+1}} -\frac{(-1)^nn!}{(x-\sqrt{5})^{n+1}}\right)\\
+        &= \frac{\sqrt{5}}{10}\left(\dv{x}\frac{(-1)^nn!}{(x+\sqrt{5})^{n+1}} -\dv{x}\frac{(-1)^nn!}{(x-\sqrt{5})^{n+1}}\right)\\
+        &= \frac{\sqrt{5}}{10}\left(\frac{(-1)^nn!\cdot (-(n+1))}{(x+\sqrt{5})^{(n+1)+1}} - \frac{(-1)^nn!\cdot (-(n+1))}{(x-\sqrt{5})^{(n+1)+1}}\right)\\
+        &= \frac{\sqrt{5}}{10}\left(\frac{(-1)^{n+1}(n+1)!}{(x+\sqrt{5})^{n+2}} -\frac{(-1)^{n+1}(n+1)!}{(x-\sqrt{5})^{n+2}}\right).
+    \end{align*}
+    Therefore, by induction, the formula given is the closed form for the $n$-th derivative of $f$.
+\end{proof}
+
+Then we may take $n=100$ to find that \[f^{(100)}(x) = \frac{\sqrt{5}}{10}\left(\frac{100!}{(x+\sqrt{5})^{101}} -\frac{100!}{(x-\sqrt{5})^{101}}\right).\]
+\end{document}

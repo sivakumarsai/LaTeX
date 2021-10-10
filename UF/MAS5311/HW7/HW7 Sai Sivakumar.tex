@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5311}
+\fancyhead[C]{Assignment 7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\lcm}{lcm}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+Let $G$ be a group and let $A$ be a nonempty set.
+\begin{enumerate}
+    \item (DF4.1.1) Let $G$ act on the set $A$. Prove that if $a,b\in A$ and $b = g\cdot a$ for some $g\in G$, then $G_b = gG_ag^{-1}$. Deduce that if $G$ acts transitively on $A$ then the kernel of the action is $\cap_{g\in G}~ gG_ag^{-1}$.
+    \begin{proof}
+        Let $G$ act on $A$ with $b = g\cdot a$ for $a,b\in A$ for some $g\in G$. We also have that $g^{-1}\cdot b = g^{-1}\cdot (g\cdot a) = (g^{-1}g)\cdot a = 1\cdot a = a$.
+
+        With $gG_ag^{-1} = \cbr{gxg^{-1}\mid x\in G_a}$, observe that any element $gxg^{-1}\in gG_ag^{-1}$ satisfies \[(gxg^{-1})\cdot b = (gx)\cdot (g^{-1}\cdot b) = g\cdot (x\cdot a) = g\cdot a = b,\] so that $gxg^{-1} \in G_b$. Hence $gG_ag^{-1} \subseteq G_b$.
+
+        Similarly, observe that for any $y \in G_b$, we may find $ghg^{-1}\in gG_ag^{-1}$ such that $y = ghg^{-1}$. Choose $h = g^{-1}yg$, where indeed $h = g^{-1}yg\in G_a$ because \[h\cdot a = (g^{-1}yg)\cdot a = (g^{-1}y)\cdot b = g^{-1}\cdot b = a.\]
+        Then $y\in gG_ag^{-1}$, and hence $G_b\subseteq gG_ag^{-1}$.
+
+        If $G$ acts transitively on $A$; that is, there is only one orbit and so for any $a,c\in A$, there is some $g\in G$ such that $a = g\cdot c$. We may obtain the kernel of this action by finding $\cap_{c\in A}~ G_c$, but because this action is transitive on $A$, we may use the above result to rewrite this set intersection.
+        
+        For $a,c\in A$, there exists $g\in G$ such that $G_c = gG_ag^{-1}$; as a result, if we fix $a$ and let $g$ take on every element in $G$, then the sets $gG_ag^{-1}$ take on every $G_c$ for $c\in A$. Hence $\cap_{c\in A}~ G_c = \cap_{g\in G}~ gG_ag^{-1}$, which is the kernel of the transitive action of $G$ on $A$.
+    \end{proof}
+    \item (DF4.1.4) Let $S_3$ act on the set $\Omega$ of ordered pairs: $\cbr{(i,j)\mid 1\leq i,j\leq 3}$ by $\sigma((i,j)) = (\sigma(i),\sigma(j))$. Find the orbits of $S_3$ on $\Omega$. For each $\sigma\in S_3$ find the cycle decomposition of $\sigma$ under this action (i.e., find its cycle decomposition when $\sigma$ is considered as an element of $S_9$ \textbf{---} first fix a labelling of these nine ordered pairs). For each orbit $\mathcal{O}$ of $S_3$ acting on these nine points pick some $a\in \mathcal{O}$ and find the stabilizer of $a$ in $S_3$.
+    
+    The orbit of $S_3$ containing $a\in \Omega$ takes on the form $\cbr{\sigma(a)\mid \sigma\in S_3}$, and we know that the group action will partition $A$ into disjoint orbits of this form. We find the orbits by taking the six permutations of $S_3$ and applying them to $(1,1)$ and $(1,2)$; we need not try any others since after this point we find all of the elements in $\Omega$. The following table exhibits this method:
+    \begin{center}
+        \begin{tabular}{ c|c|c }
+         $\sigma$ & $\sigma((1,1))$ & $\sigma((1,2))$ \\
+         \hline 
+         $1$ & $(1,1)$ & $(1,2)$ \\
+         $\pmt*{(12)}$ & $(2,2)$ & $(2,1)$ \\
+         $\pmt*{(23)}$ & $(1,1)$ & $(1,3)$ \\
+         $\pmt*{(13)}$ & $(3,3)$ & $(3,2)$ \\
+         $\pmt*{(123)}$ & $(2,2)$ & $(2,3)$ \\
+         $\pmt*{(132)}$ & $(3,3)$ & $(3,1)$
+        \end{tabular}
+    \end{center}
+    So the two orbits that form are $\cbr{(c,c)\mid 1\leq c \leq 3}$ (the first column) and $\cbr{(a,b),(b,a)\mid a\neq b, 1\leq a,b\leq 3}$ (the second column). Notice they are disjoint and their union forms $\Omega$ as expected.
+
+    We use a suggestive notation to simplify forming the cycle decomposition of $\sigma$ under this group action. Using the matrices below we can establish a labelling of the elements of $\Omega$:
+    \[\begin{pmatrix}
+        \mathbf{1} & \mathbf{2} & \mathbf{3} \\
+        \mathbf{4} & \mathbf{5} & \mathbf{6} \\
+        \mathbf{7} & \mathbf{8} & \mathbf{9} 
+    \end{pmatrix} = \begin{pmatrix}
+        (1,1) & (1,2) & (1,3) \\
+        (2,1) & (2,2) & (2,3) \\
+        (3,1) & (3,2) & (3,3) 
+    \end{pmatrix}\]
+    Then by tracking how each element in $S_3$ permutes $\cbr{\mathbf{1},\dots,\mathbf{9}}$, we can find the following cycle decompositions (viewing them as elements of $S_9$):
+    \begin{center}
+        \begin{tabular}{c|c}
+            $\sigma$ & cycle decomposition for $\sigma$ \\
+            \hline
+            $1$ & $1$ \\
+            $\pmt*{(12)}$ & $(\mathbf{1}\,\mathbf{5})(\mathbf{2}\,\mathbf{4})(\mathbf{3}\,\mathbf{6})(\mathbf{7}\,\mathbf{8})(\mathbf{9})$ \\
+            $\pmt*{(23)}$ & $(\mathbf{2}\,\mathbf{3})(\mathbf{4}\,\mathbf{7})(\mathbf{5}\,\mathbf{9})(\mathbf{6}\,\mathbf{8})(\mathbf{1})$ \\
+            $\pmt*{(13)}$ & $(\mathbf{1}\,\mathbf{9})(\mathbf{2}\,\mathbf{8})(\mathbf{3}\,\mathbf{7})(\mathbf{4}\,\mathbf{6})(\mathbf{5})$ \\
+            $\pmt*{(123)}$ & $(\mathbf{1}\,\mathbf{5}\,\mathbf{9})(\mathbf{2}\,\mathbf{6}\,\mathbf{7})(\mathbf{3}\,\mathbf{4}\,\mathbf{8})$ \\
+            $\pmt*{(132)}$ & $(\mathbf{1}\,\mathbf{9}\,\mathbf{5})(\mathbf{2}\,\mathbf{7}\,\mathbf{6})(\mathbf{3}\,\mathbf{8}\,\mathbf{4})$
+        \end{tabular}
+    \end{center}
+    It is clear from these cycle decompositions that for $a\in \cbr{(c,c)\mid 1\leq c \leq 3}$ (the first orbit), the stabilizer of $a$ in $S_3$ is ${S_3}_a = \cbr{1,\pmt*{(xy)} \mid x,y\neq a, 1\leq x,y\leq 3}$; for example, $\pmt*{(12)}((3,3)) = (3,3)$ since $3$ is not found in the cycle $\pmt*{(12)}$. Then for $b\in \cbr{(a,b),(b,a)\mid a\neq b, 1\leq a,b\leq 3}$ (the second orbit), the stabilizer of $b$ in $S_3$ is ${S_3}_b = \cbr{1}$, since the only $1$-cycles present in any of the cycle decompositions above are those that fix elements from the first orbit.
+
+    \item (DF4.1.10) Let $H$ and $K$ be subgroups of the group $G$. For each $x\in G$ define the $HK$ \textit{double coset} of $x$ in $G$ to be the set \[HxK = \cbr{hxk \mid h\in H,k\in K}.\]
+    \begin{enumerate}[label=\textbf{(\alph*)}]
+        \item Prove that $HxK$ is the union of the left cosets $x_1K,\dots,x_nK$ where $\cbr{x_1K,\dots,x_nK}$ is the orbit containing $xK$ of $H$ acting by left multiplication on the set of left cosets of $K$.
+        \item Prove that $HxK$ is a union of right cosets of $H$.
+        \item Show that $HxK$ and $HyK$ are either the same set or are disjoint for all $x,y\in G$. Show that the set of $HK$ double cosets partitions $G$.
+        \item Prove that $\abs{HxK} = \abs{K}\cdot \abs{H\colon H\cap xKx^{-1}}$.
+        \item Prove that $\abs{HxK} = \abs{H}\cdot \abs{K\colon K\cap x^{-1}Hx}$.
+    \end{enumerate}
+    \item Q4. Let $G$ be a finite group and $H$ a subgroup. Consider the partition of $G$ into double cosets $HgH$  as in problem 10.
+    \begin{enumerate}[label=\textbf{(\alph*)}]
+        \item Prove that every left coset contained in a given double coset has nonempty intersection with every right coset contained in the same double coset.
+        \item Deduce that if $n=|G:H|$ then there exist  elements $g_1,\cdots g_n$ in $G$ that belong to distinct left cosets and to distinct right cosets.
+    
+        This means that $G$ is the disjoint union of the $Hg_i$ and also the disjoint union of the $g_iH$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

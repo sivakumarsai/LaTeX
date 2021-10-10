@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Let $A$ be an $n\times n$ rotation matrix whose entries are given by $a_{ij}$. Then for some vector $v = (v_1,v_2,\dots,v_n)$, we demand $\abs{v} = \abs{Av}$. This means \begin{align*}
+        \abs{v}^2 = a_ia_i &\overset{!}{=} \abs{Av}^2 \\
+        &= (Av)_i(Av)_i \\
+        &= (a_{ij}v_j)(a_{ik}v_k)\\
+        &= (a_{ij}a_{ik})v_jv_k,
+    \end{align*} and because $0\leq i,j,k \leq n$, we can match terms when $j=k$ with the left hand side by enforcing $a_{ij}a_{ik} = 1$. All of the terms where $j\neq k$ must be zero. Hence $a_{ij}a_{ik} = \delta_{jk}$.
+
+    \item Observe that the condition $a_{ij}a_{ik} = \delta_{jk}$ is symmetric in $j$ and $k$, so out of all $n^2$ ways to select $j$ and $k$, for the cases when $j\neq k$ (there are $n$ cases where $j=k$), there are $n^2-n-\frac{n^2-n}{2}$ redundant equations (due to commutativity of multiplication, we can pair each equation where $j\neq k$ with another one). Then by adding back on the number of equations where $j=k$, the number of equations which are not redundant is $n^2-\frac{n^2-n}{2}$. Hence there are $n^2-\left(n^2-\frac{n^2-n}{2}\right) = \frac{n(n-1)}{2} = \binom{n}{2}$ degrees of freedom, same as the number of degrees of freedom of rotation in $n$ dimensions.
+\end{enumerate}
+
+\end{document}

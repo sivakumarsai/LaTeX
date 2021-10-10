@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.63: 12, 15, 16, 18
+
+12. Prove that if a series of complex numbers $\sum c_n$ converges to $s$, then $\sum c_n$ is Ces\`aro summable to $s$. \begin{proof}
+    Because $\sum c_n$ converges to $s$, for every $\varepsilon >0$ there exists $M$ such that for all $n>M$, $\abs{s_n-s}<\varepsilon/2$. Then consider the Ces\`aro sum $\sigma_n = \frac{1}{n}(s_0 + s_1 + \cdots + s_{n-1})$. We wish to show that $\abs{\sigma_n - s}$ can be made arbitrarily small. For $n>M$, \begin{align*}
+        \abs{\sigma_n - s} &= \abs{\frac{1}{n}(s_0 + s_1 + \cdots + s_{n-1}) - s}\\
+        &\leq \frac{1}{n}\abs{(s_0-s) + (s_1-s) + \cdots + (s_{n-1}-s)} \\
+        &\leq \frac{1}{n}\sum_{i = 0}^M \abs{s_i-s} + \frac{1}{n}\sum_{i = M+1}^{n-1} \abs{s_i-s} \intertext{(note that the first sum is finite and can be made as small as we wish by taking $n$ large enough.)}
+        &\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2n}(n-(1+m)) \\
+        &\leq \varepsilon.
+    \end{align*} Hence convergence implies the Ces\`aro sum converges to the same limit.
+\end{proof}
+
+15. Prove that the Fej\'er kernel is given by \[F_N(x) = \frac{1}{N}\frac{\sin^2(Nx/2)}{\sin^2(x/2)}.\] \begin{proof}
+    Use the definition and geometric series. From the definition, with $\omega = e^{ix}$, \begin{align*}
+        NF_N(x) = \sum_{j=0}^{N-1}\left(D_j(x)\right) &= \sum_{j=0}^{N-1}\left(\sum_{n=-j}^{j} \omega^n\right) \\
+        &= \sum_{j=0}^{N-1}\left(\frac{\omega^{-j}-\omega^{j+1}}{1-\omega}\right) \\
+        &= \frac{1}{1-\omega}\br{\sum_{j=0}^{N-1}\omega^{-j}-  \sum_{j=0}^{N-1}\omega^{j+1}} \\
+        &= \frac{1}{1-\omega}\br{ -\omega\frac{1-\omega^{-N}}{1-\omega} -  \omega\frac{1-w^N}{1-\omega}} \\
+        &= \frac{-\omega(2-\omega^{-N}-\omega^N)}{\omega(\omega^{-1/2} - \omega^{1/2})^2} \\
+        &= \frac{(\omega^{N/2} - \omega^{-N/2})^2}{(\omega^{1/2} - \omega^{-1/2})^2} \\
+        &= \frac{\sin^2(Nx/2)}{\sin^2(x/2)}.
+    \end{align*} Hence $F_N(x) = \frac{1}{N}\frac{\sin^2(Nx/2)}{\sin^2(x/2)}$.
+\end{proof}
+
+16. Prove the Weierstrass approximation theorem using Corollary 5.4 of Fej\'er`s theorem. \begin{proof}
+    Corollary 5.4 of Fej\'er`s theorem states that continuous and periodic functions on $[-\pi,\pi]$ can be uniformly approximated by trigonometric polynomials.
+
+    Therefore for a function $f$ continuous on $[a,b]$, we may make a change of variables which sends this interval to $[0,\pi]$, and by reflection we can make a periodic and continuous function $g$ on $[-\pi,\pi]$ out of $f$.
+
+    Then we have that for any $\varepsilon>0$, there exists a trigonometric polynomial $P$ such that $\abs{g(x)-P(x)} < \varepsilon/2$ for all $x\in[-\pi,\pi]$. Then we can approximate $P(x)$ by truncating the power series for sine and cosine into polynomials of sufficient degree, so that $P(x)$ can be approximated by a new polynomial $Q(x)$ made by substituting each sine and cosine term by a polynomial of sufficiently high enough degree. The power series for sine and cosine converge uniformly, so there is no issues of convergence in this approximation as well. This means that we can find $Q(x)$ so that $\abs{P(x)-Q(x)} < \varepsilon/2$ for all $x\in[-\pi,\pi]$.
+
+    Hence $\abs{g(x)-Q(x)} = \abs{g(x)-P(x)+P(x)-Q(x)}\leq \abs{g(x)-P(x)} + \abs{P(x)-Q(x)} < \varepsilon/2 +\varepsilon/2 \leq \varepsilon$, so that $g$ can be approximated to arbitrary precision by a polynomial made from approximating the trigonometric polynomial which approximates $g$. Then we can apply the inverse change of variables to $Q(x)$ and find that the resulting polynomial thus approximates $f$ to arbitrary precision.
+\end{proof}
+
+18. If $P_r(\theta)$ denotes the Poisson kernel, show that the function \[u(r,\theta) = \pdv{P_r}{\theta} = \pdv{\theta}\sum_{n=-\infty}^{\infty} r^{\abs{n}}e^{in\theta} = \sum_{n=-\infty}^{\infty} \pdv{\theta}r^{\abs{n}}e^{in\theta} = \sum_{n=-\infty}^{\infty} in r^{\abs{n}}e^{in\theta}\] defined for $0\leq r<1$ and $\theta \in \mathbb{R}$, (where the uniform convergence of $P_r(\theta)$ permits interchanging differentiation with summation) satisfies: 
+\begin{enumerate}[label=(\roman*)]
+    \item $\Delta u = 0$ in the disc. \begin{proof}
+        Directly taking derivatives, we have \begin{align*}
+            \Delta u(r,\theta) = \pdv[2]{u}{r} + \frac{1}{r}\pdv{u}{r} + \frac{1}{r^2}\pdv[2]{u}{\theta} &= \sum_{n=-\infty}^{\infty}\pdv[2]{r}in r^{\abs{n}}e^{in\theta} + \frac{1}{r}\sum_{n=-\infty}^{\infty}\pdv{r}in r^{\abs{n}}e^{in\theta} + \frac{1}{r^2}\sum_{n=-\infty}^{\infty}\pdv[2]{\theta}in r^{\abs{n}}e^{in\theta} \\
+            &= \sum_{n=-\infty}^{\infty}\Big[\br{in\abs{n}(\abs{n}-1)r^{\abs{n}-2}e^{in\theta}}\\  &\hspace*{4cm} + \br{in\abs{n}r^{\abs{n}-2}e^{in\theta}} - \br{in\abs{n}^2r^{\abs{n}-2}e^{in\theta}}\Big] \\
+            &= \sum_{n=-\infty}^{\infty}\sbr{\br{in\abs{n}^2-in\abs{n}^2 + in\abs{n} - in\abs{n}}r^{\abs{n}-2}e^{in\theta}} = 0,
+        \end{align*} where these sums converge on the open disc for $0\leq r< 1$ and $\theta\in\mathbb{R}$. Hence $u$ is a harmonic function in the disc.
+    \end{proof}
+    \item $\lim_{r\to 1^{-}}u(r,\theta) = 0$ for each $\theta$. \begin{proof}
+        We can use the closed form of $P_r(\theta)$ directly, which after taking its partial derivative with respect to $\theta$, we find $u(r,\theta) = \pdv{\theta} \frac{1-r^2}{1-2r\cos(\theta)+r^2} = \frac{2 r (-1 + r^2) \sin(\theta)}{(1 + r^2 - 2 r \cos(\theta))^2}$. Furthermore, $u(r,\theta)$ is continuous at $r = 1$ for $\theta\in\mathbb{R}$ which does not make $\cos(\theta) = 1$, the integral multiples of $2\pi$. Thus for $\theta \neq 2\pi n$ for $n\in\mathbb{Z}$, \[\lim_{r\to 1^{-}}u(r,\theta) = \lim_{r\to 1^{-}} \frac{2 r (-1 + r^2) \sin(\theta)}{(1 + r^2 - 2 r \cos(\theta))^2} = 0.\] But when $\theta = 2\pi n $ for integer $n$, the sine term in the numerator causes $u$ to vanish, so the limit is still $0$. Note that $u$ is not actually identically zero on the open disc.
+    \end{proof}
+\end{enumerate}
+
+\end{document}

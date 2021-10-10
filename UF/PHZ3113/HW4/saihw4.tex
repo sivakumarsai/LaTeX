@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item (4.1) The central force problem.
+    
+    (a) Generalized momenta conjugate to generalized coordinates $r$ and $\phi$, where $\mathcal{L} = \frac{1}{2}m\left(\dot{r}^2+r^2\dot{\phi}^2\right) - V(r)$ are
+    \begin{align*}
+        p_r &= \pdv{\mathcal{L}}{\dot{r}} = m\dot{r}\\
+        p_{\phi} &= \pdv{\mathcal{L}}{\dot{\phi}} = mr^2\dot{\phi}.
+    \end{align*}
+    (b) Apply the Legendre transformation to find \[\mathcal{H} = \dot{r}\br{m\dot{r}} + \dot{\phi}\br{mr^2\dot{\phi}} - \frac{1}{2}m\left(\dot{r}^2+r^2\dot{\phi}^2\right) + V(r) = \frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\phi}^2 + V(r) = \frac{p_r^2}{2m}+ \frac{p_{\phi}^2}{2mr^2} + V(r),\] which by inspection is equivalent to the total energy. The quantity $\frac{1}{2}m\dot{r}^2 + \frac{1}{2}mr^2\dot{\phi}^2$ is the sum of the ``radial'' kinetic energy and the angular kinetic energy, and $V(r)$ is the potential energy.
+
+    (c) Then from Hamilton's equations, \begin{align*}
+        \dot{r} &= \pdv{\mathcal{H}}{p_r} = \frac{p_r}{m} \quad (\text{no information})\\
+        -m\ddot{r} = -\dot{p_r} &= \pdv{\mathcal{H}}{r} = mr\dot{\phi}^2 + \pdv{V(r)}{r} \quad (m\ddot{r} + mr\dot{\phi}^2 = f(r))\\
+        \dot{\phi} &= \pdv{\mathcal{H}}{p_{\phi}} = \frac{p_{\phi}}{mr^2} \quad (\text{no information})\\
+        -\dot{p_{\phi}} &= \pdv{\mathcal{H}}{\phi} = 0 \quad (p_{\phi} = \text{constant}).
+    \end{align*}
+
+    I have a sign error for some reason in the second equation, and I am unsure how to fix it. It should be equivalent to the equations obtained via the Lagrangian. The time derivative of $p_{\phi}$ is consistent with the result from the Lagrangian.
+
+    \item (4.2) Free particle.
+    
+    (a) Let $\mathcal{L} = -mc^2\sqrt{1-\dot{x}^2/c^2}$, where $c$ is the speed of light and define $\gamma = 1/\sqrt{1-\dot{x}^2/c^2}$. Then the momentum $p$ conjugate to $x$ in terms of $\gamma$ is \[p = \pdv{\mathcal{L}}{\dot{x}} = m\dot{x}\br{1-\frac{\dot{x}^2}{c^2}}^{-\frac{1}{2}} = m\dot{x}\gamma.\]
+    (b) Then the Hamiltonian is given by \[\mathcal{H} = \dot{x}\br{m\dot{x}\gamma} + mc^2\sqrt{1-\dot{x}^2/c^2} = \sbr{m\dot{x}+mc^2\br{1-\frac{\dot{x}}{c^2}}}\gamma = mc^2\gamma.\]
+    (c) With some algebra, see that from the momentum equation that we have $p^2/(m^2c^2+p^2) = \dot{x}^2/c^2$ and so in $mc^2\gamma$, we simplify \[\mathcal{H} = \frac{mc^2}{\sqrt{1-\dot{x}^2/c^2}} = \frac{mc^2}{\sqrt{1-p^2/(m^2c^2+p^2)}} = \frac{mc^2}{\sqrt{m^2c^2/(m^2c^2+p^2)}} = mc^2\sqrt{\frac{p^2}{m^2c^2}+1},\] and this last term is the total energy in terms of $p$ alone (how the Hamiltonian should be written as there is no explicit dependence on $\dot{x}$).
+\end{enumerate}
+\end{document}

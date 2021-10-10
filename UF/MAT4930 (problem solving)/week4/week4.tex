@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Strong Induction}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{11.} Let $m,n$ be integers, and set $d = \gcd(m,n)$. Prove that there are integers $x,y$ such that $mx+ny = d$.
+\begin{proof}
+    It suffices to prove the theorem for $m,n$ being nonnegative integers since we can pass any negative signs into the coefficients $x,y$ (or pass them back into $\abs{m},\abs{n}$); that is, if $m$ is negative and we have coefficients $x,y$ that satisfy $mx+ny = d$, then we also have that $\abs{m}(-x) + ny = d$, so that $d = \gcd(m,n) = \gcd(\abs{m},n)$. We can do the same if $n$ was negative, or if both $m$ and $n$ were negative.
+
+    Let $m,n$ be nonnegative integers and $d = \gcd(m,n)$ as given, where without loss of generality, let $n\geq m$. By strong induction on $h\geq 0$, suppose that for nonnegative integers $a,b$ where $a+b < h$ there exist integers $s,t$ such that $d = \gcd(a,b) = as+bt$. When $h = n+m = 0$, then both $m,n$ are zero and so $x,y$ are both zero as well (where the greatest common of $0$ and $0$ is $0$ because the divisor should be less than or equal to $0$ in the nonnegative integers). If $m$ (the lesser of the two) is $0$ and $n$ is nonzero (so that $h = n$), then the greatest common divisor is $n$, and we find that $n = n(1) + m(0)$. Then let $m\geq 1$, with $h = n+m$.
+
+    Consider $\gcd(m,n-m)$. Observe that $m+(n-m) = n = h-m < h$, since $m\geq 1$. Then by the inductive hypothesis, there exist integers $a,b$ such that $\gcd(m,n-m) = ma+(n-m)b = m(a-b) + nb$. This quantity is actually the greatest common divisor of $m$ and $n$. Any common divisor of $m$ and $n$ will divide the quantity $m(a-b) + nb$ since this is a linear combination of $m,n$. Hence there are integers $x = (a-b), y = b$ such that $d = \gcd(m,n) = mx+ny$.
+
+    Therefore, by mathematical induction, for any integers $m,n$, there exist integers $x,y$ such that $d = \gcd(m,n) = mx+ny$.
+\end{proof}
+
+\textbf{14.} Let $x$ be a real number such that $x+x^{-1}$ is an integer. Prove that $x^n+x^{-n}$ is an integer for all positive integers $n$.
+\begin{proof}
+    Let $x\in \mathbb{R}$ be given so that $x+x^{-1}\in \mathbb{Z}$ as given. Then by strong induction on $n$, suppose that for $1\leq k < n$, $x^k+x^{-k}\in \mathbb{Z}$.
+
+    Since $x+x^{-1}\in \mathbb{Z}$, we have that $(x+x^{-1})^n \in \mathbb{Z}$. Then by binomial expansion, 
+    \[(x+x^{-1})^n = x^n+x^{-n} + \sum_{k=1}^{n-1} \binom{n}{k}x^k(x^{-1})^{n-k},\]
+    and we can further simplify this using the symmetry of binomial coefficients, where $\binom{n}{k} = \binom{n}{n-k}$. However, we must handle an ``extra'' constant term that forms when $n$ is even (where $k=n-k$ for some $k$). So in the first case when $n$ is even, write $n = 2a$ for some positive integer $a$. Then substitute and simplify using the symmetry of binomial coefficients to find 
+    \[x^n+x^{-n} + \sum_{k=1}^{2a-1} \binom{2a}{k}x^k(x^{-1})^{2a-k} = x^n+x^{-n} + \binom{2a}{a} + \sum_{k=1}^{a-1} \binom{2a}{k}\left[x^{2(a-k)} + (x^{-1})^{2(a-k)}\right],\]
+    and observe that $\binom{2a}{a}$ is an integer. By the inductive hypothesis, all of the terms $\binom{2a}{k}\left[x^{2(a-k)} + (x^{-1})^{2(a-k)}\right]$ for $1\leq k \leq a-1$ are integers as well since $2(a-k) < n$. Then it follows that $x^n+x^{-n} = (x+x^{-1})^n - \binom{2a}{a} - \sum_{k=1}^{a-1} \binom{2a}{k}\left[x^{2(a-k)} + (x^{-1})^{2(a-k)}\right]$ is an integer since a sum of integers is an integer.
+
+    Similarly, when $n$ is odd, write $n=2b+1$ for some positive integer $b$, and we have that 
+    \[x^n+x^{-n} + \sum_{k=1}^{2b} \binom{2b+1}{k}x^k(x^{-1})^{2b+1-k} = x^n+x^{-n} + \sum_{k=1}^{b} \binom{2b+1}{k}\left[x^{2(b-k)+1} + (x^{-1})^{2(b-k)+1}\right],\]
+    where because $1\leq k\leq b$, $2(b-k)+1 < n$, all of the terms $\binom{2b+1}{k}\left[x^{2(b-k)+1} + (x^{-1})^{2(b-k)+1}\right]$ are integers. Again, we have that $x^n+x^{-n} = (x+x^{-1})^n - \sum_{k=1}^{b} \binom{2b+1}{k}\left[x^{2(b-k)+1} + (x^{-1})^{2(b-k)+1}\right]$ is an integer.
+
+    Hence in both cases $x^n+x^{-n}$ is an integer, and by mathematical induction, $x^n+x^{-n}$ is an integer for all positive integers $n$.
+\end{proof}
+\end{document}

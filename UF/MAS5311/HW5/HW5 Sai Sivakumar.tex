@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5311}
+\fancyhead[C]{Assignment 5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\lcm}{lcm}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item Prove that every subgroup of the quaternion group $Q_8$ is normal.
+    \begin{proof}
+        In the quaternion group $Q_8 = \cbr{1,-1,i,-i,j,-j,k,-k}$, observe that the subgroups we investigate (due to Lagrange's theorem) are the trivial subgroup, $\cbr{1,-1}$, $\abr{i}$, $\abr{j}$, $\abr{k}$, and $Q_8$ itself. A subgroup is normal in $Q_8$ if for every element $a$ in the subgroup, and for every element $q$ in the quaternion group, $qaq^{-1}$ is an element of the subgroup (so for a subgroup $H$, $qHq^{-1} \subseteq H$).
+        
+        Clearly, the trivial subgroup and $Q_8$ itself are normal in $Q_8$. For the trivial group, we know that $1$ commutes with every element in $Q_8$, so for any element $q \in Q_8$, $q1q^{-1} = 1qq^{-1} = 1\cdot 1 = 1$. Then for the whole group, observe that for any elements $a,b$, $aba^{-1}\in Q_8$, since $Q_8$ is a group. Similarly, we saw earlier that $\cbr{1,-1}$ was the center of $Q_8$, so for the same reason as the trivial group (we also already know that the center of a group is a normal subgroup), this subgroup is also normal in $G$.
+
+        The remaining three subgroups, $\abr{i}$, $\abr{j}$, and $\abr{k}$, are symmetric in that they only differ by two elements each: \begin{align*}
+            \abr{i} &= \cbr{1,-1,i,-i} \quad(= \abr{-i})\\
+            \abr{j} &= \cbr{1,-1,j,-j} \quad(= \abr{-j})\\
+            \abr{k} &= \cbr{1,-1,k,-k} \quad(= \abr{-k})
+        \end{align*}
+        For each of these groups, again observe that because $1$ and $-1$ are in the center of $Q_8$, for elements $q$ in the quaternion group we have that $q(\pm1)q^{-1} = (\pm1)qq^{-1} = (\pm1)$. Recall that multiplication of elements not in the center of $Q_8$ is anticommutative; that is, for $x\in Q_8\setminus Z(Q_8), y\in Q_8$, $xy = y^{-1}x$. So let $a\in Q_8\setminus Z(Q_8) = \cbr{i,-i,j,-j,k,-k}$, and see that for $\abr{a} = \cbr{1,-1,a,-a}$ and $q\in Q_8$, $qaq^{-1} = qqa = \pm a$, and $q(-a)q^{-1} = qq(-a) = \mp a$, since $q^2$ is $1$ or $-1$ depending on the choice of $q$. Hence for every element $r$ in the subgroup $\abr{a}$, $qrq^{-1}\in \abr{a}$, and because $a$ took on the elements not in the center of $Q_8$, we have that $\abr{i}$, $\abr{j}$, and $\abr{k}$ are each normal in $Q_8$.
+
+        Alternatively, because these last three subgroups are of index $2$, we already know that they are normal in $Q_8$ because subgroups of index $2$ are normal subgroups (example from the textbook).
+
+        Hence all subgroups of the quaternion group are normal subgroups.
+    \end{proof}
+    \item (DF3.2.6) Let $H\leq G$ and let $g\in G$. Prove that if the right coset $Hg$ equals \textit{some} left coset of $H$ in $G$ then it equals the left coset $gH$ and $g$ must be in $N_G(H)$.
+    \begin{proof}
+        Let $H,G$ be groups with $H\leq G$ as given, and let $g\in G$. Then suppose that the right coset $Hg$ is equal to some left coset of $H$ in $G$; that is, there exists a representative $r\in G$ such that $Hg = rH$. 
+        
+        Then for each $h_2\in H$ there exists $h_1\in H$ such that $h_1g = rh_2$. So for the case when $h_2 = 1$ (as $1\in H$), there exists an $h_1$ such that $h_1g = r1  = r$, so that $Hg = rH = h_1gH$. Then by multiplying on the left by $h_1^{-1}$, we have that $h_1^{-1}Hg = gH$. But since $h_1\in H$, we have that $h_1^{-1}\in H$, so that $h_1^{-1}H = H$. Thus $h_1Hg = Hg = gH$.
+
+        Then by multiplying by $g^{-1}$ on the right, we have that $gHg^{-1} = H$, which by definition implies that $g$ is in $N_G(H)$.
+    \end{proof}
+    \item (DF3.2.12) Let $H\leq G$. Prove that the map $x\mapsto x^{-1}$ sends each left coset of $H$ in $G$ onto a right coset of $H$ and gives a bijection between the set of left cosets and the set of right cosets of $H$ in $G$.
+    \begin{proof}
+        Let $H\leq G$ as given. Then let $g\in G$ so that $gH$ is an arbitrary left coset of $H$ in $G$. Then $gH = \cbr{gh\mid h\in H}$, and then under the mapping $x\mapsto x^{-1}$, we find that every element $gh$ of $gH$ maps to $(gh)^{-1} = h^{-1}g^{-1}$. But because $h$ is any element in $H$, and $H$ is a group, it follows that the set $\cbr{h^{-1}g^{-1}\mid h\in H}$ is equal to $Hg^{-1}$. So under the mapping $x\mapsto x^{-1}$, left cosets of $H$ in $G$ are sent to right cosets of $H$ in $G$. In a sense, there is an induced map between the set of left cosets and right cosets given by $gH\mapsto Hg^{-1}$.
+
+        We should check if the induced mapping makes sense, or is well defined. If we have some left coset of $H$ in $G$ written in two ways, say for representatives $u,v\in G$ we have $uH = vH$, we should have that after mapping them to their corresponding right cosets, $Hu^{-1} = Hv^{-1}$. So from $uH = vH$, we have for every element $uh_1 \in uH$ that there exists a unique (since the cosets are equal) element $vh_2\in vH$ such that $uh_1= vh_2$. Then under the inversion map, we have that $h_1^{-1}u^{-1} = h_2^{-1}v^{-1}$. Then since $h_1^{-1}, h_2^{-1}\in H$ and $h_1^{-1}, h_2^{-1}$ each can take on every element of $H$, we have that $Hu^{-1} = Hv^{-1}$. So in this sense we may use any element in a coset to represent the coset in our notation, and the induced mapping still makes sense.
+
+        To see that this induced mapping is surjective, consider any right coset of $H$ in $G$, say $Hg$. Then the preimage of this coset under the mapping is the left coset $g^{-1}H$, since under the induced map, $g^{-1}H \mapsto H(g^{-1})^{-1} = Hg$.
+
+        Then to show that this mapping is injective, we show that for two distinct left cosets, they are mapped into two distinct right cosets. So let $u,v\in G$, and let $uH \neq vH$. Then for some element $u h_1\in uH$, this element is not equal to \textit{any} element in $vH$, so $uh_1 \neq vh$ for every $h\in H$. Then by inversion, $h_1^{-1}u^{-1} \neq h^{-1}v^{-1}$, and since $h$ takes on every element of $H$, $h^{-1}$ will take on every element of $H$ as well. Then this means in the right cosets $Hu^{-1},Hv^{-1}$, there is an element $h_1^{-1}u^{-1}\in Hu^{-1}$ which is not equal to any element in $Hv^{-1}$. It follows that $Hu^{-1}\neq Hv^{-1}$. Since these right cosets are the images of the distinct left cosets $uH,vH$ under the induced mapping, we have that this mapping is injective.
+
+        Thus the induced mapping is bijective, and so there is a bijection between the set of left cosets of $H$ in $G$ and the set of right cosets of $H$ in $G$.
+    \end{proof}
+    \item (DF3.3.9) Let $p$ be a prime and let $G$ be a group of order $p^am$ where $p$ does not divide $m$. Assume $P$ is a subgroup of $G$ of order $p^a$ and $N$ is a normal subgroup of $G$ of order $p^bn$, where $p$ does not divide $n$. Prove that $\abs{P\cap N} = p^b$ and $\abs{PN/N} = p^{a-b}$.
+    \begin{proof}
+        Let $G$, $P\leq G$, and $N\unlhd G$ be given, with $\abs{G} = p^am$ with $p\nmid m$, $\abs{P} = p^a$, $\abs{N} = p^bn$ with $p\nmid n$. Then because $P\leq G = N_G(N)$ ($N$ is a normal subgroup of $G$), we have that $PN$ is a subgroup of $G$ (from the textbook). So by Lagrange's theorem, $\abs{PN}$ divides $\abs{G} = p^am$.
+        
+        We can factorize $\abs{PN}$ into $p^r s$, with $p\nmid s$ for integers $r,s$. But $P\leq PN$, since $1\in N$, so again we have by Lagrange's theorem that $\abs{P} = p^a \mid  p^rs$, so $r\geq a$. Then since $p^r\mid p^rs$ and $p^rs\mid p^am$ imply that $p^r\mid p^am$, and $p$ is coprime to $m$, we have that $p^r\mid p^a$ and so $r\leq a$. Hence $r=a$.
+
+        Then since $N\unlhd PN$, we have that $\abs{N} = p^bn \mid p^as = \abs{PN}$. From $p^b\mid p^bn$ and $p^bn \mid p^as$, we have that $n \mid p^as$ and since $p$ and $n$ are coprime, we find that $n\mid s$. Then because $P$ and $N$ are finite subgroups of $G$ we may use the formula
+        \[\abs{PN} = p^as = \frac{p^a \cdot p^bn}{\abs{P\cap N}} = \frac{\abs{P}\abs{N}}{\abs{P\cap N}}\implies \abs{P\cap N} = \frac{p^bn}{s}\] to deduce that $s\mid n$, because $p$ and $s$ are coprime and that the order of $\abs{P\cap N}$ is an integer. Since $n\mid s$ and $s\mid n$, we have that $s = n$. Then $\abs{PN} = p^an$, and using the same formula above, we arrive at $\abs{P\cap N} = p^b$.
+
+        Then we invoke the Second Isomorphism Theorem to find that \[\frac{PN}{N}\cong \frac{P}{P\cap N}\] because $P\leq G = N_G(N)$ and $P,N\leq G$, with $N\unlhd PN$ and $P\cap N\unlhd P$. Then \[\abs{\frac{PN}{N}} = \abs{\frac{P}{P\cap N}} = \frac{\abs{P}}{\abs{P\cap N}} = \frac{p^a}{p^b} = p^{a-b}.\] Furthermore, since $N\unlhd PN$, we have that $\abs{N} = p^bn\mid p^an = \abs{PN}$, and since $p$ is coprime to $n$, $p^b\mid p^a$ and so $b\leq a$, which again confirms that the order of $PN/N$ is finite.
+
+        Therefore $\abs{P\cap N} = p^b$ and $\abs{PN/N} = p^{a-b}$.
+    \end{proof}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW11}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+11.1 The relativistic Lagrangian of a particle of mass $m$ in an electromagnetic field is given by \[\mathcal{L} = -mc^2\sqrt{1-v^2/c^2} + \frac{e}{c}\vec{A}\cdot\vec{v}-e\phi;\quad \vec{v} = \dot{\vec{r}}.\]
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate $\partial \mathcal{L}/\partial \vec{r} = \vec{\nabla}\mathcal{L}$, keeping $\vec{v}$ constant. Then
+    \begin{align*}
+        \pdv{\mathcal{L}}{\vec{r}} = \vec{\nabla}\mathcal{L} = \frac{e}{c}\vec{\nabla}\br{\vec{A}\cdot\vec{v}} - e\vec{\nabla}\phi &= \frac{e}{c}\br{ (\vec{v}\cdot\vec{\nabla})\vec{A} + (\vec{A}\cdot\vec{\nabla})\vec{v} + \vec{A}\times (\vec{\nabla}\times \vec{v}) + \vec{v}\times (\vec{\nabla}\times \vec{A}) } - e\vec{\nabla}\phi \\
+        &= \frac{e}{c}\br{ (\vec{v}\cdot\vec{\nabla})\vec{A} + \vec{v}\times (\vec{\nabla}\times \vec{A})} - e\vec{\nabla}\phi\\
+        &= \frac{e}{c} (\vec{v}\cdot\vec{\nabla})\vec{A} + \frac{e}{c}\vec{v}\times (\vec{\nabla}\times \vec{A})  - e\vec{\nabla}\phi,
+    \end{align*} where the first term in the Lagrangian was constant with respect to position (so the spatial derivative vanished), and all spatial derivatives of $\vec{v}$ vanished.
+    
+    \item Define the generalized momentum $\vec{P} = \pdv{\mathcal{L}}{\vec{v}}$ and show that $\vec{P}$ can be written as $\vec{P} = \vec{p} + \frac{e}{c}\vec{A}$ where $\vec{p} = \gamma m\vec{v}$ is the relativistic free particle momentum as obtained in HW 4.2.
+    
+    We have
+    \begin{align*}
+        \vec{P} &= \pdv{\vec{v}} \br{-mc^2\sqrt{1-(\vec{v}\cdot \vec{v})/c^2} + \frac{e}{c}\vec{A}\cdot\vec{v}-e\phi} \\
+        &= \frac{-mc^2\cdot -2\pdv{\vec{v}}\vec{v}\cdot \vec{v}/c^2 }{2\sqrt{1-(\vec{v}\cdot \vec{v})/c^2}} + \frac{e}{c}\vec{A}\\
+        &= \frac{m\vec{v}}{\sqrt{1-v^2/c^2}} + \frac{e}{c}\vec{A} = \gamma m\vec{v} + \frac{e}{c}\vec{A} = \vec{p} + \frac{e}{c}\vec{A}.
+    \end{align*}
+    
+    \item Use the previous result as well as equations (7.12) to show that the E-L equation gives \[\dv{\vec{p}}{t} = e\vec{E} + \frac{e}{c}(\vec{v}\times \vec{B}).\]
+    
+    So by the Euler-Lagrange equations, we have $\dv{t}\pdv{\mathcal{L}}{\dot{\vec{r}}} = \pdv{\mathcal{L}}{\vec{r}}$. But $\dv{t}\pdv{\mathcal{L}}{\dot{\vec{r}}} = \dv{t}\pdv{\mathcal{L}}{\vec{v}} = \dv{t} \br{\vec{p} + \frac{e}{c}\vec{A}} = \dv{\vec{p}}{t} + \frac{e}{c}\dv{\vec{A}}{t}$. Then 
+    \begin{align*}
+        \dv{\vec{p}}{t} = \pdv{\mathcal{L}}{\vec{r}}- \frac{e}{c}\pdv{\vec{A}}{t} &= \frac{e}{c} (\vec{v}\cdot\vec{\nabla})\vec{A} + \frac{e}{c}\vec{v}\times (\vec{\nabla}\times \vec{A})  - e\vec{\nabla}\phi - \frac{e}{c}\dv{\vec{A}}{t}\\
+        &= \frac{e}{c} (\vec{v}\cdot\vec{\nabla})\vec{A} + \frac{e}{c}\vec{v}\times \vec{B}  + e\br{\vec{E} + \frac{1}{c}\pdv{\vec{A}}{t}} - \frac{e}{c}\dv{\vec{A}}{t}\\
+        &= \frac{e}{c}\br{\br{\pdv{\vec{r}}{t}\cdot\vec{\nabla}}\vec{A} + \pdv{\vec{A}}{t}} + \frac{e}{c}\vec{v}\times\vec{B}+ e\vec{E} - \frac{e}{c}\dv{\vec{A}}{t}\\
+        &= \frac{e}{c}\dv{\vec{A}}{t} + \frac{e}{c}\vec{v}\times\vec{B}+ e\vec{E} - \frac{e}{c}\dv{\vec{A}}{t}\\
+        &= \frac{e}{c}\vec{v}\times\vec{B} + e\vec{E},
+    \end{align*} where we used the vector(?) chain rule.
+\end{enumerate}
+\end{document}

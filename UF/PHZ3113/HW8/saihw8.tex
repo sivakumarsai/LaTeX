@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}%[label=(\alph*)]
+    \item Show that equation (1) is equivalent to $\partial_{\mu}F^{\mu\nu} = 0$. We have \[\br{\pdv{t},\pdv{x}, \pdv{y}, \pdv{z}}\begin{pmatrix}
+      0 & -E_x & -E_y & -E_z \\
+      E_x & 0 & -B_z & B_y \\
+      E_y & B_z & 0 & -B_x \\
+      E_z & -B_y & B_x & 0 
+    \end{pmatrix}\]
+    \[ = \begin{pmatrix}
+      \br{\pdv{x}E_x + \pdv{y}E_y + \pdv{z}E_z} ,
+      \br{-\pdv{t}E_x + \pdv{y}B_z - \pdv{z}B_y} ,
+      \br{-\pdv{t}E_y - \pdv{x}B_z + \pdv{z}B_x} ,
+      \br{-\pdv{t}E_z + \pdv{x}B_y - \pdv{y}B_x} 
+    \end{pmatrix}\]
+    \[= \begin{pmatrix}
+      \br{\vec{\nabla}\cdot\vec{E}} ,
+      \br{(\vec{\nabla}\times\vec{B})_x - \br{\pdv{\vec{E}}{t}}_x} ,
+      \br{(\vec{\nabla}\times\vec{B})_y - \br{\pdv{\vec{E}}{t}}_y} ,
+      \br{(\vec{\nabla}\times\vec{B})_z - \br{\pdv{\vec{E}}{t}}_z}
+    \end{pmatrix} = \vec{0},\] which is equivalent to (two of) Maxwell's equations, since the divergence of the electric field in the vacuum is zero and each of the remaining components being equal to zero means that the curl of the magnetic field is equal to the time derivative of the electric field.
+    \item Prove that $\vec{\nabla}\times (\vec{\nabla}\times \vec{v}) = \vec{\nabla}(\vec{\nabla}\cdot \vec{v}) - \laplacian\vec{v}$. \begin{proof}
+      We compute the $i$-th component of both sides. \begin{align*}
+        \br{\vec{\nabla}\times (\vec{\nabla}\times \vec{v})}_i &= \epsilon_{ijk}\partial_j(\vec{\nabla}\times \vec{v})_k = \epsilon_{ijk}\epsilon_{kij}\partial_j\partial_kv_i = \delta_{ik}\delta_{ji}\partial_j\partial_kv_i - \delta_{ii}\delta_{jk}\partial_j\partial_kv_i = \partial_i(\partial_kv_k)-\partial_k\partial_kv_i\\
+        \br{\vec{\nabla}(\vec{\nabla}\cdot \vec{v}) - \laplacian\vec{v}}_i &= \partial_i(\partial_jv_j) - \partial_j\partial_jv_i,
+      \end{align*} and since repeated indices are summed over these two are equivalent.
+    \end{proof}
+\end{enumerate}
+
+\end{document}

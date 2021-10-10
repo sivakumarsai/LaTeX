@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}%[label=(\alph*)]
+    \item Prove the following product rules
+    \begin{align}
+        \vec{\nabla}(\psi\phi) &= \phi\vec{\nabla}\psi + \psi\vec{\nabla}\phi \\
+        \vec{\nabla}\cdot (\psi\vec{A}) &= \psi\vec{\nabla}\cdot\vec{A} + \vec{\nabla}\psi \cdot \vec{A} \\
+        \vec{\nabla}\times (\psi\vec{A}) &= \psi\vec{\nabla}\times\vec{A} + \vec{\nabla}\psi\times\vec{A}
+    \end{align}
+    \begin{enumerate}[label=(\arabic*)]
+        \item $(\vec{\nabla}(\psi\phi))_i = \partial_i(\psi\phi) = (\partial_i\psi)\phi + \psi(\partial_i\phi) \implies \vec{\nabla}(\psi\phi) = \phi\vec{\nabla}\psi + \psi\vec{\nabla}\phi$
+        \item $\vec{\nabla}\cdot (\psi\vec{A}) = \partial_i (\psi\vec{A})_i = \partial_i (\psi A_i) = (\partial_i A_i)\psi + (\partial_i\psi) A_i \implies \vec{\nabla}\cdot (\psi\vec{A}) = \psi\vec{\nabla}\cdot\vec{A} + \vec{\nabla}\psi \cdot \vec{A}$
+        \item $(\vec{\nabla}\times (\psi\vec{A}))_i = \epsilon_{ijk}\partial_j(\psi\vec{A})_k = \epsilon_{ijk}\partial_j(\psi A_k) = \epsilon_{ijk}[(\partial_j A_k)\psi + (\partial_j\psi) A_k] = \epsilon_{ijk}(\partial_j A_k)\psi + \epsilon_{ijk}(\partial_j\psi)A_k$ $\implies \vec{\nabla}\times (\psi\vec{A}) = \psi\vec{\nabla}\times\vec{A} + \vec{\nabla}\psi\times\vec{A}$
+    \end{enumerate}
+    \item Quantum mechanical orbital angular momentum(?) is given by $\vec{L} = \vec{r}\times -i\vec{\nabla}$.\begin{enumerate}[label=(\alph*)]
+        \item Show that $\vec{L}$ has components $L_x = -i(y\partial_z - z\partial_y), L_y = -i(z\partial_x-x\partial_z), L_z = -i(x\partial_y - y\partial_x)$.
+        
+        Keep in mind that the subscript $i$ is different from the complex number $i$. We have that $\vec{r} = (x,y,z)$. Thus $L_i = (\vec{r}\times -i\vec{\nabla})_i = -i\epsilon_{ijk}r_j\partial_k = -i(r_j\partial_k - r_k\partial_j)$. Thus by selecting $i,j,k$ cyclically in $x,y,z$ we can obtain the components as stated above.
+        \item Show that these components satisfy the ``commutation relation'' $[L_x,L_y]\equiv  L_xL_y - L_yL_x = iL_z$.
+        
+        Directly, we have that \begin{multline*}[L_x,L_y]\equiv  L_xL_y - L_yL_x = -i(y\partial_z - z\partial_y)\cdot-i(z\partial_x-x\partial_z) - -i(z\partial_x-x\partial_z)\cdot -i(y\partial_z - z\partial_y) \\  = -(y\partial_zz\partial_x - z\partial_yz\partial_x-y\partial_zx\partial_z + z\partial_yx\partial_z) + (z\partial_xy\partial_z - x\partial_zy\partial_z - z\partial_xz\partial_y + x\partial_zz\partial_y) \\ = -(y\partial_x + yz\partial_z\partial_x-z^2\partial_y\partial_x - yx\partial_z\partial_z + zx\partial_y\partial_z) + (zy\partial_x\partial_z-xy\partial_z\partial_z - z^2\partial_x\partial_y + x\partial_y + xz\partial_z\partial_y)\\ = -y\partial_x+x\partial_y = i(-i(x\partial_y - y\partial_x)) = iL_z,\end{multline*}
+        where mixed second partial derivative operators are equivalent when they act on twice continuously differentiable functions.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

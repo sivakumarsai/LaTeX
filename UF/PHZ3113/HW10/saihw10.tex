@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}%[label=(\alph*)]
+    \item Evaluate $\oint_C \vec{a}\cdot \dd{\vec{r}}$ where $C$ is given by a single loop of the curve $(x-2)^2 + (y-3)^2 = R^2$, where $R\in\mathbb{R}$, and $\vec{a} = \ihat (x^2+yz^2) + \jhat (2x-y^3)$.
+    
+    We could parameterize the curve $C$ by $\ihat (2+R\cos(t)) + \jhat (3+R\sin(t))$ for $t\in[0,2\pi]$. This will make the integral annoying to compute so instead we will use Stokes' theorem. Let $D$ be the closed disc which $C$ is the boundary of. Then 
+    \begin{align*}
+        \oint_C \vec{a}\cdot\dd{\vec{r}} &= \int_D (\vec{\nabla}\times \vec{a} )\cdot \hat{n} \dd{A}\\
+        &= \int_D \khat \left(2-z^2\right)\cdot \hat{n} \dd{A} \\
+        &= 2\int_D 1 \dd{A}\\
+        &= 2\pi R^2.
+    \end{align*}
+    \item Prove that \begin{align*}
+        \delta(ax) &= \frac{1}{a}\delta(x) & \\
+        \delta(g(x)) &= \frac{\delta(x)}{\abs{g^{\prime}(0)}} &\quad \text{if $g(0) = 0$ and $g(x) \neq 0$ otherwise}\\
+        \delta(g(x)) &= \sum_i \frac{\delta(x-a_i)}{\abs{g^{\prime}(a_i)}} &\quad \text{where $g(x)$ is a general function and $g(a_i) = 0$}
+    \end{align*}
+    \begin{proof}
+        To see the first equality, we know that both integrals over $\mathbb{R}$ must be $1$. So 
+        \[1 = \int_{-\infty}^{\infty}\delta(ax)\dd{x} \underset{a\dd{x} \to \dd{x}}{\overset{ax\to x}{=}} \int_{-\infty}^{\infty}a^{-1}\delta(x)\dd{x} = 1,\] and because delta functions are everywhere $0$ except for the origin, the integrands are identical. Hence $\delta(ax) =a^{-1}\delta(x)$.
+
+        Similarly, see that 
+        \begin{align*}
+            1 = \int_{-\infty}^{\infty} \delta(g(x))\dd{x} &\underset{g^{\prime}(x)\dd{x}\to \dd{x}}{\overset{g(x)\to x}{=}} \int_{g(-\infty)}^{g(\infty)}\frac{\delta(x)}{g^{\prime}(g^{-1}(x))}\dd{x}\\
+            &= \int_{\min\{g(\infty),g(-\infty)\}}^{\max\{g(\infty),g(-\infty)\}}\frac{\delta(x)}{\abs{g^\prime(g^{-1}(x))}}\dd{x}\\
+            &= \frac{1}{\abs{g^{\prime}(g^{-1}(0))}} = \frac{1}{\abs{g^{\prime}(0)}},
+        \end{align*}
+        because $g(x) = 0$ if and only if $x=0$ implies that one of $g(\infty), g(-\infty)$ will be positive and the other will be negative. Therefore at $x=0$ the sign of the derivative $g^{\prime}(0)$ is determined entirely by whether $g(\infty)$ was less than $g(-\infty)$ (or vice versa). That is to say, if $g$ ``increased'' then the derivative $g^{\prime}(0)$ is positive, and otherwise, negative. Therefore the integral is simplified as above, into the convolution of the delta function with the reciprocal of $\abs{g^{\prime}(0)}$, and the result follows.
+
+        Then since $1 =\int_{-\infty}^{\infty}\delta(x)\dd{x}$, and delta functions agree everywhere except zero, we must have that \[\delta(g(x)) = \frac{\delta(x)}{\abs{g^{\prime}(0)}},\] which is the second equality.
+
+        The third equality follows as an extension of the second equality. Fix $n\in\mathbb{N}$, and let $\{a_1,a_2,\dots,a_n\}$ be zeroes of $g$, with $a_1 < a_2 < \cdots < a_n$. Furthermore, let $a_0 < a_1$, and $a_{n+1} > a_n$ (they are not zeroes but we need them in the following formulation). Using the previous result, where instead of the zeroes occurring at $x=0$, they occur on $x=a_i$, we have \begin{align*}
+            n = \int_{-\infty}^{\infty} \delta(g(x))\dd{x} &= \sum_i \int_{\frac{1}{2}(a_{i-1} + a_i)}^{\frac{1}{2}(a_i + a_{i+1})}\delta(g(x-a_i))\dd{x} \\
+            &= \sum_i \frac{1}{\abs{g^{\prime}(a_i)}}.
+        \end{align*}
+        Similarly, we can attach on each numerator a delta function (each shifted by $a_i$ so that each term is still equal to $1$). Then we may equate the integrand $\delta(g(x))$ to this new summation. We find that \[\delta(g(x)) = \sum_i \frac{\delta(x-a_i)}{\abs{g^{\prime}(a_i)}},\] and so we have proven all three parts.
+    \end{proof}
+\end{enumerate}
+\end{document}

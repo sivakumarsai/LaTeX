@@ -1,0 +1,57 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 6}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\begin{document}
+\maketitle
+
+Show, if $(a_n)$ is a sequence from $\mathbb{R}$ that converges with limit $L\in \mathbb{R},$
+that
+\begin{enumerate}[(a)]
+ \item the complement of $S=\{a_n:n\in\mathbb{N}\}\cup \{L\}$ is open
+   arguing directly from the definition of open set;
+ \item if $L$ is not in $T=\{a_n:n\in \mathbb{N}\},$ then $T^c$ is not open.
+\end{enumerate}
+
+\begin{proof}
+(a) Let $(a_n)$ be a sequence from $\mathbb{R}$ that converges to $L\in\mathbb{R}$, and let $S = \{a_n:n\in\mathbb{N}\}\cup \{L\}$ as given. Then consider any element $p\in S^c$; that is, a real number $p$ which is not any value the sequence $(a_n)$ takes on and is not the limit $L$.
+
+The set $C_p = \{n\in\mathbb{N}: |a_n-p|<\frac{|L-p|}{2}\}$ enumerates natural numbers $n$ for which $a_n$ lies in the $\frac{\abs{L-p}}{2}$-neighborhood of $p$, $N_{\frac{\abs{L-p}}{2}}(p)$. Note that $L$ is not in this neighborhood. Because $L$ is the limit of the sequence $(a_n)$, the $\frac{\abs{L-p}}{2}$-neighborhood of $L$, $N_{\frac{\abs{L-p}}{2}}(L)$, contains all but finitely many terms $a_n$. This is because there exists $M\in \mathbb{N}$ such that for all $n > M$, $\abs{a_n-L} < \frac{\abs{L-p}}{2}$. 
+
+There are less than or equal to $M$ terms in the sequence $(a_n)$ for which the inequality fails to hold. So the complement of $N_{\frac{\abs{L-p}}{2}}(L)$ contains finitely many terms $a_n$. Moreover, $N_{\frac{\abs{L-p}}{2}}(p)$ is a subset of $(N_{\frac{\abs{L-p}}{2}}(L))^c$, and as a result, $N_{\frac{\abs{L-p}}{2}}(p)$ contains finitely many terms $a_n$. Hence $C_p$ is finite.
+
+We may take $\varepsilon = \min\{\abs{a_n-p} : n\in C_p\}$ whenever $C_p$ is nonempty due to the finiteness of $C_p$. If $C_p$ is the empty set, then take $\varepsilon = \frac{\abs{L-p}}{2}$. Then $N_{\varepsilon}(p)$ is an open ball containing $p$ which contains only elements of $S^c$; that is, only containing real numbers which are not any of the values the sequence $(a_n)$ takes on or the limit $L$. Since $p\in S^c$ was arbitrary, it follows by definition that $S^c$ is an open set.
+
+(b) Suppose that $L$ is not in $T = \{a_n : n\in \mathbb{N}\}$ as given. Then $L$ is in $T^c$, and we may consider any open set $U$ containing $L$. There exists $\varepsilon >0$ such that $N_{\varepsilon}(L) \subseteq U$, but because the sequence $(a_n)$ converges to $L$, there exists $N\in \mathbb{N}$ such that for all $n\geq N$, $\abs{a_n-L} < \varepsilon$.
+
+In particular, $a_N \in T$ satisfies $\abs{a_N-L}< \varepsilon$, which means that $a_N$ is an element of $N_{\varepsilon}(L)$, and by inclusion, $a_N$ is an element of $U$. But because $U$ was an arbitrary open set containing $L$, all open sets containing $L$ contain at least one element of $T$. And because $L$ was an element of $T^c$, it follows that $T^c$ is not open.
+\end{proof}
+\end{document}

@@ -87,11 +87,92 @@
 \begin{enumerate}
     \item (DF1.7.8) Let $A$ be a nonempty set and let $k$ be a positive integer with $k\leq \abs{A}$. The symmetric group $S_A$ acts on the set $B$ consisting of all subsets of $A$ of cardinality $k$ by $\sigma\cdot\cbr{a_1,\dots,a_k} = \cbr{\sigma(a_1),\dots,\sigma(a_k)}$.
     
-    \textbf{(a)} Prove that this is a group action. 
+    \textbf{(a)} Prove that this is a group action. \begin{proof}
+      Let $A$ be a nonempty set as given and let $k$ be a positive integer with $k\leq \abs{A}$. Let $B$ be the set of all subsets of $A$ of cardinality $k$ as given. The action of $S_A$ on $B$ is given by $\sigma\cdot\cbr{a_1,\dots,a_k} = \cbr{\sigma(a_1),\dots,\sigma(a_k)}$, for $\sigma\in S_A$ and $\cbr{a_1,\dots,a_k} \in B$.
+
+      We show that $\tau\cdot(\sigma\cdot \cbr{a_1,\dots,a_k}) = (\tau\sigma)\cdot \cbr{a_1,\dots,a_k}$ for $\tau, \sigma\in S_A$ and $\cbr{a_1,\dots,a_k} \in B$. Observe that \begin{align*}\tau\cdot(\sigma\cdot \cbr{a_1,\dots,a_k}) &= \tau \cdot \cbr{\sigma(a_1),\dots,\sigma(a_k)} = \cbr{\tau(\sigma(a_1)),\dots,\tau(\sigma(a_k))} \\ 
+      &= \cbr{(\tau\sigma)(a_1),\dots,(\tau\sigma)(a_k)} = (\tau\sigma)\cdot \cbr{a_1,\dots,a_k},\end{align*} using the fact that in $S_A$ the composition of permutations is associative because function composition is associative.
+
+      Then let $1$ represent the trivial permutation in $S_A$. We show that $1\cdot \cbr{a_1,\dots,a_k} = \cbr{a_1,\dots,a_k}$. Of course, \[1\cdot \cbr{a_1,\dots,a_k} = \cbr{1(a_1),\dots,1(a_k)} = \cbr{a_1,\dots,a_k},\] since $1(a_i) = a_i$ for all $1\leq i\leq k$. Hence this action is a group action.
+    \end{proof}
 
     \textbf{(b)} Describe explicitly how the elements $\pmt*{(12)}$ and $\pmt*{(123)}$ act on the six $2$-element subsets of $\cbr{1,2,3,4}$.
+
+    The six $2$-element subsets of $\cbr{1,2,3,4}$ are \begin{align*}
+      \cbr{1,2} , \cbr{1,3} , \cbr{1,4}, \\
+      \cbr{2,3} , \cbr{2,4} , \cbr{3,4} .
+    \end{align*} Then the action of $\pmt*{(12)}$ and $\pmt*{(123)}$ on these subsets is \begin{alignat*}{2}
+      \pmt*{(12)}\cdot \cbr{1,2} = \cbr{\pmt*{(12)}(1),\pmt*{(12)}(2)} = \cbr{1,2} \quad && \pmt*{(123)}\cdot \cbr{1,2} = \cbr{\pmt*{(123)}(1),\pmt*{(123)}(2)} = \cbr{2,3}\\
+      \pmt*{(12)}\cdot \cbr{1,3} = \cbr{\pmt*{(12)}(1),\pmt*{(12)}(3)} = \cbr{2,3} \quad && \pmt*{(123)}\cdot \cbr{1,3} = \cbr{\pmt*{(123)}(1),\pmt*{(123)}(3)} = \cbr{1,2}\\
+      \pmt*{(12)}\cdot \cbr{1,4} = \cbr{\pmt*{(12)}(1),\pmt*{(12)}(4)} = \cbr{2,4} \quad && \pmt*{(123)}\cdot \cbr{1,4} = \cbr{\pmt*{(123)}(1),\pmt*{(123)}(4)} = \cbr{2,4}\\
+      \pmt*{(12)}\cdot \cbr{2,3} = \cbr{\pmt*{(12)}(2),\pmt*{(12)}(3)} = \cbr{1,3} \quad && \pmt*{(123)}\cdot \cbr{2,3} = \cbr{\pmt*{(123)}(2),\pmt*{(123)}(3)} = \cbr{1,3}\\
+      \pmt*{(12)}\cdot \cbr{2,4} = \cbr{\pmt*{(12)}(2),\pmt*{(12)}(4)} = \cbr{1,4} \quad && \pmt*{(123)}\cdot \cbr{2,4} = \cbr{\pmt*{(123)}(2),\pmt*{(123)}(4)} = \cbr{3,4}\\
+      \pmt*{(12)}\cdot \cbr{3,4} = \cbr{\pmt*{(12)}(3),\pmt*{(12)}(4)} = \cbr{3,4} \quad && \pmt*{(123)}\cdot \cbr{3,4} = \cbr{\pmt*{(123)}(3),\pmt*{(123)}(4)} = \cbr{1,4}
+    \end{alignat*} From the list above, see that $\pmt*{(12)}$ fixes $\cbr{1,2}$ and $\cbr{3,4}$, but interchanges $\cbr{1,3}$ with $\cbr{2,3}$, and interchanges $\cbr{1,4}$ with $\cbr{2,4}$. The notion of interchanging these elements is likely related to the fact that $\pmt*{(12)}$ has order $2$ in $S_A$. Similarly, $\pmt*{(123)}$ forms three ``cycles'' out of the six subsets. Under the action of $\pmt*{(123)}$, $\cbr{1,2}$ maps to $\cbr{2,3}$, $\cbr{2,3}$ maps to $\cbr{1,3}$, and $\cbr{1,3}$ maps to $\cbr{1,2}$. This forms one ``cycle''. The other ``cycle'' forms as a result of how $\cbr{1,4}$ maps to $\cbr{2,4}$, $\cbr{2,4}$ maps to $\cbr{3,4}$, and $\cbr{3,4}$ maps to $\cbr{1,4}$. These notions of ``cycles'' of three subsets are likely related to the fact that $\pmt*{(123)}$ has order $3$ in $S_A$.
+
     \item (DF1.7.9) Do both parts of the preceding exercise with ``ordered $k$-tuples'' in place of ``$k$-element subsets,'' where the action on $k$-tuples is defined as above but with set braces replaced by parentheses.
-    \item (DF1.7.21) Show that the group of rigid motions of a cube is isomorphic to $S_4$.
-    \item (DF1.7.23) Explain why the action of the group of rigid motions of a cube on the set of three pairs of opposite faces is not faithful. Find the kernel of this action.
+    
+    \textbf{(a)} Prove that this is a group action. \begin{proof} Let $A$ be a nonempty set as given and let $k$ be a positive integer with $k\leq \abs{A}$. Let $B$ be the set of all ordered $k$-tuples whose entries are from $A$ as given. The action of $S_A$ on $B$ is given by $\sigma\cdot\br{a_1,\dots,a_k} = \br{\sigma(a_1),\dots,\sigma(a_k)}$, for $\sigma\in S_A$ and $\br{a_1,\dots,a_k} \in B$.
+
+    We show that $\tau\cdot(\sigma\cdot \br{a_1,\dots,a_k}) = (\tau\sigma)\cdot \br{a_1,\dots,a_k}$ for $\tau, \sigma\in S_A$ and $\br{a_1,\dots,a_k} \in B$. Observe that \begin{align*}\tau\cdot(\sigma\cdot \br{a_1,\dots,a_k}) &= \tau \cdot \br{\sigma(a_1),\dots,\sigma(a_k)} = \br{\tau(\sigma(a_1)),\dots,\tau(\sigma(a_k))} \\ 
+    &= \br{(\tau\sigma)(a_1),\dots,(\tau\sigma)(a_k)} = (\tau\sigma)\cdot \br{a_1,\dots,a_k},\end{align*} using the fact that in $S_A$ the composition of permutations is associative because function composition is associative.
+
+    Then let $1$ represent the trivial permutation in $S_A$. We show that $1\cdot \br{a_1,\dots,a_k} = \br{a_1,\dots,a_k}$. Of course, \[1\cdot \br{a_1,\dots,a_k} = \br{1(a_1),\dots,1(a_k)} = \br{a_1,\dots,a_k},\] since $1(a_i) = a_i$ for all $1\leq i\leq k$. Hence this action is a group action.      
+    \end{proof}
+
+    \textbf{(b)} Describe explicitly how the elements $\pmt*{(12)}$ and $\pmt*{(123)}$ act on the sixteen ordered $2$-tuples with entries from $\cbr{1,2,3,4}$.
+
+    The sixteen ordered $2$-tuples with entries from $\cbr{1,2,3,4}$ are \begin{align*}
+      \br{1,2} , \br{1,3} , \br{1,4}, \br{2,1} , \br{3,1} , \br{4,1}, \\
+      \br{2,3} , \br{2,4} , \br{3,4}, \br{3,2} , \br{4,2} , \br{4,3}, \\
+      \br{1,1}, \br{2,2}, \br{3,3}, \br{4,4}.
+    \end{align*} Then the action of $\pmt*{(12)}$ and $\pmt*{(123)}$ on the first twelve ordered $2$-tuples is \begin{alignat*}{2}
+      \pmt*{(12)}\cdot \br{1,2} = \br{\pmt*{(12)}(1),\pmt*{(12)}(2)} = \br{2,1} \quad && \pmt*{(123)}\cdot \br{1,2} = \br{\pmt*{(123)}(1),\pmt*{(123)}(2)} = \br{2,3}\\
+      \pmt*{(12)}\cdot \br{1,3} = \br{\pmt*{(12)}(1),\pmt*{(12)}(3)} = \br{2,3} \quad && \pmt*{(123)}\cdot \br{1,3} = \br{\pmt*{(123)}(1),\pmt*{(123)}(3)} = \br{2,1}\\
+      \pmt*{(12)}\cdot \br{1,4} = \br{\pmt*{(12)}(1),\pmt*{(12)}(4)} = \br{2,4} \quad && \pmt*{(123)}\cdot \br{1,4} = \br{\pmt*{(123)}(1),\pmt*{(123)}(4)} = \br{2,4}\\
+      \pmt*{(12)}\cdot \br{2,1} = \br{\pmt*{(12)}(2),\pmt*{(12)}(1)} = \br{1,2} \quad && \pmt*{(123)}\cdot \br{2,1} = \br{\pmt*{(123)}(2),\pmt*{(123)}(1)} = \br{3,2}\\
+      \pmt*{(12)}\cdot \br{3,1} = \br{\pmt*{(12)}(3),\pmt*{(12)}(1)} = \br{3,2} \quad && \pmt*{(123)}\cdot \br{3,1} = \br{\pmt*{(123)}(3),\pmt*{(123)}(1)} = \br{1,2}\\
+      \pmt*{(12)}\cdot \br{4,1} = \br{\pmt*{(12)}(4),\pmt*{(12)}(1)} = \br{4,2} \quad && \pmt*{(123)}\cdot \br{4,1} = \br{\pmt*{(123)}(4),\pmt*{(123)}(1)} = \br{4,2}\\
+      \pmt*{(12)}\cdot \br{2,3} = \br{\pmt*{(12)}(2),\pmt*{(12)}(3)} = \br{1,3} \quad && \pmt*{(123)}\cdot \br{2,3} = \br{\pmt*{(123)}(2),\pmt*{(123)}(3)} = \br{3,1}\\
+      \pmt*{(12)}\cdot \br{2,4} = \br{\pmt*{(12)}(2),\pmt*{(12)}(4)} = \br{1,4} \quad && \pmt*{(123)}\cdot \br{2,4} = \br{\pmt*{(123)}(2),\pmt*{(123)}(4)} = \br{3,4}\\
+      \pmt*{(12)}\cdot \br{3,4} = \br{\pmt*{(12)}(3),\pmt*{(12)}(4)} = \br{3,4} \quad && \pmt*{(123)}\cdot \br{3,4} = \br{\pmt*{(123)}(3),\pmt*{(123)}(4)} = \br{1,4}\\
+      \pmt*{(12)}\cdot \br{3,2} = \br{\pmt*{(12)}(3),\pmt*{(12)}(2)} = \br{3,1} \quad && \pmt*{(123)}\cdot \br{3,2} = \br{\pmt*{(123)}(3),\pmt*{(123)}(2)} = \br{1,3}\\
+      \pmt*{(12)}\cdot \br{4,2} = \br{\pmt*{(12)}(4),\pmt*{(12)}(2)} = \br{4,1} \quad && \pmt*{(123)}\cdot \br{4,2} = \br{\pmt*{(123)}(4),\pmt*{(123)}(2)} = \br{4,3}\\
+      \pmt*{(12)}\cdot \br{4,3} = \br{\pmt*{(12)}(4),\pmt*{(12)}(3)} = \br{4,3} \quad && \pmt*{(123)}\cdot \br{4,3} = \br{\pmt*{(123)}(4),\pmt*{(123)}(3)} = \br{4,1}
+    \end{alignat*} From the list above, see that $\pmt*{(12)}$ acts in a way that forms five interchanges but fixes $\br{3,4}$ and $\br{4,3}$. For brevity the suggestive notation is used: For $a,b\in B$, we write $a \leftrightarrow b$ to mean that $a$ maps to $b$ and $b$ maps to $a$ under the action of $\pmt*{(12)}$. These five interchanges are \[\br{1,2}\leftrightarrow\br{2,1}, \br{1,3}\leftrightarrow\br{2,3}, \br{1,4}\leftrightarrow\br{2,4}, \br{3,1}\leftrightarrow\br{3,2}, \br{4,1}\leftrightarrow\br{4,2}.\] Then see that $\pmt*{(123)}$ acts in a manner that forms four ``cycles'' (similar to before) where three elements map to each other in a cyclical manner. We have that $\br{1,2}$ maps to $\br{2,3}$, which maps to $\br{3,1}$, and this maps back to $\br{1,2}$. We have three other similar cycles, see this by starting at $\br{2,1}$, $\br{4,1}$, or $\br{1,4}$ and repeatedly using the table to find the other cycles.
+    
+    Without writing the full table for the remaining four $2$-tuples, $\br{1,1}, \br{2,2}, \br{3,3}, \br{4,4}$, see that $\pmt*{(12)}$ fixes $\br{3,3}$ and $\br{4,4}$ forms an interchange between $\br{1,1}$ and $\br{2,2}$. Similarly, $\pmt*{(123)}$ fixes $\br{4,4}$ but forms a cycle out of the remaining three elements where $\br{1,1}$ maps to $\br{2,2}$ which maps to $\br{3,3}$, which maps back to $\br{1,1}$. So in total the action of $\pmt*{(12)}$ on $B$ fixes four $2$-tuples and forms six interchanges, and the action of $\pmt*{(123)}$ on $B$ fixes one $2$-tuples and forms five cycles. 
+
+    \item (DF1.7.21) Show that the group of rigid motions of a cube is isomorphic to $S_4$. \begin{proof}
+      The group of rigid motions of a cube can be given as the set of rotations which fix one of each of the six faces. So in fixing one of the faces' position, there are four rotations about the axis through the center of this face and the center of the opposite face (which as a result of fixing this face, is also fixed): the trivial rotation and three rotations in the clockwise direction (or counter clockwise, with respect to the axis) of $90$, $180$, and $270$ degrees. There are six possible faces and we may fix each one individually and find four rotations for each one. In other words, the stabilizer of a face is a four element cyclic subgroup generated by the rotation by $90$ degrees.
+      
+      Hence there are $6\cdot 4 = 24$ elements in the group of rigid motions of a cube. (Unsure if we are allowed to use the orbit-stabilizer theorem.) We can arrive at this conclusion by similarly selecting a vertex or selecting an edge and counting how many rigid motions fix this vertex/edge.
+      
+      So let the group of rigid motions act on the four diagonals of the cube (the largest diagonals connecting opposite vertices), and label these diagonals by $d_1,d_2,d_3,d_4$. These diagonals are given by their position in reference to a fixed perspective; so for example $d_1$ could refer to the diagonal connecting the ``top left'' vertex with the ``bottom right'' vertex. 
+
+      So let the group of rigid motions act in a natural manner, so that we could rotate the cube around any which way and then check to see where the diagonals $d_1,d_2,d_3,d_4$ ended up. So for example, if a cube is on a table and we view the cube from above, label the vertices on the top/visible face by $1,2,3,4$, in a counterclockwise fashion, with the top left vertex being $1$. Because one vertex is enough to determine the diagonal, let $1$ represent $d_1$, and so forth. Then apply a clockwise rotation (about the top-down axis) by $90$ degrees, and see that the action cyclically permutes the diagonals; in a more suggestive notation see that \[\begin{bmatrix}
+        1 & 2 \\ 4 & 3
+      \end{bmatrix} \curvearrowright \begin{bmatrix}
+        4 & 1 \\ 3 & 2
+      \end{bmatrix}.\]
+      It is clear that this action is a group action, because of course the trivial rotation fixes every diagonal and then the action of the composition of two rotations (about any of the three axes) is equivalent to applying them in sequence (since function composition is associative).
+
+      Then for every rigid motion $g$ in the group of rigid motions, there is a map $\sigma_G$ which permutes the set of four diagonals $\cbr{d_1,d_2,d_3,d_4}$, which could also be written as $\cbr{1,2,3,4}$. So the map from the group of rigid motions to $S_4$ defined by $g\mapsto \sigma_g$ is a homomorphism. To show that the group of rigid motions is isomorphic to $S_4$ it is sufficient to show that this homomorphism is an isomorphism.
+
+      To see that the map is injective, we can show that the only rigid motion which fixes the diagonals is the trivial motion (no motion), since if the kernel of this map is the trivial kernel, the map must be injective. Consider the non-trivial motion $g$ which fixes all four diagonals from some point of view. The only way to have a nontrivial motion which fixes the diagonals but still moves around some other points is if the diagonals are reflected about themselves, so that the opposite vertices switch spots on the cube. This is not a rigid motion as it turns the cube inside out. Hence the only rigid motion which fixes the diagonals is the trivial motion.
+
+      From the orbit-stabilizer theorem, it is clear that the order of the group of rigid motions has order $24$ and so because $S_4$ has order $24$ it is clear from injectivity that this map is also surjective.
+      If we cannot use the orbit-stabilizer theorem, we must show the map is surjective another way. Recall that $S_4$ is generated by $\cbr{\pmt*{(12)}, \pmt*{(1234)}}$, so that any permutation in $S_4$ can be decomposed into the product of (not necessarily disjoint) $2$-cycles. Then observe that there are motions which permute only two of the diagonals but fix the other two, namely, to rotate by $180$ degrees about an axis formed by the line connecting the midpoints of two opposite edges (so the edges which are parallel that are the furthest apart). The picture below illustrates this motion. Hence for every element in $S_4$ there is a motion comprised of compositions of these rotations which fix two edges and interchange the other two.\vspace*{5cm}
+
+      Because this homomorphism from the group of rigid motions of a cube to $S_4$ was shown to be both injective and surjective, then it is an isomorphism. Hence the group of rigid motions of a cube is isomorphic to $S_4$.
+    \end{proof}
+
+    \item (DF1.7.23) Explain why the action of the group of rigid motions of a cube on the set of three pairs of opposite faces is not faithful. Find the kernel of this action. \begin{proof}
+      Since there are three pairs of opposite faces, the group action of the group of rigid motions of a cube on this set of three pairs of opposite faces has an associated homomorphism which maps from the group of rigid motions of a cube to $S_3$.
+      
+      So from the orbit-stabilizer theorem we know that the group of rigid motions of a cube has order $24$, while $\abs{S_3} = 6$, so by the pigeonhole principle it is clear that this map cannot be injective, which means that the kernel is not trivial, which is equivalent to saying that the group action is not faithful (there is a nontrivial element which fixes the three pairs). Alternatively, observe that all it takes to fix the three pairs is to make sure that they have the same orientation as before they were moved (so the top-down pair remains the top down pair, and so on); so we can intuitively see that there are nontrivial actions that leave the pairs in place. Consider flipping the cube upside down; this flips the top and bottom faces, and flips the front and back faces, but the direction/orientation of the opposite faces has not changed. So any motions like these which just reverse the faces in each pair will work, and these correspond to rotations by $180$ degrees in any axis.
+
+      Hence the kernel of this action contains the trivial motion as well as the motions mentioned previously which interchange opposing faces but preserve their orientation.
+    \end{proof}
 \end{enumerate}
 \end{document}

@@ -1,0 +1,56 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 4}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\begin{document}
+\maketitle
+
+Let, for $n\in \mathbb{N},$
+\[
+b_n = \frac{2n^2+1}{n^2-n-3}.
+\]
+Show  $(b_n)$ converges arguing  directly from the definition of convergence.
+%[Suggestion: show $n^2-n-3 \ge \frac{1}{3}n^2.$]
+
+\begin{proof}
+Let $(b_n)_{n=1}^{\infty}$ be a sequence given by $b_n = (2n^2+1)/(n^2-n-3)$, for $n\in\mathbb{N}$. Observe that \[n^2-n-3-\frac{1}{3}n^2  = \frac{2}{3}n^2-n-3 = \frac{1}{3}(n-3)(2n+3) \geq 0\] as long as $n\geq 3$. This implies that for $n\geq 3$, $n^2-n-3 \geq \frac{1}{3}n^2.$
+
+Then for every $\varepsilon>0$, choose, from an Archimedean property and the previous observation, $N\in \mathbb{N}$ such that $N > \max\left\{3, \frac{27}{\varepsilon}\right\}$. Then for all $n>N$, \begin{align*}
+    \abs{b_n-2} = \abs{\frac{2n^2+1}{n^2-n-3} -2} &= \frac{2n+7}{n^2-n-3}&\quad (\text{positive, since }n > 3)\\
+    &< \frac{2n+7n}{n^2-n-3} &\quad (9n > 2n+7 \text{, since }n > 3) \\
+    &< \frac{3\cdot 9n}{n^2} &\quad (n^2-n-3 > \frac{1}{3}n^2 \text{ for }n > 3) \\
+    &= \frac{27}{n}\\
+    &< \frac{27}{N}&\quad (n > N)\\
+    &< \varepsilon
+\end{align*}
+Hence $(b_n)$ converges, and its limit is $2$.
+\end{proof}
+\end{document}
