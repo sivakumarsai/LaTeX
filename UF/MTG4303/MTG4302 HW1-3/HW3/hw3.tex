@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4302}
+\fancyhead[C]{HW 3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Say $A\subset X$ is dense if $\overline{A} = X$. \begin{enumerate}[label=(\alph*)]
+      \item Show that $A$ is dense in $X$ if and only if every nonempty open subset $V$ in $X$ satisfies $V\cap A\neq \emptyset$.
+      \begin{proof}
+        Suppose that every nonempty open set $V$ in $X$ satisfies $V\cap A\neq \emptyset$. Then for any $x\in X$, any neighborhood containing $x$ intersects nontrivially with $A$ so that $x\in \overline{A}$, and because $x$ was arbitrary $X\subset \overline{A}$. It is clear that $\overline{A}\subset X$ (since $X$ is closed) so that $\overline{A} = X$ as a result.
+
+        Suppose that $\overline{A} = X$. Then any nonempty open set $V$ in $X$ contains at least one point $x\in X = \overline{A}$ so that necessarily $V$ (an open neighborhood of $x$) must intersect nontrivially with $A$.
+
+        Hence $A$ is dense in $X$ if and only if every nonempty open subset $V$ in $X$ satisfies $V\cap A\neq \emptyset$.
+      \end{proof}
+      \item Assume that $X$ and $Y$ are topological spaces with $Y$ Hausdorff and $A$ is dense in $X$. Suppose that $f\colon X\to Y$ and $g\colon X\to Y$ are continuous functions with $f(a) = g(a)$ for all $a\in A$. Prove that $f(x) = g(x)$ for all $x\in X$.
+      \begin{proof}
+        Suppose by way of contradiction that there is an $x\in X$ such that $f(x)\neq g(x)$. Since $Y$ is Hausdorff, choose neighborhoods $U$ of $f(x)$ and $V$ of $g(x)$ which intersect trivially. Then $x\in f^{-1}(U)$ and $x\in g^{-1}(V)$ with both $f^{-1}(U),g^{-1}(V)$ open in $X$ since $f,g$ are continuous. Because $\overline{A} = X$, the open set $f^{-1}(U)\cap g^{-1}(V)$ intersects nontrivially with $A$; that is, there exists $a\in A$ with $a\in f^{-1}(U)\cap g^{-1}(V)$. Then by hypothesis $f(a) = g(a)$, but $f(a)\in U$ and $f(a) = g(a)\in V$, which is a contradiction since $U$ and $V$ were chosen to be disjoint.
+
+        Hence $f(x) = g(x)$ for all $x\in X$.
+      \end{proof}
+    \end{enumerate}
+    \item $A$ is a subset of the topological space $X$. \begin{enumerate}[label=(\alph*)]
+      \item Show that $x\in \Int(A)$ if and only if there is an open set $U$ with $x\in U\subset A$.
+      \begin{proof}
+        For $x\in X$, suppose that there is an open set $U$ with $x\in U\subset A$. Then by definition of $\Int(A)$ as the union of all open sets contained in $A$, we have that $U$ is one such open set contained in $A$ and so $x\in U\subset \Int(A)$.
+
+        Conversely, suppose that $x\in\Int(A)$. Then by definition of $\Int(A)$, it follows that $x$ is contained in some open set contained in $A$.
+      \end{proof}
+      \item Let the boundary of $A$ be $\Bd(A) = \overline{A}\cap \overline{(X-A)}$. Show that $x\in \Bd(A)$ if and only if every open set $V$ with $x\in V$ contains points of both $A$ and $X-A$.
+      \begin{proof}
+        For $x\in X$, suppose that every open set $V$ containing $x$ contains points of both $A$ and $X-A$. Then every open set containing $x$ intersects nontrivially with $A$, so it follows that $x\in \overline{A}$; similarly every open set containing $x$ intersects nontrivially with $X-A$ so that $x\in \overline{(X-A)}$. Hence $x\in \overline{A}\cap\overline{(X-A)} = \Bd(A)$.
+
+        Conversely, suppose that $x\in \overline{A}\cap\overline{(X-A)} = \Bd(A)$. Then $x\in \overline{A}$ so that every open neighborhood of $x$ intersects nontrivially with $A$; similarly $x\in \overline{(X-A)}$, from which we have that every open neighborhood of $x$ intersects nontrivially with $X-A$. Then any neighborhood $V$ of $x$ intersects nontrivially with $A$ and also intersects nontrivially with $X-A$ so that $V$ contains points of both $A$ and $X-A$.
+      \end{proof}
+      \item Prove that $\Bd(A)\cap\Int(A) = \emptyset$ and that $\overline{A} = \Int(A)\cup\Bd(A)$.
+      \begin{proof}
+        Suppose $x\in \Bd(A)\cap\Int(A)$. Then \textit{every} neighborhood of $x$ contains points of $X-A$ since $x\in \Bd(A)$. This is in contradiction with the requirement that $x\in\Int(A)$, which stipulates the existence of a neighborhood of $x$ completely contained in $A$. Therefore there cannot be any elements $x$ in $\Bd(A)\cap\Int(A)$, meaning $\Bd(A)\cap\Int(A) = \emptyset$.
+
+        Suppose $x\in \overline{A}$. Then every neighborhood of $x$ intersects $A$ nontrivially; that is, for any open neighborhood $V$ of $x$, $V$ contains points of $A$. What remains is whether or not some $V$ contains points of $X-A$ or not: If some $V$ does not contain points of $X-A$, then $V$ only contains points of $A$ so that $V\subset A$ and so $x\in \Int(A)$. Otherwise \textit{every} $V$ contains both points of $A$ and $X-A$ so that $x\in \Bd(A)$. Hence $x\in \Int(A)\cup\Bd(A)$.
+
+        Conversely, suppose that $x\in \Int(A)\cup\Bd(A)$, so that either $x\in\Int(A)$ or $x\in\Bd(A)$ (but not both). If $x\in \Int(A)$ then there exists a neighborhood of $x$ contained in $A$, from which it follows that $x\in A$ and so every neighborhood containing $x$ necessarily intersects nontrivially with $A$. In this case $x\in \overline{A}$. In the other case, $x\in \Bd(A)$ so that every neighborhood of $x$ contains points in $A$ as well as points in $X-A$; this is enough to see that every neighborhood of $x$ intersects nontrivially with $A$ so that $x\in \overline{A}$.
+
+        Hence $\overline{A} = \Int(A)\cup\Bd(A)$.
+      \end{proof}
+    \end{enumerate}
+    \item Consider $\mathbb{Z}_+$ with the finite complement topology. Determine if the following sequences converge, and if so, to which point or points. \begin{enumerate}[label=(\alph*)]
+      \item $x_n = 2n+3$
+      \quad Converges to every number in the set $\mathbb{Z}_+$.
+      \begin{proof}
+        Every open set in $\mathbb{Z}_+$ is of the form $\mathbb{Z}_+ - A$ where $A$ is a finite nonempty set of positive integers. To specify a neighborhood $\mathbb{Z}_+-A$ of some integer $m$, demand that $m\not\in A$.
+        
+        Take any neighborhood $\mathbb{Z}_+-A$ of $m\in\mathbb{Z}_+$ (so $m\not\in A$). Because the positive integers are well-ordered and $x_{n+1} > x_n$, we can choose $N$ large enough so that $x_N$ is larger than the maximal element of $A$ (one such choice for $N$ is the maximal element of $A$). Then all but finitely many $x_n$ is in any neighborhood of $m$ for every $m\in \mathbb{Z}_+$. Hence $x_n$ converges to every positive integer.
+      \end{proof}
+      \item $x_n = 3+(-1)^n$
+      \quad Does not converge.
+      \begin{proof}
+        Take the neighborhood of any positive integer $m\neq 2,4$ of the form $\mathbb{Z}_+-A$ (with $A$ being a finite nonempty set of positive integers) where $m\not\in A$ and $2,4\in A$. This neighborhood does not contain $x_n$ for every $n\in\mathbb{Z}_+$, so there is no way for this sequence to converge to $m$. 
+
+        Then if $m = 2$ or $m = 4$ consider the neighborhood $\mathbb{Z}_+-A$ with $m\not\in A$ and $2$ or $4$ in $A$ depending on whichever $m$ is not equal to (so if $m = 2$, then $4\in A$). This neighborhood does not contain all but finitely many $x_n$ since we can choose $n$ to be even or odd depending on if $2$ or $4$ is in $A$ and find that an infinite number of elements $x_n$ is not contained in the neighborhood. So in these cases the sequence also cannot converge.
+
+        Hence $x_n$ does not converge.
+      \end{proof}
+    \end{enumerate}
+    \item Recall that two topological spaces $X$ and $Y$ are homeomorphic if and only if there is a homeomorphism $h\colon X\to Y$. Suppose that $\cbr{X_\lambda\colon \lambda \in \Lambda}$ and $\cbr{Y_{\lambda}\colon \lambda \in \Lambda}$ are indexed families of topological spaces with $X_\lambda$ homeomorphic to $Y_\lambda$ for each $\lambda \in \Lambda$. Prove that $\prod_{\lambda\in\Lambda}X_\lambda$ and $\prod_{\lambda\in\Lambda}Y_{\lambda}$ are homeomorphic. Use the product topology on the product spaces.
+    \begin{proof}
+      Let $f_{\lambda}\colon X_\lambda \to Y_\lambda$ be given homeomorphisms for each $\lambda\in\Lambda$. Then let $h\colon \prod_{\lambda\in\Lambda}X_\lambda\to \prod_{\lambda\in\Lambda}Y_{\lambda}$ be given by the formula \[h((x_\lambda)_{\lambda\in\Lambda}) = (f_\lambda(x_\lambda))_{\lambda\in\Lambda};\] that is, $h$ is just $f_\lambda$ for every coordinate. It is clear that $h$ is a bijection since each $f_\lambda$ is a bijection. Define $h^{-1}$ in the natural way by the formula \[h^{-1}((y_\lambda)_{\lambda\in\Lambda}) = (f_\lambda^{-1}(y_\lambda))_{\lambda\in\Lambda}.\]
+
+      We show that $h$ and $h^{-1}$ map open sets to open sets, by showing that they map basis elements to basis elements.
+
+      A basis element of $\prod_{\lambda\in\Lambda}X_\lambda$ with the product topology is a product of open sets $\prod_{\lambda\in\Lambda}U_\lambda$ where $U_\lambda = X_\lambda$ for all but finitely many $\lambda\in\Lambda$. Then \[h\br{\prod_{\lambda\in\Lambda}U_\lambda} = (f_\lambda(U_\lambda))_{\lambda\in\Lambda},\] and since each $f_\lambda$ is a homeomorphism, it follows that each $f_\lambda(U_\lambda)$ is open (all but finitely many of them will be $Y_\lambda$) so that the resulting set is a product of open sets $\prod_{\lambda\in\Lambda} V_\lambda$ where all but finitely many $V\lambda$ are $Y_\lambda$. This set is a basis element of $\prod_{\lambda\in\Lambda}Y_\lambda$.
+
+      Any basis element of $\prod_{\lambda\in\Lambda}$ is a product of open sets $\prod_{\lambda\in\Lambda} V_\lambda$ where all but finitely many $V_\lambda$ are $Y_\lambda$. We have \[h^{-1}\br{\prod_{\lambda\in\Lambda} V_\lambda} = (f_\lambda^{-1}(V_\lambda))_{\lambda\in\Lambda}.\] Since each $f_\lambda^{-1}$ is also a homeomorphism, we have that each $f_\lambda^{-1}(V_\lambda)$ is open (all but finitely many of them will be $X_\lambda$), so that the resulting set is a product of open sets $\prod_{\lambda\in\Lambda}U_\lambda$. This set is a basis element of $\prod_{\lambda\in\Lambda}X_\lambda$.
+
+      Hence $h$ is a homeomorphism as desired, so that $\prod_{\lambda\in\Lambda}X_\lambda$ and $\prod_{\lambda\in\Lambda}Y_{\lambda}$ are homeomorphic.
+    \end{proof}
+    \item Assume that $d$ and $d^{\prime}$ are metrics on $X$ and that there are positive constants $c_1,c_2$ with \[c_1d(x,y)\leq d^{\prime}(x,y)\leq c_2d(x,y)\] for all $x,y\in X$ Show that $d$ and $d^{\prime}$ induce the same topology.
+    \item We showed in class that on $\mathbb{R}^{\mathbb{Z}_+}$ the box topology is finer than the uniform topology which in turn is finer than the product topology. Give examples that show that the box topology is \textit{strictly} finer than the uniform topology which in turn is \textit{strictly} finer than the product topology. You can use the fact that the product topology is induced by the metric $D$.
+    \item Give $X^{\mathbb{Z}_+}$ the product topology and let $\cbr{\underline{x}_n}$ be a sequence in $x^{\mathbb{Z}_+}$.\begin{enumerate}[label=(\alph*)]
+      \item Show that $\underline{x}_n\to \underline{x}$ if and only if for each $i\in\mathbb{Z}_+$, $\pi_i(\underline{x_n})\to\pi_i(\underline{x})$. In other words, a sequence converges if and only if all its components converge.
+      \item Is this result true when we give $X^{\mathbb{Z}_+}$ the box topology?
+    \end{enumerate}
+    \item Let $(X,d)$ be a metric space. \begin{enumerate}[label=(\alph*)]
+      \item Show that $d\colon X\times X\to \mathbb{R}$ is continuous where $X\times X$ is given the product topology.
+      \item If the sequences $x_n\to x$ and $y_n\to y$ converge in $X$ show that the sequence of real numbers $d(x_n,y_n)\to d(x,y)$.
+    \end{enumerate}
+    \item Given metric spaces $(X_i, d_i)$ for $i = 1,\dots,n$ show that \[\rho(x,y) = \max\{d_1(x,y),\dots,d_n(x,y)\}\] is a metric on $\prod_{i=1}^n X_i$.
+\end{enumerate}
+\end{document}

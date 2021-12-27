@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW17 \& 18}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+HW17:
+
+The normal modes $\omega_1 = \sqrt{k/m}$ and $\omega_2 =  \sqrt{(k+2k^{\prime})/m}$ with the corresponding normalized eigenvectors are \[\ket{\omega_1} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+    1 \\ 1
+\end{pmatrix}\quad \text{and}\quad \ket{\omega_2} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+    1 \\ -1
+\end{pmatrix}.\]
+\begin{enumerate}[label=(\alph*)]
+    \item With $t = 0$, we can write \[\begin{pmatrix}
+        x_1(0) \\ x_2(0)
+    \end{pmatrix} = \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix} = \frac{1}{\sqrt{2}}\ket{\omega_1} + \frac{1}{\sqrt{2}}\ket{\omega_2}\]
+    so that $\ket{x(t)} = \frac{1}{\sqrt{2}}[\ket{\omega_1}\cos(\omega_1 t) + \ket{\omega_2}\cos(\omega_2 t)]$. Simplification yields \[\ket{x(t)} = \frac{1}{2}\begin{pmatrix}
+        \cos(\omega_1 t) + \cos(\omega_2 t) \\ \cos(\omega_1 t) - \cos(\omega_2 t)
+    \end{pmatrix},\] and of course taking $t\to 0$ we find that the first component tends to $1$ and the second component tends to $0$, which matches with $\ket{x(0)}$.
+    \item The propogator $U(t)$ is found by taking $\ket{\omega_1}\bra{\omega_1}\cos(\omega_1 t) + \ket{\omega_2}\bra{\omega_2}\cos(\omega_2 t)$. Thus
+    \begin{multline*}U(t) = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 \\ 1
+    \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 1
+    \end{pmatrix}\cos(\omega_1 t) + \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 \\ -1
+    \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & -1
+    \end{pmatrix}\cos(\omega_2 t) \\ = \frac{1}{2}\begin{pmatrix}
+        \cos(\omega_1 t) + \cos(\omega_2 t) & \cos(\omega_1 t) - \cos(\omega_2 t) \\
+        \cos(\omega_1 t) - \cos(\omega_2 t) & \cos(\omega_1 t) + \cos(\omega_2 t)
+    \end{pmatrix}.\end{multline*}
+    \item Indeed $\ket{x(t)} = U(t)\ket{x(0)}$ (the left column is $\ket{x(t)}$):
+    \[U(t)\ket{x(0)} = \frac{1}{2}\begin{pmatrix}
+        \cos(\omega_1 t) + \cos(\omega_2 t) & \cos(\omega_1 t) - \cos(\omega_2 t) \\
+        \cos(\omega_1 t) - \cos(\omega_2 t) & \cos(\omega_1 t) + \cos(\omega_2 t)
+    \end{pmatrix}\begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+        \cos(\omega_1 t) + \cos(\omega_2 t) \\ \cos(\omega_1 t) - \cos(\omega_2 t)
+    \end{pmatrix} = \ket{x(t)}.\]
+\end{enumerate}
+HW18:
+
+\begin{enumerate}[label=18.\arabic*]
+    \item Prove that $\cos(\theta + \phi) = \cos(\theta)\cos(\phi) - \sin(\theta)\sin(\phi)$ and $\sin(\theta + \phi) = \cos(\theta)\sin(\phi) + \sin(\theta)\cos(\phi)$.
+    \begin{proof}
+        Consider $\exp(i\theta)\exp(i\phi) = \exp(i(\theta + \phi))$, which has real part $\cos(\theta + \phi)$ and has imaginary part $\sin(\theta + \phi)$. Then 
+        \begin{align*}
+            \exp(i\theta)\exp(i\phi) &= [\cos(\theta) + i\sin(\theta)][\cos(\phi) + i\sin(\phi)] \\
+            &= [\cos(\theta)\cos(\phi) - \sin(\theta)\sin(\phi)] + i[\cos(\theta)\sin(\phi) + \sin(\theta)\cos(\phi)],
+        \end{align*}
+        but since complex numbers are equal if and only if their components are equal, we have that $\cos(\theta + \phi) = \cos(\theta)\cos(\phi) - \sin(\theta)\sin(\phi)$ and $\sin(\theta + \phi) = \cos(\theta)\sin(\phi) + \sin(\theta)\cos(\phi)$.
+    \end{proof}
+    \item (a) We have with algebra and trigonometry that \[z = \frac{3+4i}{3-4i} = \frac{(3+4i)^2}{5} = \frac{1}{5}\left(\sqrt{5}\exp(i\arctan(\frac{4}{3}))\right)^2 = \exp(2i\arctan(\frac{4}{3})),\]
+    from which $z = \cos(2\arctan(\frac{4}{3})) + i\sin(2\arctan(\frac{4}{3}))$, and $z^{\ast} = \exp(-2i\arctan(\frac{4}{3})) = \cos(2\arctan(\frac{4}{3})) - i\sin(2\arctan(\frac{4}{3}))$. Also $\abs{z}$ we can extract as the coefficient of $\exp(2i\arctan(\frac{4}{3}))$ since the exponential here we interpret as a rotated unit vector. Hence $\abs{z} = 1$.
+
+    (b) We have $z_1 = 2\exp(i\pi/4) = 2(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}) = \sqrt{2}(1 + i)$ and $z_2 = 6\exp(i\pi/3) = 6(\frac{1}{2} + i\frac{\sqrt{3}}{2}) = 3(1 + i\sqrt{3})$.
+    Then $z_1 + z_2 = (\sqrt{2} + 3) + i(\sqrt{2} + 3\sqrt{3})$.
+    \item When $n\mapsto (n-i\alpha)$, we have \[\exp[i\omega(t-(n-i\alpha))x/c] = \exp[i\omega(t-nx/c) - \omega\alpha x/c] = \exp(- \omega\alpha x/c)\exp[i\omega(t-nx/c)].\]
+    In effect the amplitude of the wave is reduced (when $\alpha > 0$; otherwise scaled up or unchanged).
+\end{enumerate}
+\end{document}

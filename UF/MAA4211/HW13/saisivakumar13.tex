@@ -1,0 +1,99 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 13}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Recall the function  $t:[0,1]\to \RR$ defined by
+\[
+  t(x) =\begin{cases} %0 & \mbox{ if } x=0 \\ 
+   \frac{1}{q} & \mbox{ if } x\in \QQ \cap (0,1], \ \ 
+         x=\frac{p}{q}, \ \ p,q\in \NN, \mbox{ and } \gcd(p,q)=1 \\
+     0& \mbox{ otherwise}.
+\end{cases}
+\] 
+from the course notes. Abbott refers to it as Thomae's function.
+
+For $k\in \NN,$ define $f_k:[0,1]\to\RR$ by 
+\[
+  f_k(x) =\begin{cases} %0 & \mbox{ if } x=0 \\ 
+   \frac{1}{q} & \mbox{ if }  x\in \QQ\cap (0,1], \ \ 
+         x=\frac{p}{q}, \ \ p,q\in \NN, \ \ \gcd(p,q)=1 
+  \mbox{ and } q\le k \\
+     0& \mbox{ otherwise. } 
+\end{cases}
+\]
+
+\bigskip
+
+\begin{enumerate}[(a)] \itemsep=8pt
+  \item Prove, if $g:[a,b]\to\RR$ is $0$ except 
+  on a finite set $G\subseteq [a,b],$ then
+ $g$ is Riemann integrable and 
+\[
+ \int_a^b g\, dx =0.
+\]
+%[Suggestion: Induct on the number of elements in $G$ and use Theorem 7.4.1 in Abbott.]
+ \item Show $(f_k)$ converges uniformly to $t.$ 
+ \item  Conclude $t$ is
+ Riemann integrable and
+\[
+ \int_0^1 t\, dx =0.
+\]
+\end{enumerate}
+
+\bigskip
+
+\begin{proof} Let $t\colon [0,1]\to \mathbb{R}$ and $f_k\colon [0,1]\to\mathbb{R}$ for $k\in \mathbb{N}$ be as given.
+
+\begin{enumerate}[(a)]
+    \item With $g\colon[a,b]\to \mathbb{R}$ zero everywhere except on a finite set $G\subseteq [a,b]$, we show by induction on $n = \abs{G}$ that $g$ is Riemann integrable.
+    
+    Consider the case with one discontinuity ($\abs{G} = 1$) at the point $a < c_1 < b$ (if $g$ is not continuous at $a$ or $b$, $g$ is still integrable). Then the restrictions of $g$ given by $g|_{[a,c_1]}\colon [a,c_1]\to \mathbb{R}$ and $g|_{[c_1, b]}\colon [c_1,b]\to \mathbb{R}$ are both integrable on their domains. This follows since $g|_{[a,c_1]}$ and $g|_{[c_1, b]}$ are bounded; furthermore, for every $a< x< c_1$ the function $g|_{[a,c_1]}$ is integrable on $[a,x]$ and for every $c_1< y < b$ the function $g|_{[c_1, b]}$ is integrable on $[y,b]$. 
+
+    It follows that $g$ is integrable. Thus suppose that $g$ is integrable when $\abs{G} = n$ and add one more point $c_{n+1}$ to $G$. Then repeat the same argument as above in the case for one discontinuity, with $c_{n+1}$ in place of $c_1$. Thus $g$ is still integrable after including $c_{n+1}$ in $G$. Hence by induction $g$ is integrable if the set of points on which $g$ is discontinuous is finite.
+
+    We estimate the integral $\int_a^b g\dd{x}$. Let $\varepsilon > 0$ be given. With $\abs{G} = n > 0$ (if $\abs{G} = 0$ then the integral $\int_a^b g\dd{x}$ is automatically zero), write \[G = \{c_i\colon \text{$g$ is discontinuous at $c_i$ for $1\leq i \leq n$}\}.\] Then let $m$ and $M$ be the infimum and supremum of the set $\{g(x) \colon x\in [a,b]\}$, and form the partition $P = \{a, c_1-\varepsilon/n, c_1+\varepsilon/n, \dots, c_n-\varepsilon/n, c_1+\varepsilon/n, b \}$. Then \[2m\varepsilon = n\cdot 2m\varepsilon/n \leq L(g,P)\leq \int_a^b g \dd{x} \leq U(g,P) \leq n\cdot M\varepsilon/n = 2M\varepsilon.\] 
+    Since $\varepsilon> 0$ was arbitrary, it follows that $\int_a^b g\dd{x} = 0$.
+    \item Let $\varepsilon> 0$ be given. Let $K$ be a natural number strictly larger than $1/\varepsilon$, and for $k> K$, it follows that \begin{align*}
+        \abs{t(x) - f_k(x)} &\leq \abs{t(x) - f_K(x)} + \abs{f_K(x) - f_k(x)}\\
+        &\leq \frac{1}{K+1} + \frac{1}{k+1}\\
+        &\leq \frac{2}{K} < 2\varepsilon.
+    \end{align*} Thus $(f_k)$ converges uniformly to $t$.
+    \item Every function $f_k$ for $k\in \mathbb{N}$ has finitely many discontinuities, so each $f_k$ is integrable on $[0,1]$. Then because $(f_k)$ converges uniformly to $t$, it follows that $t$ is also integrable. Furthermore, the sequence $(\int_0^1 f_k\dd{x})$ converges to $\int_0^1 t\dd{x}$. But because $f_k$ for every $k\in \mathbb{N}$ is zero except at its (finitely many) points of discontinuity, $(\int_0^1 f_k\dd{x})$ is the zero sequence, which converges to zero. Hence $\int_0^1 t\dd{x} = 0$.
+\end{enumerate}
+\end{proof}
+\end{document}

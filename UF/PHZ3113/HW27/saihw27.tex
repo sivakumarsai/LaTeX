@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW27}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}[label=27.\arabic*]
+    \item Using definition (27.4) for $\hat{A}$ and $\hat{A}^{\dagger}$, show that equations (27.5) and (27.6) follow.
+    \begin{proof}
+        Let $\hat{A} = \sqrt{\frac{m\omega}{2\hbar}}\hat{x} + i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}$ and $\hat{A}^{\dagger} = \sqrt{\frac{m\omega}{2\hbar}}\hat{x} - i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}$ be as given. Then \begin{align*}
+            \hat{A}^{\dagger}\hat{A} &= \br{\sqrt{\frac{m\omega}{2\hbar}}\hat{x} - i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}}\br{\sqrt{\frac{m\omega}{2\hbar}}\hat{x} + i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}}\\
+            &= \frac{m\omega}{2\hbar}\hat{x}^2 + \frac{i}{2\hbar}i\hbar + \frac{\hat{p}_x^2}{2m\hbar\omega}\\
+            &= \frac{1}{\hbar\omega}\br{\frac{\hat{p}_x^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2}- \frac{1}{2} = \frac{\hat{H}}{\hbar\omega} - \frac{1}{2},
+        \end{align*} and \begin{align*}
+            \hat{A}\hat{A}^{\dagger} &= \br{\sqrt{\frac{m\omega}{2\hbar}}\hat{x} + i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}}\br{\sqrt{\frac{m\omega}{2\hbar}}\hat{x} - i\frac{\hat{p}_x}{\sqrt{2m\hbar\omega}}}\\
+            &= \frac{m\omega}{2\hbar}\hat{x}^2 - \frac{i}{2\hbar}i\hbar + \frac{\hat{p}_x^2}{2m\hbar\omega}\\
+            &= \frac{1}{\hbar\omega}\br{\frac{\hat{p}_x^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2}+ \frac{1}{2} = \frac{\hat{H}}{\hbar\omega} + \frac{1}{2},
+        \end{align*} so that \[\sbr{\hat{A}, \hat{A}^{\dagger}} = \hat{A}\hat{A}^{\dagger} - \hat{A}^{\dagger}\hat{A} = \br{\frac{\hat{H}}{\hbar\omega} + \frac{1}{2}} - \br{\frac{\hat{H}}{\hbar\omega} - \frac{1}{2}} = 1,\] which is equation (27.5) as desired. Then also \[\frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}\hat{A} + \hat{A}\hat{A}^{\dagger}} = \frac{\hbar\omega}{2}\br{\frac{\hat{H}}{\hbar\omega} - \frac{1}{2} + \frac{\hat{H}}{\hbar\omega} + \frac{1}{2}} = \hat{H}.\] It follows that \begin{align*}
+            \sbr{\hat{H}, \hat{A}} = \sbr{\frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}\hat{A} + \hat{A}\hat{A}^{\dagger}}, \hat{A}} &= \frac{\hbar\omega}{2}\br{\sbr{\hat{A}^{\dagger}\hat{A}, \hat{A}} + \sbr{\hat{A}\hat{A}^{\dagger}, \hat{A}}}\\
+            &= \frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}\sbr{\hat{A}, \hat{A}} + \sbr{\hat{A}^{\dagger}, \hat{A}}\hat{A} +  \hat{A}\sbr{\hat{A}^{\dagger}, \hat{A}} + \sbr{\hat{A}, \hat{A}}\hat{A}^{\dagger}}\\
+            &= \frac{\hbar\omega}{2}\br{-1\hat{A} +  \hat{A}(-1)} = -\hbar\omega\hat{A},
+        \end{align*} and \begin{align*}
+            \sbr{\hat{H}, \hat{A}^{\dagger}} = \sbr{\frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}\hat{A} + \hat{A}\hat{A}^{\dagger}}, \hat{A}^{\dagger}} &= \frac{\hbar\omega}{2}\br{\sbr{\hat{A}^{\dagger}\hat{A}, \hat{A}^{\dagger}} + \sbr{\hat{A}\hat{A}^{\dagger}, \hat{A}^{\dagger}}}\\
+            &= \frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}\sbr{\hat{A}, \hat{A}^{\dagger}} + \sbr{\hat{A}^{\dagger}, \hat{A}^{\dagger}}\hat{A} +  \hat{A}\sbr{\hat{A}^{\dagger}, \hat{A}^{\dagger}} + \sbr{\hat{A}, \hat{A}^{\dagger}}\hat{A}^{\dagger}}\\
+            &= \frac{\hbar\omega}{2}\br{\hat{A}^{\dagger}1 + 1\hat{A}^{\dagger}} = \hbar\omega\hat{A},
+        \end{align*} which is equation (27.6) as desired.
+    \end{proof}
+    \item The raising and lowering operators of the quantum harmonic oscillator defined in lecture satisfy the equations \[\hat{A}\ket{n} = \sqrt{n}\ket{n-1};\quad \hat{A}^{\dagger}\ket{n} =\sqrt{n+1}\ket{n+1}.\]
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that the products of $\hat{A}$ and $\hat{A}^{\dagger}$ satisfy the equations \[\hat{A}^{\dagger}\hat{A} \ket{n} = n\ket{n};\quad \hat{A}\hat{A}^{\dagger}\ket{n} = (n+1)\ket{n}.\]
+        \begin{proof}
+            Directly computing, we have \[\hat{A}^{\dagger}\hat{A} \ket{n} = \hat{A}^{\dagger}[(\sqrt{n}\ket{n-1})]= \sqrt{n}[\sqrt{n}\ket{n}] = n\ket{n}\] and \[\hat{A}\hat{A}^{\dagger}\ket{n} = \hat{A}[\sqrt{n+1}\ket{n+1}] = \sqrt{n+1}[\sqrt{n+1}\ket{n}] = (n+1)\ket{n}\]
+            as expected.
+        \end{proof}
+        \item Write the operator $\hat{x}$ in terms of the operators $\hat{A}$ and $\hat{A}^{\dagger}$.
+        
+        Write \[\hat{x} = \frac{1}{2}\sqrt{\frac{2\hbar}{m\omega}}\br{\hat{A} + \hat{A}^{\dagger}}.\]
+
+        From the definition of $\hat{A}$ and $\hat{A}^{\dagger}$, we have \[\frac{1}{2}\sqrt{\frac{2\hbar}{m\omega}}\br{\hat{A} + \hat{A}^{\dagger}} = \frac{1}{2}\sqrt{\frac{2\hbar}{m\omega}}\br{2\sqrt{\frac{m\omega}{2\hbar}}\hat{x}} = \hat{x}.\]
+        \item The expectation value of the potential energy in the state $\ket{n}$ is given by \[\abr{V(\hat{x})} = \bra{n}\frac{1}{2}m\omega^2\hat{x}^2\ket{n}.\] Use the result of (b) to rewrite $\hat{x}^2$ in terms of $\hat{A}$ and $\hat{A}^{\dagger}$. Use results from (a) to show that the expectation value $\abr{V(\hat{x})} = \frac{1}{2}E_n$ (half the total energy).
+        \begin{proof}
+            Find by squaring that \[\hat{x}^2 = \br{\frac{1}{2}\sqrt{\frac{2\hbar}{m\omega}}\br{\hat{A} + \hat{A}^{\dagger}}}^2 = \frac{\hbar}{2m\omega} \br{\hat{A}^2 + \hat{A}\hat{A}^{\dagger} + \hat{A}^{\dagger}\hat{A} + (\hat{A}^{\dagger})^2}.\] Then \begin{align*}
+                \bra{n}\frac{1}{2}m\omega^2\hat{x}^2\ket{n} &= \bra{n}\frac{1}{2}m\omega^2\br{\frac{\hbar}{2m\omega} \br{\hat{A}^2 + \hat{A}\hat{A}^{\dagger} + \hat{A}^{\dagger}\hat{A} + (\hat{A}^{\dagger})^2}}\ket{n}\\
+                &= \bra{n}\frac{\hbar\omega}{4}\br{\sqrt{n}\sqrt{n-1}\ket{n-2} + (n+1)\ket{n} + n\ket{n} + \sqrt{n+1}\sqrt{n+2}\ket{n+2}}\\
+                &= \frac{\hbar\omega}{4}(2n+1) = \frac{1}{2}\sbr{\br{n+\frac{1}{2}}\hbar\omega} = \frac{1}{2}E_n
+            \end{align*} as desired.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\end{document}

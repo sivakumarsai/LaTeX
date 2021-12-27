@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+\DeclareMathOperator\sgn{sgn}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.207: 1, 2(a), 4, 5, 6, 7
+
+1. Suppose that $R$ is a rotation in the plane $\mathbb{R}^2$, and let \[R = \begin{pmatrix}
+  a & b \\ c & d
+\end{pmatrix}\] denote its matrix with respect to the standard basis vectors $e_1 = (1,0)$ and $e_2 = (0,1)$.\begin{enumerate}[label=(\alph*)]
+  \item Write the conditions $R^t = R^{-1}$ and $\det(R) = \pm 1$ in terms of equations in $a,b,c,d$.
+  
+  With $\det(R) = ad-bc = \pm 1$, we have \[R^t = \begin{pmatrix}
+    a & c \\ b & d
+  \end{pmatrix} = (ad-bc)^{-1}\begin{pmatrix}
+    d & -b \\ -c & a
+  \end{pmatrix} = R^{-1}.\] It follows that \begin{align*}
+    a(ad-bc) &= d\\
+    c(ad-bc) &= -b\\
+    b(ad-bc) &= -c\\
+    d(ad-bc) &= a,
+  \end{align*} with $\det(R) = ad-bc = \pm 1$ leading to two different cases (when $R$ is proper or not).
+  \item Show that there exists $\varphi\in\mathbb{R}$ such that $a+ib = e^{i\varphi}$.
+  \begin{proof} Assume the conditions as stated in (a). Then observe that \[\abs{a+ib}^2 = a^2+b^2 = a(a) + b(b) = ad\det(R) - bc\det(R) = \det(R)^2 = 1,\] so that $\abs{a+ib} = 1$. Hence $a+ib\in S^1$ and so take $\varphi = \Arg(a+ib)$. The principal argument $\Arg\colon\mathbb{C}\setminus \{0\}\to (-\pi,\pi]$ is given by taking $\arctan(b/a)$ whenever $a$ is nonzero and adding to this plus or minus $\pi$ when $a+ib$ lies in the second and third quadrant respectively. When $a+ib$ lies on the negative real axis take the argument as $\pi$, and when $a=0$ take the principal argument to be $\sgn(b)\pi/2$. It follows immediately that $a+ib = \exp(i\varphi)$.
+
+  Thus there exists $\varphi\in\mathbb{R}$ such that $a+ib = \exp(i\varphi)$.
+  \end{proof}
+  \item Conclude that if $R$ is proper, then it can be expressed as $z\mapsto ze^{i\varphi}$, and if $R$ is improper, then it takes the form $z\mapsto \overline{z}e^{i\varphi}$, where $\overline{z} = x-iy$.
+  \begin{proof} Let $x = (x_1 ~ x_2)^t$.
+    If $R$ is proper, $\det(R) = ad-bc = 1$ so that $c=-b$ and $d=a$. Then \[Rx = \begin{pmatrix}
+      a & b \\ -b & a
+    \end{pmatrix}\begin{pmatrix}
+      x_1\\x_2
+    \end{pmatrix} = \begin{pmatrix}
+      ax_1+bx_2\\ax_2-bx_1
+    \end{pmatrix}.\] View $\mathbb{R}^2$ as $\mathbb{C}$ (by a set bijection), so that $x \mapsto x_1+ix_2$ and $Rx \mapsto (ax_1+bx_2) + i(ax_2-bx_1)$. Observe that $(ax_1+bx_2) + i(ax_2-bx_1) = (a-ib)(x_1+ix_2)$. In part (b) we saw that $a+ib\in S^1$ so $a-ib\in S^1$ as well, so write $a-ib = \exp(-i\varphi)$ for $\varphi\in \mathbb{R}$ as computed from part (a) (we may take $\varphi + 2\pi n$ for any integer $n$ in place of $\varphi$ as well). Then the action of $R$ on $x$ completely agrees with the action (by multiplication) of $\exp(-i\varphi)$ on $x_1+ix_2$.
+
+    If $R$ is not proper, $\det(R) = ad-bc = -1$ so that $c=b$ and $d=-a$. Then \[Rx = \begin{pmatrix}
+      a & b \\ b & -a
+    \end{pmatrix}\begin{pmatrix}
+      x_1\\x_2
+    \end{pmatrix} = \begin{pmatrix}
+      ax_1+bx_2\\bx_1-ax_2
+    \end{pmatrix}.\] Again we view this action in $\mathbb{C}$ as $Rx \mapsto (ax_1+bx_2) + i(bx_1-ax_2) = (a+ib)(x_1-ix_2) = (a+ib)(\overline{x_1+ix_2})$. Here the action of $R$ on $x$ agrees with the action of $\exp(i\varphi)$ on $\overline{x_1+ix_2}$, and so the overall action is given by complex conjugation and then multiplication by $\exp(i\varphi)$.
+    
+    We can define a group action where the group of orthogonal matrices with determinant $-1$ or $1$ acts on $\mathbb{C}$ in exactly the manner outlined above, where if $R$ is proper $z\mapsto z\exp(-i\varphi)$ and if $R$ is improper $z\mapsto \overline{z}\exp(i\varphi)$. Determine $\varphi$ from the components $a,b$ in the matrix $R$ in the manner outlined in part (b) up to an additive constant of $2\pi i$.
+  \end{proof}
+\end{enumerate}
+
+2. Suppose that $R\colon \mathbb{R}^3\to \mathbb{R}^3$ is a proper rotation. \begin{enumerate}[label=(\alph*)]
+  \item Show that $p(t) = \det(R-tI)$ is a polynomial of degree $3$, and prove that there exists $\gamma\in S^2$ (where $S^2$ denotes the unit sphere in $\mathbb{R}^3$) with \[R(\gamma) = \gamma.\] [Hint: Use the fact that $p(0) >0$ to see that there is $\lambda > 0$ with $p(\lambda) = 0$. Then $R-\lambda I$ is singular, so its kernel is non-trivial.]
+  \begin{proof}
+    We know that the degree of the characteristic polynomial of an $n\times n$ matrix is $n$. Then write $R$ and $I$ in their matrix form (with respect to some basis for $\mathbb{R}^3$) and the difference $R-tI$ is then a $3\times 3$ matrix, and by explicit computation of the determinant we have that it is of degree $3$. (We have generally that a matrix of the form \[R-tI = \begin{pmatrix}
+      a-t & b & c \\ d & e-t & f \\ g & h & j-t
+    \end{pmatrix}\] has a determinant $p(t)$ which is a polynomial of degree 3.)
+
+    Then observe that $p(0) = \det(R) = 1$, so that there exists a real root $\lambda$ (due to the range of cubic polynomials) $\lambda$ of $p(t)$, so $p(\lambda) = 0$. This means that $\lambda$ is an eigenvalue for $R$. Then $R-\lambda I$ is singular, so that the kernel of $R-\lambda I$ is non-trivial. Thus there exists $\gamma\in \mathbb{R}^3$ such that $(R-\lambda I)(\gamma) = R(\gamma) - \lambda \gamma = 0$, so that $R(\gamma) = \lambda \gamma$.
+
+    In fact, $\lambda > 0$ because the characteristic polynomial is of degree 3, note that by taking the determinant of the sample matrix given the coefficient of the $t^3$ term must be $-1$, so that $\lim_{t\to \infty} p(t) = -\infty$, so because $p(0) = 1$, we must have that $\lambda > 0$ for $p(\lambda) =0$.
+    
+    We claim that $\lambda = 1$. The rotation matrix $R$ preserves the inner product and hence the norm. So $\abs{R(\gamma)} = \abs{\lambda \gamma} = \lambda \abs{\gamma} = \abs{\gamma} \implies \lambda = 1$. Hence $\gamma$ and all of its scalar multiples are fixed by $R$, that is, the span of $\gamma$ is the axis fixed by the rotation $R$. By scaling down $\abs{\gamma}$ to $1$ so that $\gamma\in S^2$, we have our desired $\gamma$.
+  \end{proof}
+\end{enumerate}
+
+4. Let $A_d$ and $V_d$ denote the area and volume of the unit sphere and unit ball in $\mathbb{R}^d$, respectively. \begin{enumerate}[label=(\alph*)]
+  \item Prove the formula \[A_d = \frac{2\pi^{d/2}}{\Gamma(d/2)}\] so that $A_2 = 2\pi$, $A_3 = 4\pi$, $A_4 = 2\pi^2, \dots$. Here $\Gamma(x) = \int_0^\infty e^{-t}t^{x-1}\dd{t}$ is the Gamma function. [Hint: use polar coordinates and the fact that $\int_{\mathbb{R}^d} e^{-\pi\abs{x}^2}\dd{x} = 1$.]
+  \begin{proof}
+    Directly computing with polar coordinates and making a change of variables, we have \begin{align*}
+      1 = \int_{\mathbb{R}^d} \exp(-\pi \abs{x}^2)\dd{x} &= \int_{S^{d-1}}\int_0^{\infty} \exp(-\pi \abs{r\gamma}^2)r^{d-1}\dd{r}\dd{\sigma(\gamma)}\\
+      &= \int_0^{\infty} \exp(-\pi r^2)\br{\pi r^2}^{d/2-1}\frac{2\pi r}{2\pi^{d/2}}\dd{r}\int_{S^{d-1}}\dd{\sigma(\gamma)}\\
+      &= \frac{A_d}{2\pi^{d/2}}\int_0^{\infty} \exp(-t)t^{d/2-1}\dd{t}\\
+      &= \frac{A_d\Gamma(d/2)}{2\pi^{d/2}}.
+    \end{align*} Hence \[A_d = \frac{2\pi^{d/2}}{\Gamma(d/2)}\] as desired.
+  \end{proof}
+  \item Show that $\dd{V_d} = A_d$, hence \[V_d =\frac{\pi^{d/2}}{\Gamma(d/2+1)}.\] In particular $V_2 = \pi$, $V_3 = 4\pi/3, \dots$.
+  \begin{proof}
+    The volume of a ball of radius $R$ is given by \begin{align*}
+      V = \int_{B^d_R} 1\dd{x} &= \int_{S^{d-1}}\int_0^R r^{d-1}\dd{r}\dd{\sigma(\gamma)}\\
+      &= A_d\br{\eval{\frac{r^d}{d}}_0^R}\\
+      &= \frac{A_dR^d}{d}.
+    \end{align*} We have that $\dd{V}$ is $A_dR^{d-1}$, which is the surface area of a sphere of radius $R$. The factor of $R^{d-1}$ is due to the integration of $\int_{S^{d-1}(R)}\dd{\sigma(R\gamma)}$ where $S^{d-1}(R)$ is the sphere of radius $R$. Expressing the integral as an iterated integral gives the extra $R^{d-1}$ factor, and what remains is $A_d$. So when $R=1$, we have $\dd{V_d} = A_d$ as desired.
+
+    This means that $V_d = A_d/d = \pi^{d/2}/(d/2\Gamma(d/2))$, but by the definition of the Gamma function, $V_d = \pi^{d/2}/\Gamma(d/2+1)$.
+  \end{proof}
+\end{enumerate}
+
+5. Let $A$ be a $d\times d$ positive definite symmetric matrix with real coefficients. Show that \[\int_{\mathbb{R}^d} e^{-\pi \abr{x,A(x)}}\dd{x} = (\det(A))^{-1/2}.\] This generalizes the fact that $\int_{\mathbb{R}^d} e^{-\pi\abs{x}^2}\dd{x} = 1$, which corresponds to the case where $A$ is the identity. [Hint: Apply the spectral theorem to write $A = RDR^{-1}$ where $R$ is a rotation and, $D$ is a diagonal with entries $\lambda_1, \dots, \lambda_d$, where $\cbr{\lambda_i}$ are the eigenvalues of $A$.]
+\begin{proof}
+  Positive definite symmetric matrices with real coefficients are diagonalizable by the spectral theorem (their eigenvalues are real and positive). Thus apply the spectral theorem to write $A = RDR^{-1}$ where $R$ is a rotation and $D$ is a diagonal matrix with entries $\lambda_1,\dots, \lambda_d > 0$, where $\cbr{\lambda_i}$ are the eigenvalues of $A$.
+
+  It follows that \begin{align*}
+    \int_{\mathbb{R}^d} e^{-\pi \abr{x,A(x)}}\dd{x} &= \int_{\mathbb{R}^d} e^{-\pi \abr{x,RDR^{-1}(x)}}\dd{x}\\
+    &= \int_{\mathbb{R}^d} e^{-\pi x^tRDR^tx}\dd{x}\\
+    &= \int_{\mathbb{R}^d} e^{-\pi (R^tx)^tDR^tx}\dd{x}\\
+    &= \int_{\mathbb{R}^d} e^{-\pi y^tDy}\abs{\det(R)}\dd{y}\\
+    &= \int_R\cdots\int_R e^{-\pi(\lambda_1 y_1^2 + \cdots + \lambda_d y_d^2)}\dd{y_1}\cdots \dd{y_d}\\
+    &= \prod_{i=1}^d \int_R e^{-\pi \lambda_iy_i^2}\dd{y_i}\\
+    &= \prod_{i=1}^d \lambda_i^{-1/2} = (\lambda_1\cdots \lambda_d)^{-1/2} = (\det(A))^{-1/2},
+  \end{align*} since the product of all of the eigenvalues of an operator is its determinant.
+\end{proof}
+
+6. Suppose $\psi\in \mathcal{S}(\mathbb{R}^d)$ satisfies $\int\abs{\psi(x)}^2\dd{x} = 1$. Show that \[\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}\br{\int_{\mathbb{R}^d}\abs{\xi}^2|\hat{\psi}(\xi)|^2\dd{\xi}}\geq \frac{d^2}{16\pi^2}.\] This is the statement of the Heisenberg uncertainty principle in $d$ dimensions.
+\begin{proof}
+  We have that \begin{align*}
+    d = \int_{\mathbb{R}^d} d\abs{\psi(x)}^2 \dd{x} &= \int_{\mathbb{R}^d} d \psi(x)\overline{\psi(x)}\dd{x}\\
+    &= \int_{\mathbb{R}^d} \nabla(x) \psi(x)\overline{\psi(x)}\dd{x} \dd{x}\\
+    &= \int_{\mathbb{R}^d} \br{\sum_{i=1}^d \br{\pdv{x_i}x_i} \psi(x)\overline{\psi(x)}}\dd{x}\\
+    &= \sum_{i=1}^d \int_{\mathbb{R}^d} \br{\pdv{x_i}x_i} \psi(x)\overline{\psi(x)}\dd{x}\\
+    &= \sum_{i=1}^d \int_{\mathbb{R}^d} x_i \pdv{x_i}(\psi(x)\overline{\psi(x)})\dd{x} \quad \text{integrate by parts, $\psi\in\mathcal{S}(\mathbb{R}^d)$}. \intertext{By taking the absolute value,} \\
+    \abs{\sum_{i=1}^d \int_{\mathbb{R}^d} x_i \pdv{x_i}(\psi(x)\overline{\psi(x)})\dd{x}} &\leq 2\int_{\mathbb{R}^d} \br{\sum_{i=1}^d \abs{x_i}\abs{\psi(x)}\abs{\pdv{x_i}\psi}}\dd{x}\\
+    &= 2\int_{\mathbb{R}^d} \abs{\psi(x)}\sbr{ (\abs{x_1} \cdots \abs{x_d})\begin{pmatrix}
+      \abs{\pdv{x_1}\psi}\\
+      \vdots \\ 
+      \abs{\pdv{x_d}\psi}
+    \end{pmatrix}} \dd{x}\\
+    &\leq 2\int_{\mathbb{R}^d} \abs{x}\abs{\psi(x)} \abs{\nabla \psi(x)}\dd{x} \quad\text{Cauchy-Schwarz in $\mathbb{R}^d$}\\
+    &\leq 2\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}^{1/2}\br{\int_{\mathbb{R}^d} \abs{\nabla \psi(x)}^2\dd{x}}^{1/2} \quad\text{Cauchy-Schwarz in $L^2(\mathbb{R})$}\\
+    &= 2\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}^{1/2}\br{\int_{\mathbb{R}^d}\sum_{i=1}^d \abs{\pdv{x_i} \psi(x)}^2\dd{x}}^{1/2}\\
+    &=  2\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}^{1/2}\br{\int_{\mathbb{R}^d}\sum_{i=1}^d (2\pi)^2\abs{\xi_i}^2|\hat{\psi}(\xi)|^2\dd{x}}^{1/2} \quad\text{Plancherel}\\
+    &= 4\pi\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}^{1/2}\br{\int_{\mathbb{R}^d} \abs{\xi}^2|\hat{\psi}(\xi)|^2\dd{x}}^{1/2}.
+  \end{align*} It follows that \[\br{\int_{\mathbb{R}^d} \abs{x}^2\abs{\psi(x)}^2\dd{x}}\br{\int_{\mathbb{R}^d}\abs{\xi}^2|\hat{\psi}(\xi)|^2\dd{\xi}}\geq \frac{d^2}{16\pi^2}\] as desired.
+\end{proof}
+
+7. Consider the time-dependent heat equation in $\mathbb{R}^d$: \begin{equation}
+  \pdv{u}{t} = \pdv[2]{u}{x_1} + \cdots + \pdv[2]{u}{x_d}, \quad \text{where $t>0$,}
+\end{equation} with boundary values $u(x,0) = f(x)\in \mathcal{S}(\mathbb{R}^d)$. If \[\mathcal{H}_t^{(d)}(x) = \frac{1}{(4\pi t)^{d/2}}e^{-\abs{x}^2/4t} = \int_{\mathbb{R}^d}e^{-4\pi^2t\abs{\xi}^2}e^{2\pi i x\cdot \xi}\dd{\xi}\] is the $d$-dimensional \textbf{heat kernel}, show that the convolution \[u(x,t) = (f\ast \mathcal{H}_t^{(d)})(x)\] is indefinitely differentiable when $x\in\mathbb{R}^d$ and $t>0$. Moreover, $u$ solves (1), and is continuous up to the boundary $t=0$ with $u(x,0) = f(x)$.
+\begin{proof}
+  Let $D$ be any differential operator in the form $D = \sum_i\pdv{x}^{\alpha_i}$ where $\alpha_i$ are multi-indexes. Then since $f\ast g = g\ast f$, we have \begin{align*}
+    D(f\ast \mathcal{H}_t^{(d)})(x) &= D\int_{\mathbb{R}^d} f(y) \mathcal{H}_t^{(d)}(x-y)\dd{y}\\
+    &= \int_{\mathbb{R}^d} f(y) D(\mathcal{H}_t^{(d)}(x-y))\dd{y}\\
+    &= \int_{\mathbb{R}^d} D(f(x-y)) \mathcal{H}_t^{(d)}(y)\dd{y} < \infty,
+  \end{align*} since $f$ is Schwartz. Hence $f\ast\mathcal{H}_t^{(d)}$ is indefinitely differentiable.
+
+  Then take $\triangle u$ from the integral definitions given: \begin{align*}
+    \triangle u(x,t) &= \sum_{i=1}^d \pdv[2]{x_i} \int_{\mathbb{R}^d} f(y) \int_{\mathbb{R}^d}e^{-4\pi^2t\abs{\xi}^2}e^{2\pi i \sbr{\sum_{k=1}^dx_k\xi_k}}\dd{\xi}\dd{y}\\
+    &= \sum_{i=1}^d \int_{\mathbb{R}^d} f(y) \int_{\mathbb{R}^d}e^{-4\pi^2t\abs{\xi}^2}\pdv[2]{x_i}\br{e^{2\pi i \sbr{\sum_{k=1}^dx_k\xi_k}}}\dd{\xi}\dd{y}\\
+    &= \sum_{i=1}^d \int_{\mathbb{R}^d} f(y) \int_{\mathbb{R}^d}e^{-4\pi^2t\abs{\xi}^2}(-4\pi^2\abs{\xi_i}^2)e^{2\pi i \sbr{\sum_{k=1}^dx_k\xi_k}}\dd{\xi}\dd{y}\\
+    &= \int_{\mathbb{R}^d} f(y) \int_{\mathbb{R}^d}(-4\pi^2\abs{\xi}^2)e^{-4\pi^2t\abs{\xi}^2}e^{2\pi i \sbr{\sum_{k=1}^dx_k\xi_k}}\dd{\xi}\dd{y}\\
+    &= \int_{\mathbb{R}^d} f(y) \int_{\mathbb{R}^d}\pdv{t}\br{e^{-4\pi^2t\abs{\xi}^2}}e^{2\pi i \sbr{\sum_{k=1}^dx_k\xi_k}}\dd{\xi}\dd{y} = \pdv{t} u(x,t),
+  \end{align*} and hence $u$ is a solution to the heat equation.
+
+  To show that the solution is continuous, observe that the convolution is continuous wherever $t>0$. What remains is to show continuity when $t=0$. To this end, recall that the heat kernel is a good kernel (Gaussian kernel). This means that $(f\ast \mathcal{H}_t^{(d)})(x) = \int_{\mathbb{R}^d} f(x-y)\mathcal{H}_t^{(d)}(y)\dd{y}$ converges uniformly to $f(x)$ as $t\to 0$, so in this manner the limit as $t\to 0$ of $u(x,t)$ is $f(x)$. Thus the solution is continuous on its domain.
+\end{proof}
+\end{document}

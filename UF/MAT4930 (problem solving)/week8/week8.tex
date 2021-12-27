@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Integral Problems}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{1.} Evaluate $\displaystyle{\int_0^{\infty}\frac{\arctan(\pi x) - \arctan(x)}{x}\dd{x}}$.
+
+$\displaystyle{\int_0^{\infty}\frac{\arctan(\pi x) - \arctan(x)}{x}\dd{x}} = \frac{1}{2}\pi\log(\pi)$.
+
+Continuously extend the integrand by defining it to be $\pi-1$ when $x = 0$ so that we do not need to worry about taking an improper integral as $x$ tends to $0$. We still have to take the principal value of an improper integral as $x$ tends to $\infty$. Simplifying, we have
+\begin{align*}
+    \int_0^{\infty}\frac{\arctan(\pi x) - \arctan(x)}{x}\dd{x} &= \lim_{R\to\infty}\sbr{\int_0^{R}\frac{\arctan(\pi x^{\prime})}{x^{\prime}}\dd{x^{\prime}} - \int_0^{R}\frac{\arctan(x)}{x}\dd{x}}
+    \intertext{Using the substitution $x = \pi x^{\prime}$, $\dd{x} = \pi \dd{x^{\prime}}$ in the first integral, continue:}
+    &= \lim_{R\to\infty}\sbr{\int_0^{\pi R}\frac{\arctan( x)}{x}\dd{x} - \int_0^{R}\frac{\arctan(x)}{x}\dd{x}}\\
+    &= \lim_{R\to\infty}\int_R^{\pi R}\frac{\arctan( x)}{x}\dd{x}.
+\end{align*} Then we argue that the limit is $\pi\log(\pi)/2$. Given any $\varepsilon>0$, we can find $R^{\prime}>0$ such that for $x>R^{\prime}$, we have that $\abs{\pi/2-\arctan(x)} < \varepsilon$.
+
+Observe that $\int_R^{\pi R}\pi/(2x)\dd{x} = \pi(\log(\pi R) - \log(R))/2 = \pi\log(\pi)/2$. Then by choosing $R$ greater than $R^{\prime}$, \begin{align*}
+    \abs{\frac{1}{2}\pi\log(\pi) - \int_R^{\pi R}\frac{\arctan( x)}{x}\dd{x}}=\abs{\int_R^{\pi R} \frac{\pi/2 - \arctan(x)}{x}\dd{x}} &\leq \int_R^{\pi R} \frac{\abs{\pi/2 - \arctan(x)}}{x}\dd{x}\\
+    &< \int_R^{\pi R} \frac{\varepsilon}{x}\dd{x}\\
+    &= \varepsilon\log(\pi).
+\end{align*}
+Since $\varepsilon$ was arbitrary, as $\varepsilon\to 0$ and as $R\to\infty$, it follows that \[\lim_{R\to\infty}\int_R^{\pi R}\frac{\arctan( x)}{x}\dd{x} = \frac{1}{2}\pi\log(\pi)\] as desired.
+
+\textbf{8.} Evaluate $\displaystyle{\int_1^{\infty} \frac{\dd{x}}{e^{x+1} + e^{3-x}}}$.
+
+$\displaystyle{\int_1^{\infty} \frac{\dd{x}}{e^{x+1} + e^{3-x}}} = \frac{\pi}{4e^2}$.
+
+Start by making the change of variables $x^{\prime} = x + 1, \dd{x^{\prime}} = \dd{x}$ so that \[\int_1^{\infty} \frac{\dd{x^{\prime}}}{e^{x^{\prime}+1} + e^{3-x^{\prime}}} = \int_0^{\infty}\frac{\dd{x}}{e^{x+2} + e^{-(x-2)}}.\] Then with some algebra and another change of variables $u = e^x, \dd{u} = e^x\dd{x}$, we have\begin{align*}
+    \int_0^{\infty}\frac{\dd{x}}{e^{x+2} + e^{-(x-2)}} &= \frac{1}{e^2}\int_0^{\infty}\frac{\dd{x}}{e^{x} + e^{-x}}\\
+    &= \frac{1}{e^2}\int_0^{\infty}\frac{e^x\dd{x}}{1 + e^{2x}}\\
+    &= \frac{1}{e^2}\int_1^{\infty}\frac{\dd{u}}{1 + u^2}\\
+    &= \frac{1}{e^2}\br{\eval{\arctan(u)}_1^{\infty}}\\
+    &=\frac{1}{e^2}\br{\frac{\pi}{2}-\frac{\pi}{4}} = \frac{\pi}{4e^2}
+\end{align*} as desired.
+\end{document}

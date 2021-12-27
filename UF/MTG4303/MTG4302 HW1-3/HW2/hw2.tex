@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4302}
+\fancyhead[C]{HW 2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Let $W$ consist of all the functions from $\mathbb{Z}_+\to \cbr{1,2}$. Show that \[\card(W) = \card(\mathcal{P}(\mathbb{Z}_+)) = \card(\cbr{1,2}^{\mathbb{Z}_+}).\]
+    \begin{proof}
+      Every function $f\colon \mathbb{Z}_+\to \cbr{1,2}$ is determined entirely by its action on each positive integer; that is, $f$ is uniquely determined by the value of $f(n)$ (which is either $1$ or $2$) for every positive integer $n$.
+
+      We construct a bijection $\phi\colon W\to \mathcal{P}(\mathbb{Z}_+)$ by investigating any function $f\in W$. Let $\phi$ generate a subset $A$ of $\mathbb{Z}_+$ by the following condition: For every $n\in\mathbb{Z}_+$ and some $f\in W$, the rule\[\begin{cases}
+        n\in A & \text{if $f(n) = 1$},\\
+        n\not\in A & \text{if $f(n) = 2$}.
+      \end{cases}\] determine $A$ uniquely from $f\in W$. So $\phi$ maps $f\to A$ in the manner described above, and $\phi$ has an inverse which is obtained by reversing the conditions above: The map $\phi^{-1}\colon \mathcal{P}(\mathbb{Z}_+)\to W$ constructs a function $f$ from a subset $A$ of $\mathbb{Z}_+$ by defining \[f(n) = \begin{cases}
+        1 & \text{if $n\in A$},\\
+        2 & \text{if $n\not\in A$}.
+      \end{cases}\]
+      Hence $\card(W) = \card(\mathcal{P}(\mathbb{Z}_+))$.
+
+      We construct a bijection $\varphi\colon W \to \cbr{1,2}^{\mathbb{Z}_+}$ in a similar manner. Let $\varphi$ generate a sequence $(a_1,\dots, a_n, \dots)$ for $n\in \mathbb{Z}_+$ from $f\in W$ by the rule $a_n = f(n)$. So $\varphi$ maps $f\to (a_1,\dots, a_n, \dots)$ in this manner, and it follows that $\varphi$ has an inverse which is obtained by reversing the rule: The map $\varphi^{-1}\colon \cbr{1,2}^{\mathbb{Z}_+}\to W$ constructs a function $f$ from a sequence $(a_1,\dots, a_n, \dots)$ by defining $f(n) = a(n)$ for each $n\in \mathbb{Z}_+$.
+
+      Hence $\card(W) = \card(\cbr{1,2}^{\mathbb{Z}_+})$.
+      
+      By transitivity it follows that $\card(W) = \card(\mathcal{P}(\mathbb{Z}_+)) = \card(\cbr{1,2}^{\mathbb{Z}_+})$.
+    \end{proof}
+    \item Let $X$ be a set, and let $\mathcal{T}$ be the collection of all subsets $A$ of $X$ such that $X-A$ is either countable or all of $X$. Prove that $(X,\mathcal{T})$ is a topological space.
+    \begin{proof}
+      Observe that both $X$ and $\varnothing$ are in $\mathcal{T}$, since $X,\varnothing \subset X$ and $X-X = \varnothing$, which is a countable (finite) set, and $X-\varnothing = X$ is all of $X$.
+
+      Then let $\cbr{U_\alpha}$ be an indexed family of nonempty elements (choosing nonempty elements because the union with the empty set does not change cardinality) of $\mathcal{T}$. We have \[X-\bigcup U_\alpha = \bigcap (X-U_\alpha),\] and since each $X-U_\alpha$ is countable by assumption, the intersection is a subset of a countable set, and so $X-\bigcup U_\alpha$ must be countable. Thus $\bigcup U_\alpha$ is in $\mathcal{T}$.
+
+      Then let $U_1, \dots, U_n$ be nonempty elements (nonempty elements chosen because the intersection with the empty set is the empty set) of $\mathcal{T}$. It follows that \[X - \bigcap_{i=1}^n U_i  = \bigcup_{i=1}^n (X-U_i),\] and since each $X-U_i$ is countable by assumption, the finite union $X - \bigcap_{i=1}^n U_i$ must also be countable. Thus $\bigcap_{i=1}^n U_i$ is in $\mathcal{T}$.
+
+      Hence $\mathcal{T}$ is a topological space.
+    \end{proof}
+    \item Prove that the dictionary order topology on $\mathbb{R}\times \mathbb{R}$ is the same as the product topology on $\mathbb{R}_d\times \mathbb{R}$, where $\mathbb{R}_d$ denotes the set of real numbers with the discrete topology.
+    \begin{proof}
+      Let the dictionary order topology on $\mathbb{R}\times\mathbb{R}$ have the basis given by the collection of all open intervals of the form $\br{(a,b),(a,d)}$ for $b< d$. Let the product topology on $\mathbb{R}_d\times \mathbb{R}$ have the basis given by the collection of all sets of the form $U\times V$ where $U$ is an open subset of $\mathbb{R}_d$ and $V$ is an open subset of $\mathbb{R}$.
+
+      Take any $x = (x_1,x_2)\in \mathbb{R}_d\times \mathbb{R}$. Any basis element $B$ of $\mathbb{R}_d\times \mathbb{R}$ that contains $x$ is of the form $U\times (a,b)$ with $U$ being any subset of $\mathbb{R}$ containing $x_1$, and $x_2\in (a,b)$. Then a basis element $B^{\prime}$ of $\mathbb{R}\times\mathbb{R}$ with the dictionary order topology containing $x$ is $\br{(x_1,c),(x_1,d)}$, with $a\leq c < x < d \leq b$ (so $x_2\in (c,d)\subset (a,b)$). It is clear that $x\in B^{\prime}\subset B$, so the dictionary order topology on $\mathbb{R}\times \mathbb{R}$ is finer than the product topology on $\mathbb{R}_d\times \mathbb{R}$.
+
+      Similarly, take any $x = (x_1,x_2)\in\mathbb{R}\times\mathbb{R}$. Any basis element $B$ of $\mathbb{R}\times\mathbb{R}$ with the dictionary order topology containing $x$ is of the form $\br{(x_1,a),(x_1,b)}$ with $a<x_2<b$. Then a basis element $B^{\prime}$ of $\mathbb{R}_d\times \mathbb{R}$ containing $x$ is $\cbr{x_1}\times (s,t)$ with $b\leq s < x_2 < t \leq d$. It is clear that $x\in B^{\prime}\subset B$, and it follows that the product topology on $\mathbb{R}_d\times\mathbb{R}$ is finer than the dictionary order topology on $\mathbb{R}\times\mathbb{R}$. 
+
+      Thus both topologies are the same.
+    \end{proof}
+    \item Let $K = \cbr{1/n\colon n\in\mathbb{Z}_+}$. Let $\mathcal{B}_K$ be the set of all intervals $(a,b)\subset \mathbb{R}$ along with all sets of the form $(a,b)-K$. \begin{enumerate}[label=(\alph*)]
+      \item Show that $\mathcal{B}_K$ is a basis. Let the topology on $\mathbb{R}$ generated by $\mathcal{B}_K$ be denoted $\mathcal{T}_K$.
+      \item Prove that $\mathcal{T}_K$ is strictly finer than the standard topology on $\mathbb{R}$.
+      \item Prove that $\mathcal{T}_K$ and the lower limit topology are not comparable.
+    \end{enumerate}
+    \begin{proof}
+      For any $x\in\mathbb{R}$, the open interval $(x-\varepsilon, x+\varepsilon)$ for any $\varepsilon>0$ is an element of $\mathcal{B}_K$ containing $x$.
+
+      We will show that the intersection of two basis elements is another basis element (so that if some $x$ is in the intersection of two basis elements there will be another basis element containing it). There are three cases to consider:
+
+      If both basis elements are open intervals; e.g. in the form $(a,b)$ and $(c,d)$, then the intersection will be empty if $b \leq c$ or $d \leq a$. The intersection will be one of the open intervals $(c,b)$ or $(a,d)$ if $a<c<b<d$ or $c<a<d<b$ respectively, or $(a,b) = (c,d)$ if $a = c$ and $b = d$. If one interval is contained in the other, then the intersection is of course an open interval. When the intersection is not empty, it is an open interval.
+
+      Suppose both basis elements are of the other form; e.g. one element is of the form $(a,b)-K$ and the other is of the form $(c,d)-K$, and without loss of generality assert that $(a,b)$ and $(c,d)$ each have nonempty intersection with the interval $(0,1]$ (so that this case really is a different case). Then for a real number to be in the intersection of these basis elements, it has to be in the set $(a,b)\cap (c,d)$ and also not be a real number in $K$. The set $(a,b)\cap (c,d)$ is another open interval (or empty), and with the condition that elements of the intersection should not also be in $K$ means that the intersection of these two elements takes the form $(s,t)-K$ for suitable $s,t$ (or empty).
+
+      In the last case one basis element is an open interval and the other is an open interval with points of $K$ removed, which take the form $(a,b)$ and $(c,d)-K$. Of course, for a real number to be in the intersection of these two sets means that it has to be in the set $(a,b)\cap(c,d)$ (which may be empty) and also cannot take on points of $K$. So again the intersection takes on the form of an open interval with points from $K$ removed.
+
+      In all cases, the intersection of two basis elements is a basis element of $\mathcal{B}_K$; hence $\mathcal{B}$ is a basis for $\mathcal{T}_K$ (a).
+
+      The basis for the standard topology on $\mathbb{R}$ is the collection of open intervals, and since $\mathcal{B}_K$ also contains these open intervals it is clear that $\mathcal{T}_K$ is finer than the standard topology (for any real number in a basis element, take a smaller open interval containing it).
+
+      What remains to show is a basis element $B$ in $\mathcal{B}_K$ for which the basis of the standard topology cannot contain an element which is contained in $B$. An example is the basis element $B = (-1,1)- K$. Because we can always choose a natural number $N$ large enough so that the difference between $0$ and $1/N$ can be made at least as small as we wish, there is no open interval (in the basis for the standard topology on $\mathbb{R}$) which contains $0$ and is contained in $B$. Hence $\mathcal{T}_K$ is strictly finer than the standard topology on $\mathbb{R}$ (b).
+
+      To show two topologies are incomparable, we show that each topology contains an open set not contained in the other one (so that there is no containment relation between the two). In the lower limit topology, take the basis element $[a,b)$ for $a<b$. The point $a$ in the set cannot be contained in an open interval (a basis element of $\mathcal{T}_K$) which is contained in $[a,b)$, and so it is not an open set in $\mathcal{T}_K$. On the other hand, the set $(-1,1)-K$ cannot be open in the lower limit topology because it contains $0$, and for any $\varepsilon > 0$ given we may choose $N\in\mathbb{Z}_+$ as large as we like so that $1/N$ is contained in any interval of the form $[0,\varepsilon)$, so there is no basis element which contains zero in the lower limit topology which is contained in $(-1,1)-K$. Hence the two topologies are not comparable with each other (c).
+    \end{proof}
+    \item Let $\mathcal{B}$ denote the collection of all half-open intervals, $[a,b)$ where $a$ and $b$ are rational numbers with $a< b$. Prove that $\mathcal{B}$ is a basis for a topology on $\mathbb{R}$, and the topology generated by $\mathcal{B}$ is different from the lower limit topology.
+    \begin{proof}
+      For any $x\in \mathbb{R}$, by Archimedean properties there exist suitable rational numbers $a,b$ with $a<b$ such that $x\in [a,b)$ (a basis element).
+
+      The intersection of two basis elements $[a,b)$ and $[c,d)$ ($a,b,c,d$ rational and $a<b, c<d$) is either empty or is of the form $[c,b)$ or $[a,d)$ when $c < b$ or $a < d$ respectively. If $a = c$ and $b = d$ then the intersection is $[a,b) = [c,d)$. If one basis element is completely contained in the other, then the intersection is another half-open interval with rational endpoints. In all cases a nonempty intersection of basis elements is a basis element.
+
+      Hence $\mathcal{B}$ is a basis for a topology on $\mathbb{R}$.
+
+      The open set $[\pi, 4)$ in the lower limit topology is not open in the topology generated by $\mathcal{B}$, because $\pi$ is irrational. There are no basis elements of $\mathcal{B}$ in the form $[a,b)$ for rational $a,b$ which contain $\pi$, and is contained in $[\pi,4)$; otherwise $a = \pi$ which is impossible. It follows then that the topology generated by $\mathcal{B}$ is different from the lower limit topology.
+    \end{proof}
+    \item Let $X$ be a topological space. Let $D = \cbr{(x,y)\in X\times X \colon x = y}$. Prove that $X$ is a Hausdorff space if and only if $D$ is a closed subset of $X\times X$, where $X\times X$ has the product topology.
+    \begin{proof}
+      Suppose that $D$ is a closed subset of $X\times X$. Then $X\times X - D = \cbr{(x,y)\in X\times X\colon x\neq y}$ is an open set; that is, for every element $(x,y)\in X\times X - D$ (so $x\neq y$), there is a basis element $B = U\times V$ with $U,V$ open in $X$ contained in $X\times X- D$ which contains $(x,y)$. For $U\times V$ to be contained in $X\times X - D$, $U\cap V$ must be the empty set, otherwise there would be elements of the form $(a,a)$ for some $a\in U\cap V$ in $U\times V$, but $X\times X - D$ may not contain elements of this form. Hence $U$ and $V$ are disjoint open sets in $X$ containing $x$ and $y$ respectively. Since $x,y$ were arbitrary, it follows that $X$ is Hausdorff.
+
+      Conversely, suppose that $X$ is Hausdorff. Then we check that $X\times X-D$ is an open set. For every element $(x,y)\in X\times X - D$ (so $x\neq y$), we can find a basis element $B = U\times V$ contained in $X\times X- D$ which contains $(x,y)$. Choose $U$ to be an open set in $X$ disjoint from $V$, another open set in $X$ containing $y$. These two sets exist because $X$ is Hausdorff. Since $x,y$ were arbitrary, it follows that $X\times X - D$ is an open set, so that $D$ is closed.
+
+      Therefore $X$ is a Hausdorff space if and only if $D$ is a closed subset of $X\times X$.
+    \end{proof}
+    \item Let $X$ be a topological space. Suppose that $A$ and $B$ are open subsets of $X$ with $\overline{A} = X = \overline{B}$. Prove that $\overline{A\cap B} = X$.
+    \begin{proof}
+      Since $X$ is a closed set and $A\cap B\subset X$, it follows from the definition of closure that $\overline{A\cap B} \subset X$.
+
+      Then let $x\in X = \overline{A}= \overline{B}$. It follows for any neighborhood $U$ containing $x$ that $U$ intersects $A$ nontrivially, and that $U$ intersects $B$ nontrivially. But because $A$ and $B$ are open sets, the intersections $U\cap A$ and $U\cap B$ are also open sets.
+
+      Again apply the fact that $X = \overline{A} = \overline{B}$ to find that $(U\cap A)\cap B$ and $(U\cap B)\cap A$ must also be nonempty, so that $U\cap(A\cap B)$ is nonempty regardless of whether we intersected $U$ with $A$ or $B$ first. Therefore $x\in \overline{A\cap B}$, and since $x$ was arbitrary, $X\subset \overline{A\cap B}$
+
+      Hence $\overline{A\cap B} = X$.
+    \end{proof}
+    \item Define a collection $\mathcal{T}$ of subsets of $\mathbb{Z}_+$ as follows: \\
+    $W\in \mathcal{T}$ if and only if $n\in W$ implies that all positive divisors of $n$ are also elements of $W$.\\
+    Verify that $\mathcal{T}$ is a topology on $\mathbb{Z}_+$. In this topology find $\overline{\cbr{1}}$ and $\overline{\cbr{2}}$.
+    \begin{proof}
+      It is clear that the empty set is vacuously in $\mathcal{T}$ and that $\mathbb{Z}_+$ is in $\mathcal{T}$, since for any positive integer its positive divisors are already in $\mathbb{Z}_+$.
+
+      Then for any indexed collection $\cbr{U_\alpha}$ of members of $\mathcal{T}$, it is also clear that the union $\bigcup U_\alpha$ is also in $\mathcal{T}$. For any positive integer $k$ in the union, find a set $U_\lambda$ containing $k$, and so all of its positive divisors appear in $U_\lambda$ so that the condition given by the definition of $\mathcal{T}$ is met.
+
+      Let $U_1, \dots, U_n$ be members of $\mathcal{T}$. Then for any positive integer $k$ in the intersection $\bigcap_{i=1}^n U_i$, $k$ will be in every $U_i$, and so each of the positive divisors of $k$ will also appear in every $U_i$. Thus every positive divisor of $k$ also appears in the intersection, and since $k$ was arbitrary, it follows that the intersection is in $\mathcal{T}$.
+
+      The only closed set containing $\cbr{1}$ is $\mathbb{Z}_+$, so that $\overline{\cbr{1}} = \mathbb{Z}_+$. Similarly, the only closed sets containing $\cbr{2}$ are $\mathbb{Z}_+$ and sets of the form $\mathbb{Z}_+ - W$, where $W$ contains only odd numbers and all of their divisors (which are also odd). Hence the intersection of all of these closed sets must be the set of positive even integers, so $\overline{\cbr{2}}$ is the set $2\mathbb{Z}_+$ (positive even integers).
+    \end{proof}
+    \item Consider the space $\mathbb{Z}_+$ with the finite complement topology. Is this space a Hausdorff space? Is this space a $T_1$ space?
+    \begin{proof}
+      At the very least this space is indeed a $T_1$ space because the closed sets in this topological space are the finite sets. Each $\cbr{n}$ for $n\in\mathbb{Z}_+$ is a finite, hence closed, set. 
+
+      This space is not Hausdorff. If we take any two distinct integers $m,n$ belonging to open sets $M,N$ respectively, we have that $M$ and $N$ have finite complements; that is, $M^{\prime} = \mathbb{Z}_+ -M$ and $N^{\prime} = \mathbb{Z}_+ -N$ are finite sets. It follows that $M = \mathbb{Z}_+ -M^{\prime}$ and $N = \mathbb{Z}_+ -N^{\prime}$
+
+      Observe that $M\cap N = (\mathbb{Z}_+ -M^{\prime})\cap (\mathbb{Z}_+ -N^{\prime}) = \mathbb{Z}_+ - (M^{\prime}\cup N^{\prime})$, but because $M^{\prime}$ and $N^{\prime}$ are finite, their union is finite also. But $\mathbb{Z}_+$ is an infinite set, so that $\mathbb{Z}_+-(M^{\prime} \cup N^{\prime})$ is nonempty. Since $m,n$ and $M,N$ were arbitary, it follows that this space cannot be Hausdorff. 
+    \end{proof}
+    \item Determine if the statement is true or false.\\
+    If $X$ is a topological space, and $W$ is an open subset of $X$, then $W = \Int(\overline{W})$.
+    \textbf{FALSE}
+    \begin{proof}
+      Choose $X$ and a topology on $X$ so that there exists a dense open proper subset $W$ of $X$. Then $\overline{W} = X$ and $\Int(X) = X \neq W$ since $X$ is open. A concrete example is to choose $X = \mathbb{R}$ with the standard topology and $W = \mathbb{R} - \cbr{0} = (-\infty, 0)\cup (0,\infty)$. The closure of $W$ is $\mathbb{R}$, while the interior of $\mathbb{R}$ is $\mathbb{R}\neq W$.
+    \end{proof}
+    \item Prove that every strict linearly ordered set with the order topology is a Hausdorff space.
+    \begin{proof}
+      Let $X$ be a set with a strict linear order, and consider the order topology on $X$. Let $x_1,x_2$ be distinct elements of $X$, and without loss of generality let $x_1 < x_2$.
+      
+      If there exist $y_1,y_2,x_3\in X$ with $y_1 < x_1 <x_3 < x_2 < y_2$, then we can choose disjoint neighborhoods $(y_1, x_3)$ and $(x_3, y_2)$ containing $x_1$ and $x_2$ respectively. In this case if $x_2$ is maximal in $X$ then take the neighborhood containing $x_2$ to be $(x_3, x_2]$; similarly if $x_1$ is minimal in $X$ then take the neighborhood containing $x_1$ to be $[x_1,x_3)$.
+      
+      If such an $x_3$ does not exist (that is, $x_1$ immediately precedes $x_2$) then choose the disjoint neighborhoods containing $x_1$ and $x_2$ respectively to be $(y_1, x_2)$ and $(x_1,y_2)$. In this case if $x_2$ is maximal in $X$ then take the neighborhood containing $x_2$ to be $(x_1, x_2]$; similarly if $x_1$ is minimal in $X$ then take the neighborhood containing $x_1$ to be $[x_1,x_2)$.
+
+      Thus we can form disjoint neighborhoods around any $x_1$ and $x_2$ in $X$, so $X$ is Hausdorff.
+    \end{proof}
+    \item Suppose that $A_\alpha$ is an indexed family of subsets of a topological space $X$. Prove that \[\bigcup \overline{A_\alpha}\subset \overline{\bigcup A_\alpha}.\] Give and example with $X = \mathbb{R}$ to show that equality need not hold.
+    \begin{proof}
+      We prove a lemma first: If $X$ is a topological space and $A,B$ are subsets of $X$, then if $A\subset B$ then $\overline{A}\subset \overline{B}$. For any element $x\in \overline{A}$, it means that any open neighborhood $U$ containing $x$ intersects with $A$ nontrivially; since $B$ contains $A$ it follows that $U$ intersects $B$ nontrivially also. Hence $x\in\overline{B}$, so that $\overline{A}\subset \overline{B}$.
+
+      Then for any member $A$ of the family $\cbr{A_\alpha}$, we have $A\subset \bigcup A_\alpha$, so that by the lemma we have $\overline{A} \subset \overline{\bigcup A_\alpha}$. Since $A$ was any member of the family $\cbr{A_\alpha}$, it follows that $\bigcup \overline{A_\alpha}\subset \overline{\bigcup A_\alpha}$.
+
+      In $X = \mathbb{R}$ with the standard topology, consider the infinite countable union \[\bigcup_{p,q\in \mathbb{Z}} \cbr{p/q} = \mathbb{Q} \]
+
+      Since $\mathbb{Q}$ is dense in $\mathbb{R}$, \[\overline{\bigcup_{p,q\in \mathbb{Z}} \cbr{p/q}} = \overline{\mathbb{Q}} = \mathbb{R}.\] But each of the sets $\cbr{p/q}$ is closed in the standard topology since its complement is the open set $(-\infty, p/q)\cup (p/q, \infty)$. So then \[\bigcup_{p,q\in \mathbb{Z}} \overline{\cbr{p/q}} = \bigcup_{p,q\in \mathbb{Z}} \cbr{p/q} = \mathbb{Q},\] but $\mathbb{Q} \subsetneq \mathbb{R}$.
+    \end{proof}
+\end{enumerate}
+\end{document}

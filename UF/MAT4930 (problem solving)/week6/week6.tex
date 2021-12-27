@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Elementary Number Theory}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{1.} Let $a,b$ be integers which are relatively prime. Prove that $\gcd(a^2-ab+b^2, a+b)\leq 3$.
+\begin{proof}
+    Let $a,b$ be coprime integers as given. Write $a^2-ab+b^2$ equivalently as $(a+b)^2 - 3ab$. Then $\gcd(a^2-ab+b^2, a+b) = \gcd((a+b)^2 - 3ab, a+b) = \gcd(-(a+b)^2 + 3ab, a+b)$, and apply one step of the Euclidean algorithm to find
+    \begin{align*}
+        -(a+b)^2 + 3ab &= -(a+b)\cdot (a+b) + 3ab,
+    \end{align*}
+    so that $\gcd(-(a+b)^2 + 3ab, a+b) = \gcd(a+b,3ab)$. But because $a,b$ were coprime, any divisor of $a+b$ will not divide $a$ or $b$, and similarly, any divisor of $a$ or $b$ will not divide $a+b$. This is the same as saying that $\gcd(a+b, a) = \gcd(a+b,b) = \gcd(a+b,ab) = 1$, which makes sense from considering prime factorizations for $a$ and $b$. Thus any common divisor of $a+b$ and $3ab$ is actually a common divisor of $a+b$ and $3$.
+
+    So we may simplify $\gcd(a+b,3ab)$ into $\gcd(a+b,3)$, and because $3$ is prime, the greatest common factor can either be $1$ or $3$. Hence $\gcd(a^2-ab+b^2, a+b)\leq 3$.
+\end{proof}
+\textbf{2.} Prove that two successive Fibonacci numbers are relatively prime.
+\begin{proof}
+    Let the Fibonacci numbers start with $f_0 = 1, f_1 = 1$, and we have that $f_{n+2} = f_{n+1} + f_n$ for all $n\geq 0$. We have that $\gcd(1,1) = \gcd(2,1) = 1$, so the first couple pairs of successive Fibonacci numbers are relatively prime. Then suppose that $\gcd(f_j, f_{j-1}) = 1$ for all $0\leq j \leq n$. We show that $\gcd(f_{n+1}, f_n) = 1$.
+
+    Writing $f_{n+1} = f_n + f_{n-1}$, we have that \[\gcd(f_{n+1}, f_n) = \gcd(f_n + f_{n-1}, f_n),\] which by the Euclidean algorithm we have that \[\gcd(f_n + f_{n-1}, f_n) = \gcd(f_n, f_{n-1}).\] But by the inductive hypothesis, the greatest common factor is $1$, so $\gcd(f_{n+1}, f_n) = 1$.
+
+    Hence, by induction, any two successive Fibonacci numbers are relatively prime.
+\end{proof}
+\end{document}

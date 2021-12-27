@@ -1,0 +1,75 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 8}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+
+Given $\emptyset \neq  A\subseteq \RR,$ define $f:\RR\to[0,\infty)$ by
+ $f(x)=\inf(S_x),$ where
+\[
+S_x=\{|x-a|:a\in A\}.
+\]
+\begin{enumerate}[(i)]
+ \item \label{i:7-i}  Show $f$ is continuous;
+ \item Show $\{x\in \RR:f(x)=0\}=\overline{A}.$
+\end{enumerate}
+
+% Suggestion: For item~\eqref{i:7-i}, you might wish to begin as follows. First explain why, given $x\in\RR$ and $\eta>0,$ there is an $a\in A$ such that $f(x)< |x-a| +\eta,$ and then careful prove, if $y\in \RR,$ then \[ f(x)-f(y) < |x-a|+\eta -|y-a| \le |x-y| +\eta. \]
+
+\begin{proof}
+    (i) Let $A$ be a nonempty subset of $\mathbb{R}$ and define $f\colon \mathbb{R}\to [0,\infty)$ by $f(x) = \inf(S_x)$, where \[S_x = \{\abs{x-a}\colon a\in A\}\] as given. Then observe that for any $a^{\prime}\in A$, because $f(x) = \inf(S_x)$, we have that $f(x)\leq \abs{x-a^{\prime}}$.
+    
+    Then for any $\eta > 0$, we can select an $a\in A$ such that $f(x)\leq \abs{x-a} < f(x) + \eta$. If instead we suppose by way of contradiction that there exists an $\eta^{\prime}>0$ so that there does not exist an $a\in A$ that satisfies $f(x)\leq \abs{x-a} < f(x) + \eta^{\prime}$, then we arrive at a contradiction with the assumption that $f(x)$ was the infimum of $S_x$. In this scenario either $f(x)>\abs{x-b}$ for some $b\in A$, or $f(x)+\eta^{\prime}$ is a lower bound for $S_x$ which is greater than $f(x)$, both of which are impossible. Therefore such an $a\in A$ exists.
+
+    For some given $\eta >0$, let $\abs{y-x}< \eta$ and choose $a\in A$ such that $f(x) \leq \abs{x-a} < f(x) + \eta$. It is also true that $f(y) \leq \abs{y-a}$ holds, since $f(y) \leq \abs{y-a^{\prime}}$ for any $a^{\prime}\in A$. Note that $x$ is a limit point of $R$. Without loss of generality, let $f(y) \geq f(x)$ (if $f(y) \leq f(x)$, then interchange the positions of $x$ and $y$).
+
+    Then \begin{align*}
+        f(y) - f(x) = f(y) - (f(x)+\eta) + \eta &< \abs{y-a} - \abs{x-a} + \eta \\
+        &=  \abs{(y-x)+(x-a)} - \abs{x-a} + \eta \\
+        &\leq \abs{y-x} +\abs{x-a} - \abs{x-a} + \eta\\
+        &< \eta + \eta = 2\eta,
+    \end{align*}
+    and by taking the absolute value on both sides, we find that $\abs{f(y)-f(x)} < 2\eta$ whenever $\abs{y-x}< \eta$. Hence $f$ is continuous on $\mathbb{R}$.
+
+    (ii) We will show that $\overline{A}\subseteq \{x\in \mathbb{R}:f(x)=0\}$, and that for $x\not\in \overline{A}$, that $f(x) \neq 0$ so that $x\not\in \{x\in \mathbb{R}:f(x)=0\}$, so by the contrapositive, that $\{x\in \mathbb{R}:f(x)=0\} \subseteq \overline{A}$.
+    
+    Observe that whenever $x\in A$, we automatically have that $f(x) = 0$ since $S_x$ will contain an element of the form $\abs{x-x} = 0$, and since $S_x$ contains only nonnegative real numbers, it follows that $f(x) = \inf(S_x) = 0$. This means that $A\subseteq \{x\in \mathbb{R}\colon f(x) = 0\}$.
+
+    Now consider the case where $x\in A^{\prime}$. For every $\varepsilon>0$, the $\varepsilon$-neighborhood of $x$ contains some $a_{\varepsilon}\in A$ such that $\abs{x-a_{\varepsilon}} < \varepsilon$. But for each $\varepsilon$, we have that $\abs{x-a_{\varepsilon}}\in S_x$. Because $\varepsilon>0$ can be made arbitrarily small, the only value $f(x) = \inf(S_x)$ may take on is $0$.
+
+    Hence $\overline{A} = A\cup A^{\prime}\subseteq \{x\in \mathbb{R}:f(x)=0\}$. Then suppose that $x\not\in \overline{A}$; that is, $x\in (\overline{A})^c$. Then because $\overline{A}$ is a closed set, $(\overline{A})^c$ is an open set. Thus there exists $\varepsilon >0$ such that the $\varepsilon$-neighborhood of $x$ does not contain any point of $\overline{A}$, so that the quantity $\abs{x-a}$ for every $a\in A$ is strictly greater than $\varepsilon$. Thus $f(x) = \inf(S_x) > \varepsilon >0$, which means that $x\not\in \{x\in \mathbb{R}:f(x)=0\}$. Thus by the contrapositive, it follows that if $x\in \{x\in \mathbb{R}:f(x)=0\}$, then $x\in \overline{A}$, and so $\{x\in \mathbb{R}:f(x)=0\}\subseteq \overline{A}$.
+
+    Hence $\{x\in \mathbb{R}:f(x)=0\} = \overline{A}$.
+\end{proof}
+\end{document}

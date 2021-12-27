@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5311}
+\fancyhead[C]{Assignment 11}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+For any group $G$ the \textit{Frattini subgroup} of $G$ (denoted by $\varPhi(G)$) is defined to be the intersection of all the maximal subgroups of $G$ (if $G$ has no maximal subgroups, set $\varPhi(G) = G$).
+\begin{enumerate}
+    \item (DF6.1.24) Say an element $x$ of $G$ is a \textit{nongenerator} if for every proper subgroup $H$ of $G$, $\abr{x,H}$ is also a proper subgroup of $G$. Prove that $\varPhi(G)$ is the set of nongenerators of $G$ (here $\abs{G} > 1$).
+    \begin{proof} Let $G$ be a finite group as given.
+
+      Suppose that $x\in \varPhi(G)$. By way of contradiction, suppose that $x$ is \textit{not} a nongenerator of $G$. This means that there exists a proper subgroup $K$ of $G$ such that $\abr{x,K} = G$. Observe that $x$ cannot be an element of $K$, otherwise $\abr{x,K} = K < G$ which is not possible. By order considerations there must exist some maximal subgroup $M$ which contains $K$. We have that $G = \abr{x,K}\subseteq \abr{x,M}$, and so $x\not\in M$, otherwise $G \subseteq \abr{x,M} = M$ which is impossible because $M <G$. With $x\not\in M$, we reach a contradiction since $x$ must lie in every maximal subgroup by definition of $\varPhi(G)$.
+
+      Conversely, suppose that $x\in G$ is a nongenerator but by way of contradiction that $x\not\in \varPhi(G)$. Then $x$ is not in some maximal subgroup $M$ as a result, so that $\abr{x,M}$ is a subgroup of $G$ properly containing $M$. Due to the maximality of $M$, the only subgroup $\abr{x,M}$ can take on is $G$. But this is in contradiction with the assumption that $x$ was a nongenerator of $G$, since $M$ is a proper subgroup of $G$ but $\abr{x,M}$ is not a proper subgroup of $G$.
+
+      Hence $\varPhi(G)$ is the set of nongenerators of $G$.
+    \end{proof}
+    \item Auxiliary result. Show that automorphisms of finite groups send maximal subgroups to maximal subgroups, and as a result the Frattini subgroup of a finite group is a characteristic subgroup.
+    \begin{proof}
+      Let $G$ be a finite group and let $\alpha$ be any automorphism of $G$. Then let $M$ be a maximal subgroup of $G$. We will show that $\alpha(M)$ is a maximal subgroup of $G$.
+
+      Suppose by way of contradiction that $\alpha(M)$ was not a maximal subgroup. Then there exists a proper subgroup $K$ of $G$ which properly contains $\alpha(M)$. Then since $\alpha$ is an automorphism we may take the preimage of $K$, and observe that $\alpha^{-1}(K)$ is a proper subgroup of $G$ which properly contains $M$. This is in contradiction with the assumption that $M$ was a maximal subgroup of $G$, hence $\alpha(M)$ is a maximal subgroup of $G$.
+
+      Hence maximal subgroups of $G$ are sent to maximal subgroups of $G$ by any automorphism.
+
+      The Frattini subgroup $\varPhi(G)$ is given by the intersection of all of the maximal subgroups of $G$, and since all of the maximal subgroups of $G$ are sent to maximal subgroups of $G$ by any automorphism, the intersection will remain the same. Hence $\varPhi(G)$ is a characteristic subgroup of $G$.
+    \end{proof}
+    \item (DF6.1.25) Let $G$ be a finite group. Prove that $\varPhi(G)$ is nilpotent. [Use Frattini's Argument to prove that every Sylow subgroup of $\varPhi(G)$ is normal in $G$.]
+    \begin{proof} Let $G$ be a finite group as given.
+
+      Because the Frattini subgroup $\varPhi(G)$ is characteristic and hence normal in $G$, we can apply Frattini's Argument to $\varPhi(G)$. Let $P$ be any Sylow $p$-subgroup of $\varPhi(G)$ for some prime $p$ dividing the order of $\varPhi(G)$. Then $G = \varPhi(G)N_G(P)$.
+
+      We claim that $N_G(P) = G$. Suppose by way of contradiction that $N_G(P)$ is instead a proper subgroup of $G$, so that it is contained in a maximal normal subgroup $M$ (due to order considerations). Then $G = \varPhi(G)N_G(P) \leq \varPhi(G)M = M$, where the last equality holds because all of the elements of $\varPhi(G)$ are by definition found in $M$. This is in contradiction with the fact that $M$ was a proper subgroup of $G$, so we must have that $N_G(P) = G$. 
+
+      Since $\varPhi(G) \leq G$, we have that $\varPhi(G)$ normalizes $P$. Since $P$ was an arbitrary Sylow $p$-subgroup, for any prime divisor $p$ of $\abs{\varPhi(G)}$, every Sylow $p$-subgroup of $\varPhi(G)$ is normal in $\varPhi(G)$. By Theorem $3$, it follows that $\varPhi(G)$ is nilpotent.
+    \end{proof}
+    \item (DF6.1.31) For any group $G$ a \textit{minimal normal subgroup} is a normal subgroup $M$ of $G$ such tshat the only normal subgroups of $G$ which are contained in $M$ are $1$ and $M$. Prove that every minimal normal subgroup of a finite solvable group is an elementary abelian $p$-group for some prime $p$. [If $M$ is a minimal normal subgroup of $G$, consider its characteristic subgroups: $M^{\prime}$ and $\abr{x^p\mid x\in M}$.]
+    \begin{proof} Let $G$ be a finite solvable group as given.
+
+      Let $H$ be a minimal (nontrivial) normal subgroup of $G$. Note that $H$ must be solvable since $G$ is solvable (subgroups of solvable groups are solvable). Then consider the commutator subgroup $H^{\prime}$ of $H$. If $H^{\prime}$ is not trivial, then either $H^{\prime} = H$ or $H^{\prime} < H$. 
+      
+      Neither can happen. If $H^{\prime} = H$, then $H$ is not solvable because the derived series of $H$ is indefinite (each subgroup in the series will be $H$ and the series cannot terminate at $1$). This is in contradiction with the fact that $H$ is solvable.
+      
+      If $1\neq H^{\prime} < H$, because $H^{\prime}$ is a characteristic subgroup of $H$, it is normal in $G$ as well. This is in contradiction to the minimality of $H$, as $H^{\prime}$ is a subgroup of $H$ which is normal in $G$. So $H^{\prime} = 1$, which implies that $H$ is abelian.
+
+      Then we show that $H$ is a $p$-group for some prime $p$ dividing $\abs{H}$. Let $P$ be a Sylow $p$-subgroup of $H$. Then because $H$ is abelian, $P$ is unique and is hence normal in $H$. This forces $P = H$ since $P$ is not trivial and also cannot be a proper characteristic subgroup of $H$ since then it would be normal in $G$ (contradicting the minimality of $H$). Thus $H$ is a $p$-group.
+
+      Consider the characteristic subgroup $\abr{x^p\mid x\in H}$ (characteristic because any automorphism of $H$ preserves exponentiation) of $H$. Then $\abr{x^p\mid x\in H}$ cannot be a proper nontrivial subgroup of $H$ as again this would contradict the minimality of $H$.
+
+      Since $H$ is a $p$-group there is a subgroup of order $p$ (Cauchy's theorem), and as a result the subgroup $\abr{x^p\mid x\in H}$ is properly contained in $H$. (All of the elements in the subgroup of order $p$ when raised to the $p$-th power become the identity, so they do not contribute to $\abr{x^p\mid x\in H}$.) This forces $\abr{x^p\mid x\in H} = 1$, so that every element of $H$ when raised to the $p$ power must be $1$.
+
+      Then $H$ (with order $p^n$ for some $n$) must take on the form $Z_p \times \cdots \times Z_p \cong \mathbb{F}_p^n$ (the order of elements in this group is at most $\lcm(p,\dots,p) = p$). Hence $H$ is an elementary abelian $p$-group for some prime $p$.
+    \end{proof}
+    \item Auxiliary result. Show that the intersection of two normal subgroups is a normal subgroup.
+    \begin{proof}
+      Let $G$ be a group with $H_1,H_2$ normal in $G$. Then for any $h\in H_1\cap H_2$, observe that for any $g\in G$, we have that $ghg^{-1}$ is an element of $H_1$ and is also an element of $H_2$, since $h$ can be viewed as an element of each normal subgroup. This implies that $H_1\cap H_2$ is normal in $G$.
+    \end{proof}
+    \item Auxiliary result. Show that the center of a direct product is the direct product of the centers.
+    \begin{proof}
+      Let $G = G_1\times G_2 \times \cdots \times G_n$. Then $Z(G)$ is the set of all $n$-tuples which commute with every element in $G$. Let $g = (g_1, \dots, g_n)\in G$ and let $z = (z_1, \dots, z_n)\in Z(G)$. Then $gz = (g_1z_1, \dots, g_nz_n) = (z_1g_1, \dots, z_ng_n) = zg$ if and only if $g_iz_i = z_ig_i$ for $1\leq i \leq n$. We have that $z_i\in Z(G_i)$ so that $z\in Z(G_1)\times \cdots \times Z(G_n)$, and hence $Z(G) \subseteq Z(G_1)\times \cdots \times Z(G_n)$.
+
+      Similarly, let $z^{\prime} = (z^{\prime}_1, \dots, z^{\prime}_n)\in Z(G_1)\times \cdots \times Z(G_n)$. Then it follows that $gz^{\prime} = (g_1z^{\prime}_1, \dots, g_nz^{\prime}_n) = (z^{\prime}_1g_1, \dots, z^{\prime}_ng_n) = zg$ since $g_iz_i = z_ig_i$ for $1\leq i \leq n$. Thus $z^{\prime}\in Z(G)$, and the reverse inclusion holds.
+
+      Hence the center of a direct product is the direct product of the centers.
+    \end{proof}
+    \item Let $G=A \times A$ be the direct product of two simple groups. Prove that if $A$ is nonabelian then the only normal subgroups of $G$ other than $G$ and the trivial subgroup are $A\times 1$ and $1\times A$.
+    
+    Show that this is false if $A$ is abelian.
+    \begin{proof}
+      Let $G = A\times A$ be the direct product of two simple groups as given. We show that every nontrivial normal subgroup of $G$ other than $G$ is isomorphic to either $A\times 1$ or $1\times A$. Write $G = A\times A$ as $(A\times 1)(1\times A)$ (by order considerations this holds). 
+
+      Let $N$ be a nontrivial proper normal subgroup of $G$ which is not equal to either $A\times 1$ or $1\times A$. Observe that $A\times 1$ cannot be properly contained in $N$. If $A\times 1 < N$, then $N/(A\times 1)$ is a proper normal subgroup of $G/(A\times 1) \cong (1\times A)\cong A$. By the simplicity of $A$, $N/(A\times 1) = 1$ which does not make sense since $N/(A\times 1)$ is not a trivial group (as $A\times 1 < N$). We reach a contradiction. By reversing the roles of $A\times 1$ and $1\times A$ it follows that $1\times A$ cannot be properly contained in $N$ as well. Thus $A\times 1$ and $1\times A$ are not contained in $N$. 
+      
+      Consider the commutator subgroup $[N, A\times 1] = \abr{h^{-1}a^{-1}ha\mid h\in N, a\in A\times 1}$. Because $N$ and $A$ are normal in $G$, $N$ is normalized by $A\times 1$ and $A\times 1$ is normalized by $N$. For $h\in N$ and $a\in A$, the product $h^{-1}a^{-1}ha = h^{-1}(a^{-1}ha) = h^{-1}h^{\prime}\in N$ and also $h^{-1}a^{-1}ha = (h^{-1}a^{-1}h)a = a^{\prime}a \in A$. Thus any element of $[N,A\times 1]$ (a finite product of elements of the form $h^{-1}a^{-1}ha$) is in $N\cap (A\times 1)$. 
+
+      Because the intersection of two normal subgroups is a normal subgroup, we have that $[N, A\times 1]$ is a proper normal subgroup of $G$ and because $N$ is not contained in $A\times 1$ we also have that $[N, A\times 1]$ is a proper normal subgroup of $A\times 1 \cong A$. By the simplicity of $A$, we have that $[N, A\times 1] = 1$ so that elements of $N$ commute with elements of $A\times 1$. 
+      
+      Repeat the preceding argument with $1\times A$ in place of $A\times 1$ to find that elements of $N$ commute with elements of $1\times A$ also. Since $G = (A\times 1)(1\times A)$, it follows that $N\leq Z(G) = Z(A\times A) = Z(A)\times Z(A)$. And since $A$ is nonabelian, $Z(A)$ is properly contained in $A$ and by simplicity of $A$ must be $1$. Nence $N$ is trivial, which is in contradiction to the assumption that $N$ is nontrivial.
+
+      Nence the only normal subgroups of $G$ other than $G$ and the trivial subgroup are $A\times 1$ and $1\times A$.
+    \end{proof}
+
+    We can exhibit a nontrivial proper normal subgroup of $G = A\times A$ which is not $A\times 1$ or $1\times A$ when $A$ is abelian instead.
+
+    Consider the diagonal subgroup given by $\cbr{(a,a)\mid a\in A}$. Because $A$ is abelian, $G = A\times A$ is also abelian and necessarily the diagonal subgroup is normal in $G$. It is clear that this nontrivial group is not $A\times 1$ or $1\times A$, and is also properly contained in $G$ since $G$ contains elements of the form $(a_1, a_2)$ with $a_1\neq a_2$.
+
+    Thus the proposition of the previous problem is false when $A$ is abelian.
+\end{enumerate}
+\end{document}

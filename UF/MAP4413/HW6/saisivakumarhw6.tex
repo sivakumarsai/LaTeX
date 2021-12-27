@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW6}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.163: 9, 10, 11, 13, 14
+
+9. If $f$ is of moderate decrease, then \begin{equation}\int_{-R}^R \br{1-\frac{\abs{\xi}}{R}}\hat{f}(\xi)e^{2\pi i x \xi} \dd{\xi} = (f\ast \mathcal{F}_R)(x),\end{equation}
+where the Fej\'er kernel on the real line is defined by 
+\[\mathcal{F}_R(t) = \begin{cases}
+    R\br{\frac{\sin(\pi t R)}{\pi t R}}^2 & \text{if $t\neq 0$,}\\
+    R & \text{if t = 0.}
+\end{cases}\]
+Show that $\cbr{\mathcal{F}_R}$ is a family of good kernels as $R\to \infty$, and therefore (1) tends uniformly to $f(x)$ as $R\to \infty$. This is the analogue of Fej\'er's theorem for Fourier series in the context of the Fourier transform.
+
+\begin{proof}
+    Let $\cbr{\mathcal{F}_R}$ be as given. We show the three conditions which define good kernels hold.
+    
+    For every $R$, $\mathcal{F}_R(t)$ is well behaved on $\mathbb{R}$, so that \begin{align*}
+        \int_\mathbb{R} \mathcal{F}_R(t)\dd{t} &= \int_{\mathbb{R}} R\br{\frac{\sin(\pi t R)}{\pi t R}}^2 \dd{t} \\ 
+        &= \int_{\mathbb{R}}\br{\frac{\sin(\pi u)}{\pi u}}^2\dd{u}.
+    \end{align*}
+    We evaluate this integral using Plancherel's identity; to that end, observe that the inverse Fourier transformation of $\sin(\pi\xi)/\pi\xi$ is the characteristic function on $\sbr{-1/2, 1/2}$ (the Fourier transformation of $\chi_{\sbr{-1/2, 1/2}}(x)$ is $\sin(\pi \xi)/\pi\xi$). It follows that \[1 = \int\limits_{\sbr{-1/2, 1/2}} 1^2 \dd{x} = \int_{\mathbb{R}}\br{\chi_{\sbr{-1/2, 1/2}}(x)}^2\dd{x} = \int_{\mathbb{R}}\br{\frac{\sin(\pi u)}{\pi u}}^2\dd{u} = \int_\mathbb{R} \mathcal{F}_R(t)\dd{t}.\]
+    Because $\abs{\mathcal{F}_R(t)} = \mathcal{F}_R(t)$, both the first and second properties of good kernels are satisfied.
+
+    We show that for any $\eta > 0$, \[\int\limits_{\abs{t}> \eta} \mathcal{F}_R(t)\dd{t} \to 0 \quad \text{as $R\to \infty$}.\]
+    Observe that $\abs{\mathcal{F}_R(t)}\leq 1/\pi^2Rt^2$, so that \[\int\limits_{\abs{t}> \eta} \mathcal{F}_R(t)\dd{t} \leq \frac{2}{\pi^2R}\int\limits_{[\eta,\infty)} t^{-2}\dd{t} = \frac{2}{\pi^2R\eta}.\]
+    As $R\to \infty$, it follows that the integration must tend to $0$.
+    
+    Hence $\cbr{\mathcal{F}_R}$ is a family of good kernels as $R\to \infty$, and therefore (1) tends uniformly to $f(x)$ as $R\to \infty$.
+\end{proof}
+10. Below is an outline of a different proof of the Weierstrass approximation theorem.
+
+Define the \textbf{Landau} kernels by 
+\[L_n(x) = \begin{cases}
+    \frac{(1-x^2)^n}{c_n} & \text{if $-1\leq x\leq 1$,}\\
+    0 & \text{if $\abs{x}\geq 1$,}
+\end{cases}\]
+where $c_n$ is chosen so that $\int_{-\infty}^{\infty} L_n(x)\dd{x} = 1$. Prove that $\cbr{L_n}_{n\geq 0}$ is a family of good kernels as $n\to \infty$. As a result, show that if $f$ is a continuous function supported in $\sbr{-1/2, 1/2}$, then $(f\ast L_n)(x)$ is a sequence of polynomials on $\sbr{-1/2, 1/2}$ which converges uniformly to $f$.
+
+\begin{proof}
+    Let $\cbr{L_n}_{n\geq 0}$ be as given. For every $n\geq 0$, it follows that $\int_{-\infty}^{\infty} L_n(x)\dd{x} = 1$ due to the choice of $c_n$. Furthermore, since each $c_n > 0$ (as $1-x^2 \geq 0$ on $[-1,1]$), it follows that $\abs{L_n(x)} = L_n(x)$ for every $n\geq 0$, the second property of good kernels is also satisfied.
+
+    Then let $\eta>0$ be given. If $\eta \geq 1$, then the following integral vanishes trivially, so let $0 <\eta < 1$. 
+    Note that since $1-x^2 \geq 1-x \geq 0 $ on $[-1,1]$, we have that $1 = \int_{-\infty}^{\infty} (1-x^2)^n/c_n\dd{x} = 2\int_0^1 (1-x^2)^n/c_n \dd{x} \geq 2\int_0^1 (1-x)^n/c_n\dd{x} = 2/[(n+1)c_n]$. Hence $1/c_n \leq (n+1)/2$.
+    It follows that \begin{align*}
+        \int\limits_{\abs{x}> \eta} L_n(x)\dd{x} &= \int\limits_{1 \geq \abs{x}> \eta}\frac{(1-x^2)^n}{c_n} \dd{x}\\
+        &= 2\int_\eta^1 \frac{(1-x^2)^n}{c_n}\dd{x}\\
+        &\leq \int_\eta^1 (n+1)(1-\eta^2)^n\dd{x}.
+    \end{align*}
+    But we can choose $n$ large enough so that $(n+1)(1-\eta^2)^n \leq \varepsilon$ for any $\varepsilon> 0$ (since $(1-\eta^2)^n < 1 $ tends to zero exponentially), so that the integration over $[\eta, 1]$ is less than $(1-\eta)\varepsilon$. This we can make as small as we like, so as $n\to \infty$, we have that $\int\limits_{\abs{x}> \eta} L_n(x)\dd{x}\to 0$.
+
+    Thus $\cbr{L_n}_{n\geq 0}$ is a family of good kernels as $n\to \infty$.
+
+    Let $f$ be a continuous function supported in $\sbr{-1/2, 1/2}$. As each $L_n(x)$ is a polynomial in $x$ on $\sbr{-1/2, 1/2}$, it follows that $(f\ast L_n)(x) = \int_{-1/2}^{1/2} f(y)L_n(x-y)\dd{y}$ is a sequence of polynomials on $\sbr{-1/2, 1/2}$ in $x$ which converges uniformly to $f$. 
+\end{proof}
+
+11. Suppose that $u$ is the solution to the heat equation given by $u = f\ast \mathcal{H}_t$ where $f\in \mathcal{S}(\mathbb{R})$. If we also set $u(x,0) = f(x)$, prove that $u$ is continuous on the closure of the upper half-plane, and vanishes at infinity, that is, \[u(x,t)\to 0 \quad \text{as $\abs{x}+ t \to \infty$.}\]
+\begin{proof}
+    Since the heat kernel $\mathcal{H}_t$ is a good kernel, it follows that as $t$ tends to zero, $u = f\ast \mathcal{H}_t$ must uniformly converge to $f$. Hence $\lim_{t\to 0}u(x,t) = f(x)$ and $u(x,0) = f(x)$ so that $u$ is continuous on the upper half plane and now also its closure.
+
+    We have that $u(x,t) = \int_{-\infty}^{\infty}f(x-y)(4\pi t)^{-1/2}\exp(-y^2/4t)\dd{y}$. Since $-y^2\in [0,-\infty)$, it follows that $\abs{u(x,t)} \leq (4\pi t)^{-1/2}\int_{-\infty}^{\infty}\abs{f(x-y)}\dd{y} < C/\sqrt{t}$.
+
+    Since $f$ is in $\mathcal{S}(\mathbb{R})$, we have that $\abs{f(x-y)}\leq C/(1+\abs{x-y})^N$ for any $N\geq 0$. So then if $\abs{y}\leq \abs{x}/2$, we have that $\abs{f(x-y)}\leq D/(1+\abs{x})^N$. Then from the same definition of $u(x,t)$ used earlier we can bound above in another way:\begin{align*}
+        \abs{u(x,y)}&\leq \frac{D}{(1+\abs{x})^N} \int\limits_{\abs{y}\leq \frac{\abs{x}}{2}} \mathcal{H}_t(y)\dd{y} + At^{-1/2}\exp(-x^2/16t)\int\limits_{\abs{y}\geq \frac{\abs{x}}{2}} \abs{f(x-y)}\dd{y}\\
+        &\leq \frac{D}{(1+\abs{x})^N} + Ct^{-1/2}\exp(-x^2/16t).
+    \end{align*}
+    In this way if $\abs{x}+ t\to \infty$, if $\abs{x} \geq t$ so that $\abs{x}\to \infty$, from the second bounding argument we can see that $u(x,t)$ must tend to zero. If $t \geq \abs{x}$ so that $t\to \infty$, then from the first bounding argument it is also clear that $u(x,t)$ must tend to zero.
+\end{proof}
+
+13. Prove the following uniqueness theorem for harmonic functions in the strip $\cbr{(x,y)\colon 0< y < 1, -\infty < x < \infty}$: if $u$ is harmonic in the strip, continuous on its closure with $u(x,0) = u(x,1) = 0$ for all $x\in \mathbb{R}$, and $u$ vanishes at infinity, then $u = 0$.
+\begin{proof}
+    We will use the mean-value property of harmonic functions. Without loss of generality, let $u$ be real valued (if $u$ is not; then repeat the proof for both the real and imaginary components of $u$).
+    
+    Suppose by way of contradiction that $u(x,y)$ is positive valued somewhere in the strip, say at $(a,b)$. Then by taking a sufficiently sized open disc of radius $\rho$ centered at $(a,b)$ (which is completely contained in the strip, so $0< \rho< \min\cbr{b,1-b}$) we may find a point $(x_0,y_0)$ in the disc which is where $u$ attains a local maximum $M>0$ due to $u$ being continuous. Without loss of generality let the local maximum occur at $(x_0,y_0) = (a,b)$ so that we may use the same disc we chose earlier.
+
+    Then by the mean-value property, we have that \[u(a,b) = \frac{1}{2\pi}\int_0^{2\pi}u(a+\rho\cos(\theta), b+\rho\sin(\theta))\dd{\theta}.\] But all values $u(a+\rho\cos(\theta), b+\rho\sin(\theta)) \leq M$. In order to maintain the maximality of $u(a,b)$ on the disc, $u(a+\rho\cos(\theta), b+\rho\sin(\theta)) = M$ for all $\theta$. If we extend the radius of the disc chosen earlier enough so that $\rho\to \min\cbr{b,1-b}$, then it implies that $u(a,0)$ or $u(a,1)$ (depending on the value of $\min\cbr{b,1-b}$) equals $M$, which is in contradiction to the assumption that $u$ vanished on the boundary of the strip.
+    
+    Since $(a,b)$ was arbitrary, it follows that $u$ is identically zero on the strip.
+\end{proof}
+
+14. Prove that the periodization of the Fej\'er kernel $\mathcal{F}_N$ on the real line is equal to the Fej\'er kernel for periodic functions of period $1$. In other words, \[\sum_{n=-\infty}^{\infty}\mathcal{F}_N(x+n) = F_N(x),\] when $N\geq 1$ is an integer, and where \[F_N(x) = \sum_{n=-N}^N \br{1-\frac{\abs{n}}{N}}e^{2\pi i n x} = \frac{1}{N}\frac{\sin^2(N\pi x)}{\sin^2(\pi x)}.\]
+\begin{proof}
+    We wish to use the Poisson summation formula to evaluate $F_N(x)$, but in order to do so we need to find the Fourier transformation of the Fej\'er kernel. We have this immediately by considering the function given by \[\widehat{\mathcal{F}}(\xi) = \begin{cases}
+        1-\frac{\abs{\xi}}{N} & \text{if $\abs{\xi}\leq N$,}\\
+        0 & \text{otherwise.}
+    \end{cases}\]
+    Then by taking the inversion integral $f(x)$ when $x\neq 0$ (when $x= 0$, $f(x)$ is clearly equal to $N$), we have \begin{align*}
+        f(x) = \int_\mathbb{R} \widehat{\mathcal{F}}(\xi)\exp(2\pi i x\xi)\dd{\xi} &= \int_{-N}^N \br{1-\frac{\abs{\xi}}{N}}\exp(2\pi i x\xi)\dd{\xi}\\
+        &= \int_0^N 2\br{1-\frac{\xi}{N}}\br{\exp(2\pi i x\xi) + \exp(-2\pi i x\xi)}\dd{\xi}\\
+        &= \int_0^N 2\br{1-\frac{\xi}{N}}\cos(2\pi x \xi)\dd{\xi}\\
+        &= \frac{2}{N} \eval{\br{ (N-\xi)\frac{\sin(2\pi x \xi)}{2\pi x}}}_0^N + \frac{2}{N}\eval{\br{\frac{-\cos(2\pi x \xi)}{(2\pi x)^2}}}_0^N\\
+        &= N\br{\frac{\sin(\pi x N)}{(\pi x N)}}^2,
+    \end{align*} and so comparing with the definition given in Exercise 9, we have that $f(x)$ is equivalent to the Fej\'er kernel as desired.
+
+    Then apply the Poisson summation formula to see that \begin{align*}
+        F_N(x) &= \sum_{n=-N}^N \br{1-\frac{\abs{n}}{N}}e^{2\pi i n x} \\
+        &= \frac{1}{N}\sum_{n=-(N-1)}^{N-1} (N-\abs{n})e^{2\pi i n x} \\
+        &= \frac{D_0(2\pi x) + \cdots + D_{N-1}(2\pi x)}{N} \\
+        &= \frac{1}{N}\frac{\sin^2(N\pi x)}{\sin^2(\pi x)},
+    \end{align*}
+    which is indeed the Fej\'er kernel for functions of period $1$.
+\end{proof}
+\end{document}

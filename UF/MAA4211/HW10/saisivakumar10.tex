@@ -1,0 +1,72 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 10}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+
+This homework consists of two problems.
+
+\begin{enumerate}[(A)] \itemsep=10pt
+ \item Suppose $f:\mathbb{R}\to\mathbb{R}$ is differentiable. Show, if
+ there is an $M$ such that $|f^\prime(x)|\le M$ for all $x\in \mathbb{R},$
+ then $f$ is uniformly continuous.
+
+\item A point $p\in\mathbb{R}$ is a \emph{fixed point} of a function 
+ $g:\mathbb{R}\to\mathbb{R}$ if $g(p)=p.$ Show, if $g$ is differentiable
+ and $|g^\prime(x)|<1$ for all $x\in \mathbb{R},$ then $g$ has
+ at most one fixed  point.
+\end{enumerate}
+ 
+\begin{proof}[Proof (A)]
+    Let $f\colon\mathbb{R}\to \mathbb{R}$ be a differentiable function as given and suppose that there exists $M\geq 0$ such that $\abs{f^{\prime}(x)}\leq M$ for all $x\in \mathbb{R}$.
+
+    Let $x,y\in \mathbb{R}$ with $x < y$. By the mean value theorem, there exists $c\in (x,y)$ such that $f(x)-f(y) = f^{\prime}(c)(x-y)$. By taking the absolute value, we have that \begin{align*}
+        \abs{f(x)-f(y)} &= \abs{f^{\prime}(c)(x-y)}\\
+        &= \abs{f^{\prime}(c)}\abs{x-y}\\
+        &\leq M\abs{x-y}.
+    \end{align*}
+    Given $\varepsilon> 0$, choose $\delta = \varepsilon/M$. When $\abs{x-y}< \delta$, we have that $\abs{f(x)-f(y)} < M\delta = \varepsilon$. Hence $f$ is uniformly continuous.
+\end{proof}
+\begin{proof}[Proof (B)]
+    Let $g$ be a differentiable function as given with $\abs{g^{\prime}(x)}< 1$ for all $x\in\mathbb{R}$.
+
+    Suppose by way of contradiction that $g$ has more than one fixed point; that is, there exist $p,q\in\mathbb{R}$ with $p < q$ such that $g(p) = p$ and $g(q)= q$.
+
+    Then by the mean value theorem, there exists $c\in (p,q)$ such that \begin{align*}
+        \abs{q-p} = \abs{g(q)-g(p)} &= \abs{g^{\prime}(c)(q-p)}\\
+        &= \abs{g^{\prime}(c)}\abs{q-p}\\
+        &< \abs{q-p}
+    \end{align*} which is a contradiction. Hence $g$ has at most one fixed point.
+\end{proof}
+\end{document}

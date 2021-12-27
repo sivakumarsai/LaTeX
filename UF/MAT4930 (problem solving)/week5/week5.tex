@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Congruence}}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\textbf{4.} Prove that any set of $n$ integers contains a nonempty subset the sum of whose elements is divisible by $n$.
+
+Every subset of the empty set is empty, so I assume we take $n>0$.
+\begin{proof}
+    Let $\cbr{s_1,s_2,\dots,s_n}$ be a set of $n>0$ integers. Then there are $2^n-1$ nonempty subsets of this set (the powerset without the empty set). We do not need to investigate all of these subsets. Consider the $n$ nested nonempty subsets $\cbr{s_1}\subset \cbr{s_1,s_2}\subset \cdots \subset \cbr{s_1,s_2,\dots,s_n}$. Then each of the subsets have the corresponding sums:
+    \begin{align*}
+        S_1 &= s_1 \\
+        S_2 &= s_1 + s_2 \\
+        &~\,\vdots \\
+        S_n &= s_1 + \cdots + s_n 
+    \end{align*}
+    Divide each sum $S_i$ by $n$ using the division algorithm to obtain nonnegative remainders $r_i$ strictly less than $n$.
+
+    If some $r_i$ is equal to zero, then the subset corresponding to the sum $S_i$ is a nonempty subset the sum of whose elements is divisible by $n$.
+
+    If none of the $r_i$ are equal to zero, we invoke the pigeonhole principle to place each $r_i$ in $n-1$ boxes; these boxes being the $n-1$ nonzero residue classes in $\mathbb{Z}/n\mathbb{Z}$. There are $n$ remainders, and $n-1$ nonzero residue classes, so it follows that at least two remainders $r_k$ and $r_j$ are equal to each other. Without loss of generality, take $k>j$ so that the subset corresponding to $S_j$ is contained in the subset corresponding to $S_k$.
+
+    If $r_k = r_j$, then $n\mid S_k-S_j$. But $S_k - S_j = s_{j+1} + \cdots + s_k$. But $\cbr{s_{j+1},\dots, s_k}\subseteq\cbr{s_1,s_2,\dots,s_n}$, and we have exhibited a nonempty subset the sum of whose elements is divisible by $n$.
+\end{proof}
+\textbf{7.} Prove that the set $\cbr{11,111,1111,\dots}$ contains no squares.
+\begin{proof}
+    Rewrite the set $\cbr{11,111,1111,\dots}$ as $\cbr{8+3,108+3,1108+3,\dots}$. Each of these elements are of the form $4k+3$ for some $k\in \mathbb{Z}$, since both $10^n$ for $n\geq 2$ and $8$ are divisible by $4$.
+
+    But there are no square integers of the form $4k+3$. Consider the even integers which take on either the form $4n+0$ or $4n+2$ for integers $n$. Then $(4n)^2 = 16n^2 \equiv 0 \pmod{4}$ and $(4n+2)^2 = 4(4n^2 + 4n + 1) \equiv 0 \pmod{4}$. 
+
+    The odd integers take on either the form $4n+1$ or $4n+3$ for integers $n$. Then again $(4n+1)^2 = 4(4n^2 + 2n) + 1 \equiv 1 \pmod{4}$ and $(4n+3)^2 = 4(4n^2 + 6n + 2) + 1 \equiv 1 \pmod{4}$.
+
+    So for all integers after squaring them and reducing modulo $4$, none take on the form $4k+3$ for some integer $k$. But every element in the set takes on this form, so it is impossible for there to be a squared integer within the set $\cbr{11,111,1111,\dots}$.
+\end{proof}
+\end{document}

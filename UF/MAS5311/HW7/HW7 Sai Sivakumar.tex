@@ -78,6 +78,7 @@
 \DeclareMathOperator{\nullity}{nullity}
 \DeclareMathOperator\Aut{Aut}
 \DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
 \DeclareMathOperator{\lcm}{lcm}
 
 % set page count index to begin from 1
@@ -144,17 +145,81 @@ Let $G$ be a group and let $A$ be a nonempty set.
     \item (DF4.1.10) Let $H$ and $K$ be subgroups of the group $G$. For each $x\in G$ define the $HK$ \textit{double coset} of $x$ in $G$ to be the set \[HxK = \cbr{hxk \mid h\in H,k\in K}.\]
     \begin{enumerate}[label=\textbf{(\alph*)}]
         \item Prove that $HxK$ is the union of the left cosets $x_1K,\dots,x_nK$ where $\cbr{x_1K,\dots,x_nK}$ is the orbit containing $xK$ of $H$ acting by left multiplication on the set of left cosets of $K$.
+        \begin{proof}
+            Let $\cbr{x_1K,\dots,x_nK}$ be the orbit containing $xK$ of $H$ acting by left multiplication on the set of left cosets of $K$ (without loss of generality each $x_iK$ here is distinct). This means that this set is equal to $\cbr{h\cdot xK \mid h\in H}$ (there is a bijection between the sets), so that $hxK$ for each $h\in H$ is equal to some $x_iK$ for $1\leq i\leq n$. Similarly, each $x_iK$ for $1\leq i\leq n$ is equal to $hxK$ for some $h\in H$.
+            
+            Consider any element $g\in HxK$, so that we may write $g = hxk$ for some $h\in H$ and $k\in K$. Then $g = hxk\in hxK$, but there exists an $x_jK$ in the orbit containing $xK$ of $H$ such that $g\in x_jK$ with $hxK = x_jK$. Then it is clear that $g \in \cup_{i=1}^n~x_iK$, and because $g$ was an arbitrary element of $HxK$, $HxK\subseteq \cup_{i=1}^n~x_iK$.
+
+            Then take any element $g\in \cup_{i=1}^n~x_iK$, so that $g$ lies in some coset $x_jK$. There exists $hxK$ for some $h\in H$ such that $x_jK = hxK$, so $g\in hxK$. Then because $hxK\subseteq HxK$, it follows that $g\in HxK$. Hence $\cup_{i=1}^n~x_iK\subseteq HxK$, which means that $\cup_{i=1}^n~x_iK = HxK$.
+        \end{proof}
         \item Prove that $HxK$ is a union of right cosets of $H$.
+        \begin{proof}
+            Similarly, let $\cbr{Hx_1,\dots,Hx_n}$ be the orbit containing $Hx$ of $K$ acting by right multiplication on the set of right cosets of $H$ (without loss of generality each $Hx_i$ here is distinct). Then $\cbr{Hx_1,\dots,Hx_n} = \cbr{Hx \cdot k \mid k\in K}$, so that $Hxk$ for each $k\in K$ is equal to some $Hx_i$ for $1\leq i\leq n$ and each $Hx_i$ for $1\leq i \leq n$ is equal to $Hxk$ for some $k\in K$.
+
+            Then for any $g\in HxK$, we have that $g = hxk$ for some $k\in K$ and $h\in H$. Then $g = hxk\in Hxk$, but there exists some $Hx_j$ in the orbit containing $Hx$ of $K$ such that $g\in Hx_j = Hxk$. Thus $g\in \cup_{i=1}^n~ Hx_i$, so that $HxK\subseteq \cup_{i=1}^n~ Hx_i$.
+
+            For any $g\in \cup_{i=1}^n~ Hx_i$, we have that $g\in Hx_j$ for some $1\leq j\leq n$. Then since $Hx_j$ is in the orbit containing $Hx$ of $K$, there exists $Hxk$ for some $k\in K$ such that $g\in Hxk = Hx_j$, which means that $g\in HxK$. Hence $\cup_{i=1}^n~ Hx_i\subseteq HxK$, so $HxK = \cup_{i=1}^n~ Hx_i$.
+        \end{proof}
         \item Show that $HxK$ and $HyK$ are either the same set or are disjoint for all $x,y\in G$. Show that the set of $HK$ double cosets partitions $G$.
+        \begin{proof}
+            For any $g\in G$, we have that $g = 1g1 \in HgK$, since $H,K$ are subgroups of $G$. Then each $HgK$ for $g\in G$ contains $g$, so that $G = \cup_{g\in G}~ HgK$. What remains is to show that for two double cosets $HuK, HvK$ for $u,v\in G$, either $HuK \cap HvK = \varnothing$ or $HuK = HvK$. If $u=v$ then $HuK = HvK$, so suppose $u\neq v$.
+
+            Then suppose that $HuK\cap HvK \neq \varnothing$, so that there exists $h_1uk_1\in HuK$ and $h_2vk_2\in HvK$ such that $h_1uk_1 = h_2vk_2$. Then it follows that $u = h_1^{-1}h_2vk_2k_1^{-1} = h_3vk_3$ for some $h_3\in H, k_3\in K$ (or $v = h_3uk_3$).
+
+            So then for any element $huk\in HuK$, we have that $huk = hh_3vk_3k = h_4vk_4 \in HvK$, so that $HuK\subseteq HvK$. By interchanging the roles of $u$ and $v$ it follows that $ HvK\subseteq HuK$, so that $HuK = HvK$ whenever $HuK\cap HvK \neq \varnothing$.
+
+            Thus the set of $HK$ double cosets partitions $G$, since each double coset is disjoint from each other and the union of the $HK$ double cosets was shown to be $G$.
+        \end{proof}
         \item Prove that $\abs{HxK} = \abs{K}\cdot \abs{H\colon H\cap xKx^{-1}}$.
+        \begin{proof}
+            Consider the action of $H$ acting by left multiplication on the set of left cosets of $K$.
+            Observe that the stabilizer $H_{xK}$ equals $H\cap xKx^{-1}$ because for $h\in H_{xK}$,
+            \[h\cdot xK = hxK = xK\]
+            implies that $x^{-1}hx\in K$, so that $h\in xKx^{-1}$. So combined with $h\in H$, we have that $H_{xK} = H\cap xKx^{-1}$.
+
+            We saw from part \textbf{(a)} that the orbit containing $xK$ of $H$ was $\Orb(xK) = \cbr{x_1K,\dots, x_nK}$ (disjoint cosets), so $\abs{\Orb(xK)} = n$. Furthermore, we saw that $HxK = \cup_{i=1}^n~x_iK$, which because each $x_iK$ is disjoint and has the same cardinality as $K$, $\abs{HxK} = \abs{\cup_{i=1}^n~x_iK} = n\abs{K}$.
+            
+            Hence $\abs{HxK}/\abs{K} = n = \abs{\Orb(xK)}$, so by the Orbit-Stabilizer Theorem, we have that \[\abs{HxK}/\abs{K} = \abs{H\colon H_{xK}} = \abs{H\colon H\cap xKx^{-1}},\]
+            which implies that $\abs{HxK} = \abs{K}\cdot \abs{H\colon H\cap xKx^{-1}}$.
+        \end{proof}
         \item Prove that $\abs{HxK} = \abs{H}\cdot \abs{K\colon K\cap x^{-1}Hx}$.
+        \begin{proof}
+            Similarly, consider the action of $K$ acting by right multiplication on the set of right cosets of $H$.
+            Observe that the stabilizer $K_{Hx}$ equals $K\cap x^{-1}Hx$ because for $k\in K_{Hx}$,
+            \[Hx \cdot k = Hxk = Hx\]
+            implies that $xkx^{-1} = H$, so that $k\in x^{-1}Hx$. With $k\in K$, we have that $K_{Hx} = k\cap x^{-1}Hx$.
+
+            From part \textbf{(b)}, the orbit containing $Hx$ of $K$ was $\Orb(Hx) = \cbr{Hx_1,\dots,Hx_n}$ (disjoint cosets), so $\abs{\Orb(Hx)} = n$. We also had that $HxK = \cup_{i=1}^n~ Hx_i$, and because each $Hx_i$ is disjoint and has the same cardinality as $H$, $\abs{HxK} = \abs{\cup_{i=1}^n~ Hx_i} = n\abs{H}$.
+
+            Hence $\abs{HxK}/\abs{H} = n = \abs{\Orb(Hx)}$, so by the Orbit-Stabilizer Theorem, we have that 
+            \[\abs{HxK}/\abs{H} = \abs{K\colon K_{Hx}} = \abs{K\colon k\cap x^{-1}Hx},\]
+            which implies that $\abs{HxK} = \abs{H}\cdot \abs{K\colon K\cap x^{-1}Hx}$.
+        \end{proof}
     \end{enumerate}
     \item Q4. Let $G$ be a finite group and $H$ a subgroup. Consider the partition of $G$ into double cosets $HgH$  as in problem 10.
     \begin{enumerate}[label=\textbf{(\alph*)}]
         \item Prove that every left coset contained in a given double coset has nonempty intersection with every right coset contained in the same double coset.
-        \item Deduce that if $n=|G:H|$ then there exist  elements $g_1,\cdots g_n$ in $G$ that belong to distinct left cosets and to distinct right cosets.
+        \begin{proof}
+            Let $HgH$ be some given double coset, and let $xH$ be any left coset contained in $HgH$, and let $Hy$ be any right coset contained in $HgH$. Then due to containment, we may write $xH = h_1gH$ and $Hy = Hgh_2$, for $h_1,h_2\in H$. Because $h_1,h_2\in H$, we have that $h_1gh_2\in h_1gH$ and $h_1gh_2\in Hgh_2$, which means that $h_1gh_2\in h_1gH\cap Hgh_2 = xH\cap Hy$, so that the intersection is nonempty.
+
+            Because $xH$ and $Hy$ were arbitrary cosets contained in $HgH$, it follows that every left coset contained in a given double coset has nonempty intersection with every right coset contained in the same double coset.
+        \end{proof}
+        \item Deduce that if $n=|G:H|$ then there exist elements $g_1,\dots, g_n$ in $G$ that belong to distinct left cosets and to distinct right cosets.
     
         This means that $G$ is the disjoint union of the $Hg_i$ and also the disjoint union of the $g_iH$.
+        \begin{proof}
+            Let $n=|G:H|$, so that there are exactly $n$ disjoint left cosets of $H$ in $G$, and exactly $n$ disjoint right cosets of $H$ in $G$.
+            
+            Considering the partition of $G$ into distinct double cosets $HgH$, observe that for each $HgH$, there are left cosets $h_1gH\subseteq HgH$ and right cosets $Hgh_2\subseteq HgH$ such that for any $h_1,h_2\in H$, we have $h_1gH\cap Hgh_2\neq \varnothing$ from part \textbf{(a)}. We saw earlier that one such element in the intersection was $h_1gh_2$, so that this element is a representative for the left and right coset we identified. So we can write $h_1gH = h_1gh_2H$ and $Hgh_2 = Hh_1gh_2$. What remains is to find $n$ many left (right) cosets in this form which are all disjoint from each other, because there are exactly $n$ disjoint left (right) cosets of $H$ in $G$.
+
+            In the double coset $HgH$ there may be $n^{\prime}\leq n$ many left (right) cosets that are contained in $HgH$. For some left coset $a_iH\subseteq HgH$, it will have a nonempty intersection with some right coset $Hb_i\subseteq HgH$, with $g_i$ being an element of this intersection. Hence it is a representative for both, so that $a_iH = g_iH$ and $Hb_i = Hg_i$. We can pick some other left coset $a_j H\subseteq HgH$ and a right coset $Hb_j \subseteq HgH$ where $a_j$ is disjoint from $a_i$ and $b_j$ is disjoint from $b_i$, and again find a single representative $g_j$ to form the disjoint left (right) cosets $g_jH$ and $Hg_j$.
+            
+            We may do this $n^{\prime}$ many times to find $n^{\prime}\leq n$ many disjoint left and right cosets $g_iH$ and $Hg_i$ of $G$. After exhausting $HgH$ of all of these cosets, if we do not have $n$ many disjoint cosets, we consider another distinct double coset $Hg^{\prime}H$, and find more (say $n^{\dprime}$ many more) distinct cosets $g_kH$ and $Hg_k$ which because $HgH$ and $Hg^{\prime}H$ are disjoint, it forces these new cosets $g_kH$ and $Hg_k$ to be disjoint to the old ones $g_iH$ and $Hg_i$ (left and right cosets respectively).
+
+            We may do this for every double coset which is part of the partition of $G$ because they are disjoint from each other. Because the union of each of these double cosets is $G$, we must necessarily be able to find $n$ many left and right cosets $g_iH$ and $Hg_i$ in total, after finding a smaller number (or equal number if there is only one double coset) of left and right cosets in each of the $HgH$ that partition $G$.
+
+            Therefore there exist $g_1,\dots, g_n$ in $G$ that belong to distinct left cosets and to distinct right cosets. Thus the disjoint unions $\cup_{i= 1}^n~ g_iH$ and $\cup_{i= 1}^n~ Hg_i$ are equal to $G$.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 \end{document}

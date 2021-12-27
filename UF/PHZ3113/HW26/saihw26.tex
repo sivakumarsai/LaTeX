@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW26}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}[label=26.\arabic*]
+    \item Consider an operator $A$ in the Shr\"odinger picture which has no explicit time dependence and which does not evolve in time. The vector $\ket{\psi}$ evolves in time according to (26.4). Consider the expectation value $\abr{A} = \bra{\psi}A\ket{\psi}$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that \[\dv{t}\abr{A} = \frac{i}{\hbar}\abr{[H,A]}.\]
+        \begin{proof}
+            Let $A$ be an operator which has no explicit time dependence and which does not evolve in time, and let $\ket{\psi}$ evolve in time according to (26.4).
+            Using the product rule, we have that \begin{align*}
+                \dv{t}\abr{A} = \dv{t}(\bra{\psi}A\ket{\psi}) &= \bra{\psi(0)}\dv{t}(U^{\dagger}(t)AU(t))\ket{\psi(0)}\\
+                &= \bra{\psi(0)}\br{\pdv{U^{\dagger}}{t}AU + U^{\dagger}A\pdv{U}{t} + \pdv{A}{t}}\ket{\psi(0)}\\
+                &= \bra{\psi(0)}\br{\frac{i}{\hbar}HU^{\dagger}AU - \frac{i}{\hbar}U^{\dagger}AHU}\ket{\psi(0)}\\
+                &= \frac{i}{\hbar}\bra{\psi}\br{HA-AH}\ket{\psi}\\
+                &= \frac{i}{\hbar}\bra{\psi}\sbr{H,A}\ket{\psi} = \frac{i}{\hbar}\abr{[H,A]},
+            \end{align*} as desired.
+        \end{proof}
+        \item Use \[H = \frac{p_x^2}{2m}+ V(x) \quad \text{with $p_x = -i\hbar\pdv{x}$}\] and the result of (a) to show that \[(i)~~ \dv{\abr{p_x}}{t} = -\left\langle\pdv{V}{x}\right\rangle\quad \text{and} \quad (ii)~~ \dv{\abr{x}}{t} = \frac{\abr{p_x}}{m}.\]
+        \begin{proof}
+            Directly, we have \begin{align*}
+                \dv{\abr{p_x}}{t} &= \frac{i}{\hbar}\left\langle\sbr{\frac{p_x^2}{2m}+ V(x),p_x}\right\rangle\\
+                &= \frac{i}{\hbar}\left\langle\br{\br{\frac{p_x^3}{2m}+ V(x)p_x }- \br{\frac{p_x^3}{2m}+ p_xV(x) + V(x)p_x} }\right\rangle\\
+                &= \left\langle\br{-\frac{i}{\hbar}p_xV(x)}\right\rangle = -\left\langle\pdv{V}{x}\right\rangle\\
+            \end{align*} and \begin{align*}
+                \dv{\abr{x}}{t} &= \frac{i}{\hbar}\left\langle\sbr{\frac{p_x^2}{2m}+ V(x),x}\right\rangle\\
+                &= \frac{i}{\hbar}\left\langle\br{\br{\frac{1}{2m}(p_x(xp_x -i\hbar)) + V(x)x}- \br{x\frac{p_x^2}{2m}+ V(x)x} }\right\rangle\\
+                &= \frac{i}{\hbar}\left\langle\br{\br{\frac{1}{2m}( -2i\hbar p_x + xp_x^2 ) + V(x)x}- \br{x\frac{p_x^2}{2m}+ V(x)x} }\right\rangle\\
+                &= \frac{\abr{p_x}}{m},
+            \end{align*} as desired.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP4413 Dr. Zhang}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+p.120: 1, 2; p.161 2, 3, 5, 7
+
+p.120
+
+1. Let $\gamma\colon [a,b]\to \mathbb{R}^2$ be a parameterization for the closed curve $\Gamma$.
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that $\gamma$ is a parameterization by arc-length if and only if the length of the curve from $\gamma(a)$ to $\gamma(s)$ is precisely $s-a$, that is,
+    \[\int_a^s \abs{\gamma^{\prime}(t)}\dd{t} = s-a.\]
+    \begin{proof}
+      First suppose that $\gamma$ is a parameterization by arc-length. Then $\abs{\gamma^{\prime}(s)} = 1$ for all $s$, so that \[\int_a^s \abs{\gamma^{\prime}(t)}\dd{t} = \int_a^s 1 \dd{t} = s-a.\]
+      Conversely, suppose that $\int_a^s \abs{\gamma^{\prime}(t)}\dd{t} = s-a$. We know that $\gamma$ is of class $C^1$ and $\gamma^{\prime}(t)\neq 0$ for all $t$, so that $\abs{\gamma^{\prime}}$ is continuous and positive. Furthermore, $s-a =\int_a^s 1 \dd{t}$, so we must have that $0 < \abs{\gamma^{\prime}(t)} \leq 1$. If $\abs{\gamma^{\prime}}$ is less than $1$ at any point $p\in [a,s]$, because $\abs{\gamma^{\prime}}$ is continuous we may find a $\delta > 0$ small enough so that the integration outside of the $\delta$-neighborhood of $p$ \[\int_{[a,p-\delta)\cup (p+\delta, s)}\abs{\gamma^{\prime}(t)}\dd{t}\]
+      is bounded above by $s-a-2\delta$. Then the integration $\int_{[p-\delta, p+\delta]}\abs{\gamma^{\prime}(t)}\dd{t}$ is strictly less than $2\delta$, so the total integration over $[a,s]$ is less than $s-a$. This is a contradiction, so we must have that $\abs{\gamma^{\prime}(t)} = 1$; that is, $\gamma$ is a parameterization by arc-length.
+    \end{proof}
+    \item Prove that any curve $\Gamma$ admits a parameterization by arc-length. 
+    \begin{proof}
+      Let $\Gamma$ be any curve and let $\eta$ be any $C^1$ parameterization of $\Gamma$ where $\eta^{\prime}(t)\neq 0$. Then let $h(s) = \int_a^s\abs{\eta^{\prime}(t)}\dd{t}$, so that the composition $\gamma = \eta \circ h^{-1}$ is differentiable. Then by directly computing, we have \[\abs{\gamma^{\prime}(t)} = \abs{(h^{-1})^{\prime}(t)\cdot \dv{\eta(h^{-1}(t))}{h^{-1}(t)}} = \abs{ \br{ \dv{h(h^{-1}(t))}{h^{-1}(t)} }^{-1} \cdot \dv{\eta(h^{-1}(t))}{h^{-1}(t)}} = \abs{\dv{\eta(h^{-1}(t))}{h^{-1}(t)}}^{-1}\cdot \abs{\dv{\eta(h^{-1}(t))}{h^{-1}(t)}},\] which means that $\abs{\gamma^{\prime}(t)} = 1$ for all $t$. This means that $\gamma$ is a parameterization by arc-length, which means $\Gamma$ admits a parameterization by arc-length.
+    \end{proof}
+\end{enumerate} 
+
+2. Suppose $\gamma\colon [a,b]\to \mathbb{R}^2$ is a parameterization for a closed curve $\Gamma$, with $\gamma(t) = (x(t),y(t))$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that \[\frac{1}{2}\int_a^b (x(s)y^{\prime}(s) - y(s)x^{\prime}(s))\dd{s} = \int_a^b x(s)y^{\prime}(s)\dd{s} = - \int_a^b y(s)x^{\prime}(s)\dd{s}\]
+  \begin{proof}
+    Using integration by parts, we have \begin{align*}
+      \int_a^b x(s)y^{\prime}(s)\dd{s} &= \eval{y(t)x(t)}_a^b - \int_a^b y(s)x^{\prime}(s)\dd{s}\\
+      &= - \int_a^b y(s)x^{\prime}(s)\dd{s},
+    \end{align*}
+    where we used the fact that $\Gamma$ was a closed curve.
+
+    Thus \[\frac{1}{2}\int_a^b (x(s)y^{\prime}(s) - y(s)x^{\prime}(s))\dd{s} = 2\cdot \frac{1}{2}\int_a^b x(s)y^{\prime}(s)\dd{s} = 2\cdot \frac{-1}{2} \int_a^b y(s)x^{\prime}(s)\dd{s}.\]
+  \end{proof}
+  \item Define the \textbf{reverse parameterization} of $\gamma$ by $\gamma^{-}\colon [a,b]\to \mathbb{R}^2$ with $\gamma^{-}(t) = \gamma(b+a-t)$. The image of $\gamma^{-}$ is precisely $\Gamma$, except that the points $\gamma^{-}(t)$ and $\gamma(t)$ travel in opposite directions. Thus $\gamma^{-}$ ``reverses'' the orientation of the curve. Prove that \[\int_{\gamma}(x\dd{y}-y\dd{x}) = -\int_{\gamma^{-}} (x\dd{y}-y\dd{x}).\]
+  In particular, we may assume (after a possible change in orientation) that \[\mathcal{A} = \frac{1}{2}\int_a^b (x(s)y^{\prime}(s) - y(s)x^{\prime}(s))\dd{s} =\int_a^b x(s)y^{\prime}(s)\dd{s}.\]
+  \begin{proof}
+    Changing variables from $b+a-t\mapsto t$ and $-\dd{t}\mapsto \dd{t}$, we have
+    \begin{align*}
+      \int_{\gamma} (x\dd{y}-y\dd{x}) &= \int_a^b (x(t)y^{\prime}(t)\dd{t} - y(t)x^{\prime}(t)\dd{t})\\
+      &= -\int_{b+a-a}^{b+a-b} (x(b+a-t)y^{\prime}(b+a-t)\dd{t} - y(b+a-t)x^{\prime}(b+a-t)\dd{t})\\
+      &= -\int_{\gamma^{-}} (x\dd{y}-y\dd{x})
+    \end{align*}
+    where we used the fact that $\gamma^{-}(t) = \gamma(b+a-t)$.
+  \end{proof}
+\end{enumerate}
+
+p.161
+
+2. Let $f$ and $g$ be the functions defined by \[f(x) = \chi_{[-1,1]}(x) = \begin{cases}
+  1 & \text{if } \abs{x}\leq 1,\\
+  0 & \text{otherwise,}
+\end{cases} \quad \text{and}\quad g(x) = \begin{cases}
+  1-\abs{x} & \text{if } \abs{x}\leq 1,\\
+  0 & \text{otherwise},
+\end{cases}\]
+Although $f$ is not continuous, the integral defining its Fourier series still makes sense. Show that \[\hat{f}(\xi) = \frac{\sin(2\pi\xi)}{\pi\xi}\quad \text{and}\quad \hat{g}(\xi) = \br{\frac{\sin(\pi\xi)}{\pi\xi}}^2,\] with the understanding that $\hat{f}(0) = 2$ and $\hat{g}(0) = 1$.
+\begin{proof}
+  Direct computation of the Fourier transforms yield \begin{align*}
+    \hat{f}(\xi) = \int_{-\infty}^{\infty} \chi_{[-1,1]}(x) e^{-2\pi i x \xi}\dd{x} &= \int_{-1}^{1} e^{-2\pi i x \xi}\dd{x}\\
+    &= \eval{\frac{e^{-2\pi i x \xi}}{-2\pi i \xi }}_{-1}^{1}\\
+    &= \frac{\sin(2\pi\xi)}{\pi\xi}
+  \end{align*}
+  and \begin{align*}
+    \hat{g}(\xi) = \int_{-\infty}^{\infty} g(x)e^{-2\pi i x \xi}\dd{x} &= \int_{-1}^1 (1-\abs{x})e^{-2\pi i x \xi}\dd{x}\\
+    &= 2\int_0^1 (1-x)\cos(2\pi x \xi)\dd{x}\\
+    &= \frac{1-\cos(2\pi\xi)}{2\pi^2\xi^2} = \br{\frac{\sin(\pi\xi)}{\pi\xi}}^2
+  \end{align*}
+  with $\hat{f}(0) = \lim_{\xi\to 0} \frac{\sin(2\pi\xi)}{\pi\xi} = 2$, and $\hat{g}(0) = \lim_{\xi\to 0} \br{\frac{\sin(\pi\xi)}{\pi\xi}}^2 = 1$.
+\end{proof}
+
+3. The following exercise illustrates the principle that the decay of $\hat{f}$ is related to the continuity properties of $f$.
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose that $f$ is a function of moderate decrease on $\mathbb{R}$ whose Fourier transform $\hat{f}$ is continuous and satisfies \[\hat{f}(\xi) = O\br{\frac{1}{\abs{\xi}^{1+\alpha}}} \quad \text{as }\abs{\xi}\to \infty\] for some $0< \alpha < 1$. Prove that $f$ satisfies a H\"older condition of order $\alpha$, that is, that \[\abs{f(x+h) - f(x)}\leq M\abs{h}^{\alpha} \quad \text{for some $M > 0$ and all $x,h\in \mathbb{R}$.}\]
+  \begin{proof}
+    Use the Fourier inversion formula to write \[f(x+h) - f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2\pi i x \xi}\left(e^{2\pi i h \xi} - 1\right)\dd{\xi},\] so that
+    \begin{align*}
+      \abs{f(x+h) - f(x)}\abs{h}^{-\alpha} &\leq \abs{h}^{-\alpha}\abs{\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2\pi i x \xi}\left(e^{2\pi i h \xi} - 1\right)\dd{\xi}}\\
+      &\leq \int_{-\infty}^{\infty} \frac{C\abs{h}^{-\alpha}}{1 + \abs{\xi}^{1+\alpha}}\abs{2 i e^{\pi i h \xi}}\abs{\frac{e^{\pi i h \xi} - e^{-\pi i h \xi}}{2i}}\dd{\xi}\\
+      &\leq \int_{-\infty}^{\infty} \frac{2C\abs{\sin(\pi h \xi)}}{\abs{h}^{\alpha} + \abs{h}^{-1} \abs{h\xi}^{1+\alpha}}\dd{\xi}\\
+      &\leq \frac{2C}{\pi^{1+\alpha}}\int_{-\infty}^{\infty}\frac{\abs{\sin(t)}}{\abs{h}^{1+\alpha} + \abs{t}^{1+\alpha}}\dd{t}\\
+      &\leq \frac{4C}{\pi}\int_{0}^{\infty} \frac{\abs{\sin(t)}}{t^{1+\alpha}}\dd{t}\\
+      &\leq \frac{4C}{\pi}\int_{0}^{\infty} \frac{1}{t^{1+\alpha}}\dd{t}\\
+      &\leq M,
+    \end{align*} so that $\abs{f(x+h) - f(x)}\leq M\abs{h}^{\alpha}$.
+  \end{proof}
+  \item Let $f$ be a continuous function on $\mathbb{R}$ which vanishes for $\abs{x}\geq 1$, with $f(0) = 0$ and which is equal to $1/\log(1/\abs{x})$ for all $x$ in a neighborhood of the origin. Prove that $\hat{f}$ is not of moderate decrease. In fact there is no $\varepsilon >0$ so that $\hat{f}(\xi) = O(1/\abs{\xi}^{1+\varepsilon})$ as $\abs{\xi}\to \infty$.
+  \begin{proof}
+    Investigating $f(0) = 0$ and $f(h) = 1/\log(h^{-1})$, we have that $\abs{f(h) - f(0)}/\abs{h}^\alpha = 1/(\abs{h}^\alpha\log(h))$, but for any fixed $\alpha$ we can choose $h$ as small as we like so that this quantity becomes unbounded. So by the contrapositive to part (a), we should not have that $f$ is of moderate decrease.
+  \end{proof}
+\end{enumerate}
+
+5. Suppose $f$ is continuous and of moderate decrease. 
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that $\hat{f}$ is continuous and $\hat{f}(\xi) \to 0$ as $\abs{\xi}\to \infty$.
+  \begin{proof}
+    We have \begin{align*}
+      \abs{\hat{f}(\xi+h) - \hat{f}(\xi)} &= \abs{\int_{-\infty}^{\infty} f(x)e^{-2\pi i x \xi}(e^{-2\pi i x h} - 1)\dd{x}}\\
+      &\leq \int_{-\infty}^{\infty} \abs{f(x)}\abs{-2ie^{-\pi i x h}}\abs{\frac{e^{\pi i x h} - e^{-\pi i x h}}{2i}}\dd{x}\\
+      &\leq \int_{-\infty}^{\infty} \frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x}.
+    \end{align*}
+
+    Then for any $\varepsilon >0$, we may choose $K$ large enough so that $\int_{\abs{x}> K}\frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x} < \varepsilon /2 $ and choose $\delta$ small enough so that for $\abs{h} < \delta$ we have $\int_{\abs{x} \leq K}\frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x} < \varepsilon /2 $ since $\sin(\pi x h)$ can be made as small as we like if we take $h$ to be small. With this choice of $\delta$ (which depended on $K$) we have $\abs{\hat{f}(\xi+h) - \hat{f}(\xi)} < \varepsilon$, so that $\hat{f}$ is continuous.
+
+    Then observe that
+    \begin{align*}
+      \frac{1}{2}\int_{-\infty}^{\infty} [f(x)-f(x-1/(2\xi))]e^{-2\pi i x \xi}\dd{x} &= \frac{1}{2}\hat{f}(\xi) + \frac{1}{2} \int_{-\infty}^{\infty}-f(x-1/(2\xi))e^{-2\pi i x \xi}\dd{x}\\
+      &= \frac{1}{2}\hat{f}(\xi) + \int_{-\infty}^{\infty} -f(x)e^{-2\pi i x \xi}e^{-\pi i}\dd{x} \\
+      &= \frac{1}{2}\hat{f}(\xi) +\frac{1}{2}\hat{f}(\xi) = \hat{f}(\xi) .
+    \end{align*}
+
+    Then as $\abs{\xi}\to \infty$, we have $x-1/(2\xi) \to x$. So using the Lebesgue dominated convergence theorem (as $f(x-1/(2\xi))$ tends to $f(x)$ and $f(x-1/(2\xi))$ is dominated above by $f(x)+C$ for large enough $C$), \begin{align*}
+      \abs{\hat{f}(\xi)} &\leq \int_{-\infty}^{\infty} \abs{f(x)-f(x-1/(2\xi))}\dd{x}\\
+      &\leq 0 \quad \text{as } \abs{\xi}\to \infty.
+    \end{align*}
+    Hence $\hat{f}$ is continuous and $\hat{f}(\xi) \to 0$ as $\abs{\xi}\to \infty$.
+  \end{proof}
+  \item Show that if $\hat{f}(\xi) = 0$ for all $\xi$, then $f$ is identically zero.
+  \begin{proof}
+    Let $\hat{f}(\xi) = 0$ for all $\xi$. 
+    
+    In general, by interchanging the order of integration whenever $g\in \mathcal{S}(\mathbb{R})$, we have \[\int_{-\infty}^{\infty} f(x)\hat{g}(x)\dd{x} = \int_{-\infty}^{\infty} f(x)\int_{-\infty}^{\infty}g(y)e^{-2\pi i y x}\dd{y}\dd{x} = \int_{-\infty}^{\infty} g(y)\int_{-\infty}^{\infty}f(x)e^{-2\pi i y x}\dd{x}\dd{y} = \int_{-\infty}^{\infty} \hat{f}(y)g(y)\dd{y}.\]
+    The Gauss kernel $K_\delta(t-x)$ viewed as a function of $x$ is in the Schwartz space, so it has a preimage $g(x) \in \mathcal{S}(\mathbb{R})$ under the Fourier transformation. We have for all $\delta > 0$ and any $t$ that
+    \[0 = \int_{-\infty}^{\infty}\hat{f}(x)g(x)\dd{x} = \int_{-\infty}^{\infty}f(x)K_{\delta}(t-x)\dd{x},\] and because the Gauss kernel is a good kernel, as $\delta\to 0$, we have that the integral on the right converges uniformly to $f(t)$. So for any $t$, $f(t) \equiv 0$.
+  \end{proof}
+\end{enumerate}
+
+7. Prove that the convolution of two functions of moderate decrease is a function of moderate decrease.
+\begin{proof}
+  Let $f,g$ be functions of moderate decrease. Then \begin{align*}
+    \abs{f\ast g} = \abs{\int_{-\infty}^{\infty} f(x-y)g(y)\dd{y}} &\leq \int_{\abs{y}\leq \abs{x}/2} \abs{f(x-y)}\abs{g(y)}\dd{y} + \int_{\abs{y}\geq \abs{x}/2} \abs{f(x-y)}\abs{g(y)}\dd{y}\\
+    &\leq \int_{\abs{y}\leq \abs{x}/2} \frac{C_1\abs{g(y)}}{1 + (x-y)^2}\dd{y} + \int_{\abs{y}\geq \abs{x}/2} \frac{C_2\abs{f(x-y)}}{1 + y^2}\dd{y}\\
+    &\leq \int_{\abs{y}\leq \abs{x}/2} \frac{C_1\abs{g(y)}}{1 + (x/2)^2}\dd{y} + \int_{\abs{y}\geq \abs{x}/2} \frac{C_2\abs{f(x-y)}}{1 + (x/2)^2}\dd{y}\\
+    &\leq \frac{4C_1}{4+x^2}A + \frac{4C_2}{4+x^2}B\\
+    &\leq \frac{C_3}{1+ x^2}.
+  \end{align*}
+  The convolution is an integral so it is continuous. Thus $f\ast g$ is of moderate decrease.
+\end{proof}
+\newpage
+5. Suppose $f$ is continuous and of moderate decrease. 
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that $\hat{f}$ is continuous and $\hat{f}(\xi) \to 0$ as $\abs{\xi}\to \infty$.
+  \begin{proof}
+    We have \begin{align*}
+      \abs{\hat{f}(\xi+h) - \hat{f}(\xi)} &= \abs{\int_{-\infty}^{\infty} f(x)e^{-2\pi i x \xi}(e^{-2\pi i x h} - 1)\dd{x}}\\
+      &\leq \int_{-\infty}^{\infty} \abs{f(x)}\abs{-2ie^{-\pi i x h}}\abs{\frac{e^{\pi i x h} - e^{-\pi i x h}}{2i}}\dd{x}\\
+      &\leq \int_{-\infty}^{\infty} \frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x}.
+    \end{align*}
+
+    Then for any $\varepsilon >0$, we may choose $K$ large enough so that $\int_{\abs{x}> K}\frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x} < \varepsilon /2 $ and choose $\delta$ small enough so that for $\abs{h} < \delta$ we have $\int_{\abs{x} \leq K}\frac{2C\abs{\sin(\pi x h)}}{1+x^2}\dd{x} < \varepsilon /2 $ since $\sin(\pi x h)$ can be made as small as we like if we take $h$ to be small. With this choice of $\delta$ (which depended on $K$) we have $\abs{\hat{f}(\xi+h) - \hat{f}(\xi)} < \varepsilon$, so that $\hat{f}$ is continuous.
+
+    Then observe that
+    \begin{align*}
+      \frac{1}{2}\int_{-\infty}^{\infty} [f(x)-f(x-1/(2\xi))]e^{-2\pi i x \xi}\dd{x} &= \frac{1}{2}\hat{f}(\xi) + \frac{1}{2} \int_{-\infty}^{\infty}-f(x-1/(2\xi))e^{-2\pi i x \xi}\dd{x}\\
+      &= \frac{1}{2}\hat{f}(\xi) + \int_{-\infty}^{\infty} -f(x)e^{-2\pi i x \xi}e^{-\pi i}\dd{x} \\
+      &= \frac{1}{2}\hat{f}(\xi) +\frac{1}{2}\hat{f}(\xi) = \hat{f}(\xi) .
+    \end{align*}
+
+    Then as $\abs{\xi}\to \infty$, we have $x-1/(2\xi) \to x$. So using the Lebesgue dominated convergence theorem (as $f(x-1/(2\xi))$ tends to $f(x)$ and $f(x-1/(2\xi))$ is dominated above by $f(x)+C$ for large enough $C$), \begin{align*}
+      \abs{\hat{f}(\xi)} &\leq \int_{-\infty}^{\infty} \abs{f(x)-f(x-1/(2\xi))}\dd{x}\\
+      &\leq 0 \quad \text{as } \abs{\xi}\to \infty.
+    \end{align*}
+    Hence $\hat{f}$ is continuous and $\hat{f}(\xi) \to 0$ as $\abs{\xi}\to \infty$.
+  \end{proof}
+\end{enumerate}
+\end{document}

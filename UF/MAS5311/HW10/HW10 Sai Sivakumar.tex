@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5311}
+\fancyhead[C]{Assignment 10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (DF5.5.1) Let $H$ and $K$ be groups, let $\varphi$ be a homomorphism from $K$ into $\Aut(H)$ and, as usual, identify $H$ and $K$ as subgroups of $G = H\rtimes_{\varphi}K$.\\ Prove that $C_K(H) = \ker\varphi$ (recall that $C_K(H) = C_G(H)\cap K$).
+    \begin{proof}
+      Identifying $H$ with $\widetilde{H} = \cbr{(h,1)\mid h\in H}$ and $K$ with $\widetilde{K} = \cbr{(1,k)\mid k\in K}$, we can take any element $(h,1)\in \widetilde{H}$ and conjugate it by elements $(1,k)\in \widetilde{K}$ to find \begin{align*}
+        (1,k)(h,1)(1,k)^{-1} &= \sbr{(1,k)(h,1)}(1,k^{-1})\\
+        &= (\varphi(k)(h), k)(1,k^{-1})\\
+        &= (\varphi(k)(h)\varphi(k)(1), 1)\\
+        &= (\varphi(k)(h), 1)
+      \end{align*} and by demanding that $(\varphi(k)(h), 1) = (h,1)$ we have $\varphi(k)(h) = h$. This happens precisely when $\varphi(k)$ is the trivial automorphism, which happens if and only if $k\in \ker{\varphi}$. Note that another way to see this is by using the same identifications earlier -- identify $\varphi(k)(h)$ with $khk^{-1}$ and this is equal to $h$ if and only if $\varphi(k)$ is trivial; i.e., the action of conjugation of $h$ by $k$ is trivial.
+    \end{proof}
+    \item (DF5.5.7) This exercise describes thirteen isomorphism types of groups of order $56$. (It is not too difficult to show that every group of order $56$ is isomorphic to one of these.)\begin{enumerate}[label=\textbf{(\alph*)}]
+        \item Prove that there are three abelian groups of order $56$.
+        \begin{proof}
+          With $56 = 2^3\cdot 7$, we apply the Fundamental theorem of Finitely Generated Abelian Groups to see that there are three options for the abelian groups of order $8$, and only one option for the abelian group of order $7$, so that in total there are only three options for abelian groups of order $56$ as the direct product of an abelian group of order $8$ with an abelian group of order $7$. They are: \begin{align*}
+            Z_2\times Z_2 \times Z_2 &\times Z_7\\
+            Z_4 \times Z_2 &\times Z_7\\
+            Z_8 &\times Z_7.
+          \end{align*}
+          These are the only three abelian groups of order $56$ up to isomorphism.
+        \end{proof}
+        \item Prove that every group of order $56$ has either a normal Sylow $2$-subgroup or a normal Sylow $7$-subgroup.
+        \begin{proof}
+          Let $G$ be a group of order $56$. By Sylow's theorem, the number of Sylow $7$-subgroups is congruent to $1 \pmod{7}$ and divides $8$. Either $G$ has only one Sylow $7$-subgroup or $G$ has eight Sylow $7$-subgroups. If $G$ has only one Sylow $7$-subgroup then necessarily it is normal in $G$. Suppose then that $G$ has eight Sylow $7$-subgroups (which intersect trivially and are conjugate to each other) instead. 
+
+          Then there are $56- (1 + 6\cdot 8) = 7$ non-identity elements of order not equal to $7$. The order of these remaining elements may not divide $7$, so they must divide $8$ instead. We know that there is at least one Sylow $2$-subgroup, so these seven non-identity elements must be in a Sylow $2$-subgroup. But there are only seven of these non-identity elements, and including the identity, there can be at most only one Sylow $2$-subgroup (note also that if we conjugated these elements by any $g\in G$ we still end up with elements of the same order so again we must necessarily only have one Sylow $2$-subgroup). Note also that the Sylow $2$-subgroup must intersect trivially with any Sylow $7$-subgroup since their orders are coprime. Hence in this case there is a unique Sylow $2$-subgroup which is necessarily normal in $G$.
+        \end{proof}
+        \item Construct the following non-abelian groups of order $56$ which have a normal Sylow $7$-subgroup and whose Sylow $2$-subgroup $S$ is as specified:\\ 
+        \hspace*{1cm} one group when $S\cong Z_2\times Z_2\times Z_2$\\
+        \hspace*{1cm} two nonisomorphic groups when $S\cong Z_4\times Z_2$\\
+        \hspace*{1cm} one group when $S\cong Z_8$\\
+        \hspace*{1cm} two nonisomorphic groups when $S\cong Q_8$\\
+        \hspace*{1cm} three nonisomorphic groups when $S\cong D_8$
+
+        [For a particular $S$, two groups are not isomorphic if the kernels of the maps from $S$ into $\Aut(Z_7)$ are not isomorphic.]
+
+        We will use the fact that $\Aut(Z_7) \cong Z_6 = \abr{x}$ (written multiplicatively).
+
+        When $S\cong Z_2\times Z_2\times Z_2$, the only nontrivial homomorphism from $S$ to $Z_6$ is given by taking a nontrivial element of $S$ (which has order $2$) and sending it to the element of order $2$ in $Z_6$ (since $Z_6$ is cyclic it has a unique subgroup of order $2$). The kernel of such a homomorphism will have order $4$ by the first isomorphism theorem (as $8/4 = 2$ and $2$ must be the order of the image for the homomorphism to not be trivial.) It follows that the kernel of a nontrivial homomorphism is of order $4$ in $S$, so any kernel must be isomorphic to $Z_2\times Z_2$. Hence there is only one non-abelian semidirect product $Z_7\rtimes S$ up to isomorphism with $S\cong Z_2\times Z_2\times Z_2$. For example, write $S\cong Z_2\times Z_2\times Z_2$ as the additive group and let $\varphi\colon S\to Z_6$ be given by \[\varphi((a,b,c)) = x^{3(a+b+c)}\] so that $\varphi((a,b,c) + (d,e,f)) = \varphi((a+d, b+e, c+f)) = x^{3(a+b+c+d+e+f)} = x^{3(a+b+c)}x^{3(d+e+f)} = \varphi((a,b,c))\varphi((d,e,f))$ and $\varphi((0,0,0)) = x^{3\cdot 0} = x^0 = 1$. Note also that $\varphi(e_i) = x^3$ for $1\leq i \leq 3$, and so $\varphi$ is a nontrivial homomorphism for which the semidirect product $Z_7\rtimes_{\varphi} S$ is non-abelian. Note that the kernel of this homomorphism is $\cbr{(0,0,0), (1,1,0), (1,0,1), (0,1,1)}\cong Z_2\times Z_2$ as desired.
+
+        Similarly, when $S\cong Z_4\times Z_2$, we send a nontrivial element of $S$ which has either order $4$ or $2$ to the element of order $2$ in $Z_6$ so that the kernel again must have order $4$. This leaves two options for the kernel, to either be isomorphic to $Z_4$ or to $Z_2\times Z_2$ (since $Z_2\leq Z_4$), and these are not isomorphic to each other. Thus we form two different nontrivial homomorphisms from $S$ to $Z_6$ which yield two (non-abelian) semidirect products $Z_7\rtimes S$. Let $\varphi$ send an element of order $4$ in $S$ (so the kernel is isomorphic to $Z_2\times Z_2$) to the element of order $2$ in $Z_6$, and let $\phi$ send only elements of order $2$ in $S$ (so the kernel is isomorphic to $Z_4$) to the element of order $2$ in $Z_6$ so that the kernels of each of these homomorphisms are not isomorphic to each other. For example, by writing $S$ additively let $\varphi$ be given by $\varphi((a,b)) = x^{3a}$ and $\phi((a,b)) = x^{3b}$. Of course, in a similar manner to the previous construction these are homomorphisms (due to exponent rules). Note $\ker{\varphi} = \cbr{0,2}\times \mathbb{Z}_2\cong Z_2\times Z_2$ and $\ker{\phi} = \mathbb{Z}_4\times \cbr{0}\cong Z_4$. Thus $Z_7\rtimes_{\varphi} S$ and $Z_7\rtimes_{\phi} S$ are nonisomorphic non-abelian semidirect products.
+
+        When $S\cong Z_8$ we do the exact same thing as before, and we note that the only normal subgroup of order $4$ is the unique subgroup of order $4$ in $Z_8$, so there can only be one non-abelian semidirect product $Z_7\rtimes S$ up to isomorphism. So let the homomorphism $\varphi$ send any nontrivial element of $Z_8$ to the element of order $2$ in $Z_6$, so that the kernel of this homomorphism must have order $4$ and so must be isomorphic to $Z_4$. For example, writing $S$ additively, let $\varphi$ be given by $\varphi(1) = x^{3\cdot 1}$ so that by inspection it is clear that this mapping is a homomorphism and its kernel is $\cbr{0,2,4,6}\cong Z_4$. Then up to isomorphism there is only one non-abelian semidirect product $Z_7\rtimes_{\varphi} S$.
+
+        When $S\cong Q_8$ observe that because $Q_8$ is non-abelian, the direct product $Z_7\times S$ must also be non-abelian. Then we can construct another non-abelian group by forming a semidirect product between $Z_7$ and $S$. Again we wish to send a nontrivial element of $S$ to the element of order $2$ in $Z_6$, and in doing this the kernel of the homomorphism must have order $4$. There are three normal subgroups of order $4$ which are all isomorphic to each other: $\abr{i}\cong \abr{j} \cong \abr{k}$. Thus there is only one non-abelian semidirect product $Z_7\rtimes_{\varphi} S$, which we form by using the homomorphism as given earlier in the semidirect product. An explicit example for the homomorphism $\varphi$ can be given by (as $i$ and $j$ are generators for $Q_8$ with $k = ij$) $\varphi(i) = \varphi(j) = x^3$ so that the kernel is $\abr{ij} = \abr{k}$.
+
+        When $S\cong D_8$ observe that because $D_8$ is non-abelian, the direct product $Z_7\times S$ must also be non-abelian.  Then we can construct two more non-abelian groups by forming a semidirect products between $Z_7$ and $S$. We again wish to form homomorphisms which send nontrivial elements of $D_8$ to the element of order $2$ in $Z_6$, which implies the kernel of the homomorphisms must have order $4$. There are two options for the kernel to take on up to isomorphism. Either the kernel of the homomorphism is the cyclic group $\abr{r}$, or the kernel is isomorphic to $V_4$ (the Klein four-group) -- this happens when the kernel takes on either of the non-abelian groups $\abr{s,r^2}$ or $\abr{rs, r^2}$, which are isomorphic to $V_4$ (and hence each other) since the only non-abelian group of order $4$ is the Klein four-group. So let $\varphi$ be the homomorphism sending an element of order $4$ in $S$ (so the kernel is isomorphic to $V_4$) to the element of order $2$ in $Z_6$, and let $\phi$ send only elements of order $2$ in $S$ (so the kernel is isomorphic to $Z_4$) to the element of order $2$ in $Z_6$. The kernels of these homomorphisms are not isomorphic to each other, so the non-abelian semidirect products  $Z_7\rtimes_{\varphi} S$ and $Z_7\rtimes_{\phi} S$ are nonisomorphic as desired. For example, let the homomorphism $\varphi$ be given by $\varphi(r) = x^3$ and $\varphi(s) = 1$ ($r$ and $s$ are generators) so that $\ker{\varphi} = \cbr{1,s,r^2, sr^2} \cong V_4$, and let $\phi$ be given by $\phi(r) = 1$ and $\phi(s) = x^3$ so that $\ker{\phi} = \abr{r}\cong Z_4$.
+        \item Let $G$ be a group of order $56$ with a nonnormal Sylow $7$-subgroup. Prove that if $S$ is the Sylow $2$-subgroup of $G$ then $S\cong Z_2\times Z_2\times Z_2$. [Let an element of order $7$ act by conjugation on the seven nonidentity elements of $S$ and deduce that they all have the same order.]
+        \begin{proof}
+          Let $G$ be a group of order $56$ with a nonnormal Sylow $7$-subgroup as given and let $S$ be the Sylow $2$-subgroup of $G$.
+
+          When the Sylow $7$-subgroup is not normal in $G$ we saw earlier that there must be eight of these subgroups, so that there were only seven nonidentity elements of order not equal to $7$, which necessarily had to have been the seven nonidentity elements of $S$. We first prove that for a Sylow $7$-subgroup given by $\abr{g}$, the action of conjugation of $\abr{g}$ on the seven nonidentity elements of $S$ is transitive, from which it follows that every nontrivial element in $S$ would have to have the same order, since conjugation preserves the order of elements acted on.
+
+          With $\mathcal{O}_i$ being the orbits formed by the action, we have that \[7 = \sum_i \mathcal{O}_i,\] and by the orbit-stabilizer theorem we must have that $\abs{\mathcal{O}_i}$ divides $\abs{\abr{g}} = 7$. It follows then that if any $\abs{\mathcal{O}_i} = 1$, then every $\abs{\mathcal{O}_i} = 1$ in order for the sizes of the orbits to add to $7$. In this case, it follows that elements of $\abr{g}$ commute with elements of $S$. Note that because $\abr{g}$ and $S$ intesect trivially since their orders are coprime, the product $S\abr{g}\leq G$ has order $56$ and hence is equal to $G$. Because every element of $S$ commutes with $\abr{g}$ in this case, it follows that $S$ normalizes $\abr{g}$, and because $\abr{g}$ is normal in itself, it follows that $S\abr{g} = G$ normalizes $\abr{g}$, which is in contradiction to the assumption that any Sylow $7$-subgroup was nonnormal in $G$.
+
+          Hence one of $\abr{\mathcal{O}_i}$ is equal to $7$, so that this is the only orbit formed by the action (in order for the size of the orbit to add to $7$). Thus the action is transitive, and because all of the nontrivial elements lie in one orbit under conjugation, the orders of all of these elements must be the same.
+
+          Because these seven nontrivial elements belong to the Sylow $2$-subgroup, their order must divide $8$. This gives three cases: In the first case suppose every nontrivial element has order $8$, it follows that the Sylow $2$-subgroup is cyclic and thus has subgroups of every divisor, which is not possible when every nontrivial element has order $8$, a contradiction. Then in the next case suppose every element has order $4$. We reach another contradiction because the square of an element of order $4$ must have order $2$, but this is not compatible with the assumption that every nontrivial element has order $4$. The only case that must work is when all of the elements have order $2$.
+
+          Then if nontrivial elements $a,b$ have order $2$ in $S$, we can deduce that $ab = a^{-1}b^{-1} = (ba)^{-1} = ba$, so that $S$ is abelian. But by inspection the only abelian group of order $8$ whose nontrivial elements have order $2$ is isomorphic to $Z_2\times Z_2\times Z_2$. Hence $S\cong Z_2\times Z_2\times Z_2$.
+        \end{proof}
+        \item Prove that there is a unique group of order $56$ with a nonnormal Sylow $7$-subgroup. [For existence use the fact that $\abs{GL_3(\mathbb{F}_2)}= 168$, for uniqueness, use Exercise $6$.]
+        \begin{proof}
+          From the previous part, the (normal) Sylow $2$-subgroup of this group must be isomorphic to $Z_2\times Z_2\times Z_2$, so that this group becomes isomorphic to the semidirect product $Z_2\times Z_2\times Z_2 \rtimes Z_7$ (the product cannot be direct because both groups are abelian and we demand the Sylow $7$-subgroups are nonnormal).
+
+          We seek a homomorphism from $Z_7$ into $\Aut(Z_2\times Z_2\times Z_2)$, but because $\Aut(Z_2\times Z_2\times Z_2) \cong GL_3(\mathbb{F}_2)$, we have that $\abs{\Aut(Z_2\times Z_2\times Z_2)} = \abs{GL_3(\mathbb{F}_2)} = (2^3-1)(2^3-2^1)(2^3-2^2) = 168 = 2^3\cdot 3\cdot 7$. Then because $7\mid 168$, by Cauchy's theorem or by Sylow's theorem there exists a subgroup of order $7$ in $\Aut(Z_2\times Z_2\times Z_2)$ so that we may send a nontrivial element of $Z_7$ to an element of order $7$ in $\Aut(Z_2\times Z_2\times Z_2)$, which makes the homomorphism from $Z_7$ into $\Aut(Z_2\times Z_2\times Z_2)$ nontrivial. Thus the semidirect product $Z_2\times Z_2\times Z_2 \rtimes Z_7$ is a group of order $56$ with its Sylow $7$-subgroups not being normal.
+
+          What remains to be proven is that this semidirect product is isomorphic to any other semidirect product; that is, the choice of the nontrivial homomorphism did not matter up to isomorphism of the resulting group of order 56. We apply the proposition from class (or Exercise 6) to see that because the Sylow $7$-subgroups of $GL_3(\mathbb{F}_2)$ are all conjugate to each other any nontrivial homomorphism which sends nontrivial elements of $Z_7$ to elements of order $7$ in $\Aut(Z_2\times Z_2\times Z_2)$ induce isomorphic semidirect products. Let $\varphi$ and $\phi$ be nontrivial homomorphisms which send nontrivial elements of $Z_7$ to elements of order $7$ in $\Aut(Z_2\times Z_2\times Z_2)$, but then this means that the images $\varphi(Z_7)$ and $\phi(Z_7)$ are Sylow $7$-subgroups of $\Aut(Z_2\times Z_2\times Z_2)$, which are conjugate to each other. Hence $Z_2\times Z_2\times Z_2 \rtimes_{\varphi} Z_7 \cong Z_2\times Z_2\times Z_2 \rtimes_{\phi} Z_7$, and because $\varphi$, $\phi$ were arbitrary nontrivial homomorphisms, it follows that we may just take one to form a unique (up to isomorphism) group of order 56 with a nonnormal Sylow $7$-subgroup as desired.
+        \end{proof}
+    \end{enumerate}
+    \item (DF5.5.18) Show that if $H$ is any group then there is a group $G$ that contains $H$ as a normal subgroup with the property that for every automorphism $\sigma$ of $H$ there is an element $g\in G$ such that conjugation by $g$ when restricted to $H$ is the given automorphism $\sigma$, i.e., every automorphism of $H$ is obtained as an inner automorphism of $G$ restricted to $H$.
+    \begin{proof}
+      Consider the holomorph of $H$ given by $\Hol(H) = H\rtimes_{\varphi}\Aut(H) $ where $\varphi$ is the trivial map from $\Aut(H)$ to itself. Let $G$ be a group isomorphic to $\Hol(H)$ with $H\unlhd G$ and let $K$ be a subgroup of $G$ such that $K\cong \Aut(H)$.
+
+      Identify $H$ with its isomorphic copy $\widetilde{H} = \cbr{(h,1)\mid h\in H} \unlhd\Hol(H)$ and identify $K\cong \Aut(H)$ with its isomorphic copy $\widetilde{\Aut(H)} = \cbr{(1,\alpha)\mid \alpha \in \Aut(H)} \leq\Hol(H)$. Then observe that for any given element $(h,1)\in \widetilde{H}$, we may conjugate it by some element $(1,\sigma)\in \widetilde{\Aut(H)}$ to find \begin{align*}
+        (1,\sigma)(h,1)(1,\sigma)^{-1} &= (\sigma(h), \sigma)(1, \sigma^{-1})\\
+        &= (\sigma(h), 1).
+      \end{align*} Note that by using the identifications above we may identify $k_\alpha \in K$ (where we fix some isomorphism $\pi\colon K \to \Aut(H)$ mapping $k_\alpha$ to $\alpha$) with $(1,\alpha) \in \widetilde{\Aut(H)}$ and $h^{\prime}\in H$ with $(h^{\prime},1)\in \widetilde{H}$. Then $(1,\sigma)(h,1)(1,\sigma)^{-1}$ is identified with $k_\sigma h k_\sigma^{-1}$ and $(\sigma(h),1)$ is identified with $\sigma(h)\in H$. In this manner the action of conjugating $h$ by $k_\sigma$ returns $\sigma(h)$. Thus the action of conjugation by $k_\sigma$ on elements of $H$ is exactly the action of the automorphism $\sigma$ on elements of $H$. By taking the inner automorphism $\varphi_{k_\sigma}\colon G\to G$ with $\varphi_{k_\sigma}(g) = k_\sigma g k_\sigma^{-1}$ and restricting the domain to $H$ we find that the restriction of this inner automorphism is equivalent to the automorphism $\sigma$ of $H$ (now viewing both the domain and range of the restriction of the inner automorphism as $H$).
+
+      Since $\sigma$ was an arbitrary automorphism of $H$, any automorphism $\sigma$ can be obtained by an inner automorphism of $G$ restricted to $H$ (We can always find $k_\sigma\in K\leq G$ such that conjugating $H$ by $k_\sigma$ has the same action as $\sigma$ does on $H$.)
+
+      Hence $G$ is such a group containing $H$ as a normal subgroup with the property that for every automorphism $\sigma$ of $H$ there is an element $g\in G$ such that conjugation by $g$ when restricted to $H$ is the given automorphism $\sigma$.
+    \end{proof}
+\end{enumerate}
+\end{document}

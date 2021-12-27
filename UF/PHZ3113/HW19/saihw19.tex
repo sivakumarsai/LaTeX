@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW19}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+19.1 Consider an $LCR$ circuit with resistance $R$, capacitance $C$, and inductance $L$ and driven by a time-dependent voltage $V(t) = V_0\cos(\omega t)$. The resulting time-dependent charge $Q(t)$ in the circuit obeys the differential equation \[L\ddot{Q} + R\dot{Q} + \frac{1}{C}Q = V_0\cos(\omega t).\]
+\begin{enumerate}[label=(\alph*)]
+    \item With ansatz $Q(t) = Q_0e^{i\omega t}$ and `complex voltage' $V(t) = V_0e^{i\omega t}$, we have \begin{align*}
+        L\ddot{Q} + R\dot{Q} + \frac{1}{C}Q = V_0\cos(\omega t) &\iff -LQ_0\omega^2e^{i\omega t} + RiQ_0\omega e^{i\omega t} + \frac{1}{C}e^{i\omega t} = V_0e^{i\omega t}\\
+        &\iff Q_0(-L\omega^2 + Ri + \frac{1}{C}) = V_0,
+        \intertext{so that} 
+        Q_0 &= \frac{V_0}{(-L\omega^2 + Ri\omega  + \frac{1}{C})}.
+    \end{align*}
+    \item Computing $I(t) = \dot{Q}(t)$, we have \begin{align*}
+        I(t) = \dot{Q}(t) &= i\omega Q_0 e^{i\omega t}\\
+        &= \frac{i\omega V_0e^{i\omega t}}{(-L\omega^2 + Ri\omega  + \frac{1}{C})}\\
+        &= \frac{V(t)}{\frac{-1}{\omega}(-Li\omega^2 - R\omega + \frac{i}{C})}\\
+        &= \frac{V(t)}{Z}
+    \end{align*} with $Z = \frac{-1}{\omega}(-Li\omega^2 - R\omega + \frac{i}{C})$.
+
+    Then by inspection $\Re(Z) = R$ and $\Im(Z) = L\omega - \frac{1}{C\omega}$ Furthermore, \[\abs{Z} = \sqrt{R^2 + \left(L\omega -\frac{1}{C\omega}\right)^2}.\]
+    \item It is easier to express the denominator of the quantity defining $Q_0$ in exponential form before taking the reciprocal. Note that $V_0$ is a real value, and assume it is nonnegative.
+    
+    So 
+    \[\frac{1}{\rho} = \abs{-L\omega^2 + Ri\omega + \frac{1}{C}} = \sqrt{\left(-L\omega^2 +\frac{1}{C}\right)^2 + (R\omega)^2},\] and 
+    \[-\phi = \arctan(\frac{R\omega}{-L\omega^2 + \frac{1}{C}}),\] so that 
+    \[Q_0 = \rho e^{i\phi} = \frac{V_0}{\sqrt{\left(-L\omega^2 +\frac{1}{C}\right)^2 + (R\omega)^2}}e^{-i\arctan(\frac{R\omega}{-L\omega^2 + \frac{1}{C}})}.\]
+    \item When $\phi = -\pi/2$, because $\arctan(\pi/2) $ is undefined (due to division by zero as $\cos(\pi/2) = 0$), we demand \[\frac{R\omega}{-L\omega^2 + \frac{1}{C}}\] to also be undefined by division by zero; that is, $-L\omega^2 + \frac{1}{C}$ must be zero. Thus $\omega = 1/\sqrt{LC}$.
+    
+    Sketching $\rho^2(\omega)$, we have something which looks like:\vspace*{5cm}
+
+    The width of the resonance is determined by the circuit parameter $R$ (comparing with the solution found in the notes and adapting $\rho^2(\omega)$ to fit that form up to a factor).
+\end{enumerate}
+\end{document}

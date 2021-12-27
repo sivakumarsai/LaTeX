@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{PHZ3113}
+\fancyhead[C]{HW25}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\Log{Log}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}[label=25.\arabic*]
+    \item Consider a matrix operator \[\Omega \equiv \begin{pmatrix}
+        1 & e^{i\theta} & 0 \\
+        e^{-i\theta} & 1 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}.\] The operator $\Omega$ satisfies the eigenvalue equation $\Omega\ket{\lambda_i} = \lambda_i\ket{\lambda_i}$, with eigenvalues $\lambda_1 = 0$, $\lambda_2 = 1$, and $\lambda_3 = 2$, and the corresponding set of orthonormal eigenvectors are \[\ket{\lambda_1} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        e^{i\theta/2}\\-e^{-i\theta/2}\\0
+    \end{pmatrix}, \quad \ket{\lambda_2} = \begin{pmatrix}
+        0\\0\\1
+    \end{pmatrix},\ket{\lambda_3} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        e^{i\theta/2}\\e^{-i\theta/2}\\0
+    \end{pmatrix},\] such that $\bra{\lambda_i}\ket{\lambda_j} = \delta_{ij}$.\begin{enumerate}[label=(\alph*)]
+        \item Given a vector $\ket{V} \equiv \begin{pmatrix}
+            e^{i\theta}\\e^{-i\theta}\\1
+        \end{pmatrix}$, find the expectation value\[\abr{\Omega} = \bra{V}\Omega\ket{V}.\]
+
+        We have \begin{align*}
+            \abr{\Omega} = \bra{V}\Omega\ket{V} &= \begin{pmatrix}
+                e^{-\theta} & e^{i\theta} & 1
+            \end{pmatrix}\begin{pmatrix}
+                1 & e^{i\theta} & 0 \\
+                e^{-i\theta} & 1 & 0 \\
+                0 & 0 & 1
+            \end{pmatrix}\begin{pmatrix}
+                e^{i\theta}\\e^{-i\theta}\\1
+            \end{pmatrix}\\
+            &= \begin{pmatrix}
+                e^{-\theta} & e^{i\theta} & 1
+            \end{pmatrix}\begin{pmatrix}
+                e^{i\theta}+1\\e^{-i\theta}+1\\1
+            \end{pmatrix}\\
+            &= (e^{-i\theta}+1) + (e^{i\theta}+1) + 1 = e^{i\theta}+e^{-i\theta}+3.
+        \end{align*}
+        \item Expand the vector $\ket{V}$ defined in (a) in terms of the eigenvectors $\ket{\lambda_i}$; i.e. find the expansion parameters $a_i$ in the expansion $\ket{V} = \sum_i a_i\ket{\lambda_i}$.
+        
+        Taking inner products, we have \begin{align*}
+            \bra{\lambda_1}\ket{V} &= \frac{1}{\sqrt{2}}(e^{i\theta/2} - e^{-i\theta/2})\\
+            \bra{\lambda_2}\ket{V} &= 1\\
+            \bra{\lambda_3}\ket{V} &= \frac{1}{\sqrt{2}}(e^{i\theta/2} + e^{-i\theta/2})
+        \end{align*} so that \[\ket{V} = \frac{1}{\sqrt{2}}(e^{i\theta/2} - e^{-i\theta/2})\ket{\lambda_1} + \ket{\lambda_2} + \frac{1}{\sqrt{2}}(e^{i\theta/2} + e^{-i\theta/2})\ket{\lambda_3}.\]
+        \item Using the expansion $\ket{V} = \sum_i a_i\ket{\lambda_i}$, show that the expectation value $\abr{\Omega}$ van also be written as $\bra{V}\Omega\ket{V} = \sum_i \lambda_i\abs{a_i}^2$. Using $a_i$ as obtained in (b), show that your result agrees with (a).
+        
+        Since $\ket{\lambda_i}$ form an orthonormal eigenbasis, we have \begin{align*}
+            \abr{\Omega} = \bra{V}\Omega\ket{V} &= \sum_i a_i\overline{a_i}\bra{\lambda_i}\Omega\ket{\lambda_i}\\
+            &= \sum_i \lambda_i\abs{a_i}^2\bra{\lambda_i}\ket{\lambda_i}\\
+            &= \sum_i \lambda_i\abs{a_i}^2\\
+            &= (0)\cdot\frac{1}{2}(2-(e^{i\theta} + e^{-i\theta})) + (1)\cdot 1 + (2)\cdot\frac{1}{2}(2+e^{i\theta} + e^{-i\theta})\\
+            &= e^{i\theta}+e^{-i\theta}+3,
+        \end{align*} which matches with the computation in (a).
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
