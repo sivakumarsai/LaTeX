@@ -140,15 +140,64 @@
       Hence $h$ is a homeomorphism as desired, so that $\prod_{\lambda\in\Lambda}X_\lambda$ and $\prod_{\lambda\in\Lambda}Y_{\lambda}$ are homeomorphic.
     \end{proof}
     \item Assume that $d$ and $d^{\prime}$ are metrics on $X$ and that there are positive constants $c_1,c_2$ with \[c_1d(x,y)\leq d^{\prime}(x,y)\leq c_2d(x,y)\] for all $x,y\in X$ Show that $d$ and $d^{\prime}$ induce the same topology.
+    \begin{proof}
+      We show that the topologies induced by $d$ and $d^{\prime}$ are mutually finer than each other.
+
+      For any $x\in X$ and $\varepsilon >0$, consider the balls $B_d(x,\varepsilon)$ and $B_{d^{\prime}}(x,c_1\varepsilon)$. If $y\in B_{d^{\prime}}(x,c_1\varepsilon)$, then using the inequalities given we have $d(x,y)\leq d^{\prime}(x,y)/c_1 < \varepsilon$, so that $y\in B_d(x,\varepsilon)$. Since $x\in X$ and $\varepsilon>0$ were arbitrary, we have that $\mathcal{T}^{\prime}$ is finer than $\mathcal{T}$.
+
+      Similarly, for any $x\in X$ and $\varepsilon> 0$, consider the balls $B_{d^{\prime}}(x,\varepsilon)$ and $B_d(x,\varepsilon/c_2)$. If $y\in B_d(x,\varepsilon/c_2)$, then using the inequalities given we have $d^{\prime}(x,y)\leq c_1d(x,y) < \varepsilon$, so that $y\in B_{d^{\prime}}(x,\varepsilon)$. Hence $\mathcal{T}$ is finer than $\mathcal{T}^{\prime}$.
+
+      Therefore both metrics induce the same topologies.
+    \end{proof}
     \item We showed in class that on $\mathbb{R}^{\mathbb{Z}_+}$ the box topology is finer than the uniform topology which in turn is finer than the product topology. Give examples that show that the box topology is \textit{strictly} finer than the uniform topology which in turn is \textit{strictly} finer than the product topology. You can use the fact that the product topology is induced by the metric $D$.
+    
+    An example of an open set in the box topology but not on the uniform topology on $\mathbb{R}^{\mathbb{Z}_+}$ is the product $\prod_{n\in\mathbb{Z}_+}(-1,1)$. Since each factor $(-1,1)$ is open in $\mathbb{R}$ with the standard topology, the product is open in the box topology on the product space. But on the uniform topology it is impossible to write this set as a union of open sets because some points in this set cannot lie in open neighborhoods from the uniform topology: Pick your favorite sequence $x_n$ from $\mathbb{R}$ converging to $1$ where each $x_n\in (-1,1)$ and form the point $(x_n)_{n\in\mathbb{Z}_+} = (x_1, x_2, \dots)$ (e.g. the sequence $x_n = 1-1/n$). Note that in the $\overline{\rho}$ norm this point has distance $1$ from zero because the distances $\abs{x_n}$ are as close to $1$ as desired, so that any open neighborhood containing $1$ necessarily contains points outside of $\prod_{n\in\mathbb{Z}_+}(-1,1)$. Any open neighborhood containing $(x_n)_{n\in\mathbb{Z}_+}$ contains an open ball of some radius $\varepsilon>0$ containing $(x_n)_{n\in\mathbb{Z}_+}$, so there are points whose distance to the origin (the point $(0,0,\dots)$) exceeds $1$ in this ball and therefore cannot lie in $\prod_{n\in\mathbb{Z}_+}(-1,1)$, as every point in this set has distance at most $1$ in the $\overline{\rho}$ norm.
+
+    An example of an open set in the uniform topology which is not open on the product topology on the product space is the open $1$-ball given by $B_{\overline{\rho}}((0,0,\dots), 1)$. If this set were open in the product topology then for ever point in the ball there is a basis element contained in the ball. But any basis element of the product topology is of the form $\prod_{n\in\mathbb{Z}_+}U_n$ with all but finitely many $U_n = \mathbb{R}$. We can at most have only finitely many $U_n$ which contain points sufficiently close to the origin (in the $\overline{d}$-norm). All of the other $U_n = \mathbb{R}$ so that in the $\overline{\rho}$ norm we get $1$, so that a basis element cannot be contained in the uniform $1$-ball.
     \item Give $X^{\mathbb{Z}_+}$ the product topology and let $\cbr{\underline{x}_n}$ be a sequence in $x^{\mathbb{Z}_+}$.\begin{enumerate}[label=(\alph*)]
-      \item Show that $\underline{x}_n\to \underline{x}$ if and only if for each $i\in\mathbb{Z}_+$, $\pi_i(\underline{x_n})\to\pi_i(\underline{x})$. In other words, a sequence converges if and only if all its components converge.
+      \item Show that $\underline{x}_n\to \underline{x}$ if and only if for each $i\in\mathbb{Z}_+$, $\pi_i(\underline{x}_n)\to\pi_i(\underline{x})$. In other words, a sequence converges if and only if all its components converge.
+      \begin{proof}
+        If $\underline{x}_n$ converges to $\underline{x}$, then each neighborhood of $\underline{x}$ contains all but finitely many $\underline{x}_n$, but each neighborhood is of the form $\prod_{k\in\mathbb{Z}_+}U_k$ (a union of basis elements) where all but finitely many (finite including zero many) $U_k = X$. Each $U_k$ must contain $\pi_k(\underline{x})$. Since $\prod_{k\in\mathbb{Z}_+}U_k$ contains all but finitely many $\underline{x}_n$, it follows that each $U_k$ must contain all but finitely many $\pi_k(\underline{x}_n)$ (otherwise we reach a contradiction). Since the neighborhood chosen was arbitrary, it follows that $\pi_i(\underline{x}_n)\to \pi_i(\underline{x})$ for each $i\in\mathbb{Z}_+$.
+
+        Conversely, suppose that $\pi_i(\underline{x}_n)\to \pi_i(\underline{x})$ for each $i\in\mathbb{Z}_+$. Then open neighborhoods of $\underline{x}$ are in the form $\prod_{k\in\mathbb{Z}_+}U_k$ (a union of basis elements) where all but finitely many $U_k = X$. Without loss of generality, let $U_{1}, \dots, U_{m}$ be the finitely many sets $U_n$ not equal to $X$ (if they exist). For each $\pi_{j}(\underline{x})$, there is $N_j$ such that for $n\geq N_j$, $\pi_j(\underline{x}_n)\in U_j$. So take $N$ to be the maximum element of $\cbr{N_j\colon 1\leq j\leq m}$, so that if $n \geq N$, $\pi_i(\underline{x}_n)\in U_i$ for every $i\in\mathbb{Z}_+$, so that $\underline{x}_n\in \prod_{k\in\mathbb{Z}_+}U_k$. Since $\prod_{k\in\mathbb{Z}_+}U_k$ was arbitrary, $\underline{x}_n\to \underline{x}$.
+      \end{proof}
       \item Is this result true when we give $X^{\mathbb{Z}_+}$ the box topology?
+      No, because we had to take a maximum of a finite set of positive integers; in the box topology it is possible to start with an open set of $\underline{x}$ (in the same form as before) where every factor $U_k$ is not equal to $X$. This would generate infinitely many $N_k$, and so it could be impossible to find a maximal element $N$ of this set of positive integers $N_k$ needed to ensure $\underline{x}_n$ is in the open set when $n \geq N$.
+
+      A concrete example might be to take the sequence in $\mathbb{R}^{\mathbb{Z}_+}$ given by \begin{align*}
+        x_1 &= (0,0,0,\dots)\\
+        x_2 &= (1,0,0,0,\dots)\\
+        &~\,\vdots\\
+        x_k &= (\underbrace{1,1,1,\dots,1}_{\text{$k$ many}},0,0,0,\dots).
+      \end{align*} This sequence converges to $(1,1,\dots)$ in the product topology, but in the box topology it is not possible to find $N$ large enough to ensure that for $n\geq N$, $x_n$ lies in the open set $\prod_{k\in\mathbb{Z}_+}(1/2,3/2)$ containing $(1,1,\dots)$.
     \end{enumerate}
     \item Let $(X,d)$ be a metric space. \begin{enumerate}[label=(\alph*)]
       \item Show that $d\colon X\times X\to \mathbb{R}$ is continuous where $X\times X$ is given the product topology.
+      \begin{proof}
+        Let $(a,b)$ be a nonempty (the preimage under $d$ of the empty set is empty) open interval in $\mathbb{R}$ with the standard topology. Then the preimage under $d$ of $(a,b)$ is given by \[d^{-1}((a,b)) = \cbr{(x,y)\in X\times X \colon d(x,y)\in (a,b)}.\] Let $(x,y)$ be any element of $d^{-1}((a,b))$, so that $d(x,y) = c$ with $c\in (a,b)$. Taking $\varepsilon = \min\cbr{c-a, b-c}$, we show that there exist open sets $U$ and $V$ containing $x$ and $y$ respectively such that $d(U\times V) \subset (c-\varepsilon, c+\varepsilon) \subset (a,b)$.
+
+        Since $X$ is a metric space, pick $U = B_d(x,\varepsilon/4)$ and $V = B_d(y,\varepsilon/4)$. Then for any $x^{\prime}\in U$ and $y^{\prime}\in V$, we have by the triangle inequality that \[d(x^{\prime}, y^{\prime})\leq d(x^{\prime}, x) + d(x,y) + d(y,y^{\prime}) < c +\varepsilon/2< b\] and \[a < c-\varepsilon/2 = d(x,y) - \varepsilon/4 - \varepsilon/4 \leq d(x^{\prime}, y^{\prime}) + (d(x^{\prime}, x) - \varepsilon/4)) + (d(y,y^{\prime}) - \varepsilon/4) < d(x^{\prime}, y^{\prime}),\] where in the last inequality we used the fact that both $(d(x^{\prime}, x) - \varepsilon/4)) , (d(y,y^{\prime}) - \varepsilon/4) < 0$. It follows that $d(x^{\prime}, y^{\prime})\in (a,b)$, so that $d(U\times V)\subset (a,b)$ as desired. Hence $d$ is continuous.
+      \end{proof}
       \item If the sequences $x_n\to x$ and $y_n\to y$ converge in $X$ show that the sequence of real numbers $d(x_n,y_n)\to d(x,y)$.
+      \begin{proof}
+       Let $x_n\to x$ and $y_n\to y$ be convergent sequences in $X$ as given.
+       
+       Since $d$ is continuous, for every convergent sequence $\underline{x}_n\to \underline{x}$ of $X\times X$, the sequence $d(\underline{x}_n)\to d(\underline{x})$. All that is required to show is that the sequence $\underline{x}_n = (x_n, y_n)$ converges to $\underline{x} = (x,y)$. From a previous problem (note the box and product topologies agree for finite-product product spaces) we know that this must be true since the component sequences are convergent.
+
+       Hence $d(x_n,y_n)\to d(x,y)$.
+      \end{proof}
     \end{enumerate}
-    \item Given metric spaces $(X_i, d_i)$ for $i = 1,\dots,n$ show that \[\rho(x,y) = \max\{d_1(x,y),\dots,d_n(x,y)\}\] is a metric on $\prod_{i=1}^n X_i$.
+    \item Given metric spaces $(X_i, d_i)$ for $i = 1,\dots,n$ show that \[\rho(x,y) = \max\{d_1(x_1,y_1),\dots,d_n(x_n,y_n)\}\] is a metric on $\prod_{i=1}^n X_i$.
+    \begin{proof}
+      Let $x,y,z\in \prod_{i=1}^n X_i$ be arbitrary.
+
+      The maximum of a finite set of nonnegative numbers is a nonnegative number, so because each $d_i$ maps into the nonnegative reals, $\rho$ does also. If $x = y$, then every $d_i(x_i,y_i) = 0$ so that the maximum is $0$, and the converse is true as well. Hence $\rho(x,y)\geq 0$ for all $x,y\in \prod_{i=1}^n X_i$.
+
+      We have \[\rho(x,y) = \max\cbr{d_i(x_i,y_i)} = \max\cbr{d_i(y_i,x_i)} = \rho(y,x)\] since each $d_i$ is a metric.
+
+      Since each $d_i$ is a metric, we have $d_i(x_i,y_i)\leq d_i(x_i,z_i) + d_i(z_i,y_i)$. Then \[\max\cbr{d_i(x_i,y_i)}\leq \max\cbr{ d_i(x_i,z_i) + d_i(z_i,y_i)} \leq \max\cbr{ d_i(x_i,z_i)} + \max\cbr{d_i(z_i,y_i)},\] where in the last equality we used the fact that the maximum of sums is less than or equal to the sum of maxima. It follows that $\rho(x,y)\leq \rho(x,z) + \rho(z,y)$, which is the triangle inequality.
+
+      Hence $\rho$ is a metric on $\prod_{i=1}^n X_i$.
+    \end{proof}
 \end{enumerate}
 \end{document}

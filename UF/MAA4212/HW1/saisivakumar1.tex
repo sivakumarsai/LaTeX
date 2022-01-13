@@ -1,0 +1,73 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 1}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Suppose $\|\cdot\|$ is a norm on $\RR^2$ such that,
+ if $0\le a_1\le a_2$ and $0\le b_1\le b_2,$ then
+\[
+ \|(a_1,b_1)\|\le \|(a_2,b_2)\|
+\]
+ and $(X,d_X)$ and $(Y,d_Y)$ are metric spaces.
+ Let $Z=X\times Y$ and define $d:Z\times Z\to [0,\infty)$ by
+\[
+  d(z_1,z_2)= \|(d_X(x_1,x_2),d_Y(y_1,y_2))\|,
+\]
+for  $z_j=(x_j,y_j) \in Z.$
+ Show $d$ is a metric on $Z.$  Explain the relation between
+ this problem and Exercise 1.1.12.
+
+\begin{proof}
+Let $\norm{\cdot}$ be a norm on $\mathbb{R}^2$ with the property as given above, and let $d\colon Z\times Z\to [0,\infty)$ for $Z = X\times Y$ be as given, with $X,Y$ being metric spaces with metrics $d_X,d_Y$, respectively. Let $z_1,z_2,z_3\in Z$ with $z_k = (x_k,y_k)$ for $1\leq k\leq 3$.
+
+It is clear that $d$ is positive definite because $\norm{\cdot}$ maps into $[0,\infty)$, so that $d$ maps into $[0,\infty)$. We check that $d(z_1,z_2) = 0$ if and only if $z_1 = z_2$. Suppose $z_1 = z_2$. Then
+\[d(z_1,z_2) = \norm{(d_X(x_1,x_2),d_Y(y_1, y_2))} = \norm{((x_1,x_1),(y_1, y_1))} = \norm{(0,0)} = 0.\]
+Conversely, suppose that $d(z_1,z_2) = 0$. Since $\norm{\cdot}$ is a norm on $\mathbb{R}^2$, we must have that $(d_X(x_1,x_2), d_Y(y_1,y_2)) = (0,0)$. Then because $d_X,d_Y$ are metrics on  $X,Y$ respectively, we must have that $x_1 = x_2$ and $y_1 = y_2$. Hence $z_1 = z_2$.
+
+Symmetry of $d$ follows from symmetry of $d_X$ and $d_Y$: \[d(z_1,z_2) = \norm{(d_X(x_1,x_2),d_Y(y_1,y_2))} = \norm{(d_X(x_2,x_1),d_Y(y_2,y_1))} = d(z_2,z_1).\]
+
+The function $d$ satisfies the triangle inequality due to $d_X,d_Y$, and $\norm{\cdot}$ satisfying the triangle inequality as well as the norm $\norm{\cdot}$ having the property given above. With $0 \leq d_X(x_1,x_3)\leq d_X(x_1,x_2) + d_X(x_2,x_3)$ and $0\leq d_Y(y_1,y_3)\leq d_Y(y_1,y_2) + d_Y(y_2,y_3)$, we have \begin{align*}
+  d(z_1,z_3) &= \norm{(d_X(x_1,x_3),d_Y(y_1,y_3))}\\
+  &\leq \norm{(d_X(x_1,x_2) + d_X(x_2,x_3),d_Y(y_1,y_2) + d_Y(y_2,y_3))}\\
+  &\leq \norm{(d_X(x_1,x_2),d_Y(y_1,y_2))} + \norm{(d_X(x_2,x_3),d_Y(y_2,y_3))}\\
+  &= d(z_1,z_2) + d(z_2,z_3).
+\end{align*}
+Since $z_1,z_2,z_3$ were arbitrary, it follows that $d$ is a metric on $Z$.
+\end{proof}
+
+Exercise 1.1.12 is a special case of this exercise in that Exercise 1.1.12 is this exercise when we take $\norm{\cdot}$ to be the $\ell^1$ norm on $\mathbb{R}^2$ given by $\norm{(a,b)} = \abs{a} + \abs{b}$ for $a,b\in \mathbb{R}$. In Exercise 1.1.12 the absolute value bars are omitted because $d_X, d_Y$ map into the nonnegative real numbers. Observe that $\norm{\cdot}$ is indeed a norm on $\mathbb{R}^2$ and that it satisfies the property that, for $a_1,a_2,b_1,b_2\in\mathbb{R}$ with $0\leq a_1\leq a_2$ and $0\leq b_1\leq b_2$, we have $\norm{(a_1,b_1)}\leq \norm{(a_2,b_2)}$: \[\norm{(a_1,b_1)} = a_1 + b_1 \leq a_2 + b_1 \leq a_2 + b_2 = \norm{(a_2,b_2)}\]
+\end{document}
