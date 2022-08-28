@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5312}
+\fancyhead[C]{Assignment 9}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (DF10.1.8) An element $m$ of the $R$-module $M$ is called a \textit{torsion element} if $rm = 0$ for some nonzero element $r\in R$. The set of torsion elements is denoted \[\Tor(M) = \cbr{m\in M\mid rm=0 \text{ for some nonzero $r\in R$}}.\] \begin{enumerate}[label=\textbf{(\alph*)}]
+      \item Prove that if $R$ is an integral domain then $\Tor(M)$ is a submodule of $M$ (called the \textit{torsion} submodule of $M$). \begin{proof}
+        Observe that $0_M$ in $\Tor(M)$ since for any nonzero $r\in R$, we have that $r0_M = 0_M$ (observe that $r0_M = r(0_M + 0_M) = r0_M + r0_M$ and cancel terms). It follows that $\Tor(M)$ is a nonempty subset of $M$. Let $x,y\in \Tor(M)$ and $r\in R$ be arbitrary. There exist $a_x, a_y\in R$ such that $a_x x = a_y y = 0_M$; observe that because $R$ is an integral domain $a_xa_y$ is never $0_R$ and that \[(a_xa_y)(x+ry) = a_ya_xx + ra_xa_yy = 0 + 0 = 0,\] meaning $x+ry\in \Tor(M)$. Since $x,y,r$ were arbitrary it follows that $\Tor(M)$ is a submodule of $M$.
+      \end{proof}
+      \item Give an example of a ring $R$ and an $R$-module $M$ such that $\Tor(M)$ is not a submodule. [Consider the torsion elements in the $R$-module $R$.] 
+      
+      Take $R = \mathbb{Z}/6\mathbb{Z}$ as a left module over itself by left multiplication. Because $R$ has zero divisors, observe that for the torsion elements $2,3$ (as $2*3 = 6\equiv 0$) we have $2+3 = 5$, but $5$ is not a torsion element since it is coprime to $6$ (the only element which multiplies with $5$ to obtain a multiple of $6$ is $6 \equiv 0$ itself).
+      \item If $R$ has zero divisors show that every nonzero $R$-module has nonzero torsion elements. \begin{proof}
+        Suppose that $R$ is a (nonzero) ring with zero divisors; that is there exist nonzero elements $r,s \in R$ such that $sr = 0_R$. Let $M$ be any nonzero $R$-module and we find a nonzero torsion element: Let $m$ be any nonzero element of $M$, and if $m$ is a torsion element already then we are done.
+        
+        So suppose $m$ is not a torsion element, meaning that there are no nonzero elements $t\in R$ such that $tm = 0$. Then we consider the element $rm$, which will not be zero since $r\neq 0_R$ and $m$ is not a torsion element. We have $s(rm) = (sr)m = 0_Rm = 0$, and with $s\neq 0_R$ we have that $rm$ is a nonzero torsion element.
+      \end{proof}
+    \end{enumerate}
+    In these exercises $R$ is a ring with $1$ and $M$ is a left $R$-module.
+    \item Auxiliary result for next problem: (DF10.1.5) For any left ideal $I$ of $R$ define \[IM = \cbr{\sum_{\text{finite}}a_im_i\mid a_i\in I, m_i\in M}\] to be the collection of all finite sums of elements of the form $am$ where $a\in I$ and $m\in M$. Prove that $IM$ is a submodule of $M$. \begin{proof}
+      The element $0_M$ can be written as a finite sum of elements of the form $a0_M$ for $a\in I$; it follows that $IM$ is a nonempty subset of $M$. Let $x,y\in IM$ and $r\in R$ be arbitrary. We have that $x = \sum_{i=1}^j a_ix_i$ and $y = \sum_{i=1}^k b_iy_i$ (finite sums), and so \[x+ry = \sum_{i=1}^j a_ix_i + r\sum_{i=1}^k b_iy_i = \sum_{i=1}^j a_ix_i + \sum_{i=1}^k (rb_i)y_i.\] Because $I$ is a left ideal it follows that $rb_i\in I$ and so the resulting sum is a finite sum of elements in the desired form, so that $x+ry\in IM$. Since $x,y,r$ were arbitrary it follows that $IM$ is a submodule of $M$.
+    \end{proof}
+    \item (DF10.2.13) Let $I$ be a nilpotent ideal in a commutative ring (cf. Exercise 37, Section 7.3), let $M$ and $N$ be $R$-modules and let $\varphi\colon M\to N$ be an $R$-module homomorphism. Show that if the induced map $\overline{\varphi}\colon M/IM \to N/IN$ is surjective, then $\varphi$ is surjective. \begin{proof}
+      Since $\overline{\varphi}$ is surjective, for any $n\in N$ for the element $n + IN\in N/IN$ we can find a preimage $m+IM\in M/IM$ so that \[\overline{\varphi}(m+IM) = \varphi(m) + IN = n+IN,\] and we have from group theory that $n-\varphi(m)\in IN$, so that there exist $a_i\in I,n_i\in N, k\in \mathbb{Z}^+$ such that $n = \varphi(m) + \sum_{i = 1}^ka_in_i$ (i.e. $\sum_{i = 1}^ka_in_i$ is an element of $IN$). With $n$ arbitrary it follows that $N\subseteq \varphi(M) + IN  = \cbr{\varphi(m) + n^{\prime}\mid m\in M, n^{\prime}\in IN}\subseteq N$. It is clear that $\varphi(M) + IN \subseteq N$ since $IN,\varphi(M)$ are submodules of $N$, so it follows that $N = \varphi(M) + IN$. 
+
+      Since $I$ was a nilpotent ideal, it follows that there exists some $N\in \mathbb{Z}^+$ such that $I^N = \cbr{0_R}$. We also want to establish the containment \[A = I^j[\varphi(M) + IN] \subseteq I^j\varphi(M) + I^{j+1}N = B\] by double inclusion. Observe that any element of $A$ is a finite sum $\sum_i a_{ij}[\varphi(m) + \sum_k a_kn_k] =\sum_i [a_{ij}\varphi(m) + \sum_k a_{ij}a_kn_k]$ for $a_{ij}\in I^j$. Since $a_{ij}a_k\in I^{j+1}$ the containment $A\subseteq B$ holds.
+
+      Furthermore also observe that for any $k$, $I^k\varphi(M)\subseteq \varphi(M)$ since $\varphi(M)$ is a module (a submodule of $N$). 
+      
+      By repeatedly applying the equality $N = \varphi(M) + IN$ to itself $N$ times and using the previous facts we obtain \[N \subseteq \varphi(M) + I\varphi(M) + \cdots + I^{N-1}\varphi(M) + I^N N \subseteq \varphi(M).\] Since $\varphi(M)\subseteq N$, it follows that $\varphi(M) = N$; that is, $\varphi$ is surjective.
+    \end{proof}
+    \item (DF10.3.5) Let $R$ be an integral domain. Prove that every finitely generated torsion $R$-module has a nonzero annihilator i.e., there is a nonzero element $r\in R$ such that $rm = 0$ for all $m\in M$ --- here $r$ does not depend on $m$ (the annihilator of a module was defined in Exercise 9 of Section 1). Give an example of a torsion $R$-module whose annihilator is the zero ideal. \begin{proof}
+      Let $M$ be a finitely generated torsion $R$-module, so that there exists a finite subset $A = \cbr{a_1,a_2,\dots,a_n}$ of $M$ such that $M = RA = \cbr{\sum_{i=1}^nr_ia_i\mid r_i\in R, a_i\in A}$. We also have for every element $m\in M$, there exists a nonzero element $r_m\in R$ such that $r_mm = 0_M$ (here $r_m$ may depend on $m$). We seek to find a nonzero element $r\in R$ such that for \textit{any} element $m\in M$, $rm = 0_M$. 
+
+      Since $A\subseteq M$, for every element $a_i\in A$ there exists nonzero $r_{a_i}\in R$ such that $r_{a_i}a_i = 0_M$. Then consider the finite product $r = \prod_{i=1}^n r_{a_i} \in R$, and $r\neq 0_R$ since $R$ is an integral domain. For any $m\in M$, we have that $m = \sum_{i=1}^nr_ia_i$, and \[rm = r\sum_{i=1}^nr_ia_i = \sum_{i=1}^nr_i(ra_i) = 0_M\] since \[ra_j = \br{\prod_{\substack{i\neq j \\ 1\leq i \leq n}} r_{a_i}}(r_{a_j}a_j) = 0_M\quad \text{for}\quad 1\leq j\leq n.\] It follows that $M$ has a nonzero annihilator since $r$ is one such annihilator element.
+    \end{proof}
+
+    The finiteness was required to form the element $r$ found earlier. Before exhibiting an example of a torsion $R$-module we look at the definition of infinite direct products and sums modules. We state the definition given in Exercise 20 since it is a little easier to work with than the one given in class for the example I have in mind.
+    
+    (DF10.3.20 exposition) Let $I$ be a nonempty index set and for each $i\in I$ let $M_i$ be an $R$-module. The \textit{direct product} of the modules $M_i$ is defined to be their direct product as abelian groups (cf. Exercise 15 in Section 5.1) with the action of $R$ componentwise multiplication. The \textit{direct sum} of the modules $M_i$ is defined to be the restricted direct product of the abelian groups $M_i$ (cf. Exercise 17 in section 5.1) with the action of $R$ componentwise multiplication. In other words, the direct sum of the $M_i$'s is the subset of the direct product, $\prod_{i\in I}M_i$, which consists of all elements $\prod_{i\in I}m_i$ such that only finitely many of the components $m_i$ are nonzero (we saw in class the formulation of functions from the index set into the union of the modules with finite support); the action of $R$ on the direct product or direct sum is given by $r\prod_{i\in I}m_i = \prod_{i\in I}rm_i$ (cf. Appendix I for the definition of Cartesian products of infinitely many sets). The direct sum will be denoted $\bigoplus_{i\in I}M_i$. 
+
+    It follows that the direct product and sum are $R$-modules (we showed this in class), and the example I have in mind for a torsion $R$-module whose annihilator is the zero ideal is the direct product of $\mathbb{Z}$-modules $\mathbb{Z}/p\mathbb{Z}$ for every prime $p$ written as $M = \bigoplus_{p\text{ prime}}\mathbb{Z}/p\mathbb{Z}$. For any element $m\in M$ we can take $r_m$ to be the product of all the primes $p$ where the $\mathbb{Z}/p\mathbb{Z}$ component of $m$ is nonzero (so $r_m = \prod p_i$ where the $\mathbb{Z}/p_i\mathbb{Z}$ component of $m$ is nonzero). Then it follows that $r_mm = 0_M$ because then the resulting element in each $\mathbb{Z}/p\mathbb{Z}$ component is divisible by $p$ (true even for all of the components where zero appears). However, there are no ``universal'' nonzero integers $z$ such that $zm = 0_M$ for every $m\in M$ since that would require $z$ to be divisible by every prime number (so $z$ would have to be zero). It follows that the annihilator of $M$ is the zero ideal.
+
+    We could have used the direct sum of $\mathbb{Z}/n\mathbb{Z}$ for $n\geq 2$ ($\mathbb{Z}/1\mathbb{Z}$ is trivial) and so to show that every element $m$ has torsion we choose $r_m$ to be the least common multiple of the integers $n$ where the $\mathbb{Z}/n\mathbb{Z}$ component is nonzero and a similar result follows (the least common multiple of a set of coprime numbers is easy to compute).
+    \item Auxiliary result for next problem: (DF10.3.9) An $R$-module $M$ is called \textit{irreducible} if $M\neq 0$ and if $0$ and $M$ are the only submodules of $M$. Show that $M$ is irreducible if and only if $M\neq 0$ and $M$ is a cyclic module with any nonzero element as generator. \begin{proof}
+      Suppose that $M$ is irreducible. Then we consider the submodule generated by any nonzero element $a\in M$, given by $Ra = \cbr{ra\mid r\in R}$. Since $R$ has a $1$, it follows that $Ra$ contains $a$ and so is nonempty. But the only nonempty submodule of $M$ is $M$ itself so $M = Ra$. Since $a$ was arbitrary, it follows that $M$ is a cyclic module with any nonzero element as generator.
+
+      Conversely, suppose that $M$ is a nonzero module which is equal to $Ra$ for any nonzero $a\in M$, so take one such $a$. For any nonzero submodule $N$ of $Ra$ we can find a nonzero element $b\in N$ and it follows that $M = Rb$, but $Rb\subseteq N$ so that $N = M$. Hence $M$ has no nonzero submodules outside of itself.
+    \end{proof}
+    \item (DF10.3.11) Show that if $M_1$ and $M_2$ are irreducible $R$-modules, then any nonzero $R$-module homomorphism from $M_1$ to $M_2$ is an isomorphism. Deduce that if $M$ is irreducible then $\End_R(M)$ is a division ring (this result is called \textit{Schur's Lemma}). [Consider the kernel and the image.] \begin{proof}
+      Let $\varphi\colon M_1\to M_2$ be any nonzero $R$-module homomorphism. It follows that there exists $m_1\neq 0_{M_1}$ in $M_1$ such that $\varphi(m_1)$ is not $0_{M_2}$ (there is at least one nonzero element not in $\ker{\varphi}$).
+
+      Since $M_1$ is an irreducible $R$-module, we have from previous results that $M_1 = Rm_1$. Since $M_1$ is generated by $m_1$, it follows that $\varphi$ is completely determined by its action on $m_1$.
+
+      We show that $\varphi$ is injective by the trivial kernel characterization. Since $\ker\varphi$ is a submodule of $M_1$, it is either $M_1$ itself or zero. But $\ker\varphi$ cannot be $M_1$ since $\varphi$ is a nonzero homomorphism, so $\ker\varphi$ must be trivial. Hence $\varphi$ is injective.
+      
+      We show that $\varphi$ is surjective by observing that $\varphi(m_1)$ is nonzero so that because $M_2$ is irreducible, $M_2 = R\varphi(m_1)$. So every element of $M_2$ may be expressed as $r\varphi(m_1) = \varphi(rm_1)$ for some $r\in R$, where the equality holds because $\varphi$ is an $R$-module homomorphism. So preimages of any element in $M_2$ are in the form $rm_1$ for some $r\in R$, but $M_1 = Rm_1$. It follows that $\varphi$ is surjective (every element in $M_2$ has a preimage in $M_1 = Rm_1$). Alternatively, the image of $\varphi$ is a submodule of $M_2$ and we have seen that it is nonzero since $\varphi(m_1)$ is nonzero, so that by irreducibility of $M_2$ it follows that the image is all of $M_2$.
+
+      It follows that $\varphi$ is an isomorphism. 
+
+      If $M$ is an irreducible $R$-module then $\End_R(M)$ becomes the ring of all $R$-module autormorphisms of $M$ and the zero map due to the previous result. Any nonzero map in $\End_R(M)$ is an automorphism of $M$ which has an inverse map, which is also an autormorphism of $M$. It follows that $\End_R(M)$ is a division ring since it contains an identity, the (nonzero) identity map on $M$, and all nonzero elements have inverses under the ring multiplication (which is composition).
+    \end{proof}
+\end{enumerate}
+\end{document}

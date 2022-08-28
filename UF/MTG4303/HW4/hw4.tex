@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4303}
+\fancyhead[C]{HW 4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+
+\newtheorem*{definition}{Definition}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Assume $X$ is path connected. \begin{enumerate}
+        \item If $\phi\colon\pi_1(X,x_0)\to \pi_1(X,x_1)$ is an isomorphism show that it induces an isomorphism \[\phi^{\prime}\colon \pi_1(X,x_0)/[\pi_1(X,x_0),\pi_1(X,x_0)]\to \pi_1(X,x_1)/[\pi_1(X,x_1),\pi_1(X,x_1)].\]\begin{proof}
+            Define the map $\phi^{\prime}$ by \[a [\pi_1(X,x_0),\pi_1(X,x_0)]\mapsto \phi(a) [\pi_1(X,x_1),\pi_1(X,x_1)].\] Since $a\in \pi_1(X,x_0)$ is arbitrary, it follows that this induced map is surjective. Since $\phi$ is a group homomorphism and the multiplication of cosets is well defined in $\pi_1(X,x_1)/[\pi_1(X,x_1),\pi_1(X,x_1)]$, it follows that $\phi^{\prime}$ is also a group homomorphism; that is, \begin{multline*}
+                (ab) [\pi_1(X,x_0),\pi_1(X,x_0)]\mapsto \phi(ab)  [\pi_1(X,x_1),\pi_1(X,x_1)] = \phi(a)\phi(b)[\pi_1(X,x_1),\pi_1(X,x_1)]\\ = (\phi(a) [\pi_1(X,x_1),\pi_1(X,x_1)])(\phi(b) [\pi_1(X,x_1),\pi_1(X,x_1)]).
+            \end{multline*}
+            To show the induced map is injective we can show that its kernel is trivial. Suppose that \[a [\pi_1(X,x_0),\pi_1(X,x_0)]\mapsto \phi(a) [\pi_1(X,x_1),\pi_1(X,x_1)]=0[\pi_1(X,x_1),\pi_1(X,x_1)];\] that is, $\phi(a)\in [\pi_1(X,x_1),\pi_1(X,x_1)]$. So $\phi(a)$ is given by a finite product of commutators of the form $[c,d] = cdc^{-1}d^{-1}$ for $c,d\in \pi_1(X,x_1)$. Since $\phi$ is an isomorphism, it follows that $a$ must also be in the form of commutators $[\phi^{-1}(c),\phi^{-1}(d)] = \phi^{-1}(c)\phi^{-1}(d)\phi^{-1}(c)^{-1}\phi^{-1}(d)^{-1}$ for $\phi^{-1}(c), \phi^{-1}(d)\in \pi_1(X,x_0)$. Thus $a\in [\pi_1(X,x_0),\pi_1(X,x_0)]$, meaning that $a [\pi_1(X,x_0),\pi_1(X,x_0)]$ is the zero element in the quotient group. Hence the kernel of the induced map is trivial, meaning the induced map is injective.
+
+            It follows that $\phi^{\prime}$ is an isomorphism of groups.
+        \end{proof}
+        \item Recall that for a path $\alpha$ from $x_0$ to $x_1$ the induced isomorphism on fundamental groups is denoted $\hat{\alpha}$. For any two paths $\alpha,\beta$ from $x_0$ to $x_1$ show that the induced maps on the Abelianizations are the same, i.e., $\hat{\alpha}^{\prime} = \hat{\beta}^{\prime}$. \begin{proof}
+            Observe that the composition of isomorphisms $f,g$ is an isomorphism $f\circ g$, and that its induced map $(f\circ g)^{\prime}$ is the composition of the maps induced by each isomorphism individually, $f^{\prime}\circ g^{\prime}$ (using the above the above construction for the induced map, it is easy to see this). It is also straightforward to see that for some invertible $f$, the induced map of $f^{-1}$ is the inverse of $f^{\prime}$.
+            
+            Let $g = \alpha\ast \overline{\beta}$. With $\hat{g} = \widehat{\alpha\ast \overline{\beta}} = \hat{\overline{\beta}}\circ \hat{\alpha} = \hat{\beta}^{-1}\circ \hat{\alpha}$, it follows that $\hat{g}^{\prime} = (\hat{\beta}^{-1}\circ \hat{\alpha})^{\prime} = (\hat{\beta}^{-1})^{\prime}\circ \hat{\alpha}^{\prime} = (\hat{\beta}^{\prime})^{-1}\circ \hat{\alpha}^{\prime}$. Then we show that $\hat{g}^{\prime}$ is the identity map on $\pi_1(X,x_0)/[\pi_1(X,x_0),\pi_1(X,x_0)]$: \begin{align*}
+                f[\pi_1(X,x_0),\pi_1(X,x_0)]\mapsto \hat{g}(f)[\pi_1(X,x_0),\pi_1(X,x_0)] &= (g^{-1}fg)[\pi_1(X,x_0),\pi_1(X,x_0)]\\
+                &=(fgg^{-1})[\pi_1(X,x_0),\pi_1(X,x_0)]\\
+                &= f[\pi_1(X,x_0),\pi_1(X,x_0)],
+            \end{align*} since the quotient group is Abelian. It follows that $(\hat{\beta}^{\prime})^{-1}\circ \hat{\alpha}^{\prime} = \hat{g}^{\prime} = \id_{\pi_1(X,x_0)/[\pi_1(X,x_0),\pi_1(X,x_0)]}$ so that $\hat{\alpha}^{\prime} = \hat{\beta}^{\prime}$ as desired.
+        \end{proof}
+    \end{enumerate}
+    \item Given an equivalence relation on $X$ let $Y = X/\!\!\sim$ with the quotient topology and quotient map $p\colon X\to Y$. Let $Z$ be a topological space and $g\colon X\to Z$ a map that is constant on each set $p^{-1}(y)$. \begin{enumerate}
+        \item Show that there exists a map $f\colon Y\to Z$ so that $f\circ p  = g$. \begin{proof}
+            Choose $f\colon Y\to Z$ such that $f(y) = g(x_y)$, where $x_y$ is some fixed element of $p^{-1}(y)$. We can choose $x_y$ for each $y\in Y$ via the Axiom of Choice, and if we have a selection for each $y$ we can construct $f$ explicitly. Then to see that $f$ satisfies $f\circ p = g$, we have for any $x\in X$ that $f(p(x)) = g(x_{p(x)})$. But $x_{p(x)}$ is an element of $p^{-1}(p(x))$, which also contains $x$. But $g$ is constant on each set $p^{-1}(y)$ for each $y\in Y$, and since $x_{p(x)},x\in p^{-1}(p(x))$, we have that $f(p(x)) = g(x_{p(x)}) = g(x)$. Since $x$ was arbitrary, it follows that $f\circ p = g$, and we have constructed one of potentially many functions $f$ which satisfy that property.
+        \end{proof}
+        \item Show that $f$ is continuous if and only if $g$ is continuous. \begin{proof}
+            Suppose that $f$ is continuous. Then observe that the quotient map $p$ is automatically continuous because the open sets $V$ in $Y$ are those sets such that $p^{-1}(V)$ is open in $X$. So preimages of open sets in $Y$ under $p$ are indeed open sets in $X$. Then the composition of continuous maps is continuous so that $g = f\circ p$ is continuous also.
+
+            Suppose that $g$ is continuous. We show that preimages of open sets in $Z$ under $f$ are open in $Y$. Since $g$ is continuous, for any open set $U$ of $Z$, the set $g^{-1}(U)$ is open in $X$. But $g^{-1}(U) = (p^{-1}\circ f^{-1})(U) = p^{-1}(f^{-1}(U))$, and since this set is open by the definition of the quotient topology, we must have that $f^{-1}(U)$ is open in $Y$. This means that the preimage of $U$ under $f$ is open in $Y$. Since $U$ was arbitrary, it follows that $f$ is continuous.
+        \end{proof}
+    \end{enumerate}
+    \item If $M$ is a compact surface, show that $\pi_1(M\#S^2)\cong \pi_1(M)$.\begin{proof}
+        Since $M$ is a compact surface, we know from the classification theorem that $M$ is homeomorphic to the connected sum of certain spaces (orientable spaces are the connected sum of $n$-tori for some $n$, its genus, or a sphere; non-orientable spaces are homeomorphic to the connected sum of projective planes or the connected sum of tori and a projective plane or a Klein bottle). In any case, this means that we can find some suitable labeled polygonal space $P$ which is homeomorphic to $M$. Let $a_1,\dots,a_n$ be the letters which form the word $W$ for which we quotient by in the way we do for labeled polygonal spaces (so $P/W$ is homeomorphic to $M$). Then we use SVK:\vspace*{30em} 
+    \end{proof}
+    \item \begin{enumerate}
+        \item For each $n>1$, construct a space $X$ with $\pi_1(X)\cong \mathbb{Z}/n\mathbb{Z}$.
+        
+        Take the filled in $n$-gon with the labeling scheme $a,a,\dots,a$ ($n$ times so each edge is labeled this way). Then it follows from the theorem for labeled polygonal spaces that the fundamental group of this space is given by the presentation $\abr{a\mid a^n}$, which is isomorphic to $\mathbb{Z}/n\mathbb{Z}$.
+        \item Construct a space $X$ with $\pi_1(X)\cong \mathbb{Z}/3\mathbb{Z}\ast \mathbb{Z}/5\mathbb{Z}$.
+        
+        Let $X$ be the filled in triangle with labeling scheme $aaa$, and $Y$ be the filled in pentagon with labeling scheme $bbbbb$. Then the space where $X$ is joined to $Y$ at an interior point (wedge product of spaces) has fundamental group $\mathbb{Z}/3\mathbb{Z}\ast \mathbb{Z}/5\mathbb{Z}$. We can see this by using SVK: \vspace*{30em} 
+    \end{enumerate}
+    \item Consider the octagon with labeling $abcda^{-1}b^{-1}c^{-1}d^{-1}$.\begin{enumerate}
+        \item Show that identifying the edges according to the labeling yields a compact surface.
+        \item What surface is it? (be sure to prove your result).
+    \end{enumerate}
+    \newpage
+    $\!$
+    \newpage
+    $\!$
+\end{enumerate}
+\end{document}

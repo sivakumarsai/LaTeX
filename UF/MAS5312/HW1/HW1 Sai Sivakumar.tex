@@ -103,7 +103,7 @@
             Hence $\overline{a}\in\mathbb{Z}/n\mathbb{Z}$ is nilpotent if and only if every prime divisor of $n$ is also a divisor of $a$.
         \end{proof}
 
-        In $\mathbb{Z}/72\mathbb{Z} = \mathbb{Z}/2^33^2\mathbb{Z}$ it follows that every nilpotent element is of the form $\overline{2^i3^ja}$ for positive integers $i,j, a$, since $2$ and $3$ divide $2^i3^j$. Explicitly, these are the elements whose integer representative is even and divisible by three: 
+        In $\mathbb{Z}/72\mathbb{Z} = \mathbb{Z}/2^33^2\mathbb{Z}$ it follows that every nilpotent element is of the form $\overline{2^i3^ja}$ for positive integers $i,j, a$, since $2$ and $3$ divide $2^i3^j$. Explicitly, these are the elements whose integer representative is even and divisible by three; i.e., a multiple of 6: 
         \[
             \overline{0}, \overline{6}, \overline{12}, \overline{18}, \overline{24}, \overline{30}, \overline{36}, \overline{42}, \overline{48}, \overline{54}, \overline{60}, \overline{66}
         \]
@@ -158,10 +158,58 @@
 
             The multiplicative identity in this ring is the subset $X$, since for any subset $A$ of $X$, we have $A\times X = A\cap X = A = X\cap A = X\times A$.
 
-            Then for any subset $A$ of $X$, we have $A^2 = A\times A = A$, from which it follows that $\mathcal{P}(X)$ is a Boolean ring.
+            Then for any subset $A$ of $X$, we have $A^2 = A\times A = A\cap A = A$, from which it follows that $\mathcal{P}(X)$ is a Boolean ring.
         \end{proof}
     \end{enumerate}
-    \item (DF7.1.23)
-    \item (DF7.1.25)
+    \item (DF7.1.23) Let $D$ be a squarefree integer, and let $\mathcal{O}$ be the ring of integers in the quadratic field $\mathbb{Q}(\sqrt{D})$. For any positive integer $f$ prove that the set $\mathcal{O}_f = \mathbb{Z}[f\omega] = \cbr{a+bf\omega\mid a, b\in\mathbb{Z}}$ is a subring of $\mathcal{O}$ containing the identity. Prove that $[\mathcal{O}\colon\mathcal{O}_f] = f$ (index as additive abelian groups). Prove conversely that a subring of $\mathcal{O}$ containing the identity and having finite index $f$ in $\mathcal{O}$ (as additive abelian groups) is equal to $\mathcal{O}_f$. (The ring $\mathcal{O}_f$ is called the \textit{order of conductor} $f$ in the field $\mathbb{Q}(\sqrt{D})$. The ring of integers $\mathcal{O}$ is called the \textit{maximal order} in $\mathbb{Q}(\sqrt{D})$.)
+    \begin{proof}
+        Let $\mathcal{O}_f$ be as given. It is clear that $\mathcal{O}_f$ is a nonempty subset of $\mathcal{O}$ because $f$ is an integer. We check that this subset is closed under subtraction and multiplication:
+
+        For integers $a,b,c,d$ we have $(a+bf\omega) - (c+df\omega) = (a-c) + (b-d)f\omega$, which is clearly an element of $\mathcal{O}_f$. Similarly, $(a+bf\omega)(c+df\omega) = ac + (ad+bc)f\omega + bdf^2\omega^2$, where \[\omega^2 = \begin{cases}
+            D & \text{if $D\not\equiv 1 \pmod 4$}\\
+            \br{\frac{D-1}{4}} + \omega & \text{if $D\equiv 1 \pmod 4$},
+        \end{cases}\] and in either case we have an element of $\mathcal{O}_f$ (when $D\equiv 1 \pmod 4$ the product is the element $(ac + bdf^2(D-1)/4) + (ad+bc+bdf)f\omega $).
+
+        Hence $\mathcal{O}_f$ is a subring of $\mathcal{O}$, and it also inherits the same $1 = 1 + 0f\omega$ from $\mathcal{O}$ which behaves the same way: $1(a+bf\omega) = (a+bf\omega)1 = a+bf\omega$.
+
+        To show that the index of $\mathcal{O}_f$ in $\mathcal{O}$ is $f$, we use the group homomorphism given by projection onto $\mathbb{Z}/f\mathbb{Z}$ which maps $a+bf\omega$ to $\overline{b}$. Since $b$ was an arbitary integer, this map is surjective. We check that this map is a group homomorphism: For integers $a,b,c,d$ we have \[(a+bf\omega) + (c+df\omega) = (a+c) + (b+d)f\omega \mapsto \overline{(b+d)} = \overline{b} + \overline{d},\] where in the last equality the addition inside of the parenthesis is the addition in $\mathbb{Z}$ and the addition on the right hand side is the addition in $\mathbb{Z}/f\mathbb{Z}$. The kernel of this homomorphism is $\mathcal{O}_f$ (it is clear that elements of $\mathcal{O}_f$ are mapped to $\overline{0}$): For integers $a,b$, asserting the element $a+b\omega$ is in the kernel is equivalent to saying that $f$ divides $b$, meaning $a+b\omega = a+b^{\prime}f\omega$ where $b^{\prime}$ is the quotient $b/f$. Since $b$ was arbitrary, $b^{\prime}$ is also arbitrary.
+
+        Thus by the first isomorphism theorem for groups we have \[[\mathcal{O}\colon \mathcal{O}_f] = \abs{\mathbb{Z}/f\mathbb{Z}} = f.\]
+
+        Suppose that we are given a subring $\mathcal{O}^{\prime}$ of $\mathcal{O}$ of index $f$, containing $1$. Since $\mathcal{O}^{\prime}$ is closed under addition, $\mathbb{Z}$ is contained in $\mathcal{O}^{\prime}$, so that for any integer $a$, the quantity $(f-1)a$ is an element of $\mathcal{O}^{\prime}$. 
+
+        We have that the quotient group $\mathcal{O}/\mathcal{O}^{\prime}$ has order $f$, so that for any element $a+b\omega$ of $\mathcal{O}$, the coset $f(a+b\omega) + \mathcal{O}^{\prime}$ (where $f(a+b\omega)$ denotes the $f$-fold sum given by $af + bf\omega$) is equivalent to the coset $\mathcal{O}^{\prime}$. Furthermore, since $(f-1)a\in\mathcal{O}^{\prime}$, it follows that $(af + bf\omega) +\mathcal{O}^{\prime} = ((f-1)a + 0f\omega) + \mathcal{O}^{\prime}$, which is equivalent to saying that \[(af + bf\omega) - ((f-1)a + 0f\omega) = a+bf\omega \in \mathcal{O}^{\prime n}.\] Since $a,b$ were arbitrary, it follows that $\mathcal{O}_f$ is contained in $\mathcal{O}^{\prime}$. Then \[f = [\mathcal{O}\colon\mathcal{O}^{\prime}] = [\mathcal{O}\colon\mathcal{O}_f][\mathcal{O}_f\colon \mathcal{O}^{\prime}] = f [\mathcal{O}_f\colon \mathcal{O}^{\prime}],\] so that $[\mathcal{O}_f\colon \mathcal{O}^{\prime}] = 1$ and so $\mathcal{O}^{\prime} = \mathcal{O}_f$. Hence any subring of $\mathcal{O}$ containing the identity and having finite index $f$ in $\mathcal{O}$ is equal to $\mathcal{O}_f$.
+    \end{proof}
+    \item (DF7.1.25) Let $I$ be the ring of integral Hamilton Quaternions and define \[N\colon I\to \mathbb{Z}\quad \text{by} \quad N(a+bi+cj+dk) = a^2 + b^2 + c^2 + d^2\](the map $N$ is called a \textit{norm}).\begin{enumerate}[label=\textbf{(\alph*)}]
+        \item Prove that $N(\alpha) = \alpha\overline{\alpha}$ for all $\alpha\in I$, where if $\alpha = a+bi+cj+dk$ then $\overline{\alpha} = a-bi-cj-dk$.
+        \item Prove that $N(\alpha\beta) = N(\alpha)N(\beta)$ for all $\alpha, \beta \in I$.
+        \item Prove that an element of $I$ is a unit if and only if it has norm $+1$. Show that $I^{\times}$ is isomorphic to the quaternion group of order $8$. [The inverse in the ring of rational quaternions of a nonzero element $\alpha$ is $\overline{\alpha}/N(\alpha)$.]
+    \end{enumerate}
+    \begin{proof}
+        Let $I$ be the ring of integral Hamilton Quaternions as given and define $N\colon I\to \mathbb{Z}$ as above. Then for any integral quaternion $\alpha = a+bi+cj+dk$, we have \begin{align*}
+            \alpha\overline{\alpha} = (a+bi+cj+dk)(a-bi-cj-dk) &= (a^2+b^2+c^2+d^2)\\ &\hspace*{1cm}+ (-ab+ab-cd+cd)i\\ &\hspace*{1cm}+(-ac+ac-bd+bd)j \\ &\hspace*{1cm}+(-ad+ad-bc+bc)k\\
+            &= a^2+b^2+c^2+d^2\\
+            &= N(\alpha).
+        \end{align*}
+        The function $N$ is also multiplicative. Given any two integral quaternions $\alpha = a+bi+cj+dk$ and $\beta = e + fi + gj + hk$, we have $\alpha\beta = (ae-bf-cg-dh) + (af+be+ch-dg)i + (ag+ce+df-bh)j+ (ah+de+bg-cf)k$. Then (with many cancellations between the first equality and the second equality), we have\begin{align*}
+            N(\alpha\beta) &= (ae-bf-cg-dh)^2\\ &\hspace*{1cm}+ (af+be+ch-dg)^2 \\ &\hspace*{1cm}+ (ag+ce+df-bh)^2 \\ &\hspace*{1cm}+ (ah+de+bg-cf)^2\\
+            &= a^2e^2+b^2f^2+c^2g^2+d^2h^2 \\ &\hspace*{1cm}+ a^2f^2+b^2e^2+c^2h^2+d^2g^2 \\ &\hspace*{1cm}+a^2g^2+c^2e^2+d^2f^2+b^2h^2 \\ &\hspace*{1cm}+ a^2h^2+d^2e^2+b^2g^2+c^2f^2\\
+            &= (a^2+b^2+c^2+d^2)(e^2+f^2+g^2+f^2)\\
+            &= N(\alpha)N(\beta).
+        \end{align*}
+
+        An integral quaternion is a unit if and only if its norm is $1$. If a quaternion $\alpha$ is a unit then it has an inverse $\alpha^{-1}$ with $\alpha\alpha^{-1} = \alpha^{-1}\alpha = 1$. Then $N(1) = N(\alpha\alpha^{-1}) = N(\alpha)N(\alpha^{-1})$, so that $N(\alpha) = N\alpha^{-1} = \pm 1$ (they both need to have the same sign). But $N(\alpha)$ and $N(\alpha^{-1})$ are sums of squared integers, meaning that their values are necessarily positive. This forces $N(\alpha) = N(\alpha^{-1}) = 1$, which means that units have a norm of $1$.
+
+        If an integral quaternion $\alpha = a+bi+cj+dk$ has a norm of $1$, we have that $a^2+b^2+c^2+d^2 = 1$. In the integers, there are only eight solutions, which we write as tuples $(a,b,c,d)$: \[(\pm1, 0,0,0), (0,\pm1, 0,0), (0,0,\pm1, 0), (0,0,0, \pm1).\] Any other combination of integers will not satisfy the equality $a^2+b^2+c^2+d^2 = 1$. The corresponding integral quaternions (suppressing the zero-coefficient terms in each one) which have a norm of $1$ are \[\pm 1, \pm i, \pm j, \pm k,\] and these are units (observe that we multiply by the conjugate to obtain a multiplicative inverse): \[1 = (1)(1) = i(-i) = (-i)i = j(-j) = (-j)j = k(-k) = (-k)k.\]
+
+        Hence the units of the integral quaternions are those with norm $1$.
+        
+        It follows that these eight units form a group under multiplication, $I^{\times}$, which is isomorphic to $Q_8$. The isomorphism needed is just the relabeling \begin{align*}
+            \pm 1 + 0i+0j+0k &\mapsto \pm 1\\
+            0+ \pm i + 0j+0k &\mapsto \pm i\\
+            0+ 0i+ \pm j +0k &\mapsto \pm j\\
+            0+ 0i+0j + \pm k &\mapsto \pm k,
+        \end{align*} which is an isomorphism because these units as a group obey the same multiplication rule as $Q_8$ due to the multiplication on the integral Hamilton Quaternions being defined in the same manner (meaning the multiplication tables are identical under the relabeling given above).
+    \end{proof}
 \end{enumerate}
 \end{document}

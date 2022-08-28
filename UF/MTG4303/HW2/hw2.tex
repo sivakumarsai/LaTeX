@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4303}
+\fancyhead[C]{HW 2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (54.3) Let $p\colon E\to B$ be a covering map. Let $\alpha$ and $\beta$ be paths in $B$ with $\alpha(1) = \beta(0)$; let $\tilde{\alpha}$ and $\tilde{\beta}$ be liftings of them such that $\tilde{\alpha}(1) = \tilde{\beta}(0)$. Show that $\tilde{\alpha}\ast \tilde{\beta}$ is a lifting of $\alpha\ast\beta$.
+    \begin{proof}
+      We check that $p\circ (\tilde{\alpha}\ast\tilde{\beta}) = \alpha\ast\beta$. For any $x\in I$, we have that \[(p\circ (\tilde{\alpha}\ast\tilde{\beta}))(x) = p((\tilde{\alpha}\ast\tilde{\beta})(x)) = \begin{cases}
+        p(\tilde{\alpha}(2x)) = \alpha(2x) & \text{if $x\in [0,1/2]$}\\
+        p(\tilde{\beta}(2x-1)) = \beta(2x-1) & \text{if $x\in [1/2,1]$}
+      \end{cases} = (\alpha\ast\beta)(x),\] and observe that the last equality holds by definition of $\alpha,\beta$ and the fact that $\tilde{\alpha}(1) = \tilde{\beta}(0)$.
+    \end{proof}
+    \item (54.6) Consider the maps $g,h\colon S^1\to S^1$ given $g(z) = z^n$ and $h(z) = 1/z^n$. (Here we represent $S^1$ as the set of complex numbers $z$ of absolute value $1$.) Compute the induced homomorphisms $g_\ast, h_\ast$ of the infinite cyclic group $\pi_1(S^1,b_0)$ into itself. [\textit{Hint:} Recall the equation $(\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta$]
+    \begin{proof} Without loss of generality take $b_0 = 1$.
+
+
+      Since the fundamental group of the circle is the infinite cyclic group, we only need to determine the action of the maps $g,h$ (which are continuous because they are continuous maps of $\mathbb{C}$) on a generator of the fundamental group.
+      
+      Take the positive (counterclockwise) class $a\in \pi_1(S^1,b_0)$ represented by the curve $\exp(2\pi i t)$ for $t\in I$ (this is one generator of the fundamental group). Then the action of $g$ on $a$ returns the class $a^{\prime}$ represented by the curve $\exp(2\pi i nt)$. With $n$ being a positive integer, it means that the resulting loop is the loop with winding number $n$ (this comes from the formula $(\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta$, which means the frequency of our loop has become $n$-times as much) -- we check this by using a lift of the loop. 
+      
+      Let $p\colon \mathbb{R}\to S^1$ be a covering map given by $p(t) = \exp(2\pi i t)$. By lifting the loop $a^{\prime}$, we obtain a path in $\mathbb{R}$ starting from $0$ and ending at $n$ (i.e. the path $f(t) = nt$ for $t\in I$, and $(p\circ f)(t) = \exp(2\pi i n t)$), meaning the winding number is indeed $n$ as desired ($f(1) = n$). This means that the resulting loop $a^{\prime}$ is homotopic to $a^n$, where exponentiation here means to take the path product $n$ times. It follows that the induced homomorphism of $g$ on the fundamental group is the one sending any class $a$ to $a^n$.
+
+      Similarly, observe that the action of $h$ on $a$ returns the class $a^{-1\prime}$ represented by the curve $\exp(2\pi i (-n)t )$. Observe that this loops goes in the opposite direction and thus has a winding number of $-n$. We check this with the same covering map as before. Lifting $a^{-1\prime}$ to a path in $\mathbb{R}$, we obtain the path from $0$ to $-n$ (i.e. a path $f(t) = -nt$ and $(p\circ f)(t) = \exp(2\pi i (-n) t)$ as desired), so that the winding number is $-n$ ($f(1) = -n$). It follows that $a^{-1\prime}$ is homotopic to $a^{-n} = (a^{-1})^n$, where $a^{-1}$ is the other generator of the fundamental group, the reverse of $a$.
+    \end{proof}
+    \item (54.7) Generalize the proof of Theorem 54.5 to show that the fundamental group of the torus is isomorphic to the group $\mathbb{Z}\times\mathbb{Z}$.
+    \begin{proof}
+      Let $p\colon \mathbb{R}^2\to S^1\times S^1$ be the covering map given by $p(t_1,t_2) = (\exp(2\pi i t_1),\exp(2\pi i t_2))$, and let $e_0 = (0,0)$, $b_0 = p(e_0) = (1,1)$. It follows from the component maps of $p$ being periodic in the integers that $p^{-1}(b_0) = \mathbb{Z}\times \mathbb{Z}$. Since $\mathbb{R}^2$ is simply connected, the lifting correspondence \[\phi\colon \pi_1(S^1\times S^1, b_0)\to \mathbb{Z}\times\mathbb{Z}\] is a bijection. What remains is to check that the correspondence is a homomorphism.
+
+      Let $[f]$ and $[g]$ be elements of $\pi_1(S^1\times S^1,b_0)$, and let $\tilde{f},\tilde{g}$ be their respective liftings to paths in $\mathbb{R}^2$ beginning at $e_0$. Let $(n_1,n_2) = \tilde{f}(1)$ and $(m_1,m_2) = \tilde{g}(1)$; then $\phi([f]) = (n_1,n_2)$ and $\phi([g]) = (m_1,m_2)$. Then define a path $\tilde{\tilde{g}}$ in $\mathbb{R}^2$ by $\tilde{\tilde{g}}(t) = (n_1,n_2) + \tilde{g}(t)$. 
+
+      Because the component maps of $p$ are periodic in the integers, we have that $\tilde{\tilde{g}}$ is a lifting of $g$, but beginning at $n$. By the pasting lemma it follows that $\tilde{f}\ast\tilde{g}$ is defined and is a valid lifting of $f\ast g$ (by the first exercise) beginning at $0$ and ending at $(n_1+m_1,n_2+m_2)$. It follows that \[\phi([f]\ast[g]) = (n_1+m_1,n_2+m_2) = (n_1,n_2) + (m_1,m_2) = \phi([f]) + \phi([g]).\] Hence $\phi$ is an isomorphism as desired and the fundamental group of the torus is isomorphic to $\mathbb{Z}\times\mathbb{Z}$.
+    \end{proof}
+    \item (55.1) Show that if $A$ is a retract of $B^2$, then every continuous map $f\colon A\to A$ has a fixed point.
+    \begin{proof}
+      Since $A$ is a retract of $B^2$, we can extend any continuous map $f\colon A\to A$ to a continuous function $g = \iota\circ f\circ r \colon B^2\to B^2$, where $r \colon X\to A$ is a retraction of $X$ onto $A$ and $\iota \colon A \to B^2$ is the inclusion map. Note that $g(a) = f(a)$ for all $a\in A$ since $r$ is a retraction.
+
+      Since $g$ is a continuous map on $B^2$ to itself, it follows from the Brouwer fixed point theorem that there exists an $x\in B^2$ which is fixed by $g$. We claim that $x\in A$. If $x\in B^2\setminus A$, the retraction $r$ must send $x$ to a point in $A$, which makes it impossible for $x$ to be fixed. Hence $x\in A$, and so by restriction $f = g|_A$ has a fixed point.
+    \end{proof}
+    \item (55.2) Show that if $h\colon S^1\to S^1$ is nulhomotopic, then $h$ has a fixed point and $h$ maps some point $x$ to its antipode $-x$.
+    \begin{proof}
+      By the lemma in the text, the nulhomotopic map $h$ extends to a continuous map $k\colon B^2\to S^1$; it follows that $g = \iota\circ k\colon B^2\to B^2$ is a continuous map ($\iota$ is the inclusion map from $S^1$ to $B^2$.). Thus $g$ has a fixed point $x$, and we claim that $x$ is fixed by $h$. Note that in the construction of $k$, we have that $k|_{S^1} = h$.
+
+      We show that $x\in S^1$. If $x\in B^2\setminus S^1$, then by $k$ it will first be mapped into a point in $S^1$, making it impossible for $x$ to be a fixed point of $g$. Hence $x\in S^1$, so that $g|_{S^1} = \iota \circ k|_{S^1}$ has a fixed point. Since $\iota$ fixes all points of $S^1$, it follows that $k|_{S^1}$ must fix $x$, meaning $h$ fixes $x$.
+
+      To show that $h$ maps a point $y$ to its antipode $-y$, we can show that the composition $a\circ h$, where $a$ is the antipode map which sends $x$ to $-x$ (this map is continuous since this map is continuous in $\mathbb{C}$), has a fixed point. If such a fixed point $y$ exists for $a\circ h$, then $y = (a\circ h)(y) = a(h(y)) = -h(y)$ which implies that $h(y) = -y$.
+
+      It is sufficient to show that $a\circ h$ is homotopic to $h$ itself: Let $H \colon S^1\times I\to S^1$ be the homotopy given by $H(x,t) = \exp(\pi i t)h(x)$ (continuous since product of continuous maps are continuous), where $H(x,0) = h(x)$ and $H(x,1) = -h(x) = (a\circ h)(x)$. Then since $h$ is nulhomotopic, it follows $a\circ h$ is nulhomotopic as well so that it has a fixed point $y$. Hence $h(y) = -y$, so that $h$ maps a point to its antipode.
+    \end{proof}
+    \item (57.2) Show that if $g\colon S^2\to S^2$ is continuous and $g(x)\neq g(-x)$ for all $x$, then $g$ is surjective. [\textit{Hint:} If $p\in S^2$, then $S^2 - \{p\}$ is homeomorphic to $\mathbb{R}^2$.]
+    \begin{proof}
+      By way of contradiction, suppose $g$ is not surjective so that there exists some point $p\in S^2$ which does not have a preimage under $g$. Then $g$ is equivalent to a continuous function $g^{\prime}\colon S^2\to S^2-\{p\}$ defined by $g^{\prime}(x) = g(x)$ for all $x\in S^2$. Note that $g^{\prime}$ inherits from $g$ the property that for any $x\in S^2$, we have $g^{\prime}(x)\neq g^{\prime}(-x)$.
+
+      But because $S^2-\{p\}$ is homeomorphic to $\mathbb{R}^2$, there is a homeomorphism $h\colon S^2-\{p\}\to \mathbb{R}^2$ such that $h\circ g^{\prime}\colon S^2\to \mathbb{R}^2$ is a continuous map. It follows by the Borsuk-Ulam theorem that there exists an $x\in S^2$ such that $(h\circ g^{\prime})(x) = (h\circ g^{\prime})(-x)$. But $h$ is a bijection, so it follows that $g^{\prime}(x) = g^{\prime}(-x)$, which is in contradiction to the aforementioned property of $g^{\prime}$.
+
+      Hence $g$ is surjective.
+    \end{proof}
+    \item (58.2) The fundamental group of the following spaces is either trivial $\cbr{e}$, infinite cyclic ($\mathbb{Z}$), or isomorphic to the fundamental group of the figure eight (free group on two symbols $F_2$). \begin{enumerate}
+      \item $B^2\times S^1$. \hspace*{1cm} $\mathbb{Z}$
+      \item Torus with one point removed. \hspace*{1cm} $F_2$
+      \item $S^1\times I$ \hspace*{1cm} $\mathbb{Z}$
+      \item $S^1\times \mathbb{R}$ \hspace*{1cm} $\mathbb{Z}$
+      \item $\mathbb{R}^3$ with the nonnegative $x,y,z$ axes removed. \hspace*{1cm} $F_2$
+      
+      Subsets of $\mathbb{R}^2$:
+      \item $\cbr{x\mid \norm{x}>1}$ \hspace*{1cm} $\mathbb{Z}$
+      \item $\cbr{x\mid \norm{x}\geq 1}$ \hspace*{1cm} $\mathbb{Z}$
+      \item $\cbr{x\mid \norm{x}<1}$ \hspace*{1cm} $\cbr{e}$
+      \item $S^1\cup (\mathbb{R}_+\times 0)$ \hspace*{1cm} $\mathbb{Z}$
+      \item $S^1\cup (\mathbb{R}_+\times \mathbb{R})$ \hspace*{1cm} $\mathbb{Z}$
+      \item $S^1\cup (\mathbb{R}\times 0)$ \hspace*{1cm} $F_2$
+      \item $\mathbb{R}^2 - (\mathbb{R}_+\times 0)$ \hspace*{1cm} $\cbr{e}$
+    \end{enumerate}
+    \item (58.3) Show that given a collection of spaces $\mathcal{C}$, the relation of homotopy equivalence is an equivalence relation on $\mathcal{C}$.
+    \begin{proof}
+      Let $X,Y,Z\in \mathcal{C}$.
+      
+      We show that $X$ is homotopic to itself. The identity map on $X$, $\id_X$, satisfies the property that $\id_X\circ \id_X$ is homotopic to $\id_X$. Hence $X$ is homotopy equivalent to itself.
+
+      If $X$ is homotopic to $Y$, then there exist continuous maps $f\colon X\to Y$ and $g\colon Y\to X$ such that $g\colon f$ is homotopic to the identity on $X$ and $f\colon y$ is homotopic to the identity on $Y$. It is immediate that $Y$ is homotopic to $X$, using the same maps $f,g$.
+
+      Suppose $X$ is homotopic to $Y$, and $Y$ is homotopic to $Z$. There exist continuous maps $f\colon X\to Y$ and $g\colon Y\to X$ such that $g\colon f$ is homotopic to the identity on $X$ and $f\colon y$ is homotopic to the identity on $Y$. There also exist continuous maps $h\colon Y\to Z$ and $k\colon Z\to Y$ such that $k\circ h$ is homotopic to the identity on $Y$ and $h\circ k$ is homotopic to the identity on $Z$. We produce maps $F\colon X\to Z$ and $G\colon Z \to X$ such that $G\circ F$ is homotopic to the identity on $X$ and $F\circ G$ is homotopic to the identity on $Z$.
+
+      The desired maps are $F = h\circ f$ and $G = g\circ k$. We have that $G\circ F = g\circ k\circ h \circ f$, which is homotopic to $g \circ \id_Y\circ f$ and hence $g\circ f$, which is homotopic to the identity on $X$. Similarly, $F\circ G = h\circ f \circ g \circ k$, homotopic to $h\circ \id_X\circ k = h\circ k$, which is homotopic to the identity on $Z$.
+
+      Hence $X$ is homotopic to $Z$ and transitivity is established. It follows that the relation of homotopy equivalence is an equivalence relation on $\mathcal{C}$.
+    \end{proof}
+    \item (58.5) Recall that a space $X$ is said to be \textit{contractible} if the identity map of $X$ to itself is nulhomotopic. Show that $X$ is contractible if and only if $X$ has the homotopy type of a one-point space.
+    \begin{proof}
+      Suppose that $X$ has the homotopy type of a one point space; that is, there is a homotopy equivalence $f$ from $X$ to a one-point space $\cbr{p}$. There is a continuous map $g$ from $\cbr{p}$ to $X$ such that $g\circ f$ is homotopic to $\id_X$. But a continuous map from $\cbr{p}$ to $X$ has the image of a single point in $X$. It follows that $g\circ f$ is a constant map on $X$, and we have that $\id_X$ is homotopic to a constant map on $X$.
+
+      Conversely, suppose that $\id_X$ is homotopic to a constant map $f$ on $X$ mapping $X$ to some point $x\in X$. We can take the subspace $\cbr{x}$ to be the one-point space desired. Using the inclusion map $\iota$ from $\cbr{x}$ into $X$, and defining $g$ to be the map $f$ with the range restricted to $\cbr{x}$, we have that $\iota\circ g$ is equivalent to the map $f$, which is homotopic to the identity map. Similarly, the map $g\circ \iota$ is a map from $\cbr{x}$ to itself which is homotopic to the identity map on $\cbr{x}$ (since that is just what the composition is anyways). Thus $X$ has the homotopy type of a one-point space.
+
+      Hence $X$ is contractible if and only if $X$ has the homotopy type of a one-point space.
+    \end{proof}
+    \item (58.6) Show that a retract of a contractible space is contractible.
+    \begin{proof}
+      Let $X$ be a contractible space; we have that $\id_X$ is homotopic to a constant map $f$ sending elements of $X$ to $x\in X$. Specifically, let $H$ be the required homotopy such that $H(y,0) = y$ and $H(y,1) = x$. Then let $A$ be a retract of $X$; that is, there exists a continuous map $r\colon X\to A$ such that $r|_A$ is the identity on $A$. We show that the identity map on $A$ is homotopic to a constant map on $A$. 
+
+      The constant map that $\id_A$ is homotopic to is the composition $r\circ f\circ \iota\colon A\to A$ where $\iota$ is the inclusion map from $A$ to $X$. Define the restriction of the homotopy $H$ to ${A\times I}$ as a continuous map $H|_{A\times I}\colon A\times I \to X$ defined by $H|_{A\times I}(y,t) = H(y,t)$. Then the homotopy required is given by $r\circ H|_A$, so that $(r\circ H|_A)(y,0) = r(H(y,0)) = r(y) = y$ (the identity on $y$) and $(r\circ H|_A)(y,1) = r(H(y,1)) = r(x)$ (equivalent to $(r\circ f\circ \iota)(y) = r(f(y)) = r(x)$). 
+      
+      Hence $A$ is contractible. 
+    \end{proof}
+\end{enumerate}
+\end{document}

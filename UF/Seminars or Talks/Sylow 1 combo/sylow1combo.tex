@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Sylow I: Existence of Sylow subgroups}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{theorem}[Sylow I]
+    Let $G$ be a finite group. Suppose that $p^m\mid \abs{G}$ but $p^{m+1}\nmid \abs{G}$ for some prime $p$. Then $G$ has a subgroup of order $p^m$.
+\end{theorem}
+The following combinatorial proof is due to Helmut Wielandt who published the result in the journal Archiv der Matematik, Vol 10 (1959), which proves a more general result and also constructs the desired p-subgroup.
+
+First we prove a lemma:
+\begin{lemma}
+    Let $n = p^\alpha m$. It follows that $p^r\mid m$ but $p^{r+1}\nmid m$ if and only if $p^r\mid \binom{p^\alpha m}{p^\alpha}$ but $p^{r+1}\nmid \binom{p^\alpha m}{p^\alpha}$.
+\end{lemma}
+\begin{proof}
+    Recall that $\binom{n}{k} = \frac{n!}{k!(n-k)!}$.
+    
+    We have \begin{align*}
+        \binom{p^\alpha m}{p^\alpha} = \frac{(p^\alpha m)!}{(p^\alpha)!(p^\alpha m - p^\alpha)!} &= \frac{(\cancel{p^\alpha}m)(p^\alpha m - 1)\cdots (p^\alpha m - k)\cdots (p^\alpha m - p^\alpha + 1) \cancel{(p^\alpha m - p^\alpha)!}}{(\cancel{p^\alpha})(p^\alpha - 1)\cdots (p^\alpha - k) \cdots (1)\cancel{(p^\alpha m - p^\alpha)!}}\\
+        &= m\br{\frac{(p^\alpha m - 1)\cdots (p^\alpha m - k)\cdots (p^\alpha m - (p^\alpha - 1))}{(p^\alpha - 1)\cdots (p^\alpha - k) \cdots (1)}}.
+    \end{align*}  We wish to show that the largest power of $p$ dividing $\binom{p^\alpha m}{p^\alpha}$ is $p^r$.
+
+    Let $1\leq k < p^{\alpha}$. First suppose that $p^s\mid p^\alpha - k$. It follows that $s< \alpha$. By the division algorithm, write $p^sq = p^\alpha - k$ for some integer $q$; equivalently, $p^\alpha = p^sq+k$. Observe that \begin{align*}
+        p^\alpha m - k &= p^\alpha m - k - p^\alpha + p^\alpha\\
+        &= p^\alpha m - k - p^\alpha + (p^sq+k)\\
+        &=p^\alpha m - p^\alpha + p^sq = p^s(q+p^{\alpha-s}(m-1)),
+    \end{align*} meaning that $p^s\mid p^\alpha m -k$ as well. We show conversely that if $p^s\mid p^\alpha m -k$ then $p^s\mid p^\alpha -k$. Suppose by way of contradiction that $s \geq \alpha$, so that $p^\alpha\mid p^s$, and by transitivity of divisibility, that $p^\alpha \mid p^\alpha m -k$. But $p^\alpha\mid p^\alpha m$, so that because $p$ is prime it follows that $p^\alpha\mid k$ which is impossible since $1\leq k < p^{\alpha}$. Hence $s < \alpha$ in this case also. Again use the division algorithm to write $p^sq = p^\alpha m -k$; equivalently, $p^sq + k = p^\alpha m$. It follows that \begin{align*}
+        p^\alpha - k &= p^\alpha - k -p^\alpha m + p^\alpha m\\
+        &= p^\alpha - k -p^\alpha m + (p^sq + k)\\
+        &= p^\alpha - p^\alpha m + p^sq = p^s(q - p^{\alpha - s}(m-1)),
+    \end{align*} so that $p^s\mid p^\alpha - k$.
+
+    We conclude then that the any powers of $p$ dividing a term $p^\alpha - k$ found in the denominator of \[\frac{(p^\alpha m - 1)\cdots (p^\alpha m - k)\cdots (p^\alpha m - (p^\alpha - 1))}{(p^\alpha - 1)\cdots (p^\alpha - k) \cdots (1)} \quad \br{\text{equal to } \binom{p^\alpha m-1}{p^\alpha-1}\in\mathbb{Z}}\] are the same as those dividing the corresponding term $p^\alpha m - k$ found in the numerator. Therefore all of the powers of $p$ found in the fraction cancel out, meaning that powers of $p$ divide $\binom{p^\alpha m}{p^\alpha}$ if and only if they divide $m$.
+    
+    Let the largest power of $p$ dividing $m$ be $p^r$. It follows that $p^r\mid m$ but $p^{r+1}\nmid m$ if and only if $p^r\mid \binom{p^\alpha m}{p^\alpha}$ but $p^{r+1}\nmid \binom{p^\alpha m}{p^\alpha}$.
+\end{proof}
+
+The next part of the proof involves proving a more general result: \begin{theorem}
+    If $p$ is prime and $p^\alpha \mid \abs{G} = p^\alpha m$ for a finite group $G$, then $G$ has a subgroup of order $p^\alpha$.
+\end{theorem}
+\begin{proof}
+    We construct a desired subgroup $H$ of order $p^\alpha$.
+
+    Let $\mathcal{M}\subseteq \mathcal{P}(G)$ be the set of all subsets of $G$ with $p^\alpha$ elements. Let $\abs{G} = p^\alpha m$, so that $\abs{M} = \binom{p^\alpha m}{p^\alpha}$. Define a relation $\sim$ on $\mathcal{M}$ by $M_1\sim M_2$ if there exists a $g\in G$ such that $M_1 = M_2g$. For $M_1,M_2,M_3\in \mathcal{M}$, it follows from $M_1 =  M_1 1_G$, $M_1 = M_2g$ is equivalent to $M_2 = M_1g^{-1}$, and $M_1 = M_2g$ with $M_2 = M_3h$ implies $M_1 = M_3hg$, that $\sim$ is an equivalence relation on $\mathcal{M}$.
+    
+    Let $p^r$ be the largest power of $p$ which divides $m$. We claim that there is an equivalence class $\overline{M}$ of elements in $\mathcal{M}/\sim$ such that $p^{r+1}$ does not divide $\abs{\overline{M}}$. To see this, suppose not; that is, that there are no equivalence classes $\overline{M}$ in $\mathcal{M}$ such that $p^{r+1}\nmid\abs{\overline{M}}$. Equivalently said, $p^{r+1}\mid \abs{\overline{M}}$ for every equivalence class $\overline{M}$ of $\mathcal{M}$. Since equivalence classes partition $\mathcal{M}$ (and $\mathcal{M}$ is finite because $G$ is finite), it follows that $p^{r+1}\mid \abs{\mathcal{M}} = \binom{p^\alpha m}{p^\alpha}$. From the previous lemma it follows that $p^{r+1}\mid m$, but this is a contradiction since $r$ was chosen maximally with respect to $p^r$ dividing $m$.
+
+    Let $\overline{M} = \cbr{M_1,M_2,\dots,M_n}$ be an equivalence class in $\mathcal{M}$ such that $p^{r+1}\nmid \abs{\overline{M}}= n\neq 0$. By definition of the relation $\sim$, it follows that for every $g\in G$ and each $i$, $1\leq i \leq n$, that $M_ig = M_j$ for some $j$, $1\leq j \leq n$. We construct the set $H = \cbr{g\in G \mid M_1g = M_1}$, and observe that $H$ is a subgroup of $G$: The identity $1_G\in H$, and for $a,b\in H$, meaning $M_1a = M_1b = M_1$, then $M_1ab^{-1} = M_1$ so that $ab^{-1}\in H$.
+
+    We show first that $n\abs{H} = \abs{G}$. Observe that in the set of right cosets of $H$ in $G$ given by $G/H$, the equivalence \[Ha = Hb \iff ab^{-1}\in H\iff M_1ab^{-1} = M_1\iff M_1a = M_1b\] motivates a set map from $G/H\to \overline{M}$ where \[Ha\mapsto M_1a.\] This map is a bijection: Suppose that $M_1a = M_1b$, which by the above equivalence gives that $Ha = Hb$, so that this map is injective. If $M_j\in \overline{M}$, then there exists $g\in G$ such that $M_j = M_1g$, then observe that $Hg\mapsto M_1g = M_j$ so that this map is surjective. Thus $\abs{G/H} = \abs{G}/\abs{H} = \abs{\overline{M}} = n$, so that $\abs{G} = n\abs{H}$ as desired.
+
+    Now we show that $\abs{H} = p^\alpha$. By construction, $p^{r+1}\nmid n = \abs{\overline{M}}$, and we saw that $n\abs{H} = \abs{G} = p^\alpha m$. With $p^r\mid m$, we have $p^{\alpha + r}\mid p^\alpha m = n\abs{H}$. It follows from the maximality of $p^r$ with respect to dividing $m$ that $p^\alpha \mid \abs{H}$, meaning $p^\alpha\geq \abs{H}$.
+
+    For any $m_1\in M_1$, we have that $m_1h\in M_1$ for any $h\in H$ since $M_1m_1h = M_1h = M_1$. Hence $M_1$ must have at least $\abs{H}$ distinct elements, since the multiplication by $m_1$ is injective, viewed as a map from $H$ to itself. If $h_1\neq h_2$, then $m_1h_1\neq m_1h_2$ by left cancellation in $H$. But $M_1$ is in $\mathcal{M}$, meaning $\abs{M_1} = p^\alpha$. So $\abs{H}\leq p^\alpha$, and combining it with the previous result we find that $\abs{H} = p^\alpha$.
+
+    Hence the theorem is proved; furthermore, we have constructed the desired subgroup $H$.
+\end{proof}
+
+Sylow's first theorem comes as a special case of the previous theorem.
+
+\begin{theorem}[Sylow I]
+    Let $G$ be a finite group. Suppose that $p^m\mid \abs{G}$ but $p^{m+1}\nmid \abs{G}$ for some prime $p$. Then $G$ has a subgroup of order $p^m$.
+\end{theorem}
+\begin{proof}
+    Take $\alpha = m$ to be maximal with respect to $p^\alpha$ dividing $\abs{G}$ in the previous theorem.
+\end{proof}
+\end{document}

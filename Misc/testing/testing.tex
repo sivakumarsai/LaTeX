@@ -1,4 +1,74 @@
-\documentclass{article}
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 9}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
 \begin{document}
-help
+We prove a lemma. Let $(x,y)$ and $(a,b)$ be two points in $\mathbb{R}^2$. Then if \[\norm{(x,y),(a,b)}_2 \leq \delta,\] it follows that \[\abs{x-a} \leq \delta \quad \text{and}\quad \abs{y-b}\leq \delta.\] \begin{proof}
+    With $(x,y)$ and $(a,b)$ as above, we have that \[\delta \geq \norm{(x,y),(a,b)}_2 = \sqrt{(x-a)^2+(y-b)^2}\] implies
+    \[\delta^2 \geq (x-a)^2+(y-b)^2,\] from which it follows that \begin{align*}
+        (x-a)^2 \leq \delta^2 &\implies \abs{x-a}\leq \delta \\
+        (y-b)^2 \leq \delta^2 &\implies \abs{y-b}\leq \delta
+    \end{align*} as desired.
+\end{proof} 
+
+Let $B$ be a metric space with metric $d_B$. Let $f\colon \mathbb{R}^2\to B$ be a function such that for any $k\in \mathbb{R}$, the following functions $f_{(\cdot,k)}\colon \mathbb{R}\to B$ and $f_{(k,\cdot)}\colon \mathbb{R}\to B$ given by $f_{(\cdot,k)}(x) = f(x,k)$ and $f_{(k,\cdot)}(x) = f(k,y)$ are continuous. Show that $f$ is continuous.\begin{proof}
+    Let $(a,b)$ be any point in $\mathbb{R}^2$. We show that $f$ is continuous at $(a,b)$.
+
+    Let $\varepsilon>0$ be given. Then choose $\delta_1,\delta_2$ by continuity of $f_{(\cdot,y)}$ and $f_{(a,\cdot)}$ respectively such that \begin{align*}
+        |x-a|\leq \delta_1 &\implies d_B(f_{(\cdot,y)}(x),f_{(\cdot,y)}(a)) \leq \varepsilon/2 \\
+        |y-b|\leq \delta_2 &\implies d_B(f_{(k,\cdot)}(y),f_{(k,\cdot)}(b)) \leq \varepsilon/2.
+    \end{align*} What ??? No.
+
+    Let $\delta = \min\{\delta_1,\delta_2\}$. If $\norm{(x,y),(a,b)}_2 \leq \delta$ it follows that \begin{align*}
+        d_B(f(x,y),f(a,b)) &\leq d_B(f(a,b),f(a,y)) + d_B(f(a,y),f(x,y))\\
+        &=d_B(f_{(a ,\cdot )}(b) , f_{(a ,\cdot )}(y)) + d_B(f_{( , )}() , f_{( , )}()) 
+    \end{align*}
+\end{proof}
+
+1:
+\begin{enumerate}[(a)]
+    \item Observe that for any element $ab\in AB$, $ab\leq \sup(A)\sup(B)$ since $0\leq a\leq \sup(A)$ and $0\leq b\leq \sup(B)$.
+    \item Let $\varepsilon>0$ be given. We seek some $\varepsilon^{\prime}>0$ and elements $a\in A$ and $b\in B$ with $a > \sup(A)-\varepsilon^{\prime}$ and $b > \sup(B)-\varepsilon^{\prime}$ such that \[ab > (\sup(A)-\varepsilon^{\prime})(\sup(B)-\varepsilon^{\prime}) > \sup(A)\sup(B)-\varepsilon.\] To that end, choose $\varepsilon^{\prime}$ such that \[0 < \varepsilon^{\prime} < \frac{1}{2}\left[(\sup(A)+\sup(B)) - \sqrt{(\sup(A)+\sup(B))^2-4\varepsilon}\right] = E\] and find elements $a\in A$, $b\in B$ with $a>\sup(A)-\varepsilon^{\prime}$ and $b> \sup(B)-\varepsilon^{\prime}$. Then \begin{align*}
+        ab > (\sup(A)-\varepsilon^{\prime})(\sup(B)-\varepsilon^{\prime}) &> (\sup(A)-E)(\sup(B)-E)\\
+        &= \sup(A)\sup(B) - (\sup(A)+\sup(B))E + E^2\\
+        &= \sup(A)\sup(B)-\varepsilon.
+    \end{align*}
+\end{enumerate}
+
+2: \begin{enumerate}[(a)]
+    \item Observe that for any $a\in A$, $-a\leq \sup(-A)$; by negating both sides obtain $a\geq -\sup(-A)$. Hence $-\sup(-A)$ is a lower bound for $A$.
+    \item For any $\varepsilon>0$, there exists an element $\alpha\in A$ such that $-\alpha\geq \sup(-A)-\varepsilon$, so that $\alpha \leq -\sup(-A) + \varepsilon$; hence $-\sup(-A)$ is the greatest lower bound of $A$.
+\end{enumerate}
 \end{document}

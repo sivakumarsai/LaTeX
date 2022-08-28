@@ -1,0 +1,83 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 4}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Suppose $(X,d_X)$ and $(Y,d_Y)$ are metric spaces.
+ Let $Z=X\times Y$ and define $d:Z\times Z\to [0,\infty)$ by
+\[
+  d(z_1,z_2)= d_X(x_1,x_2)+d_Y(y_1,y_2).
+\]
+for  $z_j=(x_j,y_j) \in Z.$ By Homework 1, 
+ $d$ is a metric on $Z.$  
+
+
+\bigskip
+
+
+\begin{enumerate}[(i)]
+ \item Let $(p_n=(x_n,y_n))_{n=1}^\infty$ be a sequence from $Z.$ 
+   Show, $(p_n)$ converges to $p_0=(x_0,y_0)\in Z$ if and only if
+    $(x_n)$ and $(y_n)$ converge to $x_0$ and $y_0$ in $X$ and $Y$ respectively.
+   \item Show, if $X$ and $Y$ are both sequentially compact, then so is  $Z=(Z,d).$
+ \item Show, if $X$ and $Y$ are both complete, then so is $Z=(Z,d).$
+\end{enumerate}
+
+\begin{enumerate}[(i)]
+    \item \begin{proof}
+        Let $(p_n=(x_n,y_n))_{n=1}^\infty$ be a sequence from $Z$, and let $p_0 = (x_0,y_0)$.
+
+        Let the sequences $(x_n)$ and $(y_n)$ converge to $x_0$ and $y_0$ in $X$ and $Y$ respectively, and let $\varepsilon > 0$ be given. Then there exist $N_1,N_2\in \mathbb{N}$ such that if $n\geq N_1$, we have $d_X(x_n,x_0)< \varepsilon/2$, and if $n\geq N_2$, we have $d_Y(y_n,y_0)< \varepsilon/2$.
+
+        By taking $n\geq \max\{N_1,N_2\}$, it follows that \[d((x_n,y_n),(x_0,y_0)) = d(x_n,x_0) + d(y_n,y_0)< \varepsilon/2 + \varepsilon/2 = \varepsilon.\] Hence $(p_n)$ converges to $p_0$.
+
+        Conversely, if $(p_n)$ converges to $p_0$, then for any $\varepsilon>0$ given, we can find $N$ such that for $n\geq N$, \[d((x_n,y_n),(x_0,y_0)) = d(x_n,x_0) + d(y_n,y_0)< \varepsilon.\] But because $d_X$ and $d_Y$ are metrics on $X$ and $Y$ respectively, they map into the nonnegative reals; it follows that $d(x_n,x_0) < \varepsilon$ and $d(y_n,y_0)< \varepsilon$. Hence $(x_n)$ and $(y_n)$ converge to $x_0$ and $y_0$ in $X$ and $Y$ respectively.
+    \end{proof}
+    \item \begin{proof}
+        Suppose that $X$ and $Y$ are both sequentially compact. Let $(p_n=(x_n,y_n))_{n=1}^\infty$ be a sequence from $Z$.
+
+        Because $X$ is sequentially compact, there exists $x_0\in X$ such that there is a subsequence $(x_{n_j})$ of $(x_n)$ which converges to $x_0$. Then in $Y$, there exists $y_0\in Y$ such that the subsequence $(y_{n_j})$ has a subsequence $(y_{n_{j_k}})$ which converges to $y_0$ since $Y$ is sequentially compact. Observe that since $(x_{n_j})$ converges, it is Cauchy; it follows that the subsequence $(x_{n_{j_k}})$ also converges to $x_0$. Then by using the result from (i), it follows that the subsequence $(p_{n_{j_k}} = (x_{n_{j_k}},y_{n_{j_k}}))$ converges to $(x_0,y_0)\in Z$. Since $(p_n)$ was an arbitrary sequence from $Z$, it follows that $Z$ is sequentially compact.
+    \end{proof}
+    \item \begin{proof}
+        Suppose $X$ and $Y$ are both complete. Let $(p_n=(x_n,y_n))_{n=1}^\infty$ be a Cauchy sequence from $Z$.
+
+        We first show that the sequences $(x_n)$ and $(y_n)$ are Cauchy due to $(p_n)$ being Cauchy. Let $\varepsilon>0$ be given. There exists $N\in \mathbb{N}$ such that if $n,m \geq N$, then \[d(p_n,p_m) = d((x_n,y_n),(x_m,y_m)) = d_X(x_n,x_m) + d_Y(y_n,y_m) < \varepsilon.\] Because the metrics $d_X$ and $d_Y$ on $X$ and $Y$ respectively map into the nonnegative reals, it follows that $d_X(x_n,x_m) < \varepsilon$ and $d_Y(y_n,y_m) < \varepsilon$. Hence $(x_n)$ and $(y_n)$ are Cauchy sequences in $X$ and $Y$ respectively.
+
+        Since $X$ and $Y$ are complete, the sequences $(x_n)$ and $(y_n)$ converge to some $x_0$ and $y_0$ in $X$ and $Y$ respectively. Using the result from (i), it follows that $(p_n)$ converges to $(x_0,y_0)\in Z$. Since $(p_n)$ was an arbitrary Cauchy sequence from $Z$, it follows that $Z$ is complete.
+    \end{proof}
+\end{enumerate}
+\end{document}

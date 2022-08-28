@@ -1,0 +1,75 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 7}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Let $X\ne \emptyset$ be a metric space and let $C_b(X,\RR)$ denote the
+ metric space of continuous bounded real-valued functions
+ on $X$ with the metric
+\[
+ d_\infty(f,g)=\|f-g\|_\infty = \sup\{|f(x)-g(x)|:x\in X\}
+\]
+for $f,g\in C_b(X,\RR).$  It is straightforward to verify
+ that $C_b(X,\RR)$ contains the constant functions and
+ is closed under sums and products. 
+
+Let $p(t)=\sum_{j=0}^d p_jt^j$ be a polynomial
+ and define $\Psi_p:C_b(X,\RR)\to C_b(X,\RR)$ by 
+\[
+ \Psi_p(f)=p\circ f.
+\]
+ Show $\Psi_p$ is continuous. [Suggestion: Recall
+ $p$ is uniformly continuous on compact subsets
+ of $\RR$ and show, for a fixed $f\in C_b(X,\RR)$
+ and $\eta>0,$ there is an interval $[a,b]$ such that
+ if $d_\infty(f,g)<\eta$ then $f(X),g(X)\subseteq [a,b].$]
+
+
+\bigskip
+
+\begin{proof}
+Let $f\in C_b(X,\mathbb{R})$ be given. We show that $\Psi_p$ is continuous at $f$. To that end, let $\varepsilon > 0$ be given. Since $f\in C_b(X,\mathbb{R})$, we have that $f(X)$ is a bounded subset of $R$, meaning $f(X)$ is contained in some interval $[a,b]$. For any $h\in C_b(X,\mathbb{R})$ satisfying $d_\infty(f,h)<\varepsilon$, we have for any $x\in X$ that $\abs{f(x)-h(x)}\leq d_\infty(f,h) < \varepsilon$.
+
+It follows that $f(x)-\varepsilon < h(x) < f(x) + \varepsilon$, and with $x$ arbitrary we have that $h(X)\subseteq [a-\varepsilon, b+\varepsilon]$. Since $[a,b]\subseteq [a-\varepsilon, b+\varepsilon]$, we also have that $f(X)\subseteq [a-\varepsilon, b+\varepsilon]$. 
+
+With $p$ uniformly continuous on $[a-\varepsilon, b+\varepsilon]$, there exists $\delta '$ such that if $\abs{x-y}<\delta '$ for $x,y\in [a-\varepsilon, b+\varepsilon]$, then $\abs{p(x)-p(y)}<\varepsilon$.
+
+Choose $\delta = \min\{\varepsilon, \delta '\}$. Suppose that $d_\infty(f,g)<\delta$, so that $f(X),g(X)\subseteq [a-\varepsilon, b+\varepsilon]$ and for any $x\in X$ we have $\abs{f(x)-g(x)}\leq d_\infty(f,g)< \delta '$, and note that $f(x),g(x)\in [a-\varepsilon, b+\varepsilon]$. Then by the uniform continuity of $p$ on $[a-\varepsilon, b+\varepsilon]$ we have that $\abs{(p\circ f)(x) -  (p\circ g)(x)}< \varepsilon$, and since $x$ was arbitrary, it follows that $d_\infty(p\circ f, p\circ g) = d_\infty(\Psi_p(f), \Psi_p(g))< \varepsilon$ ($\varepsilon$ is a uniform upper bound). 
+
+Since $f$ was arbitrary, it follows that $\Psi_p$ is continuous on $C_b(X,\mathbb{R})$.
+\end{proof}
+\end{document}

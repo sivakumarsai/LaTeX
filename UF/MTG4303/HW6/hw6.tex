@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{soul}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4303}
+\fancyhead[C]{HW 6}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+
+\newtheorem*{definition}{Definition}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Show that the identification space defined on page 1 of lecture 31 is a concrete pushout in the Top category, i.e., it satisfies all the properties of a diagrammatic pushout. (Assume $f$ and $g$ are injective.) \begin{proof}
+        We wish to show that using the commutative diagram % https://q.uiver.app/?q=WzAsNSxbMCwwLCJaIl0sWzEsMCwiWCJdLFswLDEsIlkiXSxbMSwxLCJcXGZyYWN7WFxcY3VwIFl9e1xcc2ltfSJdLFsyLDIsIlciXSxbMCwxLCJmIl0sWzAsMiwiZyIsMl0sWzIsMywiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNCwiZ18yIiwyLHsiY3VydmUiOjJ9XSxbMSw0LCJnXzEiLDAseyJjdXJ2ZSI6LTJ9XSxbMyw0LCJoIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+            Z & X \\
+            Y & {P=\frac{X\cup Y}{\sim}} \\
+            && W
+            \arrow["f", from=1-1, to=1-2]
+            \arrow["g"', from=1-1, to=2-1]
+            \arrow[dashed, from=2-1, to=2-2]
+            \arrow[dashed, from=1-2, to=2-2]
+            \arrow["{g_2}"', bend right=30, from=2-1, to=3-3]
+            \arrow["{g_1}", bend left=30, from=1-2, to=3-3]
+            \arrow["h", dashed, from=2-2, to=3-3]
+        \end{tikzcd}\] for any topological space $W$ and arrows $g_i$ we can show that the arrow $h$ exists (and is unique). We define $h$ by its action on points in $P$. 
+        
+        Take any point $p\in P$. If we can identify $p$ with $f(z)$ (or $g(z)$) for some (unique due to injectivity of $f,g$) $z\in Z$ (and $f(z)\sim g(z)$ by definition of $P$), then take $h(p) = g_1(f(z))$ (if $p$ was identified with $g(z)$ instead, take $h(p) = g_2(g(z))$; since the diagram is commutative, $g_1(f(z)) = g_2(g(z))$.) If $p$ is identified with a point $x$ in $X\cup Y$ which is not the image of a point of $Z$ under $f$ or $g$ then take $h(p)$ to be $g_1(x)$ or $g_2(x)$, depending on whether $x\in X$ or $x\in Y$, respectively (I believe we assume that $X\cap Y$ is empty; that is we take a disjoint union in the construction for $P$, so $g_i$ agree trivially acting on points on $X\cap Y = \emptyset$).
+
+        By defining $h$ in this manner we have formed a unique arrow since $f$ and $g$ were already given and the arrows from $X,Y$ to $P$ were also given. (we have that $h$ is continuous by definition of the quotient topology and the fact that $g_i$ are continuous, we might be able to use the pasting lemma to see this as well)
+    \end{proof}
+    \item Given two chain complexes of free Abelian groups $\mathcal{C}$ and $\mathcal{D}$ (with boundary operators $\partial_k^C$ and $\partial_k^D$ respectively), \begin{enumerate}
+        \item Show that a chain map $\phi\colon \mathcal{C}\to \mathcal{D}$ induces a homomorphism $\phi_\ast\colon H_n(\mathcal{C})\to H_n(\mathcal{D})$ for each $n$. \begin{proof} Let $n$ be arbitary. Use the following diagram: % https://q.uiver.app/?q=WzAsNixbMCwwLCJDX3tuKzF9Il0sWzAsMSwiQ197bn0iXSxbMCwyLCJDX3tuLTF9Il0sWzEsMCwiRF97bisxfSJdLFsxLDEsIkRfe259Il0sWzEsMiwiRF97bi0xfSJdLFswLDEsIlxccGFydGlhbF97bisxfV5DIiwyXSxbMSwyLCJcXHBhcnRpYWxfe259XkMiLDJdLFswLDMsIlxccGhpX3tuKzF9Il0sWzEsNCwiXFxwaGlfe259Il0sWzIsNSwiXFxwaGlfe24tMX0iXSxbNCw1LCJcXHBhcnRpYWxfe259XkQiXSxbMyw0LCJcXHBhcnRpYWxfe24rMX1eRCJdXQ==
+            \[\begin{tikzcd}
+                {C_{n+1}} & {D_{n+1}} \\
+                {C_{n}} & {D_{n}} \\
+                {C_{n-1}} & {D_{n-1}}
+                \arrow["{\partial_{n+1}^C}"', from=1-1, to=2-1]
+                \arrow["{\partial_{n}^C}"', from=2-1, to=3-1]
+                \arrow["{\phi_{n+1}}", from=1-1, to=1-2]
+                \arrow["{\phi_{n}}", from=2-1, to=2-2]
+                \arrow["{\phi_{n-1}}", from=3-1, to=3-2]
+                \arrow["{\partial_{n}^D}", from=2-2, to=3-2]
+                \arrow["{\partial_{n+1}^D}", from=1-2, to=2-2]
+            \end{tikzcd}\]
+            The induced homomorphism is given by a map $\phi_\ast\colon \ker\partial_n^C/\im \partial_{n+1}^C\to \ker\partial_n^D/\im \partial_{n+1}^D$ which sends the element $b+ \im\partial_{n+1}^C$ to $\phi_n(b)+ \im\partial_{n+1}^D$. It is clear by the definition of the map $\phi_\ast$ and the fact that $\phi_n$ is a homomorphism that $\phi_\ast$ is a homomorphism, provided it is well defined.
+            
+            We check that $\phi_\ast$ is well defined. Let $b+ \im\partial_{n+1}^C = a+ \im\partial_{n+1}^C$, so that $b = a+m$ for some $m\in  \im\partial_{n+1}^C$. It follows that $b+ \im\partial_{n+1}^C = (a+m) + \im\partial_{n+1}^C\mapsto \phi_n(a+m)+ \im\partial_{n+1}^D = \phi_n(a)+ \im\partial_{n+1}^D + \phi_n(m)+ \im\partial_{n+1}^D$.
+            
+            We require that $\phi_n(m)\in \im\partial_{n+1}^D$ for the map to be well defined. This is indeed true since $\phi$ is a chain map, as $\phi_{n}\circ\partial_{n+1}^C = \partial_{n+1}^D \circ\phi_{n+1}$, and with $m\in  \im\partial_{n+1}^C$, it follows that $\phi_n(m) = \partial_{n+1}^D(\phi_{n+1}(m^\prime))$ for $m^\prime\in C_{n+1}$ satisfying $\partial_{n+1}^C(m^\prime) = m$. Hence $\phi_n(m)\in \im\partial_{n+1}^D$ so that $b+ \im\partial_{n+1}^C\mapsto \phi_n(a)+ \im\partial_{n+1}^D$ and so $\phi_\ast$ is well defined.
+        \end{proof}
+        \item If two chain maps $\phi,\psi\colon \mathcal{C}\to\mathcal{D}$ are chain homotopic, show that they induce the same homomorphism $H_n(\mathcal{C})\to H_n(\mathcal{D})$ for each $n$. \begin{proof}
+            Let $n$ be arbitrary. We show that the difference $(f_\ast-g_\ast)(\overline{b}) = f_\ast(\overline{b})-g_\ast(\overline{b}) = \overline{0}$ for all $\overline{b}\in H_n(\mathcal{C})$. With $b\in \ker\partial_n^C$ we have \begin{align*}
+                (f_n-g_n)(b)+ \im\partial_{n+1}^D &= (\partial_{n+1}^D\circ h_n - h_{n-1}\circ\partial_n^C)(b) +\im\partial_{n+1}^D\\
+                &= [\partial_{n+1}^D(h_n(b)) - h_{n-1}(\partial_n^C(b))] + \im\partial_{n+1}^D\\
+                &= \partial_{n+1}^D(h_n(b)) + \im\partial_{n+1}^D\\
+                &= 0 + \im\partial_{n+1}^D
+            \end{align*} as desired. It follows that $f_\ast=g_\ast$.
+        \end{proof}
+    \end{enumerate}
+    \item Show that the collection $\cbr{x_0,\dots,x_k}\subset \mathbb{R}^N$ is geometrically independent if and only if each point in the simplex they span has a unique barycentric coordinate. \begin{proof}
+        We prove the contrapositive in both directions.
+
+        Suppose that a point $x$ has two distinct barycentric coordinates $\sum_{i=0}^k a_ix_i$ and $\sum_{i=0}^k b_ix_i$ so that for some $i$ $a_i\neq b_i$ while $a_i,b_i\geq 0$ and $\sum_{i=0}^k a_i = \sum_{i=0}^k b_i = 1$. Then \begin{align*}
+            0 = \br{\sum_{i=0}^k a_ix_i} - \br{\sum_{i=0}^k b_ix_i} &= \br{- x_0 + \sum_{i=0}^k a_ix_i} - \br{- x_0 + \sum_{i=0}^k b_ix_i}\\
+            &= \br{\sum_{i=1}^k a_i(x_i-x_0)} - \br{\sum_{i=1}^k b_i(x_i-x_0)} \\
+            &= \sum_{i=1}^k (a_i-b_i)(x_i-x_0).
+        \end{align*} At least one of $a_i-b_i$ is nonzero so we have obtained a nontrivial linear combination of the elements $x_i-x_0$, meaning that $\cbr{x_0,\dots,x_k}$ is not geometrically independent.
+
+        Conversely, suppose that $\cbr{x_0,\dots,x_k}$ is not geometrically independent so that we may find a nontrivial linear combination $\sum_{i=1}^k c_i(x_i-x_0)$ which vanishes. Without loss of generality we may choose $c_i$ such that $\sum_{i=1}^k c_i = 1$, since we could divide each $c_i$ by $\sum_{i=1}^k c_i$ and still obtain a nontrivial vanishing linear combination of elements $x_i-x_0$. As a result we obtain that $\sum_{i=1}^kc_kx_k = \sum_{i=1}^kc_kx_0 = x_0$, and by choosing some $x$ with barycentric coordinates $\sum_{i=0}^k a_ix_i$ such that $0<a_0\leq a_1\leq\cdots\leq a_k$, we can form new barycentric coordinates $0x_0 + \sum_{i=1}^k(a_0c_i+a_i)x_k$. The sum of the coefficients is $\sum_{i=1}^k(a_0c_i+a_i) = a_0\br{\sum_{i=1}^kc_k} + \sum_{i=1}^ka_k = \sum_{i=0}^ka_k = 1$, and each coefficient $a_0c_i+a_i$ is nonnegative since $a_i\geq a_0$ and $c_i\leq 1$ for all $i\geq 1$.
+        
+        The two coordinates given are distinct since the first one has a nonzero coefficient for $x_0$ whereas the coefficient for the second has zero as the coefficient.
+
+        Hence the collection $\cbr{x_0,\dots,x_k}\subset \mathbb{R}^N$ is geometrically independent if and only if each point in the simplex they span has a unique barycentric coordinate.
+    \end{proof}
+    \item Define a metric on a simplicial complex using the barycentric coordinates on each simplex. 
+    
+    Let $K$ be a simplicial complex containing points expressed in their barycentric coordinates. If we find a point $x$ which lies in more than one simplex then any expression for the coordinate for $x$ is okay to use.
+
+    Let $x = \sum_{i=0}^k a_ix_i$ and $y = \sum_{i=0}^j b_iy_j$ where $\cbr{x_i}$ and $\cbr{y_j}$ are the vertex sets of the simplices which $x$ and $y$ appear in. Then view $x$ and $y$ as points in Euclidean space since $x_i$ and $y_j$ are points in $\mathbb{R}^n$ for suitable $n$. Define $d(x,y)$ to be $\norm{\sum_{i=0}^k a_ix_i,\sum_{i=0}^j b_iy_j}_2$ (the Euclidean metric on the points $x$ and $y$ viewed as points in Euclidean space). It is positive definite and zero if and only if the points passed in are exactly the same viewed in Euclidean space (a point may have two barycentric coordinates if they live in more than one simplex but the point in Euclidean space will always be the same point). It is symmetric and the triangle inequality comes from the triangle inequality on $\norm{\cdot}_2$.
+
+    What ends up happening is that this metric gives rise to a topology on the $K$ which is equivalent to the topology given to the geometric realization of $K$, the subspace topology. Open $\varepsilon$-balls centered at a point $p$ in $K$ in the topology induced by the metric given before will be the the set of points \textit{in the simplicial complex} which have Euclidean distance less than $\varepsilon$ away from $p$, which is the same as taking the Euclidean $\varepsilon$-ball about $p$ and intersecting it with $K$ (subspace topology on $|K|$ gives open balls in this way).
+    
+    \item Compute the homology with $\mathbb{Z}$-coefficients for the $2$-skeleton of the standard $3$-simplex.
+    
+    Order the simplices as follows, and form ordered bases: \begin{enumerate}
+        \item There are no $3$-simplices.
+        \item There are four $2$-simplices, given by $\cbr{[1,2,3],[1,4,3],[3,4,2],[2,4,1]}$.
+        \item There are six $1$-simplices, given by $\cbr{[1,2],[2,3],[3,1],[1,4],[2,4],[3,4]}$.
+        \item The four $0$-simplices are given by $\cbr{[1],[2],[3],[4]}$.
+    \end{enumerate}
+
+    Observe that \begin{enumerate}
+        \item $H_0 = \ker\partial_0/\im\partial_1 = \mathbb{Z}^4/\im\partial_1$.
+        \item $H_1 = \ker\partial_1/\im\partial_2$.
+        \item $H_2 = \ker\partial_2/\im\partial_3 = \ker\partial_2/\cbr{0} = \ker\partial_2$.
+    \end{enumerate}
+
+    We have that \begin{align*}
+        \partial_1 = \begin{pmatrix}
+            -1 & 0 & 1 & -1 & 0 & 0 \\
+            1 & -1 & 0 & 0 & -1 & 0 \\
+            0 & 1 & -1 & 0 & 0 & -1 \\
+            0 & 0 & 0 & 1 & 1 &  1
+        \end{pmatrix} &\overset{\text{SNF}}{\longrightarrow} \begin{pmatrix}
+            1&	0&	0&	0&	0&	0\\
+            0&	1&	0&	0&	0&	0\\
+            0&	0&	1&	0&	0&	0\\
+            0&	0&	0&	0&	0&	0
+        \end{pmatrix} \\
+        \partial_2 = \begin{pmatrix}
+           1 & 0 & 0 & 1\\
+           1 & 0 & 1 & 0\\
+           1 & 1 & 0 & 0\\
+           0 & 1 & 0 & -1\\
+           0 & 0 & -1 & 1\\
+           0 & -1 & 1 & 0
+        \end{pmatrix} &\overset{\text{SNF}}{\longrightarrow} \begin{pmatrix}
+            1&	0&	0&	0\\
+            0&	1&	0&	0\\
+            0&	0&	1&	0\\
+            0&	0&	0&	0\\
+            0&	0&	0&	0\\
+            0&	0&	0&	0
+        \end{pmatrix} 
+    \end{align*}
+
+    It follows that $\im\partial_1\cong \mathbb{Z}^3$, $\ker\partial_1\cong \mathbb{Z}^3$, $\im\partial_2\cong \mathbb{Z}^3$, $\ker\partial_2\cong \mathbb{Z}$. Hence \begin{enumerate}
+        \item $H_0 = \ker\partial_0/\im\partial_1 = \mathbb{Z}^4/\mathbb{Z}^3 = \mathbb{Z}^1$ (one path component).
+        \item $H_1 = \ker\partial_1/\im\partial_2 = \mathbb{Z}^3/\mathbb{Z}^3 = \cbr{0}$ (no $2$-dimensional holes).
+        \item $H_2 = \ker\partial_2/\im\partial_3 = \mathbb{Z}/\cbr{0} = \mathbb{Z}$ (one $3$-dimensional hole).
+    \end{enumerate}
+    \item Let $\mathcal{C}$ be a chain complex of finite dimensional vector spaces over $\mathbb{R}$ with $C_i = 0$ for $i<0$ and $i>k$. Show that \[\sum_{i=0}^k (-1)^i\rank(C_i) = \sum_{i=0}^k (-1)^i\rank(H_i(\mathcal{C})).\] This number is called the \textit{Euler characteristic} of the chain complex and is denoted $\chi(\mathcal{C})$. \begin{proof}
+        Observe that $\rank(H_i(\mathcal{C})) = \rank\ker\partial_n - \rank\im\partial_{n+1}$. By the rank-nullity theorem, we also have that for $0<i<k$ we have $\rank\im\partial_i + \rank\ker\partial_i = \rank (C_i)$. Additionally, with $C_i = 0$ for $i<0$ and $i>k$, we obtain \begin{align*}
+            \sum_{i=0}^k (-1)^i\rank(H_i(\mathcal{C})) &= \sum_{i=0}^k \sbr{(-1)^i\rank\ker\partial_i - (-1)^{k}\rank\im\partial_{i+1}}\\
+            &= \rank\ker\partial_0 - (-1)^{k}\rank\im\partial_{k+1} + \sum_{i=1}^{k-1}(-1)^k\rank(C_i)\\
+            &= (-1)^0\rank(C_0) + (-1)^{k+1}\rank(C_k)+ \sum_{i=1}^{k-1}(-1)^k\rank(C_i)\\
+            &= \sum_{i=0}^k (-1)^i\rank(C_i)
+        \end{align*} as desired.
+    \end{proof}
+    \item For a topological space $X$, let $F(X)$ be the collection of its path components and for a continuous $f\colon X\to Y$ define $F(f)\colon F(X)\to F(Y)$ so that for $X_0$ a path component of $X$, $F(f)(X_0)$ is the path component of $Y$ that contains $f(X_0)$ (why is this unique?). Show that $F$ is a functor from Top to Set. \begin{proof}
+        Let $X,Y,Z$ be any topological spaces. It is clear that $F$ takes a topological space and maps it to a set which contains the path components of the topological space passed into $F$. We show that $F$ takes a continuous map between spaces and sends it to the right set map between the corresponding sets. 
+
+        Let $f\colon X\to Y$ be a continuous map, and we show that $F(f)$ is really a set map by showing that for any path component $X_0\in F(X)$, we have that $F(f)$ sends $X_0$ to only one element in $F(Y)$. The reason for this is because if we had two path components $Y_1$ and $Y_2$ of $Y$ which contain $f(X_0)$, we could path connect any point of $Y_1$ with any point of $Y_2$ since these points are connected to points in $f(X_0)$, which is path connected (we could form a path consisting of at least three segments to do this). Hence $Y_1 = Y_0$ which means that the map $F(f)$ is really a set map (it is not multivalued). So objects are sent to objects, and arrows are sent to arrows.
+
+        We check that the functor preserves composition and identity arrows. Suppose that $f\colon X\to Y$ and $g\colon Y\to Z$ are continuous maps, so that $g\circ f\colon X\to Z$ is continuous. Then $F(g\circ f)$ is the map which sends a path component $X_0$ of $X$ to the path component of $Z$ containing $(g\circ f)(X_0)$. But $(F(g)\circ F(f))(X_0)$ is given by first finding the path component of $Y$ containing $f(X_0)$, and then obtaining the path component of $Z$ containing $g(f(X_0))$, but this must agree by uniqueness with $F(g\circ f)(X_0)$. 
+
+        Let $1_X$ be the identity map on $X$. Then $F(1_X)(X_0)$ is the path component of $X$ containing $X_0$, which is automatically $X_0$ itself so $F(1_X)$ is the identity map on $F(X)$.
+        
+        It follows that $F$ is a functor (the fact that the arrows start from and end at the correct objects comes from using the composition rule with the identity to figure out what the domain/range of the new arrows must be, which are indeed the correct objects).
+    \end{proof}
+    \item Let $W = \cbr{w_1,w_2,\dots,w_n}$ be a partially ordered set (poset). (Here we assume that the order is not strict, so $a\leq a$ always holds.) Define a collection of subsets $A(W)$ of $W$ so that $\cbr{w_{a_1},w_{a_2},\dots,w_{a_k}}\in A(W)$ if and only if $w_{a_1}\leq w_{a_2}\leq \cdots \leq w_{a_k}$. \begin{enumerate}
+        \item Show that $A(W)$ is an abstract simplicial complex. \begin{proof}
+            Let $\cbr{w_{a_1},w_{a_2},\dots,w_{a_k}}$ be any element of $A(W)$. We show that every nonempty subset of $\cbr{w_{a_1},w_{a_2},\dots,w_{a_k}}$ including the singletons are found in $A(W)$.
+
+            Take any subset $\cbr{w_{a_{b_1}}, \dots, w_{a_{b_j}}}$ of $\cbr{w_{a_1},w_{a_2},\dots,w_{a_k}}$. Since the elements $w_{a_i}$ form a chain, the subset of elements $w_{a_{b_\ell}}$ form a chain also. It follows that we can relabel and order the elements as $w_{a_{b_1}}\leq\cdots \leq w_{a_{b_j}}$; it follows that $\cbr{w_{a_{b_1}}, \dots, w_{a_{b_j}}}$ is in $A(W)$. Trivially the singleton sets $\cbr{w_{a_i}}$ for each $i$ are ordered already so they are found in $A(W)$. Since $\cbr{w_{a_1},w_{a_2},\dots,w_{a_k}}$ was arbitary, it follows that $A(W)$ is an abstract simplicial complex.
+        \end{proof}
+        \item If $\phi\colon W\to V$ is an order preserving map, define a corresponding simplicial map $\phi_\ast\colon A(W)\to A(V)$ and prove that this correspondence is a functor from partially ordered sets to abstract simplicial complexes. \begin{proof}
+            Define $\phi_\ast$ by sending $\cbr{w_{a_1},\dots,w_{a_k}}$ to $\cbr{\phi(w_{a_1}),\dots,\phi(w_{a_k})}$.
+            
+            Observe that the set $\cbr{\phi(w_{a_1}),\dots,\phi(w_{a_k})}$ is in $A(V)$ since $\phi$ is an order preserving map, meaning $\phi(w_{a_1})\leq \dots\leq\phi(w_{a_k})$ which is exactly the condition needed.
+
+            It is clear that the correspondence sends objects to objects and arrows to arrows; we check that composition and the identity map are preserved. Let $\phi\colon W\to V,\psi\colon V\to U$ be order preserving maps. Then $(\psi\circ\phi)_\ast$ sends a set $\cbr{w_{a_1},\dots,w_{a_k}}$ to $\cbr{\psi(\phi(w_{a_1})),\dots,\psi(\phi(w_{a_k}))}$, which is exactly the action of $\psi_\ast\circ\phi_\ast$. The action of ${1_W}_\ast$ sends $\cbr{w_{a_1},\dots,w_{a_k}}$ to itself (since $1_W$ acts on each element in the set) so the identity map is sent to the identity. 
+
+            It follows that the correspondence is a functor from posets to abstract simplicial complexes.
+        \end{proof}
+        \item Is this correspondence onto, i.e., is every simplicial complex $A(W)$ for some poset $W$? 
+        
+        No. Take the $1$-skeleton of the $2$-simplex, with vertices labeled $a,b,c$. If we could find a poset which gives rise to this simplex, then we would have (without loss of generality we can relabel elements to attain each of the two cases) \begin{enumerate}
+            \item $a\leq b, b\leq c, c\leq a $, so that $b\leq a$. But then $b = a$ in the poset which cannot be since $a$ and $b$ were distinct.
+            \item $a\leq b, a\leq c, b\leq c$ which also cannot happen since $[a,b,c]$ does not appear as a face of the simplex.
+        \end{enumerate} Hence not every simplicial complex is $A(W)$ for a poset $W$.
+        \item If $W$ has a unique maximal element prove that the geometric realization of $A(W)$ is connected. \begin{proof}
+            Let $m$ be the maximal element of $W$. Observe that every chain of elements in $W$ which does not already include $m$ can be extended into a longer chain by ordering $m$ as the last element; that is, for a chain $w_1\leq w_2\leq \cdots \leq w_k$ where $w_i\neq m$, we can form the new chain $w_1\leq w_2\leq \cdots \leq w_k\leq m$. It follows that in the geometric realization of $A(W)$, the simplex spanned by $\cbr{w_1,\cdots,w_k}$ is a face of the simplex spanned by $\cbr{w_1,\cdots,w_k,m}$ so that the points of the former simplex are path connected to $m$. (All points of simplices spanned by vertex sets which already contain $m$ are connected to the point $m$)
+
+            Since $w_1\leq w_2\leq \cdots \leq w_k$ was an arbitrary chain not containing $m$ we have that in every simplex of the geometric realization of $A(W)$, every point is path connected to $m$ in some way so that the geometric realization of $A(W)$ is (path) connected.
+        \end{proof}
+        \item For the poset $W$ given by the diagram (higher points are larger) describe the geometric realization of $A(W)$. 
+        
+        Let the vertices of $A(W)$ be given by their index directly. 
+
+        Since $8$ is the unique maximal element in the poset, every simplex is connected in some way to that node. To begin with, the chain on the very right gives us to begin with the $2$-simplex with vertices $8,6,2$ (and each edge, a $1$-simplex, and each vertex appear since $A(W)$ is abstract; a similar thing happens for each of the following simplices which are formed).
+
+        Then there is a full $3$-simplex which has vertices $8,7,5,1$; similarly there is another full $3$-simplex with vertices $8,7,5,2$, and this simplex shares a $2$-simplex face ($8,7,5$) with the former one This simplex also shares an edge face (the $1$-simplex with vertices $8,2$) with the first simplex mentioned.
+
+        The left chain gives rise to a $2$-simplex with vertices $8,3,1$ which shares an edge face (the $1$-simplex with vertices $8,1$) with the second simplex mentioned. There may be other faces which match that I forgot to mention so I will just include a picture of the geometric realization of $A(W)$ below.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

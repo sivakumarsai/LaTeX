@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4303}
+\fancyhead[C]{HW 3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+
+\newtheorem*{definition}{Definition}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Give the diagrammatic definition of the free group on a set $S$ (as in lecture 2.15), state how it characterizes the free group and then prove this characterization.
+    
+    \begin{definition}
+        Let $S$ be a set. A free group on $S$ is a group $F$ with an injective function $\varphi\colon S\to F$ so that the diagram
+        % https://q.uiver.app/?q=WzAsMyxbMCwxLCJTIl0sWzIsMCwiRiJdLFsyLDIsIkgiXSxbMCwxLCJcXHZhcnBoaSJdLFswLDIsIlxccHNpIiwyXSxbMSwyLCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+        	&& F \\
+        	S \\
+        	&& H
+        	\arrow["\varphi", from=2-1, to=1-3]
+        	\arrow["\psi"', from=2-1, to=3-3]
+        	\arrow["f", dashed, from=1-3, to=3-3]
+        \end{tikzcd}\]
+        commutes for any group $H$ and any set function $\psi\colon S\to H$. There exists a unique homomorphism $f\colon F\to H$ which completes the diagram.
+    \end{definition}
+    The diagrammatic definition characterizes the free group in the sense that if we fix $H$ and $\psi$, if there are two free groups which allow the diagram above to commute (i.e. we have another $\varphi^{\prime}, F^{\prime}$ in place of $\varphi, F$), then the free groups were the same up to isomorphism ($F$ is isomorphic to $F^{\prime}$).
+    \begin{proof}
+        Suppose there are two groups $F,F^{\prime}$ with associated injective maps $\varphi\colon S\to F$ and $\varphi^{\prime}\colon S\to F^{\prime}$ which satisfy the diagram above for any $H, \psi$ ($H,\psi$ are not necessarily the same in both diagrams):
+        % https://q.uiver.app/?q=WzAsNyxbNCwxLCJTIl0sWzYsMCwiRl57XFxwcmltZX0iXSxbNiwyLCJIIl0sWzgsMV0sWzAsMSwiUyJdLFsyLDAsIkYiXSxbMiwyLCJIIl0sWzAsMSwiXFx2YXJwaGlee1xccHJpbWV9Il0sWzAsMiwiXFxwc2kiLDJdLFsxLDIsImZee1xccHJpbWV9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNSwiXFx2YXJwaGkiXSxbNCw2LCJcXHBzaSIsMl0sWzUsNiwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+        	&& F &&&& {F^{\prime}} \\
+        	S &&&& S &&&& {} \\
+        	&& H &&&& H
+        	\arrow["{\varphi^{\prime}}", from=2-5, to=1-7]
+        	\arrow["\psi"', from=2-5, to=3-7]
+        	\arrow["{f^{\prime}}", dashed, from=1-7, to=3-7]
+        	\arrow["\varphi", from=2-1, to=1-3]
+        	\arrow["\psi"', from=2-1, to=3-3]
+        	\arrow["f", dashed, from=1-3, to=3-3]
+        \end{tikzcd}\]
+        There exist unique maps $f,f^{\prime}$ which completes each of the diagrams. Since $H,\psi$ were arbitrary in each diagram we can replace them with whichever groups we like. In the left diagram let $H$ be $F^{\prime}$ and $\psi$ be $\varphi^{\prime}$, and in the right diagram let $H$ be $F$ and $\psi$ be $\varphi$. Then the diagrams become the following:
+        \[\begin{tikzcd}
+        	&& F &&&& {F^{\prime}} \\
+        	S &&&& S &&&& {} \\
+        	&& F^{\prime} &&&& F
+        	\arrow["{\varphi^{\prime}}", from=2-5, to=1-7]
+        	\arrow["\varphi"', from=2-5, to=3-7]
+        	\arrow["{f^{\prime}}", dashed, from=1-7, to=3-7]
+        	\arrow["\varphi", from=2-1, to=1-3]
+        	\arrow["\varphi^{\prime}"', from=2-1, to=3-3]
+        	\arrow["f", dashed, from=1-3, to=3-3]
+        \end{tikzcd}\] Then we can ``stack'' the diagrams to form the following:
+        % https://q.uiver.app/?q=WzAsOSxbNCwxLCJTIl0sWzYsMCwiRl57XFxwcmltZX0iXSxbNiwyLCJGIl0sWzgsMV0sWzAsMSwiUyJdLFsyLDAsIkYiXSxbMiwyLCJGXntcXHByaW1lfSJdLFsyLDQsIkYiXSxbNiw0LCJGXntcXHByaW1lfSJdLFswLDEsIlxcdmFycGhpXntcXHByaW1lfSJdLFswLDIsIlxcdmFycGhpIiwyXSxbMSwyLCJmXntcXHByaW1lfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDUsIlxcdmFycGhpIl0sWzQsNiwiXFx2YXJwaGlee1xccHJpbWV9IiwyXSxbNSw2LCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsNywiZl57XFxwcmltZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCw3LCJcXHZhcnBoaSIsMl0sWzIsOCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDgsIlxcdmFycGhpXntcXHByaW1lfSIsMl0sWzUsNywiZl57XFxwcmltZX1cXGNpcmMgZiIsMCx7ImN1cnZlIjotNH1dLFsxLDgsImZcXGNpcmMgZl57XFxwcmltZX0iLDAseyJjdXJ2ZSI6LTR9XV0=
+\[\begin{tikzcd}
+	&& F &&&& {F^{\prime}} \\
+	S &&&& S &&&& {} \\
+	&& {F^{\prime}} &&&& F \\
+	\\
+	&& F &&&& {F^{\prime}}
+	\arrow["{\varphi^{\prime}}", from=2-5, to=1-7]
+	\arrow["\varphi"', from=2-5, to=3-7]
+	\arrow["{f^{\prime}}", dashed, from=1-7, to=3-7]
+	\arrow["\varphi", from=2-1, to=1-3]
+	\arrow["{\varphi^{\prime}}"', from=2-1, to=3-3]
+	\arrow["f", dashed, from=1-3, to=3-3]
+	\arrow["{f^{\prime}}", dashed, from=3-3, to=5-3]
+	\arrow["\varphi"', from=2-1, to=5-3]
+	\arrow["f", dashed, from=3-7, to=5-7]
+	\arrow["{\varphi^{\prime}}"', from=2-5, to=5-7]
+	\arrow["{f^{\prime}\circ f}", bend left=45, from=1-3, to=5-3]
+	\arrow["{f\circ f^{\prime}}", bend left=45, from=1-7, to=5-7]
+\end{tikzcd}\] This yields the diagrams: % https://q.uiver.app/?q=WzAsNyxbNCwxLCJTIl0sWzYsMCwiRl57XFxwcmltZX0iXSxbNiwyLCJGXntcXHByaW1lfSJdLFs4LDFdLFswLDEsIlMiXSxbMiwwLCJGIl0sWzIsMiwiRiJdLFswLDEsIlxcdmFycGhpXntcXHByaW1lfSJdLFswLDIsIlxcdmFycGhpXntcXHByaW1lfSIsMl0sWzEsMiwiZlxcY2lyYyBmXntcXHByaW1lfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDUsIlxcdmFycGhpIl0sWzQsNiwiXFx2YXJwaGkiLDJdLFs1LDYsImZcXGNpcmMgZl57XFxwcmltZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	&& F &&&& {F^{\prime}} \\
+	S &&&& S &&&& {} \\
+	&& F &&&& {F^{\prime}}
+	\arrow["{\varphi^{\prime}}", from=2-5, to=1-7]
+	\arrow["{\varphi^{\prime}}"', from=2-5, to=3-7]
+	\arrow["{f\circ f^{\prime}}", dashed, from=1-7, to=3-7]
+	\arrow["\varphi", from=2-1, to=1-3]
+	\arrow["\varphi"', from=2-1, to=3-3]
+	\arrow["{f\circ f^{\prime}}", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+        Observe that the identity maps on $F$ and $F^{\prime}$ commute as well in place of $f\circ f^{\prime}$ and $f^{\prime}\circ f$, respectively. Since $f,f^{\prime}$ were uniquely determined, it follows that $f\circ f^{\prime} = \id_F$ and $f^{\prime}\circ f = \id_{F^{\prime}}$. It follows that $f, f^{\prime}$ are inverses of each other, which means that there exists an isomorphism ($f,f^{\prime}$ were homomorphisms) between $F$ and $F^{\prime}$ (e.g. take $f$ or $f^{\prime}$). Hence $F$ is uniquely determined up to isomorphism in the definition of the free group.
+    \end{proof}
+    \item State how version 1 of the SVK Theorem in Lecture 2.16 characterizes $\pi_1(X, x_0)$, and then prove this characterization.
+    
+    Let $X = U\cup V$ for open sets $U,V$ with $U,V, U\cap V$ path connected. Suppress notating the base point $x_0\in U\cap V$. Then with the diagram % https://q.uiver.app/?q=WzAsNCxbMCwxLCJcXHBpXzEoVVxcY2FwIFYpIl0sWzIsMCwiXFxwaV8xKFUpIl0sWzIsMiwiXFxwaV8xKFYpIl0sWzQsMSwiSCJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwzLCJcXHJob18zIl0sWzEsMywiXFxyaG9fMiJdLFsyLDMsIlxccmhvXzIiLDJdXQ==
+    \[\begin{tikzcd}
+        && {\pi_1(U)} \\
+        {\pi_1(U\cap V)} &&&& H \\
+        && {\pi_1(V)}
+        \arrow[hook, from=2-1, to=1-3]
+        \arrow[hook, from=2-1, to=3-3]
+        \arrow["{\rho_3}", from=2-1, to=2-5]
+        \arrow["{\rho_2}", from=1-3, to=2-5]
+        \arrow["{\rho_2}"', from=3-3, to=2-5]
+    \end{tikzcd},\] if we are given $\rho_i$ and a group $H$, then there exists a unique map $\sigma\colon \pi_1(X)\to H$ and injections from $\pi_1(U),\pi_1(V),\pi_1(U\cap V)$ into $\pi_1(X)$ such that the following diagrams commute:% https://q.uiver.app/?q=WzAsOSxbMCwxLCJcXHBpXzEoVSkiXSxbMiwwLCJcXHBpXzEoWCkiXSxbMiwyLCJIIl0sWzQsMSwiXFxwaV8xKFYpIl0sWzYsMCwiXFxwaV8xKFgpIl0sWzYsMiwiSCJdLFs4LDEsIlxccGlfMShVXFxjYXAgVikiXSxbMTAsMCwiXFxwaV8xKFgpIl0sWzEwLDIsIkgiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsIlxccmhvXzEiLDJdLFszLDQsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiXFxyaG9fMiIsMl0sWzYsNywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNiw4LCJcXHJob18zIiwyXSxbMSwyLCJcXHNpZ21hIl0sWzQsNSwiXFxzaWdtYSJdLFs3LDgsIlxcc2lnbWEiXV0=
+    \[\begin{tikzcd}
+        && {\pi_1(X)} &&&& {\pi_1(X)} &&&& {\pi_1(X)} \\
+        {\pi_1(U)} &&&& {\pi_1(V)} &&&& {\pi_1(U\cap V)} \\
+        && H &&&& H &&&& H
+        \arrow[hook, from=2-1, to=1-3]
+        \arrow["{\rho_1}"', from=2-1, to=3-3]
+        \arrow[hook, from=2-5, to=1-7]
+        \arrow["{\rho_2}"', from=2-5, to=3-7]
+        \arrow[hook, from=2-9, to=1-11]
+        \arrow["{\rho_3}"', from=2-9, to=3-11]
+        \arrow["\sigma", from=1-3, to=3-3]
+        \arrow["\sigma", from=1-7, to=3-7]
+        \arrow["\sigma", from=1-11, to=3-11]
+    \end{tikzcd}\] This formulation characterizes $\pi_1(X)$ as the unique group up to isomorphism which plays its role in the diagrams above; that is, given some $\rho_i$ and a group $H$, then if there is a unique map $\phi\colon G \to H$ for some group $G$, then $G$ is isomorphic to $\pi_1(X)$.
+    \begin{proof}
+        We start by taking the diagrams above but choose $H$ to be $\pi_1(X)$ and let the $\rho_i$ be the homomorphisms induced by inclusion. Suppose that $G$ satisfies the above diagrams so that there exist injections $k_i$ and a map $\phi\colon G\to \pi_1(X)$ so that the following diagrams commute:% https://q.uiver.app/?q=WzAsOSxbMCwxLCJcXHBpXzEoVSkiXSxbMiwwLCJHIl0sWzIsMiwiXFxwaV8xKFgpIl0sWzQsMSwiXFxwaV8xKFYpIl0sWzYsMCwiRyJdLFs2LDIsIlxccGlfMShYKSJdLFs4LDEsIlxccGlfMShVXFxjYXAgVikiXSxbMTAsMCwiRyJdLFsxMCwyLCJcXHBpXzEoWCkiXSxbMCwxLCJrXzEiXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImtfMiJdLFszLDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzYsNywia18zIl0sWzYsOF0sWzEsMiwiXFxzaWdtYSJdLFs0LDUsIlxcc2lnbWEiXSxbNyw4LCJcXHNpZ21hIl1d
+        \[\begin{tikzcd}
+            && G &&&& G &&&& G \\
+            {\pi_1(U)} &&&& {\pi_1(V)} &&&& {\pi_1(U\cap V)} \\
+            && {\pi_1(X)} &&&& {\pi_1(X)} &&&& {\pi_1(X)}
+            \arrow["{k_1}", from=2-1, to=1-3]
+            \arrow[hook, from=2-1, to=3-3]
+            \arrow["{k_2}", from=2-5, to=1-7]
+            \arrow[hook, from=2-5, to=3-7]
+            \arrow["{k_3}", from=2-9, to=1-11]
+            \arrow[from=2-9, to=3-11]
+            \arrow["\phi", from=1-3, to=3-3]
+            \arrow["\phi", from=1-7, to=3-7]
+            \arrow["\phi", from=1-11, to=3-11]
+        \end{tikzcd}\]
+        Similarly, let $\pi_1(X)$ satisfy the above diagrams when $H = G$ and choose $\rho_i = k_i$ so that
+        \[\begin{tikzcd}
+            && {\pi_1(X)} &&&& {\pi_1(X)} &&&& {\pi_1(X)} \\
+            {\pi_1(U)} &&&& {\pi_1(V)} &&&& {\pi_1(U\cap V)} \\
+            && G &&&& G &&&& G
+            \arrow[hook, from=2-1, to=1-3]
+            \arrow["{k_1}"', from=2-1, to=3-3]
+            \arrow[hook, from=2-5, to=1-7]
+            \arrow["{k_2}"', from=2-5, to=3-7]
+            \arrow[hook, from=2-9, to=1-11]
+            \arrow["{k_3}"', from=2-9, to=3-11]
+            \arrow["\sigma", from=1-3, to=3-3]
+            \arrow["\sigma", from=1-7, to=3-7]
+            \arrow["\sigma", from=1-11, to=3-11]
+        \end{tikzcd}\]
+        We stack the diagrams like before, but observe that the diagrams are very similar so we will do it with just the left most diagram. After stacking, we can condense the diagram into % https://q.uiver.app/?q=WzAsNixbMCwxLCJcXHBpXzEoVSkiXSxbMiwwLCJHIl0sWzIsMiwiRyJdLFs0LDEsIlxccGlfMShVKSJdLFs2LDAsIlxccGlfMShYKSJdLFs2LDIsIlxccGlfMShYKSJdLFswLDEsImtfMSJdLFswLDIsImtfMSIsMl0sWzEsMiwiXFxzaWdtYSBcXGNpcmMgXFxwaGkiXSxbMyw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNSwiXFxwaGkgXFxjaXJjIFxcc2lnbWEiXV0=
+        \[\begin{tikzcd}
+            && G &&&& {\pi_1(X)} \\
+            {\pi_1(U)} &&&& {\pi_1(U)} \\
+            && G &&&& {\pi_1(X)}
+            \arrow["{k_1}", from=2-1, to=1-3]
+            \arrow["{k_1}"', from=2-1, to=3-3]
+            \arrow["{\sigma \circ \phi}", from=1-3, to=3-3]
+            \arrow[hook, from=2-5, to=1-7]
+            \arrow[hook, from=2-5, to=3-7]
+            \arrow["{\phi \circ \sigma}", from=1-7, to=3-7]
+        \end{tikzcd},\]
+        which because the identity maps on $G$ and $\pi_1(X)$ commute with $\sigma\circ\phi$ and $\phi\circ\sigma$ respectively and $\sigma,\phi$ were uniquely determined, we have that $\sigma\circ\phi = \id_G$ and $\phi\circ\sigma = \id_{\pi_1(X)}$. It follows that $\sigma, \phi$ are inverses of each other and since they were homomorphisms (all of these maps in this section are homomorphisms) it follows that $G$ was isomorphic to $\pi_1(X)$.
+    \end{proof}
+    \item Prove that these spaces are \textit{not} homeomorphic: \begin{enumerate}
+        \item $\mathbb{R}^1$ and $\mathbb{R}^n$ when $n> 1$
+        \begin{proof}
+            Suppose by way of contradiction that there exists a homeomorphism $f\colon \mathbb{R}\to \mathbb{R}^n$ for $n>1$. Then observe that $\mathbb{R}\setminus\cbr{0}$ is a disconnected set but its image under $f$ given by $f(\mathbb{R}\setminus \cbr{0})$ is connected (it is the plane minus a point, since $f(0)$ is a single point in $\mathbb{R}^2$). Since homeomorphic maps preserve connectedness, we have a contradiction. Hence $\mathbb{R}^1$ and $\mathbb{R}^n$ are not homeomorphic when $n> 1$.
+        \end{proof}
+        \item $\mathbb{R}^2$ and $\mathbb{R}^n$ when $n> 2$
+        \begin{proof}
+            Again, suppose by way of contradiction that there exists a homeomorphism $f\colon \mathbb{R}^2\to\mathbb{R}^n$ for $n>2$. Observe that $\mathbb{R}^2\setminus\cbr{0}$ is homeomorphic to $S^1$, meaning that its image under $f$ should also be homeomorphic to $S^1$. But $f(\mathbb{R}^2\setminus\cbr{0})$ is given by $\mathbb{R}^n\setminus \cbr{f(0)}$, which is homeomorphic to $S^{n-1}$. We know that $S^1$ and $S^{n-1}$ are not homeomorphic when $n>2$, since the fundamental group of $S^1$ is isomorphic to $\mathbb{Z}$ while the fundamental group of $S^n$ for $n\geq 2$ is the trivial group (by SVK). Spaces which are homeomorphic have the same fundamental group, so we have arrived at a contradiction. Therefore $\mathbb{R}^2$ and $\mathbb{R}^n$ are not homeomorphic when $n> 2$.
+        \end{proof}
+    \end{enumerate}
+    \item Compute the fundamental groups of: \begin{enumerate}
+        \item $S^1\times D^2$ ($D^2$ is the unit closed two-dimensional disk)
+        
+        The fundamental group of $S^1\times D^2$ is isomorphic to $\mathbb{Z}$.
+        \begin{proof}
+            We use the fact that the fundamental group of a finite product space is isomorphic to the direct product of the fundamental group of each factor: The fundamental group of $S^1$ is isomorphic to $\mathbb{Z}$, and the fundamental group of $D^2$ is trivial. Hence (suppressing the base point since this space is path connected) $\pi_1(S^1\times D^2)\cong \mathbb{Z}\times\cbr{e}\cong \mathbb{Z}$.
+        \end{proof}
+        \item $S^1\times S^2$
+        
+        The fundamental group of $S^1\times S^2$ is isomorphic to $\mathbb{Z}$.
+        \begin{proof}
+            Same reasoning as above. The fundamental group of $S^1$ is isomorphic to $\mathbb{Z}$, and the fundamental group of $S^2$ is trivial. Hence (suppressing the base point since this space is path connected) $\pi_1(S^1\times S^2)\cong \mathbb{Z}\times\cbr{e}\cong \mathbb{Z}$.
+        \end{proof}
+    \end{enumerate}
+    \item Compute the fundamental groups of the following spaces, and give justification using the SVK Theorem, homotopy equivalence, product, or some combination of these. 
+    
+    I will omit notating or fixing the base point in the fundamental groups since the spaces involved are all path connected.
+    \begin{enumerate}
+        \item Two spheres joined at a point \vspace*{15em} 
+        
+        SVK: Take $U,V$ to be the open sets indicated by the second stage of the drawing (i.e., ``chop off'' enough of each sphere and do not include the boundaries at the locations where the ``cuts'' were made; this is indicated using dashed lines), and observe that $U\cap V$ is also open and is homotopic to (by a deformation retract) $S^1$. Furthermore, $U$ is homotopic to the plane, and $V$ is homotopic to a sphere since the extra conical section can be shrunk down continuously to the point where the spheres were originally attached (a deformation retract). Picking some base point in $U\cap V$ and suppressing notating the base point, $\pi_1(U)$ and $\pi_1(V)$ are trivial, while $\pi_1(U\cap V)$ is the free group on one generator. It follows by using $SVK$ that the fundamental group of two spheres joined at a point is also trivial, since there are no generators of $\pi_1(U),\pi_1(V)$ and the induced homomorphisms due to inclusion from $U\cap V$ into $U$ and $V$ are trivial.
+        \item Two tori joined at a point \vspace*{15em}
+        
+        SVK: Take $U$ to be just the left torus with a small closed disk containing the point where the tori are joined removed, and V to be the right torus plus a larger open disk contained in the left torus which contains the small closed disk removed to form $U$. Then $U\cap V$ is homeomorphic to an annulus and hence $S^1$, so that its fundamental group (suppressing base points) is given by $\abr{c}$. The space $U$ is homeomorphic to the figure eight whose fundamental group is given by $\abr{a,b}$; the space $V$ first is deformation retracted onto a torus, which we know to have fundamental group isomorphic to $\mathbb{Z}\times\mathbb{Z}$, given by the presentation $\abr{r,s\mid rsr^{-1}s^{-1}}$ (abelianization of free group on two generators).
+
+        By inspection, the action of the homomorphisms induced by inclusion into $U$ and $V$ on $c$ are to map $c$ into $aba^{-1}b^{-1}$ and the identity, respectively. Hence the fundamental group of the whole space is given by $\abr{a,b,r,s\mid aba^{-1}b^{-1}, rsr^{-1}s^{-1}}$ (free product of the fundamental groups of each torus).
+        \item Sphere with an arc attached \vspace*{15em}
+        
+        SVK: Choose $U$ to be just the sphere with a small closed disk removed, and $V$ to be the arc attached to a larger open disk containing the small disk removed from the sphere to form $U$. Then $U\cap V$ is homeomorphic to an annulus and hence $S^1$, so that its fundamental group is given by $\abr{c}$. Then $U$ is homeomorphic to the plane which has trivial fundamental group; the space $V$ by deformation retract is homeomorphic to $S^1$, so its fundamental may be given by $\abr{a}$.
+        
+        The action of the induced homomorphisms by inclusion into $U$ and $V$ are to send $c$ to the identity and then also to the identity, respectively, since loops homotopic to $c$ as they appear on the disk part of $V$ may be contracted to a point. Hence the fundamental group of the whole space is given by just $\abr{a}$ with no relations since the homomorphisms induced by inclusion were trivial. 
+        \item Torus with an arc attached \vspace*{15em}
+        
+        SVK: Choose $U$ to be just the torus with a small closed disk removed, and $V$ to be the arc attached to a larger open disk containing the small disk removed from the torus to form $U$. Then $U\cap V$ is homeomorphic to an annulus and hence $S^1$, so that its fundamental group is given by $\abr{c}$. Then $U$ is homeomorphic to the figure eight which has fundamental group given by $\abr{a,b}$; the space $V$ by deformation retract is homeomorphic to $S^1$, so its fundamental group may be given by $\abr{d}$.
+
+        The action of the induced homomorphisms by inclusion into $U$ and $V$ are to send $c$ to $aba^{-1}b^{-1}$ and the identity, respectively (the latter for the same reason as the previous time). Hence the fundamental group of the whole space is given by $\abr{a,b,d\mid aba^{-1}b^{-1}}$.
+        \item Disk with a hollow tube attached \vspace*{15em}
+        
+        SVK: First deformation retract the space into the tube with a strip attached as above. Then choose $U$ to be the whole space with a small closed disk removed, and $V$ to be a larger open disk containing the closed disk from earlier. Then $U\cap V$ is an annulus which has fundamental group $\abr{c}$, the fundamental group of $V$ is trivial, and using the diagrams above observe that $U$ is homotopic to the figure eight. The fundamental group of $U$ is given by $\abr{a,b}$.
+
+        The induced homomorphisms by inclusion into $U$ and $V$ act on $c$ to give $ab$ and the identity, respectively. Thus the fundamental group of the whole space is given by $\abr{a,b\mid ab}$, but this group is isomorphic to $\mathbb{Z}$ as $b$ becomes the inverse of $a$ ($\mathbb{Z}$ has two generators which are inverses of each other, and this group is unique).
+        \item Pinched torus \vspace*{15em}
+        
+        SVK: We slice the pinched torus like it is a croissant, twice (cutting in a way that makes our choices for $U$ and $V$ to be open). Take $U$ to be the upper slice and $V$ to be the lower slice, and observe that they are homeomorphic copies of the same space. The space $U\cap V$ is the band as pictured above, and it is homotopic to the figure eight, with fundamental group given by $\abr{c_1,c_2}$. The fundamental group of $U$ and $V$ are the same since $U$ and $V$ are homotopic to circles, so give the fundamental groups as $\abr{a},\abr{b}$, respectively.
+
+        Then pushing $c_1$ by the homomorphisms induced by inclusion give $a$, $b$, respectively; the same happens for $c_2$, its images are $a$ and $b$, respectively. As a result the fundamental group of the whole space is given by $\abr{a,b,\mid ab, ab} = \abr{a,b,\mid ab}$, and like before this group is isomorphic to $\mathbb{Z}$.
+        \item Square with edges identified as shown (Klein bottle)\vspace*{15em}
+        
+        SVK: Choose $U$ to be the space with a small closed disk removed, and $V$ to be a larger open disk containing the aforementioned small closed disk. Then $U\cap V$ is homeomorphic to the circle, and so has fundamental group $\abr{c}$. The space $U$ is homeomorphic to the figure eight and has fundamental group $\abr{a,b}$, and $V$ has trivial fundamental group.
+
+        The image of $c$ under the induced homomorphisms into $U$ and $V$ by inclusion is $abab^{-1}$ and the identity, respectively. Hence the fundamental group of the whole space is given by $\abr{a,b\mid abab^{-1}}$.
+        \item Solid cube with a hole drilled out \vspace*{15em}
+        
+        It is clear that we can deformation retract this solid to a circle, so that its fundamental group is given by $\abr{a}$ where $a$ just needs to loop around the central cylindrical void once.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

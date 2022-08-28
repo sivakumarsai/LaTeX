@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\headheight = 14pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{soul}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG4303}
+\fancyhead[C]{HW 5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+
+\newtheorem*{definition}{Definition}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (36.1) Prove that every manifold is regular and hence metrizable. Where do you use the Hausdorff condition? \begin{proof}
+        Let $M$ be any $m$-manifold, with $m$ arbitrary. Recall that any topological space satisfying the $T_1$ axiom is regular if and only if for every point $x$ in the space and a neighborhood $U$ containing the point, we can find a neighborhood $V$ containing $x$ such that $\overline{V}\subset U$.
+
+        Let $x\in M$ and $U$ a neighborhood containing $x$ be given. Since $M$ is a manifold there is a neighborhood $E$ containing $x$ such that $E$ is homeomorphic to an open subset of $\mathbb{R}^m$; let $\varphi$ be one such homeomorphism.
+
+        Observe that $E\cap U$ is an open subset of $E$ containing $x$ which is mapped homeomorphically into an open neighborhood of $\varphi(x)$ in $\mathbb{R}^m$. Since $\mathbb{R}^m$ is regular (it is metrizable), we can find a neighborhood $V^\prime$ of $\varphi(x)$ such that $\overline{V^\prime}$ is contained in $\varphi(E\cap U)$. We show that by choosing $V = \varphi^{-1}(V^\prime)$ which contains $x$, then $\overline{V}$ is contained in $U$.
+
+        We have that $\varphi^{-1}(\overline{V^\prime})\subset \overline{\varphi^{-1}(V^\prime)}$ by continuity of $\varphi$. We show the reverse containment by way of contradiction. Suppose that there is a point $p \in \overline{\varphi^{-1}(V^\prime)}$ not contained in $\varphi^{-1}(\overline{V^\prime})$. Since manifolds have countable basis we can find a sequence of points $(\varphi^{-1}(x_n))$ in $M$ which converges to $p$. But since $\varphi^{-1}$ is continuous, the sequence $(x_n)$ converges to a limit point $q\in \overline{V^\prime}$, by continuity we have that $(\varphi^{-1}(x_n))$ converges to $\varphi^{-1}(q)$. But $p$ could not equal $\varphi^{-1}(q)$ by assumption, which is in contradiction to the fact that in Hausdorff spaces limits are unique (this is why $M$ needs to be Hausdorff specifically).
+
+        Hence $\varphi^{-1}(\overline{V^\prime}) = \overline{\varphi^{-1}(V^\prime)}$, so that by choosing $V = \varphi^{-1}(V^\prime)$, we have the desired containment. Observe that since $\overline{V^\prime}$ is contained in $\varphi(E\cap U)$, by continuity we have that $\varphi^{-1}(\overline{V^\prime}) = \overline{\varphi^{-1}(V^\prime)} = \overline{V}\subset E\cap U$. Hence $M$ is regular, and since $M$ was an arbitrary manifold, every manifold is regular.
+
+        Since manifolds are regular and have countable basis, by the Urysohn metrization theorem, manifolds are metrizable.
+    \end{proof}
+    \item (36.3) Let $X$ be a Hausdorff space such that each point of $X$ has a neighborhood that is homeomorphic with an open subset of $\mathbb{R}^m$. Show that if $X$ is compact, then $X$ is an $m$-manifold. \begin{proof}
+        We show that $X$ has a countable basis. Let $\mathcal{A} = \cbr{A_x\mid x\in X}$ where $A_x$ is a neighborhood of $x$ homeomorphic to an open neighborhood of $\mathbb{R}^m$. We have that $\mathcal{A}$ is an open cover of $X$, so let $\mathcal{A}^\prime = \cbr{A_1,\dots,A_n}$ be the resulting finite subcover of $X$ coming from compactness. Then view $\mathcal{A}^\prime$ as a subbase for $X$ since it covers $X$. Viewing $X$ under this topology generated by the subbase, it has a countable basis since every basis element is formed by taking finite intersections of elements of $\mathcal{A}^\prime$; since $\mathcal{A}^\prime$ has finitely many sets, it follows that there are countably many basis elements. It follows that $X$ is an $m$-manifold since all of the othe requirements are met.
+    \end{proof}
+    \item (36.5) The Hausdorff condition is an essential part of the definition of a manifold; it is not implied by the other parts of the definition. Consider the following space: Let $X$ be the union of the set $\mathbb{R}-\{0\}$ and the two point set $\cbr{p,q}$. Topologize $X$ by taking as the basis the collection of all open intervals in $\mathbb{R}$ that do not contain $0$, along with all sets of the form $(-a,0)\cup\cbr{p}\cup(0,a)$ and all sets of the form $(-a,0)\cup\cbr{q}\cup(0,a)$, for $a>0$. The space $X$ is called the \textit{\textbf{line with two origins}}. \begin{enumerate}
+        \item Check that this is a basis for a topology. \begin{proof}
+            Every nonzero real number $x$ is found in some interval $(x-\delta,x+\delta)$ for $\delta>0$ chosen sufficiently small. Similarly, $p$ and $q$ are found in $(-a,0)\cup\cbr{p}\cup(0,a)$ and $(-a,0)\cup\cbr{q}\cup(0,a)$ for some $a>0$.
+            
+            The intersection of any two basis elements not containing either of the origins $p$ or $q$ will clearly contain a smaller open interval.
+            
+            The intersection of a basis element not containing the origins with any basis element containing either of the origins may intersect only with the intervals $(-a,0)$ or $(0,a)$ so that the resulting intersection would be a union of at most two intervals which we could find a union of at most two smaller open intervals.
+
+            The intersection of any two basis elements containing either of the origins will also appear as the union of two intervals with or without \textit{one} of the origins.
+        \end{proof}
+        \item Show that each of the spaces $X-\cbr{p}$ and $X - \cbr{q}$ is homeomorphic to $\mathbb{R}$.\begin{proof}
+            We show the proof for $X-\cbr{p}$; the other follows by symmetry. We can map the basis elements appearing in $X-\cbr{p}$ to $\mathbb{R}$ by sending intervals not containing zero to themselves, and sending the basis elements which contain $p$ given by $(-a,0)\cup\cbr{p}\cup(0,a)$ for $a>0$ to $(-a,a)$. Extend this map into a continuous map from $X-\cbr{p}$ to $\mathbb{R}$.
+            
+            Furthermore, this map is invertible in the obvious manner, and the inverse is also continuous for similar reasons. It follows that the map given is a homeomorphism of $X-\cbr{p}$ with $\mathbb{R}$.
+        \end{proof}
+        \item Show that $X$ satisfies the $T_1$ axiom, but is not Hausdorff. \begin{proof}
+            We show that singleton sets are closed; so that finite point sets are closed as a result of being a finite union of closed sets. The form for which the complement of the singleton $\cbr{x}$ takes on depends on whether or not $x$ is an origin or not. If $x$ is not an origin, then the form of its complement is either $\br{-\infty,x}\cup(x,0)\cup\cbr{p}\cup\cbr{q}\cup(0,\infty)$ or $\br{-\infty,0}\cup\cbr{p}\cup\cbr{q}\cup(0,x)\cup(x,\infty)$ depending on the sign of $x$. If $x = p$ then its complement is $\br{-\infty,0}\cup\cbr{q}\cup(0,\infty)$, and similarly for $q$ by reversing the roles of $p$ and $q$. 
+
+            In all cases the complements obtained are open (union of basis elements) so singleton sets and hence finite point sets are closed. It follows that $X$ satisfies the $T_1$ axiom.
+        \end{proof}
+        \item Show that $X$ satisfies all the conditions for a $1$-manifold except for the Hausdorff condition. \begin{proof}
+            We could take the collection of all intervals not containing zero which have rational endpoints, and sets of the form $(-a,0)\cup\cbr{p}\cup(0,b)$ or $(-a,0)\cup\cbr{q}\cup(0,b)$ with $a,b >0$ rational (these would be the intervals containing the origin with rational endpoints). This forms a countable basis for $X$.
+
+            Every nonzero point is found in a small enough open interval, which is homeomorphic trivially to an open interval of $\mathbb{R}$. The origins are contained in open sets of the form $(-a,0)\cup\cbr{p}\cup(0,a)$ or $(-a,0)\cup\cbr{q}\cup(0,a)$ for $a>0$, and we can homeomorphically map these into the interval $(-a,a)$ by sending all the nonzero points to themselves and $p$ or $q$ to $0$ (one map for $p$, another for $q$). Hence each point in $X$ is contained in a neighborhood homeomorphic to an open subset of $\mathbb{R}$.
+
+            But $X$ is not Hausdorff, as the origin $p$ and $q$ are not contained in disjoint open sets. Any open sets containing $p$ and $q$ must intersect since it would contain the basis elements $(-a,0)\cup\cbr{p}\cup(0,a)$ and $(-b,0)\cup\cbr{q}\cup(0,b)$ for suitable $a,b>0$, which intersect nontrivially. 
+
+            Hence $X$ satisfies all the conditions for a $1$-manifold except for the Hausdorff condition.
+        \end{proof}
+    \end{enumerate}
+    \item (37.1) Let $X$ be a space. Let $\mathcal{D}$ be a collection that is maximal with respect to the finite intersection property. \begin{enumerate}
+        \item Show that $x\in \overline{D}$ for every $D\in \mathcal{D}$ if and only if every neighborhood of $x$ belongs to $\mathcal{D}$. Which implication uses maximality of $\mathcal{D}$? \begin{proof}
+            Suppose that every neighborhood of $x$ is contained in $\mathcal{D}$. Then by the finite intersection property, for any given $D\in \mathcal{D}$ and any neighborhood $U$ of $x$ we have that $D\cap U$ is nonempty. Since $U$ was any neighborhood of $x$, we have that $x\in \overline{D}$. Since $D$ was arbitrary, we have that $x\in \overline{D}$ for every $D\in\mathcal{D}$.
+
+            Conversely, suppose that $x\in \overline{D}$ for every $D\in\mathcal{D}$ so that every neighborhood of $x$ intersects nontrivially with every $D\in \mathcal{D}$. Suppose by way of contradiction that there is a neighborhood $U$ of $x$ which is not found in $\mathcal{D}$. Since $U\cap D\neq \emptyset$ for every $D\in \mathcal{D}$, it follows that $\cbr{U}\cup\mathcal{D}$ forms a larger collection of sets with the finite intersection property. But this is in contradiction to the fact that $\mathcal{D}$ was maximal, so instead $U$ must have been in $\mathcal{D}$. Hence every neighborhood of $x$ is in $\mathcal{D}$. [This direction uses maximality of $\mathcal{D}$.]
+        \end{proof}
+        \item Let $D\in\mathcal{D}$. Show that if $A\supset D$, then $A\in D$. \begin{proof}
+            Observe that $A$ intersects nontrivially with every element in $\mathcal{D}$ since $D\subset A$, and $\mathcal{D}$ has the finite intersection property. But since $\mathcal{D}$ was chosen maximally with respect to the finite intersection property, we have that $\cbr{A}\cup \mathcal{D} = \mathcal{D}$ so that $A\in \mathcal{D}$ as desired.
+        \end{proof}
+        \item Show that if $X$ \st{satisfies the $T_1$ axiom} is Hausdorff, there is at most one point belonging to $\bigcap_{D\in\mathcal{D}} \overline{D}$.\begin{proof}
+            Suppose that there are at least two distinct points $x$ and $y$ in $\bigcap_{D\in\mathcal{D}} \overline{D}$. By the Hausdorff condition we can find neighborhoods $U$ and $V$ containing $x$ and $y$ respectively which are disjoint from each other. But $x,y\in \overline{D}$ for every $D\in \mathcal{D}$, so that $U$ and $V$ intersects with every $D$ nontrivially. From the above results we have that $U,V\in \mathcal{D}$, from which it follows that $U\cap V$ is nonempty by the finite intersection property. This is in contradiction with our choice of $U$ and $V$. Hence there is at most one point belonging to $\bigcap_{D\in\mathcal{D}} \overline{D}$.
+        \end{proof}
+    \end{enumerate}
+    \item (38.4) Let $Y$ be an arbitrary compactification of $X$; let $\beta(X)$ be the (concrete) Stone-\v{C}ech compactification. Show there is a continuous surjective closed map $g\colon\beta(X)\to Y$ that equals the identity on $X$. [This exercise makes precise what we mean by saying that $\beta(X)$ is the ``maximal'' compactification of $X$. It shows that every compactification of $X$ is equivalent to a quotient space of $\beta(X)$.] \begin{proof}
+        Since $Y$ is a compact Hausdorff space, we can extend the inclusion mapping $\iota\colon X\hookrightarrow Y$ (which is continuous viewing $X$ as a subspace of $Y$) to a continuous map $g$ from $\beta(X)$ to $Y$. We show that $g$ is a closed surjective map which equals the identity on $X$.
+
+        Since $\beta(X)$ is compact, any closed subset of $\beta(X)$ is also compact, and since $g$ is continuous, the image of a compact set will be compact. But a compact subset of a Hausdorff space is closed (as its complement can be shown to be open). Hence $g$ is a closed map.
+
+        Similarly, since $\overline{X} = Y$, we have that $g$ maps $\overline{X}$ (or rather the closure of $X$ found in $\beta(X)$ ?) surjectively onto $Y$. Furthermore, the map $g$ will agree with the inclusion map on $X$, which is just the identity map.
+    \end{proof}
+    \item (38.6) Let $X$ be completely regular. Show that $X$ is connected if and only if $\beta(X)$ is connected. [\textit{Hint}. If $X = A\cup B$ is a separation of $X$, let $f(x) = 0$ for $x\in A$ and $f(x) = 1$ for $x\in B$.] \begin{proof}
+        We show that $X$ is disconnected if and only if $\beta(X)$ is disconnected. Let $A,B$ be open sets of $X$ which form a separation of $X$. Define a continuous (surjective) function $f$ from $X = A\cup B$ to the compact Hausdorff space $\cbr{0,1}$ with the discrete topology such that $f(A) = \cbr{0}$ and $f(B) = \cbr{1}$ (continuous since preimages of open sets in $\cbr{0,1}$ are open).
+
+        Since $f$ is continuous, we extend $f$ uniquely into a continuous map $g$ from $\beta(X)$ to $\cbr{0,1}$ which agrees with $f$ on $X$. We have that $g$ is surjective as a result, so that by taking preimages of $\cbr{0}$ and $\cbr{1}$ under $g$ we have open sets $A^\prime$ and $B^\prime$ respectively which are disjoint (and nonempty since $A$, $B$ are nonempty). It follows that $\beta(X)$ is separated since $A^\prime,B^\prime$ form a separation of $\beta(X)$.
+    \end{proof}
+    \item (38.7) Let $X$ be a discrete space; consider the space $\beta(X)$. \begin{enumerate}
+        \item Show that if $A\subset X$, then $\overline{A}$ and $\overline{X-A}$ are disjoint, where the closures are taken in $\beta(X)$. \begin{proof}
+            We employ the same trick where $A$ and $X-A$ form a separation of $X$ since both are open (clopen) sets of $X$, and define a continuous surjective function $f$ from $X$ to $\cbr{0,1}$ sending $A$ to $\cbr{0}$ and $X-A$ to $\cbr{1}$. Then extend $f$ into a surjective continuous function $g$ from $\beta(X)$ to $\cbr{0,1}$, and by taking the preimage of $\cbr{0}$ and $\cbr{1}$ under $g$ we obtain a separation of $\beta(X)$ into disjoint clopen sets $g^{-1}(\cbr{0}),g^{-1}(\cbr{1})$.
+            
+            Since $g$ agrees with $f$ on $A$ and $X-A$ it follows that $\overline{A}\subseteq g^{-1}(\cbr{0})$ and $\overline{X-A}\subseteq g^{-1}(\cbr{1})$ where the closures are taken in $\beta(X)$. It follows that $\overline{A}$ and $\overline{X-A}$ are disjoint.
+
+            Furthermore, see that $\beta(X)-\overline{A} = \overline{X}-\overline{A}\subseteq \overline{X-A}$, but $\overline{X-A}$ is disjoint from $\overline{A}$ so that $\overline{X-A}\subseteq \beta(X) - \overline{A}$. Hence $\overline{X-A}$ is the complement of $\overline{A}$, meaning that $\overline{X-A}$ and also $\overline{A}$ are clopen.
+        \end{proof}
+        \item Show that if $U$ is open in $\beta(X)$, then $\overline{U}$ is open in $\beta(X)$. \begin{proof}
+            In the previous result, take $A = U\cap X$ (open in the discrete space $X$ viewed as a subspace of $\beta(X)$) to find that $\overline{U\cap X}$ is a clopen set in $\beta(X)$. We wish to show that $\overline{U} = \overline{U\cap X}$ to obtain the result.
+
+            Since $U\cap X\subseteq U$ we have that $\overline{U\cap X}\subseteq \overline{U}$. For any $x\in \overline{U}$, every neighborhood $V$ of $x$ intersects $U$ nontrivially. Because $U\cap V$ is a nonempty subset of $\overline{X}$, every neighborhood of a point found in $U\cap V$ will intersect $X$ nontrivially; since $U\cap V$ is the intersection of two open sets it is also open and is one such neighborhood. It follows that $V\cap (U\cap X)$ is nonempty; with $V$ chosen arbitrarily it follows that $x\in \overline{U\cap X}$.
+            
+            Hence $\overline{U}\subseteq \overline{U\cap X}$ so that $\overline{U} = \overline{U\cap X}$ is a clopen set in $\beta(X)$.
+        \end{proof}
+        \item Show that $\beta(X)$ is totally disconnected. \begin{proof}
+            Let $Z$ be a set consisting of at least two distinct points $x,y$ in $\beta(X)$. We show that $Z$ is disconnected, so that only the singleton subsets of $\beta(X)$ could be connected (they are trivially connected).
+
+            Using the Hausdorff condition we find open disjoint neighborhoods $U_x$ and $U_y$ of $x$ and $y$ respectively. Observe by part (b) that $\overline{U_x}$ is also open, so that $Z-\overline{U_x}$ is closed. We want $y$ to be in this set so that it is possible to find a separation at all. Suppose by way of contradiction that $y$ was not in the closed set $Z-\overline{U_x}$; that is, $y$ was in $\overline{U_x}$. But then every neighborhood of $y$ would intersect nontrivially with $U_x$; in particular $U_y$ would, which is in contradiction to $U_x$ and $U_y$ being disjoint. Hence $y\in Z-\overline{U_x}$, an open set since $\overline{U_x}$ is closed. Thus we have formed a separation of $Z$.
+
+            Since $Z$ was arbitrary, it follows that the only connected sets are the singleton sets.
+        \end{proof}
+    \end{enumerate}
+    \item (38.9a) If $X$ is normal and $y$ is a point of $\beta(X) - X$, show that $y$ is not the limit of a sequence of points of $X$. \begin{proof}
+        Suppose by way of contradiction that there is a sequence $(x_n)$ of points in $X$ converging to $y\in \beta(X)-X$; without loss of generality assume that every $x_n$ is distinct (no repeating entries). Observe that the sequences $A = (x_{2k})$ and $B = (x_{2k+1})$ for $k\geq 0$ also converge to $y$.
+        
+        We show that the range of the sequences as subsets of $X$ are closed: Since they do not converge in $X$, there are no limit points in $X$ outside of the points appearing in the sequences themselves. Hence $A,B$ are closed disjoint subsets of $X$. By The Urysohn lemma we can form a continuous map $f$ from $X$ into $[0,1]$ sending $A$ to $\cbr{0}$ and $B$ to $\cbr{1}$. But we can extend this map to a continuous map $g$ from $\beta(X)$ to $\sbr{0,1}$ which agrees with $f$ on $X$. However, by sending the sequences $(x_{2k})$ and $(x_{2k+1})$ through $g$, by continuity the sequencex $(g(x_{2k})) = (0)$ and $(g(x_{2k+1})) = (1)$ must converge to $g(y)$, which is one point (but the sequences converge to different points in $\sbr{0,1}$). This is a contradiction. Hence $y$ is not the limit of a sequence of points of $X$.
+    \end{proof}
+    \item (38.10) We have constructed a correspondence $X\to \beta(X)$ that assigns, to each completely regular space, its Stone-\v{C}ech compactification. Now let us assign, to each continuous map $f\colon X\to Y$ of completely regular spaces, the unique continuous map $\beta(f)\colon \beta(X)\to \beta(Y)$ that extends the map $i\circ f$, where $i\colon Y\to \beta(Y)$ is the inclusion map. Verify the following: \begin{enumerate}
+        \item If $1_X\colon X\to X$ is the identity map of $X$, then $\beta(1_X)$ is the identity map of $\beta(X)$. \begin{proof}
+            From the diagram % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiXFxiZXRhKFgpIl0sWzEsMSwiWCJdLFsxLDIsIlxcYmV0YShYKSJdLFswLDIsIjFfWCIsMl0sWzIsMywiXFxpb3RhIiwyXSxbMSwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwzLCJcXGlkX3tcXGJldGEoWCl9IiwwLHsiY3VydmUiOi0yfV0sWzAsMSwiXFxzdWJzZXRlcSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+            \[\begin{tikzcd}
+                X & {\beta(X)} \\
+                & X \\
+                & {\beta(X)}
+                \arrow["{1_X}"', from=1-1, to=2-2]
+                \arrow[hook', from=2-2, to=3-2]
+                \arrow[dashed, from=1-2, to=2-2]
+                \arrow["{\id_{\beta(X)}}", bend left=45, from=1-2, to=3-2]
+                \arrow["\subseteq"{description}, draw=none, from=1-1, to=1-2]
+            \end{tikzcd}\] observe that the identity map of $\beta(X)$ commutes with the extension of $i\circ 1_X$ so that by uniqueness of the extension we must have that $\beta(1_X)$ is the identity map of $\beta(X)$.
+        \end{proof}
+        \item If $f\colon X\to Y$ and $g\colon Y\to Z$, then $\beta(g\circ f) = \beta(g) \circ \beta(f)$. \begin{proof}
+            From the diagram % https://q.uiver.app/?q=WzAsNixbMCwwLCJYIl0sWzAsMSwiWSJdLFswLDIsIloiXSxbMSwzLCJcXGJldGEoWikiXSxbMSwyLCJcXGJldGEoWSkiXSxbMSwwLCJcXGJldGEoWCkiXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDQsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsNSwiXFxzdWJzZXRlcSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDEsImYiLDJdLFsxLDIsImciLDJdLFs1LDQsIlxcYmV0YShmKSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDMsIlxcYmV0YShnKSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDMsIlxcYmV0YShnXFxjaXJjIGYpIiwwLHsiY3VydmUiOi0yfV1d
+            \[\begin{tikzcd}
+                X & {\beta(X)} \\
+                Y \\
+                Z & {\beta(Y)} \\
+                & {\beta(Z)}
+                \arrow[hook, from=3-1, to=4-2]
+                \arrow[hook, from=2-1, to=3-2]
+                \arrow["\subseteq"{description}, draw=none, from=1-1, to=1-2]
+                \arrow["f"', from=1-1, to=2-1]
+                \arrow["g"', from=2-1, to=3-1]
+                \arrow["{\beta(f)}"', dashed, from=1-2, to=3-2]
+	            \arrow["{\beta(g)}"', dashed, from=3-2, to=4-2]
+                \arrow["{\beta(g\circ f)}", bend left=45, from=1-2, to=4-2]
+            \end{tikzcd}\] we obtain that $\beta(g\circ f)$ commutes with $\beta(g)\circ\beta(f)$; by uniqueness of the extensions involved we have that $\beta(g\circ f) = \beta(g) \circ \beta(f)$ as desired.
+        \end{proof}
+    \end{enumerate} These properties tell us that the correspondence we have constructed is what is called a \textit{\textbf{functor}}; it is a functor from the ``category'' of completely regular spaces and continuous maps of such spaces, to the ``category'' of compact Hausdorff spaces and continuous maps of such spaces.
+    \item Let $Y$ be the concrete Stone-\v{C}ech compactification of the compact completely regular space $X$. Show that $X = Y$. \begin{proof}
+        Since $X$ is a compact Hausdorff space we can form the following diagram, with $\iota\colon X\to Y$ being the unique inclusion map of $X$ into $Y$: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMSwyLCJZIl0sWzAsMiwiXFxpZF9YIiwyLHsiY3VydmUiOjF9XSxbMCwxLCJcXGlvdGEiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxcb3ZlcmxpbmV7XFxpZF9YfSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDMsIlxcaW90YSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMywiXFxpZF9ZIiwwLHsiY3VydmUiOi0yfV1d
+        \[\begin{tikzcd}
+            X & Y \\
+            & X \\
+            & Y
+            \arrow["{\id_X}"', bend left=-30, from=1-1, to=2-2]
+            \arrow["\iota", hook, from=1-1, to=1-2]
+            \arrow["{\overline{\id_X}}"', dashed, from=1-2, to=2-2]
+            \arrow["\iota"', hook, from=2-2, to=3-2]
+            \arrow["{\id_Y}", bend left=45, from=1-2, to=3-2]
+        \end{tikzcd}\] Since the diagram commutes and the maps involved are all unique and continuous, we have that $\overline{\id_X}\circ \iota = \id_X$ and $\iota\circ\overline{\id_X}$. It follows that $\iota$ and $\overline{\id_X}$ are homeomorphisms (of $X$ with $Y$), and since $X$ is contained in $Y$ it follows that $X = Y$.
+
+        Alternatively, since $\overline{X} = Y$ in $Y$, the inclusion map from $X$ to $\overline{X}$ can be extended to a continuous map from $Y$ to $\overline{X} = Y$ which by uniqueness must be the identity map on $Y$. It follows similarly that $X = Y$.
+    \end{proof}
+    \item If $Y$ and $Y^\prime$ are diagrammatic Stone-\v{C}ech compactifications of a completely regular space $X$ under $\varphi$ and $\varphi^\prime$ respectively, then there exists a unique homeomorphism $h\colon Y\to Y^\prime$ with % https://q.uiver.app/?q=WzAsMyxbMSwwLCJZIl0sWzEsMSwiWV5cXHByaW1lIl0sWzAsMCwiWCJdLFswLDEsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwxLCJcXHZhcnBoaV5cXHByaW1lIiwyXSxbMiwwLCJcXHZhcnBoaSJdXQ==
+    \[\begin{tikzcd}
+        X & Y \\
+        & {Y^\prime}
+        \arrow["h", dashed, from=1-2, to=2-2]
+        \arrow["{\varphi^\prime}"', from=1-1, to=2-2]
+        \arrow["\varphi", from=1-1, to=1-2]
+    \end{tikzcd}.\] \begin{proof}
+        With $Y$ and $Y^\prime$ diagrammatic Stone-\v{C}ech compactifications, we obtain the diagrams % https://q.uiver.app/?q=WzAsNixbMCwwLCJYIl0sWzEsMCwiWSJdLFsxLDEsIkMiXSxbMiwwLCJYIl0sWzMsMCwiWSJdLFszLDEsIkNeXFxwcmltZSJdLFswLDIsImYiLDJdLFswLDEsIlxcdmFycGhpIl0sWzEsMiwiXFxvdmVybGluZXtmfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDUsImZeXFxwcmltZSIsMl0sWzMsNCwiXFx2YXJwaGleXFxwcmltZSJdLFs0LDUsIlxcb3ZlcmxpbmV7Zl5cXHByaW1lfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+            X & Y & X & Y^\prime \\
+            & C && {C^\prime}
+            \arrow["f"', from=1-1, to=2-2]
+            \arrow["\varphi", from=1-1, to=1-2]
+            \arrow["{\overline{f}}", dashed, from=1-2, to=2-2]
+            \arrow["{f^\prime}"', from=1-3, to=2-4]
+            \arrow["{\varphi^\prime}", from=1-3, to=1-4]
+            \arrow["{\overline{f^\prime}}", dashed, from=1-4, to=2-4]
+        \end{tikzcd}\] for any $C,C^\prime$. By taking $C$ to be $Y^\prime$ and $C^\prime$ to be $Y$ (and changing the appropriate maps), and by stacking diagrams we obtain % https://q.uiver.app/?q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsxLDEsIlleXFxwcmltZSJdLFsyLDAsIlgiXSxbMywwLCJZXlxccHJpbWUiXSxbMywxLCJZIl0sWzEsMiwiWSJdLFszLDIsIlleXFxwcmltZSJdLFswLDIsIlxcdmFycGhpXntcXHByaW1lfSIsMl0sWzAsMSwiXFx2YXJwaGkiXSxbMSwyLCJcXG92ZXJsaW5le2Z9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNSwiXFx2YXJwaGkiLDJdLFszLDQsIlxcdmFycGhpXlxccHJpbWUiXSxbNCw1LCJcXG92ZXJsaW5le2ZeXFxwcmltZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMyw3LCJcXHZhcnBoaV5cXHByaW1lIiwyLHsiY3VydmUiOjJ9XSxbMCw2LCJcXHZhcnBoaSIsMix7ImN1cnZlIjoyfV0sWzIsNiwiXFxvdmVybGluZXtmXlxccHJpbWV9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNywiXFxvdmVybGluZXtmfSJdLFsxLDYsIlxcaWRfWSIsMSx7ImN1cnZlIjotMn1dLFs0LDcsIlxcaWRfe1leXFxwcmltZX0iLDEseyJjdXJ2ZSI6LTJ9XV0=
+        \[\begin{tikzcd}
+            X & Y & X & {Y^\prime} \\
+            & {Y^\prime} && Y \\
+            & Y && {Y^\prime}
+            \arrow["{\varphi^{\prime}}"', from=1-1, to=2-2]
+            \arrow["\varphi", from=1-1, to=1-2]
+            \arrow["{\overline{\varphi}}", dashed, from=1-2, to=2-2]
+            \arrow["\varphi"', from=1-3, to=2-4]
+            \arrow["{\varphi^\prime}", from=1-3, to=1-4]
+            \arrow["{\overline{\varphi^\prime}}", dashed, from=1-4, to=2-4]
+            \arrow["{\varphi^\prime}"', bend left=-45, from=1-3, to=3-4]
+            \arrow["\varphi"', bend left=-45, from=1-1, to=3-2]
+            \arrow["{\overline{\varphi^\prime}}", dashed, from=2-2, to=3-2]
+            \arrow["{\overline{\varphi}}", from=2-4, to=3-4]
+            \arrow["{\id_Y}"{description}, bend left=45, from=1-2, to=3-2]
+            \arrow["{\id_{Y^\prime}}"{description}, bend left=45, from=1-4, to=3-4]
+        \end{tikzcd}\] Because the diagram commutes and $\overline{\varphi},\overline{\varphi^\prime}$ were unique, it follows that $\overline{\varphi}\circ\overline{\varphi^\prime} = \id_{Y^\prime}$ and $\overline{\varphi^\prime}\circ\overline{\varphi} = \id_{Y}$, so that $\overline{\varphi}$ is the unique homeomorphism (continuous bijection with continuous inverse $\overline{\varphi^\prime}$) of $Y$ with $Y^\prime$.
+    \end{proof}
+\end{enumerate}
+\end{document}

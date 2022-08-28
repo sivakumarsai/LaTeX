@@ -1,0 +1,86 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 9}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Define $f:\RR^2\to \RR^2$ by 
+\[
+ f(x_1,x_2) = (x_1^2-x_2^2, 2x_1x_2).
+\]
+ In class on Monday (2022 April 4), we saw that the 
+inverse function theorem applies to $f$ and any point
+ $0\ne c \in \RR^2.$  Further, we saw that $f$ maps
+the set (upper half plane)
+\[
+ V= \{(x,y):y>0\} \subseteq \RR^2
+\]
+ bijectively onto
+\[
+ W=\RR^2 \setminus \{(a,0): a\ge 0\}.
+\]
+ In particular, $V$ provides {\it an} example of a set
+ satisfying the first two  conclusions of the inverse function theorem
+ for the point $(1,1).$ (Indeed, $V$ is a maximal such set, and 
+ the full conclusion of the inverse function theorem holds, but we did 
+ not verify all of these claims for $V$.)
+ 
+ Find  open connected sets $V_*, W_* \subseteq \RR^2$ such that $V_*$ contains $(1,1),$
+ but is not a subset of $V,$ and $f$ maps $V_*$ bijectively
+ onto $W_*.$ Outline a proof. Let $g$ denote the
+ resulting inverse function. What is $Dg(0,2)?$
+
+\bigskip
+
+ Solution. Choose $V_\ast$ to be the right half plane given by $\{(x,y)\colon x>0\}$ and $W_\ast$ to be $f(V_\ast) = \mathbb{R}^2\setminus\{(x,0)\colon x\leq 0\}$. Then $f|_{V_\ast}$ is bijective onto its image and its inverse, $g = (f|_{V_\ast})^{-1}$, is continuously differentiable with \[Dg(0,2) = Dg(f(1,1)) = (Df(1,1))^{-1} = {\begin{pmatrix}
+     2 & -2 \\ 2 & 2
+ \end{pmatrix}}^{-1} = \frac{1}{4}\begin{pmatrix}
+     1 & 1 \\ -1 & 1
+ \end{pmatrix}.\] \begin{proof} Let $f\colon\mathbb{R}^2\to \mathbb{R}^2$ be given as above; it follows from our work in class that $f$ is continuously differentiable on $\mathbb{R}^2$. Furthermore, the derivative of $f$ at $c = (1,1)$ is invertible.
+
+    Choose $V_\ast$ to be the right half plane given by $\{(x,y)\colon x>0\}$; observe that it contains $(1,1)$ but is not a subset of $V$ given earlier. We have that $V_\ast$ is open since its complement contains all of its limit points; that is, its complement is closed. By inspection $V_\ast$ is connected. By the inverse function theorem, we have that $f$ restricted to $V_\ast$ 
+    
+    We check that $f$ maps $V_\ast$ bijectively onto $W_\ast$. First we can check that the image of $V_\ast$ under $f$ is $W_\ast$. We can compute the image of $V_\ast$ under $f$ by parameterizing $V_\ast$ by rays of the form $y = cx$ and taking the union of the image of these rays.
+
+    Observe that $V_\ast = \{(t,ct)\colon t>0, -\infty<c<\infty\}$, so that $f(V_\ast) = \{(t^2(1-c^2),)\colon t>0, -\infty<c<\infty\}$, which is equal to $W_\ast = \mathbb{R}^2\setminus\{(x,0)\colon x\leq 0\}$. The two sided inverse for $f|_{V_\ast}\colon V_\ast\to W_\ast$ is given by \[(f|_{V_\ast})^{-1}(x,y) = \left(\sqrt{\frac{\sqrt{x^2+y^2} + x}{2}}, \mathrm{sgn}(y)\sqrt{\frac{\sqrt{x^2+y^2}-x}{2}}\right),\] and let $\mathrm{sgn}(y) = 0$ if and only if $y = 0$ (note in this case $x>0$ so it did not matter what we set $\mathrm{sgn}(0)$ to). Interpret the inverse given as a piecewise function. [The inverse given can be obtained by writing in Cartesian coordinates the action of the principal branch of the complex-valued square root function, using trigonometry.]
+    
+    Hence $f|_{V_\ast}\colon V_\ast\to W_\ast$, with $W_\ast = f|_{V_\ast}(V_\ast)$, is a bijection as expected. 
+
+    Furthemore, $W_\ast$ is open as expected since it is the complement of the closed ray $\{(x,0)\colon x\leq 0\}$ (closed because it contains all of its limit points). By inspection $W_\ast$ is connected.
+
+    The derivative of $g$ at $(0,2)$ was computed above in the manner prescribed by the results of the inverse function theorem.
+ \end{proof}
+\end{document}

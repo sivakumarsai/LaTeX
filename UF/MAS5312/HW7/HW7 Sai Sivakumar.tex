@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS5312}
+\fancyhead[C]{Assignment 7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\dr}{\vec{r}~^{\prime}(t)}
+\newcommand{\dx}{x^{\prime}(t)}
+\newcommand{\dy}{y^{\prime}(t)}
+
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+\newcommand{\lap}[2]{\mathcal{L}[#1](#2)}
+
+\newcommand{\divides}{\mid}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+Let $R$ be a commutative ring with $1$.
+\begin{enumerate}
+    \item (DF7.2.3) Define the set $R[[x]]$ of \textit{formal power series} in the indeterminate $x$ with coefficients from $R$ to be all formal infinite sums \[\sum_{n=0}^\infty a_nx^n = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots\] Define addition and multiplication of power series in the same way as for power series with real or complex coefficients i.e., extend polynomial addition and multiplication to power series as though they were ``polynomials of infinite degree''. (The term ``formal'' is used here to indicate that convergence is not considered, so that formal power series need not represent functions on $R$.) \begin{enumerate}
+        \item Prove that $R[[x]]$ is a commutative ring with $1$. \begin{proof}
+            The set $R[[x]]$ is an abelian group under addition since $R$ is an abelian group under addition. The zero element is the zero power series (so every coefficient is $0_R$). The addition on $R[[x]]$ is given by \[\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty b_nx^n = \sum_{n=0}^\infty (a_n+b_n)x^n,\] from which it is easy to see that the addition given is a binary operation on $R[[x]]$ (the set is closed under this operation), and the addition is commutative since $R$ is an abelian group under addition: \[\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty b_nx^n = \sum_{n=0}^\infty (a_n+b_n)x^n = \sum_{n=0}^\infty (b_n+a_n)x^n = \sum_{n=0}^\infty b_nx^n + \sum_{n=0}^\infty a_nx^n.\] The addition is also associative since $R$ is an additive group: \begin{align*}
+                \br{\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty b_nx^n} + \sum_{n=0}^\infty c_nx^n &= \sum_{n=0}^\infty (a_n+b_n)x^n + \sum_{n=0}^\infty c_nx^n\\
+                &= \sum_{n=0}^\infty [(a_n+b_n)+c_n]x^n\\
+                &= \sum_{n=0}^\infty [a_n+(b_n+c_n)]x^n\\
+                &=\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty (b_n+c_n)x^n\\
+                &= \sum_{n=0}^\infty a_nx^n + \br{\sum_{n=0}^\infty b_nx^n + \sum_{n=0}^\infty c_nx^n}.
+            \end{align*}
+            Additive inverses are taken by taking additive inverses in $R$; that is, \[-\br{\sum_{n=0}^\infty a_nx^n} = \sum_{n=0}^\infty (-a_n)x^n.\]
+            It follows that $R[[x]]$ is an additive abelian group. 
+            We now check that the multiplication on $R[[x]]$ given by \[\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty b_nx^n = \sum_{n=0}^\infty\br{\sum_{k=0}^n a_kb_{n-k}}x^n\] makes $R[[x]]$ into a commutative ring with $1$. It is clear that the multiplication is a binary operation on $R[[x]]$ (closure), and that the identity element $1_{R[[x]]}$ is the power series $\sum_{n=0}^\infty d_nx^n$ where $d_0 = 1$ and $d_n = 0$ for all $n\geq 1$ (i.e. just the constant term $1$). 
+            The multiplication is associative: \begin{align*}
+                \br{\sum_{n=0}^\infty a_nx^n \times \sum_{n=0}^\infty b_nx^n} \times \sum_{n=0}^\infty c_nx^n &= \sum_{n=0}^\infty\br{\sum_{k=0}^n a_kb_{n-k}}x^n\times \sum_{n=0}^\infty c_nx^n \\
+                &= \sum_{n=0}^{\infty}\sbr{\sum_{i=0}^n\br{\sum_{k=0}^i a_kb_{i-k}}c_{n-i}}x^n,
+            \end{align*} and the expansion of $\sbr{\sum_{i=0}^n\br{\sum_{k=0}^i a_kb_{i-k}}c_{n-i}}$ (expanding into rows) is \begin{align*}
+                &a_0b_0c_n +\\
+                &a_0b_1c_{n-1} + a_1b_0c_{n-1} +\\
+                &a_0b_2c_{n-2} + a_1b_1c_{n-2} + a_2b_0c_{n-2}  \\
+                &\hspace{7.25em} \overset{+}{\underset{+}{\cdots}} \\
+                &a_0b_nc_0 + a_1b_{n-1}c_0 + a_2b_{n-2}c_0 + \cdots + a_nb_0c_0.
+            \end{align*}
+            By rewriting this sum we have $\sbr{\sum_{i=0}^n a_i\br{\sum_{k=0}^{n-i}b_kc_{n-i-k}}}$ (this sum is interpreted as the columns of the above summation; similar to a double counting method). 
+            It follows that \begin{align*}
+                \br{\sum_{n=0}^\infty a_nx^n \times \sum_{n=0}^\infty b_nx^n} \times \sum_{n=0}^\infty c_nx^n &= \sum_{n=0}^{\infty}\sbr{\sum_{i=0}^n\br{\sum_{k=0}^i a_kb_{i-k}}c_{n-i}}x^n\\
+                &= \sum_{n=0}^{\infty}\sbr{\sum_{i=0}^n a_i\br{\sum_{k=0}^{n-i}b_kc_{n-i-k}}}x^n\\
+                &= \sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^{\infty}\br{\sum_{k=0}^nb_kc_{n-k}}x^n\\
+                &= \sum_{n=0}^\infty a_nx^n\times \br{\sum_{n=0}^\infty b_nx^n\times \sum_{n=0}^\infty c_nx^n}
+            \end{align*} as desired, so that multiplication of formal power series is associative. 
+            The multiplication is commutative: \[\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty b_nx^n = \sum_{n=0}^\infty\br{\sum_{k=0}^n a_kb_{n-k}}x^n = \sum_{n=0}^\infty\br{\sum_{k=0}^n b_{n-k}a_k}x^n,\] and \[\sum_{k=0}^n b_{n-k}a_k = (b_na_0 + b_{n-1}a_1 + \cdots + b_1a_{n-1} + b_0a_n) = \sum_{i=0}^n b_ia_{n-i}\] so that \[\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty b_nx^n = \sum_{n=0}^\infty\br{\sum_{k=0}^n b_{n-k}a_k}x^n = \sum_{n=0}^\infty\br{\sum_{i=0}^n b_ia_{n-i}}x^n = \sum_{n=0}^\infty b_nx^n\times \sum_{n=0}^\infty a_nx^n\] as desired. 
+            With commutativity, we only need to check that multiplication distributes from one direction (e.g. from the right): \begin{align*}
+                \br{\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty b_nx^n} \times \sum_{n=0}^\infty c_nx^n &= \sum_{n=0}^\infty (a_n+b_n)x^n\times \sum_{n=0}^\infty c_nx^n \\
+                &= \sum_{n=0}^\infty\br{\sum_{k=0}^n(a_k+b_k)c_{n-k}}x^n\\
+                &= \sum_{n=0}^\infty\br{\sum_{k=0}^na_kc_{n-k} + \sum_{k=0}^nb_kc_{n-k}}x^n\\
+                &= \sum_{n=0}^\infty\br{\sum_{k=0}^na_kc_{n-k}}x^n + \sum_{n=0}^\infty\br{\sum_{k=0}^nb_kc_{n-k}}x^n\\
+                &= \br{\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty c_nx^n} + \br{\sum_{n=0}^\infty b_nx^n\times \sum_{n=0}^\infty c_nx^n}
+            \end{align*}
+            It follows that $R[[x]]$ is a commutative ring with $1$.
+        \end{proof}
+        \item Show that $1-x$ is a unit in $R[[x]]$ with inverse $1 + x + x^2 + \cdots$. \begin{proof}
+            We use the distributivity and commutativity of the multiplication on $R[[x]]$: \begin{align*}
+                (1-x)\times \sum_{n=0}^\infty x^n &= \sum_{n=0}^\infty x^n + (-x)\times \sum_{n=0}^\infty x^n\\
+                &= \sum_{n=0}^\infty x^n + \sum_{n=0}^\infty (-1)x^{n+1}\\
+                &= (1 + x + x^2 + \cdots) + (0 + (-1)x + (-1)x^2 + \cdots) = 1.
+            \end{align*} Thus $1-x$ and $1 + x + x^2 + \cdots$ are inverses of each other; it follows that $1-x$ is a unit in $R[[x]]$.
+        \end{proof}
+        \item Prove that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[x]]$ if and only if $a_0$ is a unit in $R$. Remark: There is probably a really slick way to define the inverse of a power series whose constant term is nonzero using an idea from part (b) but I do not know how to do that. \begin{proof}
+            Let $\sum_{n=0}^\infty a_nx^n$ be an element of $R[[x]]$. 
+
+            Suppose that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[x]]$. Then there is an inverse element $\sum_{n=0}^\infty b_nx^n$ such that $\sum_{n=0}^\infty a_nx^n \times \sum_{n=0}^\infty b_nx^n = 1$. But due to the definition of the multiplication on $R[[x]]$, the coefficient of the constant term $x^0$ is given by $a_0b_0$, so that $a_0b_0 = 1$. (All of the other coefficients vanish, but they do not matter here.) It follows that $a_0$ is a unit in $R$ since there is an element $b_0\in R$ such that $a_0b_0 = 1$.
+            
+            Conversely, for $\sum_{n=0}^\infty a_nx^n$, suppose that $a_0$ is a unit in $R$. Then we can define an element $\sum_{n=0}^\infty b_nx^n$ such that $\sum_{n=0}^\infty a_nx^n \times \sum_{n=0}^\infty b_nx^n = 1$, by defining each $b_n$ recursively. 
+
+            Define $b_0$ to be $a_0^{-1}$, since $a_0$ is a unit in $R$. Then by the definition of the multiplication on $R[[x]]$, the constant term in $\sum_{n=0}^\infty a_nx^n \times \sum_{n=0}^\infty b_nx^n$ is given by $a_0b_0 = a_0a_0^{-1} = 1$. We want to define the remaining $b_n$ so that the other coefficients vanish.
+            We can start with the coefficient of $x^1$, given by $(a_0b_1 + a_1b_0)$. This term needs to be equal to zero, but we are given $a_0,b_0,a_1$. Rearranging yields that $b_1 = -a_0^{-1}(a_1b_0) = -b_0(a_1b_0)$.
+
+            In a similar manner, the coefficient of the $x^n$ term is given by $(a_0b_n + a_1b_{n-1} + \cdots + a_{n-1}b_1 + a_nb_0)$, which we want to be equal to zero. Thus $b_n = -a_0^{-1}(a_1b_{n-1}+ \cdots + a_{n-1}b_1 + a_nb_0) = -b_0(a_1b_{n-1}+ \cdots + a_{n-1}b_1 + a_nb_0)$. 
+
+            So by defining $b_0 = a_0^{-1}$ and $b_n = -b_0(a_1b_{n-1}+ \cdots + a_{n-1}b_1 + a_nb_0)$ for $n\geq 1$, we have a recursively defined the coefficients for the multiplivative inverse of $\sum_{n=0}^\infty a_nx^n$, written as $\sum_{n=0}^\infty b_nx^n$.
+
+            Hence $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[x]]$ if and only if $a_0$ is a unit in $R$.
+        \end{proof}
+    \end{enumerate}
+    \item (DF7.2.4) Prove that if $R$ is an integral domain then the ring of formal power series $R[[x]]$ is also an integral domain. \begin{proof}
+        We already saw above that $R[[x]]$ is a commutative ring with $1_{R[[x]]}$ when $R$ is a commutative ring with $1$. What remains to show that if $R$ has no zero divisors, then $R[[x]]$ also has no zero divisors. 
+
+        We show that the product of any two nonzero power series is nonzero. Let $\sum_{n=0}^\infty a_nx^n$ and $\sum_{n=0}^\infty b_nx^n$ be two nonzero power series; that is, at least one of the coefficients $a_n, b_n$ are nonzero. Let $a_i$ be the first nonzero coefficient in $\sum_{n=0}^\infty a_nx^n$ and let $b_j$ be the first nonzero coefficient in $\sum_{n=0}^\infty b_nx^n$. Then in the product $\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty b_nx^n$, the coefficient of $x^{i+j}$ is given by $(a_0b_{i+j} + \cdots + a_ib_j + \cdots a_{i+j}b_0)$. By our choice of $a_i, b_j$, it follows that every term vanishes except for $a_ib_j$, since $R$ is an integral domain. It follows that the coefficient of $x^{i+j}$ in the product is nonzero. It did not matter what happened to any of the other terms in the product since we have shown that there is at least one nonzero term; hence the product $\sum_{n=0}^\infty a_nx^n\times \sum_{n=0}^\infty b_nx^n$ does not vanish. Since $\sum_{n=0}^\infty a_nx^n$ and $\sum_{n=0}^\infty a_nx^n$ were arbitrary nonzero power series, it follows that there are no zero divisors in $R[[x]]$, meaning that $R[[x]]$ is an integral domain. 
+    \end{proof}
+    \item (DF7.2.5) Let $F$ be a field and define the ring $F((x))$ of \textit{formal Laurent series} with coefficients from $F$ by \[F((x)) = \cbr{\sum_{n\geq N}^{\infty} a_nx^n \mid a_n\in F\text{ and } N\in \mathbb{Z}}\] (Every element of $F((x))$ is a power series in $x$ plus a polynomial in $1/x$, i.e., each element of $F((x))$ has only a finite number of terms with negative powers of $x$.) \begin{enumerate}
+        \item Prove that $F((x))$ is a field. \begin{proof}
+            Define the addition on this set by \[\sum_{n\geq N}^{\infty} a_nx^n + \sum_{n\geq M}^{\infty} b_nx^n = \sum_{n\geq \min\cbr{N,M}}c_nx^n\] where $c_n = a_n+b_n$ whenever $n\geq \max\cbr{N,M}$, and when $n< \max\cbr{N,M}$ let $c_n = \begin{cases}
+                a_n &\text{if } N<M\\
+                b_n &\text{if }M< M
+            \end{cases}$ (so we just add in extra zero terms wherever needed and add in the natural way). It is clear that this operation is a binary operation (closure) and the additive identity is the zero series (where every coefficient is zero).
+            
+            The addition is associative since the addition in $F$ is associative; it is similar to the proof from before in that we add three series in two different groupings; they become equal since the bracketing in each term of the resulting series can be adjusted to obtain equality.
+            
+            The addition is also commutative since the addition in $F$ is commutative as well. To see this we can add two Laurent series and simply interchange the order of addition in each term of the resulting series to obtain the addition of the series in the reverse order. 
+            
+            Additive inverses are also given similarly: \[-\br{\sum_{n\geq N}^{\infty} a_nx^n} = \sum_{n\geq N}^{\infty} (-a_n)x^n.\]
+            It follows that $F((x))$ is an abelian group under addition.
+
+            The multiplication on $F((x))$ is given by \[\sum_{n\geq N}^\infty a_nx^n\times \sum_{n\geq M}^\infty b_nx^n = \sum_{n\geq N+M}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} a_ib_j}x^n\] (i.e., we multiply through in the natural way and cancel powers of $x$ wherever possible, then combine like terms.) It is clear that the multiplicative identity on $F((x))$ is the series whose coefficients are zero except for the coefficient of the $x^0$ term, which we put to be $1_F$ (so $1_F$ viewed as a Laurent series). The multiplication is associative since $F$ is a ring: \begin{align*}
+                \br{\sum_{n\geq N}^\infty a_nx^n\times \sum_{n\geq M}^\infty b_nx^n }\times \sum_{n\geq L}^\infty c_nx^n &= \sum_{n\geq N+M}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} a_ib_j}x^n\times \sum_{n\geq L}^\infty c_nx^n\\
+                &= \sum_{n\geq (N+M) + L}^\infty\sbr{\sum_{\substack{\ell,m\in \mathbb{Z} \\ \ell+m = n}}\br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = \ell}}a_ib_j}c_m}x^n\\
+                &= \sum_{n\geq N+M+L}^\infty\br{\sum_{\substack{i,j,k\in\mathbb{Z}\\i+j+k = n}}a_ib_jc_k}x^n\\
+                &= \sum_{n\geq N+(M + L)}^\infty\sbr{\sum_{\substack{\ell,m\in \mathbb{Z} \\ \ell+m = n}}a_\ell \br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = m}}b_ic_j}}x^n\\
+                &= \sum_{n\geq N}^\infty a_nx^n\times\sum_{n\geq M+L}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} b_ic_j}x^n \\
+                &= \sum_{n\geq N}^\infty a_nx^n\times\br{\sum_{n\geq M}^\infty b_nx^n\times \sum_{n\geq L}^\infty c_nx^n}.
+            \end{align*}
+            The multiplication is commutative since $F$ is a commutative ring itself: \begin{align*}
+                \sum_{n\geq N}^\infty a_nx^n\times \sum_{n\geq M}^\infty b_nx^n &= \sum_{n\geq N+M}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} a_ib_j}x^n\\
+                &= \sum_{n\geq N+M}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} b_ja_i}x^n\\
+                &= \sum_{n\geq M}^\infty b_nx^n\times \sum_{n\geq N}^\infty a_nx^n.
+            \end{align*}
+            Then we check distributivity from one direction (e.g. from the right) since we know the multiplication is commutative: \[\br{\sum_{n\geq N}^\infty a_nx^n +\sum_{n\geq M}^\infty b_nx^n }\times \sum_{n\geq L}^\infty c_nx^n = \sum_{n\geq \min\cbr{N,M} + L}\br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = n}}d_ic_j}x^n,\] where $d_i = a_i+b_i$ and we use the convention that if $a_i$ (or $b_i$) is not defined (i.e. the index $i$ is taken outside of the bounds for which $a_i$ (or $b_i$) was originally defined), then $a_i$ (or $b_i$) is zero. Continuing with this convention, we have that \begin{align*}
+                \sum_{n\geq \min\cbr{N,M} + L}\br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = n}}d_ic_j}x^n &= \sum_{n\geq \min\cbr{N+L,M+L}} \sbr{\br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = n}}a_ic_j} + \br{\sum_{\substack{i,j\in\mathbb{Z}\\i+j = n}}b_ic_j}}x^n\\
+                &= \br{\sum_{n\geq N}^\infty a_nx^n \times \sum_{n\geq L}^\infty c_nx^n} + \br{\sum_{n\geq M}^\infty b_nx^n \times \sum_{n\geq L}^\infty c_nx^n} 
+            \end{align*} as desired. Hence $F((x))$ is a commutative ring with $1$, and we show that nonzero elements have multiplicative inverses.
+
+            Let $f = \sum_{n\geq N}^\infty a_nx^n$ be a nonzero element of $F((x))$, so that $a_N$ is not zero, and hence is a unit in $F$ since $F$ is a field. Then write $f = x^N\sum_{n=0}^{\infty}a_{N+n}x^n$, and let $g = \sum_{n=0}^{\infty}a_{N+n}x^n$ (so that $f = x^Ng$). View $g$ as a nonzero element of the ring of formal power series $F[[x]]$ (it is clear that $F[[x]]$ is a subring of $F((x))$), and construct its multiplicative inverse $g^{-1}$ via the recursive algorithm given earlier, writing $a_n$ as $a_{N+n}$ in the algorithm (all of this is possible only because $a_N$ is a unit in $F$).
+
+            It follows that $f$ has a multiplicative inverse, given by $f^{-1} = x^{-N}g^{-1}$, since $f\times f^{-1} = x^Ng\times x^{-N}g^{-1} = x^Nx^{-N} g g^{-1} = 1_F$. Since $f$ was an arbitrary nonzero element, it follows that every nonzero element in $F((x))$ has a multiplicative inverse. 
+
+            Hence $F((x))$ is a field.
+        \end{proof}
+        \item Define the map \[\nu\colon F((x))^{\times}\to \mathbb{Z}\quad\text{by}\quad \nu\br{\sum_{n\geq N}^{\infty}a_nx^n} = N\] where $a_N$ is the first nonzero coefficient of the series (i.e., $N$ is the ``order of zero or pole of the series at zero''). Prove that $\nu$ is a discrete valuation on $F((x))$ whose discrete valuation ring is $F[[x]]$, the ring of formal power series (cf. Exercise 26, Section 1).
+        \begin{proof}
+            Let $a = \sum_{n\geq N}^\infty a_nx^n$ and $b = \sum_{n\geq M}^\infty b_nx^n$ be arbitrary elements of $F((x))^\times$. Observe that \[\sum_{n\geq N}^\infty a_nx^n\times \sum_{n\geq M}^\infty b_nx^n = \sum_{n\geq N+M}^\infty\br{\sum_{\substack{i,j\in\mathbb{Z} \\ i+j = n}} a_ib_j}x^n,\] and the coefficient of the $x^{N+M}$ term is given by $a_Nb_M$, which is nonzero since $a_N,b_M$ must be nonzero elements of $F$ by assumption. Similarly, \[\sum_{n\geq N}^{\infty} a_nx^n + \sum_{n\geq M}^{\infty} b_nx^n = \sum_{n\geq \min\cbr{N,M}}c_nx^n,\] where $c_n = a_n+b_n$ (noting that if either of $a_n$ or $b_n$ are not defined for a particular $n$ then take it to be zero). If the resulting sum is nonzero, then its first nonzero coefficient occurs at some index greater than or equal to $\min\cbr{N,M}$, because each coefficient is found termwise.
+
+            It follows that $\nu(ab) = N+M = \nu(a) + \nu(b)$ and $\nu(a+b) \geq \min\cbr{N,M} = \min\cbr{\nu(a),\nu(b)}$ whenever $a+b\neq 0$. Furthermore, for any integer $L$, we can take the Laurent series given by one term, $x^L$, and it follows that $\nu(x^L) = L$. Hence $\nu$ is surjective, and we have shown that $\nu$ is a discrete valuation on $F((x))$.
+
+            We show that $R = \cbr{f\in F((x))\mid \nu(f)\geq 0}\cup \cbr{0}$ is equal to $F[[x]]$. It is clear that $0$ is in both sets, and that nonzero elements of $F[[x]]$ are contained in $R$ since a nonzero element of $F[[x]]$ only has terms with nonnegative powers of $x$, so that its first nonzero term has index greater than or equal to zero. Similarly, a nonzero element of $R$ has the condition that its valuation is nonnegative, meaning that its first nonzero term has index greater than or equal to zero. This is exactly the same condition needed for a series to be an element of $F[[x]]$, so the reverse containment is also clear. Hence the discrete valuation ring of $\nu$ is $F[[x]]$.
+        \end{proof}
+    \end{enumerate}
+    \item (DF7.5.5) If $F$ is a field, prove that the field of fractions of $F[[x]]$ (the ring of formal power series in the indeterminate $x$ with coefficients in $F$) is the ring $F((x))$ of formal Laurent series (cf. Exercises 3 and 5 of Section 2). Show the field of fractions of the power series $\mathbb{Z}[[x]]$ is properly contained in the field of Laurent series $\mathbb{Q}((x))$. [Consider the series for $e^x$.] \begin{proof}
+        Given the field of fractions $Q$ of $F[[x]]$ (which is a field since $F$ is an integral domain and we take the denominators to be the nonzero elements of $F[[x]]$), recall that we can write every nonzero element $r/d$ of $Q$ as $rd^{-1}$ for $r\in F[[x]]$ and $d\in F[[x]]^\times$. This is because every $d\in F[[x]]^\times$ viewed as an element of $Q$ has a multiplicative inverse, given by $d^{-1}$ viewed as an element of $Q$. (``Viewed as'' means to send an element through the injective embedding map from $F[[x]]$ into $Q$.) It follows that elements of $Q$ can be viewed as elements of $F((x))$ (as products of power series).
+
+        Then observe that every nonzero element of $F((x))$ can also be decomposed into a fraction of power series. Observe that $F[[x]]$ is a subset of $F((x))$, and $F[[x]]$ can be viewed as a subset of $Q$ by sending an element $r\in F[[x]]$ to $re/e$ for any $e\in F[[x]]^\times$. Take any nonzero Laurent series $f = \sum_{n\geq N}^\infty a_nx^n$ such that $N$ is negative (so that $f$ is not a power series), and write it as $x^N\sum_{n=0}^{\infty}a_{N+n}x^n$, and let $g = \sum_{n=0}^{\infty}a_{N+n}x^n$, so that $f = x^Ng$. View $g$ as a nonzero element of the ring of formal power series $F[[x]]$. Since $N$ is negative, we can write $f$ instead as $g /x^{-N}$. (This is really an injection from $F((x))$ to $Q$.) It follows that $f$ can be written as a fraction of power series (as $g/x^{-N}$). 
+
+        Since $0$ is an element of both $F((x))$ and $Q$ ($0$ viewed as the zero fraction in $Q$), it follows from the above decompositions that $F((x))$ is contained in $Q$, and $Q$ is contained in $F((x))$. Hence $F((x))$ is the field of fractions of $F[[x]]$. (We also could have used the fact that $Q$ is the unique smallest field containing $F[[x]]$ in place of saying $Q$ was contained in $F((x))$ to arrive at the conclusion.)
+
+        To see that $\mathbb{Q}((x))$ has an element not contained in the field of fractions of $\mathbb{Z}[[x]]$, we consider the Taylor series for $e^x$ viewed as a rational Laurent series: \[e^x\coloneqq \sum_{n=0}^\infty \frac{1}{n!}x^n\]
+
+        What makes it impossible for this series to be an element of the field of fractions of $\mathbb{Z}[[x]]$ is that every term after the constant term in this series has a distinct denominator; that is, $n!$ is distinct for every $n\geq 1$. Elements of the field of fractions of $\mathbb{Z}[[x]]$ can be viewed as $rd^{-1}$ where $r\in \mathbb{Z}[[x]]$ and $d\in \mathbb{Z}[[x]]^\times$, and if $e^x$ is a fraction of integer power series, then we could multiply through by the power series in the denominator to obtain a power series with only integer coefficients. 
+
+        If there exists a suitable power series $g = \sum_{n=0}^\infty b_nx^n$ with $b_n\in \mathbb{Z}$ such that $g$ is the denominator of a supposed fractional form for $e^x$, we investigate the product $g\times e^x$:
+
+        The product is given by \[b_0 + (b_0+b_1)x + (b_0/2 + b_1 + b_2)x^2 + (b_0/6 + b_1/2 + b_2 + b_3)x^3 + \cdots (b_0/n! + b_1/(n-1)! + \cdots b_n/0!)x^n + \cdots.\]
+
+        We determine what the coefficients $b_n$ need to be in order for the product to have a chance at being an integer power series. For example, in the expansion of the product, we have that the term $b_0/n!$ appears for each $n$, meaning that for a given $n$ either $b_0/n!$ needs to be an integer or it must be cancelled out by perhaps another term occurring in forming whatever coefficient $b_0/n!$ appears to be a summand of. Both are impossible (even for $b_i$ instead of $b_0$) since in the sequence $\cbr{n!}_{n=0}^{\infty}$ we can find $n$ large enough so that \textit{any} prime $p$ can divide $n!$. That is, infinitely many distinct primes must divide each $b_n$, which is impossible since $b_n$ is an integer for each $n$. Hence the series for $e^x$ is an element of $\mathbb{Q}((x))$ but not the field of fractions of $\mathbb{Z}[[x]]$.
+        \end{proof}
+\end{enumerate}
+\end{document}

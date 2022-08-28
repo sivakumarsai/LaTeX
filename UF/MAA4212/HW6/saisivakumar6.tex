@@ -1,0 +1,85 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 6}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Suppose $(X,d_X)$ and $(Y,d_Y)$ are metric spaces.
+ Let $Z=X\times Y$ and define $d:Z\times Z\to [0,\infty)$ by
+\[
+  d(z_1,z_2)= d_X(x_1,x_2)+d_Y(y_1,y_2).
+\]
+for  $z_j=(x_j,y_j) \in Z.$ By Homework 1, 
+ $d$ is a metric on $Z.$  
+
+\bigskip
+
+Prove, if   $X$ and $Y$ are connected,  then so is $Z.$
+ You may wish to use the proof  outline  below. If so,
+ carefully and completely fill in all details providing
+ full explanations.
+
+\begin{proof}[Outline of proof]  Suppose $S\subseteq Z$ is clopen (both open and closed).   
+ For $u\in X$ and $v\in Y,$ let
+\[
+  S_v =\{x\in X: (x,v)\in S\}\subseteq X, \ \ \ S^u=\{y\in Y: (u,y)\in S\}\subseteq Y.
+\]
+\begin{enumerate}[(i)] \itemsep=8pt
+ \item Show, for each  $v\in Y$ the set $S_v\subseteq X$ is clopen. 
+ \item Conclude for each  $v\in Y$ either $S_v=X$  or $S_v=\emptyset.$
+ \item Show,  if $(a,b)\in S,$ then $S_b=X$ and $S^a=Y.$ Equivalently, 
+  $X\times\{b\},\, \{a\}\times Y\subseteq S.$
+ \item To complete the proof, show, if  $S\ne \emptyset,$  then $S=Z.$
+\end{enumerate}
+\end{proof}
+
+\begin{proof} For $u\in X$ and $v\in Y$, let $S_v =\{x\in X \colon (x,v)\in S\}\subseteq X$, and $S^u=\{y\in Y\colon (u,y)\in S\}\subseteq Y$. 
+    
+    We show that these sets are clopen in their respective spaces; we show the proof for $S_v$ due to symmetry (the argument for $S^u$ being clopen is similar).
+
+    For any $v\in Y$, consider a point $p\in S_v$. It follows that $(p,v)\in S$, and since $S$ is open it follows that there is an open $\varepsilon$-ball in $Z$ containing $(p,v)$ (i.e. $N_\varepsilon((p,v))\subseteq S\subseteq Z$). Then observe that the $\varepsilon$-ball in $X$ containing $p$ is contained in $S_v$: For $x\in N_\varepsilon(p)\subseteq X$, we have that \[\varepsilon > d_X(x,p) = d_X(x,p) + d_y(v,v) = d((x,v),(p,v)),\] meaning $(x,v)\in N_\varepsilon((p,v))\subseteq S$. Thus $(x,v)\in S$ and so $x\in S_v$ as a result; this yields that $N_\varepsilon(p)\subseteq S_v$, and since $p$ was arbitrary it follows that $S_v$ is open.
+    
+    We repeat this argument for a point $p\in (S_v)^c$. We have that $(p,v)\in S^c$, and because $S$ is closed it follows that $S^c$ is open so that there is an open $\varepsilon$-ball in $Z$ containing $(p,v)$ (i.e. $N_\varepsilon((p,v))\subseteq S^c \subseteq Z$) Then observe that the $\varepsilon$-ball in $X$ containing $p$ is contained in $(S_v)^c$, since if $x\in N_\varepsilon(p)$, then $\varepsilon > d_X(x,p) = d_X(x,p) + d_Y(v,v) = d((x,v),(p,v))$. It follows that $(x,v)\in S^c$, meaning that $x\in (S_v)^c$. Hence $N_\varepsilon(p)\subseteq (S_v)^c$; since $p$ was arbitrary it follows that $(S_v)^c$ is open. It follows that $S_v$ is clopen in $X$ (and similarly, $S^u$ is clopen in $Y$).
+
+    With $S_v$ clopen in $X$, it follows from $X$ being connected that either $S_v$ is the empty set or is $X$ itself. Similarly, $S^u$ is either the empty set or is $Y$ since $Y$ is connected.
+
+    Suppose $(a,b)\in S$, so that $a\in S_b$ and $b\in S^a$. Since $S_b,S^a$ are nonempty, it follows that $S_b = X$ and $S^a = Y$. It follows by definition of $S_b,S^a$ that $X\times\{b\}, \{a\}\times Y\subseteq S$.
+
+    Then suppose that $S$ is nonempty so that some point $(a,b)\in S$. Then take any point $(p,q)\in Z$. Then it follows from the previous result that $(p,b)\in S$ and so $\{p\}\times Y\subseteq S$. Hence $(p,q)\in S$. Hence $Z\subseteq S$, from which it follows that $S = Z$ whenever $S$ is nonempty.
+
+    Therefore, the only clopen sets in $Z$ are the empty set and $Z$ itself, so that $Z$ is connected.
+\end{proof}
+\end{document}

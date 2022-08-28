@@ -1,0 +1,82 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 5}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\begin{document}
+\maketitle
+
+Suppose $(X,d_X)$ and $(Y,d_Y)$ are metric spaces.
+ Let $Z=X\times Y$ and define $d:Z\times Z\to [0,\infty)$ by
+\[
+  d(z_1,z_2)= d_X(x_1,x_2)+d_Y(y_1,y_2).
+\]
+for  $z_j=(x_j,y_j) \in Z.$ By Homework 1, 
+ $d$ is a metric on $Z.$  
+
+
+\bigskip
+
+Suppose $f:X\to Y$ is continuous and let
+\[
+G=\{(x,f(x)):x\in X\}\subseteq Z
+\]
+
+
+\begin{enumerate}[(i)] \itemsep=8pt
+ \item Show that the function $F:X\to Z$ defined by $F(x)=(x,f(x))$
+ is continuous;
+ \item Show, if $X$ is compact, then $G$  is compact;
+ \item Show, if $X$ is complete, then $G$ is complete.
+\end{enumerate}
+
+\begin{proof}[Proof (i)]
+    Let $y\in X$ and $\varepsilon>0$ be given. Since $f$ is continuous, there exists $\delta^{\prime}$ such that if $0< d_X(x,y)< \delta^{\prime}$ for $x\in X$, then $d_Y(f(x),f(y))< \varepsilon/2$. Then choose $\delta = \min\{\delta^{\prime}, \varepsilon/2\}$. Suppose that $d_X(x,y)<\delta$. Then \begin{align*}
+        d((x,f(x)),(y,f(y))) &= d_X(x,y) + d_Y(f(x),f(y)) \\
+        &\leq \varepsilon/2 + \varepsilon/2 = \varepsilon.
+    \end{align*}
+    Since $y\in X$ was arbitrary, it follows that $F:X\to Z$ defined by $F(x)=(x,f(x))$ is continuous.
+\end{proof}
+\begin{proof}[Proof (ii)]
+    Let $\mathcal{U}$ be an open cover of $G$. Then because $F$ is continuous, the preimage of every $U\in \mathcal{U}$ is an open set in $X$. Observe that \[X\subseteq F^{-1}(G)\subseteq F^{-1}\left(\bigcup_{U\in\mathcal{U}}U\right) = \bigcup_{u\in\mathcal{U}}F^{-1}(U)\] because $G$ is a subset of $\bigcup_{U\in\mathcal{U}}U$ and every $x\in X$ has an image under $F$ in $G$. Because $X$ is compact only finitely many open sets of the form $F^{-1}(U)$ are required to cover $X$. 
+
+    There exists a finite subcollection $\mathcal{F}\subseteq \mathcal{U}$ such that $X\subseteq \bigcup_{U\in\mathcal{F}}F^{-1}(U)$.
+    We have that \[G = F(X)\subseteq F\left(\bigcup_{U\in\mathcal{F}}F^{-1}(U)\right) = \bigcup_{U\in\mathcal{F}}F(F^{-1}(U))\subseteq \bigcup_{U\in\mathcal{F}}U,\] from which it follows that $\mathcal{F}$ is a finite open cover of $G$. Since $\mathcal{U}$ was an arbitrary open cover of $G$, it follows that $G$ is compact.
+\end{proof}
+\begin{proof}[Proof (iii)]
+    Let $(p_n = (x_n,f(x_n)))$ be a Cauchy sequence in $G$. It follows from the previous homework that $(x_n)$ is a Cauchy sequence in $X$. Since $X$ is complete, $(x_n)$ converges to some $x_0\in X$, and since $f$ is continuous, it follows that the sequence $(f(x_n))$ in $Y$ converges to $f(x_0)$: Given $\varepsilon>0$, we can choose $\delta$ such that if $d_X(x,x_0)<\delta$ for $x\in X$, then $d_Y(f(x),f(x_0)) < \varepsilon$. Since $(x_n)$ converges to $x$, there exists an integer $N$ such that if $n\geq N$, then $d_x(x_n,x_0) < \delta$. It follows that for $n\geq N$, we have that $d_Y(f(x_n),f(x_0)) < \varepsilon$; hence $(f(x_n))$ converges to $f(x_0)$ as desired.
+    
+    By the previous homework, we have that $(p_n)$ converges to $(x_0,f(x_0))$ and since $(p_n)$ was an arbitrary Cauchy sequence in $G$, it follows that $G$ is complete. 
+\end{proof}
+\end{document}
