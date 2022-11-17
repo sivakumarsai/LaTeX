@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6346 Topology}
+\fancyhead[C]{Homework 3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{
+  %\normalfont
+  \textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (3.4.1) The automorphism group of $p_H\colon E/H\to B$ is $NH/H$, where $NH$ denotes the normalizer of $H$ in $\pi_1(B,b)$. The covering is a principal covering (also called \textit{\textbf{regular covering}}), if and only if $H$ is a normal subgroup of $\pi_1(B,b)$. \begin{proof}
+      With the functor $A(p)$ being an equivalence of \catname{G-Set} and \catname{Cov}\textsubscript{\textbf{B}} since $p$ is a universal $\pi_1(B,b)$-principal covering, observe that $A(p)(G/H) = E\times_G G/H\cong E/H$; furthermore $\Aut(G/H)$ is sent to $\Aut(p_H)$. We show that $\Aut(G/H)$ is isomorphic to $NH/H$ so that by the equivalence of categories $\Aut(p_H)$ is isomorphic to $NH/H$: Consider the map $\phi\colon NH\to \Aut(G/H)$ sending $n$ to the map which sends $aH$ to $anH$. This map is a homomorphism with kernel $H$; it follows that $NH/H\cong \Aut(G/H)$ as desired. 
+      
+      Note that $p_H(gx) = p_H(x)$ since $p_H$ is induced by $p$, for which $p(gx) = p(x)$ holds. If $H$ is normal in $G$ then observe that the $G/H$ action on $G/H$ by multiplication is transitive so by equivalence of categories the $G/H$ action on fibers is also transitive; and if $NH/H$ acts transitively on fibers then it should also act transitively on $G/H$, which means $NH = G$ as desired. Hence the covering is principal if and only if $N$ is normal in $G$.
+    \end{proof}
+    \item (3.4.2) The connected coverings of $S^1$ are, up to isomorphism, the maps $p_n\colon z\mapsto z^n$ for $n\in\mathbb{N}$ and $p\colon\mathbb{R}\to S^1$, $t\mapsto\exp(2\pi i t)$. These coverings are principal coverings. \begin{proof}
+      We use Classification III: We saw in class that the map $p\colon\mathbb{R}\to S^1$, $t\mapsto\exp(2\pi i t)$ is a covering, and it is universal because $\mathbb{R}$ is simply connected. It follows that $p$ is a $\pi_1(B,b)$-principal covering from the theorem. Furthermore, each connected covering of $S^1$ is isomorphic to a covering of the form $\mathbb{R}/H\to S^1$. Note that since $\mathbb{Z} \cong \pi_1(S^1,1)$ is Abelian, the only subgroup conjugate to $H$ is $H$ itself so each subgroup gives a unique (up to isomorphism) connected covering in the above manner. Subgroups of $\mathbb{Z}$ are $n\mathbb{Z}$ for natural numbers $n$, and $\mathbb{R}/n\mathbb{Z}$ is an interval $[0,n]$ with its endpoints identified, isomorphic to $S^1$. The maps for each of these connected covers are given by $q_n\colon [0,n]\to S^1$, $t\mapsto \exp(2\pi i t)$, but by identifying $[0,n]$ (with endpoints identified) with $S^1$ we obtain the map $p_n\colon z = \exp(2\pi i t)\mapsto nt\mapsto \exp(2\pi i [nt]) = z^n$. The action of $n\mathbb{Z}$ on $\mathbb{R}/n\mathbb{Z}$ is $(k,x)\mapsto x+k \pmod n$ and it is properly discontinuous; take $U$ to be the $\min\cbr{k,n-k}/4$-neighborhood around $x$ and observe that $U$ and $k+U$ are disjoint for nonzero (non-multiples of $n$) $k$. Since the exponential is $2\pi i$ periodic it follows that $p_n(hx) = p_n(x)$ for all $h\in n\mathbb{Z}$ as desired, and the action on the fibers is transitive; hence each $p_n$ is principal.
+    \end{proof}
+    \item (3.6.1) The product $\prod_1^\infty S^1$ is not semi-locally simply connected. \begin{proof}
+      We show that any open set could not be transport simple so that there could not be a covering of $\prod_1^\infty S^1$ by transport simple sets. If $U$ is open in $\prod_1^\infty S^1$, then $U$ takes on the form $\prod_1^\infty E_i$ where $E_i$ is open in $S^1$ with $E_i =S^1$ for all but finitely many indices. We show that there are loops between the same two points which are not homotopic to each other. Consider the following loops for some fixed point in $U$: Let one path be the product of full counterclockwise loops around the circle for each copy of $S^1$ and the identity for each $E_j\neq S^1$, and consider another path the product of full clockwise loops around the circle for each copy of $S^1$ and the identity for each $E_j\neq S^1$. These are two paths between the same two points (one point since they are loops), but they could not be homotopic to each other since the counterclockwise loops are not homotopic to the clockwise loops (they occupy different equivalence classes in the fundamental group). It follows that $U$ is not transport simple and hence the infinite product $\prod_1^\infty S^1$ could not be covered by transport simple sets.
+    \end{proof}
+    \item (3.6.4) The quotient map $p\colon\mathbb{R}^n\to \mathbb{R}^n/\mathbb{Z}^n$ is a universal covering. The map $q\colon \mathbb{R}^n\to T^n$, $(x_j)\mapsto \exp(2\pi i x_j)$ is a universal covering of the $n$-dimensional torus $T^n = S^1\times\cdots\times S^1$. Let $f\colon T^n\to T^n$ be a continuous automorphism, and let $F\colon\mathbb{R}^n\to \mathbb{R}^n$ be a lifting of $fq$ along $q$ with $F(0) = 0$. The assignments $x\mapsto F(x)+F(y)$ and $x\mapsto F(x+y)$ are liftings of the same map with the same value for $x= 0$. Hence $F(x+y) = F(x)+F(y)$. From this relation one deduces that $F$ is a linear map. Since $F(\mathbb{Z}^n)\subset \mathbb{Z}^n$, the map $F$ is given by a matrix $A\in \mathrm{GL}_n(\mathbb{Z})$. Conversely, each matrix in $\mathrm{GL}_n(\mathbb{Z})$ gives us an automorphism of $T^n$. The group of continuous automorphisms of $T^n$ is therefore isomorphic to $\mathrm{GL}_n(\mathbb{Z})$. \begin{proof}
+      The quotient map $p\colon \mathbb{R}^n\to \mathbb{R}^n/\mathbb{Z}^n$ is surjective, continuous and open. Observe that the resulting space looks like the unit cube in $\mathbb{R}^n$ with its boundary identified in a particular way; observe that any open set $U\subset [0,1)^n$ has preimage under $p$ isomorphic to $U\times \mathbb{Z}^n$, and $\mathbb{Z}^n$ is a discrete set. It follows that $p$ is locally trivial with discrete fibers, a covering map; in particular it is a universal cover since the total space is simply connected. The map $q\colon\mathbb{R}^n\to T^n$ is very similar to $p$ in that $T^n$ is homeomorphic to $\mathbb{R}^n/\mathbb{Z}^n$. In any case $q$ is also surjective, continuous and open, and any open set $U$ in $T^n$ has preimage homeomorphic to $U\times \mathbb{Z}^n$ since the exponential map is $2\pi i $-periodic. It follows similarly that $q$ is locally trivial with discrete fibers, and with $\mathbb{R}^n$ simply connected $q$ is a universal covering.
+
+      Let $f\colon T^n\to T^n$ be a continuous automorphism, and let $F\colon\mathbb{R}^n\to \mathbb{R}^n$ be a lifting of $fq$ along $q$ with $F(0) = 0$. We check first for fixed $y$ that the maps $x\mapsto F(x)+F(y)$ and $x\mapsto F(x+y)$ are liftings of the same map taking $x$ to $fq(x+y)$. Since $f$ is a homomorphism, $q(F(x)_j+F(y)_j) = \exp(2\pi i F(x)_j)\exp(2\pi i F(y)_j) = fq(x)_jfq(y)_j = f(q(x)q(y))_j = f(q(x+y))_j$ for all $j$. We also have $q(F(x+y)) = fq(x+y)$ directly. Hence these two assignments are liftings of the same map; for $x = 0$ they agree. By uniqueness of lifts these two lifts must agree since they agree at a point: For all $x,y$ we have $F(x)+F(y) = F(x+y)$, and so it follows that $F$ is a linear map. Since $q(z) = (1,\dots,1)$ if and only if $z\in \mathbb{Z}^n$ and $f$ is a homomorphism taking the identity to the identity, it follows that $F(\mathbb{Z}^n)$ is contained in $\mathbb{Z}^n$ ($qF(z) = (1)$ if and only if $F(z)\in \mathbb{Z}^n$).
+
+      Observe that $F$ is invertible since $f$ is invertible: lift $f^{-1}q$ along $q$ to obtain the map $F^\prime$. Then $F\circ F^\prime$ is the lift of $q$ along $q$ which agrees with the identity map on $\mathbb{R}^n$: $qFF^\prime(x) = fqF^\prime = ff^{-1}q(x) = q(x)$% https://q.uiver.app/?q=WzAsOCxbMCwyLCJcXG1hdGhiYntSfV5uIl0sWzEsMiwiVF5uIl0sWzIsMiwiVF5uIl0sWzIsMSwiXFxtYXRoYmJ7Un1ebiJdLFszLDEsIlRebiJdLFs0LDEsIlRebiJdLFs0LDIsIlRebiJdLFs0LDAsIlxcbWF0aGJie1J9Xm4iXSxbMCwxLCJxIiwyXSxbMSwyLCJmXnstMX0iLDJdLFswLDMsIkZeXFxwcmltZSJdLFszLDIsInEiXSxbMyw0LCJxIiwyXSxbNCw1LCJmIiwyXSxbMiw2LCJmIiwyXSxbNSw2LCJcXGlkX3tUXm59Il0sWzMsNywiRiJdLFs3LDUsInEiXV0=
+      \[\begin{tikzcd}
+        &&&& {\mathbb{R}^n} \\
+        && {\mathbb{R}^n} & {T^n} & {T^n} \\
+        {\mathbb{R}^n} & {T^n} & {T^n} && {T^n}
+        \arrow["q"', from=3-1, to=3-2]
+        \arrow["{f^{-1}}"', from=3-2, to=3-3]
+        \arrow["{F^\prime}", from=3-1, to=2-3]
+        \arrow["q", from=2-3, to=3-3]
+        \arrow["q"', from=2-3, to=2-4]
+        \arrow["f"', from=2-4, to=2-5]
+        \arrow["f"', from=3-3, to=3-5]
+        \arrow["{\id_{T^n}}", from=2-5, to=3-5]
+        \arrow["F", from=2-3, to=1-5]
+        \arrow["q", from=1-5, to=2-5]
+      \end{tikzcd}\] A similar diagram chase shows that $F^\prime\circ F$ is also the identity, hence $F$ is invertible. It follows from the above that $F$ may be viewed as an invertible map with integer entries; i.e. as an element of $\mathrm{GL}_n(\mathbb{Z})$.
+
+      Conversely, take an element of $\mathrm{GL}_n(\mathbb{Z})$ and view it as a linear operator $F$ on $\mathbb{R}^n$. Then with $q$ surjective we set $f = qFq_r^{-1}$, where $q_r^{-1}$ is the right inverse of $q$. We show that $f$ is an automorphism of $T^n$ with inverse $qF^{-1}q_r^{-1}$ This does not work and I am not sure how to produce the right automorphism of $T^n$ from $F$.
+    \end{proof}
+    \item (3.6.5) Classify the $2$-fold coverings of $S^1\vee S^1$ and of $S^1\vee S^1 \vee S^1$. (Note that a subgroup of index $2$ is normal.) \begin{proof}
+      We can enumerate all such coverings manually: Since each of the two spaces are path connected, locally path connected, and semi-locally simply connected, the fundamental group acts by permuting the elements of the fiber. We draw the rest: \vspace*{6cm}
+    \end{proof}
+    \item (3.6.8) The Klein bottle has three $2$-fold connected coverings. One of them is a torus, the other two are Klein bottles.
+    \begin{proof}
+      We use Classification III: We find three normal subgroups of the fundamental group of the Klein bottle given by $\abr{a,b\mid aba=b}$: They are the index two (hence normal) subgroups $\abr{a},\abr{b}$, and $\abr{ab^{-1}}$ (these are kernels of surjective maps into $\mathbb{Z}/2\mathbb{Z}$ sending $a,b$ to $1$ in various ways). Connected coverings of the Klein bottle correspond to coverings by $\mathbb{R}^2/H$ where $H$ takes on the normal subgroups above. We draw out the rest below:
+    \end{proof}
+\end{enumerate}
+\end{document}

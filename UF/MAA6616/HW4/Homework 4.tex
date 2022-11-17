@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6616 Analysis}
+\fancyhead[C]{Homework 4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (13.12) Prove that if $f$ is an unsigned measurable function and $\int f<+\infty$, then the set $E\coloneqq \cbr{x\colon f(x)>0}$ is $\sigma$-finite. (That is, $E$ can be written as a disjoint union of measurable sets $E = \bigcup_{n=1}^\infty E_n$ with each $\mu(E_n)<+\infty$.) \begin{proof}
+        Let $E_\infty = \cbr{x\colon f(x) = +\infty}$, which is measurable since $f$ is measurable and $E_\infty$ is the preimage of the measurable set $\cbr{+\infty}$. It follows that $\mu(E_\infty) = 0$ since otherwise $\int f = +\infty$ (by bounding below), impossible. Let $E_{1/n} = \cbr{x\colon f(x)> 1/n}$, measurable again since they are the preimages of the measurable sets $(1/n,+\infty]$. Each of $\mu(E_{1/n})$ need to be finite, since otherwise $\int f = +\infty$ (by bounding below), impossible. Observe that $E_\infty \cup \bigcup_{n=1}^\infty E_{1/n} = E$. We disjointify the sets appearing in the union to form the union of pairwise disjoint sets $\bigcup_{j=0}^\infty F_j = E$. By the construction of the disjointification, each $F_j$ has finite measure since each are formed out of taking a single set difference at a time (e.g. with $F_0= E_\infty$ and $F_1 = E_1\setminus E_\infty,\dots,F_n = E_{1/n}\setminus F_{n-1}$). Thus $E$ may be written as a disjoint union of measurable sets, hence $\sigma$-finite as desired.
+    \end{proof}
+    \item (13.18) Let $f$ be an unsigned measurable function on the measure space $(X,\mathscr{M}, \mu)$. Prove that the function $\nu\colon \mathscr{M}\to [0,\infty]$ defined by $\nu(E) = \int_E f \dd{\mu}$ is a measure and, if $g$ is an unsigned measurable function on $X$, then $\int g \dd{\nu} = \int gf \dd{\mu}$. \begin{proof}
+        Of course, $\nu(\varnothing) = 0$ since $\int_\varnothing f \dd{\mu} = \int \mathbf{1}_\varnothing f \dd{\mu} = \int 0 \dd{\mu} = 0$. Then let $(E_j)$ be a sequence of disjoint sets in $\mathscr{M}$, and let $E = \cup_j E_j$.
+        
+        Observe that because the sets $E_j$ are disjoint, $\mathbf{1}_E = \sum_j \mathbf{1}_{E_j}$ (as a formal sum): We have $\mathbf{1}_E(x) = 1$ if and only if $x\in E$, so $x$ lies in exactly one $E_k$ since the sets $E_j$ are disjoint, hence $\sum_j \mathbf{1}_{E_j}(x) = 1$. Conversely if $\sum_j \mathbf{1}_{E_j}(x) = 1$ (note by disjointness this sum can never exceed $1$), then by disjointness of the sets $E_j$ we have $\mathbf{1}_{E_k}(x) = 1$ for some $k$, so $x\in E_k\subset E$ with $\mathbf{1}_E(x) = 1$. Similarly if $\mathbf{1}_E(x) = 0$ then $x\not\in E_j$ for each $j$, so $\sum_j \mathbf{1}_{E_j}(x) = 0$. Conversely if $\sum_j \mathbf{1}_{E_j}(x) = 0$, then $\mathbf{1}_{E_j}(x) = 0$ for each $j$ so that $x\not\in E$ with $\mathbf{1}_E(x) = 0$.
+        
+        Then with Tonelli's theorem (Corollary 10.6 in the notes) we have $\nu(E) = \int_E f \dd{\mu} = \int_X \mathbf{1}_E f\dd{\mu} = \int_X\sum_j \mathbf{1}_{E_j} f\dd{\mu} = \sum_j\int_X 1_{E_j}f \dd{\mu} = \sum_j \int_{E_j} f \dd{\mu} = \sum_j \nu(E_j)$ as desired. Hence $\nu$ is a measure.
+
+        Since $g$ is an unsigned measurable function, we may approximate $g$ from below by an increasing sequence of simple unsigned measurable functions $s_n$; that is, there exists a sequence of simple unsigned measurable functions $(s_n)$ increasing to $g$ pointwise. By the monotone convergence theorem, $\lim_{n\to\infty} \int s_n\dd{\nu} = \int g\dd{\nu}$. But for any simple function $s = \sum_{j=0}^n c_j\mathbf{1}_{E_j}$ with $\cbr{E_j}$ a measurable partition of $X$, $c_j\geq 0$ and $0\leq s\leq g$, we have $\int_X s \dd{\nu} = \sum_{j=0}^n c_j\nu(E_j) = \sum_{j=0}^n c_j\int_{E_j} f\dd{\mu} = \int_X \sum_{j=0}^n c_j\mathbf{1}_{E_j}f\dd{\mu}= \int_X sf\dd{\mu}$. Hence $\lim_{n\to\infty}\int s_n f\dd{\mu} = \int g\dd{\nu}$.
+
+        However, observe that $(s_nf)$ increases to $gf$ pointwise so that by using the MCT again we have $\lim_{n\to\infty}\int s_n f\dd{\mu} = \int gf \dd{\mu} = \int g\dd{\nu}$ as desired.
+    \end{proof}
+    \item (13.23) Evaluate each of the following limits, and carefully justify your claims.\begin{enumerate}
+        \item $\displaystyle\lim_{n\to\infty}\int_0^\infty \frac{\sin(x/n)}{(1+(x/n))^n}\dd x = 0$. For each $n\geq 2$, the functions $f_n$ given by $f_n(x) = \mathbf{1}_{[0,+\infty]}(x)\frac{\sin(x/n)}{(1+(x/n))^n}$ are in $L^1$: observe that from $x\geq 1$ onwards ($\abs{f_n}$ is integrable from $0$ to $1$) we have $\abs{f_n}\leq 1/(1+(x/n))^n$, which is integrable ($n\geq 2$) from $1$ to $+\infty$. Furthermore, $f_n$ converges pointwise to the zero function, since $\sin(x/n)$ converges pointwise to the zero function and $(1+(x/n))^{-n}$ converges pointwise to $\exp(-x)$ (by some definition of $e^x$). We also have that each $\abs{f_n}$ is bounded above by the $1$ function: $\abs{f_n}\leq 1/(1+(x/n))^n\leq 1$ for all $x\in [0,+\infty]$. By the DCT, it follows that the above limit is zero.
+        
+        \item $\displaystyle\lim_{n\to\infty}\int_0^\infty \frac{1+nx^2}{(1+x^2)^n}\dd x = 0$. For each $n\geq 2$, the functions $f_n$ given by $f_n(x) = \mathbf{1}_{[0,+\infty]}(x)\frac{1+nx^2}{(1+x^2)^n}$ are in $L^1$: we have $\abs{f_n} = f_n \leq \frac{n}{(1+x^2)^{n-1}}$, which fall off quickly enough ($p$-test). Furthermore, $f_n$ converges almost everywhere to the zero function: for any fixed $x> 0$, we can make $f_n(x)\leq \frac{1}{x^{2n}} + \frac{nx^2}{(1+x^2)^n}$ arbitrarily small. At $x= 0$ the value of $f_n$ is $1$ for all $n$, but singletons have measure zero. The $f_n$ are uniformly bounded above in $n$ by the $1$ function: observe that by the binomial theorem we have $\frac{1+nx^2}{(1+x^2)^n} = \frac{1+nx^2}{1+nx^2 + O(x^4)}\leq \frac{1+nx^2}{1+nx^2} = 1$ for all $x\geq 0$. Thus by the DCT, the above limit is zero.
+        
+        \item $\displaystyle\lim_{n\to\infty}\int_0^\infty \frac{n\sin(x/n)}{x(1+x^2)}\dd x = \pi/2$. The functions $f_n$ given by $f_n(x) = \mathbf{1}_{[0,+\infty]}(x)\frac{n\sin(x/n)}{x(1+x^2)}$ are in $L^1$ since $\abs{f_n}\leq \frac{1}{1+x^2}$ (as $\sin(x)\leq x$), which is integrable. The almost everywhere pointwise limit of the $f_n$ is the function given by $\frac{1}{1+x^2}$, since $f_n(x) = \frac{1 + O((x/n)^2)}{1+x^2}$ by Taylor series, which converges pointwise to $\frac{1}{1+x^2}$ as $n$ tends to infinity as expected. Lastly, the $f_n$ are uniformly bounded in $n$ by $\frac{1}{1+x^2}$ by a previous estimate, so it follows by the DCT that the above limit is equal to $\int_0^\infty \frac{1}{1+x^2} = \pi/2$.
+        
+        \item $\displaystyle\lim_{n\to\infty}\int_0^\infty \frac{n}{1+n^2x^2}\dd x = \pi/2$. The DCT does not apply since there is no uniform bound in $n$ for each of the integrands. But for each $n$, we have by $u$-substitution $\int_0^\infty \frac{n}{1+n^2x^2}\dd x = \int_0^\infty \frac{1}{1+x^2}\dd{x} = \pi/2$. Hence the sequence $\left(\int_0^\infty \frac{n}{1+n^2x^2}\dd x\right)$ is a constant sequence with limit $\pi/2$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

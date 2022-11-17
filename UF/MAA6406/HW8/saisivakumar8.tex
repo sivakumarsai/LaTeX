@@ -1,0 +1,107 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 8}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+ Let $M_n(\CC)$ denote the $n\times n$ matrices with entries
+ from $\CC.$ Let  $\|A\|$ denote the operator norm of 
+ $A\in M_n(\CC).$ Since all norms on $\CC^{n^2}$ are 
+ equivalent, $M_n(\CC)$ with the operator norm is 
+ complete. 
+
+ An routine geometric series  argument using $\|A^n\|\le \|A\|^n$ 
+ shows, for $R>\|A\|,$  that the series
+\[
+ \sum_{n=0}^\infty  \frac{A^n}{R^n} e^{-ins}
+\]
+ converges absolutely and uniformly as a function of $s\in \RR$  to 
+\[
+  (I- \frac{A}{Re^{is}})^{-1}.
+\]
+ Use this fact to show, for $R>\|A\|$ 
+ and $k\in \NN,$ that 
+\[ 
+A^k= \frac{1}{2\pi i} \int_{|z|=R} z^k (z-A)^{-1} \, dz,
+\]
+where $|z|=R$ is the curve $\gamma:[0,2\pi]\to\CC$ 
+defined by $\gamma(s)=Re^{is}.$ 
+The integral can be interpreted {\it in the weak sense} -- 
+  for $x,y\in \CC^n,$ 
+\[
+  \langle A^k x,y\rangle = \int_{|z|=R} z^k \, \langle (z-A)^{-1}x,y\rangle \, dz
+\]
+-- if you like. 
+ 
+ Show, given a polynomial $p=\sum_{j=0}^d p_jz^j,$
+\[
+ p(A) =\frac{1}{2\pi i} \int_{|z|=R} p(z)\, (z-A)^{-1} \, dz.
+\]
+(This formula is then a version of Cauchy's integral formula.)
+
+
+Now use Cramer's rule  to prove the Cayley-Hamilton Theorem:
+
+For  $q(z)=\det(z-A),$ 
+\[
+  q(A)=0.
+\]
+
+
+\bigskip
+
+\begin{proof}
+\baselineskip=24pt
+Using the absolute and uniform convergence of the series above, we have for $R>\norm{A}$ that \begin{align*}
+  \frac{1}{2\pi i}\int_{\abs{z}=R}z^k (z-A)^{-1}\dd{z} &= \frac{1}{2\pi i}\int_{\abs{z}=R}z^{k-1} (I-A/z)^{-1}\dd{z} \\
+  &= \frac{1}{2\pi i}\int_{\abs{z}=R}z^{k-1} \sum_{n=0}^\infty (A/z)^n \dd{z} \\
+  &= \frac{1}{2\pi i}\sum_{n=0}^\infty A^n\int_{\abs{z}=R}z^{k-1-n}\dd{z}\\
+  &= \frac{A^k}{2\pi i}\int_{\abs{z}=R}z^{-1}\dd{z} = A^k,
+\end{align*} where uniform convergence was used to interchange the sum and integral signs, and Cauchy's integral theorem was used to extract only the $n=k$ term.
+
+Then for $p(z)=\sum_{j=0}^d p_jz^j$ a polynomial we have \begin{align*}
+  \frac{1}{2\pi i} \int_{\abs{z}=R} p(z)(z-A)^{-1} \dd{z} &= \frac{1}{2\pi i} \int_{\abs{z}=R} \sum_{j=0}^d p_jz^j(z-A)^{-1} \dd{z}\\
+  &= \sum_{j=0}^d p_j\int_{\abs{z} = R} z^j(z-A)^{-1} \dd{z}\\
+  &= \sum_{j=0}^d p_jA^j = p(A)
+\end{align*} by the previous result.
+
+By Cramer's rule we have that $\det(z-A)(z-A)^{-1} = \mathrm{adj}(z-A)$, where $\mathrm{adj}(z-A)$ is the adjugate matrix of $(z-A)$. The entries of $\mathrm{adj}(z-A)$ are polynomials in $z$. So for $q(z) = \det(z-A)$, we have \[q(A) = \frac{1}{2\pi i} \int_{\abs{z}=R} q(z)(z-A)^{-1} \dd{z} = \frac{1}{2\pi i} \int_{\abs{z}=R} \mathrm{adj}(z-A) \dd{z} = 0\] since every entry of $\mathrm{adj}(z-A)$ is an analytic function. 
+\end{proof}
+\end{document}

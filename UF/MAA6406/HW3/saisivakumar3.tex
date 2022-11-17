@@ -1,0 +1,58 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 3}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+ 
+ Explain why  the power series $\sum_{k=1}^\infty \frac{z^k}{k}$ 
+ determines an analytic function $f$ with domain $\DD=\{|z|<1\}.$
+
+
+
+ Prove, for $z\in \DD,$ that $f(z)=-\log(1-z).$
+\bigskip
+
+\begin{proof}
+\baselineskip=24pt
+Via the root or ratio tests one obtains that $\abs{z}< 1$ (or $z\in N_1(0) = \mathbb{D}$) in order for the power series, viewed as a function of $z$, to converge (e.g., from the ratio test we have that the power series converges if $\lim_{k\to\infty}\abs{\frac{zk}{k+1}} = \abs{z} < 1$).
+
+Apply Theorem 2.21 from the notes: the power series $\sum_{k=1}^\infty \frac{z^k}{k}$ is an analytic function $f\colon\mathbb{D}\to\mathbb{C}$ with $f(z) = \sum_{k=1}^\infty \frac{z^k}{k}$. Moreover, the derivative of $f$ at $z\in\mathbb{D}$ is $f^\prime(z) = \sum_{k=0}^\infty z^k = \frac{1}{1-z} = \dv{z}[-\log(1-z)]$. It follows that $f(z)$ and $-\log(1-z)$ differ by a constant $C\in \mathbb{C}$. But $0 = \sum_{k=1}^\infty \frac{0^k}{k}+\log(1-0) = C$ so that $f(z) = -\log(1-z)$ for all $z\in\mathbb{D}$.
+\end{proof}
+\end{document}

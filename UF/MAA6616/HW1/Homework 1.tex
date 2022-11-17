@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6616 Analysis}
+\fancyhead[C]{Homework 1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (7.2) Prove the ``exercise'' claims in Example 1.7 (the claims (c), (d), (g)). \begin{enumerate}
+      \item[(c)] Let $X$ be an uncountable set. The collection \[\mathscr{M} \coloneqq \cbr{E\subset X \mid \text{E is at most countable or $X\setminus E$ is at most countable}}\] is a $\sigma$-algebra. \begin{proof}
+        The collection $\mathscr{M}$ is nonempty: Observe that $X\in \mathscr{M}$ since $X\setminus X = \emptyset$ is finite (similarly $\emptyset \in\mathscr{M}$). 
+
+        The collection $\mathscr{M}$ is closed under countable unions: Let $(A_n)_{n=1}^\infty$ be a sequence of sets from $\mathscr{M}$. We show that of $A = \bigcup_{i=1}^\infty A_i$ and $X\setminus A = X\setminus \bigcup_{i=1}^\infty A_i = \bigcup_{i=1}^\infty (X\setminus A_i)$, one of them is at most countable. If all the $A_i$ are countable then $A$ is a countable union of countable sets which is countable, in which case $A\in \mathscr{M}$. Otherwise at least one $A_i$, say $A_j$, is uncountable, so its complement $X\setminus A_j$ must be countable since $A_j\in \mathscr{M}$. Since $X\setminus A\subseteq A_j$ by construction, it follows that $X\setminus A$ is countable so that $A\in \mathscr{M}$ as desired.
+
+        The collection $\mathscr{M}$ is closed under complements: If $E\in\mathscr{M}$ then one of $E, X\setminus E$ is countable, so the same can be said about the complement $X\setminus E$. It follows that $X\setminus E\in \mathscr{M}$.
+
+        Hence $\mathscr{M}$ is a $\sigma$-algebra.
+      \end{proof}
+      \item[(d)] If $\mathscr{M}\subset 2^X$ is a $\sigma$-algebra, and $E$ is any nonempty subset of $X$, then \[\mathscr{M}_E\coloneqq \cbr{A\cap E\mid A\in \mathscr{M}}\subset 2^E\] is a $\sigma$-algebra on $E$. \begin{proof}
+        Since $X\in\mathscr{M}$, it follows that $E = X\cap E\in \mathscr{M}_E$ so that the collection $\mathscr{M}_E$ is nonempty. 
+
+        Consider a sequence of sets $(B_n)_{n=1}^\infty$ from $\mathscr{M}_E$, where by definition $B_n = A_n\cap E$ for some $A_n\in \mathscr{M}$, for each $n$. Then $B = \bigcap_{i=1}^\infty B_i = \bigcap_{i=1}^\infty A_i\cap E = E\cap\left(\bigcup_{i=1}^\infty A_i\right)$. But $\bigcup_{i=1}^\infty A_i\in\mathscr{M}$, so $B\in\mathscr{M}_E$. Hence $\mathscr{M}_E$ is closed under countable unions.
+
+        Let $B\in \mathscr{M}_E$ so that $B = A\cap E$ for some $A\in\mathscr{M}$. Then \begin{align*}
+          E\setminus B = E\setminus (A\cap E) &= E\cap (X\setminus(A\cap E))\\
+          &= (E\cap(X\setminus A))\cup(E\cap(X\setminus E))\\
+          &= E\cap(X\setminus A),
+        \end{align*} but $X\setminus A\in\mathscr{M}$ so that $E\setminus B\in\mathscr{M}_E$. It follows that $\mathscr{M}_E$ is closed under complementation.
+
+        Thus $\mathscr{M}_E$ is a $\sigma$-algebra on $E$.
+      \end{proof} 
+      \item[(g)] If $(Y,\mathscr{N})$ is a measurable space and $f\colon X\to Y$, then the collection \[f^{-1}(\mathscr{N}) = \cbr{f^{-1}(E)\mid E\in\mathscr{N}}\subset 2^X\] is a $\sigma$-algebra on $X$. \begin{proof}
+        Let $\mathscr{M} = f^{-1}(\mathscr{N})= \cbr{f^{-1}(E)\mid E\in\mathscr{N}}\subset 2^X$ be as above. Since $Y\in\mathscr{N}$, it follows that $f^{-1}(Y) = X\in \mathscr{M}$, so $\mathscr{M}$ is nonempty. 
+
+        Let $(A_n)_{n=1}^\infty$ be a sequence of sets from $\mathscr{M}$, so that for each $n$, $A_n = f^{-1}(B_n)$ for some $B_n\in\mathscr{N}$. Using the fact that the preimage of a union is the union of the preimages, we obtain that $A = \bigcup_{i=1}^\infty A_i = \bigcup_{i=1}^\infty f^{-1}(B_i) = f^{-1}\left(\bigcup_{i=1}^\infty B_i \right)$. But because $\bigcup_{i=1}^\infty B_i\in \mathscr{N}$, it follows that $A\in\mathscr{M}$, so that $\mathscr{M}$ is closed under countable unions.
+
+        Let $A\in \mathscr{M}$ so that $A = f^{-1}(B)$ for some $B\in\mathscr{N}$. The preimage of a complement is the complement of the preimage, so it follows that $X\setminus A = X\setminus f^{-1}(B) = f^{-1}(Y\setminus B)$. But $Y\setminus B\in\mathscr{N}$ so that $X\setminus A\in\mathscr{M}$. Hence $\mathscr{M}$ is closed under complementation.
+
+        It follows that $\mathscr{M}$ is a $\sigma$-algebra over $X$.
+      \end{proof}
+    \end{enumerate}
+    \item (7.3) \begin{enumerate}
+        \item Let $X$ be a set and let $\mathscr{A} = (A_n)_{n=1}^\infty$ be a sequence of disjoint, nonempty subsets whose union is $X$. Prove that the set of all finite or countable unions of members of $\mathscr{A}$ (together with $\varnothing$) is a $\sigma$-algebra. (A $\sigma$-algebra of this type is called \textit{atomic}.) \begin{proof}
+          Let $\mathscr{M}$ be the set of all finite or countable unions of members of $\mathscr{A}$. Observe that $X$ is given by the countable union $\bigcup_{i=1}^\infty A_i$, which is a countable union of members of $\mathscr{A}$, so $X\in \mathscr{M}$. (We could have also taken the empty union to see that $\emptyset\in\mathscr{M}$ also.) Thus $\mathscr{M}$ is nonempty.
+
+          Let $(B_i)_{i=1}^\infty$ be a sequence of sets from $\mathscr{M}$. Then for each $i$, $B_i$ is given by $\bigcup_{k\in I_i}A_k$ where for each $i$, $I_i$ is a subset of the positive integers (and is hence countable). Note that $\bigcup_{i=1}^\infty I_i$ as a result is a countable subset of the positive integers. Thus $B = \bigcup_{i=1}^\infty B_i = \bigcup_{k\in \bigcup_{i=1}^\infty I_i} A_k$ is a countable union of elements of $\mathscr{A}$, so that $B\in\mathscr{M}$. Hence $\mathscr{M}$ is closed under countable unions.
+
+          Let $B\in\mathscr{M}$ so that $B = \bigcup_{i\in I}A_i$ for some subset $I$ of the positive integers $\mathbb{Z}_+$. Note that $\mathbb{Z}_+\setminus I$ (taken in $\mathbb{Z}_+$) is also a subset of the positive integers; it follows that $X\setminus B = \left(\bigcup_{i=1}^\infty A_i\right)\setminus \left(\bigcup_{i\in I} A_i\right) = \bigcup_{i\in \mathbb{Z}_+\setminus I} A_i$ is a countable union of members of $\mathscr{A}$. Hence $B\in\mathscr{M}$, so that $\mathscr{M}$ is closed under complementation also.
+
+          It follows that $\mathscr{M}$ is a $\sigma$-algebra over $X$.
+        \end{proof}
+        \item Prove that the Borel $\sigma$-algebra $\mathscr{B}_\mathbb{R}$ is \textit{not} atomic. (Hint: there exists an uncountable family of mutually disjoint Borel subsets of $\mathbb{R}$.) \begin{proof}
+          Observe that each of the singleton sets $\cbr{r}$ for each $r\in\mathbb{R}$ are Borel: Sigma algebras are closed under countable intersections (by De Morgan's laws) so in particular we have $\cbr{r} = \bigcap_{n=1}^\infty (r-1/n, r+1/n)$ where $(r-1/n, r+1/n)$ are open intervals in $\mathbb{R}$ (hence Borel), which proves the above claim.
+
+          But we know that the real numbers are uncountable, and we seek to find a contradiction. To that end, suppose by contradiction that $\mathscr{B}_\mathbb{R}$ is atomic so that there exists a sequence $(A_n)_{n=1}^\infty$ of disjoint, nonempty subsets whose union is $\mathbb{R}$.
+
+          We should be able to form for any real number $r$ the singleton set $\cbr{r}$ by taking a countable union of the $A_i$. Since the $A_i$ are disjoint and nonempty, it would follow that there is an $A_k$ appearing in this union that is actually just equal to $\cbr{r}$, and that the countable union is really just the union of the one set $A_k$. 
+          
+          Since this is true for any real number $r$, it would seem that either all of the $A_i$ are singleton sets of real numbers, or that there exists an $A_j$ with more than one element. We rule out the latter scenario: If $A_j$ contains more than one element, e.g., it contains real numbers $x,y$, then it is impossible to form the Borel set $\cbr{x}$ as a countable union of the $A_i$ since each of the $A_i$ are disjoint.
+          
+          It must follow then that each of the $A_i$s are singleton sets of real numbers. However, the real numbers are uncountable so that it is impossible for $\bigcap_{n=1}^\infty A_n$ to be equal to $\mathbb{R}$. This is a contradiction, so $\mathscr{B}_\mathbb{R}$ is not atomic.
+        \end{proof}
+    \end{enumerate}
+    \item (7.7) Prove that if $X,Y$ are topological spaces and $f\colon X\to Y$ is continuous, then $f$ is Borel measurable. \begin{proof}
+      Let $\mathscr{P}\subset 2^Y$ be given by $\cbr{E\subset Y\mid f^{-1}(E)\in \mathscr{B}_X}$. We show that $\mathscr{P}$ is a $\sigma$-algebra over $Y$. 
+
+      Observe that $\mathscr{P}$ is not empty since it contains $Y$: the preimage of $Y$ under $f$ is $X$, which is in $\mathscr{B}_X$.
+
+      Then take a sequence of sets $(A_n)_{n=1}^\infty$ in $\mathscr{P}$. Then $f^{-1}\left(\bigcup_{i=1}^\infty A_i\right) = \bigcup_{i=1}^\infty f^{-1}(A_i)\in \mathscr{B}_X$, so $\bigcup_{i=1}^\infty A_i\in \mathscr{P}$. So $\mathscr{P}$ is closed under countable unions.
+
+      If $A\in \mathscr{P}$, then $f^{-1}(Y\setminus A) = X\setminus f^{-1}(A)\in\mathscr{B}_X$, so $Y\setminus A\in\mathscr{P}$. So $\mathscr{P}$ is closed under complements; it follows that $\mathscr{P}$ is a $\sigma$-algebra over $Y$.
+
+      We show that every open set of $Y$ is contained in $\mathscr{P}$. If $U\subseteq Y$ is open, then by continuity of $f$, the set $f^{-1}(U)$ is open in $X$. But $\mathscr{B}_X$ is generated by the open sets of $X$ so that $f^{-1}(U)$ is a Borel set of $X$, which means $U\in \mathscr{P}$. Since $U$ was arbitrary, we have proved the claim.
+
+      Since the open sets of $Y$ were contained in $\mathscr{P}$ we have (by Proposition 1.9 in the notes) that the $\sigma$-algebra generated by the open sets of $Y$, the Borel $\sigma$-algebra $\mathscr{B}_Y$, is contained in $\mathscr{P}$. It follows that the preimage of any Borel set of $Y$ under $f$ is a Borel set of $X$, meaning $f$ is Borel measurable as desired.
+    \end{proof}
+\end{enumerate}
+\end{document}

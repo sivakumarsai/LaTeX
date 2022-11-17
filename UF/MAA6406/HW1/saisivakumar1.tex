@@ -1,0 +1,68 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 1}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+Show, if $X$ is a metric space and $\emptyset \ne F \subseteq X$ is connected,
+ then, for each $\varepsilon>0$ and each $a,b\in F$ there is an positive
+ integer $n$ and $z_0,\dots,z_n\in F$ such that $a=z_0,$ and $z_n=b$ and
+ $d(z_{j-1},z_j)<\varepsilon$ for $1\le j \le n.$ 
+
+ Give an example of a closed subset $F\subseteq \CC$ that is not connected,
+ but nevertheless satisfies the conclusion above.
+
+\bigskip
+\baselineskip=24pt
+\begin{proof}
+Let $\emptyset \neq F$ be a connected subspace of the metric space $X$ as above. Let $\varepsilon > 0$ and $a,b\in F$ be given. Define \begin{multline*}
+    A = \{p\in F\mid \text{there exists $n\in \mathbb{Z}_+$, $z_0 = p, z_1,\dots,z_n = b\in F$}\\ \text{such that $d(z_{j-1},z_j<\varepsilon$) for $1\leq j\leq n$}\}\subseteq F,
+\end{multline*} and observe that $A$ is not empty since $b\in A$ (take $n = 1$, $z_0 = z_1 = b$ above). Since $F$ is connected, it suffices to show that $A$ is both open and closed since the only nonempty open and closed subset of $F$ is $F$ itself.
+
+To that end, if $q\in A$, then $N^F_\varepsilon(q) = F\cap N_\varepsilon(q)\subseteq A$: There exists $n\in \mathbb{Z}_+$ and a sequence of points $z_0 = q, z_1,\dots,z_n = b\in F$ such that $d(z_{j-1},z)<\varepsilon$ for $1\leq j \leq n$. We may prepend this sequence with any point $q^\prime\in N^F_\varepsilon(q)$ to obtain a new sequence of points $z_{-1} = q^\prime, z_0 = q, z_1,\dots,z_n = b\in F$ such that $d(z_{j-1},z)<\varepsilon$ for $0\leq j \leq n$. Hence $q^\prime\in A$; since $q^\prime$ was arbitrary, $N^F_\varepsilon(q)$ is contained in $A$ as desired. Since $q$ was arbitrary, $A$ is open.
+
+To show that $A$ is closed we show that it contains all of its limit points. Let $q$ be a limit point of $A$ so that there exists a sequence $(q_n)_{n=1}^\infty$ of points in $A\subseteq F$ converging to $q$; note that $q$ is in $F$ since $F$ is closed in itself. There exists an $N\in \mathbb{Z}_+$ such that if $n\geq N$, then $d(q_n,q) < \varepsilon$; in particular $d(q_N,q) < \varepsilon$. Since $q_N\in A$ there exists $n\in \mathbb{Z}_+$ and a sequence of points $z_0 = q_N, z_1,\dots,z_n = b\in F$ such that $d(z_{j-1},z)<\varepsilon$ for $1\leq j \leq n$. We may prepend this sequence with $q$ to obtain a new sequence of points $z_{-1} = q, z_0 = q_N, z_1,\dots,z_n = b\in F$ such that $d(z_{j-1},z)<\varepsilon$ for $0\leq j \leq n$. Hence $q\in A$; since $q$ was an arbitrary limit point of $A$, it follows that $A$ is closed.
+
+It follows that $A = F$. In particular, $a\in A$ so that for each $\varepsilon>0$, there exists $n\in \mathbb{Z}_+$ and a sequence of points $z_0 = a, z_1,\dots,z_n = b\in F$ such that $d(z_{j-1},z)<\varepsilon$ for $1\leq j \leq n$.
+\end{proof}
+
+Consider the set $\{t+0i\mid t\in\mathbb{R}\}\cup\{t+ie^{t}\mid t\in\mathbb{R}\}$ (the graph of the exponential function and the $x$-axis). This set is a closed subset of $\mathbb{C}$ as each of the components $\{t+0i\mid t\in\mathbb{R}\}$ and $\{t+ie^{t}\mid t\in\mathbb{R}\}$ contain their limit points. It is also disconnected since each of the above (nonempty) components are open and closed (the complement of one component is the other, and vice versa). 
+
+Fix any $\varepsilon>0$ and two points $a,b$ which lie in different components of the above set. [If $a,b$ lie in the same component then it is easy enough to find a finite sequence of points starting from $a$ and ending with $b$ such that the distance between consecutive points is less than $\varepsilon$ since the arclength of the shortest path connecting $a$ and $b$ is finite.] Then choose $r$ real so that $d((r+i0),(r+ie^r)) = e^r < \varepsilon$ and so we can form a finite sequence of points starting from $a$, then to $r+i0$ where the distance between consecutive points in the sequence is less than $\varepsilon$ (since they lie in the same component), and prepend this to the finite sequence of points starting from $r+ie^r$ and ending at $b$ satisfying the same property above to form a desired sequence of points starting from $a$ to $b$ with the above property. 
+\end{document}

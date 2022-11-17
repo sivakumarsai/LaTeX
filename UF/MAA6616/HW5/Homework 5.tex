@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6616 Analysis}
+\fancyhead[C]{Homework 5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (13.34) Prove that if $(f_n)$ is a dominated sequence, then it is uniformly integrable. Give an example of a sequence $(f_n)$ that converges in $L^1$ (and is thus uniformly integrable), but is not dominated. \begin{proof}
+        Let $(f_n)$ be a sequence of measurable functions dominated by some $g\in L^1$ so that $\abs{f_n}\leq \abs{g}$ for all $n$.
+
+        It follows that for all $n$, \[\norm{f_n}_1 = \int \abs{f_n} \leq \int \abs{g}=\norm{g}_1,\] so $(\norm{f_n}_1)$ is bounded by $\norm{g}_1$.
+
+        For any $x$, $n$, and $M>0$ observe that if $\abs{f_n(x)}\geq M$ then $\abs{g(x)}\geq M$. Thus for any $n$, $M>0$,  $\cbr{x\colon \abs{f_n(x)}\geq M}\subseteq \cbr{x\colon \abs{g(x)}\geq M}$.
+
+        It follows that for any $n$ and $M>0$, \[\int_{\abs{f_n}\geq M}\abs{f_n}\leq \int_{\abs{f_n}\geq M}\abs{g}\leq\int_{\abs{g}\geq M}\abs{g},\] and we can take $M$ large enough (independently of $n$) so that $\int_{\abs{g}\geq M}\abs{g}$ is arbitrarily small by the Dominated Convergence Theorem. (The sequence $(\mathbf{1}_{\abs{g}\geq M}\abs{g})$ for $M\in\mathbb{Z}_+$ converges to the zero function a.e. (since $\abs{g}\in L^1$), and $\mathbf{1}_{\abs{g}\geq M}\abs{g}\leq \abs{g}$ for each $M$.) It follows that $\sup\cbr{\int_{\abs{f_n}\geq M}\abs{f_n}}$ (bounded above by $\int_{\abs{g}\geq M}\abs{g}$) tends to zero as $M$ tends to $\infty$.
+
+        For any $n$ and integer $k>0$, define $g_k$ as $\sup\cbr{\mathbf{1}_{\abs{f_n}\leq 1/k}\abs{f_n}}$, and observe that for every $k$, $g_k\leq \abs{g}$ since for any $n$, $\mathbf{1}_{\abs{f_n}\leq 1/k}\abs{f_n}\leq \abs{g}$. But as $k$ tends to $\infty$, $g_k$ converges pointwise to the zero function so $\int g_k$ tends to zero as $k$ tends to $\infty$ (DCT). Furthermore, we have $\int_{\abs{f_n}\leq 1/k}\abs{f_n}\leq \int g_k$ for every $n$, from which it follows that $\sup\cbr{\int_{\abs{f_n}\leq 1/k}\abs{f_n}}$ tends to zero as $k$ tends to $\infty$.
+
+        It follows that $(f_n)$ is uniformly integrable.
+    \end{proof}
+
+    An example of a sequence converging in $L^1$ which is not dominated is the sequence $(n\mathbf{1}_{[0,1/n^2]})$ which converges to the zero function in $L^1$ (as $\int n\mathbf{1}_{[0,1/n^2]} = 1/n$). But this sequence could not be dominated by any $L^1$ function (the height of the box tends to $\infty$).
+    \item (13.37) Prove that if $(f_n)$ is a dominated sequence, and $(f_n)$ converges to $f$ a.e., then $(f_n)$ converges to $f$ almost uniformly. (Hint: imitate the proof of Egorov's theorem.) (Thus for dominated sequences, a.e. and a.u. convergence are equivalent.) \begin{proof}
+      We mimic the proof of Egorov's theorem almost everywhere.
+      
+      Let $(f_n)$ be a dominated sequence (by $g\in L^1$) converging to $f$ almost everywhere. Without loss of generality modify each of the $f_n$ on null sets so that $(f_n)$ converges to $f$ everywhere. For $N,k\geq 1$, let $E_{N,k} = \cup_{n=N}^\infty\cbr{x\colon\abs{f_n(x)-f(x)}\geq 1/k}$. Observe that $E_{1,k}$ for fixed $k$ has finite measure: for any $n$, if $\abs{f_n(x)-f(x)}\geq 1/k$ then by the triangle inequality $2\abs{g(x)} = \abs{2g(x)} \geq 1/k$. Thus $E_{1,k}\subseteq \cbr{x\colon \abs{2g(x)} \geq 1/k}$, and the latter has finite measure since $2g\in L^1$ (otherwise we arrive at a contradiction). 
+
+      Let $k$ be fixed. Then for each $x$ there is an $N$ such that $\abs{f_n(x)-f(x)}<1/k$ for all $n\geq N$. It follows that $\cap_{N=1}^\infty E_{N,k} = \emptyset$. The $E_{N,k}$ are decreasing in $N$ and are contained in $E_{1,k}$ which has finite measure; by dominated convergence for sets, we have for fixed $k$ the sequence $(\mu(E_{N,k}))_N$ tends to zero. 
+
+      Let $\varepsilon>0$ be given. For each $k$ choose $N_k$ such that $\mu(E_{N_k,k})<\varepsilon 2^{-k}$. Let $E = \cup_{k=1}^\infty E_{N_k,k}$, so that $\mu(E)<\varepsilon$. We show that $(f_n)$ converges uniformly to $f$ on $E^c$. Let $\eta>0$ be given and choose $k$ such that $1/k<\eta$. Let $x\in E^c$ and take $n\geq N_k$; since $E^c\subseteq E_{N_k,k}^c$ we have $\abs{f_n(x)=f(x)}<1/k<\eta$. Since $x$ was arbitrary in $E^c$ we have that $(f_n)$ converges to $f$ uniformly on $E^c$, so $(f_n)$ converges to $f$ almost uniformly.
+    \end{proof}
+    \item (19.6) (Integral as the area under a graph). Let $(X,\mathscr{M},\mu)$ be a $\sigma$-finite measure space, and give $\mathbb{R}$ the Borel $\sigma$-algebra $\mathscr{B}_\mathbb{R}$ and Lebesgue measure $m$ (restricted to $\mathscr{B}_\mathbb{R}$). An unsigned function $f\colon X\to[0,+\infty)$ is measurable if and only if the set \[G_f\coloneqq \cbr{(x,t)\in X\times \mathbb{R}\colon 0\leq t\leq f(x)}\] is measurable. In this case, \[(\mu\times m)(G_f) = \int_X f\dd{\mu}.\] \begin{proof}
+      Suppose that $f$ is measurable. Then for every $n\in\mathbb{Z}_+$, $f+1/n$ is measurable also. Fix $n$. There exists a sequence of increasing simple functions $(s_{k,n})_k$ converging pointwise to $f+1/n$. Writing some $s_{k,n}$ as $\sum_{j=1}^d c_j\mathbf{1}_{E_j}$, observe that $G_{s_{k,n}} = \cbr{(x,t)\in X\times \mathbb{R}\colon 0\leq t\leq s_{k,n}(x)} = \cup_{j=1}^d E_j\times [0,c_j]$. Hence for every $k$, $G_{s_{k,n}}$ is measurable so that $\cup_{k=1}^\infty G_{s_{k,n}}$ is measurable.
+
+      We have that $G_f\subseteq \cup_{k=1}^\infty G_{s_{k,n}}\subseteq G_{f+1/n}$ for any $n$ since for any $x$, $(s_{k,n}(x))_k$ converges to $f(x)+1/n$ (but $f(x)+1/n$ need not be attained).
+
+      Then $\cap_{n=1}^\infty\cup_{k=1}^\infty G_{s_{k,n}}$ must be equal to $G_f$: We have one inclusion by the above. For the reverse inclusion, fix $x$. We have $(x,t)$ in $\cap_{n=1}^\infty\cup_{k=1}^\infty G_{s_{k,n}}$ if one of $0\leq t \leq f(x)+1/n$ or $0\leq t < f(x)+1/n$ holds (the distinction of $<$ or $\leq$ depends on the $n$) for every $n$, which means that $0\leq t\leq f(x)$. It follows that $G_f$ is measurable (countable intersection of countable union of measurable sets).
+
+      Conversely, suppose $G_f$ is measurable. Then by Theorem 15.7, we obtain a measurable $p\colon X\to [0,+\infty]$ given by $p(x) = m((G_f)_x) = \int_X \mathbf{1}_{(G_f)_x}\dd m$. But $m((G_f)_x) = m([0,f(x)]) = f(x)$ so $p$ agrees with $f$ on $X$; it follows that $f$ is measurable.
+
+      Using the first version of Tonelli's theorem we have \begin{align*}
+        (\mu\times m)(G_f) &= \int_{X\times\mathbb{R}}\mathbf{1}_{G_f}\dd{\mu\times m}\\
+        &= \int_X\int_\mathbb{R} (\mathbf{1}_{G_f})_x(t)\dd{m(t)}\dd{\mu(x)}\\
+        &=\int_X m((G_f)_x)\dd{\mu(x)}\\
+        &= \int_X f\dd \mu
+      \end{align*} as desired.
+    \end{proof}
+\end{enumerate}
+\end{document}

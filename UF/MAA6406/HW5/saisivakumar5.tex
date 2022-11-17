@@ -1,0 +1,83 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 5}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+ Prove the following version of the Leibniz rule. Suppose
+ $G\subseteq \CC$ is open, $\gamma:[a,b]\to G$ is
+ a smooth curve and 
+  $\psi:\{\gamma\}\times G\to \CC.$  Show, if
+\begin{enumerate}[(i)]
+ \item  $\psi$ is continuous;
+ \item  for each $w\in \{\gamma\}$
+ the function $\psi_w:G\to \CC$ defined by $\psi_w(z)=\psi(w,z)$
+ is analytic; and 
+ \item the function $F:\{\gamma\}\times G\to \CC$
+ defined by $F(w,z)=\psi_w^\prime(z)$ is continuous, 
+\end{enumerate}
+ then  $g:G\to \CC$ by
+\[
+ g(z) =\int_\gamma \psi(w,z) \, dw
+\]
+ is analytic and
+\[
+ g^\prime(z) = \int_\gamma F(w,z) \, dw.
+\]
+
+
+
+
+\bigskip
+
+\begin{proof}
+\baselineskip=24pt
+We show that $g$ is differentiable (hence analytic) at an arbitrary point of $G$. Let $z_0\in G$ and $\varepsilon>0$ be given. With $G$ open there exists $r>0$ with $N_r(z_0)\subseteq G$, so that $C = \overline{N_{r/2}(z_0)}\subseteq G$ is a closed set containing $z_0$ in $G$. Then $\{\gamma\}\times C$ is closed and bounded, hence compact. 
+
+Thus $F$ restricted to $\{\gamma\}\times C$ is uniformly continuous so that there exists $\delta$ such that if $d((w_2,z),(w_1,z_0)) = \sqrt{\abs{w_2-w_1}^2+\abs{z_0-z}^2}<\delta$ (where $d$ is the metric induced by the standard inner product on $\mathbb{C}^2$) then $\abs{F(w_2,z)-F(w_1,z_0)}<\varepsilon$. In particular by fixing $w\in \{\gamma\}$ we have $\abs{F(w,z)-F(w,z_0)}<\varepsilon$ whenever $d((w,z),(w,z_0)) = \abs{z-z_0} <\delta$. Then $\abs{\int_{[z_0,z]}[F(w,\xi) - F(w,z_0)]\dd{\xi}}\leq \varepsilon\abs{z-z_0}$ where $[z_0,z]$ denotes the straight line path from $z_0$ to $z$ lying in $C$ ($C$ is convex).
+
+The analytic function on $G$ given by $\psi_w(z)-zF(w,z_0)$ has derivative $F(w,z)-F(w,z_0)$, so by a version of the fundamental theorem for line integrals proved prior, \[\abs{\int_{[z_0,z]}[F(w,\xi) - F(w,z_0)]\dd{\xi}} = \abs{\psi_w(z)-\psi_w(z_0)-(z-z_0)F(w,z_0)}\leq \varepsilon\abs{z-z_0}\] whenever $\abs{z-z_0}<\delta$. So by definition of $g$ we have \begin{align*}
+  \abs{\frac{g(z)-g(z_0)}{z-z_0} - \int_\gamma F(w,z_0)\dd{w}} &= \abs{\int_\gamma \frac{\psi(w,z) - \psi(w,z_0) - (z-z_0)F(w,z_0)}{z-z_0}\dd{w}}\\
+  &\leq \abs{\int_\gamma \varepsilon\dd{w}}\\
+  &\leq \varepsilon V(\gamma),
+\end{align*} whenever $0<\abs{z-z_0}<\delta$, where $V(\gamma) = \int_a^b\abs{\gamma^\prime(s)}\dd{s}$ (smooth paths are rectifiable). It follows that $g$ is differentiable (hence analytic) with derivative given by $g^\prime(z) = \int_\gamma F(w,z)\dd{w}$.
+\end{proof}
+\end{document}

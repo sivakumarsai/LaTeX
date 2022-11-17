@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6616 Analysis}
+\fancyhead[C]{Homework 3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (7.30) Suppose $\mu$ is a regular Borel measure on a compact Hausdorff space and
+    $\mu(X) = 1$. Let $\mathcal{O}$ denote the collection of $\mu$-null open subsets of $X$ and let $U = \cup_{O\in \mathcal{O}} O$.
+    Prove $U$ is also $\mu$-null. Hence $U$ is the largest open $\mu$-null subset of $X$: Prove there exists a smallest compact subset $K$ of $X$ such that $\mu(K) = 1$. The set $K$ is the support of $\mu$. \begin{proof}
+        It is clear that $U$ is open and that $U$ exists (the empty set is one such $\mu$-null open subset). Since $\mu$ is regular, $\mu(U) = \sup\cbr{\mu(K)\mid K\subseteq U, K \text{ compact}}$. We show that for any compact set contained in $U$ (these compact sets do exist since the empty set is one such set), $\mu(K) = 0$. Let $K$ be a compact set contained in $U$. Then $\mathcal{O}$ is an open cover of $K$, so that by compactness $K$ is contained in $U^\prime = \cup_{O\in \mathcal{F}}O$ for a finite subset $\mathcal{F}$ of $\mathcal{O}$. It follows that $\mu(K) \leq \mu(U^\prime) \leq \sum_{O\in\mathcal{F}} \mu(O) = 0$, and since $\mu$ is nonnegative, $\mu(K) = 0$. Since $K$ was arbitrary, it follows that $\mu(U) = \sup\cbr{\mu(K)\mid K\subseteq U, K \text{ compact}} = 0$. Hence $U$ is a $\mu$-null open set; in particular, it is the largest one since every $\mu$-null open set is contained in $U$ by contstruction.
+
+        Observe that the complement $K = X\setminus U$ is a closed and hence compact (closed subsets of a compact space are compact) subset of $X$ with $\mu(K) = \mu(X\setminus U) = \mu(X) - \mu(U) = 1$ (since $\mu(X) = 1$). Every compact set is contained in $K$: Let $C$ be a compact and hence closed (compact sets are closed in Hausdorff spaces) set with unit measure. Then $\mu(X\setminus C) = \mu(X) - \mu(C) = 0$, so that $X\setminus C$ is a $\mu$-null open set. Hence $X\setminus C$ is contained in $U$, so that $C$ is contained in $K = X\setminus U$ as desired. Hence $K$ is the smallest compact subset of $X$ with unit measure; it is called the support of $\mu$.
+    \end{proof}
+    \item (7.33) Prove, if $X$ is a compact metric space, then every compact (closed)
+    set in $X$ is a $G_\delta$ and likewise every open set an $F_\sigma$. Prove, a finite Borel measure on a compact metric space is regular. \begin{proof}
+        Let $A$ be a compact hence closed subset of $X$. Then let $U_n = \cup_{a\in A}B_{1/n}(a)$ be the open set formed from taking the union of all the open $1/n$-balls around each point of $A$. We show that $A = \cap_{n\in \mathbb{Z}_+} U_n$, a $G_\delta$-set. The containment $A \subseteq \cap_{n\in \mathbb{Z}_+} U_n$ is clear since $A\subseteq U_n$ for each $n$. Then take $x\in \cap_{n\in \mathbb{Z}_+} U_n$, so that $x\in U_n$ for each $n$. Hence there exists $a_n\in A$ with $d(a_n,x)<1/n$; form the sequence $(a_n)$ from $A$ converging to $x\in X$. By closedness of $A$ it follows that $x\in A$, since $x$ was arbitrary we obtain the reverse inclusion $A \supseteq \cap_{n\in \mathbb{Z}_+} U_n$ and hence equality as desired.
+
+        By taking complements one obtains that any open set $X\setminus A = \cup_{n\in \mathbb{Z}_+} (X\setminus U_n)$, which is an $F_\sigma$-set.
+
+        Let $\mu$ be a finite Borel measure on $X$. Call $E\subseteq \mathscr{B}_X$ \textbf{regular} if $\mu(E) = \inf\cbr{\mu(U)\mid U\supset E, U\text{ open}} = \sup\cbr{\mu(K)\mid K\subset E, K\text{ compact}}$ and denote the collection of regular sets by $\mathcal{R}$. We show that $\mathcal{R}$ is a $\sigma$-algebra: Let $E$ be a regular set and let $\varepsilon>0$ be given. There exists $U\supset E$ open and $K\subset F$ compact with $\mu(U)<\mu(E) + \varepsilon$ and $\mu(K)>\mu(E)-\varepsilon$. Observe that $X\setminus K$ is open and $X\setminus U$ is closed and thus compact with $\mu(X)-\mu(K) = \mu(X\setminus K) < \mu(X\setminus E)+\varepsilon = \mu(X)-\mu(E)+\varepsilon $ and $\mu(X)-\mu(U) = \mu(X\setminus U) > \mu(X\setminus E)-\varepsilon = \mu(X)-\mu(E) - \varepsilon $. Since $\varepsilon$ was arbitrary, $X\setminus E$ is also regular. 
+
+        We show first that finite unions of regular sets are regular: Let $E, F$ be regular sets and let $\varepsilon>0$ be given. There exists $U\supset E,V\supset F$ open and $K\subset E,L\subset F$ compact with $\mu(U)<\mu(E) + \varepsilon/2$, $\mu(K)>\mu(E)-\varepsilon/2$, $\mu(V)<\mu(F) + \varepsilon/2$, and $\mu(L)>\mu(F)-\varepsilon/2$. Then $U\cup V\supset E\cup F$ is open and $K\cup L\subset E\cup F$ is compact with $(U\cup V)\setminus(E\cup F)\subset (U\setminus E)\cup (V\setminus F)$ and $(E\cup F)\setminus(K\cup L)\subset (E\setminus K)\cup (F\setminus L)$. It follows that $\mu( (U\cup V)\setminus(E\cup F)) \leq \mu( U\setminus E) + \mu(V\setminus F) < \varepsilon$ and $\mu((E\cup F)\setminus(K\cup L))\leq \mu(E\setminus K) + \mu(F\setminus L) < \varepsilon$; hence $E\cup F$ is regular. By induction it follows that finite unions of regular sets are regular.
+
+        Let $(E_n)$ be a sequence of regular sets and let $\varepsilon>0$ be given. Produce $(U_n\supset E_n)$ a sequence of open sets and $(K_n\subset E_n)$ a sequence of compact sets with $\mu(U_n)<\mu(E_n) + \varepsilon/2^n$, $\mu(K_n)>\mu(E_n)-\varepsilon/2^n$. Then $\cup_{n=1}^\infty U_n \supset \cup_{n=1}^\infty E_n$ is open and $\cup_{n\in F} K_n\subset \cup_{n=1}^\infty E_n$ for $F\subseteq \mathbb{Z}_+$ a finite subset is compact; the containments $(\cup_{n=1}^\infty U_n)\setminus(\cup_{n=1}^\infty E_n)\subset \cup_{n=1}^\infty (U_n\setminus E_n)$ and 
+        %$(\cup_{n=1}^\infty E_n)\setminus(\cup_{n\in F} K_n)\subset \cup_{n=1}^\infty (E_n\setminus K_n)$ 
+        hold. Hence $\mu((\cup_{n=1}^\infty U_n)/(\cup_{n=1}^\infty E_n))\leq \sum_{n=1}^\infty \mu(U_n\setminus E_n) < \varepsilon$, which gives outer regularity. For inner regularity we first see that by monotone convergence of sets, there is $N$ large enough with $\mu(\cup_{n=1}^\infty K_n) - \mu(\cup_{n=1}^NK_n) = \mu(\cup_{n=N+1}^\infty) < \varepsilon/2$. Thus 
+
+        %%%
+        Let $(E_n)$ be a sequence of regular sets and produce $(U_n\supset E_n)$ a sequence of open sets and $(K_n\subset E_n)$ a sequence of compact sets with $\mu(U_n)<\mu(E_n) + \varepsilon/2^n$, $\mu(K_n)>\mu(E_n)-\varepsilon/2^n$. Then $\cup_{n=1}^\infty U_n \supset \cup_{n=1}^\infty E_n$ is open and $\cup_{n\in F} K_n\subset \cup_{n=1}^\infty E_n$ for $F\subseteq \mathbb{Z}_+$ a finite subset is compact; the containments $(\cup_{n=1}^\infty U_n)/(\cup_{n=1}^\infty E_n)\subset \cup_{n=1}^\infty (U_n\setminus E_n)$ and $(\cup_{n=1}^\infty E_n)/(\cup_{n\in F} K_n)\subset \cup_{n=1}^\infty (E_n\setminus K_n)$ hold. Hence $\mu((\cup_{n=1}^\infty U_n)/(\cup_{n=1}^\infty E_n))\leq \sum_{n=1}^\infty \mu(U_n\setminus E_n) < \varepsilon$ and $\mu((\cup_{n=1}^\infty E_n)/(\cup_{n\in F} K_n))\leq \sum_{n=1}^\infty \mu(E_n\setminus K_n) < \varepsilon$ as desired. It follows that countable unions of regular sets are regular. Hence regular sets form a $\sigma$-algebra.
+
+        We show that the generators of the Borel $\sigma$-algebra, the open sets, are regular so that the sigma algebra they generate is also regular by the trivial but useful proposition from the notes. Let $V$ be an open set, by the first part of the problem $V$ is an $F_\sigma$ so that $V = \cup_{n=1}^\infty C_n$ for $C_n$ closed (and hence compact also). We can take $V$ as its own open cover so that $\mu(V)$ is exactly $\inf\cbr{\mu(U)\mid U\supseteq V, U\text{ open}}$. For inner regularity observe that since $(\cup_{i=1}^n C_i)$ is a monotone sequence of sets converging to $\cup_{i=1}^\infty C_i = V$, for a fixed $\varepsilon>0$ we can find $N$ large enough with $\mu(V) - \mu(\cup_{i=1}^N C_i)< \varepsilon$. But $\cup_{i=1}^N C_i$ is a finite union of closed (compact) sets hence also compact, and since $\varepsilon$ was arbitrary it follows that $\mu(V)$ is $\sup\cbr{\mu(K)\mid K\subset V,K\text{ compact}}$. It follows that $V$ is regular, so that every open set in $X$ is regular. Since open sets generate the Borel $\sigma$-algebra $\mathscr{B}_X$, it follows that $\mathscr{B}_X$ is a collection of regular sets. Hence the finite Borel measure $\mu$ is regular as desired. 
+    \end{proof}
+\end{enumerate}
+\end{document}

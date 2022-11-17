@@ -1,0 +1,79 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 7}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+ Let $\Omega_\pm$ denote the upper and lower half planes
+ and identify $\RR$ with the real axis in $\CC$ and suppose 
+  $f:\overline{\Omega_+}\to \CC.$ Show, if
+\begin{enumerate}[(i)]
+ \item $f$  is continuous;
+ \item the restriction of $f$ to $\Omega_+$ is analytic; and
+ \item $f(\RR)\subseteq\RR,$
+\end{enumerate} 
+  then $g:\overline{\Omega_-}\to \CC$  defined by 
+  $g(z)=f(z^*)^*$ is continuous, analytic on $\Omega_-$ and
+ agrees with $f$ on $\RR.$ Finally, show the function
+ $F:\CC\to \CC$ defined by
+\[
+ F(z) =\begin{cases} f(z) & z\in \overline{\Omega_+}\\
+                     g(z) & z\in \overline{\Omega_-} 
+ \end{cases}
+\]
+ is an analytic extension of $f$ to an entire function.
+
+
+
+\bigskip
+
+\begin{proof}
+\baselineskip=24pt
+Complex conjugation is a continuous operation. Given $\varepsilon>0$, if $\abs{z-w}<\varepsilon$ then $\abs{z^\ast-w^\ast}<\varepsilon$. Since the composition of continuous functions is continuous, $g= \cdot^\ast\circ f\circ \cdot^\ast$ is continuous. 
+
+We use Morera's theorem to show $g$ is analytic on $\Omega_-$. Given a triangle $T\subset \Omega_-$, we can find a triangle $T^\ast\subset \Omega_+$ which is just the pointwise image of the conjugation map on $T$. The orientation of the triangle will be reversed under conjugation. It follows that $\int_T g = -\int_{T^\ast} f^\ast = (\int_{T^\ast}f)^\ast = 0$ since $f$ is analytic on $\Omega_+$. Since $T$ was arbitrary it follows $g$ is analytic on $\Omega_-$. Since $f(R)\subset R$, we have for real $x$ that $g(x) = f(x^\ast)^\ast = f(x)^\ast = f(x)$, so $g$ agrees with $f$ on $\mathbb{R}$.
+
+By the pasting lemma ($\mathbb{C} = \overline{\Omega_+}\cup \overline{\Omega_+}$ and $f,g$ are continuous on $\overline{\Omega_+},\overline{\Omega_-}$ respectively and agree on $\mathbb{R} = \overline{\Omega_+}\cap \overline{\Omega_-}$) $F$ is continuous on $\mathbb{C}$.
+
+We use Morera's theorem again to show $F$ is analytic on $\mathbb{C}$. If $T$ is any triangle contained in $\Omega_+$ or $\Omega_-$, then by analyticity of $f$ or $g$ an integral along the boundary of $T$ will vanish. So we consider the case when $T\cap \mathbb{R}$ is not trivial. If $T\cap \mathbb{R}$ is a single point the integral along the boundary of $T$ vanishes. If $T\cap \mathbb{R}$ is an interval then the integral vanishes by continuity (literal sketch): \vspace*{7cm}
+
+If $T\cap \mathbb{R}$ is a two point set then a similar continuity argument may be used to show the integral vanishes. Hence all integrals along triangles vanish, so $F$ is entire.
+\end{proof}
+\end{document}

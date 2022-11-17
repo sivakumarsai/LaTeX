@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6331 Algebra}
+\fancyhead[C]{Homework 8}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{all problems}
+\begin{enumerate}
+    \item Carefully define how to compose functors and natural transformations, and carefully check the result is a functor or natural transformation. What would you need to verify to check that composition of functors is associative? 
+    
+    Let $F\colon \mathcal{C}\to \mathcal{D}$ and $G\colon \mathcal{D}\to\mathcal{E}$ be functors. 
+
+    For an object $A\in \mathcal{C}$, let $(G\circ F)(A) = G(F(A))$, and for $f\in\mathcal{C}(A,B)$, let $(G\circ F)(f) = G(F(f))\in \mathcal{E}(G(F(A)),G(F(B)))$. 
+
+    Given $A\xrightarrow{f} B\xrightarrow{g}C$ in $\mathcal{C}$ we have $F(g\circ f) = F(g)\circ F(f)$ so that in $\mathcal{D}$ we have $F(A)\xrightarrow{F(f)} F(B)\xrightarrow{F(g)}F(C)$. Then applying $G$ we obtain $(G\circ F)(g\circ f) = G(F(g\circ f))=G(F(g)\circ F(f)) = G(F(g))\circ G(F(f)) = (G\circ F)(g)\circ (G\circ F)(f)$.
+
+    Similarly for $A\in\mathcal{C}$, $(G\circ F)(1_A) = G(F(1_A)) = G(1_{F(A)}) = 1_{G(F(A))} = 1_{(G\circ F)(A)}$ as desired.
+
+    To see if the composition of functors is associative, we need to know if the functions sending objects to objects and morphisms to morphisms in the definition of the functor are associative.
+
+    There are two ways to compose natural transformations. 
+    
+    Let $\alpha\colon F\to G$ and $\beta\colon G\to H$ be natural transformations of functors $F,G,H\colon \mathcal{C}\to\mathcal{D}$. Let the composition $\beta\circ \alpha$ be the family $\br{F(A)\xrightarrow{\beta_A\circ\alpha_A} H(A)}_{A\in\mathcal{C}}$ of maps in $\mathcal{D}$ such that for every map $A\xrightarrow{f}B$ in $\mathcal{C}$, the square % https://q.uiver.app/?q=WzAsNCxbMCwwLCJGKEEpIl0sWzEsMCwiRihCKSJdLFswLDEsIkgoQSkiXSxbMSwxLCJIKEIpIl0sWzAsMSwiRihmKSJdLFsyLDMsIkgoZikiLDJdLFswLDIsIlxcYmV0YV9BXFxjaXJjXFxhbHBoYV9BIiwyXSxbMSwzLCJcXGJldGFfQlxcY2lyY1xcYWxwaGFfQiJdXQ==
+    \[\begin{tikzcd}
+        {F(A)} & {F(B)} \\
+        {H(A)} & {H(B)}
+        \arrow["{F(f)}", from=1-1, to=1-2]
+        \arrow["{H(f)}"', from=2-1, to=2-2]
+        \arrow["{\beta_A\circ\alpha_A}"', from=1-1, to=2-1]
+        \arrow["{\beta_B\circ\alpha_B}", from=1-2, to=2-2]
+    \end{tikzcd}\] commutes. This is due to the diagram % https://q.uiver.app/?q=WzAsNixbMCwwLCJGKEEpIl0sWzEsMCwiRihCKSJdLFswLDEsIkcoQSkiXSxbMSwxLCJHKEIpIl0sWzAsMiwiSChBKSJdLFsxLDIsIkgoQikiXSxbMCwxLCJGKGYpIl0sWzIsMywiRyhmKSIsMl0sWzAsMiwiXFxhbHBoYV9BIiwyXSxbMSwzLCJcXGFscGhhX0IiXSxbMiw0LCJcXGJldGFfQSIsMl0sWzMsNSwiXFxiZXRhX0IiXSxbNCw1LCJIKGYpIiwyXV0=
+    \[\begin{tikzcd}
+        {F(A)} & {F(B)} \\
+        {G(A)} & {G(B)} \\
+        {H(A)} & {H(B)}
+        \arrow["{F(f)}", from=1-1, to=1-2]
+        \arrow["{G(f)}"', from=2-1, to=2-2]
+        \arrow["{\alpha_A}"', from=1-1, to=2-1]
+        \arrow["{\alpha_B}", from=1-2, to=2-2]
+        \arrow["{\beta_A}"', from=2-1, to=3-1]
+        \arrow["{\beta_B}", from=2-2, to=3-2]
+        \arrow["{H(f)}"', from=3-1, to=3-2]
+    \end{tikzcd}\] commuting for each $A\xrightarrow{f}B$ in $\mathcal{C}$, as each square inside commutes due to $\alpha,\beta$ being natural transformations. Hence $\beta\circ\alpha$ as above is a natural transformation.
+
+    Start with % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RH0iXSxbMiwwLCJcXG1hdGhjYWx7RX0iXSxbMCwxLCJHIiwyLHsib2Zmc2V0IjoxLCJjdXJ2ZSI6MX1dLFswLDEsIkYiLDAseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6LTF9XSxbMSwyLCJGXlxccHJpbWUiLDAseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6LTF9XSxbMSwyLCJHXlxccHJpbWUiLDIseyJvZmZzZXQiOjEsImN1cnZlIjoxfV0sWzQsMywiXFxhbHBoYSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbNSw2LCJcXGJldGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+    \begin{tikzcd}
+        {\mathcal{C}} & {\mathcal{D}} & {\mathcal{E}}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "G"', shift right=1, curve={height=6pt}, from=1-1, to=1-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "F", shift left=1, curve={height=-6pt}, from=1-1, to=1-2]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{F^\prime}", shift left=1, curve={height=-6pt}, from=1-2, to=1-3]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{G^\prime}"', shift right=1, curve={height=6pt}, from=1-2, to=1-3]
+        \arrow["\alpha", shorten <=2pt, shorten >=2pt, Rightarrow, from=1, to=0]
+        \arrow["\beta", shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=3]
+    \end{tikzcd} with $\mathcal{C},\mathcal{D},\mathcal{E}$ categories with functors $F,G,F^\prime,G^\prime$. We define the composition $\beta\circ \alpha$ as in % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhjYWx7Q30iXSxbMSwwLCJcXG1hdGhjYWx7RX0iXSxbMCwxLCJHXlxccHJpbWVcXGNpcmMgRyIsMix7Im9mZnNldCI6MSwiY3VydmUiOjF9XSxbMCwxLCJGXlxccHJpbWVcXGNpcmMgRiIsMCx7Im9mZnNldCI6LTEsImN1cnZlIjotMX1dLFszLDIsIlxcYmV0YVxcY2lyYyBcXGFscGhhIiwwLHsib2Zmc2V0IjoxLCJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+    \begin{tikzcd}
+        {\mathcal{C}} & {\mathcal{E}}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{G^\prime\circ G}"', shift right=1, curve={height=6pt}, from=1-1, to=1-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{F^\prime\circ F}", shift left=1, curve={height=-6pt}, from=1-1, to=1-2]
+        \arrow["{\beta\circ \alpha}", shift right=1, shorten <=2pt, shorten >=2pt, Rightarrow, from=1, to=0]
+    \end{tikzcd} in two equivalent ways. Let $\beta\circ \alpha$ be either of the families \[\br{(F^\prime\circ F)(A)\xrightarrow{G^\prime (\alpha_A)\circ \beta_{F(A)}} (G^\prime\circ G)(A)}_{A\in\mathcal{C}}\] or \[\br{(F^\prime\circ F)(A)\xrightarrow{\beta_{G(A)}\circ F^\prime (\alpha_A)} (G^\prime\circ G)(A)}_{A\in\mathcal{C}}\] of maps in $\mathcal{E}$ such that for every map $A\xrightarrow{f}B$ in $\mathcal{C}$, the square % https://q.uiver.app/?q=WzAsNCxbMCwwLCJGXlxccHJpbWUoRihBKSkiXSxbMSwwLCJGXlxccHJpbWUoRihCKSkiXSxbMCwxLCJHXlxccHJpbWUoRyhBKSkiXSxbMSwxLCJHXlxccHJpbWUoRyhCKSkiXSxbMCwxLCJGXlxccHJpbWUoRihmKSkiXSxbMiwzLCJHXlxccHJpbWUoRyhmKSkiLDJdLFswLDIsIkdeXFxwcmltZSAoXFxhbHBoYV9BKVxcY2lyYyBcXGJldGFfe0YoQSl9ID0gXFxiZXRhX3tHKEEpfVxcY2lyYyBGXlxccHJpbWUgKFxcYWxwaGFfQSkiLDJdLFsxLDMsIkdeXFxwcmltZSAoXFxhbHBoYV9CKVxcY2lyYyBcXGJldGFfe0YoQil9ID0gXFxiZXRhX3tHKEIpfVxcY2lyYyBGXlxccHJpbWUgKFxcYWxwaGFfQikiXV0=
+    \begin{equation}\begin{tikzcd}
+        {F^\prime(F(A))} & {F^\prime(F(B))} \\
+        {G^\prime(G(A))} & {G^\prime(G(B))}
+        \arrow["{F^\prime(F(f))}", from=1-1, to=1-2]
+        \arrow["{G^\prime(G(f))}"', from=2-1, to=2-2]
+        \arrow["{G^\prime (\alpha_A)\circ \beta_{F(A)} = \beta_{G(A)}\circ F^\prime (\alpha_A)}"', from=1-1, to=2-1]
+        \arrow["{G^\prime (\alpha_B)\circ \beta_{F(B)} = \beta_{G(B)}\circ F^\prime (\alpha_B)}", from=1-2, to=2-2]
+    \end{tikzcd}\tag{$\ast$}\end{equation} commutes. To see this, first observe that functors carry commutative diagrams to commutative diagrams so that combined with the fact that $\alpha,\beta$ were natural transformations we have the following commutative diagrams: % https://q.uiver.app/?q=WzAsMTIsWzAsMCwiRl5cXHByaW1lKEYoQSkpIl0sWzEsMCwiRl5cXHByaW1lKEYoQikpIl0sWzAsMSwiRl5cXHByaW1lKEcoQSkpIl0sWzEsMSwiRl5cXHByaW1lKEcoQikpIl0sWzAsMiwiR15cXHByaW1lKEcoQSkpIl0sWzEsMiwiR15cXHByaW1lKEcoQikpIl0sWzMsMCwiRl5cXHByaW1lKEYoQSkpIl0sWzMsMiwiR15cXHByaW1lKEcoQSkpIl0sWzQsMiwiR15cXHByaW1lKEcoQikpIl0sWzQsMCwiRl5cXHByaW1lKEYoQikpIl0sWzMsMSwiR15cXHByaW1lKEYoQSkpIl0sWzQsMSwiR15cXHByaW1lKEYoQikpIl0sWzAsMSwiRl5cXHByaW1lKEYoZikpIl0sWzIsMywiRl5cXHByaW1lKEcoZikpIiwyXSxbMCwyLCJGXlxccHJpbWUgKFxcYWxwaGFfQSkiLDJdLFsxLDMsIkZeXFxwcmltZSAoXFxhbHBoYV9CKSJdLFszLDUsIlxcYmV0YV97RyhCKX0iXSxbMiw0LCJcXGJldGFfe0coQSl9IiwyXSxbNCw1LCJHXlxccHJpbWUoRyhmKSkiLDJdLFs2LDksIkZeXFxwcmltZShGKGYpKSJdLFs3LDgsIkdeXFxwcmltZShHKGYpKSIsMl0sWzYsMTAsIlxcYmV0YV97RihBKX0iLDJdLFsxMCw3LCJHXlxccHJpbWUgKFxcYWxwaGFfQSkiLDJdLFsxMCwxMSwiR15cXHByaW1lKEYoZikpIiwyXSxbOSwxMSwiXFxiZXRhX3tGKEIpfSJdLFsxMSw4LCJHXlxccHJpbWUgKFxcYWxwaGFfQikiXV0=
+    \[\begin{tikzcd}
+        {F^\prime(F(A))} & {F^\prime(F(B))} && {F^\prime(F(A))} & {F^\prime(F(B))} \\
+        {F^\prime(G(A))} & {F^\prime(G(B))} && {G^\prime(F(A))} & {G^\prime(F(B))} \\
+        {G^\prime(G(A))} & {G^\prime(G(B))} && {G^\prime(G(A))} & {G^\prime(G(B))}
+        \arrow["{F^\prime(F(f))}", from=1-1, to=1-2]
+        \arrow["{F^\prime(G(f))}"', from=2-1, to=2-2]
+        \arrow["{F^\prime (\alpha_A)}"', from=1-1, to=2-1]
+        \arrow["{F^\prime (\alpha_B)}", from=1-2, to=2-2]
+        \arrow["{\beta_{G(B)}}", from=2-2, to=3-2]
+        \arrow["{\beta_{G(A)}}"', from=2-1, to=3-1]
+        \arrow["{G^\prime(G(f))}"', from=3-1, to=3-2]
+        \arrow["{F^\prime(F(f))}", from=1-4, to=1-5]
+        \arrow["{G^\prime(G(f))}"', from=3-4, to=3-5]
+        \arrow["{\beta_{F(A)}}"', from=1-4, to=2-4]
+        \arrow["{G^\prime (\alpha_A)}"', from=2-4, to=3-4]
+        \arrow["{G^\prime(F(f))}"', from=2-4, to=2-5]
+        \arrow["{\beta_{F(B)}}", from=1-5, to=2-5]
+        \arrow["{G^\prime (\alpha_B)}", from=2-5, to=3-5]
+    \end{tikzcd}\] Furthermore, for any $A\xrightarrow{f}B$ in $\mathcal{C}$ we have $F(A)\xrightarrow{F(f)}F(B)$ in $\mathcal{D}$; with $\beta$ a natural transformation obtain the commutative square % https://q.uiver.app/?q=WzAsNCxbMCwwLCJGXlxccHJpbWUoRihBKSkiXSxbMSwwLCJGXlxccHJpbWUoRyhBKSkiXSxbMCwxLCJHXlxccHJpbWUoRihBKSkiXSxbMSwxLCJHXlxccHJpbWUoRyhBKSkiXSxbMCwxLCJGXlxccHJpbWUgKFxcYWxwaGFfQSkiXSxbMiwzLCJHXlxccHJpbWUgKFxcYWxwaGFfQSkiLDJdLFswLDIsIlxcYmV0YV97RihBKX0iLDJdLFsxLDMsIlxcYmV0YV97RyhBKX0iXV0=
+    \[\begin{tikzcd}
+        {F^\prime(F(A))} & {F^\prime(G(A))} \\
+        {G^\prime(F(A))} & {G^\prime(G(A))}
+        \arrow["{F^\prime (\alpha_A)}", from=1-1, to=1-2]
+        \arrow["{G^\prime (\alpha_A)}"', from=2-1, to=2-2]
+        \arrow["{\beta_{F(A)}}"', from=1-1, to=2-1]
+        \arrow["{\beta_{G(A)}}", from=1-2, to=2-2]
+    \end{tikzcd}\] which implies that the choice of the maps in $\beta\circ \alpha$ did not matter as they were equivalent, and the square in ($\ast$) commutes as desired. Hence $\beta\circ\alpha$ is a natural transformation.
+    \item Let $F\colon\mathcal{C}\to\mathcal{D}$ be a functor and $f\colon A\to B$ a morphism in $\mathcal{C}$.\begin{enumerate}
+        \item If $f$ is an isomorphism, prove that $F(f)$ is an isomorphism. \begin{proof}
+            Since $f$ is an isomorphism, there exists $g\colon B\to A$ such that $g\circ f = \id_A$ and $f\circ g = \id_B$. Then with $F$ a functor, we have $\id_{F(A)} = F(\id_A) = F(g\circ f) = F(g)\circ F(f)$ and $\id_{F(B)} = F(\id_B)= F(f\circ g) = F(f)\circ F(g)$. So the map $F(f)\colon F(A)\to F(B)$ has the left and right inverse $F(g)\colon F(B)\to F(A)$, so $F(f)$ is an isomorphism.
+        \end{proof}
+        \item If $F$ is fully faithful, prove that $F(f)$ is an isomorphism if and only if $f$ is an isomorphism. \begin{proof}
+            If $f$ is an isomorphism we have already seen that $F(f)$ is an isomorphism. Conversely, if $F(f)$ is an isomorphism, there is $G\colon F(B)\colon F(A)$ such that $G\circ F(f) = \id_{F(A)}$ and $F(f)\circ G= \id_{F(B)}$. Since $F$ is fully faithful, there is a unique $g\colon B\to A$ such that $F(g) = G$. It follows that $G\circ F(f) = F(g\circ f) = \id_{F(A)} = F(\id_A)$ and $F(f)\circ G = F(f\circ g) = \id_{F(B)} = F(\id_B)$. Since $F$ is fully faithful, we must have that $g\circ f = \id_A$ and $f\circ g = \id_B$. It follows that $f$ is an isomorphism. 
+        \end{proof}
+    \end{enumerate}
+    \item Prove that a natural transformation $\eta\colon F\Rightarrow G$ of functors from $\mathcal{C}$ to $\mathcal{D}$ is a natural equivalence if and only if for every object $A$ of $\mathcal{C}$ the morphism $\eta(A)\colon F(A)\to G(A)$ is invertible in $\mathcal{D}$. \begin{proof}
+        Let $\eta\colon F\Rightarrow G$ be given by the family $\br{F(A)\xrightarrow{\eta_A} G(A)}_{A\in\mathcal{C}}$ of maps in $\mathcal{D}$. Define $\varepsilon\colon G\Rightarrow F$ by the family $\br{G(B)\xrightarrow{\eta_A^{-1}} F(B)}_{B\in\mathcal{D}}$ of maps in $\mathcal{C}$, since each $\eta_A$ is invertible. We show that $\varepsilon\circ \eta$ is $\id_F\colon F\Rightarrow F$ and $\eta\circ \varepsilon$ is $\id_G\colon G\Rightarrow G$.
+
+        We have $\varepsilon\circ \eta$ is given by the family $\br{F(A)\xrightarrow{\eta_A^{-1}\circ\eta_A = \id_{F(A)}} F(A)}_{A\in\mathcal{C}}$ of maps, which is equal to the natural transformation $\id_F$ which has each component the identity map. Similarly, $\eta\circ \varepsilon$ is given by the family $\br{G(B)\xrightarrow{\eta_A\circ\eta_A^{-1} = \id_{G(B)}} G(B)}_{B\in\mathcal{D}}$ of maps, which is equal to the natural transformation $\id_G$ which has each component the identity map.
+
+        So in the functor category $[\mathcal{C},\mathcal{D}]$, $\eta$ is invertible so it is a natural equivalence.
+    \end{proof}
+    \item Let $\mathcal{C}$ be the category of finite sets and $\mathcal{D}$ be the category whose objects are the sets $T_n = \cbr{1,2,\dots,n}$ for $n$ a positive integer, along with the empty set. \begin{enumerate}
+        \item What the the morphisms in each of these categories?
+        
+        The morphisms in $\mathcal{C}$ are ordinary set maps between finite sets, similarly for $\mathcal{D}$ the maps are the ordinary set maps $T_j\to T_k$ for $t,k\geq 1$ and the ordinary set maps $\emptyset\to T_j$ for $j\geq 1$ (so all of the ordinary set maps between the sets in $\mathcal{D}$).
+        \item Prove that the natural inclusion functor $\mathcal{D}\to \mathcal{C}$ is an equivalence of categories. \begin{proof}
+            Let $\iota\colon \mathcal{D}\to\mathcal{C}$ be the natural inclusion functor. We show that $\iota$ is fully faithful and essentially surjective on objects, so that by Proposition 1.3.18 of Leinster's notes we have that $\iota$ is an equivalence of categories $\mathcal{D}$ and $\mathcal{C}$.
+
+            The inclusion functor $\iota$ is full and faithful. First consider the unique map out of the empty set into a fixed $T_n$; under $\iota$ this map is sent to the unique map out of the empty set into the finite set $T_n\in \mathcal{C}$. Conversely, for some $n$ the map out of the empty set into the finite set $T_n$ is the image of the exact same map occurring in $\mathcal{D}$ under $\iota$ since there's only one such map. This is true for all $n\in\mathbb{Z}_+$. 
+            
+            Then consider the maps from $T_j\to T_k$ for some $j,k$. A set map $f\colon T_j\to T_k$ is determined uniquely by its action on each of the elements $1,\dots,j$ of $T_j$, and $\iota$ sends $f$ (uniquely) to the exact same map of finite sets $T_j\to T_k$ in $\mathcal{C}$. Conversely if we are given a set map $f\colon T_j\to T_k$ in $\mathcal{C}$ then $f$ is the image of the exact same map viewed in $\mathcal{D}$. The above is true for all $j,k\in\mathbb{Z}_+$. It follows $\iota$ is fully faithful.
+
+            The inclusion functor $\iota$ is essentially surjective on objects: For any finite set $A$, if $A$ is the empty set then $A$ is isomorphic to $\iota(\emptyset)=\emptyset\in\mathcal{C}$. If $A$ is nonempty then $A$ is isomorphic to $\iota(T_{\abs{A}}) = T_{\abs{A}}\in\mathcal{C}$ by any `obvious' isomorphism which essentially labels the elements of $A$ by $1,\dots,\abs{A}$ (we could form one such isomorphism by induction probably).
+
+            It follows that $\iota$ is an equivalence of the categories $\mathcal{D}$ and $\mathcal{C}$.
+        \end{proof}
+    \end{enumerate}
+    \item\begin{enumerate}
+        \item In a partially ordered set (viewed as a category), what are the epimorphisms?
+        
+        Every morphism is an epimorphism. Let $A\leq B$ be a morphism. Then if $A\leq B\leq C$ is the same morphism as $A\leq B\leq D$, then because there is at most one morphism between two objects in a poset, we must have that $C$ and $D$ coincide so that $B\leq C$ is the same as $B\leq D$.
+        \item In the category of connected, locally connected and locally path-connected topological spaces with a marked point, show that covering maps are monomorphisms (but may not be injective). Suggested strategy: there is a lifting property for covering maps... \begin{proof}
+            Let $(E,e) \xrightarrow{p} (B,b)$ be a covering in the category $\mathcal{C}$ of connected, locally connected and locally path connected pointed topological spaces. If we have a map $(Z,z)\xrightarrow{f} (B,b)$ in $\mathcal{C}$, we should first check that $f_\ast\pi_1(Z,z)\subset p_\ast\pi_1(E,e)$ to ensure that there is a unique lift of $f$ from $(Z,z)$ to $(E,e)$. I don't know how to obtain this in general, but I suspect since all the spaces are connected we might be okay (it is certainly true if all the spaces in $\mathcal{C}$ were simply connected).
+
+            We continue anyways(?). If we have $p\circ f_1 = p\circ f_2$, then by uniqueness of lifts we have that the lift of $p\circ f_i$ along $p$ is $f_i$ for $i = 1,2$. But since $p\circ f_1 = p\circ f_2$ we apply the uniqueness of lifts again to see that $f_1$ must be equal to $f_2$. It follows that $p$ is a monomorphism.
+        \end{proof}
+    \end{enumerate}
+    \item Show that an epimorphism in the category of groups is surjective. (This is not completely trivial.) Suggested strategy: consider the image of the morphism to reduce to the case of a subgroup $H$ of a group $G$ with the inclusion map an epimorphism. Construct a group $A$ and maps $G\to A$ using the cosets of $H$ that can detect whether an element of $G$ is in $H$.
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item All problems except 6., please. (I did not manage to come up with a good idea for 6. outside of the one that I thought would work, which was to consider $G/N$ where $N$ was the normal closure of the image of the epimorphism; I could only conclude that every element of $G$ was in $N$.)
+    \item Things in the past week and a half have been rough due to losing a lot of time/sleep to problem sets and grading many exams; as a result I missed about a week's worth of lectures in all of my classes which is kind of scary. I hope I can catch up soon, but it will take some more effort from me. I think I can do it though. 
+    
+    So far the topics of category theory seem pretty straightforward, but sometimes there are unexpected ways that things piece together, like in composing natural transformations in the ``horizontal'' way where the components turned out to involve a not so clean/obvious composition (and that too there were two equivalent ways to define the components!). 
+\end{enumerate}
+\end{document}

@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6346 Topology}
+\fancyhead[C]{Homework 4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (4.5.2) Let $S(k) = I^k/\partial I^k$. We have canonical homeomorphisms \[\text{(a) } \Omega^k(Y) = F^0(S(k),Y) \cong F((I^k,\partial I^k),(Y,\ast)) \quad\text{and}\quad \text{(b) }\Omega^k\Omega^l(Y)\cong\Omega^{k+l}(Y).\] \begin{proof}
+      Let $p$ be the quotient map from $I^k$ to $I^k/\partial I^k = S(k)$. Then the homeomorphism in (a) is given by the assignment $f\colon S(k)\to Y\mapsto f\circ p\colon I\to Y$. We show that the assignment is bijective, continuous, and open (briefly, as 4.5.6 is a similar problem and the work is more clear there):
+
+      For two distinct $f,g\in \Omega^k(Y)$, they differ at a point in the interior of $I^k$, so $f\circ p$ and $g\circ p$ differ. For some $w\in F((I^k,\partial I^k),(Y,\ast))$ consider $\overline{w}$ which is $w$ on the interior of $I^k$, but takes on $\ast$ on the equivalence class for $\partial I^k$. This is continuous as $w$ itself agrees on points on $\partial I$ and $\overline{w}\circ p$ agrees with $w$ as needed. Hence the assignment is bijective.
+
+      For continuity and openness we consider subbase elements. Let $\cbr{w\in \Omega^k(Y)\mid w(K)\subset U}$ be an element of the subbase for the subspace topology on $\Omega Y$. Then its preimage is given by $\cbr{f\mid (f\circ p)(K)\subset U}$, which is $\cbr{f\mid f(p(K))\subset U}$. Since $p(K)$ is compact, the preimage is open so the assignment is continuous. Let $\cbr{f\mid f(K)\subset U}$ be a subbase element of $F((I^k,\partial I^k),(Y,\ast))$. Then the image under the assignment is $\cbr{f\circ p\mid f(K)\subset U} = \cbr{f\circ p\mid (f\circ p)(p^{-1}(K))\subset U}$ and $p^{-1}(K)$ is compact, $p(p^{-1}(K)) = K$ since $p$ is surjective. It follows that this assignment is open.
+
+      Hence the assignment is a homeomorphism as desired.
+
+      For (b) Since products of intervals are compact (locally compact), we can use Theorem 2.4.6 (Exponential law) to see that the adjunction map $\alpha\colon Y^{I^k\times I^l}\xrightarrow{\cong} (Y^{I^l})^{I^k}$ is a homeomorphism. Restricting to the subspaces which fix the image of the boundaries of these cubes to the basepoint of $Y$, we should also obtain a homeomorphism of subspaces $\Omega^k\Omega^l(Y)\cong\Omega^{k+l}(Y)$. In particular, the subspace $\Omega^{k+l}(Y)$ would be sent to the subspace of $(Y^{I^l})^{I^k}$ whose elements are maps which all send the boundaries of cubes to the basepoint of $Y$, which is $\Omega^k\Omega^l(Y)$.
+    \end{proof}
+    \item (4.5.3) The space $F((I,0),(Y,\ast))\subset Y^I$ is pointed contractible.\begin{proof}
+      We show the identity map is homotopic to the constant map: For $x\in X = F((I,0),(Y,\ast))\subset Y^I$, define for $s\in I$, $sx\colon I\to Y$ by $sx(t) = x((1-s)t)$ (it is clear each $sx$ is continuous). Then the homotopy $H\colon X\times I \to X$ given by $H(x,s) = sx$ starts with $H(x,0) = 0x = x$ and ends at $H(x,1) = 1x = 1_\ast$, with $1_\ast$ being the path sending $I$ to $\ast\in Y$ (since $x(0) = \ast$ for all $x\in X$). Thus $X$ is contractible to its base point, the constant map sending $I$ to $\ast$.
+    \end{proof}
+    \item (4.5.6) Verify the homeomorphism $F^0(I/\partial I,Y)\cong \Omega Y$.\begin{proof}
+      The homeomorphism $F^0(I/\partial I,Y)\cong \Omega Y$ is given by the assignment $f\colon I/\partial I\to Y \mapsto f\circ p\colon I\to Y$, where $f$ is a pointed continuous map taking $\partial I$ to $\ast\in Y$.
+
+      We show that this assignment is bijective, continuous, and open. It is clear that the assignment is injective since if $f,g\in F^0(I/\partial I,Y)$ are distinct then $f\circ p$ and $g\circ p$ differ at some $t\in (0,1)$. Given some path $w\in \Omega Y$, define $\overline{w}\colon I/\partial I\to Y$ which agrees with $w$ on $(0,1)$ and on $\partial I$ is $w(0)=w(1) = \ast$. This is continuous since $w$ agrees on $\partial I$, and $\overline{w}\circ p$ agrees with $w$ on $I$ as needed.
+
+      For continuity and openness it suffices to check on the subbase for the compact open topology. Let $\cbr{w\in \Omega Y\mid w(K)\subset U}$ be an element of the subbase for the subspace topology on $\Omega Y$. Then its preimage is given by $\cbr{f\mid (f\circ p)(K)\subset U}$, which is $\cbr{f\mid f(p(K))\subset U}$. Since $p(K)$ is compact also, we have an open set in $F^0(I/\partial I,Y)$, so the assignment is continuous. Let $\cbr{f\mid f(K)\subset U}$ be a subbase element of $F^0(I/\partial I,Y)$. Then the image under the assignment is $\cbr{f\circ p\mid f(K)\subset U} = \cbr{f\circ p\mid (f\circ p)(p^{-1}(K))\subset U}$ and $p^{-1}(K)$ is compact, $p(p^{-1}(K)) = K$ since $p$ is surjective. It follows that this assignment is open.
+
+      Hence the assignment is a homeomorphism as desired.
+    \end{proof}
+    \item (4.6.1) Let the left square in the next diagram be a pushout with an embedding $j$ and hence an embedding $J$. Then $F$ induces a homeomorphism $\overline{F}$ of the quotient spaces.% https://q.uiver.app/?q=WzAsNixbMCwwLCJBIl0sWzEsMCwiWCJdLFsyLDAsIlgvQSJdLFswLDEsIkIiXSxbMSwxLCJZIl0sWzIsMSwiWS9CIl0sWzAsMywiZiIsMl0sWzMsNCwiSiJdLFswLDEsImoiXSxbMSw0LCJGIl0sWzIsNSwiXFxvdmVybGluZXtGfSJdLFsxLDIsInAiXSxbNCw1LCJxIl1d
+    \[\begin{tikzcd}
+        A & X & {X/A} \\
+        B & Y & {Y/B}
+        \arrow["f", from=1-1, to=2-1]
+        \arrow["J", from=2-1, to=2-2]
+        \arrow["j", from=1-1, to=1-2]
+        \arrow["F", from=1-2, to=2-2]
+        \arrow["{\overline{F}}", from=1-3, to=2-3]
+        \arrow["p", from=1-2, to=1-3]
+        \arrow["q", from=2-2, to=2-3]
+    \end{tikzcd}\]\begin{proof}
+      We check that pushouts of embeddings are embeddings: Embeddings, like $j$, are injective continuous maps which are open/closed (so $A$ is homeomorphic to its image under $j$; also the image of $A$ need not be open or closed in $X$). We show first that as a set map $J$ is injective. Let $j_\ell^{-1}$ be the left inverse of $j$ (since $j$ is injective). Then in the following diagram % https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzEsMCwiWCJdLFswLDEsIkIiXSxbMSwxLCJZIl0sWzIsMiwiQiJdLFswLDIsImYiLDJdLFsyLDMsIkoiXSxbMCwxLCJqIl0sWzEsMywiRiJdLFsxLDQsImZcXGNpcmMgal9cXGVsbF57LTF9Il0sWzIsNCwiXFxpZF9CIiwyXSxbMyw0LCJKX1xcZWxsXnstMX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+      \[\begin{tikzcd}
+        A & X \\
+        B & Y \\
+        && B
+        \arrow["f", from=1-1, to=2-1]
+        \arrow["J", from=2-1, to=2-2]
+        \arrow["j", from=1-1, to=1-2]
+        \arrow["F", from=1-2, to=2-2]
+        \arrow["{f\circ j_\ell^{-1}}", from=1-2, to=3-3, bend left=24]
+        \arrow["{\id_B}"', from=2-1, to=3-3, bend right=24]
+        \arrow["{J_\ell^{-1}}"', dashed, from=2-2, to=3-3]
+      \end{tikzcd}\] by the universal property of pushouts we obtain a left inverse $J_\ell^{-1}$ for $J$. In \Top $J$ is continuous, so we show that $J$ is an open/closed map. Let $Z$ be an open/closed set in $B$. Then $f^{-1}(Z)$ is open/closed so that $jf^{-1}(Z)$ is open/closed. Then also $J_\ell^{-1}J(Z) = Z$ is open/closed; so $F^{-1}J(Z)$ is open/closed; so $J$ is an open/closed map.
+
+      Recall that $Y$ is $(X\sqcup B)/\sim$ where $j(a)\sim f(a)$. Then with $j,J$ embeddings, the quotient spaces make sense. Observe that in $Y/B$, since $f(a)\in B$, every point $f(a)$ gets identified. But $j(a)$ is also identified with $f(a)$, so $A$ is also identified to the same point as $B$. So there is a bijection $\overline{F}$ between equivalence classes in $X/A$ with those in $Y/B$ given basically by the identity, since for $[x]\in X/A$ yields $[x] = \cbr{x}$ if $x\notin j(A)$ and $[x] = j(A)$ otherwise, and similarly $[x]\in Y/B$ yields $[x] =\cbr{x}$ if $x\notin j(A)$, and if $x\in j(A)$, then $[x] = j(A)\sqcup B$. Note that the dependence on being in $J(B)$ is removed since $B$ is identified with $j(A)$. The diagram above commutes and so $\overline{F}$ is continuous since $F,q$ are continuous and $p$ is open; similarly $\overline{F}^{-1}$ is continuous (imagine  $\overline{F}$ is given by the identity on equivalence classes). Hence $\overline{F}$ is a homeomorphism as desired.
+    \end{proof}
+\end{enumerate}
+\end{document}

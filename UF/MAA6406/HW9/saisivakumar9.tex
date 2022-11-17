@@ -1,0 +1,62 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 8}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+ Do one.
+\begin{enumerate}[(i)]\itemsep=15pt
+\item  Show, if $p$ is a polynomial of degree at least two, then
+ the sum of the residues of $\frac{1}{p}$ is zero.
+\item  Suppose $a>e$ and $n\in\NN^+.$ Show $e^z-az^n=0$ has exactly 
+ $n$ solutions in the unit disc $\DD=\{|z|<1\}.$
+\end{enumerate}
+ 
+\bigskip
+
+\begin{proof}[Proof (ii)]
+\baselineskip=24pt
+Apply Rouch\'e's theorem.
+
+The functions $f,g$ given by $f(z) = \exp(z)-az^n$ and $g(z) = az^n$ are meromorphic on $\mathbb{D}$. Furthermore, $f$ has no poles in $\mathbb{D}$, and $g$ has $n$ zeroes but no poles in $\mathbb{D}$.
+
+We have for $z\in S^1$, $\abs{f(z)+g(z)} = \abs{\exp(z)} = \exp(\Re(z))\leq e$, and $a = \abs{az^n} \leq \abs{f(z)}+\abs{g(z)}$. Since $a>e$, $\abs{f(z)+g(z)}<\abs{f(z)}+\abs{g(z)}$ for all $z\in S^1$. By Rouch\'e's theorem the number of zeroes of $f(z)$ is $n$ as desired.
+\end{proof}
+\end{document}

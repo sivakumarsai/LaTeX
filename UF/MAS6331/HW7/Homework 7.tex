@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6331 Algebra}
+\fancyhead[C]{Homework 7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (14.6.15) Prove the polynomial $x^4+px+p\in\mathbb{Q}[x]$ is irreducible for every prime $p$ and for $p\neq 3,5$ has Galois group $S_4$. Prove the Galois group for $p=3$ is dihedral of order $8$ and for $p=5$ is cyclic of order $4$. \begin{proof}
+        Let $p$ be an arbitrary prime integer. The polynomial $f(x) = x^4+px+p\in\mathbb{Q}[x]$ is Eisenstein at the prime $p$, so it is irreducible.
+
+        The resolvent cubic for $f(x)$ is $h(x) = x^3-4px+p^2$, which is irreducible if and only if it has a rational root. By the rational root theorem, the only candidates are $\pm p$ and $\pm p^2$. But $\pm p^6\mp 4p^3+p^2 = p^2(\pm p^4 \mp 4p+1)\neq 0$ since $\pm 2^4 \mp 4(2)+1\neq 0$ and $\pm z^4 \mp 4z+1$ is monotonic as a function on $\mathbb{R}_{\geq 2}$ (its derivative is $\pm 4z^3 \mp 4$ which has fixed sign for $z\geq 2$), so $\pm p^2$ could not be a root.
+        
+        On the other hand, $\pm p^3 \mp 4p^2 +p^2 = p^2(\pm p \mp 4+1)$ may be zero for some choices of $p$ depending on the signs above. Observe that $p^2(p - 3)$ is zero if and only if $p = 3$ and $p^2(- p + 5)$ is zero if and only if $p = 5$. So for $p\neq 3,5$ the resolvent cubic $h(x)$ is irreducible.
+
+        In this case ($p\neq 3,5$) we compute the discriminant $D$ of the irreducible resolvent cubic $h(x)$, which (following the information on pages 613-615 of Dummit and Foote) is the same as the discriminant of the quartic $f(x)$. We have $D = -27p^4+256p^3$ (due to the formula on page 614). We have with $p>0$ that $\sqrt{p^3(256-27p)} = p\sqrt{p(256-27p)}\in \mathbb{Q}$ if and only if $p(256-27p)$ is the square of a rational. Observe that $x(256-27x)$ is a bounded above quadratic as a real valued function which is nonnegative in the interval $[0,256/27]$, and note $256/27 = 9+13/27$. So we only need to check that $r(p) = p(256-27p)$ is the square of a rational for primes $2,3,5,7$. We have $r(2) = 404, r(3) = 525, r(5) = 605$, and $r(7) = 469$, and none of these are perfect squares. Hence for $p\neq 3,5$, since the resolvent cubic $h(x)$ is irreducible and its discriminant $D$ is not a square of a rational, the Galois group of $f(x)$ is $S_4$ (following the argument on page 615, part \textbf{a.}) 
+
+        We consider the case when $p = 3$: the resolvent cubic is $h(x) = x^3-12x+9 = (x - 3) (x^2 + 3 x - 3)$, and see that $x^2 + 3 x - 3$ is irreducible since its discriminant $3^2-4(-3) = 21$ is not a square in $\mathbb{Q}$ (it is prime). In this case we have that the Galois group will fix the root $3$, so the Galois group of $f(x)$ is either the dihedral group or the cyclic group of order $4$. We compute the discriminant of $h(x)$ (or $f(x)$) to be $D = -27(3^4)+256(3^3) = 4725$, and we have $\sqrt{D} = \sqrt{4725} = 15\sqrt{21}$. Following the argument on page 615, part \textbf{c2.}, we show that $f(x) = x^4+3x+3$ is irreducible over $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}(\sqrt{21})\subset \mathbb{R}$ so that the Galois group must be the dihedral group. By using a computer program (so citing the email with the program output), we find that $f(x)$ is not factorizable over $\mathbb{Q}(\sqrt{21})$, so the Galois group of $f(x)$ is indeed the dihedral group of order $8$.
+
+        In the case when $p = 5$, the resolvent cubic is $h(x) = x^3-20x +25 = (x + 5) (x^2 - 5 x + 5)$ and see that $x^2 - 5 x + 5$ is irreducible since its discriminant is $25-20 = 5$, which is not a square in $\mathbb{Q}$ (it is prime). Like before, the Galois group of $f(x) = x^4+5x+5$ is either the dihedral group of order $8$ or the cyclic group of order $4$. To that end, we show that $f(x)$ is not irreducible over $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}(\sqrt{15125}) = \mathbb{Q}(\sqrt{5})$ where $D = -27(5^4)+256(5^3) = 15125$ is the discriminant of $h(x)$ (or $f(x)$). We have that $f(x) = [x^2 + \sqrt{5} x - \sqrt{5}/2 + 5/2][x^2 - \sqrt{5} x + \sqrt{5}/2 + 5/2]\in\mathbb{Q}(\sqrt{5})[x]$, so the Galois group of $f(x)$ is the cyclic group of order $4$ as desired.
+    \end{proof}
+    \item (Universal Properties) Let $F$ be a field and $f(x)\in F[x]$ an irreducible polynomial. Informally, a map $F[x]/(f(x))$ to a field $L$ containing $F$ that is the identity on $F$ is equivalent to specifying a root of $f(x)$ in $L$ to be the image of $x$.\begin{enumerate}[label=(\roman*)]
+        \item Make this precise by formulating a universal property for $F[x]/(f(x))$. (For example, in the category of field extensions of $F$, although you don't even need to phrase it in terms of category theory.) 
+        
+        Given an irreducible polynomial $f(x)\in F[x]$, a homomorphism $\varphi\colon F\to L$, and a root $\ell\in L$ of $f(x)\in L[x]$ (so viewing $F$ as a subfield of $L$), there exists a unique map $\varphi^\prime\colon F[x]/(f(x))$ such that $\varphi^\prime$ agrees with $\varphi$ on the isomorphic image of $F$ in $F[x]/(f(x))$ but sends $x$ to $\ell$. % https://q.uiver.app/?q=WzAsMyxbMCwwLCJGIl0sWzEsMCwiTCJdLFswLDEsIkZbeF0vKGYoeCkpIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwxLCJcXHZhcnBoaV5cXHByaW1lIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiXFx2YXJwaGkiXV0=
+        \[\begin{tikzcd}
+            F & L \\
+            {F[x]/(f(x))}
+            \arrow[hook, from=1-1, to=2-1]
+            \arrow["{\varphi^\prime}"', dashed, from=2-1, to=1-2]
+            \arrow["\varphi", from=1-1, to=1-2]
+        \end{tikzcd}\] So in particular, if a field $K$ and maps $F\to K$, $K\to L$ exist and cause the solid arrow diagram below to commute, there is a unique map from $F[x]/(f(x))$ to $K$ making the following diagram commute (so $F[x]/(f(x))$ is the smallest such object): % https://q.uiver.app/?q=WzAsNCxbMSwwLCJGIl0sWzIsMCwiTCJdLFsxLDEsIkZbeF0vKGYoeCkpIl0sWzAsMiwiSyJdLFswLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMSwiXFx2YXJwaGleXFxwcmltZSIsMl0sWzAsMSwiXFx2YXJwaGkiXSxbMCwzLCIiLDIseyJjdXJ2ZSI6MSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywxLCJcXHZhcnBoaV9LIiwyLHsiY3VydmUiOjR9XSxbMiwzLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \[\begin{tikzcd}
+            & F & L \\
+            & {F[x]/(f(x))} \\
+            K
+            \arrow[hook, from=1-2, to=2-2]
+            \arrow["{\varphi^\prime}"', from=2-2, to=1-3]
+            \arrow["\varphi", from=1-2, to=1-3]
+            \arrow[bend right= 30, hook, from=1-2, to=3-1]
+            \arrow[bend right= 30, from=3-1, to=1-3]
+            \arrow[dashed, from=2-2, to=3-1]
+        \end{tikzcd}\]
+        \item Prove that any two fields satisfying this universal property are also isomorphic. 
+        
+        Suppose $H$ and $J$ were fields satisfying the universal property above (so they extend $\varphi$ by $\varphi_H$ and $\varphi_J$ respectively). Then by using the universal property above twice see that there are unique maps $h,j$ making the below diagram commute:
+        % https://q.uiver.app/?q=WzAsNixbMywwLCJGIl0sWzQsMCwiTCJdLFszLDEsIkgiXSxbMiwyLCJKIl0sWzEsMywiSCJdLFswLDQsIkoiXSxbMCwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsIlxcdmFycGhpX0giXSxbMCwxLCJcXHZhcnBoaSJdLFs0LDUsImgiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywxLCJcXHZhcnBoaV9KIiwyLHsiY3VydmUiOjJ9XSxbNCwxLCJcXHZhcnBoaV9IIiwyLHsiY3VydmUiOjV9XSxbMCw0LCIiLDIseyJjdXJ2ZSI6Mywic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwzLCIiLDIseyJjdXJ2ZSI6MSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNCwiaiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDQsIlxcaWRfSCIsMCx7ImN1cnZlIjotMn1dLFszLDUsIlxcaWRfSiIsMix7ImN1cnZlIjotM31dXQ==
+        \[\begin{tikzcd}
+            &&& F & L \\
+            &&& H \\
+            && J \\
+            & H \\
+            J
+            \arrow[hook, from=1-4, to=2-4]
+            \arrow["{\varphi_H}", from=2-4, to=1-5]
+            \arrow["\varphi", from=1-4, to=1-5]
+            \arrow["h"', dashed, from=4-2, to=5-1]
+            \arrow["{\varphi_J}"', bend right = 20, from=3-3, to=1-5]
+            \arrow["{\varphi_H}"', bend right = 40, from=4-2, to=1-5]
+            \arrow[bend right = 40, hook, from=1-4, to=4-2]
+            \arrow[bend right = 30, hook, from=1-4, to=3-3]
+            \arrow["h"', dashed, from=2-4, to=3-3]
+            \arrow["j"', dashed, from=3-3, to=4-2]
+            \arrow["{\id_H}"', bend right = 30, from=2-4, to=4-2]
+            \arrow["{\id_J}"', bend right = 30, from=3-3, to=5-1]
+        \end{tikzcd}\] Since the identity maps above commute, it follows by uniqueness of the maps $h$ and $j$ that $hj = \id_J$ and $jh = \id_H$, from which we have that $h,j$ are field isomorphisms (they are left and right invertible). Thus $H$ and $J$ are isomorphic as desired.
+        %\item (Optional): How is your universal property related to universal properties for polynomial rings and for quotients of rings?
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    %\item (14.6.22)
+    \item (14.6.27) Let $f(x)$ be a monic polynomial of degree $n$ with roots $\alpha_1,\alpha_2,\dots,\alpha_n$. \begin{enumerate}
+        \item Show that the discriminant $D$ of $f(x)$ is the square of the Vandermonde determinant \[(\ast) \quad \begin{vmatrix}
+            1 & \alpha_1 & \alpha_1^2 & \cdots & \alpha_1^{n-1} \\
+            1 & \alpha_2 & \alpha_2^2 & \cdots & \alpha_2^{n-1} \\
+            \vdots & \vdots & \vdots &\ddots &\vdots\\
+            1 & \alpha_n & \alpha_n^2 & \cdots & \alpha_n^{n-1} 
+        \end{vmatrix} = \prod_{i>j}(\alpha_i-\alpha_j).\]
+        \item Taking the Vandermonde matrix above, multiplying on the left by its transpose and taking the determinant show that one obtains \[D = \begin{vmatrix}
+            p_0 & p_1 & p_2 &\cdots & p_{n-1}\\
+            p_1 & p_2 & p_3 &\cdots & p_{n}\\
+            \vdots & \vdots & \vdots & \ddots & \vdots\\
+            p_{n-1} & p_n & p_{n+1} &\cdots & p_{2n-2}\\
+        \end{vmatrix}\] where $p_i = \alpha_1^i+\cdots + \alpha_n^i$ is the sum of the $i^\text{th}$ powers of the roots of $f(x)$, which can be computed in terms of the coefficients of $f(x)$ using Newton's formulas above. This gives an efficient procedure for calculating the discriminant of a polynomial.
+    \end{enumerate} \begin{proof}
+        In $(\ast)$, observe that by squaring $\prod_{i>j}(\alpha_i-\alpha_j)$ we obtain $\prod_{i>j}(\alpha_i-\alpha_j)^2 = \prod_{i<j}(\alpha_i-\alpha_j)^2$ since negating the quantity inside the parentheses nets no effect since everything is squared anyways. As $\alpha_i$ are roots of $f(x)$, it follows that the square of the Vandermonde determinant in $(\ast)$ is the discriminant of $f(x)$.
+
+        Observe that \[\left[\begin{pmatrix}
+            1 & \alpha_1 & \alpha_1^2 & \cdots & \alpha_1^{n-1} \\
+            1 & \alpha_2 & \alpha_2^2 & \cdots & \alpha_2^{n-1} \\
+            \vdots & \vdots & \vdots &\ddots &\vdots\\
+            1 & \alpha_n & \alpha_n^2 & \cdots & \alpha_n^{n-1} 
+        \end{pmatrix}^\intercal\begin{pmatrix}
+            1 & \alpha_1 & \alpha_1^2 & \cdots & \alpha_1^{n-1} \\
+            1 & \alpha_2 & \alpha_2^2 & \cdots & \alpha_2^{n-1} \\
+            \vdots & \vdots & \vdots &\ddots &\vdots\\
+            1 & \alpha_n & \alpha_n^2 & \cdots & \alpha_n^{n-1} 
+        \end{pmatrix}\right]_{ij} = \sum_{k=1}^n \alpha_k^{i+j} = p_{i+j}.\] Since the determinant is invariant under transposition and is multiplicative, we have that the determinant of the matrix product above is the same as the square of the Vandermonde determinant in $(\ast)$, given by $D$. As a result, \[D = \begin{vmatrix}
+            p_0 & p_1 & p_2 &\cdots & p_{n-1}\\
+            p_1 & p_2 & p_3 &\cdots & p_{n}\\
+            \vdots & \vdots & \vdots & \ddots & \vdots\\
+            p_{n-1} & p_n & p_{n+1} &\cdots & p_{2n-2}\\
+        \end{vmatrix}\] as desired.
+    \end{proof}
+    \item (14.7.7) (\textit{Kummer Generators for Cyclic Extensions}) Let $F$ be a field of characteristic not dividing $n$ containing the $n^\text{th}$ roots of unity and let $K$ be a cyclic extension of degree $d$ dividing $n$. Then $K = F(\sqrt[n]{a})$ for some nonzero $a\in F$. Let $\sigma$ be a generator for the cyclic group $\Gal(K/F)$.\begin{enumerate}
+        \item Show that $\sigma(\sqrt[n]{a})= \zeta\sqrt[n]{a}$ for some primitive $d^\text{th}$ root of unity $\zeta$.
+        \item Suppose $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$. Use (a) to show that $\frac{\sigma(\sqrt[n]{a})}{\sqrt[n]{a}} = \left(\frac{\sigma(\sqrt[n]{b})}{\sqrt[n]{b}}\right)^i$ for some integer $i$ relatively prime to $d$. Conclude that $\sigma$ fixes the element $\frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i}$ so this is an element of $F$.
+        \item Prove that $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$ if and only if $a = b^ic_1^n$ and $b = a^jc_2^n$ for some $c_1,c_2\in F$, i.e., if and only if $a$ and $b$ generate the same subgroup of $F^\times$ modulo $n^\text{th}$ powers.
+    \end{enumerate} \begin{proof}
+        (a) The element $\sigma$ permutes the roots of the irreducible polynomial $x^n-a$, and has to do so with order $d$. Hence there is some primitive $d$-th root of unity $\zeta$ (here $d$ needs to divide $n$) such that $\sigma(\sqrt[n]{a}) = \zeta\sqrt[n]{a}$ (also note $\sigma^d(\sqrt[n]{a}) = \zeta^d\sqrt[n]{a} = \sqrt[n]{a}$ as expected).
+
+        (b) For $F(\sqrt[n]{b})$, repeat the same argument as in $a$ to see that $\sigma(\sqrt[n]{b}) = \xi\sqrt[n]{b}$ for some $d$-th primitive root of unity; note that $\zeta = \xi^i$ for some $i$ relatively prime to $d$. Hence $\frac{\sigma(\sqrt[n]{a})}{\sqrt[n]{a}} = \zeta = \xi^i = \left(\frac{\sigma(\sqrt[n]{b})}{\sqrt[n]{b}}\right)^i$. It follows since $\sigma$ is a field homomorphism that $\sigma\left(\frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i}\right) = \frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i}$ (with some algebra the original equality can be massaged to obtain this one), so $\frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i}\in F$. By symmetry (of the above arguments) $\frac{\sqrt[n]{b}}{(\sqrt[n]{a})^j}\in F$ for some $j$ coprime with $d$.
+
+        (c) If $a = b^ic_1^n$ and $b = a^jc_2^n$, then the fields $F(\sqrt[n]{a}), F(\sqrt[n]{b})$ are mutually contained in each other hence equal, so we consider the converse. Suppose that $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$. Then since $\frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i}\in F$, let $\frac{\sqrt[n]{a}}{(\sqrt[n]{b})^i} = c_1$ so that $a = b^ic_1^n$ as desired. Similarly, $b = a^jc_2^n$ by repeating the same argument for $\frac{\sqrt[n]{b}}{(\sqrt[n]{a})^j}\in F$.
+    \end{proof}
+    %\item (14.7.19)
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things are okay so far; same as usual I think.
+\end{enumerate}
+\end{document}

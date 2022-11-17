@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6331 Algebra}
+\fancyhead[C]{Homework 9}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item[1.] If $F\colon\mathcal{C}\to$ Sets is a representable functor, prove that the representing object is unique up to isomorphism. Suggested strategy: Yoneda \begin{proof}
+        Let $F$ be representable by two objects $A, B\in \mathcal{C}$ with natural isomorphisms $\alpha\colon h_A = \hom_{\mathcal{C}}(A,-)\to F$ and $\beta\colon h_B = \hom_{\mathcal{C}}(B,-)\to F$.
+
+        Then by Yoneda there is a bijection of the sets $\hom(B,A)$ and the set of natural transformations from $h_A$ to $h_B$ natural in $A$ and $h_B$; similarly, there is a bijection of the sets $\hom(A,B)$ and the set of natural transformations from $h_B$ to $h_A$ natural in $B$ and $h_A$.
+
+        So from the above bijections obtain from $\beta^{-1}\circ \alpha$ and $\alpha^{-1}\circ \beta$ the morphisms $f\colon B\to A$ and $g\colon A\to B$ respectively. We must show that the compositions of $f$ and $g$ produce identities both ways.
+
+        I am not sure how to use the naturality conditions to obtain this from here.
+    \end{proof} 
+    \item[5.] \begin{enumerate}[label=(\roman*)]
+        \item What is a free object on a set $S$ in the category of Abelian groups?
+        
+        We describe the free Abelian group $F(S)$ on $S$ to be the group of formal finite sums $\mathbb{Z}[S] = \{\sum_{\text{finite}} c_s s\mid c_s\in \mathbb{Z}, s\in S\}$ with the group addition defined componentwise. This object satisfies the universal property of free objects in the category of Abelian groups. Given any group $G$ and a set map from $S$ into $G$, there is a unique map $\varphi\colon F(S)\to G$ making the following diagram commute: % https://q.uiver.app/?q=WzAsMyxbMCwwLCJTIl0sWzEsMCwiRihTKSJdLFsxLDEsIkciXSxbMCwyLCJmIiwyXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxcdmFycGhpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+            S & {F(S)} \\
+            & G
+            \arrow["f"', from=1-1, to=2-2]
+            \arrow[hook, from=1-1, to=1-2]
+            \arrow["\varphi", dashed, from=1-2, to=2-2]
+        \end{tikzcd}\] Define $\varphi$ as the map which takes each $s\in F(S)$ to $f(s)$ and extend by linearity (so extended to a $\mathbb{Z}$-module homomorphism).
+        \item What is a left adjoint to the forgetful functor from Abelian groups to sets?
+        
+        The free functor $F$ sending sets $S$ to $F(S)$ as above and sending set maps to their extensions as $\mathbb{Z}$-module maps. Let $U$ be the forgetful functor. We show that for any set $S$ and Abelian group $G$ we have a natural isomorphism $\text{AbGrp}(F(S), G)\cong \text{Set}(S,U(G))$. Informally, we can see this since every $\mathbb{Z}$-module map is determined by its action on basis elements and vice versa.
+        \item Show that the free Abelian group on $S$ is not free in the category of groups.
+        
+        The free Abelian group on $S$ when $S$ has two elements or more will not be free since the free group on $S$ cannot be Abelian. The word $aba^{-1}b^{-1}$ ($a,b\in S$) is a nonidentity element of the free group on $S$ while it is equal to the identity in the free Abelian group on $S$. A free Abelian group is a free group if and only if they are isomorphic in the category of groups; if the free group were isomorphic to the free Abelian group then the free group must be Abelian.
+    \end{enumerate} 
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item[3.] For a commutative ring $R$, define \[E(R) = \cbr{(x,y)\in R^2\colon y^2 = x^3-x}.\]\begin{enumerate}[label=(\roman*)]
+        \item Define $E$ on morphisms to make it a functor from commutative rings to sets.
+        
+        For a commutative ring homomorphism $\varphi\colon R\to S$, define $E(\varphi)\colon E(R)\to E(S)$ to be the map taking $(x,y)$ to $(\varphi(x),\varphi(y))$. Note $(\varphi(x),\varphi(y))\in E(S)$ since $\varphi$ is a ring homomorphism.
+        \item Show that $E$ is representable.
+        
+        I feel like the object will be some kind of polynomial ring or ring of rational functions but I don't know how to do something like this without a field. Perhaps $\mathbb{Z}$ or $\mathbb{Q}$ are good candidates for the coefficients but I am not sure... Not complete.
+    \end{enumerate} The functor $E$ is the set of points of an elliptic curve in algebraic geometry. The representing object is the coordinate ring of $E$ (the ring of algebraic functions on $E$). 
+    \item[4.] Let $U$ be the forgetful functor from the category of fields to the category of integral domains. \begin{enumerate}[label=(\roman*)]
+        \item Show that sending an integral domain to its field of fractions is a functor $F$ from the category of integral domains to fields.
+        \item Prove that $F$ and $U$ are adjoint functors. Which is the left one?
+    \end{enumerate} Not done.
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item I am hoping that over the break I can reset and get back onto a regular schedule. I suspect I have burned out.
+\end{enumerate}
+\end{document}

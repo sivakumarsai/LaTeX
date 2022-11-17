@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6346 Topology}
+\fancyhead[C]{Homework 5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (5.1.1) A cofibration is an embedding. For the proof use that $i_1\colon A\to Z(i),a\mapsto (a,1)$ is an embedding. From $i_1 = rsi_1 = ri_1^Xi$ then conclude that $i$ is an embedding.
+    
+    Consider a cofibration as an inclusion $i\colon A\subset X$. The image of $s\colon Z(i)\to X\times I$ is the subset $X\times 0\cup A\times I$. Since $s$ is an embedding, this subset equals the mapping cylinder, i.e., one can define a continuous map $X\times 0\cup A\times I$ by specifying its restrictions to $X\times 0$ and $A\times I$. (This is always so if $A$ is closed in $X$, and is a special property of $i\colon A\subset X$ if $i$ is a cofibration.)
+
+    Let $X$ be a Hausdorff space. Then a cofibration $i\colon A\to X$ is a closed embedding. Let $r\colon X\times I\to X\times 0\cup A\times I$ be a retraction. Then $x\in A$ is equivalent to $r(x,1) = (x,1)$. Hence $A$ is the coincidence set of the maps $X\to X\times I$, $x\mapsto (x,1), x\mapsto r(x,1)$ into a Hausdorff space and therefore closed. \begin{proof}
+        Let $i\colon A\to X$ be a cofibration so that equivalently $i$ has the HEP for $Z(i)$. Furthermore, the map $s\colon Z(i)\to X\times I$ obtained via the universal property of the pushout has a retraction $r\colon X\times I\to Z(i)$ such that $rs = \id_{Z(i)}$. We have then that $i_1 = rsi_1 = ri_1^Xi$, and since $i_1$ is injective, we have that $i$ must also be injective, and hence continuously bijective onto its image. Then we can define a continuous left inverse $i_\ell^{-1}\colon i(A)\to A$ for $i$; from which it follows that $i$ is an embedding.% https://q.uiver.app/?q=WzAsNSxbMCwxLCJBIl0sWzEsMCwiWCJdLFsyLDEsIlhcXHRpbWVzIEkiXSxbMSwyLCJBXFx0aW1lcyBJIl0sWzQsMSwiWihpKSJdLFswLDMsImlfMF5BIiwyXSxbMSwyLCJpXzBeWCIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJpIl0sWzMsMiwiaVxcdGltZXMgXFxpZF9JIiwyXSxbMiw0LCJyIiwwLHsib2Zmc2V0IjotMSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsMiwicyIsMCx7Im9mZnNldCI6LTEsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDQsImIiLDIseyJjdXJ2ZSI6LTN9XSxbMyw0LCJrIiwwLHsiY3VydmUiOjN9XSxbMCw0LCJpXzEiLDAseyJsYWJlbF9wb3NpdGlvbiI6MjAsImN1cnZlIjo0fV0sWzEsMiwiaV8xXlgiLDIseyJvZmZzZXQiOjF9XV0=
+        \[\begin{tikzcd}
+          & X \\
+          A && {X\times I} && {Z(i)} \\
+          & {A\times I}
+          \arrow["{i_0^A}"', from=2-1, to=3-2]
+          \arrow["{i_0^X}", shift left=1, from=1-2, to=2-3]
+          \arrow["i", from=2-1, to=1-2]
+          \arrow["{i\times \id_I}"', from=3-2, to=2-3]
+          \arrow["r", shift left=1, dashed, from=2-3, to=2-5]
+          \arrow["s", shift left=1, dashed, from=2-5, to=2-3]
+          \arrow["b"', curve={height=-18pt}, from=1-2, to=2-5]
+          \arrow["k", curve={height=18pt}, from=3-2, to=2-5]
+          \arrow["{i_1}"{pos=0.2}, curve={height=24pt}, from=2-1, to=2-5]
+          \arrow["{i_1^X}"', shift right=1, from=1-2, to=2-3]
+        \end{tikzcd}\]
+        Observe that similarly $s$ is an embedding and by definition will take $x$ to $(x,0)$ and $(a,t)$ to itself so the range of $s$ is $X\times 0\cup A\times I$. Let $X$ be Hausdorff. Since $r$ is a retraction of $X\times I$ onto $Z(i)$ and is the identity on the image $X\times 0\cup A\times I$ of $s$, we have $r(x,1) = (x,1)$ if $x\in A$ (the converse is also true). Thus $A$ is the coincidence set $\cbr{x\in X\mid r(x,1) = (x,1)}$ for the two maps above. From an earlier result, since $X\times I$ is Hausdorff, then the coincidence set $A$ must also be closed. Thus the image of $A$ under the embedding must also be closed, so $i\colon A\subset X$ is a closed embedding.
+    \end{proof}
+    \item (5.1.2) If $i\colon K\to L$, $j\colon L\to M$ have the HEP for $Y$, then $ji$ has the HEP for $Y$. A homeomorphism is a cofibration. $\emptyset\subset X$ is a cofibration. The sum $\amalg i_j\colon \amalg A_j\to \amalg X_j$ of cofibrations $i_j\colon A_j\to X_j$ is a cofibration. \begin{proof}
+      The composition of functions with the HEP has the HEP: % https://q.uiver.app/?q=WzAsNyxbMCwyLCJLIl0sWzEsMywiS1xcdGltZXMgSSJdLFsxLDEsIkwiXSxbMiwyLCJMXFx0aW1lcyBJIl0sWzIsMCwiTSJdLFszLDEsIk1cXHRpbWVzIEkiXSxbNSwxLCJZIl0sWzAsMiwiaSJdLFsyLDQsImoiXSxbNCw1LCJpXzBeTSJdLFsyLDMsImlfMF5MIl0sWzAsMSwiaV8wXksiLDJdLFsxLDMsImlcXHRpbWVzIFxcaWRfSSJdLFszLDUsImpcXHRpbWVzIFxcaWRfSSJdLFsxLDYsImgiLDIseyJjdXJ2ZSI6NX1dLFs0LDYsIiIsMix7ImN1cnZlIjotM31dLFszLDYsIkgiLDIseyJjdXJ2ZSI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNiwiSF5cXHByaW1lIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+      \[\begin{tikzcd}
+        && M \\
+        & L && {M\times I} && Y \\
+        K && {L\times I} \\
+        & {K\times I}
+        \arrow["i", from=3-1, to=2-2]
+        \arrow["j", from=2-2, to=1-3]
+        \arrow["{i_0^M}", from=1-3, to=2-4]
+        \arrow["{i_0^L}", from=2-2, to=3-3]
+        \arrow["{i_0^K}"', from=3-1, to=4-2]
+        \arrow["{i\times \id_I}", from=4-2, to=3-3]
+        \arrow["{j\times \id_I}", from=3-3, to=2-4]
+        \arrow["h"', curve={height=30pt}, from=4-2, to=2-6]
+        \arrow["f", curve={height=-18pt}, from=1-3, to=2-6]
+        \arrow["H"', curve={height=12pt}, dashed, from=3-3, to=2-6]
+        \arrow["{H^\prime}", dashed, from=2-4, to=2-6]
+      \end{tikzcd}\] Use the HEP of $i$ to obtain $H$, and then use the HEP of $j$ to obtain the desired extension $H^\prime$.
+
+      A homeomorphism is a cofibration: With $Z(i)$ the mapping cylinder, we have the solid diagram:% https://q.uiver.app/?q=WzAsNSxbMCwxLCJBIl0sWzEsMiwiQVxcdGltZXMgSSJdLFsxLDAsIlgiXSxbMiwxLCJYXFx0aW1lcyBJIl0sWzQsMSwiWSJdLFswLDIsImkiXSxbMiwzLCJpXzBeWCJdLFswLDEsImlfMF5BIiwyXSxbMSwzLCJpXFx0aW1lcyBcXGlkX0kiLDJdLFsyLDQsImYiLDAseyJjdXJ2ZSI6LTN9XSxbMSw0LCJoIiwyLHsiY3VydmUiOjN9XSxbMyw0LCJIIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+      \[\begin{tikzcd}
+        & X \\
+        A && {X\times I} && Z(i) \\
+        & {A\times I}
+        \arrow["i", from=2-1, to=1-2]
+        \arrow["{i_0^X}", from=1-2, to=2-3]
+        \arrow["{i_0^A}"', from=2-1, to=3-2]
+        \arrow["{i\times \id_I}"', from=3-2, to=2-3]
+        \arrow["f", curve={height=-18pt}, from=1-2, to=2-5]
+        \arrow["h"', curve={height=18pt}, from=3-2, to=2-5]
+        \arrow["H", dashed, from=2-3, to=2-5]
+      \end{tikzcd}\] Then define $H\colon X\times I\to Y$ by $H(x,t) = h(i^{-1}(x),t)$; it follows that $i$ has the HEP for $Z(i)$, so $i$ is a cofibration.
+
+      The inclusion $i$ of the empty set is a cofibration. Note $Z(i) = X$. Then the following diagram commutes when $H$ is given by $H(x,t) = f(x)$, so the inclusion of the empty set has the HEP for $Z(i)$: % https://q.uiver.app/?q=WzAsNSxbMCwxLCJcXGVtcHR5c2V0Il0sWzEsMiwiXFxlbXB0eXNldCJdLFsxLDAsIlgiXSxbMiwxLCJYXFx0aW1lcyBJIl0sWzQsMSwiWSJdLFswLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiaV8wXlgiXSxbMCwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsNCwiIiwyLHsiY3VydmUiOjMsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNCwiSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDQsImYiLDAseyJjdXJ2ZSI6LTN9XV0=
+      \[\begin{tikzcd}
+        & X \\
+        \emptyset && {X\times I} && X \\
+        & \emptyset
+        \arrow[hook, from=2-1, to=1-2]
+        \arrow["{i_0^X}", from=1-2, to=2-3]
+        \arrow[hook, from=2-1, to=3-2]
+        \arrow[hook, from=3-2, to=2-3]
+        \arrow[curve={height=18pt}, hook, from=3-2, to=2-5]
+        \arrow["H", dashed, from=2-3, to=2-5]
+        \arrow["f", curve={height=-18pt}, from=1-2, to=2-5]
+      \end{tikzcd}\] Thus the inclusion $\emptyset\subset X$ is a cofibration.
+
+      Let $i_j\colon A_j\to X_j$ be cofibrations and let $Y$ be any space. Then from the usual initial data for each $j$ we form the sum of cofibrations: % https://q.uiver.app/?q=WzAsNSxbMCwxLCJBX2oiXSxbMSwyLCJBX2pcXHRpbWVzIEkiXSxbMSwwLCJYX2oiXSxbMiwxLCJYX2pcXHRpbWVzIEkiXSxbNCwxLCJZIl0sWzAsMiwiaV9qIl0sWzIsMywiaV8wXntYX2p9Il0sWzAsMSwiaV8wXntBX2p9IiwyXSxbMSwzLCJpX2pcXHRpbWVzIFxcaWRfSSIsMl0sWzEsNCwiaF9qIiwyLHsiY3VydmUiOjN9XSxbMyw0LCJIX2oiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiw0LCJmX2oiLDAseyJjdXJ2ZSI6LTN9XV0=
+      \[\begin{tikzcd}
+        & {X_j} \\
+        {A_j} && {X_j\times I} && Y \\
+        & {A_j\times I}
+        \arrow["{i_j}", from=2-1, to=1-2]
+        \arrow["{i_0^{X_j}}", from=1-2, to=2-3]
+        \arrow["{i_0^{A_j}}"', from=2-1, to=3-2]
+        \arrow["{i_j\times \id_I}"', from=3-2, to=2-3]
+        \arrow["{h_j}"', curve={height=18pt}, from=3-2, to=2-5]
+        \arrow["{H_j}", dashed, from=2-3, to=2-5]
+        \arrow["{f_j}", curve={height=-18pt}, from=1-2, to=2-5]
+      \end{tikzcd}\] With this form the diagram % https://q.uiver.app/?q=WzAsNSxbMCwxLCJcXGFtYWxnIEFfaiJdLFsxLDIsIlxcYW1hbGcgQV9qXFx0aW1lcyBJIl0sWzEsMCwiXFxhbWFsZyBYX2oiXSxbMiwxLCJcXGFtYWxnIFhfalxcdGltZXMgSSJdLFs0LDEsIlkiXSxbMCwyLCJcXGFtYWxnIGlfaiJdLFsyLDMsIlxcYW1hbGcgaV8wXntYX2p9Il0sWzAsMSwiXFxhbWFsZyBpXzBee0Ffan0iLDJdLFsxLDMsIlxcYW1hbGcgaV9qXFx0aW1lcyBcXGlkX0kiLDJdLFsxLDQsIlxcYW1hbGcgaF9qIiwyLHsiY3VydmUiOjN9XSxbMyw0LCJcXGFtYWxnIEhfaiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDQsIlxcYW1hbGcgZl9qIiwwLHsiY3VydmUiOi0zfV1d
+      \[\begin{tikzcd}
+        & {\amalg X_j} \\
+        {\amalg A_j} && {\amalg X_j\times I} && Y \\
+        & {\amalg A_j\times I}
+        \arrow["{\amalg i_j}", from=2-1, to=1-2]
+        \arrow["{\amalg i_0^{X_j}}", from=1-2, to=2-3]
+        \arrow["{\amalg i_0^{A_j}}"', from=2-1, to=3-2]
+        \arrow["{\amalg i_j\times \id_I}"', from=3-2, to=2-3]
+        \arrow["{\amalg h_j}"', curve={height=18pt}, from=3-2, to=2-5]
+        \arrow["{\amalg H_j}", dashed, from=2-3, to=2-5]
+        \arrow["{\amalg f_j}", curve={height=-18pt}, from=1-2, to=2-5]
+      \end{tikzcd}\] where in particular $\amalg h_j$ is given by $\amalg h_j(a_k,t) = h_k(a_k,t)$ for $a_k\in A_k$. Similarly the homotopy $\amalg H$ is given by $\amalg H(x_k,t)= H_k(x_k,t)$ for $x_k\in X_k$, both using the initial data above. Everything commutes and $Y$ was arbitrary so the sum of cofibrations is also a cofibration.
+    \end{proof}
+    \item (5.1.5) Let $A\subset X$ be a cofibration and $A$ contractible. Then the quotient map $X\to X/A$ is a homotopy equivalence. \begin{proof}
+      In the following diagram we have that $A\subset X$ is a cofibration and that $A\to \ast$ is a homotopy equivalence: The composition $\ast\hookrightarrow A \to \ast$ is the identity on $\ast$, and the composition $A\to\ast\hookrightarrow A$ is the constant map on $A$, homotopic to the identity on $A$. Then by proposition 5.1.10, $X\to X/A$, the quotient map, is a homotopy equivalence: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiXFxhc3QiXSxbMCwxLCJYIl0sWzEsMSwiWC9BIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxXSxbMiwzXSxbMSwzXV0=
+      \[\begin{tikzcd}
+        A & \ast \\
+        X & {X/A}
+        \arrow[hook, from=1-1, to=2-1]
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=1-2, to=2-2]
+      \end{tikzcd}\]
+    \end{proof}
+    \item (5.1.6) The space $C^\prime X = X\times I/X\times 1$ is called the unpointed \textbf{\textit{cone}} on $X$. We have the closed inclusions $j\colon X\to C^\prime X, x\mapsto (x,0)$ and $b\colon \cbr{\ast}\to C^\prime X,\ast\mapsto \cbr{X\times 1}$. Both maps are cofibrations. \begin{proof}
+      Observe that $Z(j) = C^\prime X\sqcup X\times I/\sim$ where $(x,0)\sim (x,0)$ (where the left $(x,0)\in C^\prime X$ and the right $(x,0)\in X\times I$). Furthermore, $Z(j)$ embeds by the map $s$ (coming from the universal property of the pushout) into $C^\prime X\times I$ naturally (see the sketches). A retraction of $C^\prime X\times I$ onto $Z(j)$ is the one that essentially crushes the space onto its subspace.
+
+    In a similar way, we find that $Z(b) = C^\prime X\sqcup \ast\times I/\sim$ where $(\ast,0)\sim \cbr{X\times 1}$, which embeds by $s$ into $C^\prime X\times I$ in a natural way. The retraction from $C^\prime X\times I$ onto this subspace is also just the one that crushes the whole space onto this subspace.
+
+    Note that $X$ and $\cbr{\ast}$ are closed subspaces since $j,b$ are closed embeddings. By Proposition 5.1.2, since we have the retractions from $C^\prime X\times I$ to the images of $Z(j)$ and $Z(b)$, then $j,b$ are cofibrations.\vspace*{5cm}
+    \end{proof}
+    \item (5.5.1) A composition of fibrations is a fibration. A product of fibrations is a fibration. $\emptyset\subset B$ is a fibration. \begin{proof}
+      The composition of fibrations is a fibration. We show that if $p,q$ have the HLP for $X$, then $pq$ does also, and so if $p,q$ are fibrations then $pq$ does since $X$ may be taken to be any space. % https://q.uiver.app/?q=WzAsNyxbMiwwLCJFIl0sWzMsMSwiRV5JIl0sWzEsMSwiQiJdLFswLDIsIkMiXSxbMiwyLCJCXkkiXSxbMSwzLCJDXkkiXSxbNSwxLCJYIl0sWzAsMiwicSJdLFsyLDMsInAiXSxbMSwwLCJlXjBfRSJdLFs0LDIsImVeMF9CIl0sWzUsMywiZV4wX0MiLDJdLFsxLDQsInFeSSIsMl0sWzQsNSwicF5JIiwyXSxbNiwwLCJhIiwwLHsiY3VydmUiOjN9XSxbNiw1LCJoIiwyLHsiY3VydmUiOi0zfV0sWzYsNCwiSCIsMix7ImN1cnZlIjotMSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsMSwiSF5cXHByaW1lIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+      \[\begin{tikzcd}
+        && E \\
+        & B && {E^I} && X \\
+        C && {B^I} \\
+        & {C^I}
+        \arrow["q", from=1-3, to=2-2]
+        \arrow["p", from=2-2, to=3-1]
+        \arrow["{e^0_E}", from=2-4, to=1-3]
+        \arrow["{e^0_B}", from=3-3, to=2-2]
+        \arrow["{e^0_C}"', from=4-2, to=3-1]
+        \arrow["{q^I}"', from=2-4, to=3-3]
+        \arrow["{p^I}"', from=3-3, to=4-2]
+        \arrow["a", curve={height=18pt}, from=2-6, to=1-3]
+        \arrow["h"', curve={height=-18pt}, from=2-6, to=4-2]
+        \arrow["H"', curve={height=-6pt}, dashed, from=2-6, to=3-3]
+        \arrow["{H^\prime}"', dashed, from=2-6, to=2-4]
+      \end{tikzcd}\] Use the HLP twice to obtain $H$ and $H^\prime$. Thus $pq$ is a fibration since $X$ may be taken to be any space.
+
+      Let $p,q$ be fibrations again and take $X$ to be any space. We show that $p\times q$ have the HLP for $X$ also, so that since $X$ was arbitrary, $p\times q$ is a fibration: % https://q.uiver.app/?q=WzAsNSxbMSwwLCJFXFx0aW1lcyBFIl0sWzIsMSwiKEVcXHRpbWVzIEUpXklcXGNvbmcgRV5JXFx0aW1lcyBFXkkiXSxbMCwxLCJCXFx0aW1lcyBDIl0sWzEsMiwiKEJcXHRpbWVzIEMpXklcXGNvbmcgQl5JXFx0aW1lcyBDXkkiXSxbNCwxLCJYIl0sWzAsMiwicSJdLFsxLDAsImVeMF9FIl0sWzMsMiwiZV4wX3tCXFx0aW1lcyBDfSJdLFsxLDMsInFeSSIsMl0sWzQsMywiaCA9aF9CXFx0aW1lcyBoX0MiLDIseyJjdXJ2ZSI6LTN9XSxbNCwxLCJIIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsMCwiYSIsMCx7ImN1cnZlIjozfV1d
+      \[\begin{tikzcd}
+        & {E\times E} \\
+        {B\times C} && {(E\times E)^I\cong E^I\times E^I} && X \\
+        & {(B\times C)^I\cong B^I\times C^I}
+        \arrow["q", from=1-2, to=2-1]
+        \arrow["{e^0_E}", from=2-3, to=1-2]
+        \arrow["{e^0_{B\times C}}", from=3-2, to=2-1]
+        \arrow["{q^I}"', from=2-3, to=3-2]
+        \arrow["{h =h_B\times h_C}"', curve={height=-18pt}, from=2-5, to=3-2]
+        \arrow["H"', dashed, from=2-5, to=2-3]
+        \arrow["a", curve={height=18pt}, from=2-5, to=1-2]
+      \end{tikzcd}\] In the above diagram define $H$ to be the homotopy which agrees with the components of $a$ at $0$, with $q^IH = h$ also. So $H$ is given by the product of the homotopies obtained by using the HLP for each of $h_B,h_C$ and the components of $A$. Then with $X$ arbitrary it follows the product of fibrations is a fibration.
+
+      Since there are no maps of a nonempty set into the empty set, we have the following commutative diagram: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGVtcHR5c2V0Il0sWzEsMCwiXFxlbXB0eXNldCJdLFswLDEsIlxcZW1wdHlzZXQiXSxbMSwxLCJCIl0sWzAsMV0sWzAsMl0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+      \[\begin{tikzcd}
+        \emptyset & \emptyset \\
+        \emptyset & B
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow[hook, from=1-2, to=2-2]
+        \arrow[hook, from=2-1, to=2-2]
+        \arrow[dashed, from=2-1, to=1-2]
+      \end{tikzcd}\] It follows basically trivially that the inclusion of the empty set into a space is a fibration, as it forces $X,X\times I$ for any $X$ to be empty also.
+    \end{proof}
+\end{enumerate}
+\end{document}

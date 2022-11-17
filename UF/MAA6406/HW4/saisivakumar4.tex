@@ -1,0 +1,59 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 4}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+ 
+Discuss the construction of an analytic bijection
+ from  
+\[
+ \cS=\{|z+1|<2\}\cap \{|z-1|<2\}
+\]
+ to the unit disc $\DD=\{|z|<1\}.$ [Suggestion: See the discussion 
+  of exponential functions following Corollary~2.11 in Conway.]
+
+\bigskip
+
+\noindent{\it Discussion.}
+\baselineskip=24pt
+Let $C_\pm = \{\abs{z\pm 1} = 2\}$ be the boundaries of the discs forming $\mathcal{S}$ above; observe $C_+\cap C_- = \{\pm i\sqrt{3}\}$. Then let $G\colon \mathbb{C}\to\mathbb{C}$ denote the M\"obius map given by \[G(z) = \left(\frac{z+\sqrt{3}i}{z-\sqrt{3}i}\right)\left(\frac{1-\sqrt{3}i}{1+\sqrt{3}i}\right),\] and see that $G$ sends $-i\sqrt{3}$ to $0$, $i\sqrt{3}$ to $\infty$, $1$ to $1$, and $-1$ to $-1/2 + i\sqrt{3}/2$. Hence $G$ maps $C_+$ to the real axis $\mathbb{R}$ and $C_-$ to the line passing through the origin and $-1/2 + i\sqrt{3}/2$. Since $G(0) = 1/2 + i\sqrt{3}/2$ lies in the first quadrant, $G$ maps $\{|z+1|<2\}$ to the upper half plane and $\{|z-1|<2\}$ to the region above but not including the line passing through the origin and $-1/2 + i\sqrt{3}/2$. Hence the intersection of the discs is sent to the complex numbers whose principal argument lies in $(0,2\pi/3)$; call this region $U$. Then let $f\colon \mathbb{C}\setminus\{0+it\mid t\leq 0\}\to \mathbb{C}$ be defined by $f(z) = z^{3/2} = \exp(3/2\log(z))$. The function $f$ is analytic (it is the composition of analytic functions) and bijective as it possesses the left and right inverse given by $f^{-1}(z) = z^{2/3} = \exp(2/3\log(z))$. By inspection $f$ takes $U$ to the upper half plane. Then as before, use the M\"obius map $S^{-1}$ ($S(z) = -i(z+i)/(z-i)$) from Example 2.47 in the notes to map the upper half plane to the unit disc. Thus $S^{-1}\circ f\circ G\colon \mathcal{S}\to \mathbb{D}$ is the desired analytic bijection. 
+\qed %enddiscussion
+\end{document}
