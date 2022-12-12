@@ -81,6 +81,31 @@
 
 \begin{document}
 \begin{enumerate}
-    \item ()
+    \item (Reading) I read all three pdfs in full. 5/5
+    \item (8.1.2) Let $K = (\mathbb{N}_0, S)$ be the simplicial complex where $S$ consists of all finite subsets of $\mathbb{N}_0$. The canonical map $\abs{K}_c\to \abs{K}_p$ is not a homeomorphism. \begin{proof}
+      The canonical map $\abs{K}_c\to \abs{K}_p$ is not an open map; equivalently, the coherent topology is strictly finer than the subspace topology of the product topology. Consider $[0,1)^{\mathbb{N}_0}\cap\abs{K}$. It is open in $\abs{K}_c$ since its intersection with any simplex $\Delta(s)$ is open in $\Delta(s)$ (which has the metric topology). But this set cannot be open in $\abs{K}_p$ since $[0,1)^{\mathbb{N}_0}$ is not open in the product topology on $I^{\mathbb{N}_0}$.
+    \end{proof}
+    \item (8.2.2) The geometric realization of a simplicial complex is a Whitehead complex. \begin{proof}
+      It is clear that the open $k$-simplices of $\abs{K}$ for $K(E,S)$ a simplicial complex are homeomorphic to $E^k$, similarly the closed simplices are homeomorphic to closed disks. Since the coherent topology on $\abs{K}$ is finer than the metric topology (note $\abs{K}_m\cong \abs{K}_p$) it follows that $\abs{K}$ is Hausdorff. For each open $k$-simplex $\abr{s}$ the characteristic map from $D^k$ to $\abs{K}$ is the homeomorphism of $D^k$ with $\Delta(s)$; the restriction of this map to the boundary must have image the combinatorial boundary of $\Delta(s)$ (containing proper faces), which is contained in the $k-1$ skeleton of $\abs{K}$. The closure of any open $k$-simplex $\abr{s}$ is $\Delta(s)$, and since $K$ is a simplicial complex, $\Delta(s)$ will intersect only finitely many cells (the open simplices formed from each proper subset of $s$, which has finite size, as well as $\abr{s}$ itself). The geometric realization $\abs{K}$ has the colimit topology with respect to $\{\Delta(s)\}$ due to the coherent topology: a set is open in $\abs{K}$ if and only if its intersections with each $\Delta(s)$ are open subsets.
+    \end{proof}
+    \item (8.3.4) Let $A\subset X$ be a subcomplex. Then $X/A$ is a CW-complex. \begin{proof}
+      We can obtain $X/A$ by starting with the empty set, and attaching the $0$-cell given by the image of $A$ in $X/A$, then by attaching the cells of $X\setminus A$ each dimension at a time. That is, attach $n$-cells from $X\setminus A$ to the skeleton $(X/A)^{n-1}$ ($= X^{n-1}/A^{n-1}$) by composing the existing attaching map (as $X$ is a CW complex) to $X^{n-1}$ with the quotient map into $= X^{n-1}/A^{n-1}$. By iterating this process obtain $X/A$ as a union of the $n$-skeleta.
+      
+      Furthermore, observe that a subset $U$ of $X/A$ is open in $X/A$ if its preimage $V$ under the quotient map is open in $X$, meaning any intersection of $V$ with any of the skeleta of $X$ or $A$ has to be open also. This means in particular that the intersection of $U$ with any skeleton $X^n/A^n$ has to be open, meaning $X/A$ has the colimit topology with respect to its skeleta.
+    \end{proof}
+    \item (8.3.11) Let $p\colon E\to B$ be a Serre fibration and $(X,A)$ a CW-pair. Then each homotopy $h\colon X\times I\to B$ has a lifting along $p$ with given initial condition on $X\times 0\cup A\times I$. \begin{proof}
+      Since cubes are homeomorphic to disks, Serre fibrations have the homotopy lifting property for disks.We build the extension out of the extensions on each skeleton. First see that the inclusion of $X\times 0\cup A\times I$ into $X\times I$ is a closed cofibration by extension of Proposition 8.3.9 in the text. It follows that the inclusions of the skeleta $X^n\times 0\cup A^n\times I$ into $X^n\times I$ are also closed cofibrations.
+
+      Given the initial data $a\colon X\times 0\cup A\times I$ and $h\colon X\times I$ restrict to the skeleta to obtain maps $a_n,h_n$ for each $n$ skeleton. Then for each $n$ form the lifts $H_n$ via Corollary 5.5.3 in the text: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYXm5cXHRpbWVzMFxcY3VwIEFeblxcdGltZXMgSSJdLFsxLDAsIkUiXSxbMSwxLCJCIl0sWzAsMSwiWF5uXFx0aW1lcyBJIl0sWzEsMiwicCJdLFszLDIsImhfbiIsMl0sWzAsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxLCJhX24iXSxbMywxLCJIX24iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+      \[\begin{tikzcd}
+        {X^n\times0\cup A^n\times I} & E \\
+        {X^n\times I} & B
+        \arrow["p", from=1-2, to=2-2]
+        \arrow["{h_n}"', from=2-1, to=2-2]
+        \arrow[hook, from=1-1, to=2-1]
+        \arrow["{a_n}", from=1-1, to=1-2]
+        \arrow["{H_n}"', dashed, from=2-1, to=1-2]
+      \end{tikzcd}\] Use the $H_n$ to form by attaching an extension $H$ from $X\times I$ to $E$. (I think this proof is wrong in a number of places, mostly in how we obtain $H$.)
+    \end{proof}
 \end{enumerate}
 \end{document}

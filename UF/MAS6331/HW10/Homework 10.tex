@@ -1,0 +1,249 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6331 Algebra}
+\fancyhead[C]{Homework 10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item Let $I$ be a set and $\mathcal{C}$ be a category. Fix objects $\cbr{X_i}_{i\in I}$ in $\mathcal{C}$. The coproduct of $\cbr{X_i}_{i\in I}$, sometimes denoted by $\coprod_{i\in I}\cbr{X_i}_{i\in I}$, is an object $C\in \mathcal{C}$ together with morphisms $\pi_i\colon X_i\to C$ for each $i\in I$ that satisfies the following universal property:
+    
+    for any object $D\in \mathcal{C}$ with maps $f_i\colon X_i\to D$ for each $i\in I$, there is a unique map $f\colon C\to D$ such that $f\circ \pi_i = f_i$ for all $i\in I$. % https://q.uiver.app/?q=WzAsMyxbMCwwLCJYX2kiXSxbMSwwLCJDIl0sWzEsMSwiRCJdLFswLDIsImZfaSIsMl0sWzAsMSwiXFxwaV9pIl0sWzEsMiwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+        {X_i} & C \\
+        & D
+        \arrow["{f_i}"', from=1-1, to=2-2]
+        \arrow["{\pi_i}", from=1-1, to=1-2]
+        \arrow["f", dashed, from=1-2, to=2-2]
+    \end{tikzcd}\] \begin{enumerate}[label=(\roman*)]
+        \item Show that coproducts in the category of sets are disjoint unions. \begin{proof}
+            The disjoint union $C$ of sets $\cbr{X_i}_{i \in I}$ is given by the union of the sets $X_i$ where we view each of the sets $X_i$ as being disjoint. This can be achieved by forming for each $i$ the sets $X_i^\prime$ with elements $(x,i)$ for $x\in X_i$. Then the sets $X_i^\prime$ are all disjoint and we take the ordinary union of these sets and obtain $C$.
+            
+            Take $\pi_i\colon X_i\to C$ to be the injections taking $x\in X_i$ to $(x,i)$ (the range of $\pi_i$ is $X_i^\prime$).
+
+            Then given maps $f_i\colon X_i\to D$ we form $f$ as the ``disjoint union'' of these maps, where $f$ is given by $f(x,i) = f_i(x)$ for $(x,i)\in C$ (so that $x\in X_i)$. Thus the diagram above with the sets here commute as desired. The map $f$ is unique since if there was another map $g$ in place of $f$ which also made the above diagram commute, then $g(x,i) = f_i(x)$ for all $(x,i)\in C$, meaning $g$ was equal to $f$.
+        \end{proof}
+        \item Show that coproducts in the category of $R$-modules are direct sums. \begin{proof}
+            The direct sum $C$ of $R$-modules $\cbr{X_i}_{i\in I}$ is given by the set of sequences $(x_i)_{i\in I}$ where all but finitely many $x_i$ are $0$ with the usual componentwise $R$-module structure (so $C$ is an $R$-module). Take $\pi_j\colon X_j\to C$ to be the injections taking $x\in X_j$ to the sequence which has zero in all entries except for the $j$-th entry which has $x$.
+        
+            Given $R$-module maps $f_i\colon X_i\to D$, let $f\colon C \to D$ be given by $f(x_i)_{i\in I} = \sum_{i\in I}f_i(x_i)$. Since $C$ consists of sequences with all but finitely many of their entries zero, the sum $\sum_{i\in I}f_i(x_i)$ is a finite sum and so is really an element of $D$. Since $\pi_i$ takes $x\in X_i$ to the sequence whose $i$-th entry is $x$ and all other entries zero, $f(\pi_i(x)) = f_i(x)$, meaning the diagram above commutes for the $R$-modules involved here. If $g$ is another map in place of $f$ making the above diagram commute, then it must send sequences whose $i$-th entry is $x_i$ and all other entries zero to $f_i(x_i)$, for all $x_i\in X_i$ and for all $i\in I$. With $g$ an $R$-module homomorphism, $g(x_i)_{i\in I} = \sum_{i\in I}f_i(x_i) = f(x_i)_{i\in I}$, for $(x_i)_{i\in I}\in C$ (obtained by adding finitely many of $\pi_j(x_j)$ for $x_j\in X_j$). Hence $g = f$.
+        \end{proof}
+        \item Interpret the coproduct as a colimit. 
+        
+        The coproduct may be interpreted as the colimit of a ``discrete'' diagram $F\colon I\to \mathcal{C}$ with $F(i) = X_i$ (so a functor from the set $I$ viewed as a category with the objects $i\in I$ and no morphisms). The colimit of this diagram is a cocone $\pi_i\colon X_i\to C$ such that for any cocone $f_i\colon X_i\to D$ (there are no morphisms between the $X_i$ so there are no commutativity statements to be made yet), there exists a unique map $f$ making the diagram % https://q.uiver.app/?q=WzAsMyxbMCwwLCJYX2kiXSxbMSwwLCJDIl0sWzEsMSwiRCJdLFswLDIsImZfaSIsMl0sWzAsMSwiXFxwaV9pIl0sWzEsMiwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+            {X_i} & C \\
+            & D
+            \arrow["{f_i}"', from=1-1, to=2-2]
+            \arrow["{\pi_i}", from=1-1, to=1-2]
+            \arrow["f", dashed, from=1-2, to=2-2]
+        \end{tikzcd}\] commute for each $i\in I$; this is the universal property of the coproduct.
+    \end{enumerate}
+    \item (DF10.4.25) Let $R$ be a subring of the commutative ring $S$ and let $x$ be an indeterminate over $S$. Prove that $S[x]$ and $S\otimes_R R[x]$ are isomorphic as $S$-algebras. \begin{proof}
+        First we see how $S\otimes_R R[x]$ is an $S$-algebra on top of being an $R$-module. The action of $S$ on the tensor product is given by its action on the simple tensors, and this action is extended by linearity: $s^\prime(s\otimes \sum_{i=0}^d r_ix^i) = (s^\prime\otimes 1_R)(s\otimes \sum_{i=0}^d r_ix^i) = (s^\prime s\otimes \sum_{i=0}^d r_ix^i)$. The multiplication of elements is also defined on simple tensors and is extended by linearity: $(s\otimes \sum_{i=0}^d r_ix^i)(s^\prime \otimes \sum_{j=0}^{d^\prime} r^\prime_jx^j) = (ss^\prime \otimes (\sum_{i=0}^d r_ix^i)(\sum_{j=0}^{d^\prime} r^\prime_jx^j))$. So in particular $S\otimes_R R[x]$ is an $S$-module. That $S[x]$ is an $S$-algebra is clear.
+
+        I could not figure out the slick way to do this so I will attempt to do this barehandedly. We define an $S$-algebra homomorphism $f\colon S[x]\to S\otimes_RR[x]$ by specifying its action on $x$ and extending to linear combinations and products (by some universal property of polynomial rings over commutative unital rings). Let $f(x) = (1_S\otimes 1_Rx)$ so that $f(\sum_{k=0}^N s_kx^k) = \sum_{k=0}^N (s_k\otimes x^k)$ and similarly for products. We seek to define an inverse map. We use the map $g\colon S\otimes_RR[x]\to S[x]$ given by specifying its action on simple tensors and extending by linearity. Let $g(s\otimes \sum_{i=0}^d r_ix^i) = \sum_{i=0}^d sr_ix^i$ and note that this map is linear in each component since multiplication distributes over sums in $S[x]$. We do not need to check that $g$ is a ring homomorphism since we will see that $g$ is bijective: 
+
+        Compose in both directions: We have $(g\circ f)(\sum_{k=0}^N s_kx^k) = g(\sum_{k=0}^N (s_k\otimes x^k)) = \sum_{k=0}^N s_kx^k$. For $f\circ g$ we check only for the simple tensors since we extend the maps by linearity anyways: $(f\circ g)(s\otimes \sum_{i=0}^d r_ix^i) = f(\sum_{i=0}^d sr_ix^i) = \sum_{i=0}^d (sr_i\otimes x^i) = (s\otimes \sum_{i=0}^d r_ix^i)$. It follows that the two $S$-algebras are isomorphic.
+    \end{proof}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item Let $I$ be the empty category (i.e. no objects). In this question, we'll be very pedantic and push the definition of a limit to the extreme. \begin{enumerate}[label=(\roman*)]
+        \item A terminal object in a category $\mathcal{C}$ is a limit of the diagram of shape $I$ (the ``empty diagram''). Write down its universal property.
+        
+        The universal property of terminal objects $\mathbf{1}\in \mathcal{C}$ is that for any object $C\in \mathcal{C}$, there exists a unique morphism $f\colon C\to T$. This is because cones on the empty diagram contain no morphisms, so a limit of the empty diagram is an object $\mathbf{1}$ such that for any object $C$ there is a unique morphism from $C$ into $\mathbf{1}$. It follows that terminal objects are unique up to isomorphism if they exist.
+        \item What are terminal objects in the category of sets and Abelian groups?
+        
+        In the category of sets terminal objects are the sets with one element: there always exists a map from any set $S$ into a set with one element $\cbr{\ast}$ that sends every element in $S$ to $\ast$, and this map by construction is unique.
+
+        In the category of Abelian groups the terminal objects are the trivial groups by similar reasoning. There is a group homomorphism from any Abelian group $H$ into a trivial group $\cbr{1}$ sending elements of $H$ to $1$. By construction such a map is unique.
+        \item An initial object is the colimit of the diagram of shape $I$. Write down its universal property, and find the initial objects in the category of $k$-vector spaces and the category of commutative unital nonzero rings.
+        
+        The universal property of initial objects $\emptyset$ in $\mathcal{C}$ is that for any object $C\in\mathcal{C}$, there is a unique map from $\emptyset$ to $C$. This is because cocones on the empty diagram contain no morphisms, and so a colimit of the empty diagram is an object $\emptyset$ such that for any other object $C\in \mathcal{C}$ there is a unique morphism from $\emptyset$ to $C$. It follows that initial objects are unique up to isomorphism if they exist.
+
+        In $k$-vector spaces, the initial objects are the zero vector spaces $\cbr{0}$ since there is a unique map from the trivial vector space to any $k$-vector space $V$ sending $0$ to the additive identity of $V$ since the map is a linear map. (Note that the trivial vector spaces are also terminal objects by similar reasoning.) In the category of commutative unital nonzero rings, the initial object is $\mathbb{Z}$. Any homomorphism from $\mathbb{Z}$ into a ring $R$ is determined by its action on the generator $1$ (or we can take $-1$). Mapping $1$ to the multiplicative identity of $R$ and $0$ to the additive identity of $R$, we obtain a unique homomorphism from $\mathbb{Z}$ to $R$.
+        \item Are there initial and terminal objects in the category of fields? Fields of a given characteristic?
+        
+        There are no initial or terminal objects in the category of fields. An initial object $\emptyset$ in Field must have the property that for any field $F$ there is a unique homomorphism from $\emptyset$ to $F$. But then there must be homomorphisms from $\emptyset$ to $\mathbb{Z}/p\mathbb{Z}$ and $\mathbb{Q}$ for $p$ prime. But every field has some characteristic $q$ (prime) or $0$; it follows that $\emptyset$ is equal to $\mathbb{Z}/q\mathbb{Z}$. But then $\emptyset$ could not map into $\mathbb{Z}/p\mathbb{Z}$ or $\mathbb{Q}$ for $p\neq q$, a contradiction.
+
+        There are no terminal objects in Field since such a terminal object $\mathbf{1}$ would have every characteristic simultaneously somehow (that is, $\mathbb{Z}/p\mathbb{Z}$ for all primes $p$ and $\mathbb{Q}$ map into $\mathbf{1}$).
+
+        If we fix the characteristic to a prime $p$ then $\text{Field}_p$ (or $0$ for characteristic $0$, $\text{Field}_0$) does have initial and terminal objects: The initial object is $\mathbb{Z}/p\mathbb{Z}$ (for $\text{Field}_0$ it is $\mathbb{Q}$) since these are the base subfields of every field in each category. There are still no terminal objects since we can keep taking compositums of fields and preserve cardinality, and all field homomorphisms are injections so there could not be a largest possible field of a fixed characteristic.
+    \end{enumerate}
+    \item Let $I$ be the category pictured: % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXGJ1bGxldCJdLFswLDEsIlxcYnVsbGV0Il0sWzEsMCwiXFxidWxsZXQiXSxbMCwyXSxbMCwxXV0=
+    \[\begin{tikzcd}
+        \bullet & \bullet \\
+        \bullet
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+    \end{tikzcd}\] \begin{enumerate}[label=(\roman*)]
+        \item Explicitly write down a universal property for colimits of diagrams of shape $I$. This construction is known as a pushout.
+        
+        The pushout of a diagram % https://q.uiver.app/?q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMCwyXSxbMCwxXV0=
+        \[\begin{tikzcd}
+            X & A \\
+            B
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-1, to=1-2]
+        \end{tikzcd}\] is an object $C$ with maps $F\colon B\to C$,$G\colon A\to C$ making the diagram % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMSwxLCJDIl0sWzAsMl0sWzAsMV0sWzIsMywiRiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDMsIkciLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \[\begin{tikzcd}
+            X & A \\
+            B & C
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-1, to=1-2]
+            \arrow["F"', dashed, from=2-1, to=2-2]
+            \arrow["G", dashed, from=1-2, to=2-2]
+        \end{tikzcd}\] commute (there is another map going through the diagonal of the square, but because all the maps involved commute, there is no need to include it), such that if there is another object $Z$ with maps $I\colon B\to Z$,$J\colon A\to Z$ making the diagram % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMiwyLCJaIl0sWzAsMl0sWzAsMV0sWzIsMywiSSIsMl0sWzEsMywiSiJdXQ==
+        \[\begin{tikzcd}
+            X & A \\
+            B \\
+            && Z
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-1, to=1-2]
+            \arrow["I"', from=2-1, to=3-3]
+            \arrow["J", from=1-2, to=3-3]
+        \end{tikzcd}\] commute, then there is a unique map $H$ from $C$ to $Z$ which makes the entire diagram below commute. % https://q.uiver.app/?q=WzAsNSxbMCwwLCJYIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMiwyLCJaIl0sWzEsMSwiQyJdLFswLDJdLFswLDFdLFsyLDMsIkkiLDJdLFsxLDMsIkoiXSxbMSw0LCJHIiwyXSxbMiw0LCJGIl0sWzQsMywiSCIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+            X & A \\
+            B & C \\
+            && Z
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-1, to=1-2]
+            \arrow["I"', from=2-1, to=3-3]
+            \arrow["J", from=1-2, to=3-3]
+            \arrow["G"', from=1-2, to=2-2]
+            \arrow["F", from=2-1, to=2-2]
+            \arrow["H"{description}, dashed, from=2-2, to=3-3]
+        \end{tikzcd}\]
+        \item What are pushouts of sets?
+        
+        Pushouts of sets % https://q.uiver.app/?q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMCwyLCJnIiwyXSxbMCwxLCJmIl1d
+        \[\begin{tikzcd}
+            X & A \\
+            B
+            \arrow["g"', from=1-1, to=2-1]
+            \arrow["f", from=1-1, to=1-2]
+        \end{tikzcd}\] are given by the amalgamated union: $C$ as above is given by the disjoint union of $A$ and $B$ quotiented out by an equivalence relation $\sim$ where $f(x)\sim g(x)$ for all $x\in X$. The morphisms $F$ and $G$ are the inclusions of $B$ and $A$ respectively.
+
+        Then if $Z$ is another such set with $I,J$ as above then the map $H$ is the map taking $c\in C$ to $(I\circ F^{-1}_\ell)(c) = (J\circ G^{-1}_\ell)(c)$ where $F^{-1}_\ell$ and $G^{-1}_\ell$ are left inverses to the inclusions $F$ and $G$ respectively.
+        \item Let $N$ be a normal subgroup of a group $G$. Show that $G/N$ (with the natural maps from $G$ and the one element group $1$) is the pushout. Use this to write down a universal property for quotients. % https://q.uiver.app/?q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiMSJdLFswLDEsIkciXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDFdXQ==
+        \[\begin{tikzcd}
+            N & 1 \\
+            G
+            \arrow[hook, from=1-1, to=2-1]
+            \arrow[from=1-1, to=1-2]
+        \end{tikzcd}\]
+
+        If $Z$ is another group with map $I$ and inclusion $J$ from $G,1$ into $Z$ respectively making the diagram % https://q.uiver.app/?q=WzAsNSxbMCwwLCJOIl0sWzEsMCwiMSJdLFswLDEsIkciXSxbMSwxLCJHL04iXSxbMiwyLCJaIl0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzLCJcXHBpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCJJIiwyXSxbMSw0LCJKIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw0LCJIIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+            N & 1 \\
+            G & {G/N} \\
+            && Z
+            \arrow[hook, from=1-1, to=2-1]
+            \arrow[two heads, from=1-1, to=1-2]
+            \arrow["\pi", two heads, from=2-1, to=2-2]
+            \arrow[hook, from=1-2, to=2-2]
+            \arrow["I"', from=2-1, to=3-3]
+            \arrow["J", hook, from=1-2, to=3-3]
+            \arrow["H"{description}, dashed, from=2-2, to=3-3]
+        \end{tikzcd}\] commute, then the map $H$ is given by sending an element $gN$ in $G/N$ to $I(g)$. This is due to $N$ being in the kernel of $I$ since the diagram above commuted (and it is well defined since if $gN = hN$, then $g = hn$ for some $n\in N$ and so $I(g) = I(h)$).
+
+        The universal property for quotients is thus: If $I\colon G\to Z$ is a homomorphism of groups with $I(N) = 1$ (that is, $N\leq \ker I$), then $I$ factors through $G/N$ uniquely ($H$ is unique) in the natural way: % https://q.uiver.app/?q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiRy9OIl0sWzIsMSwiWiJdLFswLDEsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMCwyLCJJIiwyXSxbMSwyLCJIIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+            G & {G/N} \\
+            && Z
+            \arrow["\pi", two heads, from=1-1, to=1-2]
+            \arrow["I"', from=1-1, to=2-3]
+            \arrow["H"{description}, dashed, from=1-2, to=2-3]
+        \end{tikzcd}\] where $H$ acts on the elements $gN$ as above by sending $gN$ to $I(g)$.
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}

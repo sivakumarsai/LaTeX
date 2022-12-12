@@ -79,6 +79,7 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
 \DeclareMathOperator{\id}{id}
 
 % set page count index to begin from 1
@@ -94,7 +95,7 @@
 
         So from the above bijections obtain from $\beta^{-1}\circ \alpha$ and $\alpha^{-1}\circ \beta$ the morphisms $f\colon B\to A$ and $g\colon A\to B$ respectively. We must show that the compositions of $f$ and $g$ produce identities both ways.
 
-        I am not sure how to use the naturality conditions to obtain this from here.
+        By a similar argument the identity natural transformations $\id_{h_A}$ and $\id_{h_B}$ are induced by the identity maps on $A$ and $B$ respectively. But $f\circ g$ and $g\circ f$ will also induce (also by post composition) the identity maps on the hom functors $h_A$ and $h_B$ respectively; by Yoneda there can only be one map for each situation which does this, the identity maps. It follows that $f$ and $g$ are isomorphisms so that the representing objects $A$ and $B$ are isomorphic.
     \end{proof} 
     \item[5.] \begin{enumerate}[label=(\roman*)]
         \item What is a free object on a set $S$ in the category of Abelian groups?
@@ -126,9 +127,13 @@
         I feel like the object will be some kind of polynomial ring or ring of rational functions but I don't know how to do something like this without a field. Perhaps $\mathbb{Z}$ or $\mathbb{Q}$ are good candidates for the coefficients but I am not sure... Not complete.
     \end{enumerate} The functor $E$ is the set of points of an elliptic curve in algebraic geometry. The representing object is the coordinate ring of $E$ (the ring of algebraic functions on $E$). 
     \item[4.] Let $U$ be the forgetful functor from the category of fields to the category of integral domains. \begin{enumerate}[label=(\roman*)]
-        \item Show that sending an integral domain to its field of fractions is a functor $F$ from the category of integral domains to fields.
+        \item Show that sending an integral domain to its field of fractions is a functor $F$ from the category of integral domains to fields. 
+        
+        Let $R$ be an integral domain with $1$ and let $\Frac(R)$ be its field of fractions. Given a homomorphism of integral domains $\phi\colon R\to S$, extend $\varphi$ into a map $\Phi\colon \Frac{R} \to \Frac{S}$ by defining it in the natural way: Given an element $a/b\in \Frac{R}$, $\Phi(a/b) = \phi(a)/\phi(b)$ and $\Phi$ is well defined because $\phi$ is a ring homomorphism. The associativity axioms follow from the associativity of integral domain homomorphisms and we can use the identity maps on these rings to obtain the identity maps on the corresponding field of fractions.
         \item Prove that $F$ and $U$ are adjoint functors. Which is the left one?
-    \end{enumerate} Not done.
+        
+        $F$ is left adjoint to $U$. We check that $\text{Field}(F(R), K)\cong \text{Ring}(R,U(K))$: Every field homomorphism of an integral domain's field of fractions contains the data needed to define the corresponding ring homomorphism (look at the image of $a/1$ for each $a\in R$ and check that ``restricting'' to these elements gives an integral domain homomorphism) Obtain a field homomorphism from an integral domain homomorphism in the manner described above (extend to numerator and denominator). These assignments are natural.
+    \end{enumerate}
 \end{enumerate}
 \subsection*{Feedback}
 \begin{enumerate}

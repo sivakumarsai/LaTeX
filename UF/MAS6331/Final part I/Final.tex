@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\headheight=13.6pt
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6331 Algebra}
+\fancyhead[C]{Final}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Artin-Schreier Extensions} \begin{enumerate}[label=(\alph*)]
+    \item We check that $f(x) = x^p-x-a$ is separable over $F$: its formal derivative is $-1$, so it must be separable with $n$ distinct roots. It follows that the splitting field $K$ for $f(x)$ is a Galois extension of $F$. It suffices to find $n$ distinct automorphisms of $\Gal(K/F)$ and determine that this group is cyclic.
+    
+    Let $\theta$ denote a root of $f(x)$. If $\theta$ is in $F$, we will see that the splitting field is $F$. 
+    
+    First see that $\theta+k$ for $k= 1,\dots,p-1$ are distinct roots of $f(x)$: We have $(\theta+1)^p-(\theta+1)-a = \theta^p+1^p-\theta-1-a = \theta^p-\theta-a = 0$ (Frobenius), by induction it follows the above elements are the $p$ distinct roots as desired. So if $\theta\in F$, then all the roots of $f(x)$ are in $F$ so that the splitting field is $F$ itself. So we consider the case when $\theta\not\in F$.
+    
+    Observe that the map $\sigma\colon K\to K$ which is the identity on $F$ and maps $\theta$ to $\theta+1$ is an automorphism of $K$ fixing $F$ since it is invertible (the two sided inverse is of course the map that fixes $F$ and sends $\theta$ to $\theta-1$) and permutes roots of $f(x)$. By taking powers, we obtain $p$ distinct automorphisms in $\Gal(K/F)$, and it follows that $\Gal(K/F)$ is cyclic of order $p$.
+    \item View $\sigma,\sigma^2,\dots,\sigma^{p-1},\sigma^p = \id_K$ as characters $K^\times\to K^\times$. It was already shown that characters are linearly independent (here over $K$) as functions, so that $\Tr \colon \id_K + \sigma + \cdots + \sigma^{p-1}$ is not the zero function on $K^\times$, so there is a nonzero $\theta\in K$ such that $\Tr(\theta)\neq 0$.
+    \item Observe that $\sigma\Tr(\theta) = \sigma\theta + \cdots + \sigma^p\theta = \Tr(\theta)$ since $\sigma^p = \id_K$. In particular this shows that $\Tr$ maps into $F$ since $\sigma$ fixes only the elements in $F$.
+    
+    Take $\alpha = (1/\Tr(\theta))\sum_{i=1}^{p-1}(\sum_{j=0}^{i-1}\sigma^j\beta)\sigma^i\theta$. We have \[\sigma\alpha = \sigma\sbr{\frac{1}{\Tr(\theta)}\sum_{i=1}^{p-1}\br{\sum_{j=0}^{i-1}\sigma^j\beta}\sigma^i\theta} = \frac{1}{\Tr(\theta)}\sum_{i=1}^{p-1}\br{\sum_{j=0}^{i-1}\sigma^{j+1}\beta}\sigma^{i+1}\theta,\] so that \begin{align*}
+        \alpha-\sigma\alpha &= \sbr{\frac{1}{\Tr(\theta)}\sum_{i=1}^{p-1}\br{\sum_{j=0}^{i-1}\sigma^j\beta}\sigma^i\theta} - \sbr{\frac{1}{\Tr(\theta)}\sum_{i=1}^{p-1}\br{\sum_{j=0}^{i-1}\sigma^{j+1}\beta}\sigma^{i+1}\theta}\\
+        &= \frac{1}{\Tr(\theta)}\big[\beta\sigma\theta + (\beta + \sigma\beta)\sigma^2\theta + \cdots + (\beta + \sigma\beta + \cdots +\sigma^{p-2}\beta)\sigma^{p-1}\theta \\
+        &\quad\quad\quad\, -(\sigma\beta)\sigma^2\theta - \cdots-(\sigma\beta + \sigma^2\beta + \cdots + \sigma^{p-2}\beta)\sigma^{p-1}\theta-(\sigma\beta + \sigma^2\beta + \cdots + \sigma^{p-1}\beta)\theta\big]\\
+        &= (\beta\Tr(\theta))/\Tr(\theta) = \beta
+    \end{align*} since $-(\sigma\beta + \sigma^2\beta + \cdots + \sigma^{p-1}\beta) =\beta$ by assumption.
+    \item Let $\sigma$ generate $\Gal(K/F)$. We have that $\Tr(-1) = -1 + \cdots + -1 = -p = 0$ since $\sigma$ fixes $F$. Then by applying part (c) we have that $-1 = \alpha - \sigma\alpha$ for some $\alpha \in K$; in particular this $\alpha$ could not be in $F$ since $\sigma$ fixes $F$. It follows that $\sigma\alpha = \alpha + 1$. By applying $\sigma$ iteratively to $\alpha$ we obtain $p$ distinct elements of $K$, $\alpha + k$ for $k = 0,\dots,p-1$. Then consider $g(x) = \prod_{k=0}^{p-1}(x-(\alpha+k))$, which is in $F[x]$ since $\sigma$ (extended to a map on $F[x]$) fixes $g(x)$ as it cycles the roots $\alpha + k $. (The constant term is $\prod_{k=0}^{p-1}(\alpha+k)\in F$).
+    
+    From part (a), we saw that if $\theta$ was a root of $f(x) = x^p-x-a$ for some given $a\in F$, that $\theta+k$ for $k = 0,\dots,p-1$ form the $p$ distinct roots of $f(x)$. It follows that $\prod_{k=0}^{p-1}(x-(\theta + k)) = x^p-x-a$, so that $a = \prod_{k=0}^{p-1}(\theta +k)$. It follows then that $g(x) = \prod_{k=0}^{p-1}(x-(\alpha+k))$ is equal to $x^p-x-\prod_{k=0}^{p-1}(\alpha+k)$ so that $K =  F(\alpha,\dots,\alpha+p-1)$ is the splitting field of $g(x) = x^p-x-\prod_{k=0}^{p-1}(\alpha+k)$ as desired.
+    %It seems difficult to try to expand $g(x) = \prod_{k=0}^{p-1}(x-(\alpha+k))$ to show that this is equal to $x^p-x-a$ for some $a\in F$, and the approach to show that $g(x)$ has the same roots as $x^p-x-\prod_{k=0}^{p-1}(\alpha+k)$ (because they are both monic they would be equal) also seems difficult, since I would have to show that $\alpha^p-\alpha - \prod_{k=0}^{p-1}(\alpha+k) = 0$. I do not know a good way to show that $K = F(\alpha,\dots,\alpha+p-1)$ is the splitting field for $x^p-x-a$ for some $a\in F$ without getting into some difficult combinatorial argument that I don't think I could carry out correctly. Perhaps I am missing something obvious involving the characteristic which would help in this approach, but
+\end{enumerate}
+\subsection*{Direct Limits} \begin{enumerate}[label=(\alph*)]
+    \item A diagram of shape $I$ is a functor $F\colon I\to \mathcal{C}$, and for each $i\in I$ let $F(i) = X_i\in \mathcal{C}$ and let $F(i\leq j) = f_{i,j}\colon X_i\to X_j$ such that $f_{i,i} = \id_{X_i}$, if $i\leq j\leq k$ then $f_{j,k}\circ f_{i,j} = f_{i,k}$, and for any $a,b\in I$ there exists $u\in I$ such that $a\leq u$ and $b\leq u$ so that there exists $f_{a,u},f_{b,u}$.
+    
+    The direct limit is a colimit of this diagram; that is, it is an object $L$ with maps $g_{i}\colon X_i\to L$ such that for any map $f_{i,j}\colon X_i\to X_j$ we have $g_i = g_jf_{i,j}$, and for any other object $N$ with maps $n_i\colon X_i\to N$ such that for any map $f_{i,j}\colon X_i\to X_j$ we have $n_i = n_jf_{i,j}$, there exists a unique morphism $h\colon L\to N$ such that $hg_i = n_i$ for all $i\in I$. This is summarized in the commuting diagram below: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYX2kiXSxbMiwwLCJYX2oiXSxbMSwxLCJMIl0sWzEsMiwiTiJdLFswLDEsImZfe2ksan0iXSxbMCwyLCJnX2kiXSxbMCwzLCJuX2kiLDIseyJjdXJ2ZSI6MX1dLFsxLDMsIm5faiIsMCx7ImN1cnZlIjotMX1dLFsxLDIsImdfaiIsMl0sWzIsMywidSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo0MCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+        {X_i} && {X_j} \\
+        & L \\
+        & N
+        \arrow["{f_{i,j}}", from=1-1, to=1-3]
+        \arrow["{g_i}", from=1-1, to=2-2]
+        \arrow["{n_i}"', curve={height=6pt}, from=1-1, to=3-2]
+        \arrow["{n_j}", curve={height=-6pt}, from=1-3, to=3-2]
+        \arrow["{g_j}"', from=1-3, to=2-2]
+        \arrow["h"{pos=0.4}, dashed, from=2-2, to=3-2]
+    \end{tikzcd}\]
+    \item Let the set $L$ be given by the set of equivalence classes of $(\sqcup_{i\in I} X_i)/{\sim}$ where $x_i\in X_i \sim x_j\in X_j$ if there exists $u\in I$ with $i\leq u, j\leq u$ and $f_{i,u}x_i = f_{j,u}x_j$.
+    
+    We should check that $\sim$ is an equivalence relation. Reflexivity is clear since there does exist $u$ such that $i\leq u$ and so $f_{i,u}x_i = f_{i,u}x_i$. Symmetry is also clear since equality is symmetric. Transitivity requires a small step: Suppose $x_i\sim x_j$ and $x_j\sim x_k$ so that there exists $u_1$ with $i\leq u_1,j\leq u_1$ and $f_{i,u_1}x_i = f_{j,u_1}x_j$ and there exists $u_2$ with $f_{j,u_2}x_j = f_{k,u_2}x_k$. There exists $u_3$ with $u_1\leq u_3,u_2\leq u_3$, from which it follows that $i\leq u_3,k\leq u_3$ and \[f_{i,u_3}x_i = f_{u_1,u_3}f_{i,u_1}x_i = f_{u_1,u_3}f_{j,u_1}x_j = f_{j,u_3}x_j = f_{u_2,u_3}f_{j,u_2}x_j = f_{u_2,u_3}f_{k,u_2}x_k = f_{k,u_3}x_k.\] Thus $x_i\sim x_k$ as desired and so $\sim$ is an equivalence relation.
+
+    We show that $L$ with maps $g_i\colon X_i\to L$ given by $g_ix_i = [x_i]$ for all $i\in I$ is the direct limit of the diagram $F$ of shape $I$ in the category of sets.
+    
+    First we check that the maps $g_i$ for all $i\in I$ satisfy the desired commuting property. For $i,j\in I$ with $i\leq j$ we have $g_i = g_jf_{i,j}$: for any $x_i\in X_i$ with $i\leq j$ we show that $g_ix_i = [x_i] = [f_{i,j}x_i] = g_jf_{i,j}x_i$. There exists a $u\in I$ with $j\leq i$ so that also $i\leq u$ and $f_{i,u}x_i = f_{j,u}f_{i,j}x_i$ since $f_{j,u}f_{i,j} = f_{i,u}$. Hence $x_i\sim f_{i,j}x_i$ so that $g_ix_i= g_jf_{i,j}x_i$, and it follows that $g_i = g_jf_{i,j}$ for any $i,j\in I$ with $i\leq j$.
+
+    Now suppose that there is an object $N$ with maps $n_i\colon X_i\to N$ such that for $i,j\in I$ with $i\leq j$ we have $n_i = n_jf_{i,j}$. We show that there is a unique map $h\colon L\to N$ such that for all $i\in I$ we have $n_i = hg_i$. Define $h$ by $h[x] = n_kx$, where $i\in I$ is the unique $k$ with $x\in X_k$.
+    
+    We check that $h$ is well defined first: Let $x_i\sim x_j$ with $x_i\in X_i,x_j\in X_j$, so that there exists $u\in I$ with $i\leq u,j\leq u$ and $f_{i,u}x_i = f_{j,u}x_j$. But $n_i = n_uf_{i,u}$ and $n_j = n_uf_{j,u}$ so that from $f_{i,u}x_i = f_{j,u}x_j$ we have $n_uf_{i,u}x_i = n_ix_i = h[x_i] = h[x_j] = n_jx_i = n_uf_{j,u}x_j$. It follows $h$ is well defined.
+
+    The map $h$ defined above also has the desired commuting property, that for all $i\in I$ we have $hg_i = n_i$: for $x_i\in X_i$, $hg_ix_i = h[x_i] = n_ix_i$. The map $h$ is also unique by construction: If there was another (well defined) map $h^\prime$ which could be used in place of $h$, then for any $[x]\in L$ we have $h^\prime[x] = h^\prime g_ix = n_ix = h[x]$ for some $i\in I$ ($i\in I$ such that $x\in X_i$). Then $h^\prime = h$, so that $h$ is unique. It follows that $L$ satisfies the universal property for being the direct limit of the diagram of shape $I$ in the category of sets.
+    \item The direct limit of the groups $\mathbb{Z}/n\mathbb{Z}$ in the category of groups is given by some kind of amalgamated free product of the groups $\mathbb{Z}/i\mathbb{Z}$ for $i\in I$; we will see that this group is just the multiplicative group of (all) roots of unity.
+    
+    At the expense of taking up more space we use the multiplicative cyclic groups $\mu_n = \cbr{\exp(2\pi i a/n)\mid a\in \mathbb{Z}}\cong \mathbb{Z}/n\mathbb{Z}$ with maps $f_{n,m}\colon \mu_n\to \mu_m$ given by sending $\exp(2\pi i a/n)$ to $\exp(2\pi i (am/n)/m)$ whenever $n$ divides $m$. To me it is more clear this way.
+
+    Consider the group $L = (\ast_{i\in I}\mu_n)/N$ where $N$ is the normal closure of the set \[\bigcup_{n,m\in I}\{\exp(2\pi i a/n)\exp(2\pi i (-b)/m)\mid a,b\in\mathbb{Z}\text{ and } na = mb \in \mathbb{Z}/(nm)\mathbb{Z}\}.\] This is natural since if $nm\mid (na -mb)$ then $\exp(2\pi i a/n)\exp(2\pi i (-b)/m) = \exp(2\pi i (na-mb)/nm)$ is $1$ over $\mathbb{C}$. I will suppress the use of brackets for denoting equivalence classes in the quotient group for this reason. I will also use the multiplication given in $\mathbb{C}$ to reduce words in this group to single elements since the same formula holds due to the construction of $N$. Observe also that $L$ is Abelian since the product of any two elements $\exp(2\pi i a/n)\exp(2\pi i b/m)$ can be promoted to a product of elements in $\mu_{nm}$, which is Abelian.
+
+    We check that $L$ satisfies the universal property for being the direct limit: Let the maps $g_i\colon \mu_i\to L$ be given by the usual inclusion: $\exp(2\pi i a/i)\mapsto \exp(2\pi i a/i)$ and note that they commute with the maps $f_{n,m}$ in the right way since $\exp(2\pi i a/i) = \exp(2\pi i (ja/i)/j)$ in $L$ due to the construction of $N$.
+    
+    Let $M$ with maps $m_i$ be any other cocone of our diagram of $\mu_i$ for $i\in I$. The map $h\colon L\to M$ is the map taking \[\prod_{k=1}^K\exp\br{2\pi i \frac{a_k}{n_k}} = \exp\br{2\pi i\frac{\sum_{k=1}^Ka_k\frac{\lcm(n_1,\dots,n_K)}{n_k}}{\lcm(n_1,\dots,n_K)}}\] to $m_{\lcm(n_1,\dots,n_K)}\br{\sum_{k=1}^Ka_k\frac{\lcm(n_1,\dots,n_K)}{n_k}}$. (Any well definedness checks would also work out since the $m_i$ also commute with the $f_{i,j}$ in the right way when $i\mid j$.) This map commutes correctly with the $g_i$ and $m_i$: for some fixed $i\in I$ with $\exp(2\pi i a/i)\in \mu_i$ we have that $hg_i\exp(2\pi i a/i)= m_i\exp(2\pi i a/i)$ as expected. By construction the map is unique (Any other map $h^\prime\colon L\to M$ must agree with $h$ everywhere due to the commuting relation $h^\prime$ must satisfy: $h^\prime \exp(2\pi i a/i) = h^\prime g_i\exp(2\pi i a/i) = m_i\exp(2\pi i a/i) = h\exp(2\pi i a/i)$.)
+
+    It follows that $L$ is the direct limit of the groups $\mathbb{Z}/n\mathbb{Z}$ with maps $f_{i,j}$ whenever $i\mid j$ up to isomorphism. [The group $L$ may be viewed as the multiplicative group of roots of unity given by $\cbr{\exp(2\pi i a/n)\mid a,n\in \mathbb{Z}}$ contained in $S^1\subset \mathbb{C}$ where the product is the usual one taken in $\mathbb{C}$.]
+    
+    %Consider the group $L = (\ast_{i\in I}\mathbb{Z}/i\mathbb{Z})/N$ where $N$ is the normal closure of the set $\cup_{n,m\in I}\cbr{a(-b)\mid a\in\mathbb{Z}/n\mathbb{Z}\subset \mathbb{Z}/(nm)\mathbb{Z}, b\in \mathbb{Z}/m\mathbb{Z}\subset \mathbb{Z}/(nm)\mathbb{Z}\text{ and } na = mb \in \mathbb{Z}/(nm)\mathbb{Z}}$, and let $\mathbb{Z}/i\mathbb{Z}$ embed into $L$ by maps $g_i\colon \mathbb{Z}/i\mathbb{Z}\to L$ where $g_ia = a$.
+\end{enumerate}
+\subsection*{Using Tensor Products in Linear Algebra} \begin{enumerate}[label=(\alph*)]
+    \item A natural map $\varphi$ from $V^\ast\otimes_F W\to \Hom_F(V,W)$ is the map taking $\sum_{i = 1}^N c_i f_i\otimes w_i$ to $\sum_{i=1}^N c_if_i(\cdot)w_i$ and note that because $f\colon V\to F$ is linear, $\sum_{i=1}^N c_if_i(\cdot)w_i\colon V\to W$ is also linear so that it is an element of $\Hom_F(V,W)$. We show that the assignment is an isomorphism when $W$ has finite dimension by checking it is linear, injective, and surjective.
+    
+    The above assignment is linear by construction: $\varphi[A\sum_{i = 1}^N c_i f_i\otimes w_i + B\sum_{j = 1}^M d_j g_j\otimes v_j] = A\sum_{i = 1}^N c_i f_i(\cdot) w_i + B\sum_{j = 1}^M d_j g_j(\cdot) v_j = A\varphi[\sum_{i = 1}^N c_i f_i\otimes w_i] + B\varphi[\sum_{j = 1}^M d_j g_j\otimes v_j]$.
+    
+    The map $\varphi$ is injective as it has trivial kernel. Let $\cbr{w_i}_{i=1}^N$ be a basis for $W$. Suppose $\varphi[\sum_{k = 1}^K c_k f_k\otimes v_k] = \sum_{k = 1}^K c_k f_k(\cdot) v_k= 0$, with $v_k = \sum_{i= 1}^N d_{ki}w_i\in W$. We first rewrite $\sum_{k = 1}^K c_k f_k\otimes v_k$ as $\sum_{i = 1}^N (\sum_{k=1}^K d_{ki}c_kf_k)\otimes w_i$ so that $\sum_{i = 1}^N (\sum_{k=1}^K d_{ki}c_kf_k(\cdot)) w_i = 0$ as a linear transformation $V\to W$. It follows by the linear indepedence of the $w_i$ that for each $1\leq i\leq N$, $(\sum_{k=1}^K d_{ki}c_kf_k(\cdot)) = 0$ as elements of $V^\ast$. It follows that $\sum_{k = 1}^K c_k f_k\otimes v_k=\sum_{i = 1}^N (\sum_{k=1}^K d_{ki}c_kf_k)\otimes w_i = 0\in V^\ast\otimes_F W$. 
+
+    The map $\varphi$ is surjective. Given any linear transformation $T\colon V\to W$ and fixing a basis $\cbr{w_i}_{i=1}^N$ for $W$, we find a preimage. Observe that $\pi_i\circ T$ for $1\leq i\leq N$ where $\pi_i$ is the projection onto the $i$-th component (it extracts the $i$-th coefficient in the expansion of $w\in W$ as a linear combination of basis vectors) is a linear functional in $V^\ast$. Furthermore, observe that $T = \sum_{i = 1}^N (\pi_i\circ T)(\cdot) w_i$ since the $w_i$ form a basis for $W$. It follows that $\sum_{i = 1}^N (\pi_i\circ T)\otimes w_i$ is a preimage for $T$ under $\varphi$.
+
+    It follows that $\varphi$ is an isomorphism of $V^\ast\otimes_F W$ with $\Hom_F(V,W)$.
+    \item For a basis element $e_k$, we have $Ae_k = \sum_{i=1}^n a_{ik}e_i = \sum_{i=1}^n a_{ik}e^\ast_k(e_k)e_i$ (the $k$-th column of $A$). By linearity, it follows that for any $v\in V$ with $v = \sum_{k=1}^nc_kv_k$, \[Av = \sum_{k=1}^n c_k Ae_k = \sum_{k=1}^n c_k \br{\sum_{i=1}^n a_{ik}e^\ast_k(e_k)e_i} = \sum_{1\leq i,k\leq n} a_{ik}e^\ast_k(c_ke_k)e_i = \sum_{1\leq i,k\leq n} a_{ik}e^\ast_k(v)e_i\] since $e^\ast_k(e_i) = \delta_{ki}$ ($1$ if $i=k$ and $0$ otherwise). It follows that \[A = \sum_{1\leq i,k\leq n} a_{ik}e^\ast_k(\cdot)e_i = \varphi\sbr{\sum_{1\leq i,k\leq n} a_{ik}(e^\ast_k\otimes e_i)}\] so that under some fixed bases $\cbr{e_i},\cbr{e_i^\ast}$ for $V,V^\ast$ respectively, we have $\varphi^{-1}T = \sum_{1\leq i,k\leq n} a_{ik}(e^\ast_k\otimes e_i)$. If we change the bases to a different set of bases, the matrix $A$ for $T$ becomes another matrix $A^\prime$ and we should expect that applying the right change of base matrices to $\cbr{e_i},\cbr{e_i^\ast}$, we find that the preimage $\sum_{1\leq i,k\leq n} a_{ik}(e^\ast_k\otimes e_i)$ changes in a way that the coefficients $a_{ik}$ become the entries of the new matrix $A^\prime$.
+    \item Define $\Tr\colon \Hom_F(V,V)\to F$ by $\Tr = \Phi\varphi^{-1}$ where $\Phi\colon V^\ast\otimes_F V\to F$ is the linear map 
+\end{enumerate}
+\end{document}

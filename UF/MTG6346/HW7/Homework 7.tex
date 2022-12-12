@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6346 Topology}
+\fancyhead[C]{Homework 7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Let $\Top$ denote the category of topological spaces and continuous maps, $\catname{Ch}$ the category of chain complexes and chain maps, and $\catname{grAb}$ the category of graded Abelian groups. A \textit{graded Abelian group} is a sequence $\cbr{A_i}$ of Abelian groups indexed by the integers. Morphisms of graded Abelian groups are sequences of group homomorphisms indexed by the integers. \begin{enumerate}
+        \item Show that singular chains give a functor $C_\ast\colon \Top\to \catname{Ch}$. \begin{proof}
+            To each topological space $X$ we assign it the chain complex $C_\ast(X)$ where $C_n(X)$ is the free Abelian group on the set of singular $n$-simplices $\sigma\colon \Delta^n\to X$ (continuous maps) and the boundary maps $\partial_n\colon C_n(X)\to C_{n-1}(X)$ are given by the usual alternating sum: $\partial_n\sigma = \sum_{i = 0}^n (-1)^i\sigma d_i^n$. In particular we saw that the composition $\partial_n\partial_{n+1}$ is the zero map. 
+
+            To each continuous map of topological spaces $f\colon X\to Y$ we assign it the chain map $f_{\#}$: for each of the $C_n(X)$ in $C_\ast(X)$, $f_{\#}= f_n\colon C_n(X)\to C_n(Y)$ is defined by its action on basis elements, which is to take $\sigma\colon \Delta^n\to X$ and send it to $f\sigma$. The relation $\partial_n f_{n} = f_{n-1}\partial_n$ comes from the definition of $\partial_n$ (to precompose with $d_i^n$) in this setting.
+
+            It is clear that the identity map on a topological space $X$ is sent to the identity chain map on $C_\ast(X)$ since postcomposing $\sigma$ with $\id_X$ is equivalent to $\sigma$ for all $\sigma\colon \Delta^n\to X$ (and of course all the squares commute in the diagram obtained). Similarly, if $f\colon X\to Y$ and $g\colon Y\to Z$ then for each $n$, $(gf)_{\#}\colon C_n(X)\to C_n(Z)$ is the composition $g_{\#}f_{\#}$: $(gf)_{\#}\sigma = (gf)\sigma = g(f\sigma) = g_{\#}(f_{\#}\sigma)$ as expected (that all squares in the resulting diagram commute is also immediate). 
+
+            It follows that $C_\ast$ is a functor.
+        \end{proof}
+        \item Show that homology gives a functor $H\colon \catname{Ch}\to \catname{grAb}$. \begin{proof}
+            A chain complex $C_\ast$ with modules $C_n$ and boundary maps $\partial_n$ is sent to the collection of Abelian groups $\cbr{H_n^C = \ker\partial_n/\im\partial_{n+1}}$, and chain maps $f\colon C_\ast\to D_\ast$ are sent to their induced maps on homology groups $f_\ast = f_n\colon H_n^C\to H_n^D$ by restricting to each of the kernels $\ker\partial_n$ and images $\im\partial_{n+1}$ and passing to the quotient.
+
+            Naturally the identity chain map on a chain complex $C_\ast$ induces the identity map on its homology groups since the action on each $C_n$, and hence on all subgroups of $C_n$, is the identity. If $f\colon C_\ast\to D_\ast$ and $g\colon D_\ast\to E_\ast$ are chain maps, their composition induces a map $(gf)_\ast\to H_n^C\to H_n^E$ on homology which by construction will act by sending an element $[a]$ to $[gfa] = g(f[a])$, which is the action of the composition $g_\ast f_\ast$.
+
+            It follows homology is a functor.
+        \end{proof}
+        \item Show that the composition of two functors is a functor. It follows that $H_\ast\coloneqq H\circ C_\ast$ is a functor $H_\ast\colon \Top\to \catname{grAb}$. \begin{proof}
+            Given functors $F\colon \mathcal{C}\to \mathcal{D}$ and $G\colon \mathcal{D}\to \mathcal{E}$, it is clear their composition sends objects to objects and morphisms to morphisms. Since $F,G$ take identity morphisms to identity morphisms, $GF$ takes identity morphisms to identity morphisms. Given morphisms $f\colon X\to Y$, $g\colon Y\to Z$ in $\mathcal{C}$, $F$ preserves composition, and then $G$ will also on $F(gf) = Fg\circ Ff\colon FX\to FY$ so that $G(Fg\circ Ff) = GFg\circ GFf = GF(gf)\colon GFX\to GFY$ as desired. Hence the composition of functors is a functor.
+
+            As a corollary, it follows the composition of functors $H_\ast\coloneqq H\circ C_\ast$ is a functor.
+        \end{proof}
+    \end{enumerate}
+    \item Let $C = \cbr{C_n,\partial_n}$ be a chain complex. Define $\tilde{C}_n = C_n\oplus C_{n+1}$ and $\tilde{\partial}_n\colon \tilde{C}_n\to \tilde{C}_{n-1}$ by $\tilde{\partial}_n(c,c^\prime) = (\partial_n c, \partial_{n+1}c^\prime + (-1)^n c)$, for $c\in C_n$ and $c^\prime\in C_{n+1}$. \begin{enumerate}
+        \item Prove that $\tilde{C} = \cbr{\tilde{C}_n,\tilde{\partial}_n}$ is a chain complex and that it is \textit{acyclic} (i.e., its homology groups are all zero). \begin{proof}
+            We show that the composition $\tilde{\partial}_{n-1}\tilde{\partial}_n$ is the zero map. For any $(c,c^\prime)\in \tilde{C}_n$ we have $\tilde{\partial}_{n-1}\tilde{\partial}_n(c,c^\prime) = \tilde{\partial}_{n-1}(\partial_n c, \partial_{n+1}c^\prime + (-1)^n c) = (\partial_{n-1}\partial_n c, \partial_n\partial_{n+1}c^\prime + (-1)^n \partial_n c + (-1)^{n-1}\partial_n c) = (0,0+0) = 0$ since $C$ is a chain complex, as desired. Thus $\tilde{C}$ is a chain complex.
+
+            We show that chain complex $\tilde{C}$ is exact at each $\tilde{C}_n$; in particular it suffices to show that $\ker\tilde{\partial}_n\subseteq \im\tilde{\partial}_{n+1}$ so that the homology at each $n$ is trivial. Given $(c,c^\prime)\in \ker\tilde{\partial}_n$ we have $\tilde{\partial}_n(c,c^\prime) = (\partial_n c, \partial_{n+1}c^\prime + (-1)^n c) = (0,0)$. Thus $c = \partial_{n+1} (-1)^{n+1}c^\prime$. 
+            
+            Then observe that $\tilde{\partial}_{n+1}((-1)^{n+1}c^\prime,0) = (\partial_{n+1}(-1)^{n+1}c^\prime, \partial_{n+2}0 + (-1)^{n+1}(-1)^{n+1}c^\prime) = (c,c^\prime)$. It follows that $\ker\tilde{\partial}_n\subseteq \im\tilde{\partial}_{n+1}$; hence all homology groups are zero and $\tilde{C}$ is acyclic as desired.
+        \end{proof}
+        \item Prove that $\tilde{C}$ is \textit{contractible} (i.e., the identity map on $\tilde{C}$ is chain homotopic to the zero map, which sends everything to zero). \begin{proof}
+            The desired chain homotopy $s\colon \id_{\tilde{C}}\to 0$ is given by the sequence of maps $s_n\colon \tilde{C}_n\to \tilde{C}_{n+1}$ with $s_n(c,c^\prime) = ((-1)^nc^\prime,0)$ (and $s_n$ is clearly a homomorphism for all $n$):
+
+            For $(c,c^\prime)\in \tilde{C}_n$ we have $\tilde{\partial}_{n+1}s_n(c,c^\prime) + s_{n-1}\tilde{\partial}_n(c,c^\prime) = (\partial_{n+1}(-1)^nc^\prime, (-1)^{n+1}(-1)^nc^\prime) + (\partial_{n+1}(-1)^{n-1}c^\prime + (-1)^{n-1}(-1)^n c,0) = -(c,c^\prime) = 0-\id_{\tilde{C}}(c,c^\prime)$. Thus the identity map on $\tilde{C}$ is chain homotopic to the zero map, and so $\tilde{C}$ is contractible as desired.
+        \end{proof}
+    \end{enumerate}
+    \item Prove that the chain complex $\cdots 0\to 0\to \mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z}\xrightarrow{\mathrm{mod}\ 2} \mathbb{Z}/2\mathbb{Z}\to 0\to 0\cdots$ is acyclic but not contractible.\begin{proof}
+        Observe that the image of the multiplication by two map is equal to the kernel of the quotient map, the even integers. Also observe that all but one (maybe three if it's less immediate) of the homology groups are easily seen to be zero. [The homology groups $\ker (\mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z})/\im (0\to \mathbb{Z}) = 0/0$ and $\ker (\mathbb{Z}/2\mathbb{Z}\to 0)/\im (\mathbb{Z}\xrightarrow{\mathrm{mod}\ 2} \mathbb{Z}/2\mathbb{Z}) = (\mathbb{Z}/2\mathbb{Z})/(\mathbb{Z}/2\mathbb{Z})$ are zero.] The homology group $\ker(\mathbb{Z}\xrightarrow{\mathrm{mod}\ 2} \mathbb{Z}/2\mathbb{Z})/\im(\mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z}) = 2\mathbb{Z}/2\mathbb{Z}$ is zero. Hence the above chain complex is acyclic.
+
+        Observe first that within the chain complex is a short exact sequence $0\to \mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z}\xrightarrow{\mathrm{mod}\ 2} \mathbb{Z}/2\mathbb{Z}\to 0$ which is \textit{not} split since the only homomorphism $\mathbb{Z}/2\mathbb{Z}\to \mathbb{Z}$ is the zero homomorphism. [The order of $[1]$ is $2$ so the only element it could be sent to in $\mathbb{Z}$ is zero.] Suppose we had a chain homotopy $s\colon \id\to 0$. Then $2s_{\mathbb{Z}} + 0(\mathrm{mod}\ 2) = 0-\id$ so that $\id = 2(-s_{\mathbb{Z}})$. Thus $-s_\mathbb{Z}$ is a homomorphism such that $\cdot 2\circ -s_\mathbb{Z}$ is the identity on $\mathbb{Z}$, which implies that the short exact sequence above splits, a contradiction. Hence the chain complex could not be contractible.
+    \end{proof}
+    \item Let $C = \cbr{C_n,\partial_n}$ be a chain complex that is \textit{nonnegative} (i.e., $C_n = 0$ for $n< 0$) and \textit{free} (i.e., $C_n$ is a free Abelian group for all $n$). Prove that if $C$ is acyclic then it is contractible. \begin{proof}
+        First observe that by exactness we obtain the short exact sequences \[0\hookrightarrow\ker\partial_n\hookrightarrow C_n\twoheadrightarrow \im\partial_n\twoheadrightarrow 0\] for all $n$. These short exact sequences split since we can find a section for $\partial_n$ as it is surjective (has a right inverse) onto $\im\partial_n$. It follows that there is an isomorphism of $C_n$ with $\ker\partial_n\oplus \im\partial_n$. 
+
+        Then define $s_n\colon C_n\cong \ker\partial_n\oplus \im\partial_n\to C_{n+1}\cong \ker\partial_{n+1}\oplus \im\partial_{n+1}$ by defining a map on generators of these groups (as they are all free $\mathbb{Z}$-modules): Let $s_n(k,a) = (0,-k)$ so that $\partial_{n+1}s_n + s_{n-1}\partial_n = -\id_{C_n}$. We have for $(k,a)\in C_n$ that $\partial_{n+1}s_n(k,a) + s_{n-1}\partial_n(k,a) = \partial_{n+1}(0,-k) + s_{n-1}(a,0) = (-k,0) + (0,-a) = -(k,a) = -\id_{C_n}(k,a)$ as desired. Thus with $s\colon \id_{C}\to 0$ given by $s_n$ as above, we have the desired chain homotopy and $C$ is contractible.
+        
+        We did not need the nonnegativity of $C$.
+        %Furthermore by defining a map $\gamma\colon C_n\to \ker\partial_{n+1}\oplus \im\partial_n$ by $\gamma c = (0,\partial_n c)$ we have that the short exact sequences all split, since $\gamma\partial_{n+1} = \partial_{n+1}$ and $\partial_n = \pi_2\gamma$ (where $\pi_2$ is projection onto the second coordinate) and $\gamma$ is an isomorphism since it has 
+        
+        %Suppose that $C_n\cong \mathbb{Z}^{k_n}$ for $k_n\in \mathbb{Z}_+$ for $n\geq 0$ and $C_n = 0$ for $n<0$. We define a chain homotopy $s\colon \id_C\to 0$ by defining the homomorphisms $s_n\colon C_n\to C_{n+1}$ inductively. Since $\im\partial_1 = \ker\partial_0 = C_0$, it follows that $\partial_1$ is surjective and hence has a right inverse $g$. Define $s_0$ to be $-g$ so that $\partial_1s_0 = -\id_{C_0}$ ($s_{-1}$ is the zero map). Then 
+    \end{proof}
+\end{enumerate}
+\end{document}
