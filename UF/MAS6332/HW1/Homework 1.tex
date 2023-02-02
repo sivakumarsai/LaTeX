@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (10.5.7) Let $A$ be a nonzero finite Abelian group. \begin{enumerate}
+        \item Prove that $A$ is not a projective $\mathbb{Z}$-module. \begin{proof}
+            Since $A$ is finite, we have that $\abs{A}A = 0$ so that $A$ has torsion. By the decomposition theorem for finitely generated Abelian groups, we can write $A = \mathbb{Z}/n_1\mathbb{Z}\times \mathbb{Z}/n_2\mathbb{Z}\times\cdots\times \mathbb{Z}/n_s\mathbb{Z}$ for integers $n_i$ with $n_i\mid n_{i+1}$. Then we can form the exact sequence \[0\to \mathbb{Z}^s\xrightarrow{\cdot n_1\times \cdot n_2\times\cdots\times \cdot n_s}\mathbb{Z}^s\xrightarrow{\pi_1\times \pi_2\times\cdots\times\pi_s} A\to 0\] where $\cdot n_1\times \cdot n_2\times\cdots\times \cdot n_s$ is multiplication by $n_i$ in the $i$-th component and $\pi_i$ is the projection map $\mathbb{Z}\to\mathbb{Z}/n_i\mathbb{Z}$. (This is some kind of ``direct sum'' of short exact sequences I guess.) But this short exact sequence cannot split because any map $A\to\mathbb{Z}^s$ must be the zero map since every element of $A$ has finite order. Therefore there cannot be a section $s\colon A\to \mathbb{Z}^s$ with $(\pi_1\times \pi_2\times\cdots\times\pi_s)\circ s = \id_A$. It follows that $A$ is not projective (not every short exact sequence $0\to L\to M\to A\to 0$ splits).
+        \end{proof}
+        \item Prove that $A$ is not an injective $\mathbb{Z}$-module. \begin{proof}
+            Since $A$ is finite, we have that $\abs{A}A = 0$ so that $A$ has torsion. Thus $A$ cannot be divisible, so by Baer's criterion $A$ cannot be injective.
+        \end{proof}
+    \end{enumerate}
+    \item (10.5.20) Prove that the polynomial ring $R[x]$ in the indeterminate $x$ over the commutative ring $R$ is a flat $R$-module. \begin{proof}
+        %We show that given an injective map $\psi\colon L\to M$ the map $1\otimes \psi\colon R[x]\otimes_R L\to R[x]\otimes_R M$ is also injective. Let $\sum_{i=1}^n \br{\sum_{j=1}^{k_i} a_{ij} x^j\otimes \ell_i } $ be an element of $\ker 1\otimes \psi$. Then $(1\otimes \psi)$
+        The polynomial ring $R[x]$ is isomorphic to $\bigoplus_{i=0}^\infty R$ by the isomorphism taking $\sum_{j=0}^n a_jx^j$ to $(a_j)_{j=0}^\infty$ where $a_j = 0$ for $j >n$ (the map is an $R$-module homomorphism with inverse taking the sequence $(A_j)_{j=0}^\infty$ with finite support to $\sum_{j=0}^N A_jx^j$ where $A_j = 0$ for $j>N$). 
+        
+        Then for any $R$-module $N$, the tensor product $R[x]\otimes_R N$ is isomorphic to $(\bigoplus_{i=0}^\infty R)\otimes_R N$. Since tensor products distribute over direct sums, $(\bigoplus_{i=0}^\infty R)\otimes_R N$ is isomorphic to $\bigoplus_{i=0}^\infty (R\otimes_R N)$, which is isomorphic to $\bigoplus_{i=0}^\infty N$ since $R\otimes_R N\cong N$. 
+        
+        It follows that an isomorphism $\phi_N$ from $R[x]\otimes_R N$ to $\bigoplus_{i=0}^\infty N$ is given by taking the simple tensors $(\sum_{j=0}^n a_jx^j)\otimes c$ to $(a_j c)_{j=0}^\infty$ where $a_j = 0$ for $j>n$, and extending by linearity. The inverse map is given by taking the sequence $(a_j)_{j=0}^\infty$ with finite support to $\sum_{j=0}^n x^j\otimes a_j$ where $a_j = 0$ for $j>n$.
+
+        We show that given an injective map $\psi\colon L\to M$ the map $1\otimes \psi\colon R[x]\otimes_R L\to R[x]\otimes_R M$ is also injective. The map $1\otimes \psi$ is injective if and only if the map $\oplus_{i=0}^\infty \psi$, which takes $(\ell_j)_{j=0}^\infty$ to $(\psi(\ell_j))_{j=0}^\infty$, is injective. This is because for isomorphisms $\phi_L\colon R[x]\otimes_R L \to \bigoplus_{i=0}^\infty L$ and $\phi_M\colon R[x]\otimes_R M \to \bigoplus_{i=0}^\infty M$ defined in a similar manner to $\phi_N$ as above, we have $1\otimes\psi = \phi_M^{-1}\circ \oplus_{i=0}^\infty \psi \circ \phi_L$, as the maps agree on the simple tensors: We have \begin{align*}
+            (\phi_M^{-1}\circ \oplus_{i=0}^\infty \psi \circ \phi_L)((\sum_{j=0}^n a_jx^j\otimes \ell)) &= (\phi_M^{-1}\circ \oplus_{i=0}^\infty \psi)((a_j\ell)_{j=0}^\infty) \\
+            &= \phi^{-1}(a_j\psi(\ell))_{j=0}^\infty \\
+            &= \sum_{j=0}^\infty(x^j\otimes a_j\psi(\ell)) \\
+            &= (\sum_{j=0}^na_jx^j)\otimes \psi(\ell) \\
+            &= (1\otimes\psi)((\sum_{j=0}^na_jx^j)\otimes \ell)
+        \end{align*} as desired. But it is evident that $\oplus_{i=0}^\infty \psi$ is injective since for $(\ell_j)_{j=0}^\infty\in \ker \oplus_{i=0}^\infty \psi$, we have $\psi(\ell_j) = 0$ for all $i\geq 0$; with $\psi$ injective it follows that every $\ell_j$ is zero as expected. Hence $1\otimes \psi$ is injective also. 
+
+        It follows that $R[x]$ is a flat $R$-module.
+    \end{proof}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (10.5.15) Let $M$ be a left $\mathbb{Z}$-module and let $R$ be a ring with $1$. \begin{enumerate}
+        \item Show that $\Hom_{\mathbb{Z}}(R,M)$ is a left $R$-module under the action $(r\varphi)(r^\prime) = \varphi(r^\prime r)$ (see Exercise 10). \begin{proof}
+            It is clear that this set is an additive group under pointwise addition and the zero map as the additive identity. What remains to see is that the action is associative: For $r,a,b\in R$, we have \[[(ab)\varphi](r) = \varphi(r(ab)) = \varphi((ra)b) = (b\varphi)(ra) = [a(b\varphi)](r)\] so that $(ab)\varphi = a(b\varphi)$ as desired. It is clear that $1_R$ has trivial action.
+        \end{proof}
+        \item Suppose that $0\to A\xrightarrow{\psi}B$ is an exact sequence of $R$-modules. Prove that if every $\mathbb{Z}$-module homomorphism $f$ from $A$ to $M$ lifts to a $\mathbb{Z}$-module homomorphism $F$ from $B$ to $M$ with $f= F\circ \psi$, then every $R$-module homomorphism $f^\prime$ from $A$ to $\Hom_{\mathbb{Z}}(R,M)$ lifts to an $R$-module homomorphism $F^\prime$ from $B$ to $\Hom_{\mathbb{Z}}(R,M)$ with $f^\prime = F^\prime\circ \psi$. [Given $f^\prime$, show that $f(a)= f^\prime(a)(1_R)$ defines a $\mathbb{Z}$-module homomorphism of $A$ to $M$. If $F$ is the associated lift of $f$ to $B$, show that $F^\prime(b)(r) = F(rb)$ defines an $R$-module homomorphism from $B$ to $\Hom_{\mathbb{Z}}(R,M)$ that lifts $f^\prime$.]\begin{proof}
+            Given $f^\prime$ as above we check that $f$ defined as above is a $\mathbb{Z}$-module homomorphism: We have $f(a+b) = f^\prime(a+b)(1_R)= [f^\prime(a)+f^\prime(b)](1_R) = f^\prime(a)(1_R)+f^\prime(b)(1_R) = f(a)+f(b)$. Then we check that $F^\prime$ defined above is an $R$-module homomorphism; that is, $F^\prime(ax+y)(r)$ agrees with $aF^\prime(x)(r) + F^\prime(y)(r)$ for all $r\in R$. Indeed, $F^\prime(ax+y)(r) = F(r(ax+y)) = F(rax)+F(ry) = F^\prime(x)(ra) + F^\prime(y)(r) = aF^\prime(x)(r) + F^\prime(y)(r)$ as expected.
+
+            Then we check that $F^\prime\circ \psi = f^\prime$; that is, for given $a\in A$, for every $r\in R$ we have $[(F^\prime\circ\psi)(a)](r) = f^\prime(a)(r)$. Indeed, $[(F^\prime\circ\psi)(a)](r) = F^\prime(\psi(a))(r) = F(r\psi(a)) = F(\psi(ra)) = f(ra) = f^\prime(ra)(1_R) = (rf^\prime(a))(1_R) = f^\prime(a)(1_R r) = f^\prime(a)(r)$ as desired.
+        \end{proof}
+        \item Prove that if $Q$ is an injective $\mathbb{Z}$-module then $\Hom_{\mathbb{Z}}(R,Q)$ is an injective $R$-module. \begin{proof}
+            Let $A$ and $B$ be $R$-modules, and let $\psi\colon A\to B$ be injective as above. Since $Q$ is an injective $\mathbb{Z}$-module it is able to lift $\mathbb{Z}$-module maps $f\colon A\to Q$ to maps $F\colon B\to Q$ as in (b). It follows by the result in (b) that $\Hom_\mathbb{Z}(R,Q)$ also has the desired lifting property, so that it is an injecive $R$-module.
+        \end{proof}
+    \end{enumerate}
+    \item (10.5.16) This exercise proves Theorem 38 that every left $R$-module $M$ is contained in an injective left $R$-module.\begin{enumerate}
+        \item Show that $M$ is contained in an injective $\mathbb{Z}$-module $Q$. [$M$ is a $\mathbb{Z}$-module --- use Corollary 37.] \begin{proof}
+            Considering $M$ as a $\mathbb{Z}$-module (an Abelian group), it follows by Corollary 37 that $M$ is contained in an injective $\mathbb{Z}$-module $Q$.
+        \end{proof}
+        \item Show that $\Hom_{R}(R,M)\subseteq\Hom_{\mathbb{Z}}(R,M)\subseteq\Hom_{\mathbb{Z}}(R,Q)$.\begin{proof}
+            Every $R$-module homomorphism is a homomorphism of $\mathbb{Z}$-modules (by forgetting the $R$-action). Since $M$ is contained in $Q$, then every $\mathbb{Z}$-module homomorphism $R\to M$ is a $\mathbb{Z}$-module homomorphism $R\to Q$ (post-compose with the inclusion map).
+        \end{proof}
+        \item Use the $R$-module isomorphism $M\cong\Hom_R(R,M)$ (Exercise 10) and the previous exercise to conclude that $M$ is contained in an injective $R$-module. \begin{proof}
+            With $R\cong \Hom_R(R,M)$* and $\Hom_R(R,M)$ contained in $\Hom_{\mathbb{Z}}(R,Q)$ with $Q$ an injective $\mathbb{Z}$-module, we have from the previous exercise that $\Hom_{\mathbb{Z}}(R,Q)$ is an injective $R$-module. Thus $M$ is contained in an injective $R$-module.
+        \end{proof}
+        * (10.5.10(b)) The isomorphism: Define $\varphi_m\in \Hom_R(R,M)$ by $\varphi_m(r) = rm$. We check that $\varphi_m$ is an $R$-module homomorphism with respect to the action given in part (a). For $a,b,c\in R$ we have $\varphi_m(ab+c) = (ab+c)m = abm+cm = \varphi_m(ab) + \varphi_m(c) = (b\varphi_m)(a) + \varphi_m(c)$ as needed. Then the map $m\mapsto \varphi_m$ is an $R$-module isomorphism of $M$ with $\Hom_R(R,M)$: We have that $ax+y\mapsto \varphi_{ax+y}$, and for any $r\in R$ we have $\varphi_{ax+y}(r) = r(ax+y) = rax+ry= \varphi_x(ra) + \varphi_y(r) = (a\varphi_x)(r) + \varphi_y(r)$, so $\varphi_{ax+y} = a\varphi_x + \varphi_y$. The map is injective: If we have $x\mapsto \varphi_x$ with $\varphi_x(r) = rx = 0$ for all $r\in R$, the only possibility is that $x = 0$ since we can take $r=1_R$. This map is surjective: For any $\varphi\in \Hom_R(R,M)$ take the preimage to be $\varphi(1_R)\in M$, since for any $r\in R$ we have $\varphi_{\varphi(1_R)}(r) = r\varphi(1_R) = \varphi(r)$. Hence $M$ and $\Hom_R(R,M)$ are isomorphic.
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}

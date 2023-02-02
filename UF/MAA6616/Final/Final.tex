@@ -70,8 +70,51 @@
 \begin{document}
 Do any THREE problems.
 \begin{enumerate}
-  \item[1.]
-  \item[3.] 
-  \item[4.]   
+  \item[1.] For a) implies b): for any $f\in L^1(\mu)$, we have $\int\abs{gf} = \int\abs{g}\abs{f}\leq M\int\abs{f}<+\infty$ since $f\in L^1(\mu)$.
+  
+  The reverse implication I feel is shady, but here was what I had so far: 
+
+  We try a proof by contrapositive, so assume that there does not exist an $M$ such that $\abs{g}\leq M$ almost everywhere; that is, for every $M$ the set $G_M = \cbr{x\in X\colon \abs{g(x)}\geq M}$ has positive measure. Also by dominated convergence for sets we should have that as $M$ goes to infinity, the measure of the sets $G_M$ goes to zero (I am interpreting $g\colon X\to \mathbb{R}$ to mean that $g$ does not take on $+\infty$), but I did not find this to be useful.
+
+  I formed a measurable partition of $X$ via the sets $E_n = \cbr{x\in X\colon n\leq \abs{g}(x)\leq n+1} = G_n\cap G_{n+1}^c$, so that $X = \cup_{n=0}^\infty E_n$. Some of the $E_n$ may have measure zero; more importantly, there must be an infinite number of the $E_n$ with nonzero measure, since otherwise there would be $N$ large enough with $\abs{g}\leq N$. It follows that $\mu(X) = \sum_{n=0}^\infty \mu(E_n)$ is still an infinite sum. 
+
+  Observe that $\sum_{n=0}^{N-1} n\mathbf{1}_{E_n} + N\mathbf{1}_{G_N}$ for $N$ finite is a simple function that is less than or equal to $\abs{g}$. My idea was to define an $f\in L^1(\mu)$ such that the above simple function could be modified to become a simple function less than $\abs{gf}$ whose integral could be made arbitrarily large as $N$ tends to $+\infty$ (which means the integral of $\abs{gf}$ is arbitrarily large and so $gf$ is not in $L^1(\mu)$).
+  
+  A function I had in mind was $f\colon X\to\mathbb{R}$ such that $f$ takes on the value $\frac{1}{n^2\mu(E_n)}$ on $E_n$ whenever $\mu(E_n)\neq 0$ and $n\geq 1$ and zero everywhere else. Then the integral of $\abs{f} = f$ would be equal to or at least bounded above by $\sum_{\substack{n\in\mathbb{Z}_+\\ \mu(E_n)\neq 0}}\frac{1}{n^2\mu(E_n)}\mu(E_n)\leq \sum_{n=1}^\infty\frac{1}{n^2}<+\infty$, so that $f\in L^1(\mu)$. But then $\sum_{n=1}^{N-1} \frac{1}{n^2\mu(E_n)}\cdot n\mathbf{1}_{E_n} + \frac{1}{N^2\mu(G_N)}\cdot N\mathbf{1}_{G_N}$ is a simple function less than or equal to $\abs{gf}$ for all $N$, but its integral is bounded below by $\sum_{\substack{1\leq n\leq N\\ \mu(E_n)\neq 0}}\frac{1}{n}$. As $N$ is made arbitrarily large, this sum should diverge (or I hope it should), so $\int \abs{gf}$ must also diverge. This should prove the contrapositive, but somehow I feel like something is wrong.
+
+  \item[3.] We check first that the function of two variables $g(x,t) = (1/2h)f(x-t)\mathbf{1}_{[-h,h]}(t)$ is in $L^1(\mathbb{R}^2)$. This function and its absolute value should be measurable if $f(x-t)$ is measurable, but I am not sure how to show this directly. The function $f(x-t)$ should still be measurable, and we proceed by showing that $g(x,t)$ is absolutely integrable using Tonelli's theorem: \begin{multline*}
+    \int_{\mathbb{R}^2}\abs{g(x,t)}\dd{A} = \frac{1}{2h}\int_\mathbb{R}\int_\mathbb{R}\abs{f(x-t)}\mathbf{1}_{[-h,h]}(t)\dd{x}\dd{t}= \frac{1}{2h}\int_{\mathbb{R}}\mathbf{1}_{[-h,h]}(t)\int_\mathbb{R}\abs{f(x-t)}\dd{x}\dd{t}\\ =\frac{1}{2h}\int_{\mathbb{R}}\mathbf{1}_{[-h,h]}(t)\dd{t}\int_\mathbb{R}\abs{f(x)}\dd{x} = \int_\mathbb{R}\abs{f(x)}\dd{x}<+\infty.
+  \end{multline*}
+  Now apply Fubini's theorem to obtain the following chains of inequalities: \begin{align*}
+    \abs{\int_{\mathbb{R}^2}\frac{1}{2h}f(x-t)\mathbf{1}_{[-h,h]}(t)\dd{A}} &= \abs{\int_{\mathbb{R}}\int_{\mathbb{R}}\frac{1}{2h}f(x-t)\mathbf{1}_{[-h,h]}(t)\dd{t}\dd{x}} \\
+    &\leq \int_{\mathbb{R}}\abs{\int_{\mathbb{R}}\frac{1}{2h}f(x-t)\mathbf{1}_{[-h,h]}(t)\dd{t}}\dd{x}\\
+    &= \int_\mathbb{R}\abs{\frac{1}{2h}\int_{x-h}^{x+h}f(t)\dd{t}}\dd{x}\\
+    &= \int_\mathbb{R}\abs{f_h(x)}\dd{x}
+  \end{align*} and \begin{align*}
+    \int_{\mathbb{R}}\abs{\int_{\mathbb{R}}\frac{1}{2h}f(x-t)\mathbf{1}_{[-h,h]}(t)\dd{t}}\dd{x} &\leq \int_{\mathbb{R}}\int_{\mathbb{R}}\frac{1}{2h}\abs{f(x-t)}\mathbf{1}_{[-h,h]}(t)\dd{t}\dd{x}\\ 
+    &=\int_{\mathbb{R}}\int_{\mathbb{R}}\frac{1}{2h}\abs{f(x-t)}\mathbf{1}_{[-h,h]}(t)\dd{x}\dd{t}\\
+    &= \int_\mathbb{R}\abs{f(x)}\dd{x}
+  \end{align*} by the above. It follows that $\int_\mathbb{R}\abs{f_h(x)}\dd{x}\leq\int_\mathbb{R}\abs{f(x)}\dd{x}$.
+  
+  \item[4.] In the background let $X = X_+\cup X_-$ be the Hahn decomposition of $X$ (so that in the Jordan decomposition of $\nu$, $\nu_+$ is a measure on $X_+$ and $\nu_-$ is a measure on $X_-$ and they are mutually singular)\begin{enumerate}
+    \item We show inequalities in both ways.
+    
+    Let $E$ be measurable. Then $\abs{\nu(E)} = \abs{\nu_+(E) - \nu_-(E)}\leq \abs{\nu_+(E)} + \abs{\nu_-(E)} = {\nu_+(E)} +{\nu_-(E)} = \abs{\nu}(E)$. Then for any finite partition $\cbr{E_j}_{j=1}^n$ of $E$, we have $\sum_{j=1}^n\abs{\nu(E_j)}\leq \sum_{j=1}^n\abs{\nu}(E_j) = \abs{\nu}(E)$, where the last equality was due to additivity as the $E_j$ form a partition of $E$. It follows that \[\abs{\nu}(E) \geq \sup\cbr{\sum_{j=1}^n\abs{\nu(E_j)}\colon E_1,\dots,E_n \text{ form a partition for $E$}}.\]
+
+    For the other inequality we show that $\abs{\nu}(E)$ is an element of the set we are taking the supremum over: Consider the partition of $E$ into the sets $E\cap X_+$ and $E\cap X_-$ (since $X= X_+\cup X_-$). Then since $\nu_+,\nu_-$ are mutually singular measures, we have \begin{align*}
+      \abs{\nu(E\cap X_+)} + \abs{\nu(E\cap X_-)} &= \abs{\nu_+(E\cap X_+)} + \abs{\nu_-(E\cap X_-)}  \\
+      &= {\nu_+(E\cap X_+)} + {\nu_-(E\cap X_-)}\\
+      &={\nu_+(E\cap X_+)} + \nu_+(E\cap X_-) + {\nu_-(E\cap X_-)} + \nu_-(E\cap X_+)\\
+      &= \nu_+(E) + \nu_-(E)\\
+      &= \abs{\nu}(E).
+    \end{align*} Thus the reverse inequality is obtained, so we have equality.
+    \item Define $\abs{f}_{X_+}$ to be the function on $X$ that is $0$ on $X_-$ and is $\abs{f}$ on $X_+$; define $\abs{f}_{X_-}$ similarly to be the function which is $0$ on $X_+$ and is $\abs{f}$ on $X_-$. It follows that $\abs{f} = \abs{f}_{X_+} + \abs{f}_{X_-}$. Then we have \begin{align}
+      \abs{\int f\dd{\nu}} &= \abs{\int f\dd{\nu_+} - \int f \dd{\nu_-}}\\
+      &\leq \int\abs{f}\dd{\nu_+} + \int\abs{f}\dd{\nu_-}\\
+      &=\int\abs{f}_{X_+}\dd{\abs{\nu}} + \int\abs{f}_{X_-}\dd{\abs{\nu}}\\
+      &=\int \abs{f}_{X_+} + \abs{f}_{X_-}\dd{\abs{\nu}}\\
+      &= \int \abs{f}\dd{\abs{\nu}}.
+    \end{align} The equality in (3) is justified since $\abs{\nu} = \nu_+ +\nu_-$, and any simple unsigned function less than or equal to $\abs{f}_{X_+}$ (resp. $\abs{f}_{X_-}$) must be zero on $X_-$ (resp. $X_+$). Every simple function of this form may also be viewed as (by restriction) a simple function on $X_+$ (resp. $X_-$) less than or equal to $\abs{f}_{X_+}$ (resp. $\abs{f}_{X_-}$). Hence equality (3) follows.
+  \end{enumerate}
 \end{enumerate}
 \end{document}

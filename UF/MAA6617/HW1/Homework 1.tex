@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6617 Analysis}
+\fancyhead[C]{Homework 1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (20.3) \begin{enumerate}
+      \item Prove all norms on a finite dimensional vector space $\mathcal{X}$ are equivalent. Suggestion: Fix a basis $e_1,\dots,e_n$ for $\mathcal{X}$ and define $\norm{\sum a_ke_k}_1 \coloneqq \sum\abs{a_k}$. It is routine to check that $\norm{\cdot}_1$ is a norm on $\mathcal{X}$. Now complete the following outline. \begin{enumerate}[label=(\roman*)]
+        \item Let $\norm{\cdot}$ be the given norm on $\mathcal{X}$. Show there is an $M$ such that $\norm{x}\leq M\norm{x}_1$. Conclude that the mapping $\iota\colon (\mathcal{X},\norm{\cdot}_1)\to (\mathcal{X},\norm{\cdot})$ defined by $\iota(x) = x$ is continuous. \begin{proof}
+          For $x = \sum x_ke_k \in \mathcal{X}$, we have $\norm{x}\leq \sum \abs{x_k}\norm{e_k}\leq \max_k\{\norm{e_k}\}\sum \abs{x_k} = \max_k\{\norm{e_k}\}\norm{x}_1$. It follows that for any $x\in\mathcal{X}$, $\norm{\iota(x)}/\norm{x}_1 \leq \max_k\{\norm{e_k}\}$, from which it follows that $\iota$ is bounded hence continuous.
+        \end{proof}
+        \item Show that the \textit{unit sphere} $S = \cbr{x\in \mathcal{X}\colon \norm{x}_1 = 1}$ in $(\mathcal{X},\norm{\cdot}_1)$ is compact in the $\norm{\cdot}_1$ topology. \begin{proof}
+          We show that $S$ is sequentially compact. Given a sequence $(x_j = \sum {x_j}_ke_k)_j$ from $S$, we show that it has a convergent subsequence. We form this subsequence in an inductive fashion.
+          
+          We can find a subsequence $(x_{j_\ell})_\ell$ of $(x_j)_j$ such that the first components $({x_{j_\ell}}_1)_\ell$ of each of the $x_{j_\ell}$ converge to some $x_1\in [0,1]$. This can be done since $[0,1]$ is compact/sequentially compact and $({x_j}_1)_j$ is a sequence from $[0,1]$; the subsequence $(x_{j_\ell})_\ell$ consists of vectors $x_{j_\ell}$ which have first component ${x_{j_\ell}}_1$. Then repeat this process on $(x_{j_\ell})_\ell$ to obtain a sub-subsequence where the second component of the vectors as a sequence from $[0,1]$ converge to some $x_2$, while we still have that the first component of the vectors as a sequence converge to $x_1$. Since $\mathcal{X}$ has finite dimension, we repeat this process to obtain a subsequence $(x_{j_m})_m$ where each of the component sequences $({x_{j_m}}_i)_m$ converge to $x_i$ in $[0,1]$.
+
+          We show that $(x_{j_m})_m$ converges to $x =\sum x_ke_k$ in the $\norm{\cdot}_1$ topology. Given $\varepsilon>0$, choose $M$ large enough so that simultaneously for $1\leq k\leq n$, each of $\abs{{{x_j}_m}_k-x_k}<\varepsilon/n$ for $m>M$. Then for $m>M$ we have $\norm{{x_j}_m-x}_1\leq \varepsilon$. Furthermore, applying the reverse triangle inequality with our choice of ${x_j}_m$ gives $\abs{\norm{x}_1- \norm{{x_j}_m}_1  }\leq \norm{x-{x_j}_m}_1\leq \varepsilon$, and since $\norm{{x_j}_m}_1 = 1$ we have that $1-\varepsilon\leq \norm{x}_1\leq 1+\varepsilon$ for any $\varepsilon>0$. Thus $x\in S$ as needed also, so that $S$ is sequentially compact.          
+        \end{proof}
+        \item Show that the mapping $f\colon S\to \mathbb{R}$ given by $f(x)= \norm{x}$ is continuous and hence attains its infimum. Show this infimum is not zero and finish the proof. \begin{proof}
+          Given $\varepsilon>0$, we have for $\norm{x-y} <\varepsilon$ that $\abs{\norm{x}- \norm{y}}\leq \norm{x-y} < \varepsilon$, meaning $\norm{\cdot}$ is continuous (and is Lipschitz also).
+          
+          The continuous image of a compact set is compact. So $S = \iota (S)$ is compact in the $\norm{\cdot}$ topology. It follows that $f$ is uniformly continuous on $S$ and hence attains its infimum $f(s) = c$ for some $s\in S$. If $c$ was zero then $s$ must be the zero vector, which is impossible. Since every element of $S$ is given by $x/\norm{x}_1$, we have that $f(x/\norm{x}_1) = \norm{x/\norm{x}_1} = \norm{x}/\norm{x}_1\geq c$ so that $\norm{x}\geq c\norm{x}_1$ for all $x\in X$. Then $c\norm{x}_1\leq \norm{x}\leq \max_k\{\norm{e_k}\}\norm{x}_1$ so that $\norm{\cdot}$ is equivalent to $\norm{\cdot}_1$. Hence all norms are equivalent on finite dimensional spaces.
+        \end{proof}
+      \end{enumerate}
+      \item Combine the result of part (a) with the result of Problem 20.2 to conclude that every finite dimensional normed vector space is complete. \begin{proof}
+        Let $\mathcal{X}$ be a finite dimensional space with basis $\cbr{e_k}_{k=1}^n$ as above. We show that $\mathcal{X}$ with the $\norm{\cdot}_1$-topology is complete. 
+        
+        Let $\sum_{i=1}^\infty \norm{x_i}_1$ converge. We show that $\sum_{i=1}^\infty x_i$ converges. 
+        
+        The sum $\sum_{i=1}^\infty \sum_{k=1}^n \abs{{x_i}_k} = \sum_{k=1}^n \sum_{i=1}^\infty \abs{{x_i}_k}$ converges (and the interchange of order of summation is okay since the original sum converged absolutely). It follows that each of the sums $\sum_{i=1}^\infty \abs{{x_i}_k}$ converge for $1\leq k\leq n$. But then $\sum_{i=1}^\infty {x_i}_k$ must converge as a result. Then $ \sum_{k=1}^n \sum_{i=1}^\infty {x_i}_k = \sum_{i=1}^\infty \sum_{k=1}^n {x_i}_k = \sum_{i=1}^\infty x_i$ must converge also (and again the interchange of order of summation is okay due to absolute convergence). It follows that $\mathcal{X}$ with the $\norm{\cdot}_1$-topology is complete. By Problem 20.2 it follows that $\mathcal{X}$ with any $\norm{\cdot}$-topology is also complete since all norms are equivalent (to the $\norm{\cdot}_1$-norm). Hence every finite dimensional normed vector space is complete.
+      \end{proof}
+      \item Let $\mathcal{X}$ be a normed vector space and $\mathcal{M}\subset \mathcal{X}$ a finite-dimensional subspace. Prove that $\mathcal{M}$ is closed in $\mathcal{X}$. \begin{proof}
+        Every sequence from $\mathcal{M}$ converging in $\mathcal{X}$ is necessarily Cauchy. Then since finite dimensional spaces are complete, such sequences must converge in $\mathcal{M}$. So $\mathcal{M}$ contains all of its limit points, so it is closed.
+      \end{proof}
+    \end{enumerate}
+    \item (20.18) Let $\mathcal{X}$ be a normed vector space and $\mathcal{M}$ a proper \textit{closed} subspace. Prove for every $\varepsilon>0$, there exists $x\in \mathcal{X}$ such that $\norm{x} = 1$ and $\inf_{y\in \mathcal{M}}\cbr{\norm{x-y}}>1-\varepsilon$. (Hint: take any $u\in \mathcal{X}\setminus \mathcal{M}$ and let $a = \inf_{y\in \mathcal{M}}\cbr{\norm{u-y}}$. Choose $\delta>0$ small enough so that $a/(a+\delta)>1-\varepsilon$, and then choose $v\in \mathcal{M}$ so that $\norm{u-v}<a+\delta$. Finally let $x = (u-v)/\norm{u-v}$.) \begin{proof} Let $\varepsilon>0$ be given.
+      Following the hint above, we take any $u\in \mathcal{X}\setminus \mathcal{M}$ and let $a = \inf_{y\in \mathcal{M}}\cbr{\norm{u-y}}$. The subspace has to be closed for this infimum to be nonzero for any fixed $u\in\mathcal{X}$. Then we can take $\delta>0$ small enough for $a/(a+\delta)>1-\varepsilon$ (as increasing $\delta$ decreases $a/(a+\delta)$). Then with $a+\delta$ greater than the infimum $a$, we would be able to choose a $v\in \mathcal{M}$ such that $\norm{u-v}<a+\delta$. By taking $x = (u-v)/\norm{u-v}$, observe that $\norm{x} = \norm{u-v}/\norm{u-v} = 1$. Furthermore we have for every $y\in \mathcal{M}$ that $\norm{x-y} = \norm{(u-v)/\norm{u-v}-y} = \norm{u-\norm{u-v}y}/\norm{u-v}\geq a/\norm{u-v}\geq a/(a-\delta)\geq 1-\varepsilon$, since $\norm{u-v}y\in \mathcal{M}$.
+    \end{proof}
+    \item (20.19) Prove, if $\mathcal{X}$ is an infinite-dimensional normed space, then the unit ball $\mathop{ball}(\mathcal{X}) = \cbr{x\in\mathcal{X}\colon \norm{x} \leq 1}$ is not compact in the norm topology. (Hint: use the result of problem 20.18 to construct inductively a sequence of vectors $x_n\in \mathcal{X}$ such that $\norm{x_n} = 1$ for all $n$ and $\norm{x_n-x_m}\geq 1/2$ for all $m<n$.) \begin{proof}
+      Observe that the span of finitely many nonzero vectors forms a finite dimensional subspace, which is closed. 
+      
+      Let $x_1\in \mathcal{X}$ be a nonzero vector with $\norm{x_1} = 1$. Then by the previous problem we can find $x_2\in\mathcal{X}$ with $\norm{x_2} = 1$ and $\inf_{y\in \abr{x_1}}\cbr{\norm{x_2-y}}>1-1/2 =1/2$. So in particular $\norm{x_2-x_1}\geq 1/2$. Then we can find $x_3\in\mathcal{X}$ with $\norm{x_3}=1$ and $\inf_{y\in \abr{x_1,x_2}}\cbr{\norm{x_3-y}}>1/2$. It follows that $\norm{x_3-x_2}>1/2$, and $\norm{x_3-x_1}>1/2$. The inductive step is similar. So by induction we obtain a sequence of vectors $(x_n)_n\subset \mathcal{X}$ with $\norm{x_n} = 1$ for all $n$ (so $(x_n)_n\subset \mathop{ball}(S)$) and $\norm{x_n-x_m}\geq 1/2$ for all $m<n$. Such a sequence cannot have a convergent subsequence as convergent sequences are Cauchy. Hence $\mathop{ball}(S)$ is not sequentially compact.
+    \end{proof}
+\end{enumerate}
+\end{document}

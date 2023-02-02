@@ -94,13 +94,13 @@
 
   Linearity: $\mathcal{L}[f(t)+g(t)] = \mathcal{L}[f(t)] + \mathcal{L}[g(t)]$
 
-  Time shift: $\mathcal{L}[f(t-a)u(t-a)] = e^{-as}\mathcal{L}[f(t)]$, $a\geq 0$
+  \pause Time shift: $\mathcal{L}[f(t-a)u(t-a)] = e^{-as}\mathcal{L}[f(t)]$, $a\geq 0$
 
-  Complex shift: $\mathcal{L}[e^{at}f(t)](s) = \mathcal{L}[f(t)](s-a)$
+  \pause Complex shift: $\mathcal{L}[e^{at}f(t)](s) = \mathcal{L}[f(t)](s-a)$
 
-  Transform of the $n$-th derivative: $\mathcal{L}[f^{(n)}(t)](s) = s^n\mathcal{L}[f(t)](s) - s^{n-1}f(0) - s^{n-2}f^{\prime}(0) - \cdots - f^{(n-1)}(0)$
+  \pause Transform of the $n$-th derivative: $\mathcal{L}[f^{(n)}(t)](s) = s^n\mathcal{L}[f(t)](s) - s^{n-1}f(0) - s^{n-2}f^{\prime}(0) - \cdots - f^{(n-1)}(0)$
 
-  Convolution: $\mathcal{L}[(f\ast g)(t)] = \mathcal{L}[f(t)]\mathcal{L}[g(t)]$
+  \pause Convolution: $\mathcal{L}[(f\ast g)(t)] = \mathcal{L}[f(t)]\mathcal{L}[g(t)]$
   
 \end{frame}
 
@@ -109,7 +109,7 @@
 
   If two functions agree everywhere except at countably many points, their Laplace transforms will be the same.
 
-  Furthermore, if two continuous functions have the same Laplace transform, then they must be the same function.
+  \pause Furthermore, if two continuous functions have the same Laplace transform, then they must be the same function.
 
   %There is a way to do it, but it's kind of complicated so I will not show this here. 
   
@@ -136,11 +136,11 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{handwavey motivation}
+  \frametitle{starting point}
 
   We can start by extending Cauchy's integral formula for a specific class of functions.
 
-  Recall that Cauchy's integral formula gives you the value of an analytic function $f$ at a point $z_0$ inside a simple closed contour $C$ by the following: \[f(z_0) = \frac{1}{2\pi i}\int_C \frac{f(z)}{z-z_0}\dd{z}\]
+  \pause Recall that Cauchy's integral formula gives you the value of an analytic function $f$ at a point $z_0$ inside a simple closed contour $C$ by the following: \[f(z_0) = \frac{1}{2\pi i}\int_C \frac{f(z)}{z-z_0}\dd{z}\]
 
 \end{frame}
 
@@ -172,7 +172,7 @@
     \end{figure}
   \end{columns}
 
-  Apply Cauchy's integral formula to find \[f(z_0) = \frac{1}{2\pi i}\sbr{-\int_{\gamma-i\beta}^{\gamma + i\beta}\frac{f(z)}{z-z_0}\dd{z} + \int_S\frac{f(z)}{z-z_0}\dd{z}}.\] 
+  \pause Apply Cauchy's integral formula to find \[f(z_0) = \frac{1}{2\pi i}\sbr{-\int_{\gamma-i\beta}^{\gamma + i\beta}\frac{f(z)}{z-z_0}\dd{z} + \int_S\frac{f(z)}{z-z_0}\dd{z}}.\] 
 
   % second integral needs to vanish, draw picture
 
@@ -183,7 +183,7 @@
 
   To show that the second integral vanishes as $\beta$ goes to infinity, use a bounding argument. % ML inequality
   
-  From the order condition imposed on $f(z)$, it follows that \[\abs{\frac{f(z)}{z-z_0}} \leq \frac{M}{\abs{z}^k\abs{z-z_0}} = \frac{M}{\abs{z}^{k+1}\abs{1-(z_0/z)}},\] where $M$ is the maximum value of $f(z)$ on $S$.
+  \pause From the order condition imposed on $f(z)$, it follows that \[\abs{\frac{f(z)}{z-z_0}} \leq \frac{M}{\abs{z}^k\abs{z-z_0}} = \frac{M}{\abs{z}^{k+1}\abs{1-(z_0/z)}},\] where $M$ is the maximum value of $f(z)$ on $S$.
 
 \end{frame}
 
@@ -192,7 +192,7 @@
 
   Note that $\abs{z}\geq \beta$, since $z\in S$.
   
-  If we take $\beta$ to be large enough, say $\beta > 2\abs{z_0}$, so that $\abs{z_0} < \abs{z}/2$ or otherwise $\abs{z_0/z} < 1/2$, then by the reverse triangle inequality (or otherwise) see that \[\abs{1-(z_0/z)}\geq \abs{\abs{1}-\abs{z_0/z}} > 1-\abs{z_0/z} > 1/2.\]
+  \pause If we take $\beta$ to be large enough, say $\beta > 2\abs{z_0}$, so that $\abs{z_0} < \abs{z}/2$ or otherwise $\abs{z_0/z} < 1/2$, then by the reverse triangle inequality (or otherwise) see that \[\abs{1-(z_0/z)}\geq \abs{\abs{1}-\abs{z_0/z}} > 1-\abs{z_0/z} > 1/2.\]
 
   % start from \abs{1} and add and subtract z_0/z and apply triangle inequality for alternate method
 
@@ -205,39 +205,43 @@
 
   We can then bound the integrand above, so that \[\abs{\frac{f(z)}{z-z_0}} < \frac{2M}{\abs{z}^{k+1}} \leq \frac{2M}{\br{\sqrt{2}\beta}^{k+1}} < \frac{2M}{\beta^{k+1}}.\]
 
-  See that the length of $S$ is $\beta + \beta + (\beta-\gamma) + (\beta-\gamma) = 4\beta-2\gamma$.
+  \pause See that the length of $S$ is $\beta + \beta + (\beta-\gamma) + (\beta-\gamma) = 4\beta-2\gamma$.
 
 \end{frame}
 
 \begin{frame}
   \frametitle{proof}
 
-  We can bound the second integral, so that \[\abs{\int_S\frac{f(z)}{z-z_0}\dd{z}} < \frac{2M}{\beta^{k+1}}\int_S \abs{\dd{z}} = \frac{2M}{\beta^k}\br{4-\frac{2\gamma}{\beta}}.\] Then since $k>0$, if we let $\beta$ become arbitrarily large, the second integral vanishes. 
+  We can bound the second integral, so that \[\abs{\int_S\frac{f(z)}{z-z_0}\dd{z}} < \frac{2M}{\beta^{k+1}}\int_S \abs{\dd{z}} = \frac{2M}{\beta^k}\br{4-\frac{2\gamma}{\beta}}.\]
+  
+  \pause Then since $k>0$, if we let $\beta$ become arbitrarily large, the second integral vanishes. 
 
 \end{frame}
 
 \begin{frame}
   \frametitle{proof}
 
-  From Cauchy's integral formula we had that \[f(z_0) = \frac{1}{2\pi i}\sbr{-\int_{\gamma-i\beta}^{\gamma + i\beta}\frac{f(z)}{z-z_0}\dd{z} + \int_S\frac{f(z)}{z-z_0}\dd{z}},\] but because $\beta$ was arbitrary, we may take $\beta\to\infty$, so that \[f(z_0) = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma + i\infty}\frac{f(z)}{z-z_0}\dd{z}.\] This completes the proof.
+  From Cauchy's integral formula we had \[f(z_0) = \frac{1}{2\pi i}\sbr{-\int_{\gamma-i\beta}^{\gamma + i\beta}\frac{f(z)}{z-z_0}\dd{z} + \int_S\frac{f(z)}{z-z_0}\dd{z}}.\]
+  
+  \pause But because $\beta$ was arbitrary, we may take $\beta\to\infty$, so that \[f(z_0) = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma + i\infty}\frac{f(z)}{z-z_0}\dd{z}.\] This completes the proof.
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{handwaving begins here}
+%\begin{frame}
+%  \frametitle{handwaving begins here}
+%
+%  Let $f(s)$ be analytic and of order $O(s^{-k}), k> 0$ for all points where $\Re(s)\geq \gamma$. Then from the extension to Cauchy's integral formula we have \[f(s) = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}\frac{f(z)}{z-s}\dd{z}, \] which we can rewrite as \[f(s) = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta}\br{\frac{1}{s-z}}f(z)\dd{z}.\] (holds for all $s$ such that $\Re(s) > \gamma$)
 
-  Let $f(s)$ be analytic and of order $O(s^{-k}), k> 0$ for all points where $\Re(s)\geq \gamma$. Then from the extension to Cauchy's integral formula we have \[f(s) = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}\frac{f(z)}{z-s}\dd{z}, \] which we can rewrite as \[f(s) = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta}\br{\frac{1}{s-z}}f(z)\dd{z}.\] (holds for all $s$ such that $\Re(s) > \gamma$)
+%\end{frame}
 
-\end{frame}
+%\begin{frame}
+%  \frametitle{handwaving ends after this}
 
-\begin{frame}
-  \frametitle{handwaving ends after this}
+%  Then apply the inverse Laplace transform \textbf{formally} to $f(s)$, we have that \[F(t) = \mathcal{L}^{-1}\sbr{f(s)} = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta} \mathcal{L}^{-1}\sbr{\frac{1}{s-z}}f(z)\dd{z}\] \[ = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta}e^{zt}f(z)\dd{z}.\]
 
-  Then apply the inverse Laplace transform \textbf{formally} to $f(s)$, we have that \[F(t) = \mathcal{L}^{-1}\sbr{f(s)} = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta} \mathcal{L}^{-1}\sbr{\frac{1}{s-z}}f(z)\dd{z}\] \[ = \lim_{\beta\to \infty}\frac{1}{2\pi i}\int_{\gamma-i\beta}^{\gamma+i\beta}e^{zt}f(z)\dd{z}.\]
+%  This does not prove anything! it is just cute
 
-  This does not prove anything! it is just cute
-
-\end{frame}
+%\end{frame}
 
 \begin{frame}
   \frametitle{the inversion integral}
@@ -273,16 +277,16 @@
     \end{figure}
   \end{columns}
 
-  Observe that the integral around the rectangle is zero since $f(s)$ is analytic on the rectangle and in it.
+  \pause Observe that the integral around the rectangle is zero since $f(s)$ is analytic on the rectangle and in it.
 
 \end{frame}
 
 \begin{frame}
   \frametitle{inspect the horizontal bits}
 
-  For points on $BC$, $z = x+i\beta$ (so $\abs{z} > \beta$ if $\gamma > 0$), and from the order condition on $f(s)$ we have that \[\abs{e^{zt}f(z)}\leq e^{xt}\abs{f(z)}\leq e^{xt}\frac{M}{\abs{z}^k} < e^{xt}\frac{M}{\beta^k},\]
+  For points on $BC$, $z = x+i\beta$ (so $\abs{z} > \beta$ if $\gamma > 0$), and from the order condition on $f(s)$ we have that \[\abs{e^{zt}f(z)}\leq e^{xt}\abs{f(z)}\leq e^{xt}\frac{M}{\abs{z}^k} < e^{xt}\frac{M}{\beta^k}.\]
 
-  and so we can bound the integral over $BC$: \[\abs{\int_{\gamma+i\beta}^{\gamma^{\prime}+i\beta}e^{zt}f(z)\dd{z}} < \frac{M}{\beta^k}\int_{\gamma}^{\gamma^{\prime}}e^{xt}\dd{x}.\]
+  \pause We can bound the integral over $BC$: \[\abs{\int_{\gamma+i\beta}^{\gamma^{\prime}+i\beta}e^{zt}f(z)\dd{z}} < \frac{M}{\beta^k}\int_{\gamma}^{\gamma^{\prime}}e^{xt}\dd{x}.\]
 
 \end{frame}
 
@@ -291,7 +295,7 @@
 
   Since $\beta$ was arbitrary we may take $\beta\to \infty$, and see that the integrals over $BC$ and similarly $AD$ vanish.
 
-  Since the integral around the rectangle was zero, we have that \[\lim_{\beta\to\infty}\sbr{\int_{\gamma-i\beta}^{\gamma+i\beta}e^{zt}f(z)\dd{z} + \int_{\gamma^{\prime}+i\beta}^{\gamma^{\prime}-i\beta}e^{zt}f(z)\dd{z}} = 0.\]
+  \pause Since the integral around the rectangle was zero, we have that \[\lim_{\beta\to\infty}\sbr{\int_{\gamma-i\beta}^{\gamma+i\beta}e^{zt}f(z)\dd{z} + \int_{\gamma^{\prime}+i\beta}^{\gamma^{\prime}-i\beta}e^{zt}f(z)\dd{z}} = 0.\]
 
 \end{frame}
 
@@ -307,19 +311,19 @@
 
   We wish to show that the Laplace transform of the inversion integral is equivalent to $f(s)$.
 
-  Proceed directly. Here, choose $s\in\mathbb{C}$ such that $\Re(s)>\Re(z) = \gamma$.
+  \pause Proceed directly. Here, choose $s\in\mathbb{C}$ such that $\Re(s)>\Re(z) = \gamma$.
 
   \[\mathcal{L}[F(t)] = \lim_{T\to \infty}\int_0^Te^{-st}\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}e^{zt}f(z)\dd{z}\dd{t}\]
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{integral shenanigans, mostly handwaving}
+  \frametitle{integrate}
 
-  \[\mathcal{L}[F(t)] = \lim_{T\to \infty}\int_0^Te^{-st}\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}e^{zt}f(z)\dd{z}\dd{t}\]
-  \[\stackrel{?}{=}\text{ (magic)}\]
-  \[\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}f(z)\lim_{T\to \infty}\int_0^T e^{(z-s)t}\dd{t}\dd{z}\]
-  \[ = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty} \frac{f(z)}{z-s}\dd{z}\]
+  \[\mathcal{L}[F(t)] = \int_0^\infty e^{-st}\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}e^{zt}f(z)\dd{z}\dd{t}\]
+  \pause \[\stackrel{?}{=}\text{ (magic)}\]
+  \[ \frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}f(z)\int_0^\infty e^{(z-s)t}\dd{t}\dd{z}\]
+  \pause \[ = -\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty} \frac{f(z)}{z-s}\dd{z}\]
 
 \end{frame}
 
@@ -335,9 +339,9 @@
 
   We can use the residue theorem to evaluate the inversion integral when there are isolated singularities where $\Re(z) < \gamma$.
 
-  Suppose $f(s)$ is a complex valued function which satisfies the conditions needed so that the inversion integral of $f(s)$ converges to $F(t)$ (whose Laplace transform is $f(s)$).
+  \pause Suppose $f(s)$ is a complex valued function which satisfies the conditions needed so that the inversion integral of $f(s)$ converges to $F(t)$ (whose Laplace transform is $f(s)$).
 
-  We can also take $k\geq 1$ in the order condition, but there are lots of details.
+  \pause We can also take $k\geq 1$ in the order condition, but there are lots of details.
 
 \end{frame}
 
@@ -346,7 +350,7 @@
 
   \begin{columns}
   \column{0.47\textwidth}
-  Observe that the inversion integral is the integral over the straight part.
+  Observe that the inversion integral \[\lim_{\beta \to \infty}\frac{1}{2\pi i}\int_{\gamma - i\beta}^{\gamma + i\beta}e^{zt}f(z)\dd{z}\] is the integral over the vertical line (with $\beta\to \infty$).
   \column{0.5\textwidth}
     \begin{figure}[h]
       \centering
@@ -354,28 +358,45 @@
     \end{figure}
   \end{columns}
 
-  We take the integral over the whole contour and show that integrals over the other segments vanish as $R$ or $\beta$ become arbitrarily large.
+  \pause We take the integral over the whole contour and show that integrals over the other segments vanish as $R$ or $\beta$ become arbitrarily large.
 
 \end{frame}
 
 \begin{frame}
   \frametitle{contour surgery}
-
-  So by the residue theorem \begin{multline*}
-    \int_{\gamma-i\infty}^{\gamma+i\infty} e^{zt}f(z)\dd{z} + \int_{AB} e^{zt}f(z)\dd{z} + \int_{C_R} e^{zt}f(z)\dd{z}\\ + \int_{DE} e^{zt}f(z)\dd{z} = 2\pi i\sum_k \Res(e^{zt}f(z), z_k).
-  \end{multline*}
+  \begin{columns}
+    \column{0.47\textwidth}
+    So by the residue theorem \begin{multline*}
+      \int_{\gamma-i\infty}^{\gamma+i\infty} e^{zt}f(z)\dd{z}\\ + \int_{AB} e^{zt}f(z)\dd{z}\\ + \int_{C_R} e^{zt}f(z)\dd{z}\\ + \int_{DE} e^{zt}f(z)\dd{z}\\ = 2\pi i\sum_k \Res(e^{zt}f(z), z_k).
+    \end{multline*}
+    \column{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.25]{3}
+      \end{figure}
+    \end{columns}
+  
 
 \end{frame}
 
 \begin{frame}
   \frametitle{the horizontal bits vanish}
 
-  See that the integral over $AB$ vanishes (the integral over $DE$ vanishes similarly).
+  \begin{columns}
+    \column{0.4\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.2]{3}
+      \end{figure}
+    \column{0.57\textwidth}
+    See that the integral over $AB$ vanishes (the integral over $DE$ vanishes similarly):
 
-  Here, $z=x+i\beta$, so $\abs{z}\geq\beta$. Then
+  \pause Here, $z=x+i\beta$, so $\abs{z}\geq\beta$. Then
 
-  \[\abs{e^{zt}f(z)} \leq e^{xt}\abs{f(z)}\leq e^{xt}\frac{M}{\abs{z}^k} \leq e^{xt}\frac{M}{\beta^k},\] so \[\abs{\int_{AB} e^{zt}f(z)\dd{z}}\leq \frac{M}{\beta^k}\int_{\gamma}^0e^{xt}\dd{x}.\] Hence as $\beta\to\infty$, the integral over $AB$ (and $DE$) vanishes.
-
+  \pause \[\abs{e^{zt}f(z)} \leq e^{xt}\abs{f(z)}\leq e^{xt}\frac{M}{\abs{z}^k} \leq e^{xt}\frac{M}{\beta^k},\] \pause so \[\abs{\int_{AB} e^{zt}f(z)\dd{z}}\leq \frac{M}{\beta^k}\int_{\gamma}^0e^{xt}\dd{x}.\] Hence as $\beta\to\infty$, the integral over $AB$ (and $DE$) vanishes.
+    
+    \end{columns}
+  
 \end{frame}
 
 \begin{frame}
@@ -398,21 +419,21 @@
 
   We play the same bounding game for \[\abs{\int_{C_R}e^{azt}g(z)\dd{z}}.\] Parameterize $z = Re^{i\phi}$ for $\phi \in\sbr{\frac{\pi}{2},\frac{3\pi}{2}}$.
 
-  Then we wish to bound from above the following: \[\abs{\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}e^{atRe^{i\phi}}g(Re^{i\phi})iRe^{i\phi}\dd{\phi}}\]
+  \pause Then we wish to bound from above the following: \[\abs{\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}e^{atRe^{i\phi}}g(Re^{i\phi})iRe^{i\phi}\dd{\phi}}\]
 
 \end{frame}
 
 \begin{frame}
   \frametitle{inequalities}
 
-  \[\abs{\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}e^{atRe^{i\phi}}g(Re^{i\phi})iRe^{i\phi}\dd{\phi}}\leq \int_{\frac{\pi}{2}}^{\frac{3\pi}{2}} e^{atR\cos(\phi)}\br{\frac{1}{R^{k}}}(R)\dd{\phi}\] Then let $\phi = \theta + \pi$ ($\dd{\phi} = \dd{\theta}$) and observe some symmetry. \[ = \frac{1}{R^{k-1}}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta} = \frac{2}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta}\]
+  \[\abs{\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}e^{atRe^{i\phi}}g(Re^{i\phi})iRe^{i\phi}\dd{\phi}}\leq \int_{\frac{\pi}{2}}^{\frac{3\pi}{2}} e^{atR\cos(\phi)}\br{\frac{1}{R^{k}}}(R)\dd{\phi}\] \pause Then let $\phi = \theta + \pi$ ($\dd{\phi} = \dd{\theta}$) and observe some symmetry. \[ = \frac{1}{R^{k-1}}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta} = \frac{2}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta}\]
 
 \end{frame}
 
 \begin{frame}
   \frametitle{more bounding}
 
-  We can continue by finding a function $h(\theta)\leq \cos(\theta)$, since if $a\leq b$, $e^{-b}\leq e^{-a}$. Let $h(\theta) = \br{1-\frac{2}{\pi}\theta}$. Thus \[e^{-atR\cos(\theta)} \leq e^{-atR\br{1-\frac{2}{\pi}\theta}} = e^{-atR}e^{atR\frac{2}{\pi}\theta},\] and \[\frac{2}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta}\leq \frac{2e^{-atR}}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{atR\frac{2}{\pi}\theta}\dd{\theta}.\]
+  We can continue by finding a function $h(\theta)\leq \cos(\theta)$, since if $a\leq b$, $e^{-b}\leq e^{-a}$. Let $h(\theta) = \br{1-\frac{2}{\pi}\theta}$. \pause Thus \[e^{-atR\cos(\theta)} \leq e^{-atR\br{1-\frac{2}{\pi}\theta}} = e^{-atR}e^{atR\frac{2}{\pi}\theta},\] \pause and \[\frac{2}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{-atR\cos(\theta)}\dd{\theta}\leq \frac{2e^{-atR}}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{atR\frac{2}{\pi}\theta}\dd{\theta}.\]
 
 \end{frame}
 
@@ -420,7 +441,7 @@
   \frametitle{no more}
 
   \[\frac{2e^{-atR}}{R^{k-1}}\int_{0}^{\frac{\pi}{2}}e^{atR\frac{2}{\pi}\theta}\dd{\theta} = \frac{2e^{-atR}}{R^{k-1}}\br{\frac{e^{atR}-1}{atR\frac{2}{\pi}}}\]
-  Hence \[\abs{\int_{C_R}e^{azt}g(z)\dd{z}}\leq \frac{\pi}{R^{k}}\br{\frac{1-e^{-atR}}{at}},\] and as $R\to \infty$, we see that the integral vanishes.
+  \pause Hence \[\abs{\int_{C_R}e^{azt}g(z)\dd{z}}\leq \frac{\pi}{R^{k}}\br{\frac{1-e^{-atR}}{at}},\] and as $R\to \infty$, we see that the integral vanishes.
 
 \end{frame}
 
@@ -437,7 +458,7 @@
       \end{figure}
     \end{columns}
 
-  All three of the extraneous contours vanish as we take $\beta$ (or $R$) to be arbitrarily large.
+  \pause All three of the extraneous contours vanish as we take $\beta$ (or $R$) to be arbitrarily large.
 
 \end{frame}
 
@@ -448,20 +469,13 @@
 
 \end{frame}
 
-\section{a cute example}
+\section{example computations}
 
 \begin{frame}
-  \frametitle{compute the inverse transform of $\br{s^2+1}^{-1}$}
-
-  (it is $\sin(t)$)\vspace{7cm}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{extra slide in case I had comments}
-
-  
-
+  \frametitle{examples for the board} \begin{enumerate}
+    \item $1/(s^2+1)$ (it is $\sin(t)$)
+    \item $1/(s\cosh\sqrt{s})$ (should be an infinite series)
+  \end{enumerate}
 \end{frame}
 
 \end{document}

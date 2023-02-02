@@ -1,0 +1,260 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (10.5.25(a-c)) \textit{(A Flatness Criterion)} Parts (a)-(c) of this exercise prove that $A$ is a flat $R$-module if and only if for every finitely generated ideal $I$ of $R$, the map from $A\otimes_R I\to A\otimes_R R\cong A$ induced by the inclusion $I\subseteq R$ is again injective (or equivalently, $A\otimes_R I\cong AI\subseteq A$).\begin{enumerate}
+        \item Prove that if $A$ is flat then $A\otimes_R I\to A\otimes_R R$ is injective. \begin{proof}
+            The inclusion $\iota\colon I\to R$ as a map of $R$-modules is injective. Since $A$ is flat we have that $1\otimes\iota\colon A\otimes_R I\to A\otimes_R R$ (Proposition 40 in Dummit and Foote chapter 10).
+        \end{proof}
+        \item If $A\otimes_R I\to A\otimes_R R$ is injective for every finitely generated ideal $I$, prove that $A\otimes_R I\to A\otimes_R R$ is injective for every ideal $I$. Show that if $K$ is any submodule of a finitely generated free module $F$ then $A\otimes_R K\to A\otimes_R F$ is injective. Show that the same is true for any free module $F$. [Cf. the proof of Corollary 42.] 
+        
+        \begin{proof}[Incomplete proof]
+            Let $1\otimes\iota\colon A\otimes_R I\to A\otimes_R R$ be as above for any ideal $I$ of $R$. Then if $\sum a_i\otimes r_i$ is in the kernel of this map, then it is sent to $\sum a_i\otimes r_i = 0$ in $ A\otimes_R R$. It follows that the element $\sum(a_i,r_i)$ may be written as the finite sum of generators in the forms \[(\alpha_1+\alpha_2,\rho) - (\alpha_1,\rho) - (\alpha_2,\rho), (\alpha,\rho_1 + \rho_2) - (\alpha,\rho_1) - (\alpha,\rho_2), \text{ and } (\alpha \rho^\prime,\rho) - (\alpha,\rho^\prime\rho).\] [These generate the subgroup we quotient out by in the group $A\times R$ to form the tensor product $A\otimes_R R$.] Since we are taking a finite sum of generators of this form, the second coordinates of the summands lie in a finitely generated ideal $I^\prime$ of $R$, which means that each of the $r_i$ lie in $I^\prime$ also. So we can view $\sum a_i\otimes r_i$ as being in $ A\otimes_R I^\prime$ and is sent to zero in $ A\otimes_R R$. Since this mapping is assumed to be injective, we have that $\sum a_i\otimes r_i$ is zero as desired. Hence $1\otimes\iota$ is injective.
+
+            Let $K$ be any submodule of a finitely generated free module $F$. Without loss of generality take $F = R^n$. 
+            Eros and Zach gave me a small hint, so I tried the following:
+            Let $R^i\to R^{i+1}$ for $0\leq i\leq n-1$ be the component wise inclusion maps which just take tuples $(r_1,\dots,r_i)\mapsto (r_1,\dots,r_i,0)$. Then $K\cap R$ is an ideal (submodule) of $R$ and we obtain the short exact sequence \[0\to K\cap R\to R\to \frac{R}{K\cap R}\cong \frac{R+K}{K}\to 0.\] There are also natural inclusions of $K\cap R^i$ into $K\cap R^{i+1}$ and $\frac{R^i+K}{K}$ to $\frac{R^{i+1}+K}{K}$ for each $0\leq i\leq n-1$. Then we have the following diagram (commutative, due to how we defined the inclusions $R^i\to R^{i+1}$), where the rows are short exact sequences: % https://q.uiver.app/?q=WzAsMjAsWzAsMCwiMCJdLFs0LDAsIjAiXSxbMSwwLCJLXFxjYXAgUiJdLFsyLDAsIlIiXSxbMywwLCJcXGZyYWN7UitLfXtLfSJdLFswLDEsIjAiXSxbMCwyLCIwIl0sWzAsMywiMCJdLFs0LDEsIjAiXSxbNCwyLCIwIl0sWzQsMywiMCJdLFsxLDEsIktcXGNhcCBSXjIiXSxbMSwzLCJLXFxjYXAgUl5uIl0sWzIsMSwiUl4yIl0sWzIsMywiUl5uIl0sWzMsMSwiXFxmcmFje1JeMitLfXtLfSJdLFszLDMsIlxcZnJhY3tSXm4rS317S30iXSxbMSwyLCJLXFxjYXAgUl5pIl0sWzIsMiwiUl5pIl0sWzMsMiwiXFxmcmFje1JeaStLfXtLfSJdLFswLDJdLFsyLDNdLFszLDRdLFs0LDFdLFs1LDExXSxbMTEsMTNdLFsxMywxNV0sWzE1LDhdLFs3LDEyXSxbMTIsMTRdLFsxNCwxNl0sWzE2LDEwXSxbNiwxN10sWzE3LDE4XSxbMTgsMTldLFsxOSw5XSxbMiwxMV0sWzMsMTNdLFs0LDE1XSxbMTEsMTcsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNywxMiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEzLDE4LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTUsMTksIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxOSwxNiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE4LDE0LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+            \[\begin{tikzcd}
+                0 & {K\cap R} & R & {\frac{R+K}{K}} & 0 \\
+                0 & {K\cap R^2} & {R^2} & {\frac{R^2+K}{K}} & 0 \\
+                0 & {K\cap R^i} & {R^i} & {\frac{R^i+K}{K}} & 0 \\
+                0 & {K\cap R^n = F} & {R^n = F} & {\frac{R^n+K}{K} = \frac{F}{K}} & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+                \arrow[from=2-1, to=2-2]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=2-4, to=2-5]
+                \arrow[from=4-1, to=4-2]
+                \arrow[from=4-2, to=4-3]
+                \arrow[from=4-3, to=4-4]
+                \arrow[from=4-4, to=4-5]
+                \arrow[from=3-1, to=3-2]
+                \arrow[from=3-2, to=3-3]
+                \arrow[from=3-3, to=3-4]
+                \arrow[from=3-4, to=3-5]
+                \arrow[from=1-2, to=2-2]
+                \arrow[from=1-3, to=2-3]
+                \arrow[from=1-4, to=2-4]
+                \arrow[dashed, from=2-2, to=3-2]
+                \arrow[dashed, from=3-2, to=4-2]
+                \arrow[dashed, from=2-3, to=3-3]
+                \arrow[dashed, from=2-4, to=3-4]
+                \arrow[dashed, from=3-4, to=4-4]
+                \arrow[dashed, from=3-3, to=4-3]
+            \end{tikzcd}\] We apply the $A\otimes_R -$ functor to the diagram to obtain the diagram with exact rows: % https://q.uiver.app/?q=WzAsMTcsWzQsMCwiMCJdLFsxLDAsIkFcXG90aW1lc19SKEtcXGNhcCBSKSJdLFsyLDAsIkFcXG90aW1lc19SUiJdLFszLDAsIkFcXG90aW1lc19SXFxmcmFje1IrS317S30iXSxbNCwxLCIwIl0sWzQsMiwiMCJdLFs0LDMsIjAiXSxbMSwxLCJBXFxvdGltZXNfUihLXFxjYXAgUl4yKSJdLFsxLDMsIkFcXG90aW1lc19SSyJdLFsyLDEsIkFcXG90aW1lc19SUl4yIl0sWzIsMywiQVxcb3RpbWVzX1JGIl0sWzMsMSwiQVxcb3RpbWVzX1JcXGZyYWN7Ul4yK0t9e0t9Il0sWzMsMywiQVxcb3RpbWVzX1JcXGZyYWN7Rn17S30iXSxbMSwyLCJBXFxvdGltZXNfUihLXFxjYXAgUl5pKSJdLFsyLDIsIkFcXG90aW1lc19SUl5pIl0sWzMsMiwiQVxcb3RpbWVzX1JcXGZyYWN7Ul5pK0t9e0t9Il0sWzAsMCwiMCJdLFsxLDJdLFsyLDNdLFszLDBdLFs3LDldLFs5LDExXSxbMTEsNF0sWzgsMTBdLFsxMCwxMl0sWzEyLDZdLFsxMywxNF0sWzE0LDE1XSxbMTUsNV0sWzEsN10sWzIsOV0sWzMsMTFdLFs3LDEzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTMsOCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzksMTQsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxMSwxNSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE1LDEyLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTQsMTAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNiwxXV0=
+            \[\begin{tikzcd}
+                0 & {A\otimes_R(K\cap R)} & {A\otimes_RR} & {A\otimes_R\frac{R+K}{K}} & 0 \\
+                & {A\otimes_R(K\cap R^2)} & {A\otimes_RR^2} & {A\otimes_R\frac{R^2+K}{K}} & 0 \\
+                & {A\otimes_R(K\cap R^i)} & {A\otimes_RR^i} & {A\otimes_R\frac{R^i+K}{K}} & 0 \\
+                & {A\otimes_RK} & {A\otimes_RF} & {A\otimes_R\frac{F}{K}} & 0
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=2-4, to=2-5]
+                \arrow[from=4-2, to=4-3]
+                \arrow[from=4-3, to=4-4]
+                \arrow[from=4-4, to=4-5]
+                \arrow[from=3-2, to=3-3]
+                \arrow[from=3-3, to=3-4]
+                \arrow[from=3-4, to=3-5]
+                \arrow[from=1-2, to=2-2]
+                \arrow[from=1-3, to=2-3]
+                \arrow[from=1-4, to=2-4]
+                \arrow[dashed, from=2-2, to=3-2]
+                \arrow[dashed, from=3-2, to=4-2]
+                \arrow[dashed, from=2-3, to=3-3]
+                \arrow[dashed, from=2-4, to=3-4]
+                \arrow[dashed, from=3-4, to=4-4]
+                \arrow[dashed, from=3-3, to=4-3]
+                \arrow[from=1-1, to=1-2]
+            \end{tikzcd}\] The top row is a short exact sequence by assumption since $K\cap R$ is an ideal of $R$. The maps $A\otimes_RR^i\to A\otimes_RR^{i+1}$ are inclusions since they are really the inclusions $A^i\to A^{i+1}$ in the same sense as the maps $R^i\to R^{i+1}$ given earlier. However, this is where I am not sure how to continue. I should be able to use the fact that $A\otimes_R (K\cap R)\to A\otimes_R R$ is injective to deduce that $A\otimes_R (K\cap R^2)\to A\otimes_R R^2$ is injective, and by induction I should sequentially deduce that all the maps $A\otimes_R (K\cap R^i)\to A\otimes_R R^i$ are injective.
+
+            If $K$ is a submodule of a free module $F$, then any element of the kernel of $A\otimes_R K\to A\otimes_R F$ may be viewed as a finite linear combination of elements in the forms \[(\alpha_1+\alpha_2,\rho) - (\alpha_1,\rho) - (\alpha_2,\rho), (\alpha,\rho_1 + \rho_2) - (\alpha,\rho_1) - (\alpha,\rho_2), \text{ and } (\alpha \rho^\prime,\rho) - (\alpha,\rho^\prime\rho).\] (as in equation 10.6 in section 10.4 in Dummit and Foote) and so there is some finitely generated free module $F^\prime$ containing all of the second coordinates of the summands. Then apply the above result to see that elements in the kernel must be zero (similar argument to the first part of this part).
+        \end{proof}
+
+        \item Under the assumption in (b), suppose $L$ and $M$ are $R$-modules and $L\xrightarrow{\psi}M$ is injective.
+        
+        Prove that $A\otimes_R L\xrightarrow{1\otimes\psi}A\otimes_R M$ is injective and conclude that $A$ is flat. [Write $M$ as a quotient of the free module $F$, giving a short exact sequence \[0\to K\to F\xrightarrow{f} M\to 0.\] Show that if $J = f^{-1}(\psi(L))$ and $\iota\colon J\to F$ is the natural injection, then the diagram % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFsxLDAsIksiXSxbMSwxLCJLIl0sWzIsMCwiSiJdLFsyLDEsIkYiXSxbMywxLCJNIl0sWzMsMCwiTCJdLFswLDRdLFsxLDVdLFs0LDZdLFs1LDddLFs2LDldLFs3LDhdLFs5LDJdLFs4LDNdLFs5LDgsIlxccHNpIiwyXSxbNiw3LCJcXGlvdGEiLDJdLFs0LDUsIlxcaWQiLDJdXQ==
+        \[\begin{tikzcd}
+            0 & K & J & L & 0 \\
+            0 & K & F & M & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=2-4, to=2-5]
+            \arrow["\psi"', from=1-4, to=2-4]
+            \arrow["\iota"', from=1-3, to=2-3]
+            \arrow["\id"', from=1-2, to=2-2]
+        \end{tikzcd}\] is commutative with exact rows. Show that the induced diagram % https://q.uiver.app/?q=WzAsOCxbMywwLCIwIl0sWzMsMSwiMCJdLFswLDAsIkFcXG90aW1lc19SIEsiXSxbMCwxLCJBXFxvdGltZXNfUksiXSxbMSwwLCJBXFxvdGltZXNfUkoiXSxbMSwxLCJBXFxvdGltZXNfUkYiXSxbMiwxLCJBXFxvdGltZXNfUk0iXSxbMiwwLCJBXFxvdGltZXNfUkwiXSxbMiw0XSxbMyw1XSxbNCw3XSxbNSw2XSxbNywwXSxbNiwxXSxbNyw2LCIxXFxvdGltZXNcXHBzaSIsMl0sWzQsNSwiMVxcb3RpbWVzXFxpb3RhIiwyXSxbMiwzLCJcXGlkIiwyXV0=
+        \[\begin{tikzcd}
+            {A\otimes_R K} & {A\otimes_RJ} & {A\otimes_RL} & 0 \\
+            {A\otimes_RK} & {A\otimes_RF} & {A\otimes_RM} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=2-3, to=2-4]
+            \arrow["1\otimes\psi"', from=1-3, to=2-3]
+            \arrow["1\otimes\iota"', from=1-2, to=2-2]
+            \arrow["\id"', from=1-1, to=2-1]
+        \end{tikzcd}\] is commutative with exact rows. Use (b) to show that $1\otimes \iota$ is injective, then use Exercise 1 to conclude $1\otimes\psi$ is injective.] \begin{proof}
+            We follow the suggestion above. We have the surjection $f\colon F\to M$ with $F$ the free module generated by elements of $M$. With $K$ the kernel of $f$, we obtain the short exact sequence \[0\to K\to F\to M\to 0\] With the injection $\psi\colon L\to M$, view $L$ as a submodule of $M$. Then $J$, the preimage of $L$ under $f$, is the set of elements in $F$ which map to elements of $L$ under $F$, and hence contains all of the elements of $F$ that map to zero; i.e. $K\subseteq J$. The set $J$ has the same $R$-module structure as $F$ and the map $f^\prime$ from $J$ to $L$ is the same map as $f$ but with the domain and codomain restricted. The kernel of $f^\prime$ is $K$ since $K$ is the kernel of $f$ and $K$ is contained in $J$. There is also the natural inclusion $\iota$ of $J$ into $F$. We obtain the diagram % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFsxLDAsIksiXSxbMSwxLCJLIl0sWzIsMCwiSiJdLFsyLDEsIkYiXSxbMywxLCJNIl0sWzMsMCwiTCJdLFswLDRdLFsxLDVdLFs1LDddLFs2LDldLFs0LDZdLFs5LDJdLFs3LDhdLFs4LDNdLFs0LDUsIlxcaWRfSyIsMl0sWzYsNywiXFxpb3RhIiwyXSxbOSw4LCJcXHBzaSIsMl1d
+            \[\begin{tikzcd}
+                0 & K & J & L & 0 \\
+                0 & K & F & M & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=2-1, to=2-2]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-4, to=1-5]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=2-4, to=2-5]
+                \arrow["{\id_K}"', from=1-2, to=2-2]
+                \arrow["\iota"', from=1-3, to=2-3]
+                \arrow["\psi"', from=1-4, to=2-4]
+            \end{tikzcd}\] and by construction the rows are exact. The diagram commutes: the left square commutes by construction and the right square commutes since the image of $J$ under $f$ is exactly $L$ as $f^\prime$ is the same map as $f$. Then by applying the $A\otimes_R -$ functor we obtain the diagram% https://q.uiver.app/?q=WzAsOCxbMywwLCIwIl0sWzMsMSwiMCJdLFswLDAsIkFcXG90aW1lc19SSyJdLFswLDEsIkFcXG90aW1lc19SSyJdLFsxLDAsIkFcXG90aW1lc19SSiJdLFsxLDEsIkFcXG90aW1lc19SRiJdLFsyLDEsIkFcXG90aW1lc19STSJdLFsyLDAsIkFcXG90aW1lc19STCJdLFszLDVdLFs0LDddLFsyLDRdLFs3LDBdLFs1LDZdLFs2LDFdLFs0LDUsIjFcXG90aW1lc1xcaW90YSIsMl0sWzcsNiwiMVxcb3RpbWVzXFxwc2kiLDJdLFsyLDMsIlxcaWRfe0FcXG90aW1lc19SS30iLDJdXQ==
+            \[\begin{tikzcd}
+                {A\otimes_RK} & {A\otimes_RJ} & {A\otimes_RL} & 0 \\
+                {A\otimes_RK} & {A\otimes_RF} & {A\otimes_RM} & 0
+                \arrow[from=2-1, to=2-2]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=2-3, to=2-4]
+                \arrow["1\otimes\iota"', from=1-2, to=2-2]
+                \arrow["1\otimes\psi"', from=1-3, to=2-3]
+                \arrow["{\id_{A\otimes_RK}}"', from=1-1, to=2-1]
+            \end{tikzcd}\] and the rows are exact since the tensor product is right exact and the squares still commute. The map $\id_{A\otimes_R \ker f^\prime}$ is surjective and by part (b), $1\otimes\iota$ is injective. The map $1\otimes f^\prime\colon A\otimes_R J\to A\otimes_R L$ is surjective since $f^\prime$ is surjective. By diagram chasing in Exercise 1 it follows that $1\otimes\psi$ is injective also. Hence $A$ is flat.
+        \end{proof}
+    \end{enumerate}
+    \item (Long Exact Sequence in Cohomology) Provide some more details for Theorem 2 in 17.1. We defined $\delta_i$ in class. Now show: \begin{enumerate}
+        \item The sequence is exact at $H^i(\mathcal{B})$ for $i\geq 0$. \begin{proof}
+            We show that the image of $\alpha_i\colon H^i(\mathcal{A})\to H^i(\mathcal{B})$ is equal to the kernel of $\beta_i\colon H^i(\mathcal{B})\to H^i(\mathcal{C})$ (overloading $\alpha_i,\beta_i$ as function names since it is convenient). When $i = 0$, let $d_0 \colon 0=X^{-1}\to X^0 $ be the zero map for any cochain complex $\mathcal{X}$ that follows. Similarly the $-1$-th maps of homomorphisms of cochain complexes are the zero maps.
+            
+            Given $[\alpha_ia]$, we have that $\beta_i[\alpha_ia] = [\beta_i\alpha_ia] = [0]$ since $\beta_i\alpha_i = 0$ (from the short exact sequence of chain complexes). So $\im\alpha_i\subseteq \ker\beta_i$.
+
+            Conversely, given an element of the kernel $[b]$ so that $[\beta_ib] = [0]$ and $b\in\ker d_{i+1}$, we have $\beta_ib\in\im d_i$. Hence there is a $c\in C^{i-1}$ with $d_ic = \beta_ib$, and with $\beta_{i-1}$ surjective there is a $b^\prime\in B^{i-1}$ with $\beta_{i-1}b^\prime = c$. Then $\beta_i b = d_i\beta_{i-1}b^\prime = \beta_id_ib^\prime$. So $\beta_n(b-d_ib^\prime) = 0$, which means $b-d_ib^\prime\in \ker \beta_i = \im\alpha_i$. Thus there is $a\in A^i$ with $\alpha_ia = b-d_ib^\prime$. But $d_{i+1}\alpha_ia = d_{i+1}b-d_{i+1}d_ib^\prime = 0$. It follows then that $[\alpha_ia] = [b-d_ib^\prime] = [b]$. So $\im\alpha_i\supseteq \ker\beta_i$, and we get exactness at $H^i(\mathcal{B})$ for $i\geq 0$.
+        \end{proof}
+        \item The sequence is exact at $H^i(\mathcal{C})$ for $i\geq 0$. \begin{proof}
+            Given $[\beta_ib]$, we have that $b\in\ker d_{i+1}$, so that $d_{i+1}b = 0$, and we take $a = 0$ to be the preimage under $\alpha_{i+1}$. It follows that $\delta_i[\beta_ib] = [a] = [0]$. Hence $\im\beta_i \subseteq \ker \delta_i$.
+
+            Conversely, given $[c]\in \ker \delta_i$ so that $\delta_i[c] = [a] = [0]$, we have that $a\in \im d_{i+1}$. So there is an $a^\prime\in A^i$ such that $d_{i+1}a^\prime = a$. In obtaining $a$ we had to first choose some $b\in B^i$ with $\beta_i b = c$, and then choose $a$ that $\alpha_{i+1}a = d_{i+1}b$. But $d_{i+1}\alpha_ia^\prime = d_{i+1}b$. It follows that $d_{i+1}(b-\alpha_ia^\prime) = 0$, so that $b-\alpha_ia^\prime\in\ker d_{i+1}$ and $\beta_i(b-\alpha_ia^\prime) = \beta_ib - \beta_i\alpha_ia^\prime = \beta_ib = c$. Hence $[c] = [\beta_ib] = [\beta_i(b-\alpha_ia^\prime)] = \beta_i[b-\alpha_ia^\prime]$. Thus $\im\beta_i \supseteq \ker \delta_i$, and we obtain exactness at $H^i(\mathcal{C})$ for $i\geq 0$.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (17.1.6) Let $0 \to \mathcal{A}\to\mathcal{B}\to\mathcal{C}\to 0$ be a short exact sequence of cochain complexes. Prove that if any two of $\mathcal{A},\mathcal{B},\mathcal{C}$ are exact, then so is the third.\begin{proof}
+        We use the long exact sequence of cohomology: If any two of $\mathcal{A},\mathcal{B},\mathcal{C}$ are exact, then in the long exact sequence for cohomology we obtain many zero groups (since the cohomology of exact cochain complexes are trivial) such that the only groups that are undetermined are the cohomology groups of third cochain complex $\mathcal{X}$. In every situation we find that the undetermined homology groups are found in exact sequences like these: \[0\to 0 \to H^i(\mathcal{X})\to 0\quad \text{ or }\quad 0 \to H^i(\mathcal{X})\to 0\to 0,\] and in either case by exactness we must have that the groups $H^i(\mathcal{X})$ are trivial. It then follows that $\mathcal{X}$ was exact also (we could see this by induction).
+    \end{proof}
+    \item (7.1.8) Prove that if $0\to L\to M\to N\to 0$ is a split short exact sequence of $R$-modules, then for every $n\geq 0$ the sequence $0\to \Ext_R^n(N,D)\to \Ext_R^n(M,D)\to \Ext_R^n(L,D)\to 0$ is also short exact and split. [Use a splitting homomorphism and Proposition 5.]\begin{proof}
+        Take a section $s\colon N\to M$ of the third map given in the short exact sequence $0\to L\to M\to N\to 0$. Then by Proposition 5, the map $s$ induces homomorphisms $s_n\colon \Ext_R^n(M,D)\to \Ext_R^n(N,D)$, and the maps in the short exact sequence $0\to L\to M\to N\to 0$ induce the sequence $0\to \Ext_R^n(N,D)\to \Ext_R^n(M,D)\to \Ext_R^n(L,D)\to 0$ of maps. The sequence should be a short exact sequence due to how the Hom functor takes the surjection $M\to N$ to an injective map and similarly the injection $L\to M$ is taken to a surjection. These maps would be lifted to maps between elements of their projective resolutions, and applying the Hom functor as well as taking cohomology should give the result; alternatively we could also use the functorality of the Ext right derived functors. We also obtain via functorality that $\id_M$ given by composing the surjection $M\to N$ with the section $s$ shows that the $s_n\colon \Ext_R^n(M,D)\to \Ext_R^n(N,D)$ are retracts of the first maps of the short exact sequence of Ext groups. It follows that those exact sequences are split for $n\geq 0$.
+    \end{proof}
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}

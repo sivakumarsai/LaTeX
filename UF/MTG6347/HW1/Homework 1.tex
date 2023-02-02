@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6347 Topology}
+\fancyhead[C]{Homework 1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item \textit{Reduced homology.} Let $X$ be a topological space with $x_0\in X$. Define the \textit{reduced singular chain group} by $\tilde{S}_n(X) = S_n(X,x_0)$ and \textit{reduced singular homology} by $\tilde{H}_n(X) = H_n(X,x_0)$. Use the long exact sequence for the homology of a pair to show that $\tilde{H}_n(X)\cong H_n(X)$ for $n\geq 1$. The case $n=1$ requires extra care. Use the maps $i\colon x_0\to X$, $r\colon X\to x_0$ and the splitting lemma to show that $H_0(X)\cong \mathbb{Z}\oplus \tilde{H}_0(X)$. \begin{proof}
+      We know that the homology groups $H_i(x_0)$ are zero for nonzero $i$ and is $\mathbb{Z}$ for $i = 0$. Then in the long exact sequence \[\cdots \xrightarrow{\partial}H_n(x_0)\to H_n(X)\to \tilde{H}_n(X)\xrightarrow{\partial}H_{n-1}(x_0)\to\cdots\] we have for $n>1$ the exact sequence \[0\to H_n(X)\to \tilde{H}_n(X)\xrightarrow{\partial}0.\] But by exactness we must have that the middle arrow is both injective and surjective, so it is an isomorphism. For $n = 1$ we have the exact sequence \[0\to H_1(X)\to \tilde{H}_1(X)\xrightarrow{\partial}H_{0}(x_0) \cong \mathbb{Z}.\] By exactness it is clear the middle arrow is injective, and it is surjective as it is a quotient map of groups. Hence the middle arrow is also an isomorphism.
+      
+      For $n = 0$ we obtain the short exact sequence: \[0\to H_0(x_0) \cong \mathbb{Z} \to H_0(X)\to \tilde{H}_0(X)\to 0.\] The second arrow is injective because it is induced by the injective map $i\colon x_0\to X$, which has left inverse $r\colon X\to x_0$. Thus $(\id_{x_0})\ast = (ri)_\ast = r_\ast i_\ast$ so indeed $i_\ast$ is injective. But because $r_\ast$ is a retract of $i_\ast$ we have by the splitting lemma that $H_0(x_0)$ is a direct summand of $H_0(X)$, and since the third arrow is an isomorphism of the cokernel of the second arrow with $\tilde{H}_0(X)$, we must have that $H_0(X)\cong \mathbb{Z}\oplus \tilde{H}_0(X)$.
+    \end{proof}
+    \item $\textit{Long exact sequence for reduced homology of a pair.}$ Consider a pair $(X,A)$ where $A$ is nonempty. Define $\tilde{C}_n(X,A) = \tilde{C}_n(X)/\tilde{C}_n(A)$. Use the Nine Lemma to show that $\tilde{C}_n(X,A)\cong C_n(X,A)$. Use the short exact sequence of chain complexes $0\to \tilde{C}_\bullet(A)\to \tilde{C}_\bullet(X)\to \tilde{C}_\bullet(X,A)\to 0$ and the above isomorphism to obtain the long exact reduced homology sequence of a pair. \begin{proof}
+      In the diagram % https://q.uiver.app/?q=WzAsMjEsWzEsMCwiMCJdLFsxLDEsIjAiXSxbMSwyLCIwIl0sWzEsMywiMCJdLFsxLDQsIjAiXSxbMCwxLCIwIl0sWzAsMiwiMCJdLFswLDMsIjAiXSxbMiwwLCIwIl0sWzMsMCwiMCJdLFs0LDEsIjAiXSxbNCwyLCIwIl0sWzQsMywiMCJdLFszLDQsIjAiXSxbMiw0LCIwIl0sWzIsMSwiQ19uKEEpIl0sWzIsMiwiQ19uKFgpIl0sWzIsMywiQ19uKFgsQSkiXSxbMywzLCJcXHRpbGRle0N9X24oWCxBKSJdLFszLDIsIlxcdGlsZGV7Q31fbihYKSJdLFszLDEsIlxcdGlsZGV7Q31fbihBKSJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs4LDE1XSxbMTUsMTZdLFsxNiwxN10sWzE3LDE0XSxbOSwyMF0sWzIwLDE5XSxbMTksMThdLFsxOCwxM10sWzUsMV0sWzEsMTVdLFsxNSwyMF0sWzIwLDEwXSxbNiwyXSxbMiwxNl0sWzE2LDE5XSxbMTksMTFdLFs3LDNdLFszLDE3XSxbMTcsMThdLFsxOCwxMl1d
+      \[\begin{tikzcd}
+        & 0 & 0 & 0 \\
+        0 & 0 & {C_n(A)} & {\tilde{C}_n(A)} & 0 \\
+        0 & 0 & {C_n(X)} & {\tilde{C}_n(X)} & 0 \\
+        0 & 0 & {C_n(X,A)} & {\tilde{C}_n(X,A)} & 0 \\
+        & 0 & 0 & 0
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=3-2, to=4-2]
+        \arrow[from=4-2, to=5-2]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=3-3, to=4-3]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-4, to=4-4]
+        \arrow[from=4-4, to=5-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-3, to=3-4]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=4-1, to=4-2]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-4, to=4-5]
+      \end{tikzcd}\] the columns are exact by definition of $C_n(X,A)$ and $\tilde{C}_n(X,A)$. The top two rows are exact as well since the third arrows of those rows are projection maps. The third arrow of the third row takes $x+C_n(A)$ to $[x]+\tilde{C}_n(A)$ where $[x]\in \tilde{C}_n(X)$, and it is well defined since for $a\in C_n(A)$, $[a]\in \tilde C_n(X)$ is either zero or in $\tilde C_n(A)$. It follows by the Nine Lemma that the third row is also exact. Then the sequence $0\to C_n(X,A)\to \tilde C_n(X,A) \to 0$ is exact so that the middle arrow is an isomorphism (it is injective and surjective).
+
+      Then by the above isomorphism we obtain a short exact sequence of chain complexes $0\to \tilde{C}_\bullet(A)\to \tilde{C}_\bullet(X)\to C_\bullet(X,A)\to 0$, which gives a long exact sequence as follows: \[\cdots \to \tilde{H}_n(A)\to\tilde H_n(X)\to H_n(X,A)\xrightarrow{\partial}\tilde{H}_{n-1}(A)\to \cdots\] 
+    \end{proof}
+    \item \textit{Homology of spheres.} Prove that $H_m(S^n) = \mathbb{Z}$ if $m = 0$ or $n$ and is otherwise $0$. That is, $\tilde{H}_m(S^n) = \mathbb{Z}$ if $m = n$ and is otherwise $0$. Hint: Consider the pair $(D^n,S^{n-1})$ and the long exact sequence for reduced homology of a pair. Recall: using excision one may prove that $H_n(X,A)\cong\tilde H_n(X\cup CA)$ and if $A\subset X$ is a cofibration then $H_n(X,A)\cong \tilde H_n(X/A)$. \begin{proof}
+      The inclusion $S^{n-1}\subset D^n$ is a cofibration. It follows that for all $m$, $H_m(X,A)\cong \tilde H_m(D^n/S^{n-1})\cong \tilde H_m(S^n)$ Since disks are contractible, the reduced homology of a disk is all zero. Then in the long exact sequence for reduced homology of a pair we have \[\cdots \to \tilde H_m(S^{n-1}) \to 0 \to\tilde H_m(S^n)\to \tilde H_{m-1}(S^{m-1})\to 0\to \cdots.\] By exactness it follows that $\tilde H_m(S^n)\cong \tilde H_{m-1}(S^{n-1})$, and by induction we have for $n<m$ that $\tilde H_m(S^n)\cong \tilde H_{m-n}(S^{0})\cong 0$, for $n = m$ that $\tilde H_m(S^n)\cong \tilde H_{0}(S^{0})\cong \mathbb{Z}$, and for $n>m$ that $\tilde H_m(S^n)\cong \tilde H_{0}(S^{n-m})\cong 0$ (as $H_{0}(S^{n-m})\cong\mathbb{Z}$ since spheres are path connected). Thus the reduced homology $\tilde H_m(S^n)$ is $\mathbb{Z}$ if $n = m$ and is zero otherwise as desired.
+    \end{proof}
+    \item \textit{The suspension isomorphism} Let $X$ be a topological space. Prove that for all $n$, $\tilde H_n(\Sigma X)\cong \tilde H_{n-1}(X)$. Hint: Consider the pair $(CX,X)$. \begin{proof}
+      Interpret $\Sigma X$ as $CX\cup CX$ (with common subspace $X$; I think you meant free suspension in the problem statement). Then by excision we have $H_n(CX,X)\cong \tilde H_n(CX\cup CX) = \tilde H_n(\Sigma X)$ In the long exact reduced homology sequence of the pair $(CX,X)$ we have \[\cdots \to \tilde H_n(X)\to\tilde H_n(CX)\to \tilde H_n(\Sigma X)\xrightarrow{\partial}\tilde H_{n-1}(X)\to \tilde H_{n-1}(CX)\to \cdots.\] But $CX$ is contractible so we have the exact sequence \[\cdots \to 0 \to \tilde H_n(\Sigma X)\xrightarrow{\partial}\tilde H_{n-1}(X)\to 0 \to \cdots.\] Thus by exactness the connecting homomorphism must always be an isomorphism, so $\tilde H_n(\Sigma X)\cong \tilde H_{n-1}(X)$ as desired.
+    \end{proof}
+    \item \textit{Homology of a bouquet of spheres.} Let $A$ be some set. Then $\bigoplus_{\alpha \in A}\mathbb{Z}\alpha$ is the free Abelian group generated by the set $A$. Prove that $\tilde H_m(\bigvee_{\alpha\in A}S^n_\alpha)\cong \bigoplus_{\alpha \in A}\mathbb{Z}\alpha$ if $m = n$ and is $0$ otherwise. \begin{proof}
+      Let $X = \bigvee_{\alpha\in A}S^n_\alpha$. Let $B$ be a neighborhood of the central point to which all the spheres were wedged together at; note that $B$ is contractible. Let $C$ be the all of the spheres minus a smaller neighborhood of the center point contained in $B$ so that $B\cap C$ is nonzero and is homotopic to the disjoint union $\sqcup_{\alpha\in A}S^{n-1}_\alpha$. Note that $C$ itself is homotopic to the disjoint union $\sqcup_{\alpha\in A}D^{n-1}_\alpha$, which is homotopic to the disjoint union of $\abs{A}$ many points. Then consider the reduced Mayer-Vietoris sequence \[\cdots \to \tilde H_m(B\cap C)\to \tilde H_m(B)\oplus\tilde H_m(C)\to \tilde H_m(X)\to \tilde H_{m-1}(B\cap C)\to \tilde H_{m-1}(B)\oplus \tilde H_{m-1}(C)\to \cdots,\] which because disks are contractible and homology of a disjoint union is the direct sum of homologies, we obtain the following exact sequence: \[\cdots \to \bigoplus_{\alpha\in A} \tilde H_m(S^{n-1}_\alpha)\to 0 \to \tilde H_m(X)\to \bigoplus_{\alpha\in A} \tilde H_{m-1}(S^{n-1}_\alpha)\to 0\to \cdots\] By exactness it follows that $\tilde H_m(X)\cong \bigoplus_{\alpha\in A} \tilde H_{m-1}(S^{n-1}_\alpha)$, but by a previous result we have that $H_{m-1}(S^{n-1}_\alpha)\cong \mathbb{Z}\alpha$ if $m = n$ but is $0$ otherwise. Hence $\tilde H_m(X)\cong \bigoplus_{\alpha\in A} \mathbb{Z}\alpha$ if $m = n$ but is $0$ otherwise.
+    \end{proof} 
+    \item \textit{Homology of a bouquet of spaces.} Assume that for all $\alpha\in A$, $(X_\alpha,x_\alpha)$ is a pointed space which is a pair of spaces with the homotopy lifting property. Prove that for all $n$, $\tilde H_n(\bigvee_{\alpha\in A}X_\alpha)\cong \bigoplus_{\alpha\in A}\tilde H_n(X_\alpha)$. Hint: consider the pair $(\coprod_{\alpha\in A}X_a, \coprod_{\alpha\in A}x_a)$. \begin{proof}
+      The coproduct of cofibrations is a cofibration. Then the pair $(X,x) = (\coprod_{\alpha\in A}X_a, \coprod_{\alpha\in A}x_a)$ has the homotopy lifting property for all spaces. Note that $X/x$ is the wedge sum $\bigvee_{\alpha\in A}X_\alpha$. It follows that $H_n(X,x)\cong \tilde H_n(X/x) = \tilde H_n(\bigvee_{\alpha\in A}X_\alpha)$. Then in the long exact reduced homology sequence of the pair $(X,x)$ we have \[\cdots \to 0 = \tilde H_n(\sqcup_{\alpha\in A}x_\alpha )\to \tilde H_n(\sqcup_{\alpha\in A}X_\alpha)\to \tilde H_n(\bigvee_{\alpha\in A}X_\alpha)\to 0 = \tilde H_{n-1}(\sqcup_{\alpha\in A}x_\alpha ).\] By exactness, for each $n$ we must have $\bigoplus_{\alpha\in A}\tilde H_n(X_\alpha)\cong \tilde H_n(\sqcup_{\alpha\in A}X_\alpha)\cong \tilde H_n(\bigvee_{\alpha\in A}X_\alpha)$ as desired.
+    \end{proof}
+\end{enumerate}
+\end{document}
