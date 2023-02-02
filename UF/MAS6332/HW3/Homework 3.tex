@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (17.1.10) \begin{enumerate}
+        \item Prove that an arbitrary direct sum $\oplus_{i\in I}P_i$ of projective modules $P_i$ is projective and that an arbitrary direct product $\prod_{j\in J}Q_j$ of injective modules $Q_j$ is injective.
+        \item Prove that an arbitrary direct sum of projective resolutions is again projective and use this to show $\Ext_R^n(\oplus_{i\in I}A_i, B)\cong \prod_{i\in I}\Ext_R^n(A_i,B)$ for any collection of $R$-modules $A_i$ ($i\in I$). [cf. Exercise 12 in Section 10.5.]
+        \item Prove that an arbitrary direct product of injective resolutions is an injective resolution and use this to show $\Ext_R^n(A,\prod_{j\in J}B_j)\cong \prod_{j\in J}\Ext_R^n(A,B_j)$ for any collection of $R$-modules $B_j$ ($j\in J$). [cf. Exercise 12 in Section 10.5.]
+        \item Prove that $\Tor_n^R(A,\oplus_{j\in J}B_j)\cong \oplus_{j\in J}\Tor_n^R(A,B_j)$ for any collection of $R$-modules $B_j$ ($j\in J$).
+    \end{enumerate}
+    \item (17.2.8) Suppose $G$ is cyclic of order $m$ with generator $\sigma$ and let $N = 1+\sigma + \sigma^2 + \cdots + \sigma^{m-1}$.
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (17.1.9, 17.1.15, 17.1.21, 17.2.6)
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}
