@@ -164,9 +164,14 @@
     \end{proof}
     \item (17.1.15)\begin{enumerate}
         \item If $I$ is an ideal of $R$ and $M$ is an $R$-module, prove that $\Tor_1^R(M,R/I)$ is isomorphic to the kernel of the map $M\otimes_R I\to M$ that maps $m\otimes i$ to $mi$ for $i\in I$ and $m\in M$. [Use the $\Tor$ long exact sequence associated to $0\to I\to R \to R/I\to 0$ noting that $R$ is flat.] \begin{proof}
-            The $\Tor$ long exact sequence associated to $0\to I\to R \to R/I\to 0$ is \[\cdots\]
+            In the $\Tor$ long exact sequence associated to $0\to I\to R \to R/I\to 0$ is (for $M$ a right $R$-module) \begin{multline*}
+            \cdots\to\Tor_2^R(M,R/I)\xrightarrow{\delta_1}\Tor_1^R(M,I)\to\Tor_1^R(M,R)\to\Tor_1^R(M,R/I)\\\xrightarrow{\delta_0}M\otimes_RI\to M\otimes_R R \to M\otimes_R R/I\to 0
+            \end{multline*} we have since $R$ is flat over itself that the following sequence is exact: \[0\to \Tor_1^R(M,R/I)\to M\otimes_RI\to M \] 
+            Then by exactness we have that the central arrow is injective and that $\Tor_1^R(M,R/I)$ is isomorphic to the kernel of the next map, given by $m\otimes i\mapsto mi$.   
         \end{proof}
-        \item \textit{(A Flatness Criterion using $\Tor$)} Prove that the $R$-module $M$ is flat if and only if $\Tor_1^R(M,R/I) = 0$ for every finitely generated ideal $I$ of $R$. [Use Exercise 25 in Section 10.5.]
+        \item \textit{(A Flatness Criterion using $\Tor$)} Prove that the $R$-module $M$ is flat if and only if $\Tor_1^R(M,R/I) = 0$ for every finitely generated ideal $I$ of $R$. [Use Exercise 25 in Section 10.5.] \begin{proof}
+            When $\Tor_1^R(M,R/I) = 0$ for every finitely generated ideal $I$ of $R$, every map $M\otimes_R I\to M$ that maps $m\otimes i$ to $mi$ for $i\in I$ and $m\in M$ must be injective by exactness of the four-term sequence in the previous part. By Exercise 10.5.25, we must have that $M$ is a flat $R$-module.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 \subsection*{Feedback}
