@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (17.2.9) Suppose $G$ is an infinite cyclic group with generator $\sigma$. \begin{enumerate}
+        \item Prove that multiplication by $\sigma-1\in\mathbb{Z}G$ defines a free $G$-module resolution of $\mathbb{Z}$: $0\to \mathbb{Z}G\xrightarrow{\sigma-1}\mathbb{Z}G\to\mathbb{Z}\to 0$. \begin{proof}
+            We show that we have exactness at each of the modules in the sequence: 
+            Taking the second to the right arrow to be the augmentation map $\mathbb{Z}G\to\mathbb{Z}$, we have already seen that it is surjective (from the last homework).
+            
+            The kernel of the augmentation map is given by elements $\sum_{i=0}^Na_i\sigma^i$ where $\sum_{i=0}^Na_i = 0$. Writing $a_0 = -a_1-\cdots-a_N$ we have $\sum_{i=0}^Na_i\sigma^i = \sum_{i=1}^N a_i(\sigma^i-1)$; and with $i\geq 1$ we have $\sigma-1$ dividing $\sigma^i-1$. Then $\sum_{i=0}^Na_i\sigma^i = (\sigma-1)\sum_{i=1}^N a_i(\sigma^i-1)/(\sigma-1)$, so that the kernel of the augmentation map is contained in the image of the multiplication by $\sigma-1$ map. Conversely given an element $\sum_{i=0}^Na_i\sigma^i$, we have $(\sigma-1)\sum_{i=0}^Na_i\sigma^i = -a_0 + (a_0-a_1)\sigma + \cdots + (a_{N-1}-a_N)\sigma^N + a_N\sigma^{N+1}$, which is sent to zero under the augmentation map. Thus the kernel of the augmentation map is equal to the image of the multiplication map.
+
+            The multiplication by $\sigma-1$ is injective: If $(\sigma-1)\sum_{i=0}^Na_i\sigma^i = -a_0 + (a_0-a_1)\sigma + \cdots + (a_{N-1}-a_N)\sigma^N + a_N\sigma^{N+1} = 0$ then each of the coefficients must be zero, and we have $0 = a_0 = a_1 = \cdots = a_N$ as needed. 
+
+            With $\mathbb{Z}G$ free over itself it follows that the above sequence is a free $G$-module resolution of $\mathbb{Z}$.
+        \end{proof}
+        \item Show that $H^0(G,A)\cong A^G$, that $H^1(G,A)\cong A/(\sigma-1)A$, and that $H^n(G,A) = 0$ for all $n\geq 2$. Deduce that $H^1(G,\mathbb{Z}G)\cong\mathbb{Z}$ (so free modules need not be cohomologically trivial). \begin{proof}
+            Applying the $\Hom_{\mathbb{Z}G}(-,A)$ functor to the above free resolution and using $\Hom_{\mathbb{Z}G}(\mathbb{Z}G,A)\cong A$ gives the sequence \[0\to\Hom_{\mathbb{Z}G}(\mathbb{Z},G)\to A\xrightarrow{\sigma-1} A\to 0\to\cdots.\] The cohomology of this complex is given by $H^0(G,A) = \ker(\sigma-1)$. Elements of $A^G$ (elements of $A$ fixed by $G$; i.e., those fixed by $\sigma$) are contained in $\ker(\sigma-1)$, and conversely given $a\in A$ with $\sigma a -a  = 0$ then $a\in A^G$. Hence $H^0(G,A) = A^G$. 
+
+            The next cohomology group is $H^1(G,A) = \ker(0)/\im(\sigma-1)\cong A/(\sigma-1)A$. The remaining cohomology groups for $n\geq 2$ are given by $H^n(G,A) = \ker(0)/\im(0) = 0$. 
+        \end{proof}
+    \end{enumerate}
+    \item (17.3.3) If $G$ is the cyclic group of order $2$ acting by inversion on $\mathbb{Z}$ show that $\abs{H^1(G,\mathbb{Z})} = 2$. [Show that in $E = \mathbb{Z}\rtimes G$ every element of $E-\mathbb{Z}$ has order $2$, and there are two conjugacy classes in this coset.] \begin{proof}
+        
+    \end{proof}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (17.2.22) %17.2.23, 17.2.24, 17.3.1
+    Suppose $G$ is a topological group, i.e., there is a topology on $G$ such that the maps $G\times G\to G$ defined by $(g_1,g_2)\mapsto g_1g_2$ and $G\to G$ defined by $g\mapsto g^{-1}$ are continuous. \begin{enumerate}
+        \item If $H$ is an open subgroup of $G$ and $g\in G$, prove that the cosets $gH$ and $Hg$ and the subgroup $gHg^{-1}$ are also open. \begin{proof}
+            First we show that left multiplication by a fixed element $g\in G$ (right multiplication is also continuous by symmetry) is continuous. The inclusion map $\iota_g\colon \cbr{g}\to G$ taking $g$ to itself is continuous (giving $\cbr{g}$ the subspace topology), the identity is continuous, and the product of continuous maps is continuous in the product topology. Hence left multiplication by a fixed element $g$ is the continuous map given by composing $\iota_g\times \id_G$ with the multiplication map: $\cbr{g}\times G\to G$ sending $(g,g^\prime)$ to $gg^\prime$.
+            
+            We show that any point of $gH$ and $Hg$ has an open neighborhood. 
+
+            Given a point $gh\in gH$, observe that $h\in H$ has an open neighborhood $V_h$ contained in $H$. Then the preimage of $V_h$ under the continuous map of left multiplication by $g^{-1}$ is given by $gV_h$, which contains $gh$, is open, and is contained in $gH$. 
+            
+            Similarly, given $hg \in Hg$, observe that $h\in H$ has an open neighborhood $V_h$ contained in $H$. Then the preimage of $V_h$ under the continuous map of right multiplication by $g^{-1}$ is given by $V_hg$, which contains $hg$, is open, and is contained in $Hg$. 
+
+            Left multiplication by $g^{-1}$ followed by right multiplication by $g$ (i.e. conjugation by $g^{-1}$) is continuous since each multiplication is continuous. Then for any $ghg^{-1}$ observe that $h\in H$ is contained in an open set $V_h$ contained in $H$. Then the preimage of $V_h$ under conjugation by $g^{-1}$ is $gV_hg^{-1}$
+        \end{proof}
+        \item Prove that any open subgroup is also closed. [The complement is the union of cosets as in (a).] \begin{proof}
+            The group $G$ is the union of the cosets $gH$ for an open subgroup $H$, and the complement of $H$ in $G$ is given by $\cup_{g\neq 1_G} gH$, which is open because each of the $gH$ are open. Hence $H$ is also closed.
+        \end{proof}
+        \item Prove that a closed subgroup of finite index is open. \begin{proof}
+            If $H\leq G$ is closed of finite index then the complement of $H$ in $G$ is a finite union of cosets $gH$ ($g\neq 1_G$). Each of the cosets $gH$ is closed: If $k$ is a limit point of $gH$ then there is a sequence $(gh_n)_n$ converging to $k$. But $(h_n)$ converges to $g^{-1}k$ by continuity of multiplication by $g^{-1}$, and since $H$ was closed, $g^{-1}k\in H$ so that $k = gh$ for some $h\in H$. Hence $k\in gH$ so that $gH$ contains all of its limit points and is thus closed also. The finite union of closed sets is closed; hence $H$ has closed complement so it is open also.
+        \end{proof}
+        \item If $G$ is compact prove that every open subgroup $H$ is of finite index. \begin{proof}
+            Given an open subgroup $H$ we cover $G$ by the union of the cosets $gH$ for $g\in G$; by compactness only finitely of these cosets are needed to cover $G$ so that by eliminating duplicate cosets we obtain that $G$ is the disjoint union of finitely many cosets $gH$. Hence $H$ has finite index in $G$.
+        \end{proof}
+    \end{enumerate}
+    \item (17.3.1) Let $G$ be the cyclic group of order $2$ and let $A$ be a $G$-module. Compute the isomorphism types of $Z^1(G,A)$, $B^1(G,A)$, and $H^1(G,A)$ for each of the following: \begin{enumerate}
+        \item $A = \mathbb{Z}/4\mathbb{Z}$ (trivial action),
+        \item $A = \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (trivial action),
+        \item $A = \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (any nontrivial action).
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item 17.2.22 to me is a little suspicious/new to me.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}

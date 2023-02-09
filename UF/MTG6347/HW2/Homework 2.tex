@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6347 Topology}
+\fancyhead[C]{Homework 2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Use the CW structure of the following classical spaces to compute their cellular homology.\begin{enumerate}
+        \item $S^n$ in two different ways, $S^\infty$
+        
+        We have $S^n$ with cell structure $e^0\cup e^n$ where the boundary of $e^n$ is identified with to the point $e^0$. The associated chain complex is \[\cdots \to 0\to \mathbb{Z}\to 0\to\cdots\to 0 \to \mathbb{Z}\to 0.\] It follows that all of the maps are zero maps so that the cellular homology is $H_k(S^n) = \mathbb{Z}$ for $k = 0,n$ and $H_k(S^n) = 0$ otherwise. The Euler characteristic is $(-1)^n + 1$, which is $0$ or $2$ depending on $n$.
+
+        We have $S^n$ with cell structure $\bigcup_{i=0}^n (e^i_1\cup e^i_2)$ where the attaching maps are those that send the boundaries of $e^i_k$ to $e^{i-1}_1\cup e^{i-1}_2$ (so viewing the skeleta as equators and attaching hemispheres). An example of the orientations I am choosing are in the $1$-skeleton below:\vspace*{5cm}
+
+        Then the chain complex is \[\cdots\to 0 \to \mathbb{Z}^2\xrightarrow{M_n}\mathbb{Z}^2\xrightarrow{M_{n-1}}\cdots\xrightarrow{M_2}\mathbb{Z}^2\xrightarrow{M_1}\mathbb{Z}^2\to 0\] where $M_i$ is $\begin{pmatrix}
+            1 & -1 \\ -1 & 1
+        \end{pmatrix}$ for even $i$ and is $\begin{pmatrix}
+            1 & 1 \\ 1 & 1
+        \end{pmatrix}$ for odd $i$. Since these two matrices commute and multiply to zero the sequence above is exact everywhere except at the endpoints, and the homology $H_k(S^n)$ for $k = 0,n$ is both $\mathbb{Z}$ since $M_i$ is always a rank $1$ matrix. The Euler characteristic is the same as before, $(-1)^n+1$
+
+        The cell structure for $S^\infty$ is like the previous one for $S^n$ but taken as a countably infinite union. In this case the sequence and maps are the same as the above case except that we always have exactness except for at the zeroth chain group $\mathbb{Z}^2$ on the right. So the only nonzero homology group is $H_0(S^\infty) = \mathbb{Z}$. The Euler characteristic is $1$.
+
+        \item $\mathbb{RP}^n$, $\mathbb{CP}^n$, $\mathbb{HP}^n$
+        
+        The cell structure of $\mathbb{RP}^n$ is given by one cell of each dimension with attaching maps given by the projection of spheres onto projective space (which are spheres with antipodes identified); these maps have degree $(-1)^k$. So the cell structure is $e^0\cup e^1\cup\cdots \cup e^n$. Then the chain complex is given by \[0\to \mathbb{Z}\xrightarrow{1+(-1)^n}\cdots\xrightarrow{2}\mathbb{Z}\xrightarrow{0}\mathbb{Z}\to 0\] and the maps are multiplication by $0$ or $2$ (due to summing the local degrees of the preimages of points under the antipodal map and parity: a preimage of a point $x$ has two points in it; and one of them is sent to $x$ via the identity and the other by the antipodal map, and we add the degrees there). Then the homology is $H_0(\mathbb{RP}^n) = \mathbb{Z}$, and $H_k(\mathbb{RP}^n)$ is $0$ for even positive $k < n$ and is $\mathbb{Z}/2\mathbb{Z}$ for odd $k < n$. If $n$ is even then $H_n(\mathbb{RP}^n)$ is $0$ and is $\mathbb{Z}$ when $n$ is odd. All other homology groups are zero. The Euler characteristic is $1$ when $n$ is even and is $0$ when $n$ is odd due to the last homology group becoming $\mathbb{Z}$ and not zero.
+
+        The cell structure of $\mathbb{CP}^n$ is similar to that of $\mathbb{RP}^n$ in that cells are attached via the antipodal map but we attach at each stage one cell of dimension $2k$ (up to the $2n$-cell). This means that we do not need to consider the attaching maps and we can form the chain complex \[\cdots \to 0\to 0\to \mathbb{Z}\to 0\to \mathbb{Z}\to 0\to\cdots \to 0\to \mathbb{Z}\to 0.\] The homology groups $H_k(\mathbb{CP}^n)$ are then $\mathbb{Z}$ when $k\leq 2n$ is even and zero otherwise. It follows that the Euler characteristic is $n+1$ since there are $n+1$ rank $1$ homology groups in the sequence above at even indices $0,\dots,2n$.
+
+        Similarly, for quaternionic projective space $\mathbb{HP}^n$ we attach cells of dimension $4k$ up to the $4n$-cell via the antipodal map. The chain complex we obtain is \[0\to 0\to \mathbb{Z}\to 0\to 0\to 0\to \mathbb{Z}\to \cdots\to 0\to 0 \to 0\to \mathbb{Z}\to 0.\] Again all of the homology groups are zero except for $H_{4k}(\mathbb{HP}^n) = \mathbb{Z}$ for $k = 0,\dots,n$. It follows that the Euler characteristic must be $n+1$ also as $4k$ is even for every $0\leq k\leq n$.
+        \item $\mathbb{RP}^\infty$, $\mathbb{CP}^\infty$, $\mathbb{HP}^\infty$
+        
+        The cell structures of $\mathbb{RP}^\infty$, $\mathbb{CP}^\infty$, $\mathbb{HP}^\infty$ are given in the same inductive manner as in the previous part but with no bound on $n$ (i.e. we indefinitely attach cells).
+
+        Then for $\mathbb{RP}^\infty$ it follows that again $H_0(\mathbb{RP}^\infty) = \mathbb{Z}$, $H_k(\mathbb{RP}^\infty)$ is $0$ for even $k<\infty$ and is $\mathbb{Z}/2\mathbb{Z}$ for odd $k<\infty$. There is no ``last group'' in this case; it follows that the Euler characteristic is $1$.
+
+        For $\mathbb{CP}^\infty$ the associated chain complex has $\mathbb{Z}$ at every even index and $0$ everywhere else and so the homology groups $H_k(\mathbb{CP}^\infty)$ are $\mathbb{Z}$ for even $k$, and are zero otherwise. This space has infinite Euler characteristic (which I do not know how to interpret) since all of the homology groups are rank $1$ and are of even index.
+
+        For $\mathbb{HP}^\infty$ the associated chain complex has $\mathbb{Z}$ at every index $4k$ for $k\geq 0$ and $0$ everywhere else and so the homology groups $H_{4k}(\mathbb{CP}^\infty)$ are $\mathbb{Z}$ for $k\geq 0$, and are zero otherwise. This space has infinite Euler characteristic since all of the homology groups are rank $1$ and are of even index.
+        \item orientable surfaces and nonorientable surfaces
+
+        For orientable surfaces we handle the nonzero genus case: The cell structure of a genus $g$ surface $S$ is given by one $2$-cell, $2g$ $1$-cells, and one $0$-cell attached by identifying the boundaries of all of the $1$-cells to the $0$-cell, and the boundary of the $2$-cell is identified to the $1$-cells via the polygonal identification with word $[a_1,b_1]\cdots[a_g,b_g]$.
+
+        The chain groups form the sequence \[\cdots \to 0\to \mathbb{Z}\xrightarrow{b} \mathbb{Z}^{2g}\xrightarrow{a} \mathbb{Z}\to 0.\] The map $a$ is zero since every $1$ cell has both of its endpoints mapped to the $0$-cell (so the degrees are all zero). The map $b$ must also be zero since the local degrees at each element of the preimage of a point of $a_i$ sum to zero since each side of the polygon $a_i$ is paired with a side $a_i^{-1}$ which has the opposite orientation. Thus the only nonzero homology groups are $H_0(S) = \mathbb{Z}$, $H_1(S) = \mathbb{Z}^{2g}$, and $H_2(S) = \mathbb{Z}$. Hence the Euler characteristic is $2-2g$.
+
+        Nonorientable surfaces are similar in that they also come from a polygonal identification: The $m$-fold projective plane $P$ is given by one $2$-cell, $m$ $1$-cells, and one $0$-cell, with the identification given by the word $(a_1a_1)\cdots (a_ma_m)$. We obtain the chain complex \[\cdots \to 0\to \mathbb{Z}\xrightarrow{b}\mathbb{Z}^m\xrightarrow{a}\mathbb{Z}\to 0.\] The map $a$ is zero since every $1$-cell has both of its endpoints terminating at the same $0$-cell. The map $b$ is componentwise a map of degree $2$, since each of the two points in the preimage of a point of a $1$-cell $a_i$ has degree $1$ (since in the polygon both $a_i$ are oriented in the same direction). It follows that the map $b$ is the one sending $1$ to $(2,\dots,2)$.
+
+        Then the nonzero homology groups must be $H_0(P) = \mathbb{Z}$, $H_1(P) = \mathbb{Z}^m/\mathbb{Z}(2,\dots,2)\cong \mathbb{Z}^{m-1}\oplus\mathbb{Z}/2\mathbb{Z}$ (by a change of basis), and $H_2(P) = 0$. The Euler characteristic is thus $2-m$
+    \end{enumerate}
+    \item Prove that for a short exact sequence of Abelian groups $0\to A\to B\to C\to 0$, $\rank(B) = \rank(A) + \rank(C)$. \begin{proof}
+        If any one of $A$, $B$, or $C$ are not finitely generated then the result is true: If $A$ is not finitely generated then $B$ cannot be finitely generated. If $C\cong B/A$ is not finitely generated then $B$ must also not be finitely generated. If $B$ is not finitely generated then one of $A,C$ are not finitely generated since if both were finitely generated $B$ had to be also.
+
+        Then in the case of finitely generated $\mathbb{Z}$-modules we can use the decomposition theorem to write each module in the form $X = \mathbb{Z}^{\rank(X)}\oplus T_X$ where $T_X$ is a finite torsion $\mathbb{Z}$-module. Then $C\cong \mathbb{Z}^{\rank(C)}\oplus T_C\cong (\mathbb{Z}^{\rank(B)}\oplus T_B)/(\mathbb{Z}^{\rank(A)}\oplus T_A)\cong \mathbb{Z}^{\rank(B)-\rank(A)}\oplus T_B/T_A$. Then by comparing ranks we have the result.
+    \end{proof}
+    \item Compute the Euler characteristic of all the spaces in \#$1$. 
+    
+    (Computed in \#$1$. Throughout we use the alternating sum of the rank of the homology groups.)
+\end{enumerate}
+\end{document}

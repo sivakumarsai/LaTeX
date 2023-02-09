@@ -1,0 +1,94 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 2}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+The sequence of function $D_N:\RR\to \CC,$  
+\[
+ D_N(t) = \sum_{n=-N}^N e^{int}
+\]
+ is the Dirichlet kernel. The sequence of functions $K_N:\RR\to \CC,$ 
+\[
+ K_N(t) =   \sum_{n=0}^N D_n(t) 
+\]
+ is Fejer's kernel. It satisfies
+\begin{enumerate}[(i)]
+ \item $K_n(t)\ge 0$ for all $n$ and $t;$
+ \item $K_N$ is $2\pi$-periodic;
+ \item  $\frac{1}{2\pi}\, \int_{-\pi}^{\pi} K_n(t)\, dt = 1$ for all $n;$ 
+ \item  for each $\delta>0,$
+\[
+  \lim_{n\to\infty} \int_{\delta \le |t|<\pi} K_n(t)\, dt \, = \, 0.
+\]
+\end{enumerate}
+\bigskip
+
+Let $\overline{\DD}=\{|z| \le 1\}.$ Suppose $f:\overline{\DD}\to \CC$ is continuous and $f|_{\DD}:\DD\to\CC$ is analytic. Follow the outline below
+(or otherwise) prove $f$ is uniformly approximable in $\DD$  by (analytic)  polynomials.
+
+\begin{enumerate}[(A)]\itemsep=10pt
+ \item  Show, with 
+ $z=re^{i\theta}$ and $0\le r<1,$ that
+\[
+ p_n(z) =\frac{1}{2\pi} \int_{-\pi}^\pi f(re^{i(\theta -t)})\, K_n(t)\, dt
+  = \frac{1}{2\pi} \int_{-\pi}^\pi f(ze^{-i\, t})\, K_n(t)\, dt
+\]
+ is a polynomial  (of degree at most $n$). Suggestion: Expand $f$ in a power series.
+\item Show $(p_n)$ converges uniformly to $f$ on $\overline{\DD}.$ Suggestion: Note
+\[
+ f(z) =\frac{1}{2\pi}\int_{-\pi}^\pi f(z) K_n(t)\, dt 
+\]
+and, since $f$ is uniformly continuous, one can uniformly estimate, in  $\DD,$ 
+\[
+    |f(z)-f(ze^{-it})|
+\]
+ by choosing $|t|$ sufficiently small.  
+ %to take advantage of properties of the sequence $(K_n)$; 
+%and further,
+\end{enumerate}
+
+ \bigskip
+
+\begin{proof}
+\baselineskip=24pt
+Your proof here. Please double space.
+\end{proof}
+\end{document}
