@@ -110,7 +110,15 @@
         \end{proof}
     \end{enumerate}
     \item (17.3.3) If $G$ is the cyclic group of order $2$ acting by inversion on $\mathbb{Z}$ show that $\abs{H^1(G,\mathbb{Z})} = 2$. [Show that in $E = \mathbb{Z}\rtimes G$ every element of $E-\mathbb{Z}$ has order $2$, and there are two conjugacy classes in this coset.] \begin{proof}
-        
+        Let $G$ be given by $\abr{g}$. Every element of the form $(z,g)$ in $E$ (really $E-\mathbb{Z}$) has order $2$ (i.e., are involutions): $(z,g)(z,g) = (z+g\cdot z,g^2) = (z-z,1_G) = (0,1)$.
+
+        For each $z\in\mathbb{Z}$, the subgroup $E_z = \abr{(z,g)}$ is a complement of $\mathbb{Z}$ in $E$: it is clear that $\mathbb{Z} = \abr{(1,1_G)}$ intersects trivially with $E_z$ and any element $(n,g^\varepsilon)$ for $\varepsilon = 0,1$ is given by $(n-\varepsilon z, 1_G)(\varepsilon z, g^\varepsilon)$.
+
+        We show that the two conjugacy classes (in $E$) of $\cbr{E_z\mid z\in\mathbb{Z}}$ are $\cbr{E_{2k}\mid k\in\mathbb{Z}}$ and $\cbr{E_{2k+1}\mid k\in\mathbb{Z}}$: The subgroup $E_{2r}$ is conjugate to the subgroup $E_{2s}$ in $E$ since $(r+s,g)(2r,g)(r+s,g) = (r+s-2r,1_G)(r+s,g) = (r+s-2r+r+s,g) = (2s,g)$. Similarly, the subgroup $E_{2r+1}$ is conjugate to the subgroup $E_{2s+1}$ in $E$ since $(r+s+1,g)(2r+1,g)(r+s+1,g) = (r+s-2r,1_G)(r+s+1,g) = (r+s-2r+r+s+1,g) = (2s+1,g)$.
+
+        The subgroups $E_{r}$ and $E_{s}$ are not conjugate to each other in $E$ when $r$ and $s$ have different parity: If they were conjugate, for $\varepsilon = 0,1$ we would have $(t,g^\varepsilon)(r,g)(t,g^\varepsilon)^{-1} = (2t+(-1)^\varepsilon r,g) = (s,g)$, meaning that $2t = s-(-1)^\varepsilon r$. But if $r$ and $s$ have different parity it is impossible for $s-(-1)^\varepsilon r$ to be even, so the subgroups could not be conjugate.
+
+        It follows that there are two complements (up to equivalence) of $\mathbb{Z}$ in $E$ so by the theorem from class we must have that $\abs{H^1(G,\mathbb{Z})} = 2$. 
     \end{proof}
 \end{enumerate}
 \subsection*{Additional Problems}
@@ -139,9 +147,18 @@
         \end{proof}
     \end{enumerate}
     \item (17.3.1) Let $G$ be the cyclic group of order $2$ and let $A$ be a $G$-module. Compute the isomorphism types of $Z^1(G,A)$, $B^1(G,A)$, and $H^1(G,A)$ for each of the following: \begin{enumerate}
-        \item $A = \mathbb{Z}/4\mathbb{Z}$ (trivial action),
-        \item $A = \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (trivial action),
-        \item $A = \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (any nontrivial action).
+        \item $A = \mathbb{Z}/4\mathbb{Z}$ (trivial action)
+
+        When there is a trivial action on $A$, $Z^1(G,A)\cong \Hom_{\mathbb{Z}}(G,A)\cong \mathbb{Z}/2\mathbb{Z}$, $B^1(G,A)\cong 0$, and $H^1(G,A) \cong Z^1(G,A)\cong \mathbb{Z}/2\mathbb{Z}$.
+        \item $A = \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (trivial action)
+
+        
+        When there is a trivial action on $A$, $Z^1(G,A)\cong \Hom_{\mathbb{Z}}(G,A)\cong \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$, $B^1(G,A)\cong 0$, and $H^1(G,A) \cong Z^1(G,A)\cong \mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$.
+        \item $A =\mathbb{Z}/2\mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$ (any nontrivial action)
+
+        The automorphism group of the Klein $4$-group is the symmetric group on three elements, which has four elements of order dividing two. The three nontrivial elements are given by $2$-cycles, meaning that we can only send the generator $g$ of $G$ to one of the following involute matrices with values in $\mathbb{F}_2$ (the Klein $4$-group is an $\mathbb{F}_2$-vector space): \[\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix},\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\] So $G$ will act by multiplication by any one of these matrices.
+
+        We count how many conjugacy classes there are of complements of $A$ in $A\rtimes G$.
     \end{enumerate}
 \end{enumerate}
 \subsection*{Feedback}
