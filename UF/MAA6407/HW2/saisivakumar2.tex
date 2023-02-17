@@ -47,7 +47,7 @@ The sequence of function $D_N:\RR\to \CC,$
 \]
  is the Dirichlet kernel. The sequence of functions $K_N:\RR\to \CC,$ 
 \[
- K_N(t) =   \sum_{n=0}^N D_n(t) 
+ K_N(t) =   \frac{1}{N+1}\sum_{n=0}^N D_n(t) 
 \]
  is Fejer's kernel. It satisfies
 \begin{enumerate}[(i)]
@@ -89,8 +89,11 @@ and, since $f$ is uniformly continuous, one can uniformly estimate, in  $\DD,$
 
 \begin{proof}
 \baselineskip=24pt
-For each $n\geq 0$ we have \[K_n(t) = \frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ ne^{-it} + (n+1) + ne^{it} +\cdots + e^{i(n+1)t}\right],\] and for $t\in[-\pi,\pi]$ we have some uniform bound $\abs{}$
+For each $n\geq 0$ we have \[K_n(t) = \frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ ne^{-it} + (n+1) + ne^{it} +\cdots + e^{i(n+1)t}\right],\] and for $t\in[-\pi,\pi]$ we have some uniform bound $\abs{K_n(t)}\leq C_n$.
 
-As $f|_\DD$ is analytic it has a power series representation \[f(z) = \sum_{k=0}^\infty a_kz^k\] which converges uniformly in $\DD$. Then for $z = re^{i\theta}$ with $0\leq r < 1$, 
+As $f|_\DD$ is analytic it has a power series representation \[f(z) = \sum_{k=0}^\infty a_kz^k\] which converges uniformly in $\DD$. The sequence of partial sums $f_K\colon \mathbb{D}\to\mathbb{C}$ given by \[f_K(z) = \sum_{k=0}^Ka_kz^k\] is uniformly bounded above in $K$ and $z$ due to the uniform convergence of the power series for $f$ in $\DD$. [Uniform convergence is convergence in the $\sup$ norm, and convergent sequences are bounded.] 
+
+For $z = re^{i\theta}$ with $0\leq r < 1$ and for $-\pi\leq t\leq \pi$ we have $ze^{-it}\in \DD$. By the dominated convergence theorem [via the uniform bounds obtained above] we have \[\lim_{K\to\infty}\frac{1}{2\pi}\int_{-\pi}^{\pi}f_K(ze^{-it})K_n(t)\dd{t} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(ze^{-it})K_n(t)\dd{t}.\] But for $K\geq n$, by integrating each term in \begin{multline*}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}f_K(ze^{-it})K_n(t)\dd{t} \\ = \frac{1}{2\pi}\int_{-\pi}^{\pi}\left(\sum_{k=0}^Ka_kz^ke^{-ikt}\right)\left[\frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ ne^{-it} + (n+1) + ne^{it} +\cdots + e^{i(n+1)t}\right]\right]\dd{t}\end{multline*} only the $k = \pm n$ terms survive
 \end{proof}
 \end{document}
