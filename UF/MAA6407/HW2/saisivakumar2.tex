@@ -94,6 +94,14 @@ For each $n\geq 0$ we have \[K_n(t) = \frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ n
 As $f|_\DD$ is analytic it has a power series representation \[f(z) = \sum_{k=0}^\infty a_kz^k\] which converges uniformly in $\DD$. The sequence of partial sums $f_K\colon \mathbb{D}\to\mathbb{C}$ given by \[f_K(z) = \sum_{k=0}^Ka_kz^k\] is uniformly bounded above in $K$ and $z$ due to the uniform convergence of the power series for $f$ in $\DD$. [Uniform convergence is convergence in the $\sup$ norm, and convergent sequences are bounded.] 
 
 For $z = re^{i\theta}$ with $0\leq r < 1$ and for $-\pi\leq t\leq \pi$ we have $ze^{-it}\in \DD$. By the dominated convergence theorem [via the uniform bounds obtained above] we have \[\lim_{K\to\infty}\frac{1}{2\pi}\int_{-\pi}^{\pi}f_K(ze^{-it})K_n(t)\dd{t} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(ze^{-it})K_n(t)\dd{t}.\] But for $K\geq n$, by integrating each term in \begin{multline*}
-\frac{1}{2\pi}\int_{-\pi}^{\pi}f_K(ze^{-it})K_n(t)\dd{t} \\ = \frac{1}{2\pi}\int_{-\pi}^{\pi}\left(\sum_{k=0}^Ka_kz^ke^{-ikt}\right)\left[\frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ ne^{-it} + (n+1) + ne^{it} +\cdots + e^{i(n+1)t}\right]\right]\dd{t}\end{multline*} only the $k = \pm n$ terms survive
+\frac{1}{2\pi}\int_{-\pi}^{\pi}f_K(ze^{-it})K_n(t)\dd{t} \\ = \frac{1}{2\pi}\int_{-\pi}^{\pi}\left(\sum_{k=0}^Ka_kz^ke^{-ikt}\right)\left(\frac{1}{n+1}\left[e^{-i(n+1)t}+ \cdots+ ne^{-it} + (n+1) + ne^{it} +\cdots + e^{i(n+1)t}\right]\right)\dd{t}\end{multline*}
+we find that the highest degree of $z^k$ that survives is $k=n$. Then in the limit we also have that only up to the $z^n$ term survives. Hence $p_n(z) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(ze^{-it})K_n(t)\dd{t}$ is a polynomial of degree at most $n$, for each $n\geq 0$.
+
+Let $\varepsilon>0$ be given. Due to the uniform continuity of $f$ in $\overline{\DD}$, there is $\delta>0$ such that for $z\in\overline{\DD}$ and $\abs{t}$ small enough so that $\abs{z-ze^{-it}}<\delta$, $|f(z)-f(ze^{-it})|<\varepsilon/2$ (rough estimates using the power series for sine and cosine should give that $\abs{t}$ could be taken proportional to $\delta$ when $\delta$ is small). Now take $N$ large enough so that for $n\geq N$ we have $M\int_{\delta \leq |t|<\pi} K_n(t)\dd{t}<\varepsilon/2$, where $M$ is a uniform upper bound of $|f(z)-f(ze^{-it})|$ for all $-\pi\leq t\leq \pi$. [So $N$ only depends on $\delta$, which only depends on $\varepsilon$.] Then for $n\geq N$, we have \begin{align*}
+  \abs{ f(z)-p_n(z)} &= \abs{\frac{1}{2\pi}\int_{-\pi}^{\pi}(f(z)-f(ze^{-it}))K_n(t)\dd{t}}\\
+  &\leq \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(z)-f(ze^{-it})}K_n(t)\dd{t}\\
+  &\leq \frac{\varepsilon}{4\pi}\int_{|t|<\delta} K_n(t)\dd{t} + \frac{M}{2\pi}\int_{\delta \leq |t|<\pi} K_n(t)\dd{t}\\
+  &\leq \frac{\varepsilon}{2\pi} .
+\end{align*} Hence $f$ may be uniformly approximated by polynomials in $\DD$.
 \end{proof}
 \end{document}
