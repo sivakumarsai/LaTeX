@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6617 Analysis}
+\fancyhead[C]{Homework 2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (21.9) Let $X$ and $Y$ be normed vector spaces and $T\in L(X,Y)$. \begin{enumerate}
+        \item Consider $T^{\ast\ast}\colon X^{\ast\ast}\to Y^{\ast\ast}$. Identifying $X$,$Y$ with their images in $X^{\ast\ast}$ and $Y^{\ast\ast}$,
+        show that $T^{\ast\ast}|_X=T$. \begin{proof}
+          It suffices to prove that $T^{\ast\ast}\hat{x} = \widehat{Tx}$ since $X,Y$ embed into $X^{\ast\ast},Y^{\ast\ast}$ respectively via $x\mapsto \hat{x}$ and $y\mapsto \hat{y}$. We have for $x\in X$ that $T^{\ast\ast}\hat{x}\in Y^{\ast\ast}$ is given by \[(T^{\ast\ast}\hat{x})g = \hat x( T^\ast g) = ( T^\ast g)x = g(Tx)\] for $g\in Y^\ast$, so that $T^{\ast\ast}\hat{x}$ is given by evaluation at $Tx$; i.e., is equal to $\widehat{Tx}$.
+        \end{proof}
+        \item Prove $T^\ast$ is injective if and only if the range of $T$ is dense in $Y$. \begin{proof}
+          Suppose the range of $T$ is not dense in $Y$; that is, $\overline{\im T}\neq Y$. Then there is $y\in Y\setminus \overline{\im T}$ with  distance $\dist(y,\overline{\im T}) = \varepsilon>0$ to $\overline{\im T}$. Choose via Hahn-Banach an $f\in Y^\ast$ such that $\norm{f} = 1$, $f|_{\overline{\im T}} = 0$, and $fy = \varepsilon$. Then $f\in \ker T^\ast$ since for all $x\in X$, $(T^\ast f)x = f(Tx) = 0$ as $Tx\in \overline{\im T}$. Hence $T^\ast$ is not injective.
+
+          Conversely, suppose $\ker T\neq 0$ and that $\overline{\im T} =Y$ so that there is nonzero $f\in Y^\ast$ such that for all $x\in X$, $(T^\ast f)x = f(Tx) = 0$. But since $f\neq 0$ there is $y\in Y$ with $fy\neq 0$. There exists a sequence $(y_n = Tx_n)$ from $\im T$ converging to $y$. By continuity of $f$ we have $(fy_n = f(Tx_n) = 0)$ converges to $fy$. Hence $fy = 0$ which is in contradiction to our choice of $f$. Hence $\im T$ is not dense in $Y$.
+        \end{proof}
+        \item Prove that if the range of $T^\ast$ is dense in $X^\ast$, then $T$ is injective; if $X$ is reflexive
+        then the converse is true. \begin{proof}
+          Suppose $\overline{\im T^\ast} = X^\ast$ and that $T$ is not injective; that is, there is nonzero $x\in X$ with $Tx = 0$. Choose via Hahn-Banach an $f\in X^\ast$ such that $\norm{f} = 1$ and $fx = \norm{x}\neq 0$. There is a sequence $(f_n = T^\ast g_n)$ converging to $f$. By continuity of $\hat{x}$ we have that the sequence $(\hat{x}f_n = \hat{x}(T^\ast g_n) = g_n(Tx) = g(0) = 0)$ converges to $\hat{x}f = fx = \norm{x}\neq 0$, which is in contradiction to our choice of $f$.
+
+          Now suppose that $X$ is reflexive so that $\hat{~}\colon X\to X^{\ast\ast}$ is surjective. By identifying $X$ with $X^{\ast\ast}$ we have $T = T^{\ast\ast}|_X = T^{\ast\ast}$. Suppose that $\overline{\im T^\ast}\neq X^\ast$ so that there is $f\in X^\ast$ with nonzero distance $\dist(f,\overline{\im T^\ast}) = \varepsilon>0$ to $\overline{\im T^\ast}$. Choose via Hahn-Banach a $g\in X^{\ast\ast}$ such that $\norm{g} = 1$, $g|_{\overline{\im T^\ast}} = 0$, and $gf = \varepsilon$. With $\hat{~}$ surjective we have that $g =\widehat{x_g}$ for some nonzero (as $g$ is nonzero) $x_g\in X$. We show that $T^{\ast\ast}g = T^{\ast\ast}\widehat{x_g}$ is the zero map. For $h\in Y^\ast$, we have $(T^{\ast\ast}\widehat{x_g})h = g(T^\ast h) = 0$ since $g$ is zero on $\overline{\im T^\ast}$. Since $T^{\ast\ast}\widehat{x_g}$ is the zero map it follows that $\widehat{Tx_g}$ is the zero map; equivalently, $Tx_g = 0$ (evaluation at $Tx_g$ is zero if and only if $Tx_g$ was the zero vector since there are linear functionals which detect norms.).
+        \end{proof}
+        \item Prove that $T : X \to Y$ is invertible if and only if $T^\ast$ is invertible, in which case
+        $(T^\ast)^{-1} = (T^{-1})^{\ast}$. \begin{proof}
+          Suppose that $T$ is invertible so that $T^{-1}$ is bounded also. It follows that $(T^{-1})^\ast$ is an inverse to $T^\ast$. It is linear since $T^{-1}$ is linear, and bounded since $T^{-1}$ is bounded (we have $\norm{T^{-1}} = \norm{(T^{-1})^\ast}$). Then for $f\in Y^\ast$ and all $x\in X$, we have \[(T^\ast(T^{-1})^\ast f)x = ((T^{-1})^\ast f)(Tx) = f(T^{-1}Tx) = fx\] and \[((T^{-1})^\ast T^\ast f)x = (T^\ast f)(T^{-1}x) = f(TT^{-1}x) = fx.\] It follows that $(T^{-1})^\ast$ is bijective, and the result follows. 
+
+          Conversely, suppose that $T^\ast$ is invertible. Note that $T$ is bounded as $T^\ast$ is bounded ($\norm{T} = \norm{T^\ast}$) and it is linear since $T^{\ast\ast}$ is linear (restricting to the image of $X$ inside its bidual gives $T$).
+          % so that $(T^\ast)^{-1}$ is bounded.
+          As $T^\ast$ is injective, we have that $\im T$ is dense in $Y$; as $T^\ast$ is surjective (so it has dense image), $T$ must be injective.
+
+          What remains is to see that $T$ is surjective. I believe that this cannot happen unless $X$ is complete, but I did not come up with a counterexample. But $X$ being complete is sufficient to proceed. [Christian Austin from class proposed that maybe taking $T$ to be the inclusion of polynomials on $[0,1]$ into $L^1([0,1])$ could work.]
+
+          We prove a small lemma first. For nonzero $x\in X$, $\norm{Tx}\geq \norm{(T^\ast)^{-1}}^{-1}\norm{x}$. To obtain this, choose $g\in X^\ast$ detecting the norm of $x$: $\norm{g} = 1$, $gx = \norm{x}>0$. Then $0<\norm{x} = gx = (T^\ast (T^\ast)^{-1}g)x = ((T^\ast)^{-1}g)(Tx) = \abs{((T^\ast)^{-1}g)(Tx)}\leq \norm{(T^\ast)^{-1}g}\norm{Tx}\leq \norm{(T^\ast)^{-1}}\norm{g}\norm{Tx} = \norm{(T^\ast)^{-1}}\norm{Tx}$.
+
+          Then if $\overline{\im T} = Y$, for $y\in Y$ there is a sequence $(y_n = Tx_n)$ converging to $y$; in particular this sequence is a Cauchy sequence. Then for $\varepsilon>0$ given there is $N$ large enough so that $\norm{Tx_n - Tx_{n+1}} =\norm{T(x_n-x_{n+1})}<\varepsilon$ for $n\geq N$. But $\norm{T(x_n-x_{n+1})}\geq \norm{(T^\ast)^{-1}}^{-1}\norm{x_n-x_{n+1}}$, from which it follows that $(x_n)$ is a Cauchy sequence. When $X$ is complete this sequence converges to some $x\in X$ and it follows that $y = Tx$; hence $T$ is surjective and thus invertible as needed.
+        \end{proof}
+    \end{enumerate}
+    \item (22.6) Suppose that $X$ is a vector space with a countably infinite basis. (That is, there is a linearly independent set $\{x_n\} \subset X$ such that every vector $x \in X$ is expressed uniquely as a finite linear combination of the $x_n$s.) Prove there is no norm on $X$ under which it is complete. (Hint: consider the finite-dimensional subspaces $X_n \coloneqq \Span\{x_1,\dots ,x_n\}$.) \begin{proof}
+      Fix a countably infinite basis $\cbr{x_i}_{i=1}^\infty$ of $X$. Let $X_n\coloneqq \Span\{x_1,\dots,x_n\}$ be finite dimensional, hence closed (by the previous homework), proper subspaces of $X$. The subspaces $X_n$ are each nowhere dense: Suppose that there was an open set $A$ contained in $X_n$. By translation (a homeomorphism and containment in $X_n$ is preserved as $X_n$ is a vector subspace) we may assume without loss of generality that $0\in A$. There exists $\varepsilon>0$ such that there is an open ball $B_\varepsilon(0)$ of radius $\varepsilon$ centered at $0$. The vector $x_{n+1}$ is not in $X_n$, but $(\varepsilon x_{n+1})/(2\norm{x_{n+1}}) $ is contained in $B_\varepsilon(0)$ since its norm is $\varepsilon/2$. But then $A$ could not be contained in $X_n$ as assumed. It follows that $X_n$ for each $n$ is nowhere dense. 
+
+      Furthermore, note that $X_n$ is contained as a subspace of $X_{n+1}$ for each $n$, and so the countable union $\cup_{i = 1}^\infty X_i$ is given by the span of the basis $\cbr{x_i}_{i=1}^\infty$; that is, the union is exactly $X$. So $X$ may be written as the countable union of nowhere dense sets $X_n$, but since $X$ is complete we arrive at a contradiction as $X$ is a Baire space (which cannot be given as the countable union of nowhere dense sets). Hence there is no norm on which $X$ is complete in. 
+    \end{proof}
+    \item (22.10) Suppose $X$ is a Banach space and $M$ and $N$ are closed subspaces. Show, if for each $x \in X$ there exist unique $m\in M$ and $n\in N$ such that $x = m + n$, then the mapping $P : X \to M$ defined by $Px = m$ is bounded. \begin{proof}
+      Observe that $M$ is a Banach space since it is a closed subspace of the complete space $X$. Certainly $P$ is linear: If $x_1 = m_1+n_1$ and $x_2 = m_2 + n_2$ (written uniquely) then $P(x_1 + cx_2) = m_1 + cm_2 = Px_1 + cPx_2$, since $x_1 + cx_2$ may be written as $(m_1 + cm_2) + (n_1 + cn_2)$, and by assumption this combination is unique. Then by the Closed Graph Theorem $P$ is bounded if and only if it is closed. To that end, suppose that the sequence $(x_k,Px_k)$ converges to $(x,y)$ then $Px = y$. There exist unique $m_k\in M$, $n_k\in N$ such that $x_k = m_k +n_k$ for each $k$. Then $Px_k = m_k$ so that $(m_k)$ converges to $y$, and $y\in M$ since $M$ is closed. Then $(x_k-m_k = n_k)$ must converge to $x-y$, furthermore $x-y\in N$ since $N$ is closed. Then $x = y + (x-y)$ is a combination of vectors from $M,N$ for $x$ and hence must be unique. It follows that $Px = y$ as needed, and hence $P$ is bounded.
+    \end{proof}
+\end{enumerate}
+\end{document}
