@@ -95,7 +95,7 @@
           % so that $(T^\ast)^{-1}$ is bounded.
           As $T^\ast$ is injective, we have that $\im T$ is dense in $Y$; as $T^\ast$ is surjective (so it has dense image), $T$ must be injective.
 
-          What remains is to see that $T$ is surjective. I believe that this cannot happen unless $X$ is complete, but I did not come up with a counterexample. But $X$ being complete is sufficient to proceed. [Christian Austin from class proposed that maybe taking $T$ to be the inclusion of polynomials on $[0,1]$ into $L^1([0,1])$ could work.]
+          What remains is to see that $T$ is surjective. This cannot happen unless $X$ is complete. [In the following, $X$ being complete is sufficient to obtain the result, but in class we saw a counterexample showing that $X$ being complete is necessary.]
 
           We prove a small lemma first. For nonzero $x\in X$, $\norm{Tx}\geq \norm{(T^\ast)^{-1}}^{-1}\norm{x}$. To obtain this, choose $g\in X^\ast$ detecting the norm of $x$: $\norm{g} = 1$, $gx = \norm{x}>0$. Then $0<\norm{x} = gx = (T^\ast (T^\ast)^{-1}g)x = ((T^\ast)^{-1}g)(Tx) = \abs{((T^\ast)^{-1}g)(Tx)}\leq \norm{(T^\ast)^{-1}g}\norm{Tx}\leq \norm{(T^\ast)^{-1}}\norm{g}\norm{Tx} = \norm{(T^\ast)^{-1}}\norm{Tx}$.
 
