@@ -92,12 +92,26 @@
 \begin{document}
 \subsection*{Graded}
 \begin{enumerate}
-    \item (Problem 1)
-    \item (17.4.10)
+    \item ($G$-modules with Trivial Cohomology) Let $G$ be a finite group and $A$ a $G$-module. Show that there exists a $G$-module $B$ with an injective map of $G$-modules $A\hookrightarrow B$ such that $H^n(G,B) = 0$ for $n>0$. (We say $B$ is cohomologically trivial for $G$.) Here is a suggested strategy, which is a streamlined version of the arguments in Section 17.2. \begin{itemize}
+        \item Take $B = \Hom_{\mathbb{Z}}(\mathbb{Z}G, A)$, with $G$ acting on the codomain.
+        \item Use tensor-hom adjunction to show that for any $\mathbb{Z}G$-module $P$, $\Hom_{\mathbb{Z}G}(P,B)\cong \Hom_\mathbb{Z}(P,A)$.
+        \item Show $\Ext_{\mathbb{Z}G}^n(\mathbb{Z},B)\cong \Ext_\mathbb{Z}^n(\mathbb{Z},A)$ by applying $\Hom_{\mathbb{Z}G}(-,B)$ to a projective resolution of $\mathbb{Z}G$-modules for $\mathbb{Z}$.
+    \end{itemize}
+    \item (17.4.10) Suppose $\mathbb{F}_q$ is a finite field with $G= \Gal(\mathbb{F}_{q^d}/\mathbb{F}_q) = \abr{\sigma_q}$ where $\sigma_q$ is the Frobenius automorphism, and let $N$ be the usual norm element for the cyclic group $G$. \begin{enumerate}
+        \item Use Hilbert's Theorem 90 to prove that $\abs{{}_N(\mathbb{F}_{q^d}^\times)} = (q^d-1)/(q-1)$, and deduce that the norm map from $\mathbb{F}_{q^d}$ to $\mathbb{F}_q$ is surjective.
+        \item Prove that $H^n(G,\mathbb{F}_{q^d}^\times) = 0$ for all $n\geq 1$.
+    \end{enumerate}
 \end{enumerate}
 \subsection*{Additional Problems}
 \begin{enumerate}
-    \item (17.3.4, 17.3.11, 17.4.2, Problem 2)
+    % 17.3.11 or Problem 2
+    \item (17.3.4) Let $A$ be the Klein $4$-group and let $G = \Aut(A)\cong S_3$ act on $A$ in the natural fashion. Prove that $H^1(G,A) = 0$. [Show that in the semidirect product $E = A\rtimes G$, $G$ is the normalizer of a Sylow $3$-subgroup of $E$. Apply Sylow's theorem to show that all complements to $A$ in $E$ are conjugate.]
+    \item (17.4.2) Let $A=\mathbb{Z}/4\mathbb{Z}$ and let $G$ be the cyclic group of order $2$ acting trivially on $A$.\begin{enumerate}
+        \item Prove that $\abs{C^2(G,A)} = 2^8$.
+        \item Use the coboundary condition to show that $\abs{B^2(G,A)} = 2^3$.
+        \item Use the cocycle condition to show that $\abs{Z^2(G,A)} \leq 2^4$. 
+        \item Show that $\abs{H^2(G,A)} = 2$ by exhibiting two inequivalent extensions of $G$ by $A$ and their corresponding cocycles.
+    \end{enumerate}
 \end{enumerate}
 \subsection*{Feedback}
 \begin{enumerate}

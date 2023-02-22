@@ -87,10 +87,60 @@
     \item Compute the cohomology with $\mathbb{Z}$ and $\mathbb{Z}/2\mathbb{Z}$ coefficients of the following using a
     cellular ($\Delta$-complex) structure with two $2$-cells: \begin{enumerate}
       \item $S^1 \times S^1$,
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{cc|c|c|c}
+          $X = S^1 \times S^1$\hspace*{3cm} & \hspace*{5cm} & $H^n(X;G)$ & $G = \mathbb{Z}$ & $G = \mathbb{Z}/2\mathbb{Z}$  \\ \hline
+         & $\delta v^\ast = 0$, $\delta e_0^\ast = f_0^\ast - f_1^\ast$ & $H^0(X;G)$ & $\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$  \\
+         & $\delta e_1^\ast= f_0^\ast-f_1^\ast$, $\delta e_2^\ast= -f_0^\ast+f_1^\ast$ & $H^1(X;G)$ & $\mathbb{Z}^2$ & $(\mathbb{Z}/2\mathbb{Z})^2$  \\
+         & $\delta f_0^\ast= 0$, $\delta f_1^\ast= 0$ & $H^2(X;G)$ & $\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$ \\
+         &
+        \end{tabular}
+        \end{table}
+
+        We have the chain complex \[0\to C^0(X) = \abr{v^\ast}\xrightarrow{g}C^1(X) = \abr{e_0^\ast, e_1^\ast, e_2^\ast}\xrightarrow{h}C^2(X) =\abr{f_0^\ast, f_1^\ast}\to 0\] where $g$ and $h$ are the $\delta$ maps above labeled for convenience.
+        Based on the information in the table above we can deduce that for $G =\mathbb{Z}$, \[\ker g = \abr{v^\ast}, \im g = 0, \ker h = \abr{e_2^\ast+e_0^\ast,e_2^\ast+e_1^\ast}, \im h = \abr{f_0^\ast-f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast}\cong \mathbb{Z}$, $H^1(X) = \abr{e_2^\ast+e_0^\ast,e_2^\ast+e_1^\ast} \cong \mathbb{Z}^2$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast} \cong \abr{f_0^\ast-f_1^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast}\cong \abr{f_1^\ast}\cong \mathbb{Z}$. Further cohomology groups are all zero.
+        
+        When $G = \mathbb{Z}/2\mathbb{Z}$, we have \[\ker g = \abr{v^\ast}, \im g = 0, \ker h = \abr{e_2^\ast+e_0^\ast,e_2^\ast+e_1^\ast}, \im h = \abr{f_0^\ast-f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast}\cong \mathbb{Z}/2\mathbb{Z}$, $H^1(X) = \abr{e_2^\ast+e_0^\ast,e_2^\ast+e_1^\ast} \cong (\mathbb{Z}/2\mathbb{Z})^2$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast} \cong \abr{f_0^\ast-f_1^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast}\cong \abr{f_1^\ast}\cong \mathbb{Z}/2\mathbb{Z}$. Further cohomology groups are all zero.
       \item $\mathbb{RP}^2$, and
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{cc|c|c|c}
+          $X = \mathbb{RP}^2$\hspace*{3cm} & \hspace*{5cm} & $H^n(X;G)$ & $G = \mathbb{Z}$ & $G = \mathbb{Z}/2\mathbb{Z}$  \\ \hline
+         & $\delta v^\ast= -e_0^\ast-e_1^\ast$, $\delta w^\ast= e_0^\ast + e_1^\ast$ & $H^0(X;G)$ & $\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$  \\
+         & $\delta e_0^\ast= f_0^\ast+f_1^\ast$, $\delta e_1^\ast= -f_0^\ast-f_1^\ast$ & $H^1(X;G)$ & $0$ & $\mathbb{Z}/2\mathbb{Z}$  \\
+         & $\delta e_2^\ast= -f_0^\ast+f_1^\ast$, $\delta f_0^\ast= 0$ & $H^2(X;G)$ & $\mathbb{Z}/2\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$  \\
+         & $\delta f_1^\ast= 0$ &  &  &  
+        \end{tabular}
+        \end{table}
+
+        We have the chain complex \[0\to C^0(X) = \abr{v^\ast,w^\ast}\xrightarrow{g}C^1(X) = \abr{e_0^\ast, e_1^\ast, e_2^\ast}\xrightarrow{h}C^2(X) =\abr{f_0^\ast, f_1^\ast}\to 0\] where $g$ and $h$ are the $\delta$ maps above labeled for convenience. Based on the information in the table above we can deduce that for $G =\mathbb{Z}$, \[\ker g = \abr{v^\ast + w^\ast}, \im g = \abr{e_0^\ast + e_1^\ast}, \ker h = \abr{e_0^\ast+e_1^\ast}, \im h = \abr{f_0^\ast+f_1^\ast,-f_0^\ast+f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast + w^\ast}\cong \mathbb{Z}$, $H^1(X) = \abr{e_0^\ast + e_1^\ast}/\abr{e_0^\ast + e_1^\ast} \cong 0$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast+f_1^\ast,-f_0^\ast+f_1^\ast} \cong \abr{f_0^\ast+f_1^\ast, f_1^\ast}/\abr{f_0^\ast+f_1^\ast,2f_1^\ast}\cong \abr{f_1^\ast}/\abr{2f_1^\ast}\cong \mathbb{Z}/2\mathbb{Z}$. Further cohomology groups are all zero.
+        
+        When $G = \mathbb{Z}/2\mathbb{Z}$, we have \[\ker g = \abr{v^\ast + w^\ast}, \im g = \abr{e_0^\ast + e_1^\ast}, \ker h = \abr{e_0^\ast+e_1^\ast,e_0^\ast + e_2^\ast}, \im h = \abr{f_0^\ast+f_1^\ast,-f_0^\ast+f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast + w^\ast}\cong \mathbb{Z}/2\mathbb{Z}$, $H^1(X) = \abr{e_0^\ast+e_1^\ast,e_0^\ast + e_2^\ast}/\abr{e_0^\ast + e_1^\ast} \cong \abr{e_0^\ast + e_2^\ast}\cong \mathbb{Z}/2\mathbb{Z}$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast+f_1^\ast,-f_0^\ast+f_1^\ast} \cong \abr{f_0^\ast+f_1^\ast, f_1^\ast}/\abr{f_0^\ast+f_1^\ast,2f_1^\ast}\cong \abr{f_1^\ast}\cong \mathbb{Z}/2\mathbb{Z}$. Further cohomology groups are all zero.
       \item the Klein bottle.
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{cc|c|c|c}
+          $X = $ Klein bottle\hspace*{3cm} & \hspace*{5cm} & $H^n(X;G)$ & $G = \mathbb{Z}$ & $G = \mathbb{Z}/2\mathbb{Z}$  \\ \hline
+         & $\delta v^\ast= 0$, $\delta e_0^\ast= f_0^\ast-f_1^\ast$ & $H^0(X;G)$ & $\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$  \\
+         & $\delta e_1^\ast= -f_0^\ast-f_1^\ast$, $\delta e_2^\ast= -f_0^\ast+f_1^\ast$ & $H^1(X;G)$ & $\mathbb{Z}$ & $(\mathbb{Z}/2\mathbb{Z})^2$  \\
+         & $\delta f_0^\ast= 0$, $\delta f_1^\ast= 0$ & $H^2(X;G)$ & $\mathbb{Z}/2\mathbb{Z}$ & $\mathbb{Z}/2\mathbb{Z}$ \\
+         &
+        \end{tabular}
+        \end{table}
+
+        We have the chain complex \[0\to C^0(X) = \abr{v^\ast}\xrightarrow{g}C^1(X) = \abr{e_0^\ast, e_1^\ast, e_2^\ast}\xrightarrow{h}C^2(X) =\abr{f_0^\ast, f_1^\ast}\to 0\] where $g$ and $h$ are the $\delta$ maps above labeled for convenience.
+        Based on the information in the table above we can deduce that for $G =\mathbb{Z}$, \[\ker g = \abr{v^\ast}, \im g = 0, \ker h = \abr{e_2^\ast+e_0^\ast}, \im h = \abr{f_0^\ast-f_1^\ast, -f_0^\ast-f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast}\cong \mathbb{Z}$, $H^1(X) = \abr{e_2^\ast+e_0^\ast} \cong \mathbb{Z}$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast, -f_0^\ast-f_1^\ast} \cong \abr{f_0^\ast-f_1^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast,2f_1^\ast}\cong \abr{f_1^\ast}/\abr{2f_1^\ast}\cong \mathbb{Z}/2\mathbb{Z}$. Further cohomology groups are all zero.
+        
+        When $G = \mathbb{Z}/2\mathbb{Z}$, we have \[\ker g = \abr{v^\ast}, \im g = 0, \ker h = \abr{e_2^\ast+e_0^\ast,e_0^\ast+e_1^\ast}, \im h = \abr{f_0^\ast-f_1^\ast, -f_0^\ast-f_1^\ast}.\] Thus $H^0(X) = \abr{v^\ast}\cong \mathbb{Z}/2\mathbb{Z}$, $H^1(X) = \abr{e_2^\ast+e_0^\ast,e_0^\ast+e_1^\ast} \cong (\mathbb{Z}/2\mathbb{Z})^2$, and $H^2(X) = \abr{f_0^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast, -f_0^\ast-f_1^\ast} \cong \abr{f_0^\ast-f_1^\ast, f_1^\ast}/\abr{f_0^\ast-f_1^\ast,2f_1^\ast}\cong \abr{f_1^\ast}\cong \mathbb{Z}/2\mathbb{Z}$. Further cohomology groups are all zero.
     \end{enumerate}
-    \item For a chain complex $C$, define $\kappa : H_n(C; G) \to \Hom(H_n(C),G)$ by $\kappa([\alpha])([\beta]) = \alpha(\beta)$. Show that this is well defined.
+    \item For a chain complex $C$, define $\kappa : H^n(C; G) \to \Hom(H_n(C),G)$ by $\kappa([\alpha])([\beta]) = \alpha(\beta)$. Show that this is well defined. \begin{proof}
+      Representatives for a given equivalence class in $H^n(C; G)$ differ by a coboundary $\gamma\in \im \delta^{n-1}\colon C^{n-1}\to C^n$, so that $\gamma = \delta^{n-1}\gamma^\prime$ for some $\gamma^\prime\in C^{n-1}$. We have for $[\alpha]\in H^n(C;G)$ and $[\beta]\in H_n(C)$ that \[(\alpha + \delta^{n-1}\gamma^\prime)(\beta) = \alpha(\beta) + \delta^{n-1}\gamma^\prime(\beta) = \alpha(\beta) + \gamma^\prime(\partial_n\beta) = \alpha(\beta) + \gamma^\prime(0) = \alpha(\beta)\] since $\beta\in \ker \partial_n$.
+
+      Similarly, representatives for a given equivalence class in $H_n(C)$ differ by a boundary $\gamma \in \im \partial_{n+1}$, so that $\gamma = \partial_{n+1}\gamma^\prime$. Then for $[\alpha]\in H^n(C;G)$ we have \[\alpha(\beta + \partial_{n+1}\gamma^\prime) = \alpha(\beta) + \alpha(\partial_{n+1}\gamma^\prime) = \delta^n\alpha(\gamma^\prime) = 0(\gamma^\prime) = 0\] since $\alpha\in \ker \delta^n$.
+
+      Thus $\kappa$ as defined above is well defined.
+    \end{proof}
     \item Let $A,B$ be Abelian groups. Let $0 \to R \xrightarrow{\phi} F \xrightarrow{p} A \to 0$ be a free resolution. Let $\Ext(A,B) = \coker(\phi^\ast)$. Show that this cokernel does not depend on the choice of free resolution.
     \item For fixed $B$, show that $\Ext(-,B)$ is a contravariant functor. For fixed $A$, show that $\Ext(A,-)$ is a functor.
 \end{enumerate}
