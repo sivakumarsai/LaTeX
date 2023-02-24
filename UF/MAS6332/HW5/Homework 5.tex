@@ -103,9 +103,15 @@
     \end{proof}
     \item (17.4.10) Suppose $\mathbb{F}_q$ is a finite field with $G= \Gal(\mathbb{F}_{q^d}/\mathbb{F}_q) = \abr{\sigma_q}$ where $\sigma_q$ is the Frobenius automorphism, and let $N$ be the usual norm element for the cyclic group $G$. \begin{enumerate}
         \item Use Hilbert's Theorem 90 to prove that $|{}_N(\mathbb{F}_{q^d}^\times)| = (q^d-1)/(q-1)$, and deduce that the norm map from $\mathbb{F}_{q^d}$ to $\mathbb{F}_q$ is surjective. \begin{proof}
-        
+        Let $F = \mathbb{F}_q$ and $K = \mathbb{F}_{q^d}$, so that $G = \Gal(K/F) = \abr{\sigma_q}$. Hilbert's Theorem 90 states that $H^1(G,K^\times) = {}_NK^\times/(\sigma_q/\id_K)K^\times = 0$ so that $\abs{{}_NK^\times} = \abs{(\sigma_q/\id_K)K^\times}$. For $r\in K^\times$, $r^q/r = 1$ if and only if $r^q = r$; that is, if $r$ is in $(K^G)^\times = \mathbb{F}_q^\times$. It follows that $\abs{(\sigma_q/\id_K)K^\times} = |\mathbb{F}_{q^d}^\times/\mathbb{F}_q^\times| = (q^d-1)/(q-1)$. 
+
+        Then by interpreting ${}_NK^\times$ as the kernel of the norm map of the cyclic groups $K^\times\to F^\times$ we have that the image of the norm map is a (cyclic) subgroup of order $q-1$ in $\mathbb{F}_q$. But $\mathbb{F}_q$ has order $q-1$ so the image of the norm map on all of $\mathbb{F}_{q^d}$ is exactly $\mathbb{F}_q$.
         \end{proof}
-        \item Prove that $H^n(G,\mathbb{F}_{q^d}^\times) = 0$ for all $n\geq 1$.
+        \item Prove that $H^n(G,\mathbb{F}_{q^d}^\times) = 0$ for all $n\geq 1$. \begin{proof}
+            We saw earlier that the cohomology of a finite cyclic group alternates between two groups. In our setting we have (with $(K^\times)^G = (K^G)^\times$) \[H^n(G,K^\times) = \begin{cases}
+            (K^G)^\times/NK^\times & n\geq 2, \text{ even} \\
+            {}_NK^\times/(\sigma_q/\id_K)K^\times & n\geq 1,\text{ odd}\end{cases}.\] By Hilbert's Theorem 90 all the odd index cohomology groups are trivial. For the nonzero even index groups, since the norm map is surjective we have that $NK^\times = \mathbb{F}_q^\times = (K^G)^\times$ from which it follows the nonzero even index cohomology groups are trivial.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 \subsection*{Additional Problems}
