@@ -96,9 +96,15 @@
         \item Take $B = \Hom_{\mathbb{Z}}(\mathbb{Z}G, A)$, with $G$ acting on the codomain.
         \item Use tensor-hom adjunction to show that for any $\mathbb{Z}G$-module $P$, $\Hom_{\mathbb{Z}G}(P,B)\cong \Hom_\mathbb{Z}(P,A)$.
         \item Show $\Ext_{\mathbb{Z}G}^n(\mathbb{Z},B)\cong \Ext_\mathbb{Z}^n(\mathbb{Z},A)$ by applying $\Hom_{\mathbb{Z}G}(-,B)$ to a projective resolution of $\mathbb{Z}G$-modules for $\mathbb{Z}$.
-    \end{itemize}
+    \end{itemize} \begin{proof}
+        With $G$ a finite group and $A$ a $G$-module as above let $B = \Hom_{\mathbb{Z}}(\mathbb{Z}G,A)$, where the $G$-action is pointwise (so $gf$ is given by $(gf)(x) = gf(x)$). By the tensor-hom adjunction we have for any $\mathbb{Z}G$-module $P$ that \[\Hom_{\mathbb{Z}G}(P,B) = \Hom_{\mathbb{Z}G}(P,\Hom_{\mathbb{Z}}(\mathbb{Z}G,A))\cong \Hom_{\mathbb{Z}}(P\otimes_{\mathbb{Z}G}\mathbb{Z}G, A) \cong \Hom_\mathbb{Z}(P,A).\]
+
+        Now let $\cbr{P_i}$ be a projective resolution of $\mathbb{Z}G$-modules for $\mathbb{Z}$: \[\cdots\to P_n\to\cdots\to P_1\to P_0\to \mathbb{Z}\to 0\] Apply the $\Hom_{\mathbb{Z}G}(-,B)$ functor to obtain the cochain complex (removing the first group) \[0\to \Hom_{\mathbb{Z}G}(P_0,B)\xrightarrow{d_1} \Hom_{\mathbb{Z}G}(P_1,B)\xrightarrow{d_2}\cdots\xrightarrow{d_n} \Hom_{\mathbb{Z}G}(P_n,B)\xrightarrow{d_{n+1}}\cdots.\] The cohomology of this complex is given by the groups $\Ext_{\mathbb{Z}G}^i(\mathbb{Z},B) = \ker{d_{i+1}}/\im{d_i}$. Using the tensor-hom adjunction we produce isomorphisms $f_i\colon \Hom_{\mathbb{Z}G}(P_i,B)\to \Hom_\mathbb{Z}(P_i,A)$; produce the cochain complex (is still a cochain complex since the $f_i$ are isomorphisms) \[0\to \Hom_\mathbb{Z}(P_0,A)\xrightarrow{f_1d_1f_0^{-1}} \Hom_\mathbb{Z}(P_1,A)\xrightarrow{f_2d_2f_1^{-1}}\cdots\xrightarrow{f_nd_nf_{n-1}^{-1}} \Hom_\mathbb{Z}(P_n,A)\xrightarrow{f_{n+1}d_{n+1}f_n^{-1}}\cdots.\] The cohomology of this complex is isomorphic to the cohomology of the previous complex given since the $f_i$ are isomorphisms: we have $\ker{d_{i+1}}\cong \ker(f_{i+1}d_{i+1}f_i^{-1})$ and $\im{d_i}\cong \im(f_id_if_{i-1}^{-1})$. So $\Ext_{\mathbb{Z}G}^n(\mathbb{Z},B)\cong \Ext_\mathbb{Z}^n(\mathbb{Z},A)$ as needed. But for $n>0$, $\Ext_\mathbb{Z}^n(\mathbb{Z},A)$ since $\mathbb{Z}$ is a projective (free) $\mathbb{Z}$-module.
+    \end{proof}
     \item (17.4.10) Suppose $\mathbb{F}_q$ is a finite field with $G= \Gal(\mathbb{F}_{q^d}/\mathbb{F}_q) = \abr{\sigma_q}$ where $\sigma_q$ is the Frobenius automorphism, and let $N$ be the usual norm element for the cyclic group $G$. \begin{enumerate}
-        \item Use Hilbert's Theorem 90 to prove that $\abs{{}_N(\mathbb{F}_{q^d}^\times)} = (q^d-1)/(q-1)$, and deduce that the norm map from $\mathbb{F}_{q^d}$ to $\mathbb{F}_q$ is surjective.
+        \item Use Hilbert's Theorem 90 to prove that $|{}_N(\mathbb{F}_{q^d}^\times)| = (q^d-1)/(q-1)$, and deduce that the norm map from $\mathbb{F}_{q^d}$ to $\mathbb{F}_q$ is surjective. \begin{proof}
+        
+        \end{proof}
         \item Prove that $H^n(G,\mathbb{F}_{q^d}^\times) = 0$ for all $n\geq 1$.
     \end{enumerate}
 \end{enumerate}
