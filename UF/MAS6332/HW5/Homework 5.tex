@@ -105,7 +105,7 @@
         \item Use Hilbert's Theorem 90 to prove that $|{}_N(\mathbb{F}_{q^d}^\times)| = (q^d-1)/(q-1)$, and deduce that the norm map from $\mathbb{F}_{q^d}$ to $\mathbb{F}_q$ is surjective. \begin{proof}
         Let $F = \mathbb{F}_q$ and $K = \mathbb{F}_{q^d}$, so that $G = \Gal(K/F) = \abr{\sigma_q}$. Hilbert's Theorem 90 states that $H^1(G,K^\times) = {}_NK^\times/(\sigma_q/\id_K)K^\times = 0$ so that $\abs{{}_NK^\times} = \abs{(\sigma_q/\id_K)K^\times}$. For $r\in K^\times$, $r^q/r = 1$ if and only if $r^q = r$; that is, if $r$ is in $(K^G)^\times = \mathbb{F}_q^\times$. It follows that $\abs{(\sigma_q/\id_K)K^\times} = |\mathbb{F}_{q^d}^\times/\mathbb{F}_q^\times| = (q^d-1)/(q-1)$. 
 
-        Then by interpreting ${}_NK^\times$ as the kernel of the norm map of the cyclic groups $K^\times\to F^\times$ we have that the image of the norm map is a (cyclic) subgroup of order $q-1$ in $\mathbb{F}_q$. But $\mathbb{F}_q$ has order $q-1$ so the image of the norm map on all of $\mathbb{F}_{q^d}$ is exactly $\mathbb{F}_q$.
+        Then by interpreting ${}_NK^\times$ as the kernel of the norm map of the cyclic groups $K^\times\to F^\times$ we have that the image of the norm map is a (cyclic) subgroup of order $q-1$ in $\mathbb{F}_q^\times$. But $\mathbb{F}_q^\times$ has order $q-1$ so the image of the norm map on all of $\mathbb{F}_{q^d}$ is exactly $\mathbb{F}_q$.
         \end{proof}
         \item Prove that $H^n(G,\mathbb{F}_{q^d}^\times) = 0$ for all $n\geq 1$. \begin{proof}
             We saw earlier that the cohomology of a finite cyclic group alternates between two groups. In our setting we have (with $(K^\times)^G = (K^G)^\times$) \[H^n(G,K^\times) = \begin{cases}
@@ -117,7 +117,9 @@
 \subsection*{Additional Problems}
 \begin{enumerate}
     % 17.3.11 or Problem 2
-    \item (17.3.4) Let $A$ be the Klein $4$-group and let $G = \Aut(A)\cong S_3$ act on $A$ in the natural fashion. Prove that $H^1(G,A) = 0$. [Show that in the semidirect product $E = A\rtimes G$, $G$ is the normalizer of a Sylow $3$-subgroup of $E$. Apply Sylow's theorem to show that all complements to $A$ in $E$ are conjugate.]
+    \item (17.3.4) Let $A$ be the Klein $4$-group and let $G = \Aut(A)\cong S_3$ act on $A$ in the natural fashion. Prove that $H^1(G,A) = 0$. [Show that in the semidirect product $E = A\rtimes G$, $G$ is the normalizer of a Sylow $3$-subgroup of $E$. Apply Sylow's theorem to show that all complements to $A$ in $E$ are conjugate.]\begin{proof}
+        In the semidirect product $E = A\rtimes G$ of order $24$, a Sylow $3$-group is given by the cyclic subgroup $\abr{(1,(1\,2\,3))}$. Furthermore, this subgroup is normalized by $G\cong \abr{(1,(1\,2)),(1,(1\,2\,3))}$ since $\abr{(1\,2\,3)}$ is an index $2$ subgroup of $S_3$. 
+    \end{proof}
     \item (17.4.2) Let $A=\mathbb{Z}/4\mathbb{Z}$ and let $G$ be the cyclic group of order $2$ acting trivially on $A$.\begin{enumerate}
         \item Prove that $\abs{C^2(G,A)} = 2^8$.
         \item Use the coboundary condition to show that $\abs{B^2(G,A)} = 2^3$.
