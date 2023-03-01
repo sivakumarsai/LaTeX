@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Midterm}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\section{Flatness and Exact Sequences}
+\begin{enumerate}[label=(\alph*)]
+    \item ChatGPT claims that it is sufficient to prove that the short exact sequence \[0\to N\to M \to M/N\to 0\] splits. While this sounds reasonable since the direct sum of flat modules is also flat, we can already find a counterexample when $R= \mathbb{Z}$.
+    
+    Consider $\mathbb{Q}$ as a $\mathbb{Z}$-module and let $F = \mathbb{ZQ}$ be the free $\mathbb{Z}$-module with elements of $\mathbb{Q}$ as generators. Then with $p\colon F\to \mathbb{Q}$ the projection map we have the short exact sequence \[0\to \ker p\to F\xrightarrow{p}\mathbb{Q}\to 0.\] I do not actually remember proving this anywhere in any of my prior classes but in my topology class we take for granted that submodules of free $\mathbb{Z}$-modules are free (there is some topological proof of this that I do not remember; I also remember reading somewhere that submodules of modules over PIDs are free). Then $\ker p, F$ are free $\mathbb{Z}$-modules so they are flat, and $\mathbb{Q}$ we saw was flat also. But this short exact sequence does not split since $\mathbb{Q}$ is not a projective $\mathbb{Z}$-module, it cannot be a direct summand of a free module. So the approach ChatGPT has for the proof is not correct.
+
+    Aside from this, it claims that the original short exact sequence \[0\to N\to M \to M/N\to 0\] splits anyways since $N$ is flat, which is a non sequitur since we already found a counterexample. For some reason ChatGPT does not stop here as this would have ``proved'' its claim: it attempts to produce yet again another section, and attempts to compose these two sections (which it cannot do since both sections have the same domain and codomain). Only after ``composing'' these two sections that it got from nowhere does it conclude the proof. This proof does not work, but it is impressive that it is written in the tone of a mathematical proof and uses mathematical language in a way that is ``right'' but not logically correct (e.g. it knows what it means for a short exact sequence to split but doesn't know that the above sequence splitting does not follow from either $N$ or $M/N$ being flat).
+    \item \begin{proof}
+        With $N$, $M/N$ flat over $R$ we have for all $n\geq 1$ and any $R$-module $B$ that $\Tor_n^R(N,B) = 0$ and $\Tor_n^R(M/N,B) = 0$ (by Proposition 16 from DF, chapter 17.1). Then if $D$ is any $R$-module, in the long exact sequence for homology  \[\cdots\to \Tor_2^R(M/N,D) =0\to \Tor_1^R(N,D) = 0\to \Tor_1^R(M,D)\to \Tor_1^R(M/N,D) = 0\to\cdots\to 0\] we find by exactness that $ \Tor_1^R(M,D) = 0$ also. Since $D$ was any $R$-module, it follows that $M$ is flat (again by Proposition 16).
+    \end{proof}
+    \item The familiar short exact sequence of $\mathbb{Z}$-modules \[0\to \mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z}\to \mathbb{Z}/2\mathbb{Z}\to 0\] satisfies the requirements. [Here $N = 2\mathbb{Z}\cong\mathbb{Z}, M = \mathbb{Z}$, and $M/N = \mathbb{Z}/2\mathbb{Z}$.] Both copies of $\mathbb{Z}$ are flat since $\mathbb{Z}$ is a free $\mathbb{Z}$-module, but $\mathbb{Z}/2\mathbb{Z}$ is not flat as we have seen before (an example from the text or class).
+   \end{enumerate}
+\section{Computing $\Ext$ and $\Tor$ over $F[t]$}
+\begin{enumerate}[label=(\alph*)]
+    \item 
+    \item 
+    \item 
+   \end{enumerate}
+\section{Group Cohomology is Torsion}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{proof}
+        Let $f$ be a cocycle so that for all $g,h\in G$ we have $f(g) = f(gh)-gf(h)$. Then by fixing $g$ and summing over $h\in G$ we have \[(nf)(g) = nf(g) = \sum_{h\in G} f(g) = \sum_{h\in G} f(gh)+ g\sum_{h\in G} (-f(h)) = g\sum_{h\in G} (-f(h)) - \sum_{h\in G} (-f(h))\] since $\abs{G} = n$ and as $h$ runs over the elements of $G$, so does $gh$ for fixed $g$. The above equation holds for any $g\in G$. But $\sum_{h\in G} (-f(h))$ is an element of $A$, so it follows that $nf$ is a coboundary. Since $f$ was arbitrary, $nH^1(G,A) = 0$.
+    \end{proof}
+    \item 
+    \item 
+\end{enumerate}
+\section{Feedback}
+\begin{itemize}
+    \item (Optional) How was this? Have you found particular topics hard/easy interesting/boring?
+    Anything else you want to tell me?
+\end{itemize}
+\end{document}

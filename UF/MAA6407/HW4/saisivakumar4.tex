@@ -1,0 +1,63 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 4}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+Suppose  $G,\Omega \subseteq \CC$ are open and bounded and suppose $f:G\to\Omega$ is analytic and one-one.  
+\begin{enumerate}[(i)]\itemsep=10pt
+ \item If $U\subseteq G$ is open and $\overline{U}\subseteq G,$ then $f(U)$ is open and
+  $f(\partial U)=\partial f(U).$ 
+ \item Show, if $u:\Omega\to\RR$ is subharmonic, then $u\circ f:G\to\RR$ is also subharmonic.
+  [Suggestion: Use Corollary X.3.5 from Conway.]
+\end{enumerate}
+
+ \bigskip
+
+\begin{proof}
+\baselineskip=24pt
+Without loss of generality assume that $G$ is a region (i.e. restrict to one of the connected components of $G$). Since $f$ is analytic we have by the open mapping theorem that for any $U\subseteq G$ open that $f(U)$ is open also.
+
+Now let $U\subseteq G$ be open with $\overline{U}\subseteq G$. Since $f$ is injective and open, $f|_U$ is a homeomorphism onto its image. Given $u\in \partial U$ there is a sequence $(u_n)\subset U$ converging to $u$. By continuity $(f(u_n))$ converges to $f(u)$, and $f(u)$ could not be in the interior of $f(U)$ since $u$ was not in the interior of $U$ (neighborhoods of $f(u)$ are taken via $f^{-1}$ to neighborhoods of $u$). Similarly given $v\in \partial f(U)$ with $(f(u_n))$ converging to $v$, we have that $(u_n)$ converges to $f^{-1}(v)$. Again $f^{-1}(v)$ cannot be in the interior of $U$ since it is not in the interior of $f(U)$. It follows that $f(\partial U) = \partial f(U)$. 
+
+Now let $u\colon \Omega\to \mathbb{R}$ be subharmonic. Let $z\in G$ and choose $r>0$ such that $\overline{N_r(z)}\subseteq G$. If $u_1\colon \overline{N_r(z)}\to \mathbb{R}$ is harmonic and satisfies $(u\circ f)(w)\leq u_1(w)$ for $w\in \partial N_r(z)$. Then let $f^{-1}\colon \overline{f(N_r(z))}\to \overline{N_r(z)}$ be the analytic inverse to $f$ restricted to $\overline{N_r(z)}$. We have then that $u(p) = (u\circ f\circ f^{-1})(p)\leq (u_1\circ f^{-1})(p)$ for all $p\in f(\partial N_r(z)) = \partial f(N_r(z))$. But then $u$ is assumed to be harmonic so by Corollary X.3.5 we have further that $u(p)\leq (u_1\circ f^{-1})(p)$ for $p\in f(N_r(z))$. It follows that $(u\circ f)(w)\leq u_1(w)$ for $w\in N_r(z)$, and with $u_1$ arbitrary, it follows by the same corollary that $u\circ f$ is subharmonic.
+\end{proof}
+\end{document}

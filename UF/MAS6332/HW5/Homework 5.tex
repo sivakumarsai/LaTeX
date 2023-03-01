@@ -117,15 +117,28 @@
 \subsection*{Additional Problems}
 \begin{enumerate}
     % 17.3.11 or Problem 2
-    \item (17.3.4) Let $A$ be the Klein $4$-group and let $G = \Aut(A)\cong S_3$ act on $A$ in the natural fashion. Prove that $H^1(G,A) = 0$. [Show that in the semidirect product $E = A\rtimes G$, $G$ is the normalizer of a Sylow $3$-subgroup of $E$. Apply Sylow's theorem to show that all complements to $A$ in $E$ are conjugate.]\begin{proof}
-        In the semidirect product $E = A\rtimes G$ of order $24$, a Sylow $3$-group is given by the cyclic subgroup $\abr{(1,(1\,2\,3))}$. Furthermore, this subgroup is normalized by $G\cong \abr{(1,(1\,2)),(1,(1\,2\,3))}$ since $\abr{(1\,2\,3)}$ is an index $2$ subgroup of $S_3$. 
-    \end{proof}
+    %\item (17.3.4) Let $A$ be the Klein $4$-group and let $G = \Aut(A)\cong S_3$ act on $A$ in the natural fashion. Prove that $H^1(G,A) = 0$. [Show that in the semidirect product $E = A\rtimes G$, $G$ is the normalizer of a Sylow $3$-subgroup of $E$. Apply Sylow's theorem to show that all complements to $A$ in $E$ are conjugate.]\begin{proof}
+    %    In the semidirect product $E = A\rtimes G$ of order $24$, a Sylow $3$-group is given by the cyclic subgroup $\abr{(1,(1\,2\,3))}$. Furthermore, this subgroup 
+        %(and any other Sylow $3$-subgroup, as they are conjugate to each other) 
+    %    is normalized by $G\cong \abr{(1,(1\,2)),(1,(1\,2\,3))}$ since $\abr{(1\,2\,3)}$ is an index $2$ subgroup of $S_3$. Then Sylow's theorem says that the number of $3$-Sylows is the index of $G$ in $E$, which is $4$.
+    %\end{proof}
     \item (17.4.2) Let $A=\mathbb{Z}/4\mathbb{Z}$ and let $G$ be the cyclic group of order $2$ acting trivially on $A$.\begin{enumerate}
-        \item Prove that $\abs{C^2(G,A)} = 2^8$.
+        \item Prove that $\abs{C^2(G,A)} = 2^8$. 
         \item Use the coboundary condition to show that $\abs{B^2(G,A)} = 2^3$.
         \item Use the cocycle condition to show that $\abs{Z^2(G,A)} \leq 2^4$. 
         \item Show that $\abs{H^2(G,A)} = 2$ by exhibiting two inequivalent extensions of $G$ by $A$ and their corresponding cocycles.
-    \end{enumerate}
+    \end{enumerate} \begin{proof}
+        The number of functions from $G\times G\to A$ is given by $\abs{A}^{\abs{G\times G}} = 4^4 = 2^8$ so $\abs{C^2(G,A)} = 2^8$. The function $f\colon G\times G\to A$ is a coboundary if there is $f_1\colon G\to A$ with $f(g,h) = f_1(h)-f_1(gh)+f_1(g)$. By taking various choices $g,h\in Z_2 = \abr{x}$ we deduce that $f(1,1) = f(1,x) = f(x,1)$ and that $f(x,x) = 2f_1(x)-f(1,1)$. There are four choices for $f(1,1)$ and two choices for $f(x,x)$ since $2f_1(x)$ is either $0$ or $2$. Hence $\abs{B^2(G,A)} = 8 = 2^3$. For $f$ to be a cocycle we must have for all $g,h,k$ that $f(g,h) = f(h,k)+f(gh,k)-f(gh,k)$. By varying $g,h$ we find that $f(1,1) = f(1,k) = f(x,1)$, that $f(1,x) = f(1,xk)$, and finally that $f(x,x) = f(x,k)+ f(x,xk)-f(1,k)$. By varying $k$ obtain the relations $f(x,1) = f(1,1) = f(1,x)$ so that only $f(x,x)$ is undetermined. There are four choices for each of the two so there are at most $16 = 2^4$ elements in $Z^2(G,A)$. There are indeed two inequivalent extensions of $G$ by $A$, given by the direct product $Z_4\times Z_2$ and the cyclic groups $Z_8$ (both have cyclic normal subgroups of order $4$ with quotient $Z_2$). The cocycle for the direct product is the zero cocycle. For the cyclic group we find that $f(x,x) = 2$ and $f(1,x) = f(x,1) = f(1,1)= 0$. 
+    \end{proof}
+    \item (Artin-Schreier Theory). Let $K/F$ be a Galois extension of fields. As on the final from last semester, linear independence of characters shows that $H^1(\Gal(K/F),K) = 0$ (here $K$ is viewed as a group using addition with the natural action of the Galois group). 
+    
+    Let $p$ be a prime, $F$ a field of characteristic $p$. Let $K$ be the separable closure of $F$. Using the short exact sequence \[0\to \mathbb{F}_p\to K^\times\xrightarrow{f}K^\times\to 1\] where $f(\alpha) = \alpha^p-\alpha$, adapt the argument for Kummer theory to show that cyclic $\mathbb{Z}/p\mathbb{Z}$-extensions of a field $F$ of characteristic $p$ are in bijection with the non-trivial subgroups of $F^\times/f(F^\times)$. (Compare with the final exam from last semester.) \begin{proof}
+        We check that the sequence given above is a short exact sequence: Certainly $\mathbb{F}_p$ is included in $K$ and $f$ is surjective since $x^p-x$ is separable. Furthermore, we know that elements of $\mathbb{F}_p$ satisfy $x^p-x = 0$ and also with $\mathbb{F}_p$ the splitting field for the same polynomial, it follows that we have exactness in the center. 
+
+        Then in the long exact sequence of Galois cohomology, we have $0\to \mathbb{F}_p^G\to (K^\times)^G\xrightarrow{f}(K^\times)^G\to H^1(G,\mathbb{F}_p)\to H^1(G, K^\times) \to \cdots$. Like before we should have that $H^1(G, K^\times)$ is trivial, and with $F$ the fixed field of $K$ (and $\mathbb{F}_p\subset F$ so we also fix $\mathbb{F}_p$) the sequence becomes $0\to \mathbb{F}_p\to F^\times\xrightarrow{f}F^\times\to H^1(G,\mathbb{F}_p)\to 0$. Then $H^1(G,\mathbb{F}_p)$ is isomorphic to the cokernel $F^\times/f(F^\times)$. 
+
+        So $H^1(G,\mathbb{F}_p)$ should be given by the group of continuous homomorphisms from $G$ into $\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}$. Kernels of nonzero maps in this group are closed normal subgroups, which by Galois theory correspond to cyclic $\mathbb{Z}/p\mathbb{Z}$ extensions as the images of these maps are nonzero (the whole group).
+    \end{proof}
 \end{enumerate}
 \subsection*{Feedback}
 \begin{enumerate}
