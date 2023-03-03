@@ -98,27 +98,63 @@
 
     Aside from this, it claims that the original short exact sequence \[0\to N\to M \to M/N\to 0\] splits anyways since $N$ is flat, which is a non sequitur since we already found a counterexample. For some reason ChatGPT does not stop here as this would have ``proved'' its claim: it attempts to produce yet again another section, and attempts to compose these two sections (which it cannot do since both sections have the same domain and codomain). Only after ``composing'' these two sections that it got from nowhere does it conclude the proof. This proof does not work, but it is impressive that it is written in the tone of a mathematical proof and uses mathematical language in a way that is ``right'' but not logically correct (e.g. it knows what it means for a short exact sequence to split but doesn't know that the above sequence splitting does not follow from either $N$ or $M/N$ being flat).
     \item \begin{proof}
-        With $N$, $M/N$ flat over $R$ we have for all $n\geq 1$ and any $R$-module $B$ that $\Tor_n^R(N,B) = 0$ and $\Tor_n^R(M/N,B) = 0$ (by Proposition 16 from DF, chapter 17.1). Then if $D$ is any $R$-module, in the long exact sequence for homology  \[\cdots\to \Tor_2^R(M/N,D) =0\to \Tor_1^R(N,D) = 0\to \Tor_1^R(M,D)\to \Tor_1^R(M/N,D) = 0\to\cdots\to 0\] we find by exactness that $ \Tor_1^R(M,D) = 0$ also. Since $D$ was any $R$-module, it follows that $M$ is flat (again by Proposition 16).
+        With $N$, $M/N$ flat over $R$ we have for all $n\geq 1$ and any $R$-module $B$ that $\Tor_n^R(N,B) = 0$ and $\Tor_n^R(M/N,B) = 0$ (by Proposition 16 from DF, chapter 17.1). Then if $D$ is any $R$-module, in the long exact sequence for cohomology  \[\cdots\to \Tor_2^R(M/N,D) =0\to \Tor_1^R(N,D) = 0\to \Tor_1^R(M,D)\to \Tor_1^R(M/N,D) = 0\to\cdots\to 0\] we find by exactness that $ \Tor_1^R(M,D) = 0$ also. Since $D$ was any $R$-module, it follows that $M$ is flat (again by Proposition 16).
     \end{proof}
     \item The familiar short exact sequence of $\mathbb{Z}$-modules \[0\to \mathbb{Z}\xrightarrow{\cdot 2}\mathbb{Z}\to \mathbb{Z}/2\mathbb{Z}\to 0\] satisfies the requirements. [Here $N = 2\mathbb{Z}\cong\mathbb{Z}, M = \mathbb{Z}$, and $M/N = \mathbb{Z}/2\mathbb{Z}$.] Both copies of $\mathbb{Z}$ are flat since $\mathbb{Z}$ is a free $\mathbb{Z}$-module, but $\mathbb{Z}/2\mathbb{Z}$ is not flat as we have seen before (an example from the text or class).
    \end{enumerate}
 \section{Computing $\Ext$ and $\Tor$ over $F[t]$}
+Since $F$ is a field, $F[t]$ is a Euclidean domain so that it is also a principal ideal domain and thus a unique factorization domain. In this problem we use the following projective resolution of $F[t]/(t^m)$: \[0\to F[t]\xrightarrow{\cdot t^m}F[t]\to F[t]/(t^m)\to 0\] Multiplication by $t^m$ is injective, since if $t^m \sum_{i=0}^n a_it^i = 0$ then each of the $a_i$ must be zero, and the projection map is surjective. Furthermore, the kernel of the projection map is exactly $t^mF[t]$. Lastly, $F[t]$ is a free $F[t]$-module over itself.
 \begin{enumerate}[label=(\alph*)]
-    \item 
-    \item 
-    \item 
+    \item Apply the $\Hom_{F[t]}(-,F[t]/(t^{m^\prime}))$ functor to the above projective resolution to obtain the cochain complex \[0\to \Hom_{F[t]}(F[t]/(t^m),F[t]/(t^{m^\prime}))\to \Hom_{F[t]}(F[t],F[t]/(t^{m^\prime}))\xrightarrow{\cdot t^m} \Hom_{F[t]}(F[t],F[t]/(t^{m^\prime}))\to 0.\]
+    With $\Hom_{F[t]}(F[t],F[t]/(t^{m^\prime}))\cong F[t]/(t^{m^\prime})$ and noting that the resulting map $F[t]/(t^{m^\prime})\to F[t]/(t^{m^\prime})$ is still multiplication by $t^m$ (the corresponding map in the cochain complex is to precompose with multiplication by $t^m$) rewrite the complex in the following way, omitting the first group: \[0\to F[t]/(t^{m^\prime})\xrightarrow{\cdot t^m} F[t]/(t^{m^\prime})\to 0\]
+    We have $\Ext_{F[t]}^0(F[t]/(t^m), F[t]/(t^{m^\prime})) = \Hom_{F[t]}(F[t]/(t^m), F[t]/(t^{m^\prime}))$. 
+    
+    Then $\Ext_{F[t]}^1(F[t]/(t^m), F[t]/(t^{m^\prime})) = (F[t]/(t^{m^\prime}))/(t^mF[t]/(t^{m^\prime}))$. This group is isomorphic to $F[t]/(t^{\min\{m^\prime,m\}})$ since $t^{\min\{m^\prime,m\}} = \gcd(t^{m^\prime},t^m)$. [I believe an isomorphism between the groups could be one that sends $[f+(t^{m^\prime})]$ to $f + (t^{\min\{m^\prime,m\}})$.]
+
+    For $n\geq 2$, $\Ext_{F[t]}^n(F[t]/(t^m), F[t]/(t^{m^\prime})) = 0$ since $\ker (0\to \text{any module})$ is trivial.
+    \item Like before, apply the $\Hom_{F[t]}(-,F[t])$ functor to the above projective resolution, remove the first term, and use the identification $\Hom_{F[t]}(F[t],F[t])\cong F[t]$ to obtain the complex \[0\to F[t]\xrightarrow{\cdot t^m} F[t]\to 0.\]
+    We have $\Ext_{F[t]}^0(F[t]/(t^m), F[t]) = \Hom_{F[t]}(F[t]/(t^m), F[t])$.
+
+    Then $\Ext_{F[t]}^1(F[t]/(t^m), F[t]) = F[t]/t^mF[t] = F[t]/(t^m)$.
+
+    For $n\geq 2$, $\Ext_{F[t]}^n(F[t]/(t^m), F[t]) = 0$ since $\ker (0\to \text{any module})$ is trivial.
+    \item The ring $F[t]$ is commutative so we may use the $F[t]/(t^{m^\prime})\otimes_{F[t]} -$ functor to compute the homology groups $\Tor_n^{F[t]}(F[t]/(t^{m^\prime}),F[t]/(t^m))\cong \Tor_n^{F[t]}(F[t]/(t^m),F[t]/(t^{m^\prime}))$. Apply this functor to the above projective resolution to obtain the chain complex \[0\to F[t]/(t^{m^\prime})\otimes_{F[t]}F[t]\xrightarrow{\id_{F[t]/(t^{m^\prime})}\otimes \cdot t^m}F[t]/(t^{m^\prime})\otimes_{F[t]}F[t]\to F[t]/(t^{m^\prime})\otimes_{F[t]}F[t]/(t^m)\to 0.\] 
+    I do not remember if this was in one of our homeworks or not but Exercise 10.4.16 tells us that for $R$ commutative there is an isomorphism $R/I\otimes_R R/J\cong R/(I+J)$ which sends $(r\mod I)\otimes (r^\prime \mod J)$ to $rr^\prime \mod (I+J)$. Applying this isomorphism to the above chain complex we obtain the chain complex \[0\to F[t]/(t^{m^\prime})\xrightarrow{\cdot t^m} F[t]/(t^{m^\prime})\to F[t]/((t^{m^\prime})+(t^m)) = F[t]/(t^{\min\{m^\prime,m\}})\to 0.\] By the isomorphism above the map $F[t]/(t^{m^\prime})\xrightarrow{\cdot t^m} F[t]/(t^{m^\prime})$ is multiplication by $t^m$, and the projection map is either the identity or should be projection onto $(F[t]/(t^{m^\prime}))/(t^mF[t]/(t^{m^\prime}))$ (which could just be the identity). 
+
+    We have $\Tor_0^{F[t]}(F[t]/(t^{m^\prime}),F[t]/(t^m)) = (F[t]/(t^{m^\prime}))/(t^mF[t]/(t^{m^\prime})) = F[t]/(t^{\min\{m^\prime,m\}})$.
+
+    Then $\Tor_1^{F[t]}(F[t]/(t^{m^\prime}),F[t]/(t^m)) = {}_{t^m}F[t]/(t^{m^\prime})$ since the image of $0\to F[t]/(t^{m^\prime})$ is trivial.
+
+    For $n\geq 2$ we have that $\Tor_n^{F[t]}(F[t]/(t^{m^\prime}),F[t]/(t^m)) = 0$ since $\ker (0\to \text{any module})$ is trivial.
    \end{enumerate}
+   
 \section{Group Cohomology is Torsion}
 \begin{enumerate}[label=(\alph*)]
     \item \begin{proof}
         Let $f$ be a cocycle so that for all $g,h\in G$ we have $f(g) = f(gh)-gf(h)$. Then by fixing $g$ and summing over $h\in G$ we have \[(nf)(g) = nf(g) = \sum_{h\in G} f(g) = \sum_{h\in G} f(gh)+ g\sum_{h\in G} (-f(h)) = g\sum_{h\in G} (-f(h)) - \sum_{h\in G} (-f(h))\] since $\abs{G} = n$ and as $h$ runs over the elements of $G$, so does $gh$ for fixed $g$. The above equation holds for any $g\in G$. But $\sum_{h\in G} (-f(h))$ is an element of $A$, so it follows that $nf$ is a coboundary. Since $f$ was arbitrary, $nH^1(G,A) = 0$.
     \end{proof}
-    \item 
-    \item 
+    \item \begin{proof}
+        We use dimension shifting. Via Assignment 5 there exists a cohomologically trivial $G$-module $B = \Hom_\mathbb{Z}(\mathbb{Z}G,B)$ that $A \cong \Hom_{\mathbb{Z}G}(\mathbb{Z}G,A)$ includes into (as all $\mathbb{Z}G$-homomorphisms are also maps of Abelian groups). We also consider $B/A$ as a $G$-module in the usual way. Then from the short exact sequence of $G$-modules $0\to A\to B\to B/A\to 0$ we obtain the long exact sequence of cohomology \[0\to\cdots\to H^i(G,B) = 0\to H^i(G,B/A)\to H^{i+1}(G,A)\to H^{i+1}(G,B) = 0\to \cdots.\] Then for $i\geq 1$ by exactness we have that $H^i(G,B/A)\cong H^{i+1}(G,A)$. 
+    
+        So for $i = 1$ we have $H^1(G,B/A)\cong H^{2}(G,A)$. But from the first part we have that $nH^1(G,B/A) = 0$ (so by taking $A$ as $B/A$ in the first part), from which it follows that $nH^2(G,A) = 0$. As $A$ was arbitrary $nH^2(G,A) = 0$ holds for \textit{any} $G$-module $A$. 
+        
+        The induction step is similar. For $n\geq 1$ if $B$ is a cohomologically trivial module containing $A$ then again we have $H^n(G,B/A)\cong H^{n+1}(G,A)$. If we assume that $nH^i(G,S) = 0$ for any $G$-module $S$ then $nH^i(G,B/A) \cong nH^{i+1}(G,A) = 0$. As $A$ was arbitrary, the prior statement is true for any $G$-module $A$. By induction it follows that $nH^i(G,A) = 0$ for $n\geq 1$ and any $G$-module $A$.
+    \end{proof}
+    \item \begin{proof}
+        Let $\mathbb{C}$ be a $G$-module and let $G$ act trivially on $\mathbb{Z}$ and $\mathbb{C}^\times$. The exponential map $\exp\colon \mathbb{C}\to \mathbb{C}^\times$ is surjective with kernel $\mathbb{Z}\cong 2\pi i \mathbb{Z}\subseteq \mathbb{C}$ as a map of Abelian groups. If we insist that the $G$-action on $\mathbb{Z}$ and $\mathbb{C}^\times$ is trivial we have for the exponential map that $\exp(gz) = \exp(z)$, which happens if and only if $gz-z = 2\pi i k$ for some $k$ which perhaps depends on $z$ and $g$. But the additive automorphisms of $\mathbb{C}$ are $GL_2(\mathbb{R})$, of which only the identity map satisfies (as zero should be sent to zero). So the action of $G$ on $\mathbb{C}$ must also be trivial (somehow I feel off about this).
+        
+        Then there is an exact sequence of $G$-modules \[0\to \mathbb{Z}\xrightarrow{\cdot 2\pi i}\mathbb{C}\xrightarrow{\exp}\mathbb{C}^\times\to 0\] from which we obtain the long exact sequence of cohomology \[0\to \cdots\to H^1(G,\mathbb{C}) \to H^1(G,\mathbb{C}^\times)\to H^2(G,\mathbb{Z})\to H^2(G,\mathbb{C})\to\cdots.\] 
+
+        We show that $H^i(G,\mathbb{C})$ is trivial for $i\geq 1$: For any $i$-cocycle $f$, since $\mathbb{C}\xrightarrow{\cdot n^{-1}}\mathbb{C}$ is an automorphism of $\mathbb{C}$, we have that $n^{-1}f$ (pointwise multiplication by $n^{-1}$) is an $i$-cocycle (in the equation that needs to be satisfied for $n^{-1}f$ to be a cocycle, one may cancel out all the $n^{-1}$ coefficients and find that equality holds since $f$ is a cocycle). But $f = nn^{-1}f$, and with $n^{-1}f$ a cocycle, we have from the previous parts that $nn^{-1}f$ must also be a coboundary. Hence $f$ must be a coboundary also. It follows that $H^i(G,\mathbb{C})$ is trivial for each $i\geq 1$.
+
+        Then in the long exact sequence above we have \[H^1(G,\mathbb{C}) = 0 \to H^1(G,\mathbb{C}^\times)\to H^2(G,\mathbb{Z})\to H^2(G,\mathbb{C}) = 0,\] which by exactness gives the desired isomorphism $H^2(G,\mathbb{Z})\cong H^1(G,\mathbb{C}^\times)$.
+    \end{proof}
 \end{enumerate}
 \section{Feedback}
 \begin{itemize}
     \item (Optional) How was this? Have you found particular topics hard/easy interesting/boring?
-    Anything else you want to tell me?
+    Anything else you want to tell me? 
+
+    I thought this was a pretty challenging but fun exam; in particular I found the last two problems tricky. I think that group cohomology is pretty cool but I feel that there are a lot of moving parts that I need to get used to if I want to look into this topic again. I liked the segment on projective, injective, and flat modules, it felt more palatable in a way. I noticed that the results of problem 2 are very similar to the examples with $\mathbb{Z}/n\mathbb{Z}$ using the projective resolution $0\to \mathbb{Z}\xrightarrow{\cdot n}\mathbb{Z}\to \mathbb{Z}/n\mathbb{Z}$. Maybe as rings both $\mathbb{Z}$ and $F[t]$ are similar, which seems reasonable since they are both Euclidean domains. Also in problem 3 part (c), I have some curiosity of why the integers are showing up: Maps out of a finite group into $\mathbb{C}^\times$ are maps into $S^1$ since $G$ has finite order and the only elements of finite order in $\mathbb{C}^\times$ are elements of $\mathbb{Q}/\mathbb{Z}$ viewed as a subset of $S^1$ (ie elements of form $\exp(2\pi i p/q)$ for integers $p,q$). The dual group of the integers is $S^1$, and by duality the dual group of $S^1$ is the integers, so I was wondering if there was something to be said about this in relation to the cohomological statement proved in problem 3 part (c). Could it be true that $H^2(G,H) = H^1(G,\hat H)$ for Abelian groups (or even locally compact Abelian groups) $H$ with trivial $G$-action?
 \end{itemize}
 \end{document}
