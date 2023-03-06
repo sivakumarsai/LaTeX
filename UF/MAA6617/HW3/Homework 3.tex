@@ -72,14 +72,41 @@
 \begin{document}
 \begin{enumerate}
     \item (23.2) (Adjoint operators) Let $H$ be a Hilbert space and $T\colon H\to H$ a bounded linear operator. \begin{enumerate}
-      \item Prove there is a unique bounded operator $T^\ast\colon H\to H$ satisfying $\abr{Tg,h}= \abr{g,T^\ast h}$ for all $g,h\in H$, and $\norm{T^\ast} = \norm{T}$.
-      \item Prove, if $S,T\in B(H)$, then $(aS+T)^\ast = \overline{a}S^\ast + T^\ast$ for all $a\in K$, and that $T^{\ast\ast} = T$.
-      \item Prove $\norm{T^\ast T} = \norm{T}^2$.
-      \item Prove $\ker T$ is a closed subspace of $H$, $\overline{\im T} = (\ker T)^\perp$ and $\ker T^\ast = (\im T)^\perp$.
+      \item Prove there is a unique bounded operator $T^\ast\colon H\to H$ satisfying $\abr{Tg,h}= \abr{g,T^\ast h}$ for all $g,h\in H$, and $\norm{T^\ast} = \norm{T}$. \begin{proof}
+        We check that if such an adjoint map exists it is unique. If $S\colon H\to H$ is linear with $\abr{Tf,h} = \abr{f,Sh}$ for any $f,h\in H$ then since $\abr{f,Sh} = \abr{f,T^\ast h}$ for all $f,h\in H$ we have $\abr{f,(S-T^\ast)h} = 0$ for all $f,h\in H$. It follows that $(S-T^\ast)h = 0$ for all $h\in H$ (by taking $f = (S-T^\ast)h$ above). Hence $S = T^\ast$ as needed.
+        
+        For $h\in H$, let $\lambda_h\colon H\to \mathbb{C}$ be defined by $\lambda_h(f) = \abr{Tf,h}$. The map $\lambda_h$ is linear since inner products are bilinear (we have fixed the second component) and $T$ is linear, and is bounded since $T$ is bounded (use Cauchy-Schwarz inequality). By the Riesz representation theorem there is a unique vector which we will denote by $T^\ast h$ such that $\lambda_h(f) = \abr{Tf,h} = \abr{f,T^\ast h}$ for all $f\in H$. Define $T^\ast\colon H\to H$ in this manner.
+
+        The vector $T^\ast(cg+h)$ is the unique vector satisfying $\lambda_{cg+h}(f) = \abr{Tf,cg+h} = \abr{f,T^\ast(cg+h)}$ for all $f\in H$. But by bilinearity of the inner product $\lambda_{cg+h} = \overline{c}\lambda_g+\lambda_h$ so that the equality $\abr{f,T^\ast(cg+h)} = \abr{f,cT^\ast g+T^\ast h}$ is also satisfied for all $f\in H$. By uniqueness (in the Riesz representation theorem) we must have $T^\ast(cg+h)=cT^\ast g+T^\ast h$ as needed.
+        
+        For nonzero $x\in H$ we have $\norm{T^\ast x}^2 = \abr{T^\ast x, T^\ast x} = \abr{TT^\ast x,x}\leq \norm{T}\norm{T^\ast x}\norm{x}$; i.e., $\norm{T^\ast x}\leq \norm{T}\norm{x}$ so that $\norm{T^\ast}\leq \norm{T}$. Similarly for nonzero $x\in H$ we have $\norm{Tx}^2 = \abr{Tx,Tx} = \abr{x,T^\ast Tx}\leq \norm{x}\norm{T^\ast}\norm{Tx}$; i.e., $\norm{T x}\leq \norm{T^\ast}\norm{x}$ so that $\norm{T}\leq \norm{T^\ast}$. Hence $\norm{T^\ast} = \norm{T}$.
+      \end{proof}
+      \item Prove, if $S,T\in B(H)$, then $(aS+T)^\ast = \overline{a}S^\ast + T^\ast$ for all $a\in K$, and that $T^{\ast\ast} = T$. \begin{proof}
+        As before define for any $P\in B(H)$ and $h\in H$ the functional $\lambda_{P,h}\colon H\to \mathbb{C}$ by $\lambda_{P,h}(f) = \abr{Pf, h}$. Let $S,T\in B(H)$ and $a\in \mathbb{C}$ as above.
+
+        The vector $S^\ast h$ is the unique vector satisfying $\lambda_{S,h}(f) = \abr{Sf,h} = \abr{f,S^\ast h}$ for all $f\in H$. Similarly, the vector $T^\ast h$ is the unique vector satisfying $\lambda_{T,h}(f) = \abr{Tf,h} = \abr{f,T^\ast h}$ for all $f\in H$. Then for all $f\in H$ and $a\in\mathbb{C}$, we have $\abr{(aS+T)f,h} = a\abr{f,S^\ast h} + \abr{f,T^\ast h} = \abr{f,\overline{a}S^\ast h + T^\ast h}$ for all $f\in H$. It follows by uniqueness of the adjoint that $(aS+T)^\ast = \overline{a}S^\ast + T^\ast$ for all $a\in \mathbb{C}$ and $S,T\in B(H)$.
+
+        For all $f,h\in H$ we have $\abr{f,Th} = \overline{\abr{Th,f}} = \overline{\abr{h,T^\ast f}} = \abr{T^\ast f, h} = \abr{f,T^{\ast\ast}h}$. By uniqueness it follows that $T^{\ast\ast} = T$.
+      \end{proof}
+      \item Prove $\norm{T^\ast T} = \norm{T}^2$. \begin{proof}
+        For nonzero $h\in H$ we have $\norm{Th}^2 = \abr{Th,Th} = \abr{h,T^\ast T h}\leq \norm{h}^2\norm{T^\ast T}$. It follows that $\norm{T}^2\leq \norm{T^\ast T}$. In general we have $\norm{T^\ast T}\leq \norm{T^\ast}\norm{T} = \norm{T}^2$. Thus $\norm{T^\ast T} = \norm{T}^2$.
+      \end{proof}
+      \item Prove $\ker T$ is a closed subspace of $H$, $\overline{\im T} = (\ker T^\ast)^\perp$ and $\ker T^\ast = (\im T)^\perp$. \begin{proof}
+        The preimage of $\cbr{0}\subseteq H$ under $T$ is the kernel of $T$, and since $T$ is continuous the preimage of a closed set is closed. The kernel of $T$ is already a subspace of $H$. So $\ker T$ is a closed subspace of $H$. (Similarly $\ker T^\ast$ is a closed subspace of $H$.)
+
+        Let $y\in \overline{\im T}$ with $(y_n = Tx_n)$ converging to $y$. Then for any $z\in \ker T^\ast$, by the continuity of the inner product the sequence $(\abr{Tx_n,z} = \abr{x_n,T^\ast z} = 0)$ converges to $\abr{y,z}$. Hence $\abr{y,z} =0$ so that $y\in (\ker T^\ast)^\perp$. Conversely, %if $y\in (\ker T^\ast)^\perp$ then for any $z\in \ker T^\ast$ we have $\abr{y,z} = 0$. 
+        \textcolor{red}{INCOMPLETE}
+      \end{proof} 
     \end{enumerate}
     \item (23.9) (Weak convergence) \begin{enumerate}
-      \item Prove, if $(h_n)$ converges to $h$ in norm, then also $(h_n)$ converges to $h$ weakly. (Hint: Cauchy-Schwarz.)
-      \item Prove, if $H$ is infinite-dimensional, and $(e_n)$ is an orthonormal sequence in $H$, then $e_n\to 0$ weakly, but $e_n\not\to 0$ in norm. (Thus weak convergence does not imply norm convergence.)
+      \item Prove, if $(h_n)$ converges to $h$ in norm, then also $(h_n)$ converges to $h$ weakly. (Hint: Cauchy-Schwarz.) \begin{proof}
+        It suffices to see that for any $g\in H$, $(\abr{h_n-h,g})$ converges to $0$ in $\mathbb{C}$ (translation in $\mathbb{C}$ is a homeomorphism). Indeed, with $g$ fixed we have $\abs{\abr{h_n-h,g}}\leq \norm{h_n-h}\norm{g}$ so that as $n$ tends to infinity, $\abr{h_n-h,g}$ must tend to $0$. Thus norm convergence implies weak convergence.
+      \end{proof}
+      \item Prove, if $H$ is infinite-dimensional, and $(e_n)$ is an orthonormal sequence in $H$, then $e_n\to 0$ weakly, but $e_n\not\to 0$ in norm. (Thus weak convergence does not imply norm convergence.) \begin{proof}
+        Let $g\in H$ be any vector. Then Bessel's inequality yields $\sum_{n=1}^\infty\abs{\abr{g,e_n}}^2\leq \norm{g}^2$. For the series $\sum_{n=1}^\infty\abs{\abr{g,e_n}}^2$ to converge we must have the terms tend to zero; that is $(\abs{\abr{g,e_n}}^2)$ converges to $0$, from which it follows that $(\abr{g,e_n})$ converges to $0$ for any $g\in H$.
+
+        However, $(e_n)$ does not converge to $0$ in norm as it is not even Cauchy: for any $i,j$ we have by the Pythagorean theorem that $\norm{e_i-e_j}^2 = \norm{e_i}^2 + \norm{e_j}^2 = 2$ so that $(e_n)$ could not be Cauchy and hence could not converge. Thus weak convergence does not imply norm convergence. 
+      \end{proof}
       \item Prove $(h_n)$ converges to $h$ in norm if and only if $(h_n)$ converges to $h$ weakly and $\norm{h_n}\to \norm{h}$.
       \item Prove if $(h_n)$ converges to $h$ weakly, then $\norm{h}\leq \liminf\norm{h_n}$.
     \end{enumerate}
