@@ -94,8 +94,9 @@
       \item Prove $\ker T$ is a closed subspace of $H$, $\overline{\im T} = (\ker T^\ast)^\perp$ and $\ker T^\ast = (\im T)^\perp$. \begin{proof}
         The preimage of $\cbr{0}\subseteq H$ under $T$ is the kernel of $T$, and since $T$ is continuous the preimage of a closed set is closed. The kernel of $T$ is already a subspace of $H$. So $\ker T$ is a closed subspace of $H$. (Similarly $\ker T^\ast$ is a closed subspace of $H$.)
 
-        Let $y\in \overline{\im T}$ with $(y_n = Tx_n)$ converging to $y$. Then for any $z\in \ker T^\ast$, by the continuity of the inner product the sequence $(\abr{Tx_n,z} = \abr{x_n,T^\ast z} = 0)$ converges to $\abr{y,z}$. Hence $\abr{y,z} =0$ so that $y\in (\ker T^\ast)^\perp$. Conversely, %if $y\in (\ker T^\ast)^\perp$ then for any $z\in \ker T^\ast$ we have $\abr{y,z} = 0$. 
-        \textcolor{red}{INCOMPLETE}
+        First we show that $\ker T^\ast = (\im T)^\perp$. Note also that the orthogonal complement of a subset is a closed subspace so $(\im T)^\perp$ is a closed subspace. Let $x\in \ker T^\ast$ and let $(x_n)$ be a subsequence from $\ker T^\ast$ converging to $x$. Then by continuity of the inner product and $T^\ast$ for any $h\in H$ we have that the sequence $(\abr{h,T^\ast x_n} = 0 = \abr{Th,x_n})$ converges to $\abr{Th,x}$ which must be zero since the sequence was a zero sequence. Thus $x$ is orthogonal to any vector in the image of $T$, that is, $x\in (\im T)^\perp$. Similarly, let $y\in (\im T)^\perp$ and let $(y_n)$ be a sequence from $(\im T)^\perp$ converging to $y$. Then for any $h\in H$, the sequence $(\abr{Th, y_n} = 0 = \abr{h,T^\ast y_n})$ converges to $\abr{h,T^\ast y} = 0$ by continuity of the inner product and $T^\ast$. Since $\abr{h,T^\ast y} = 0$ holds for all $h\in H$, we must have that $T^\ast y = 0$ (e.g. take $h = T^\ast y$). Hence $y\in \ker T^\ast$, and so $\ker T^\ast = (\im T)^\perp$. 
+
+        We have that $(\ker T^\ast)^\perp = ((\im T)^\perp)^\perp$, which is the smallest closed subspace of $H$ containing $\im T$; that is, $\overline{\im T}$. 
       \end{proof} 
     \end{enumerate}
     \item (23.9) (Weak convergence) \begin{enumerate}
@@ -107,9 +108,23 @@
 
         However, $(e_n)$ does not converge to $0$ in norm as it is not even Cauchy: for any $i,j$ we have by the Pythagorean theorem that $\norm{e_i-e_j}^2 = \norm{e_i}^2 + \norm{e_j}^2 = 2$ so that $(e_n)$ could not be Cauchy and hence could not converge. Thus weak convergence does not imply norm convergence. 
       \end{proof}
-      \item Prove $(h_n)$ converges to $h$ in norm if and only if $(h_n)$ converges to $h$ weakly and $\norm{h_n}\to \norm{h}$.
-      \item Prove if $(h_n)$ converges to $h$ weakly, then $\norm{h}\leq \liminf\norm{h_n}$.
+      \item Prove $(h_n)$ converges to $h$ in norm if and only if $(h_n)$ converges to $h$ weakly and $\norm{h_n}\to \norm{h}$. \begin{proof}
+        Certainly if $(h_n)$ converges to $h$ in norm then $(h_n)$ converges to $h$ weakly. By the reverse triangle inequality we have also that $\abs{\norm{h_n}-\norm{h}}\leq \norm{h_n-h}$, which tends to $0$ by assumption so that $(\norm{h_n})$ converges to $\norm{h}$.
+
+        Conversely, let $\varepsilon$ be given. Then choose $N$ large enough so that $\abs{\abr{h_n-h,h}}<\varepsilon$ (so $-\Re\abr{h_n,h}<\varepsilon -\Re\abr{h,h}$) and $\abs{\norm{h_n}-\norm{h}}\leq \varepsilon$. Then for $n\geq N$, we have $\norm{h_n-h}^2 = \abr{h_n-h,h_n-h} = \norm{h_n}^2 + \norm{h}^2 - 2\Re\abr{h_n,h}\leq \norm{h_n}^2 + \norm{h}^2 - 2\Re\abr{h,h} + \varepsilon = \norm{h_n}^2 - \norm{h}^2 + \varepsilon\leq 2\varepsilon$. Hence $\norm{h_n-h}$ tends to zero as needed.
+      \end{proof}
+      \item Prove if $(h_n)$ converges to $h$ weakly, then $\norm{h}\leq \liminf\norm{h_n}$. \begin{proof}
+        By Cauchy-Schwarz we have $\abs{\abr{h_n,h/\norm{h}}}\leq \norm{h_n}$. By taking $\liminf$ on both sides (as the inequality is preserved) and using the fact that $\lim \abs{\abr{h_n,h/\norm{h}}}$ exists and is equal to $\abr{h,h/\norm{h}} = \norm{h}$ (since norms are continuous and $h_n$ converges weakly to $h$) we have $\norm{h} = \lim \abs{\abr{h_n,h/\norm{h}}} = \liminf \abs{\abr{h_n,h/\norm{h}}}\leq \liminf\norm{h_n}$.
+      \end{proof}
     \end{enumerate}
-    \item (23.10) Suppose $H$ is countably infinite-dimensional (separable Hilbert space). Prove, if $h\in H$ and $\norm{h}\leq 1$, then there is a sequence $(h_n)$ in $H$ with $\norm{h_n}=1$ for all $n$, and $(h_n)$ converges to $h$ weakly, but $(h_n)$ does not converge to $h$ strongly.
+    \item (23.10) Suppose $H$ is countably infinite-dimensional (separable) Hilbert space. Prove, if $h\in H$ and $\norm{h}\leq 1$, then there is a sequence $(h_n)$ in $H$ with $\norm{h_n}=1$ for all $n$, and $(h_n)$ converges to $h$ weakly, but $(h_n)$ does not converge to $h$ strongly. \begin{proof}
+      Fix a countable orthonormal basis $\cbr{e_i}_{i=1}^\infty$ for $H$ and let $h\in H$ with $\norm{h}\leq 1$. Note that $h = \sum_{i=1}^\infty \abr{h,e_i}e_i$.
+      
+      Let $h_n = \sum_{i\neq n}\abr{h,e_i}e_i + \sqrt{1-\sum_{i\neq n}\abs{\abr{h,e_i}}^2}\,e_n$; indeed, the quantity under the square root is nonnegative since $\norm{h}^2 = \sum_{i=1}^\infty \abs{\abr{h,e_i}}^2\leq 1$ so that by omitting the $n$-th term in the sum we preserve the inequality. We have by the Pythagorean theorem that $\norm{h_n}^2 = \sum_{i\neq n}\abs{\abr{h,e_i}} + 1-\sum_{i\neq n}\abs{\abr{h,e_i}}^2 = 1$ so that $\norm{h_n} = 1$ for all $n$ (this also tells us that the defining sum for $h_n$ converges to begin with).
+
+      For any $g\in H$, $\abr{h_n,g} = \sum_{i=1}^\infty\abr{h_n,e_i}\abr{e_i,g}$. This sum agrees with $\abr{h,g}$ for all $i$ except for $i=n$. Specifically we have $\abs{\abr{h_n-h,g}}\leq \abs{\sqrt{1-\sum_{i\neq n}\abs{\abr{h,e_i}}^2}-\abr{h,e_n}}\abs{\abr{e_n,g}}\leq C\abs{\abr{e_n,g}}$, since $\sqrt{1-\sum_{i\neq n}\abs{\abr{h,e_i}}^2} = \sqrt{1-\norm{h}^2+\abs{\abr{h,e_n}}^2} = \abs{\abr{h,e_n}} + O(1-\norm{h}^2)\leq \abs{\abr{h,e_n}} + C$ (from a Taylor series; in fact $C$ can be taken to be $1$). By Bessel's inequality we must have $\abs{\abr{e_n,g}}$ tend to $0$ so that we have weak convergence as needed.
+
+      If $\norm{h}<1$ then it is clear that we do not have norm convergence since $\norm{h_n}=1$ and we proved in the previous problem that it is necessary in order for weak convergence to be promoted to norm convergence. In the case that $\norm{h} = 1$ we should be able to repeat a similar construction to obtain $h_n$ with $\norm{h_n}=1+\delta$ for some fixed $\delta>0$ which similarly will converge to $h$ weakly but not in norm [we could try taking $h_n = \sum_{i\neq n}\abr{h,e_i}e_i + \sqrt{1+\delta-\sum_{i\neq n}\abs{\abr{h,e_i}}^2}\,e_n$], but I am not super sure. 
+    \end{proof}
 \end{enumerate}
 \end{document}
