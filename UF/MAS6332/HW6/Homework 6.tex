@@ -103,7 +103,9 @@
 \begin{enumerate}
     %\item (15.1.24)
     \item (15.1.28) Prove that if $V$ and $W$ are affine algebraic sets, then so is $V\times W$ and $k[V\times W]\cong k[V]\otimes_kk[W]$. \begin{proof}
-        Let $V = \mathcal{Z}(S)\subseteq \mathbb{A}^n$ and $W = \mathcal{Z}(T)\subseteq \mathbb{A}^m$, where $S\subseteq k[x_1,\dots,x_n]$ and $T\subseteq k[y_1,\dots,y_m]$. Then $V\times W \subseteq \mathbb{A}^{n+m}$ is the vanishing set of $S\cup T$ where now we view $S,T\subseteq k[x_1,\dots,x_n,y_1,\dots,y_m]$
+        Let $V = \mathcal{Z}(S)\subseteq \mathbb{A}^n$ and $W = \mathcal{Z}(T)\subseteq \mathbb{A}^m$, where $S\subseteq k[x_1,\dots,x_n]$ and $T\subseteq k[y_1,\dots,y_m]$. Then $V\times W \subseteq \mathbb{A}^{n+m}$ is the vanishing set of $S\cup T$ where now we view $S,T\subseteq k[x_1,\dots,x_n,y_1,\dots,y_m]$: Certainly for any $v\times w\in V\times W$ we have that for $f\in S\cup T$ $f(v\times w) = 0$ since $f$ is in one of $S$ or $T$ and $v\in V, w\in W$. Conversely, if $f(v\times w) = 0$ for all $f\in S\cup T$ then $v\in V$ and $w\in W$ since $f$ is in one of $S$ or $T$ and we may restrict evaluating $f$ at $v\times w$ to one of the factors of $v\times w$. If we take any $f\in S\subset S\cup T$, see that $f(v\times w) = f(v) = 0$ so that $v\in V$; similarly by taking any $f\in T\subset S\cup T$ find that $w\in W$. It follows that $V\times W = \mathcal{Z}(S\cup T)\subseteq \mathbb{A}^{n+m}$ where $S\cup T$ is viewed as a subset of $k[x_1,\dots,x_n,y_1,\dots,y_m]$.
+
+        We define the map $\Psi\colon k[V]\otimes_kk[W]\to k[V\times W]$ by defining it on generators. %Let $\Psi$ map $\overline{f}\otimes \overline{g}$ to $\overline{f+g}$. We check well definedness: If $s\in \abr{S}$ and $t\in \abr{T}$ then we may view $s,t\in \abr{S\cup T}$ so that $\overline{f+s}\otimes \overline{g+t}\mapsto \overline{f+g+s+t} = \overline{f+g}$ as needed. The map $\Phi$ is injective. If 
     \end{proof}
     \item (15.2.3) Prove that the intersection of two radical ideals is again a radical ideal. \begin{proof}
         
