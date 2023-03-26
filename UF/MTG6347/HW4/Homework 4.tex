@@ -86,9 +86,71 @@
 \begin{enumerate}
     \item Verify your computations for the cohomology of the torus, the projective plane and the Klein bottle for integer and mod $2$ coefficients from the previous assignment by using the Universal Coefficient Theorem for Cohomology.
     
-    
+    We recall the homology in $\mathbb{Z}$ coefficients we computed in Homework 2. The homology for the torus $S$ is given by $H_0(S) = \mathbb{Z}$, $H_1(S) = \mathbb{Z}^{2}$, and $H_2(S) = \mathbb{Z}$; all other groups are $0$. For the projective plane we have $H_0(\mathbb{RP}^2) = \mathbb{Z}$, $H_1(\mathbb{RP}^2)=\mathbb{Z}/2\mathbb{Z}$, and $H_2(\mathbb{RP}^2)=0$; all other groups are $0$. For the Klein bottle $K$ we have $H_0(K) = \mathbb{Z}$, $H_1(K) = \mathbb{Z}\oplus\mathbb{Z}/2\mathbb{Z}$, and $H_2(K) = 0$; all other groups are $0$. In our formulation, negative homology groups are zero.
+    \begin{enumerate}
+      \item Cohomology of the torus $S$:\begin{enumerate}
+        \item in $G=\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z}^2,G)=\mathbb{Z}^2\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}^2, G)=0\to H^2(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}\to 0\] 
+        As $0,\mathbb{Z},\mathbb{Z}^2$ are free the $\Ext$ groups above are all zero. Since $\Hom_\mathbb{Z}(\mathbb{Z},\mathbb{Z}) = \mathbb{Z}$ and $\Hom$ distributes over direct sums in the first component, we obtain the $\Hom$ groups above. By exactness we obtain $H^0(S;G)\cong\mathbb{Z}$, $H^1(S;G)\cong\mathbb{Z}^2$, and $H^2(S;G)\cong\mathbb{Z}$.
+
+        Since the higher homology groups of the torus are all zero (which is free, and $H_2(S)$ is free also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(S), G)=0\to H^i(S;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+        \item in $G=\mathbb{Z}/2\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}/2\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z}^2,G)=(\mathbb{Z}/2\mathbb{Z})^2\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}^2, G)=0\to H^2(S;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}/2\mathbb{Z}\to 0\] 
+        As $0,\mathbb{Z},\mathbb{Z}^2$ are free the $\Ext$ groups above are all zero. Since $\Hom_\mathbb{Z}(\mathbb{Z},\mathbb{Z}/2\mathbb{Z}) = \mathbb{Z}/2\mathbb{Z}$ (the identity map and the projection map of order $2$) and $\Hom$ distributes over direct sums in the first component, we obtain the $\Hom$ groups above. By exactness we obtain $H^0(S;G)\cong\mathbb{Z}/2\mathbb{Z}$, $H^1(S;G)\cong(\mathbb{Z}/2\mathbb{Z})^2$, and $H^2(S;G)\cong\mathbb{Z}/2\mathbb{Z}$.
+
+        Since the higher homology groups of the torus are all zero (which is free, and $H_2(S)$ is free also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(S), G)=0\to H^i(S;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+      \end{enumerate}
+      \item Cohomology of $\mathbb{RP}^2$:\begin{enumerate}
+        \item in $G=\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(\mathbb{Z}/2\mathbb{Z},G)=0\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}/2\mathbb{Z}, G)=\mathbb{Z}/2\mathbb{Z}\to H^2(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] 
+        From a result we proved in class we have the result giving us the third $\Ext$ group above. Since $\mathbb{Z}/2\mathbb{Z}$ has finite order there can be no nontrivial homomorphisms $\mathbb{Z}/2\mathbb{Z}\to \mathbb{Z}$. By exactness we obtain $H^0(\mathbb{RP}^2;G)\cong\mathbb{Z}$, $H^1(\mathbb{RP}^2;G)\cong 0$, and $H^2(\mathbb{RP}^2;G)\cong\mathbb{Z}/2\mathbb{Z}$.
+
+        Since the higher homology groups of the projective plane are all zero (which is free, and $H_2(\mathbb{RP}^2)=0$ also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(\mathbb{RP}^2), G)=0\to H^i(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+        \item in $G=\mathbb{Z}/2\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}/2\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(\mathbb{Z}/2\mathbb{Z},G)=\mathbb{Z}/2\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}/2\mathbb{Z}, G)=\mathbb{Z}/2\mathbb{Z}\to H^2(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] 
+        From a result we proved in class we have the result giving us the third $\Ext$ group above; in particular we have $(\mathbb{Z}/2\mathbb{Z})/2(\mathbb{Z}/2\mathbb{Z})= (\mathbb{Z}/2\mathbb{Z})/0 \cong \mathbb{Z}/2\mathbb{Z}$. The only homomorphisms $\mathbb{Z}/2\mathbb{Z}\to \mathbb{Z}/2\mathbb{Z}$ are the identity and the order $2$ map sending $1\mapsto 1$. By exactness we obtain $H^0(\mathbb{RP}^2;G)\cong\mathbb{Z}/2\mathbb{Z}$, $H^1(\mathbb{RP}^2;G)\cong \mathbb{Z}/2\mathbb{Z}$, and $H^2(\mathbb{RP}^2;G)\cong\mathbb{Z}/2\mathbb{Z}$.
+
+        Since the higher homology groups of the projective plane are all zero (which is free, and $H_2(\mathbb{RP}^2)=0$ also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(\mathbb{RP}^2), G)=0\to H^i(\mathbb{RP}^2;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+      \end{enumerate}
+      \item Cohomology of the Klein bottle $K$:\begin{enumerate}
+        \item in $G=\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(K;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(K;G)\to \Hom_\mathbb{Z}(\mathbb{Z}\oplus \mathbb{Z}/2\mathbb{Z},G)=\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}\oplus \mathbb{Z}/2\mathbb{Z}, G)= \mathbb{Z}/2\mathbb{Z}\to H^2(K;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] 
+        We proved in class that the $\Ext$ functor distributes over direct sums in the first component, giving us the third $\Ext$ group above. By exactness we obtain $H^0(K;G)\cong\mathbb{Z}$, $H^1(K;G)\cong \mathbb{Z}$, and $H^2(K;G)\cong\mathbb{Z}/2\mathbb{Z}$.
+
+        Since the higher homology groups of the Klein bottle are all zero (which is free, and $H_2(K)=0$ also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(K), G)=0\to H^i(K;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+        \item in $G=\mathbb{Z}/2\mathbb{Z}$ coefficients:
+        
+        By the UCT for Cohomology and what was recorded above, we have the following three short exact sequences:
+        \[0\to \Ext_\mathbb{Z}^1(0, G)=0\to H^0(K;G)\to \Hom_\mathbb{Z}(\mathbb{Z},G)=\mathbb{Z}/2\mathbb{Z}\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}, G)=0\to H^1(K;G)\to \Hom_\mathbb{Z}(\mathbb{Z}\oplus \mathbb{Z}/2\mathbb{Z},G)=(\mathbb{Z}/2\mathbb{Z})^2\to 0\]
+        \[0\to \Ext_\mathbb{Z}^1(\mathbb{Z}\oplus \mathbb{Z}/2\mathbb{Z}, G)= \mathbb{Z}/2\mathbb{Z}\to H^2(K;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] 
+        We proved in class that the $\Ext$ functor distributes over direct sums in the first component, giving us the third $\Ext$ group above. By exactness we obtain $H^0(K;G)\cong\mathbb{Z}/2\mathbb{Z}$, $H^1(K;G)\cong (\mathbb{Z}/2\mathbb{Z})^2$, and $H^2(K;G)\cong\mathbb{Z}/2\mathbb{Z}$.
+
+        Since the higher homology groups of the Klein bottle are all zero (which is free, and $H_2(K)=0$ also), we have the following short exact sequence for $i\geq 3$: \[0\to \Ext_\mathbb{Z}^1(H_{i-1}(K), G)=0\to H^i(K;G)\to \Hom_\mathbb{Z}(0,G)=0\to 0\] It follows by exactness that the higher cohomology groups are all zero as well.
+      \end{enumerate}
+    \end{enumerate}
     \item Let $N_g$ denote the non-orientable surface of genus $g$. Consider homology and cohomology with coefficients in $\mathbb{Z}_2$.\begin{enumerate}[label=(\alph*)]
-        \item Sketch a $\Delta$-complex structure for $N_g$ for some small $g$.
+        \item Sketch a $\Delta$-complex structure for $N_g$ for some small $g$.\vspace*{7cm}
         \item Identify cycles that generate homology in degrees $0,1,2$.
         \item Identify cocycles that generate cohomology in degrees $0,1,2$.
         \item Determine the Kronecker pairings of cohomology and homology.

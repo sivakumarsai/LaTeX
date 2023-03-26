@@ -92,8 +92,18 @@
 \begin{document}
 \subsection*{Graded}
 \begin{enumerate}
-    \item (15.2.39)
-    \item (15.2.40)
+    \item (15.2.39) Fix an element $a$ in the ring $R$. For any ideal $I$ in the ring $R$ let $I_a= \cbr{r\in R\mid ar\in I}$.\begin{enumerate}
+        \item Prove that $I_a$ is an ideal and $I_a=R$ if and only if $a\in I$.
+        \item Prove that $(I\cap J)_a = I_a\cap J_a$ for ideals $I$ and $J$.
+        \item Suppose that $Q$ is a $P$-primary ideal and that $a\not\in Q$. Prove that $Q_a$ is a $P$-primary ideal and that $Q_a=Q$ if $a\not\in P$.
+    \end{enumerate}
+    \item (15.2.40) With notation as in the previous exercise, suppose $I=Q_1\cap\cdots\cap Q_m$ is a minimal primary decomposition of the ideal $I$ and let $P_i$ be the prime ideal associated to $Q_i$. \begin{enumerate}
+        \item Prove that $I_a = (Q_1)_a\cap\cdots\cap (Q_m)_a$ and that $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$.
+        \item Prove that $\rad (I_a)$ is the intersection of the prime ideals $P_i$ for which $a\not\in Q_i$. [Use the previous exercise.]
+        \item Prove that if $\rad(I_a)$ is a prime ideal then $\rad(I_a) = P_j$ for some $j$. [Use the fact that prime ideals are irreducible.]
+        \item For each $i=1,\dots,m$, prove that $\rad(I_a)=P_i$ for some $a\in R$. [Show there exists an $a\in R$ with $a\not\in Q_j$ for all $j\neq i$.]
+        \item Show from (c) and (d) that the associated primes for a minimal primary decomposition are precisely the collection of prime ideals among the ideals $\rad(I_a)$ for $a\in R$, and conclude that they are uniquely determined by $I$ independent of the minimal primary decomposition.
+    \end{enumerate}
 \end{enumerate}
 \subsection*{Additional Problems}
 \begin{enumerate}
