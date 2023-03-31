@@ -93,24 +93,58 @@
 \subsection*{Graded}
 \begin{enumerate}
     \item (15.2.39) Fix an element $a$ in the ring $R$. For any ideal $I$ in the ring $R$ let $I_a= \cbr{r\in R\mid ar\in I}$.\begin{enumerate}
-        \item Prove that $I_a$ is an ideal and $I_a=R$ if and only if $a\in I$.
-        \item Prove that $(I\cap J)_a = I_a\cap J_a$ for ideals $I$ and $J$.
-        \item Suppose that $Q$ is a $P$-primary ideal and that $a\not\in Q$. Prove that $Q_a$ is a $P$-primary ideal and that $Q_a=Q$ if $a\not\in P$.
+        \item Prove that $I_a$ is an ideal and $I_a=R$ if and only if $a\in I$. \begin{proof}
+            The ring $R$ should be commutative and unital, and we can find counterexamples to the claims above if either fails:
+            
+            In the non-commutative ring of $2\times 2$ matrices with integer entries $M_{2}(\mathbb{Z})$ we can take the ideal of even integer-valued matrices $M_2(2\mathbb{Z})$ and $a = \begin{pmatrix}
+                1 & 0 \\ 0 & 2
+            \end{pmatrix}$. Then $M_2(2\mathbb{Z})_a$ is given by the set of matrices whose first row contains even integers and whose second row contains any integers, i.e., of the form $\begin{pmatrix}
+                2x & 2y\\ c & d
+            \end{pmatrix}$ for integers $x,y,c,d$. This set of course could not be an ideal since we can choose $c,d$ odd and interchanging rows via multiplication by an elementary matrix.
+
+            In the non-unital ring $2\mathbb{Z}$ we can take $a = 4$ and $I = 8\mathbb{Z}$ and find that $I_a = 2\mathbb{Z}$ since $2\cdot 4 = 8$, even though $4\not\in 8\mathbb{Z}$.
+
+            So let $R$ be a commutative unital ring, $a\in R$ fixed and $I$ an ideal of $R$. Then $I_a$ contains $0$ since $a0 =0\in I$. Then for $x,y\in I_a$ we have $a(x\pm y) = ax\pm ay\in I$ since $I$ is an ideal, from which it follows $x\pm y\in I_a$. For any $r\in R$ and $x\in I_a$ we have $arx =rax \in I$ since $I$ is an ideal, so that $rx\in I_a$. It follows that $I_a$ is an ideal.
+
+            If $a\in I$ then since $I$ is an ideal, for any element $r\in R$ we have $ar\in I$ since $I$ is an ideal, so $I_a = R$. Conversely, if $I_a = R$ then $1\in I_a$ so that $a1 = a\in I$.
+        \end{proof}
+        \item Prove that $(I\cap J)_a = I_a\cap J_a$ for ideals $I$ and $J$. \begin{proof}
+            We have $(I\cap J)_a = \cbr{r\in R\mid ar\in I\cap J}$. The condition that $ar\in I\cap J$ is equivalent to satisfying $ar\in I$ and $ar\in J$, so the intersection $I_a\cap J_a = \cbr{r\in R\mid ar\in I \text{ and }ar\in J}$ must be equivalent to $(I\cap J)_a$.
+        \end{proof}
+        \item Suppose that $Q$ is a $P$-primary ideal and that $a\not\in Q$. Prove that $Q_a$ is a $P$-primary ideal and that $Q_a=Q$ if $a\not\in P$. \begin{proof}
+            Let $xy\in Q_a$ with $x\not\in Q_a$. Then $axy\in Q$, and $ax\not\in Q$ since $x\not\in Q_a$. It follows that $y^n\in Q$ for some $n$. Since $Q$ is an ideal $ay^n\in Q$ also so that $y^n\in Q_a$. In general $Q\subseteq Q_a$ since $Q$ is an ideal ($aQ\subseteq Q$). We have then that $P= \rad Q\subseteq \rad Q_a$. We show the reverse containment: If $r\in \rad Q_a$ then $ar^n\in Q$ for some $n$. Since $a\not\in Q$, we must have that $r^n \in \rad Q = P$. As $P$ is a prime ideal we have that $r\in P$ as needed. Hence $Q_a$ is a $P$-primary ideal.
+
+            Now suppose $a\not\in P$. Then for any element $r\in Q_a$ we have $ar\in Q$. If $r\not\in Q$, we have $a\in \rad Q = P$, which is a contradiction. Hence $r\in Q$ which gives the reverse containment and hence the equality $Q_a = Q$ (when $a\not\in P$).
+        \end{proof}
     \end{enumerate}
     \item (15.2.40) With notation as in the previous exercise, suppose $I=Q_1\cap\cdots\cap Q_m$ is a minimal primary decomposition of the ideal $I$ and let $P_i$ be the prime ideal associated to $Q_i$. \begin{enumerate}
-        \item Prove that $I_a = (Q_1)_a\cap\cdots\cap (Q_m)_a$ and that $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$.
-        \item Prove that $\rad (I_a)$ is the intersection of the prime ideals $P_i$ for which $a\not\in Q_i$. [Use the previous exercise.]
-        \item Prove that if $\rad(I_a)$ is a prime ideal then $\rad(I_a) = P_j$ for some $j$. [Use the fact that prime ideals are irreducible.]
-        \item For each $i=1,\dots,m$, prove that $\rad(I_a)=P_i$ for some $a\in R$. [Show there exists an $a\in R$ with $a\not\in Q_j$ for all $j\neq i$.]
-        \item Show from (c) and (d) that the associated primes for a minimal primary decomposition are precisely the collection of prime ideals among the ideals $\rad(I_a)$ for $a\in R$, and conclude that they are uniquely determined by $I$ independent of the minimal primary decomposition.
+        \item Prove that $I_a = (Q_1)_a\cap\cdots\cap (Q_m)_a$ and that $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$. \begin{proof}
+            Using part (b) above and induction we have for $I = Q_1\cap\cdots\cap Q_m$ a finite intersection that $I_a = (Q_1)_a\cap\cdots\cap (Q_m)_a$. We showed in a previous homework that the radical of an intersection of ideals is the intersection of radical ideals (we actually showed this for radical ideals but the statement is still true using essentially the same proof given in that homework). It then follows again by induction that $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$.
+        \end{proof}
+        \item Prove that $\rad (I_a)$ is the intersection of the prime ideals $P_i$ for which $a\not\in Q_i$. [Use the previous exercise.] \begin{proof}
+            Using part (a) of the previous exercise we have that $(Q_i)_a = R$ if and only if $a\in Q_i$. Furthermore, $\rad R = R$, and by part (c) of the previous exercise we have that $\rad ((Q_i)_a) = P_i$. Then in the finite intersection $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$ we can omit the terms $\rad((Q_i)_a)$ for which $a\in Q_i$ since $\rad((Q_i)_a) = \rad R = R$ and intersecting with $R$ does not change the finite intersection. What remains in the intersection is the intersection of the ideals $\rad ((Q_i)_a) = P_i$ for which $a\not\in Q_i$.
+        \end{proof}
+        \item Prove that if $\rad(I_a)$ is a prime ideal then $\rad(I_a) = P_j$ for some $j$. [Use the fact that prime ideals are irreducible.] \begin{proof}
+            We have $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a)$. Since prime ideals are irreducible we must have that either $\rad (I_a) = \rad((Q_1)_a) = P_1$ or $\rad (I_a) = \rad((Q_2)_a)\cap\cdots\cap \rad((Q_m)_a)$. If the former holds then we are done. If the latter is true, repeat the above for the remaining intersection. Inductively keep repeating this procedure until the result is true (which will happen since the above intersection is finite). It follows that $\rad(I_a) = \rad((Q_j)_a) = P_j$ for some $j$.
+        \end{proof}
+        \item For each $i=1,\dots,m$, prove that $\rad(I_a)=P_i$ for some $a\in R$. [Show there exists an $a\in R$ with $a\not\in Q_i$ but $a\in Q_j$ for all $j\neq i$.] \begin{proof}
+            Let $1\leq i\leq m$. If there is no $a\in R$ with $a\not\in Q_i$ but $a\in Q_j$ for all $j\neq i$., we show that the decomposition $I=Q_1\cap\cdots\cap Q_m$ is not minimal: We have that every $a\in R$ satisfies $a\not\in \cap_{j\neq i}Q_j$ or $a\in Q_i$; equivalently, if $a\in \cap_{j\neq i}Q_j$ then $a\in Q_i$. But then this violates the minimality of the primary decomposition in that $Q_i$ contains the intersection of the remaining primary ideals. Hence there exists an $a\in R$ with $a\not\in Q_i$ but $a\in Q_j$ for all $j\neq i$. It follows that $\rad (I_a) = \rad((Q_1)_a)\cap\cdots\cap \rad((Q_m)_a) = R\cap\cdots\cap \rad((Q_i)_a)\cap \cdots\cap R =  \rad((Q_i)_a) = P_i$.
+        \end{proof}
+        \item Show from (c) and (d) that the associated primes for a minimal primary decomposition are precisely the collection of prime ideals among the ideals $\rad(I_a)$ for $a\in R$, and conclude that they are uniquely determined by $I$ independent of the minimal primary decomposition. \begin{proof}
+            Let $I=Q_1\cap\cdots\cap Q_m$ be any minimal primary decomposition and let $P_i$ be the associated prime to $Q_i$. For each $P_i$ there exists an $a\in R$ such that $\rad(I_a) = P_i$. As each $P_i$ is prime, we have $\cbr{P_i\mid 1\leq i \leq m}\subseteq \cbr{\rad(I_a)\mid a\in R, \rad(I_a)\text{ is prime}}$. We obtain the reverse containment since if $\rad(I_a)$ is prime, then $\rad(I_a) = P_j$ for some $j$. So the set of associated primes is exactly the set $\cbr{\rad(I_a)\mid a\in R, \rad(I_a)\text{ is prime}}$. This set is defined independently of any given minimal primary decomposition, so it follows that the associated primes of a minimal primary decomposition are determined by $I$ independent of any minimal primary decomposition for $I$.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 \subsection*{Additional Problems}
 \begin{enumerate}
-    \item (15.2.12)
-    \item (15.2.16)
-    \item (15.2.25)
-    \item (15.2.51)
+    \item (15.2.12) Use the fact that nonempty open sets of an affine variety are everywhere dense to prove that an affine variety is connected in the Zariski topology. (A topological space is \textit{connected} if it is not the union of two disjoint, proper, open subsets.) \begin{proof}
+        We use the alternate characterization that a connected space only has the empty set and the whole space as clopen sets. Evidently in the relative Zariski topology the variety itself and the empty set are both clopen. If the variety were disconnected then there would be a proper nonempty clopen set $U$ contained in the variety. But $U$ is a nonempty open set, meaning its closure must be the entire variety and not $U$ itself, a contradiction (so such a $U$ does not exist). Hence varieties are connected.
+    \end{proof}
+    \item (15.2.16) Suppose $V\subseteq \mathbb{A}^n$ is an affine variety and $f\in k[V]$. Prove that the \textit{graph} of $f$ (cf. Exercise 25 in Section 1) is an affine variety. \begin{proof}
+        The graph of $f$ is an algebraic set given by the vanishing of the polynomials that define $V$ (viewed as polynomials in $x_1,\dots,x_{n+1}$) along with $f(x_1,\dots,x_n)-x_{n+1}$. We show that the coordinate ring for the graph of $f$ is isomorphic to the integral domain $k[V]$. Equivalently, we find an isomorphism of algebraic sets from $V$ to the graph of $f$. The map taking $(a_1,\dots,a_n)$ to $(a_1,\dots,a_n,f(a_1,\dots,a_n))$ is a morphism of algebraic sets as the map is given component wise by $(\id,f)$ and each component map is a polynomial. Consider $(a_1,\dots,a_n,a_{n+1})$ in the graph of $f$. This tuple is equivalent to $(a_1,\dots,a_n,f(a_1,\dots,a_n))$ since being in the graph means the last component is $f$ evaluated at the first $n$ components (the graph is the vanishing of $f-x_{n+1}$). We have that the first $n$ components $(a_1,\dots,a_n)$ are in $V$ (by the first sentence of this proof) so that the projection map (given componentwise by the polynomial map $(x_1,x_2,\dots,x_n)$) is a morphism from the graph of $f$ to $V$. These maps are two sided inverses: $(a_1,\dots,a_n)\mapsto (a_1,\dots,a_n,f(a_1,\dots,a_n)) \mapsto (a_1,\dots,a_n)$ and $(a_1,\dots,a_n,a_{n+1} = f(a_1,\dots,a_n))\mapsto (a_1,\dots,a_n)\mapsto (a_1,\dots,a_n,a_{n+1} = f(a_1,\dots,a_n))$ as needed. Hence the coordinate rings are isomorphic, and since $k[V]$ was an integral domain it follows the coordinate ring for the graph is also an integral domain. Hence the graph of $f$ is an affine variety.
+    \end{proof}
+    %\item (15.2.25)
+    %\item (15.2.51) Show that $V = \mathcal{Z}(x^2-y^2z)$ (the \textit{Whitney umbrella surface}) is the smallest algebraic set in $\mathbb{R}^3$ containing the points $S = \cbr{(st,s,t^2)\mid s,t\in \mathbb{R}}$. Show that $S$ is not Zariski closed in $V$ (the missing points explain the name for the surface). Do the same over $\mathbb{C}$, but show that in this case $S = V$ is closed.
 \end{enumerate}
 \subsection*{Feedback}
 \begin{enumerate}

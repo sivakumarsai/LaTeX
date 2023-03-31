@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAA6617 Analysis}
+\fancyhead[C]{Homework 4}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (24.4) Suppose $f\in L^{p_0}\cap L^\infty$ for some $p_0<\infty$. Prove $f\in L^p$ for all $p_0\leq p\leq \infty$, and $\lim_{p\to\infty}\norm{f}_p = \norm{f}_\infty$.
+    \item (24.6) Suppose $p_0<p<p_1$ and $f\in L^{p_0}\cap L^{p_1}$. Prove $f\in L^p$ and $\norm{f}_p\leq \norm{f}_{p_0}^{1-\theta}\norm{f}_{p_1}^\theta$, where $0<\theta<1$ is chosen so that $\frac{1}{p} = \frac{1-\theta}{p_0}+\frac{\theta}{p_1}$. When does equality hold?
+    \item (24.12) Prove, if $f\in L^p$ then \[\lim_{t\to 0}t^p\lambda_f(t) = \lim_{t\to\infty}t^p\lambda_f(t) = 0.\] (One way to proceed is to first suppose $f$ is a simple function. Another is to consider the integrals $\int_{\frac{s}{2}}^s t^{p-1}\lambda_f(t)\dd{t}$.)
+\end{enumerate}
+\end{document}

@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 8}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+Let $R$ be a subring of the commutative ring $S$ with $1\in R$.
+\subsection*{Graded}
+\begin{enumerate}
+    \item (15.3.6) For each of the following give specific rings $R\subseteq S$ and explicit ideals in these rings that exhibit the specified relation:\begin{enumerate}
+        \item an ideal $I$ of $R$ such that $I\neq SI\cap R$ (so the contraction of the extension of an ideal $I$ need not equal $I$)
+        
+        Take $R = \mathbb{Z}$, $S = \mathbb{Q}$, and $I = 2\mathbb{Z}$. Then $SI = \mathbb{Q}$ since $\mathbb{Q}$ is divisible, so $SI\cap R = \mathbb{Z}$, which is strictly larger than $2\mathbb{Z}$. 
+        \item a prime ideal $P$ of $R$ such that there is no prime ideal $Q$ of $S$ with $P = Q\cap R$
+        
+        Take $R = \mathbb{Z}$, $S = \mathbb{Q}$, and $P = 2\mathbb{Z}$. Then since the only ideals of $\mathbb{Q}$ are $0$ and $\mathbb{Q}$, we have that $2\mathbb{Z}$ is not $0 = 0\cap\mathbb{Z}$ or $\mathbb{Z} = \mathbb{Q}\cap\mathbb{Z}$. 
+        \item a maximal ideal $M$ of $S$ such that $M\cap R$ is not maximal in $R$
+        
+        Take $R = \mathbb{Z}$, $S = \mathbb{Q}$, and $M = (0)\mathbb{Q}$. But the zero ideal in the integers is not maximal (as the integers are not a field).
+        \item a prime ideal $P$ of $R$ whose extension $PS$ to $S$ is not a prime ideal in $S$
+        
+        Take $R = \mathbb{Z}$, $S = \mathbb{Z}[i]$, and $P = 5\mathbb{Z}$. The extension $PS$ to $S$ is $5\mathbb{Z}[i]$, which is not a prime ideal since $5 = (2-i)(2+i)$. (The prime $5$ is congruent to $1$ mod $4$.)
+        \item an ideal $J$ of $S$ such that $J\neq (J\cap R)S$ (so the extension of the contraction of an ideal $J$ need not equal $J$).
+        
+        Take $R = \mathbb{Z}$, $S = \mathbb{Z}[x]$ for $x$ an indeterminate, and $J = (x)\mathbb{Z}[x]$. Then $J\cap R = (0)\mathbb{Z}$ so that $(J\cap R)S = (0)\mathbb{Z}[x]\neq (x)\mathbb{Z}[x]$.
+    \end{enumerate}
+    \item (15.3.15) Let $V$ be an affine algebraic set over an algebraically closed field $k$. Prove that for some $n$ there is a surjective morphism from $V$ onto $\mathbb{A}^n$ with finite fibers, and that if $V$ is a variety, then $n$ can be taken to be the dimension of $V$. [By Noether's Normalization Lemma the finitely generated $k$-algebra $S = k[V]$ contains a polynomial subalgebra $R = k[x_1,\dots,x_n]$ such that $S$ is integral over $R$. Apply Theorem 6 to the inclusion of $R$ in $S$ to obtain a morphism $\varphi$ from $V$ to $\mathbb{A}^n$. To see that $\varphi$ is surjective with finite fibers, apply Corollary 27 to the maximal ideal $(x_1-a_1,\dots,x_n-a_n)$ of $R$ corresponding to a point $(a_1,\dots,a_n)$ of $\mathbb{A}^n$.] \begin{proof}
+        The coordinate ring $k[V]$ is finitely generated (if $V\subseteq \mathbb{A}^k$ then we have the surjective quotient map from the polynomial ring $k[x_1,\dots,x_m]$ to the coordinate ring $k[V]$) so by Noether's Normalization Lemma there exists $x_1,\dots,x_n$ algebraically independent over $k$ (equivalently they are indeterminates/transcendentals over $k$) such that $k[V]$ is integral over $k[\mathbb{A}^n] = k[x_1,\dots,x_n]$. Then the inclusion $i\colon k[\mathbb{A}^n]\to k[V]$ corresponds to a morphism of affine algebraic sets $\varphi\colon V\to \mathbb{A}^n$.
+
+        The ring $k[V]$ is finitely generated over $k$, so $k[V] = k[r_1,\dots,r_k]$ for some $r_1,\dots,r_k\in k[V]$. The ring $k[V]$ is finitely generated over $k[\mathbb{A}^n]$, since we have the equality $k[\mathbb{A}^n][r_1,\dots,r_k] = k[x_1,\dots ,x_n,r_1,\dots,r_k] = k[V][x_1,\dots,x_n] = k[V]$. Then by Corollary 27 we have that if $P$ is a maximal ideal of $k[\mathbb{A}^n]$ then there are nonzero and finitely many maximal ideals $Q_j$ of $k[V]$ such that $P = Q_j\cap k[\mathbb{A}^n] = i^{-1}(Q_j)$.
+
+        We show that each point of $\mathbb{A}^n$ has a finite fiber with at least one element (so that we have surjectivity of $\varphi$). For each point $p = (p_1,\dots,p_n)$ of $\mathbb{A}^n$ there is a corresponding maximal ideal $P = (x_1-p_1,\dots,x_n-p_n)$ of $k[\mathbb{A}^n]$. Then as noted before there are nonzero and finitely many maximal ideals $Q_j$ of $k[V]$ corresponding to points $q_j\in V$ such that $P = Q_j\cap k[\mathbb{A}^n] = i^{-1}(Q_j)$. For each $Q_j$ we have that $P = i^{-1}Q_j$ is equivalent to $\varphi(q_j)=p$: If $f(x_1,\dots,x_n)\in P$ then $f(x_1,\dots,x_n) = \prod_i(x_i-p_i)g(x_1,\dots,x_n)$ for some $g$. But then also $f\in i^{-1}Q_j$ so that $if = \prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))\in Q_j$; in particular we have that $if$ vanishes on $q_j$. As $f$ was arbitrary (e.g. take $f = \prod_i(x_i-p_i)$) we must have that $\varphi_i(q_j)-p_i$ for each $i$ so that $\varphi(q_j) = p$ as needed. Now suppose $\varphi(q_j) = p$. Then the containment $i^{-1}Q_j\supseteq P$ holds since $if=\prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))$ vanishes on $q_j$ for $f\in P$. Conversely, if $f\in i^{-1}Q_j$ then $if=f\circ \varphi$ vanishes on $q_j$. Since $k$ is algebraically closed we must have that $\prod_i(x_i-p_i)$ divides $f$, which gives the reverse containment $i^{-1}Q_j\subseteq P$ (this containment did not rely on $\varphi(q_j) =p$).
+
+        It follows that since there are a nonzero finite number of these ideals $Q_j$ for each $P$ there are a nonzero finite number of points $q_j$ such that $\varphi(q_j) = p$ so that every point has a finite nonempty fiber as needed.
+
+        Let $V$ be a variety with $n = \dim V$. Then by Noether's Normalization Lemma we have that there exists $x_1,\dots,x_m$ algebraically independent over $k$ such that $k[V]$ is integral over $k[x_1,\dots,x_m]$. Then $k(V)$ is an algebraic extension of $k(x_1,\dots,x_m)$: If $x/y\in k(V)$ then $x$ and $y$ each satisfy a monic polynomial with coefficients from $k[x_1,\dots,x_m]$; that is, $x$ and $y$ are each algebraic over $k(x_1,\dots,x_m)$. Then $y^{-1}$ is algebraic also so that $x/y$ is algebraic over $k(x_1,\dots,x_m)$ as needed. Then since $\dim V =n$, we must have that $m= n$ as desired.
+    \end{proof}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (15.3.2) Suppose $k$ is a field and let $t = \overline{x}/\overline{y}$ in the field of fractions of the integral domain $R = k[x,y]/(x^2-y^3)$. Prove that $K = k(t)$ is the fraction field of $R$ and $k[t]$ is the integral closure of $R$ in $K$.
+    %\item (15.3.7)
+    \item (15.3.8) Prove that if $s_1,\dots,s_n\in S$ are integral over $R$, then the ring $R[s_1,\dots,s_n]$ is a finitely generated $R$-module.
+    %\item (15.3.17)
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}
