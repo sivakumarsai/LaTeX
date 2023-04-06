@@ -115,7 +115,11 @@ Let $R$ be a subring of the commutative ring $S$ with $1\in R$.
 
         The ring $k[V]$ is finitely generated over $k$, so $k[V] = k[r_1,\dots,r_k]$ for some $r_1,\dots,r_k\in k[V]$. The ring $k[V]$ is finitely generated over $k[\mathbb{A}^n]$, since we have the equality $k[\mathbb{A}^n][r_1,\dots,r_k] = k[x_1,\dots ,x_n,r_1,\dots,r_k] = k[V][x_1,\dots,x_n] = k[V]$. Then by Corollary 27 we have that if $P$ is a maximal ideal of $k[\mathbb{A}^n]$ then there are nonzero and finitely many maximal ideals $Q_j$ of $k[V]$ such that $P = Q_j\cap k[\mathbb{A}^n] = i^{-1}(Q_j)$.
 
-        We show that each point of $\mathbb{A}^n$ has a finite fiber with at least one element (so that we have surjectivity of $\varphi$). For each point $p = (p_1,\dots,p_n)$ of $\mathbb{A}^n$ there is a corresponding maximal ideal $P = (x_1-p_1,\dots,x_n-p_n)$ of $k[\mathbb{A}^n]$. Then as noted before there are nonzero and finitely many maximal ideals $Q_j$ of $k[V]$ corresponding to points $q_j\in V$ such that $P = Q_j\cap k[\mathbb{A}^n] = i^{-1}(Q_j)$. For each $Q_j$ we have that $P = i^{-1}Q_j$ is equivalent to $\varphi(q_j)=p$: If $f(x_1,\dots,x_n)\in P$ then $f(x_1,\dots,x_n) = \prod_i(x_i-p_i)g(x_1,\dots,x_n)$ for some $g$. But then also $f\in i^{-1}Q_j$ so that $if = \prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))\in Q_j$; in particular we have that $if$ vanishes on $q_j$. As $f$ was arbitrary (e.g. take $f = \prod_i(x_i-p_i)$) we must have that $\varphi_i(q_j)-p_i$ for each $i$ so that $\varphi(q_j) = p$ as needed. Now suppose $\varphi(q_j) = p$. Then the containment $i^{-1}Q_j\supseteq P$ holds since $if=\prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))$ vanishes on $q_j$ for $f\in P$. Conversely, if $f\in i^{-1}Q_j$ then $if=f\circ \varphi$ vanishes on $q_j$. Since $k$ is algebraically closed we must have that $\prod_i(x_i-p_i)$ divides $f$, which gives the reverse containment $i^{-1}Q_j\subseteq P$ (this containment did not rely on $\varphi(q_j) =p$).
+        We show that each point of $\mathbb{A}^n$ has a finite fiber with at least one element (so that we have surjectivity of $\varphi$). For each point $p = (p_1,\dots,p_n)$ of $\mathbb{A}^n$ there is a corresponding maximal ideal $P = (x_1-p_1,\dots,x_n-p_n)$ of $k[\mathbb{A}^n]$. Then as noted before there are nonzero and finitely many maximal ideals $Q_j$ of $k[V]$ corresponding to points $q_j\in V$ such that $P = Q_j\cap k[\mathbb{A}^n] = i^{-1}(Q_j)$.
+        
+        For each $Q_j$ we have that $P = i^{-1}Q_j$ is equivalent to $\varphi(q_j)=p$: If $P = i^{-1}Q_j$ and $f(x_1,\dots,x_n)\in P$ then $f(x_1,\dots,x_n) = \prod_i(x_i-p_i)g(x_1,\dots,x_n)$ for some $g$. But then also $f\in i^{-1}Q_j$ so that $if = \prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))\in Q_j$; in particular we have that $if$ vanishes on $q_j$. As $f$ was arbitrary (e.g. take $f = \prod_i(x_i-p_i)$) we must have that $\varphi_i(q_j)-p_i$ for each $i$ so that $\varphi(q_j) = p$ as needed.
+        
+        Now suppose $\varphi(q_j) = p$. Then the containment $i^{-1}Q_j\supseteq P$ holds since $if=\prod_i(\varphi_i(\cdot)-p_i)g(\varphi(\cdot))$ vanishes on $q_j$ for $f\in P$. Conversely, if $f\in i^{-1}Q_j$ then $if=f\circ \varphi$ vanishes on $q_j$. Since $k$ is algebraically closed we must have that $\prod_i(x_i-p_i)$ divides $f$, which gives the reverse containment $i^{-1}Q_j\subseteq P$.
 
         It follows that since there are a nonzero finite number of these ideals $Q_j$ for each $P$ there are a nonzero finite number of points $q_j$ such that $\varphi(q_j) = p$ so that every point has a finite nonempty fiber as needed.
 
@@ -124,9 +128,15 @@ Let $R$ be a subring of the commutative ring $S$ with $1\in R$.
 \end{enumerate}
 \subsection*{Additional Problems}
 \begin{enumerate}
-    \item (15.3.2) Suppose $k$ is a field and let $t = \overline{x}/\overline{y}$ in the field of fractions of the integral domain $R = k[x,y]/(x^2-y^3)$. Prove that $K = k(t)$ is the fraction field of $R$ and $k[t]$ is the integral closure of $R$ in $K$.
+    \item (15.3.2) Suppose $k$ is a field and let $t = \overline{x}/\overline{y}$ in the field of fractions of the integral domain $R = k[x,y]/(x^2-y^3)$. Prove that $K = k(t)$ is the fraction field of $R$ and $k[t]$ is the integral closure of $R$ in $K$. \begin{proof}
+        We suppress the use of $\overline{~}$ to denote equivalence classes. Then $k(t)$ is certainly contained in the fraction field of $R$. For the reverse containment observe that $x=t^3$ and $y = t^2$ which generates any rational function we need. We similarly have $R\cong k[t^2,t^3]$.
+
+        Since $k[t]$ is already integrally closed in $K$ (it is a UFD) and $k[t^2,t^3]\subseteq k[t]$ is an integral extension we must have that the integral closure of $R$ in $K$ is $k[t]$.
+    \end{proof}
     %\item (15.3.7)
-    \item (15.3.8) Prove that if $s_1,\dots,s_n\in S$ are integral over $R$, then the ring $R[s_1,\dots,s_n]$ is a finitely generated $R$-module.
+    \item (15.3.8) Prove that if $s_1,\dots,s_n\in S$ are integral over $R$, then the ring $R[s_1,\dots,s_n]$ is a finitely generated $R$-module. \begin{proof}
+        We show that if $s_1,\dots,s_n$ are integral over $R$ then $s_n$ is integral over $R[s_1,\dots,s_{n-1}]$ so that $R[s_1,\dots,s_n]$ is finitely generated (which completes the proof by induction as the base case is also similar). As $s_n$ is integral over $R$ we have that $s_n$ satisfies a monic polynomial in $R$ coefficients. But $R\subseteq R[s_1,\dots,s_{n-1}]$ so we have that $s_n$ is integral over $R[s_1,\dots,s_{n-1}]$ and so $R[s_1,\dots,s_n]$ is finitely generated by Proposition 23.
+    \end{proof}
     %\item (15.3.17)
 \end{enumerate}
 \subsection*{Feedback}

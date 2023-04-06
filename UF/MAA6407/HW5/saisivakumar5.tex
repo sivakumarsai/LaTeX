@@ -1,0 +1,55 @@
+\documentclass[12pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 5}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\cS}{\mathcal{S}}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+Show, if $f:\CC \to \CC_\infty$ is meromorphic and omits three values, then $f$ is constant. [Suggestion: reduce to the case where one of the points omitted is $\infty;$ that is, $f$ is entire.]
+
+ \bigskip
+
+\begin{proof}
+\baselineskip=24pt
+When $f$ is meromorphic and omits three values including $\infty$, then $f$ is entire and omits two points (the two points which were not $\infty$). By Little Picard we have that $f$ is constant. 
+
+When $f$ is meromorphic and omits three values $a,b,c$ not including $\infty$, then $f$ has poles. Then $1/(f-a)$ omits $\infty,1/(b-a),1/(c-a)$ and is entire so by the above $1/(f-a)$ is constant. It follows that $f$ is constant also.
+\end{proof}
+\end{document}
