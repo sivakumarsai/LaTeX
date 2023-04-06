@@ -52,6 +52,8 @@ Show, if $f^3-g^3=1,$ then $f$ and $g$ are constant. [Suggestion: Assuming $g$ i
 
 \begin{proof}
 \baselineskip=24pt
+Suppose that $f^2-g^2 = (f-g)(f+g)=1$. Then $f-g$ omits $0$ and is entire; we consider $\psi = \log(f-g)$. In the case that $f-g$ is constant (and nonzero) then $\psi$ is constant also and satisfies $f= \frac{e^\psi + e^{-\psi}}{2}$ and $g=\frac{e^{\psi} - e^{-\psi}}{2}$. In the other case where $f-g$ omits only $0$ (Little Picard) then $\psi$ is entire and satisfies the same equations above also.
 
+Now suppose $f^3-g^3 = (f-g)(f^2-fg+g^2) = 1$. If $g$ is identically zero, then $f$ must also be identically $1$. If $g$ is not identically zero, we have by hypothesis that $f-g$ omits zero, so that $f/g$ omits $1$. Similarly, $f^2-fg+g^2$ omits $0$ so that $f/g$ omits the points $(1\pm i\sqrt{3})/2$. By the previous homework we have that $f/g$ (viewed as a map on $\mathbb{C}_\infty$) is constant so that $f = cg$ for some $c\in \mathbb{C}$. Hence $g^3(c^3-1) = 1$ so that $g$ is constant, from which it follows that $f$ is constant also.
 \end{proof}
 \end{document}
