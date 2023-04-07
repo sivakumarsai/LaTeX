@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+%\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MTG6347 Topology}
+\fancyhead[C]{Homework 5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\catname}[1]{{\textbf{#1} }}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Top}{\catname{Top}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item (3.2.1) Assuming as known the cup product structure on the torus $S^1\times S^1$, compute the cup product structure in $H^\ast(M_g)$ for $M_g$ the closed orientable surface of genus $g$ by using the quotient map from $M_g$ to a wedge sum of $g$ tori. \begin{proof}
+        
+    \end{proof}
+    \item (3.2.2) Using the cup product $H^k(X,A;R)\times H^\ell(X,B;R)\to H^{k+\ell}(X,A\cup B;R)$, show that if $X$ is the union of contractible open sets $A$ and $B$, then all cup products of positive-dimensional classes in $H^\ast(X;R)$ are zero. This applies in particular if $X$ is a suspension. Generalize to the situation that $X$ is the union of $n$ contractible open subsets, to show that all $n$-fold cup products of positive-dimensional classes are zero. \begin{proof}
+        
+    \end{proof}
+    \item (3.2.3a) Using the cup product structure, show there is no map $\mathbb{RP}^n\to \mathbb{RP}^m$ inducing a nontrivial map $H^1(\mathbb{RP}^m;\mathbb{Z}_2)\to H^1(\mathbb{RP}^n;\mathbb{Z}_2)$ if $n>m$. What is the corresponding result for maps $\mathbb{CP}^n\to\mathbb{CP}^m$? \begin{proof}
+        
+    \end{proof}
+    \item (3.2.7) Use cup products to show that $\mathbb{RP}^3$ is not homotopy equivalent to $\mathbb{RP}^2\vee S^3$. \begin{proof}
+        
+    \end{proof}
+    \item (3.2.11) Using cup products, show that every map $S^{k+\ell}\to S^k\times S^\ell$ induced the trivial homomorphism $H_{k+\ell}(S^{k+\ell})\to H_{k+\ell}(S^k\times S^\ell)$, assuming $k>0$ and $\ell>0$. \begin{proof}
+        
+    \end{proof}
+    \item (3.2.12) Show that the spaces $(S^1\times \mathbb{CP}^\infty)/(S^1\times \{x_0\})$ and $S^3\times \mathbb{CP}^\infty$ have isomorphic cohomology rings with $\mathbb{Z}$ or any other coefficients. \begin{proof}
+        
+    \end{proof}
+\end{enumerate}
+\end{document}
