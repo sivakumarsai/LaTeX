@@ -1,0 +1,165 @@
+\documentclass[mathserif
+%, handout
+]{beamer}
+
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+
+\usetheme{Warsaw}
+
+% colors
+\definecolor{GTbuzzgold60}{RGB}{245,213,128}
+\definecolor{GTpalettemed}{RGB}{142,139,118}
+\usecolortheme[named=GTbuzzgold60]{structure}
+\setbeamercolor{frametitle}{fg=black!85}
+\setbeamercolor{title}{bg=GTbuzzgold60,fg=black!85}
+\setbeamercolor{palette quaternary}{bg=GTpalettemed}
+
+% page numbers
+\setbeamertemplate{footline}[frame number]
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\title
+{\textcolor{black!85}{Fourier analysis on LCA groups and Pontryagin Duality}}
+
+\author[Sai Sivakumar]{Sai Sivakumar}
+\date{17 April 2023}
+
+\begin{document}
+
+% title slide
+\frame{\titlepage}
+
+% motivation and history
+\begin{frame}{History and motivation for this talk}
+    genesis of Fourier analysis 
+
+    why generalize at all
+
+    where else in math this shows up
+
+    my own personal interest
+
+    not many proofs but I would like to give sketches/the idea
+\end{frame}
+
+% section 1
+\begin{frame}{}
+    \begin{block}{}{
+        \begin{center}\Large I. Topological groups and their representations\end{center}}
+    \end{block}
+\end{frame}
+
+% topological groups
+\begin{frame}{Topological groups}
+    definition of topological group
+
+    definition of locally compact (and Abelian) group
+
+    examples
+\end{frame}
+
+% representations of topological groups
+\begin{frame}{Representations of topological groups}
+    definition of linear representation of topological group
+
+    definition of unital representation
+
+    examples (relating to Fourier analysis and others)
+\end{frame}
+
+% characters of representations
+\begin{frame}{Characters}
+    recall definitions
+
+    characters of unitary representations
+
+    examples (LCA group representations too)
+\end{frame}
+
+% haar measure
+\begin{frame}{Haar measure}
+    definition of Haar measure on a group
+
+    examples
+\end{frame}
+
+% section 2
+\begin{frame}{}
+    \begin{block}{}{
+        \begin{center}\Large II. Fourier analysis on LCA groups\end{center}}
+    \end{block}
+\end{frame}
+
+% dual group
+\begin{frame}{The dual group}
+    definition of dual group
+
+    topology on dual group
+
+    examples with their topologies
+\end{frame}
+
+% fourier transform
+\begin{frame}{The Fourier transform}
+    definition of Fourier transform for LCA group
+
+    properties
+
+    examples (recover Fourier series, Fourier transform on $\mathbb{R}$, etc.)
+\end{frame}
+
+% section 3
+\begin{frame}{}
+    \begin{block}{}{
+        \begin{center}\Large III. Pontryagin duality\end{center}}
+    \end{block}
+\end{frame}
+
+% pontryagin duality
+\begin{frame}{Statement of theorem}
+    statement of Pontryagin duality for LCA groups
+
+    proof
+
+    examples
+
+    Fourier inversion formula?
+\end{frame}
+
+% questions/end
+\begin{frame}{Thank you for coming}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  Questions?\end{center}}
+        \end{block}\vspace{15.5em}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  Texts:\end{center}}
+    \end{block}
+
+    Deitmar - first course
+
+    Deitmar - principles in
+
+    Kirillov - elements of representation
+
+    Kirillov - intro to representations and noncommutative harmonic analysis
+
+    etc (use empty enumerate environment below or itemize idc).
+    \end{column}
+    \end{columns}
+\end{frame}
+
+% test frame
+%\begin{frame}{test frame with some stuff}
+%\begin{enumerate}[]
+%    \item
+%\end{enumerate}
+%\end{frame}
+\end{document}
