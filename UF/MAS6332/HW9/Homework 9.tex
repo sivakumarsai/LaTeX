@@ -100,6 +100,12 @@
         The map $\tilde{\varphi}$ is well defined. If $m/d = m_0/d_0$ and $n/d^\prime = n_0/d^\prime_0$ there exist $x,y\in D$ such that $xdm_0 = xd_0m$ and $yd^\prime n_0 = yd^\prime_0n$. It follows that $(m_0\otimes n_0)/d_0d_0^\prime = (m\otimes n)/dd^\prime$ since $xy[dd^\prime(m_0\otimes n_0) - d_0d_0^\prime(m\otimes n)] = 0$ by distributing and using the previous equalities. Thus $\tilde{\varphi}$ is well defined. 
 
         The map $\tilde{\varphi}$ is $D^{-1}R$-bilinear. We only verify the linearity in the first component since the computation needed to verify linearity in the other component is symmetric to the one following. The element \[\br{\frac{r_1}{e_1}\frac{m_1}{d_1}+\frac{r_2}{e_2}\frac{m_2}{d_2},\frac{n}{d^\prime}} = \br{\frac{e_2d_2r_1m_1 + e_1d_1r_2m_2}{e_1d_1e_2d_2},\frac{n}{d^\prime}}\] maps to \[\frac{(e_2d_2r_1m_1 + e_1d_1r_2m_2)\otimes n}{e_1d_1e_2d_2d^\prime} = \frac{r_1(m_1\otimes n)}{e_1d_1d^\prime} + \frac{r_2(m_2\otimes n)}{e_2d_2d^\prime}\] as needed.
+
+        By the universal property of tensor products, we obtain a $D^{-1}R$-module homomorphism $\varphi\colon (D^{-1}M)\otimes_{D^{-1}R} (D^{-1}N)\cong D^{-1}(M\otimes_R N)$ with $\varphi((m/d)\otimes(n/d^\prime)) = (m\otimes n)/dd^\prime$.
+
+        The map $\varphi$ is surjective. Given an element $(\sum_i m_i\otimes n_i)/d$ in $D^{-1}(M\otimes_R N)$, we have that the image of $\sum_i [(m_i/d)\otimes (n_i/1)]$ under $\varphi$ is $\sum_i( m_i\otimes n_i)/d=(\sum_i m_i\otimes n_i)/d$.
+
+        The map $\varphi$ is injective. 
     \end{proof}
     \item (15.4.17) Prove that the $R$-module $A$ is a flat $R$-module if and only if $A_P$ is a flat $R_P$-module for every prime ideal $P$ of $R$ (or just for every maximal ideal of $R$). [Use Proposition 41, Exercises 14 and 16, and the exactness properties of localization.] \begin{proof}
         
