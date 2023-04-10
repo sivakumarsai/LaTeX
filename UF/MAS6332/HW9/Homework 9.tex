@@ -93,7 +93,13 @@
 \subsection*{Graded}
 \begin{enumerate}
     \item (15.4.16) Prove that localization commutes with tensor products: there is a unique isomorphism of $D^{-1}R$ -modules $\varphi\colon (D^{-1}M)\otimes_{D^{-1}R} (D^{-1}N)\cong D^{-1}(M\otimes_R N)$ with $\varphi((m/d)\otimes(n/d^\prime))$ given by $(m\otimes n)/dd^\prime$ for any $R$-modules $M,N$, and multiplicatively closed set $D$ in $R$. \begin{proof}
+        Let $M,N$ be $R$-modules and $D$ a multiplicatively closed subset of $R$. We use the universal property of the tensor product to construct the map $\varphi$ given in the problem statement. 
+
+        Consider the map of $D^{-1}R$-modules $\tilde{\varphi}\colon (D^{-1}M)\times (D^{-1}N)\to D^{-1}(M\otimes_R N)$ which sends $(m/d,n/d^\prime)$ to $(m\otimes n)/dd^\prime$.
         
+        The map $\tilde{\varphi}$ is well defined. If $m/d = m_0/d_0$ and $n/d^\prime = n_0/d^\prime_0$ there exist $x,y\in D$ such that $xdm_0 = xd_0m$ and $yd^\prime n_0 = yd^\prime_0n$. It follows that $(m_0\otimes n_0)/d_0d_0^\prime = (m\otimes n)/dd^\prime$ since $xy[dd^\prime(m_0\otimes n_0) - d_0d_0^\prime(m\otimes n)] = 0$ by distributing and using the previous equalities. Thus $\tilde{\varphi}$ is well defined. 
+
+        The map $\tilde{\varphi}$ is $D^{-1}R$-bilinear. We only verify the linearity in the first component since the computation needed to verify linearity in the other component is symmetric to the one following. The element \[\br{\frac{r_1}{e_1}\frac{m_1}{d_1}+\frac{r_2}{e_2}\frac{m_2}{d_2},\frac{n}{d^\prime}} = \br{\frac{e_2d_2r_1m_1 + e_1d_1r_2m_2}{e_1d_1e_2d_2},\frac{n}{d^\prime}}\] maps to \[\frac{(e_2d_2r_1m_1 + e_1d_1r_2m_2)\otimes n}{e_1d_1e_2d_2d^\prime} = \frac{r_1(m_1\otimes n)}{e_1d_1d^\prime} + \frac{r_2(m_2\otimes n)}{e_2d_2d^\prime}\] as needed.
     \end{proof}
     \item (15.4.17) Prove that the $R$-module $A$ is a flat $R$-module if and only if $A_P$ is a flat $R_P$-module for every prime ideal $P$ of $R$ (or just for every maximal ideal of $R$). [Use Proposition 41, Exercises 14 and 16, and the exactness properties of localization.] \begin{proof}
         
@@ -102,10 +108,14 @@
 \subsection*{Additional Problems}
 \begin{enumerate}
     \item (15.4.14) Suppose $\varphi\colon M\to N$ is an $R$-module homomorphism. Prove that $\varphi$ is injective (respectively, surjective) if and only if the induced $R_P$-module homomorphism $\varphi\colon M_P\to N_P$ is injective (respectively, surjective) for every prime ideal $P$ of $R$ (or just for every maximal ideal of $R$). \begin{proof}
-        
+        Since localization is exact, it suffices to show that $\varphi$ is injective (surjective) if we assume that the induced maps $\varphi\colon M_P\to N_P$ for every maximal ideal $P$ of $R$ are injective (surjective).
+
+        Suppose the induced maps are injective for every maximal ideal and suppose by way of contradiction that the kernel of $\varphi\colon M\to N$ is nontrivial. Then let $0\neq k\in \ker \varphi\colon M\to N$. Now consider the annihiliator $I$ of $k$, which is proper since $k$ is nonzero. So $I$ is contained in some maximal ideal $\mathfrak{m}$ and we consider the element $k/1\in M_\mathfrak{m}$. We have that $\varphi(k/1) =\varphi(k)/1 = 0/1 = 0$ so that by the injectivity of the induced map there exists $x\in R\setminus\mathfrak{m}$ with $xk = 0$; that is, $xk\in I\subseteq \mathfrak{m}$. But this is impossible so we must have that $\ker \varphi\colon M\to N$ is trivial as needed.
+
+        Suppose the induced maps are surjective for every maximal ideal and suppose by way of contradiction that $\im \varphi\colon M\to N$ is a proper submodule of $N$. Then in the $R$-module $N/\im \varphi$ let $[n]$ be a nonzero element and consider the annihilator $I$ of $[n]$, which is proper since $[n]$ is nonzero. The ideal $I$ is contained in some maximal ideal $\mathfrak{m}$, and we consider the element $n/1\in N_{\mathfrak{m}}$. By the surjectivity of the induced map $\varphi$ there exists $m/d\in M_{\mathfrak{m}}$ such that $\varphi(m/d) = \varphi(m)/d = n/1$, which implies that there is $x\in R\setminus\mathfrak{m}$ such that $\varphi(xm) = xdn$. It follows that $xd\in I\subseteq \mathfrak{m}$, a contradiction. Hence $\varphi\colon M\to N$ is surjective as needed.
     \end{proof}
     \item (15.4.20) Suppose that $R$ is a subring of the ring $S$ with $1\in R$ and that $S$ is integral over $R$. If $D$ is any multiplicatively closed subset of $R$, prove that $D^{-1}S$ is integral over $D^{-1}R$. \begin{proof}
-        
+        Let $R, S$ be as above and let $s/d$ be any element of $D^{-1}S$. As $S$ is integral over $R$ it follows that $s\in S$ satisfies some monic polynomial $x^n+a_{n-1}x^{n-1}+\cdots+a_0$. Then $s/d$ satisfies the monic polynomial $x^n+(a_{n-1}/d)x^{n-1}+\cdots+(a_0/d^n)$. We have $(s/d)^n + (a_{n-1}/d)(s/d)^{n-1}+\cdots+(a_0/d^n) = (s^n+a_{n-1}s^{n-1}+\cdots+a_0)/d^n = 0/d^n = 0$ as needed.
     \end{proof}
     %\item (15.4.24(a-c))
     %\item (15.4.24(d-f))
