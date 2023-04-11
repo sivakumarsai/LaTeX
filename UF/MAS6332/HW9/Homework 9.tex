@@ -101,14 +101,24 @@
 
         The map $\tilde{\varphi}$ is $D^{-1}R$-bilinear. We only verify the linearity in the first component since the computation needed to verify linearity in the other component is symmetric to the one following. The element \[\br{\frac{r_1}{e_1}\frac{m_1}{d_1}+\frac{r_2}{e_2}\frac{m_2}{d_2},\frac{n}{d^\prime}} = \br{\frac{e_2d_2r_1m_1 + e_1d_1r_2m_2}{e_1d_1e_2d_2},\frac{n}{d^\prime}}\] maps to \[\frac{(e_2d_2r_1m_1 + e_1d_1r_2m_2)\otimes n}{e_1d_1e_2d_2d^\prime} = \frac{r_1(m_1\otimes n)}{e_1d_1d^\prime} + \frac{r_2(m_2\otimes n)}{e_2d_2d^\prime}\] as needed.
 
-        By the universal property of tensor products, we obtain a $D^{-1}R$-module homomorphism $\varphi\colon (D^{-1}M)\otimes_{D^{-1}R} (D^{-1}N)\cong D^{-1}(M\otimes_R N)$ with $\varphi((m/d)\otimes(n/d^\prime)) = (m\otimes n)/dd^\prime$.
+        By the universal property for tensor products, there exists a unique $D^{-1}R$-module homomorphism $\varphi\colon $ $(D^{-1}M)\otimes_{D^{-1}R} (D^{-1}N)\cong D^{-1}(M\otimes_R N)$ with the action on simple tensors as $\varphi((m/d)\otimes(n/d^\prime)) = (m\otimes n)/dd^\prime$.
 
-        The map $\varphi$ is surjective. Given an element $(\sum_i m_i\otimes n_i)/d$ in $D^{-1}(M\otimes_R N)$, we have that the image of $\sum_i [(m_i/d)\otimes (n_i/1)]$ under $\varphi$ is $\sum_i( m_i\otimes n_i)/d=(\sum_i m_i\otimes n_i)/d$.
-
-        The map $\varphi$ is injective. 
+        To see that $\varphi$ is an isomorphism we trace through existing isomorphisms to realize $\varphi$. We have $D^{-1}M\cong D^{-1}R\otimes_R M$ and $D^{-1}N\cong D^{-1}R\otimes_R N$. Since $R, D^{-1}R$ are commutative we also have the isomorphisms giving the associativity and commutativity of the tensor products involved. In particular we have the following isomorphisms: 
+        \begin{multline*}
+            (D^{-1}M)\otimes_{D^{-1}R} (D^{-1}N)\cong (D^{-1}R\otimes_R M)\otimes_{D^{-1}R}(D^{-1}R\otimes_R N) \\ \cong (M\otimes_R N)\otimes_R (D^{-1}R\otimes_{D^{-1}R} D^{-1}R) \cong (M\otimes_R N)\otimes_R D^{-1}R \\ \cong D^{-1}R\otimes_R (M\otimes_R N) \cong D^{-1}(M\otimes_R N)
+        \end{multline*} We outline the path of the simple tensor $(m/d)\otimes(n/e)$ in the above isomorphisms: 
+        \begin{multline*}
+            (m/d)\otimes(n/e) \mapsto (1/d\otimes m)\otimes (1/e\otimes n)  \\ \mapsto (m\otimes n)\otimes (1/d\otimes 1/e) \mapsto (m\otimes n)\otimes 1/de \\ \mapsto 1/de\otimes (m\otimes n) \mapsto (m\otimes n)/de
+        \end{multline*} It follows that the above isomorphisms realize $\varphi$, so that $\varphi$ is an isomorphism.
+        %The map $\varphi$ is surjective. Given an element $(\sum_i m_i\otimes n_i)/d$ in $D^{-1}(M\otimes_R N)$, we have that the image of $\sum_i [(m_i/d)\otimes (n_i/1)]$ under $\varphi$ is $\sum_i( m_i\otimes n_i)/d=(\sum_i m_i\otimes n_i)/d$.
+        %The map $\varphi$ is injective since it has a well defined left inverse. Consider the map $\rho$ which sends $(\sum_i m_i\otimes n_i)/d$ to $\sum_i[(m_i/d)\otimes (n_i/1)]$. The map $\rho$ is well defined. If $(\sum_i m_i\otimes n_i)/d = (\sum_j p_j\otimes q_j)/e$ then there is $x\in D$ such that 
     \end{proof}
     \item (15.4.17) Prove that the $R$-module $A$ is a flat $R$-module if and only if $A_P$ is a flat $R_P$-module for every prime ideal $P$ of $R$ (or just for every maximal ideal of $R$). [Use Proposition 41, Exercises 14 and 16, and the exactness properties of localization.] \begin{proof}
+        Suppose that $A$ is a flat module, so that the functor $A\otimes_R -$ is exact. For any prime ideal $P$ of $R$ the localization functor $-_P$ is also exact. Thus the functor $-_P\circ A\otimes_R -$ is exact also, but by the previous problem we have that $-_P\circ A\otimes_R - = A_P\otimes_{R_P}-$. Hence $A_P$ is a flat $R_P$-module.
         
+        It is certainly true that if $A_P$ is flat (as an $R_P$-module) for every prime ideal $P$ of $R$ then $A_{\mathfrak m}$ is flat (as an $R_{\mathfrak m}$-module) for every maximal ideal $\mathfrak m$, since maximal ideals are prime.
+        
+        Now suppose $A_{\mathfrak m}$ is a flat $R_{\mathfrak m}$-module for every maximal ideal $\mathfrak m$ of $R$, then $A$ is a flat $R$-module. Suppose that $\varphi\colon M\to N$ is an injective map of $R$-modules. We show that the map $1\otimes \varphi\colon A\otimes_R M\to A\otimes_R N$ is injective. Since $A_{\mathfrak m}\otimes_{R_{\mathfrak m}} -$ is exact for every maximal ideal $\mathfrak m$, each of the induced maps $1\otimes \varphi\colon (A\otimes_R M)_{\mathfrak m}\to (A\otimes_R N)_{\mathfrak m}$ are injective. It follows by 15.4.14 that the map $1\otimes \varphi\colon A\otimes_R M\to A\otimes_R N$ is injective, from which it follows that $A$ is a flat $R$-module.
     \end{proof}
 \end{enumerate}
 \subsection*{Additional Problems}
