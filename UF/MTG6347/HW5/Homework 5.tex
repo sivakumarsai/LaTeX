@@ -85,22 +85,62 @@
 \begin{document}
 \begin{enumerate}
     \item (3.2.1) Assuming as known the cup product structure on the torus $S^1\times S^1$, compute the cup product structure in $H^\ast(M_g)$ for $M_g$ the closed orientable surface of genus $g$ by using the quotient map from $M_g$ to a wedge sum of $g$ tori. \begin{proof}
-        
+        From the universal coefficient theorem we have (by an almost identical argument to one found in a previous homework) that the nontrivial cohomology groups of $M_g$ are $H^0(M_g)\cong \mathbb{Z}$, $H^1(M_g)\cong \mathbb{Z}^{2g}$, and $H^2(M_g)\cong \mathbb{Z}$. From this it follows that in the cup product the unit is the generator of the $0$-degree cohomology, and that any product of elements of $H^1$ and $H^2$ or $H^2$ and $H^2$ are zero since the higher cohomology groups are trivial. It suffices to determine the cup product $H^1(M_g)\times H^1(M_g)\to H^2(M_g)$.
+
+        The quotient map $q$ from $M_g$ to the wedge sum of $g$ tori $\vee_i T_i$ induces a map on the cohomology rings $H^\ast(\vee_i T_i)\to H^\ast(M_g)$ which specifically maps $H^1(\vee_i T_i)$ to $H^1(M_g)$ and $H^2(\vee_iT_i)$ to $H^2(M_g)$, and in particular the map on $H^1$ is an isomorphism and the map on $H^2$ is surjective. This can be seen geometrically; for example in the diagram provided by Hatcher in example 3.7 we may pinch along the diagonal that does not intersect the arcs $\alpha_i,\beta_i$ to obtain the wedge sum of tori. \vspace*{5cm}
+
+        We also have the isomorphism $H^j(\vee_i T_i)\cong \oplus_i \tilde H^j(T_i)\cong \oplus_i H^j(T_i)$ for $j\geq 1$. The induced map $q^\ast$ distributes over the cup product so we obtain a commutative diagram: % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG9wbHVzX2kgSF4xKFRfaSlcXHRpbWVzIFxcb3BsdXNfaSBIXjEoVF9pKSJdLFswLDEsIkheMShNX2cpXFx0aW1lcyBIXjEoTV9nKSJdLFsxLDAsIlxcb3BsdXNfaSBIXjIoVF9pKSJdLFsxLDEsIkheMihNX2cpIl0sWzAsMSwicV5cXGFzdFxcdGltZXMgcV5cXGFzdCJdLFswLDIsIlxcY3VwIl0sWzIsMywicV5cXGFzdCJdLFsxLDMsIlxcY3VwIl1d
+        \[\begin{tikzcd}
+            {\oplus_i H^1(T_i)\times \oplus_i H^1(T_i)} & {\oplus_i H^2(T_i)} \\
+            {H^1(M_g)\times H^1(M_g)} & {H^2(M_g)}
+            \arrow["{q^\ast\times q^\ast}", from=1-1, to=2-1]
+            \arrow["\cup", from=1-1, to=1-2]
+            \arrow["{q^\ast}", from=1-2, to=2-2]
+            \arrow["\cup", from=2-1, to=2-2]
+        \end{tikzcd}\] Let $\alpha_i,\beta_i$ generate $H^1(T_i)$ and $\gamma_i$ generate $H^2(T_i)$. We must then have that $\alpha_i\cup \alpha_j = 0$ and $\beta_i\cup\beta_j = 0$ for all $i,j$ and $\alpha_i\cup\beta_j = \delta_{ij}\gamma_i$ ($\beta_j\cup \alpha_i = -\delta_{ij}\gamma_i$) for all $i,j$. Then by the isomorphism of the first degree homology, we must have that the cup product of elements in $H^1(M_g)$ follow a similar rule: if $a_i,b_i$ are generators of $H^1(M_g)$ corresponding to $\alpha_i,\beta_i$ and $c$ generates $H^2(M_g)$ then we have that $a_i\cup a_j = 0$ and $b_i\cup b_j = 0$ for all $i,j$ and $a_i\cup b_j = \delta_{ij} c$ ($b_j\cup a_i = -\delta_{ij}c$) for all $i,j$. 
     \end{proof}
     \item (3.2.2) Using the cup product $H^k(X,A;R)\times H^\ell(X,B;R)\to H^{k+\ell}(X,A\cup B;R)$, show that if $X$ is the union of contractible open sets $A$ and $B$, then all cup products of positive-dimensional classes in $H^\ast(X;R)$ are zero. This applies in particular if $X$ is a suspension. Generalize to the situation that $X$ is the union of $n$ contractible open subsets, to show that all $n$-fold cup products of positive-dimensional classes are zero. \begin{proof}
-        
+        Using the long exact sequence in cohomology for a pair we have the isomorphisms $H^k(X,A;R)\cong H^k(X;R)$ and $H^\ell(X,B;R)\cong H^\ell(X;R)$ for positive $k,\ell$ since the terms for the homology of the subsets $A$ or $B$ vanish as they are contractible subspaces (plus exactness; positive degree cohomology of contractible spaces is trivial due to the universal coefficient theorem). The inclusion of the pairs $(X,\varnothing)\subset (X,A\cup B)$ induces the map of cohomology $H^i(X,A\cup B;R)\to H^i(X;R)$. Then since induced maps distribute over the cup product we obtain a commutative diagram % https://q.uiver.app/?q=WzAsNCxbMCwwLCJIXmsoWDtSKVxcdGltZXMgSF5cXGVsbChYO1IpIl0sWzAsMSwiSF5rKFgsQTtSKVxcdGltZXMgSF5cXGVsbChYLEI7UikiXSxbMSwwLCJIXntrK1xcZWxsfShYO1IpIl0sWzEsMSwiSF57aytcXGVsbH0oWCxBXFxjdXAgQjtSKSJdLFsxLDAsIlxcY29uZyIsMl0sWzAsMiwiXFxjdXAiXSxbMywyXSxbMSwzLCJcXGN1cCJdXQ==
+        \[\begin{tikzcd}
+            {H^k(X;R)\times H^\ell(X;R)} & {H^{k+\ell}(X;R)} \\
+            {H^k(X,A;R)\times H^\ell(X,B;R)} & {H^{k+\ell}(X,A\cup B;R)}
+            \arrow["\cong"', from=2-1, to=1-1]
+            \arrow["\cup", from=1-1, to=1-2]
+            \arrow[from=2-2, to=1-2]
+            \arrow["\cup", from=2-1, to=2-2]
+        \end{tikzcd}\] and since $H^{k+\ell}(X,A\cup B;R)$ is trivial (since $A\cup B = X$) we have that the cup products coming from the bottom row are trivial. Since the diagram commutes and we have the isomorphism on the left, the cup products of any positive dimensional classes must be zero.
+
+        For a suspension of a space $X$ denoted $SX$ we have that $SX$ may be viewed as the union of two cones $(X\times I)/X\times\{i\}$ for $i = 0,1$, so the above holds for suspensions. When $X$ is a union of $n$ many contractible open sets $A_i$ we again obtain using the long exact sequence of a pair that $H^k(X,A_i;R)\cong H^k(X;R)$ for positive $k$. Use again the inclusion of pairs $(X,\varnothing)\subseteq (X,\cup_i A_i)$ to obtain a similar commutative diagram (also note the cup product is associative) % https://q.uiver.app/?q=WzAsNCxbMCwwLCJIXntrXzF9KFg7UilcXHRpbWVzXFxjZG90c1xcdGltZXMgSF57a19ufShYO1IpIl0sWzAsMSwiSF57a18xfShYLEFfMTtSKVxcdGltZXNcXGNkb3RzXFx0aW1lcyBIXntrX259KFgsQV9uO1IpIl0sWzEsMCwiSF57XFxzdW1faSBrX2l9KFg7UikiXSxbMSwxLCJIXntcXHN1bV9pIGtfaX0oWCxcXGN1cF9pIEFfaTtSKSJdLFsxLDAsIlxcY29uZyIsMl0sWzAsMiwiblxcdGV4dHstZm9sZCB9XFxjdXAiXSxbMywyXSxbMSwzLCJuXFx0ZXh0ey1mb2xkIH1cXGN1cCJdXQ==
+        \[\begin{tikzcd}
+            {H^{k_1}(X;R)\times\cdots\times H^{k_n}(X;R)} & {H^{\sum_i k_i}(X;R)} \\
+            {H^{k_1}(X,A_1;R)\times\cdots\times H^{k_n}(X,A_n;R)} & {H^{\sum_i k_i}(X,\cup_i A_i;R)}
+            \arrow["\cong"', from=2-1, to=1-1]
+            \arrow["{n\text{-fold }\cup}", from=1-1, to=1-2]
+            \arrow[from=2-2, to=1-2]
+            \arrow["{n\text{-fold }\cup}", from=2-1, to=2-2]
+        \end{tikzcd}\] and similarly since the union of the $A_i$ is $X$ the bottom right term is zero. Again similarly the cup product in the bottom row must be zero so by the isomorphism on the left we must have that $n$-fold cup products in the top row must also be zero.
     \end{proof}
     \item (3.2.3a) Using the cup product structure, show there is no map $\mathbb{RP}^n\to \mathbb{RP}^m$ inducing a nontrivial map $H^1(\mathbb{RP}^m;\mathbb{Z}_2)\to H^1(\mathbb{RP}^n;\mathbb{Z}_2)$ if $n>m$. What is the corresponding result for maps $\mathbb{CP}^n\to\mathbb{CP}^m$? \begin{proof}
-        
+        Any map $\mathbb{RP}^n\to \mathbb{RP}^m$ with $n>m$ induces a ring homomorphism $\varphi\colon H^\ast(\mathbb{RP}^m;\mathbb{Z}_2)\cong \mathbb{Z}_2[\alpha]/(\alpha^{m+1})\to H^\ast(\mathbb{RP}^n;\mathbb{Z}_2)\cong \mathbb{Z}_2[\beta]/(\beta^{n+1})$ (with $\abs{\alpha},\abs{\beta}=1$). Any such ring homomorphism $\varphi$ is determined by the image of $\alpha$. But since $\alpha^{m+1} = 0$, we must also have $\varphi(\alpha)^{m+1} = 0$. Since the smallest power of $\beta$ which is zero is $n+1$, we cannot have $\varphi(\alpha) = \beta$; that is, we cannot have a nontrivial map $H^1(\mathbb{RP}^m;\mathbb{Z}_2)\to H^1(\mathbb{RP}^n;\mathbb{Z}_2)$ (the generator for $H^1$ has to be mapped into some higher cohomology group or zero).
+
+        Similarly, no maps $\mathbb{CP}^n\to\mathbb{CP}^m$ for $n>m$ induce nontrivial maps $H^2(\mathbb{CP}^m;\mathbb{Z})\to H^2(\mathbb{CP}^n;\mathbb{Z})$ since any ring homomorphism $\varphi\colon H^\ast(\mathbb{CP}^m;\mathbb{Z})\cong \mathbb{Z}[\alpha]/(\alpha^{m+1})\to H^\ast(\mathbb{CP}^n;\mathbb{Z})\cong \mathbb{Z}[\beta]/(\beta^{n+1})$ (with $\abs{\alpha},\abs{\beta} = 2$) must take the generator $\alpha$ to an element of some higher cohomology group or zero in order for $\varphi(\alpha)^{m+1}$ to vanish.
     \end{proof}
     \item (3.2.7) Use cup products to show that $\mathbb{RP}^3$ is not homotopy equivalent to $\mathbb{RP}^2\vee S^3$. \begin{proof}
-        
+        We have $H^\ast(\mathbb{RP}^3;\mathbb{Z}_2)\cong\mathbb{Z}_2[\alpha]/(\alpha^4)$ (with $\abs{\alpha} =1$) and $\tilde H^\ast(\mathbb{RP}^2\vee S^3;\mathbb{Z}_2)\cong \tilde H^\ast(\mathbb{RP}^2;\mathbb{Z}_2)\oplus \tilde H^\ast(S^3;\mathbb{Z}_2)\cong \mathbb{Z}_2[\beta]/(\beta^3)\oplus \mathbb{Z}_2[\gamma]/(\gamma^2)$ (with $\abs{\beta} = 1$ and $\abs{\gamma} = 3$; the isomorphisms involving wedge products are from Hatcher). The latter direct sum of rings we must interpret as not having a multiplicative unit since we consider the reduced cohomology ring, which differs from the usual cohomology ring only in the $0$-th degree (the summand with the unit). But $\alpha^3 \neq 0$ while the third power of the degree $1$ elements in the reduced cohomology ring is zero (we have $\beta^3 = 0$). It follows that the usual cohomology rings in $\mathbb{Z}_2$ coefficients for $\mathbb{RP}^3$ and $\mathbb{RP}^2\vee S^3$ are not isomorphic, so these spaces cannot be homotopy equivalent.
     \end{proof}
-    \item (3.2.11) Using cup products, show that every map $S^{k+\ell}\to S^k\times S^\ell$ induced the trivial homomorphism $H_{k+\ell}(S^{k+\ell})\to H_{k+\ell}(S^k\times S^\ell)$, assuming $k>0$ and $\ell>0$. \begin{proof}
+    \item (3.2.11) Using cup products, show that every map $S^{k+\ell}\to S^k\times S^\ell$ induces the trivial homomorphism $H_{k+\ell}(S^{k+\ell})\to H_{k+\ell}(S^k\times S^\ell)$, assuming $k>0$ and $\ell>0$. \begin{proof}
+        The constraints $k>0$ and $\ell>0$ ensure we do not obtain trivial rings/groups throughout.
         
+        A map $f\colon S^{k+\ell}\to S^k\times S^l$ induces a ring homomorphism $f^\ast\colon H^\ast(S^k\times S^l)\to H^\ast(S^{k+\ell})$. By the K\"unneth formula (cross product) we have an isomorphism $H^\ast(S^k)\otimes H^\ast(S^\ell)\cong H^\ast(S^k\times S^l)$. We have the isomorphisms $H^\ast(S^k)\cong \mathbb{Z}[\alpha]/(\alpha^2)$ and $H^\ast(S^\ell)\cong \mathbb{Z}[\beta]/(\beta^2)$ for $\abs{\alpha}=k,\abs{\beta}=\ell$. As groups, both cohomology rings are the integers since the only nonzero cohomology group of the sphere is in the degree of the dimension of the sphere -- so as groups we have $H^\ast(S^k)\cong \mathbb{Z}$ and $H^\ast(S^\ell)\cong \mathbb{Z}$ so that the tensor product of modules $H^\ast(S^k)\otimes H^\ast(S^\ell)\cong H^\ast(S^k\times S^l)$ becomes $H^\ast(S^k)\otimes H^\ast(S^\ell)\cong \mathbb{Z}\otimes \mathbb{Z}\cong \mathbb{Z} \cong H^\ast(S^k\times S^l)$.
+        
+        With $p_1,p_2$ the projections of $S^k\times S^\ell$ onto the first and second components we have by the K\"unneth formula again that the generator of $H^\ast(S^k\times S^l)$ is the image of $\alpha\otimes \beta = p_1^\ast\alpha\cup p_2^\ast\beta$, in degree $k+\ell$. But then the action of $f^\ast$ on this generator is trivial since $H^\ast(S^{k+\ell})$ is trivial in degrees $k$ and $\ell$: $f^\ast(p_1^\ast\alpha\cup p_2^\ast\beta) = f^\ast p_1^\ast\alpha\cup f^\ast p_2^\ast\beta= 0\cup 0 = 0$. It follows that $f^\ast \colon H^{k+\ell}(S^k\times S^\ell)\to H^{k+\ell}(S^{k+\ell})$ is the trivial map.
+
+        By the naturality of the universal coefficient theorem we have that $(f_\ast)^\ast\colon \Hom(H_{k+\ell}(S^k\times S^\ell),\mathbb{Z})\to \Hom(H_{k+\ell}(S^{k+\ell}),\mathbb{Z})$ is trivial also. Thus $f_\ast\colon H_{k+\ell}(S^{k+\ell})\to H_{k+\ell}(S^k\times S^\ell)$ is trivial as needed.
     \end{proof}
     \item (3.2.12) Show that the spaces $(S^1\times \mathbb{CP}^\infty)/(S^1\times \{x_0\})$ and $S^3\times \mathbb{CP}^\infty$ have isomorphic cohomology rings with $\mathbb{Z}$ or any other coefficients. \begin{proof}
-        
+        We have that $(S^1,\varnothing),(\mathbb{CP}^\infty,\cbr{x_0})$ are CW pairs. Then in the relative K\"unneth formula we have that $H^\ast(S^1,\varnothing;R)\otimes_R H^\ast(\mathbb{CP}^\infty,\cbr{x_0};R)\cong H^\ast(S^1\times \mathbb{CP^\infty},S^1\times\cbr{x_0};R)$, from which we have by tracing through some definitions from earlier that $R[x]/(x^2)\otimes_R \tilde H^\ast(\mathbb{CP}^\infty;R)\cong H^\ast(S^1\times \mathbb{CP^\infty},S^1\times\cbr{x_0};R)$ for $\abs{x} = 1$. The reduced cohomology ring $\tilde H^\ast(\mathbb{CP}^\infty;R)$ differs in only the zeroth degree with the usual cohomology ring $H^\ast(\mathbb{CP}^\infty;R)\cong R[\alpha]$ for $\abs{\alpha} = 2$. 
+
+        The cohomology ring for the product $S^3\times\mathbb{CP}^\infty$ by the K\"unneth formula is given by $H^\ast(S^3;R)\otimes_R H^\ast(\mathbb{CP}^\infty;R)\cong R[y]/(y^2)\otimes_R R[z]\cong R[y,z]/(y^2)$ for $\abs{y}=3,\abs{z}=2$. So thinking of $R[x]/(x^2)\otimes_R \tilde H^\ast(\mathbb{CP}^\infty;R)$ as $R[x]/(x^2)\otimes_R \tilde R[\alpha]$ where $R[\alpha]$ does not have degree zero terms, we can identify $1\otimes \alpha$ with $z$ (no relations) and $x\otimes \alpha$ with $y$ (squaring gives zero) to obtain the desired isomorphism of the cohomology rings. 
     \end{proof}
 \end{enumerate}
 \end{document}
