@@ -7,7 +7,7 @@
 \usepackage{physics}
 \usepackage{hyperref}
 
-% double hat macro
+% double hat macros
 \makeatletter
 \newcommand{\dwidehat}[1]{% 
 \begingroup%
@@ -19,17 +19,29 @@
 }
 \makeatother
 
+\makeatletter
+\newcommand{\dhat}[1]{% 
+\begingroup%
+  \let\macc@kerna\z@%
+  \let\macc@kernb\z@%
+  \let\macc@nucleus\@empty%
+  \hat{\raisebox{.3ex}{\vphantom{\ensuremath{#1}}}\smash{\hat{#1}}}%
+\endgroup%
+}
+\makeatother
+
 \usetheme{Warsaw}
 
 % colors
-\definecolor{GTbuzzgold60}{RGB}{245,213,128}
-\definecolor{GTpalettemed}{RGB}{142,139,118}
-\definecolor{GTpalettelight}{RGB}{214,219,212}
-\usecolortheme[named=GTbuzzgold60]{structure}
+\definecolor{gold60}{RGB}{245,213,128}
+\definecolor{palettemed}{RGB}{142,139,118}
+\definecolor{palettelight}{RGB}{214,219,212}
+\definecolor{darkgold60}{RGB}{184,160,96}
+\usecolortheme[named=gold60]{structure}
 \setbeamercolor{frametitle}{fg=black!85}
-\setbeamercolor{title}{bg=GTbuzzgold60,fg=black!85}
+\setbeamercolor{title}{bg=gold60,fg=black!85}
 \setbeamercolor{block title}{fg=black!85}
-\setbeamercolor{palette quaternary}{bg=GTpalettemed}
+\setbeamercolor{palette quaternary}{bg=palettemed}
 
 % page numbers
 \setbeamertemplate{footline}[frame number]
@@ -51,7 +63,7 @@
 \frame{\titlepage}
 
 % motivation and history
-\begin{frame}{Some motivation}
+\begin{frame}{Some motivation for this talk}
     Fourier transforms and series have been used in physics to solve partial differential equations like the heat and wave equation. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
     \pause
 
@@ -106,7 +118,7 @@
     A representation $\rho\colon G\to GL(V)$ is irreducible if there are no closed subspaces of $V$ which are invariant under the action of $G$ (i.e. there are no subrepresentations).
     \pause
 
-    \setbeamercolor{block title}{fg=black!85,bg=black!20!GTpalettelight}
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
     \begin{Theorem}[Unitary Schur]
         A unitary representation $\rho$ is irreducible if and only if \begin{center}
             $\mathcal{C}(\rho)\coloneqq \{T\in GL(V)\mid T\rho(g) = \rho(g) T\forall g\in G\}$
@@ -226,13 +238,13 @@ The charaters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for r
         For all $x\in \mathbb{R}$, $|f(x)|= \exp(\Re(s) x)=1$, so $\Re( s) = 0$. \pause 
 
         Writing $s = 2\pi i \xi$ for some $\xi\in \mathbb{R}$, the result follows. \pushQED{\qed}\qedhere\popQED
-    \end{block} The topology on $\widehat{\mathbb{R}}$ is the usual metric topology.
+    \end{block} \pause The topology on $\widehat{\mathbb{R}}$ is the usual metric topology.
 \end{frame}
 
 % relevant examples 3. $\mathbb{R}/\mathbb{Z}\cong S^1$
 \begin{frame}
     \frametitle{Example 3}
-The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n$ for integer $n$, so that $\widehat{S^1}\cong \mathbb{Z}$. \begin{proof}
+The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n$ for integer $n$, so that $\widehat{S^1}\cong \mathbb{Z}$. \pause \begin{proof}
     Precompose any character $\chi$ of $\mathbb{R}/\mathbb{Z}$ with the quotient map to obtain a character $\chi^\prime$ of $\mathbb{R}$.\pause 
 
     That is, $\chi^\prime(x) = \exp(2\pi i x\xi)$ for some real $\xi$. Hence $\chi(x+\mathbb{Z}) = \exp(2\pi i x\xi)$.\pause 
@@ -246,7 +258,7 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
 
 % haar measure
 \begin{frame}{Haar measure for locally compact groups}
-    \setbeamercolor{block title}{fg=black!85,bg=black!20!GTpalettelight}
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
     \begin{Theorem}[Haar]
         Let $G$ be a locally compact group. \pause 
 
@@ -299,24 +311,44 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
 % more pontryagin duality
 \begin{frame}
     \frametitle{Statement of the theorem}
-    \setbeamercolor{block title}{fg=black!85,bg=black!20!GTpalettelight}
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
 \begin{Theorem}[Pontryagin duality]
     Let $G$ be an LCA group. The map $\delta\colon G\to \dwidehat{\hspace{0pt}G}$ given by $x\mapsto\delta_x$ defined prior is an isomorphism of LCA groups.
 \end{Theorem} Proof in (3) pp.73-76. \pause
 
-There is a fun and much easier version for finite Abelian groups -- see exercise 5.2.14 in Dummit and Foote.
+There is a fun and much easier version for finite Abelian groups -- see exercise 5.2.14 in Dummit and Foote.\pause 
+
+Indeed, following the previous examples we do have that $\mathbb{R}\cong \dwidehat{\mathbb{R}}$ and $S^1\cong \dwidehat{S^1}$.
 \end{frame}
 
 % inversion
 \begin{frame}
-    \frametitle{The Fourier inversion}
+    \frametitle{Fourier inversion}
+    Let $G$ be an LCA group. We may embed $C_0(G)\cap L^1(G)$ into the Banach space $C_0(G)\times C_0(\widehat{\hspace*{0pt}G})$ (with norm $\norm{\cdot} = \max\{\norm{\cdot}_G, \norm{\cdot}_{\widehat{\hspace*{0pt}G}}\}$) by mapping $f$ to $(f,\hat{f})$. Denote by $C_0^\ast(G)$ the closure of the image of this embedding. \pause
 
-    
+    \begin{block}{Proposition}
+        For $G$ an LCA group, the Fourier transform is an isometric isomorphism of Banach spaces $\mathcal{F}\colon C^\ast_0(G)\to C^\ast_0(\widehat{\hspace{0pt}G})$ with inverse map given by the dual Fourier transform $\widehat{\mathcal{F}}\colon C^\ast_0(\widehat{\hspace{0pt}G})\to C^\ast_0(G)$, where $\widehat{\mathcal{F}}(g)(x)\coloneqq \hat{g}(\delta_{x^{-1}})$.
+    \end{block} Proof in (3) p.76.
+\end{frame}
 
+% more Fourier inversion
+\begin{frame}
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
+\begin{theorem}[Inversion formula]
+    Let $G$ be an LCA group, and let $f\in L^1(G)$ be such that $\hat{f}\in L^1(\widehat{\hspace*{0pt}G})$. Then $f$ is continuous, and for every $x\in G$ we have \[f(x) = \dhat{f}(\delta_{x^{-1}}).\]
+\end{theorem} \pause \setbeamercolor{block title}{fg=black!85,bg=darkgold60}\begin{proof}
+    With $f$ as above, we have that $\hat{f}\in C_0(\widehat{\hspace*{0pt}G})\cap L^1(\widehat{\hspace*{0pt}G})\subseteq C^\ast_0(\widehat{\hspace*{0pt}G})$.\pause 
+
+    By the previous proposition, there is $g\in C^\ast_0(G)$ with $\hat{g} = \hat{f}$ and $g(x) = \hat{f}(\delta_{x^{-1}})$ for every $x\in G$. It is true that the Fourier transform is injective on $C^\ast_0(G)$, so that $f = g$ as needed.
+\end{proof}
 \end{frame}
 
 % questions/end
 \begin{frame}
+    \begin{flushright}
+        {\color{darkgold60}Thank you for your time.}
+        \end{flushright}
+        \hrule\pause
     \begin{columns}
     \begin{column}{0.3\textwidth}
         \begin{block}{}{
@@ -327,13 +359,13 @@ There is a fun and much easier version for finite Abelian groups -- see exercise
         \begin{block}{}{
         \begin{center}\Large  References:\end{center}}
     \end{block}
-(1) Kirillov representation theory
+(1) Aleksandr A. Kirillov: \textit{Elements of the Theory of Representations}
 
-(2) Folland abstract harmonic analysis
+(2) Gerald B. Folland: \textit{A Course in Abstract Harmonic Analysis}
 
-(3) Deitmar principles of harmonic analysis
+(3) Anton Deitmar, Siegfried Echterhoff: \textit{Principles of Harmonic Analysis}
 
-(4) Deitmar first course in harmonic analysis
+(4) Anton Deitmar: \textit{A First Course in Harmonic Analysis}
 
 (5) \textcolor{blue}{\href{https://mathoverflow.net/a/89520}{Keith Conrad's mathoverflow post}}%
     \end{column}
