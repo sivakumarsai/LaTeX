@@ -64,13 +64,13 @@
 
 % motivation and history
 \begin{frame}{Some motivation for this talk}
-    Fourier transforms and series have been used in physics to solve partial differential equations like the heat and wave equation. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
+    Fourier transforms and series have been used in physics to solve partial differential equations like the heat and wave equations. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
     \pause
 
     The fast Fourier transform is an improvement ($O(N\log N)$) to the usual discrete Fourier transform of a sequence ($O(N^2)$), and is used in signal processing. % digital recording/encoding, large-integer multiplication, solving recurrence relations
     \pause
 
-    A proof of Dirichlet's theorem that there are infinitely many primes of the form $a+kb$ for $a,b$ coprime involves finite Fourier analysis.
+    A proof of Dirichlet's theorem that there are infinitely many primes in arithmetic progression involves finite Fourier analysis.
     \pause
 
     I find the theory to be quite elegant and I wish to learn more (e.g. noncommutative harmonic analysis).
@@ -90,7 +90,7 @@
     \end{block} 
     \pause
 
-    A locally compact group (LCA) group is a topological group that is locally compact, Hausdorff, and Abelian.
+    A locally compact Abelian (LCA) group is a topological group that is locally compact, Hausdorff, and Abelian.
     \pause
 
     Of interest are the groups $\mathbb{R}, \mathbb{R}/\mathbb{Z}\cong S^1, \mathbb{Z}$.
@@ -121,7 +121,7 @@
     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
     \begin{Theorem}[Unitary Schur]
         A unitary representation $\rho$ is irreducible if and only if \begin{center}
-            $\mathcal{C}(\rho)\coloneqq \{T\in GL(V)\mid T\rho(g) = \rho(g) T\forall g\in G\}$
+            $\mathcal{C}(\rho)\coloneqq \{T\in GL(V)\mid T\rho(g) = \rho(g) T,\forall g\in G\}$
         \end{center} % set of intertwining operators
         contains only scalar multiples of the identity operator.
     \end{Theorem} Proof in (2) p.71.
@@ -210,7 +210,7 @@ The topology that $\widehat{\mathbb{Z}}\cong S^1$ inherits agrees with the usual
 % relevant examples 2. $\mathbb{R}$
 \begin{frame}
     \frametitle{Example 2}
-The charaters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for real $\xi$ so that $\widehat{\mathbb{R}}\cong\mathbb{R}$.
+The characters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for real $\xi$ so that $\widehat{\mathbb{R}}\cong\mathbb{R}$.
 \pause 
 \begin{block}{Proof (Keith Conrad to the rescue again, see (5))} % actually he gets this from Conway's "A Course in Functional Analysis"
     Let $f \colon \mathbb{R}\to S^1$ be a character, and note $f(0) = 1$.\pause 
@@ -244,7 +244,7 @@ The charaters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for r
 % relevant examples 3. $\mathbb{R}/\mathbb{Z}\cong S^1$
 \begin{frame}
     \frametitle{Example 3}
-The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n$ for integer $n$, so that $\widehat{S^1}\cong \mathbb{Z}$. \pause \begin{proof}[Proof (again (5))]
+The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n$ for integer $n$, so that $\widehat{S^1}\cong \mathbb{Z}$. \pause \begin{proof}[Proof (from (5))]
     Precompose any character $\chi$ of $\mathbb{R}/\mathbb{Z}$ with the quotient map to obtain a character $\chi^\prime$ of $\mathbb{R}$.\pause 
 
     That is, $\chi^\prime(x) = \exp(2\pi i x\xi)$ for some real $\xi$. Hence $\chi(x+\mathbb{Z}) = \exp(2\pi i x\xi)$.\pause 
@@ -284,12 +284,20 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
         \end{center}
     \end{definition}
     \pause
-    So the Fourier transform for $G= \mathbb{R}$ is the familiar \begin{center}
-        $f\mapsto \hat{f},\quad \hat{f}(\xi) = \int_{\mathbb{R}}f(x)\exp(-2\pi i x\xi)\dd{x}.$
-    \end{center}\pause 
-    Similarly the Fourier transform for $G = \mathbb{R}/\mathbb{Z}\cong S^1$ is \begin{center}
-        $f\mapsto \hat{f},\quad \hat{f}(n) = \frac{1}{2\pi}\int_{0}^{2\pi}f(x)\exp(- in x)\dd{x}.$
-    \end{center}
+    \vspace{1em}
+    \begin{columns}
+        \begin{column}{0.46\linewidth}
+            For $G= \mathbb{R}$, $f\mapsto \hat{f}$ is given by \[\hat{f}(\xi) = \int_{\mathbb{R}}f(x)e^{-2\pi i x\xi}\dd{x}.\]
+        \end{column}\pause \begin{column}{0.46\linewidth}
+           For $G = S^1$, $f\mapsto\hat{f}$ is given by \[\hat{f}(n) = \frac{1}{2\pi}\int_{0}^{2\pi}f(x)e^{- in x}\dd{x}.\] 
+        \end{column}
+    \end{columns}
+    %So the Fourier transform for $G= \mathbb{R}$ is the familiar \begin{center}
+    %    $f\mapsto \hat{f},\quad \hat{f}(\xi) = \int_{\mathbb{R}}f(x)\exp(-2\pi i x\xi)\dd{x}.$
+    %\end{center}\pause 
+    %Similarly, the Fourier transform for $G = \mathbb{R}/\mathbb{Z}\cong S^1$ is \begin{center}
+    %    $f\mapsto \hat{f},\quad \hat{f}(n) = \frac{1}{2\pi}\int_{0}^{2\pi}f(x)\exp(- in x)\dd{x}.$
+    %\end{center}
 \end{frame}
 
 % section 3
@@ -316,7 +324,7 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
     Let $G$ be an LCA group. The map $\delta\colon G\to \dwidehat{\hspace{0pt}G}$ given by $x\mapsto\delta_x$ defined prior is an isomorphism of LCA groups.
 \end{Theorem} Proof in (3) pp.73-76. \pause
 
-There is a fun and much easier version for finite Abelian groups -- see exercise 5.2.14 in Dummit and Foote.\pause 
+There is a fun version for finite Abelian groups -- see Exercise 5.2.14 in Dummit and Foote.\pause 
 
 Indeed, following the previous examples we do have that $\mathbb{R}\cong \dwidehat{\mathbb{R}}$ and $S^1\cong \dwidehat{S^1}$.
 \end{frame}
