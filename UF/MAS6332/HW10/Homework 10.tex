@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{quiver}
+
+% permutations (second line is for spacing)
+\usepackage{permute}
+\renewcommand*\pmtseparator{\,}
+
+% colors
+\usepackage{xcolor}
+\definecolor{p}{HTML}{FFDDDD}
+\definecolor{g}{HTML}{D9FFDF}
+\definecolor{y}{HTML}{FFFFCF}
+\definecolor{b}{HTML}{D9FFFF}
+\definecolor{o}{HTML}{FADECB}
+%\definecolor{}{HTML}{}
+
+% \highlight[<color>]{<stuff>}
+\newcommand{\highlight}[2][p]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAS6332 Algebra}
+\fancyhead[C]{Homework 10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+\newcommand{\dprime}{\prime\prime}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Inn{Inn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{Graded}
+\begin{enumerate}
+    \item (16.2.1) Suppose $R$ is a Discrete Valuation Ring with respect to the valuation $\nu$ on the fraction field $K$ of $R$. If $x,y\in K$ with $\nu(x)<\nu(y)$ prove that $\nu(x+y) = \min\{\nu(x),\nu(y)\}$. [Note that $x+y =x(1+y/x)$.] \begin{proof}
+        If $a,b\in K$ were associate to each other (by a unit of $R$; that is there is a unit $u$ of $R$ such that $b = au$), then $\nu(a) = \nu(b)$ since the valuation of units in $R$ is zero. As $\nu(x)<\nu(y)$, we must have that $x,y$ are not associate to each other in this manner.
+
+        Then $0= \nu(1) = \nu(1+y/x-y/x) \geq \min\{\nu(1+y/x),\nu(-y/x)\} = \min\{\nu(1+y/x),\nu(y/x)\}$. But since $\nu(y)>\nu(x)$ we have that $\nu(y/x) = \nu(y)-\nu(x) = \nu(y)+\nu(1/x)>\nu(x)+\nu(1/x) = \nu(1) = 0$ so that $y/x\in R$. It follows that $1+y/x\in R$ also so that $\nu(1+y/x)\geq 0$ also. Furthermore, since $y/x$ is not a unit of $R$, we have that $\nu(y/x)>0$. 
+
+        Thus $0\geq \min\{\nu(1+y/x),\nu(y/x)\}\geq 0$ so that we have the equality $\min\{\nu(1+y/x),\nu(y/x)\} = 0$. Then since $\nu(y/x)>0$, the minimum $\min\{\nu(1+y/x),\nu(y/x)\}$ could not be $\nu(y/x)$, so we must have $\nu(1+y/x)=0$. Then add to both sides $\nu(x)$ to obtain $\nu(x) = \nu(x(1+y/x))= \nu(x+y)$ as needed.
+    \end{proof}
+    \item (16.3.22) Suppose $K = \mathbb{Q}(\sqrt{D})$ is a quadratic extension of $\mathbb{Q}$ where $D$ is a squarefree integer and $\mathcal{O}_K$ is the ring of integers in $K$.\begin{enumerate}
+        \item Prove that $\abs{\mathcal{O}_K/(p)}=p^2$. [Observe that $\mathcal{O}_K\cong \mathbb{Z}^2$ as an Abelian group.] \begin{proof}
+            Let $\omega = \sqrt{D}$ if $D\equiv 2,3\pmod 4$ and let $\omega = (1+\sqrt{D})/2$ if $D\equiv 1\pmod 4$. An element $a+b\omega$ in $\mathcal{O}_K=\mathbb{Z}[\omega]\cong \mathbb{Z}^2$ has trivial image in the quotient $\mathcal{O}_K/(p)$ if and only if $p$ divides $a+b\omega$. 
+
+            In the case that $\omega = \sqrt{D}$, $p$ has to divide both $a$ and $b$, so that nonzero elements in the quotient $\mathcal{O}_K/(p)$ are of the form $x+y\sqrt{D}$ for $x,y\in \{0,\dots,p-1\}$.
+
+            In the case that $\omega = (1+\sqrt{D})/2$, $p$ must divide $b/2$ and hence also $b$ (as $p$ is either $2$ or coprime with $2$), and $p$ must divide $a+b/2$ and hence also $a+b/2-b/2=a$. Thus nonzero elements in the quotient $\mathcal{O}_K/(p)$ are of the form $x+y\omega$ for $x,y\in \{0,\dots,p-1\}$.
+
+            It follows that $\abs{\mathcal{O}_K/(p)}= p^2$.
+        \end{proof}
+        \item Use Corollary 16 to show that there are 3 possibilities for the prime ideal factorization of $(p)$ in $\mathcal{O}_K$: \begin{enumerate}
+            \item $(p) = P$ is a prime ideal with $\abs{\mathcal{O}_K/P}=p^2$,
+            \item $(p)=P_1P_2$ with distinct prime ideals $P_1,P_2$ and $\abs{\mathcal{O}_K/P_1}=\abs{\mathcal{O}_K/P_2}=p$,
+            \item $(p) = P^2$ for some prime ideal $P$ with $\abs{\mathcal{O}_K/P}=p$.
+        \end{enumerate} \begin{proof}
+            From Corollary 16 we have that the ideal $(p)$ may be written uniquely as the finite product of powers of distinct prime ideals $P_i$: $(p) = \prod_i P_i^{e_i}$. None of the $P_i$ can be the zero ideal since $(p)$ is nonzero. Each $P_i^{e_i}$ are pairwise comaximal to each other (since $\mathcal{O}_K$ is a Dedekind domain) and so by the Chinese Remainder Theorem we have $\mathcal{O}_K/(p) = \prod_i \mathcal{O}_K/P_i^{e_i}$. Then $p^2 = \prod_i \abs{\mathcal{O}_K/P_i^{e_i}}$, from which we have the following three cases (as $p$ is prime): \begin{enumerate}
+                \item By reordering suppose that $\abs{\mathcal{O}_K/P_1^{e_1}}=p^2$ so that $\abs{\mathcal{O}_K/P_i^{e_i}}=1$ for $i\geq 2$. This means that in the factorization $(p) = \prod_i P_i^{e_i}$, we only have the term $P_1^{e_1}$ occur; that is, $(p)= P_1^{e_1}$. Write $P = P_1$ and $e = e_1$. We consider the cases when $e = 1$ and when $e\geq 2$ below: \begin{enumerate}
+                    \item When $e = 1$ we have $\abs{\mathcal{O}_K/P}=p^2$ and $(p) =P$ as in the first possibility in the problem statement.
+                    \item When $e\geq 2$, by the third isomorphism theorem and the fact that $P^e\subseteq P$ we have that \[\frac{p^2}{\abs{P/P^e}}=\frac{\abs{\mathcal{O}_K/P^e}}{\abs{P/P^e}} = \abs{\mathcal{O}_K/P}.\] As $P$ is a proper ideal we must have that $\abs{\mathcal{O}_K/P}$ is either $p^2$ or $p$, so  $\abs{P/P^e}$ is correspondingly either $1$ or $p$. In the case that  $\abs{P/P^e}=1$ we obtain case A (since $P\cong P^e$). So assume that $\abs{P/P^e}=p$ so that $\abs{\mathcal{O}_K/P}=2$. Then $P/P^e$ is a cyclic group of order $p$. Again use the third isomorphism theorem and note that $P^e\subseteq P^2$ to see that \[\frac{p}{\abs{P^2/P^e}} = \frac{\abs{P/P^e}}{\abs{P^2/P^e}} = \abs{P/P^2}.\] It follows that $\abs{P^2/P^e}$ is either $1$ or $p$, and in the latter case we again obtain case A (as $P\cong P^2$ implies $P\cong P^e$). So if $\abs{P^2/P^e}=1$, we obtain that $P^2\cong P^e$, which implies that $(p) = P^e = P^2$ with $\abs{\mathcal{O}_K/P}=2$, which is the third possibility in the problem statement.
+                \end{enumerate}
+                \item By reordering suppose that $\abs{\mathcal{O}_K/P_1^{e_1}}=\abs{\mathcal{O}_K/P_2^{e_2}}=p$ so that $\abs{\mathcal{O}_K/P_i^{e_i}}=1$ for $i\geq 3$. This means that in the factorization $(p) = \prod_i P_i^{e_i}$, we only have the terms $P_1^{e_1}$ and $P_2^{e_2}$ occur; that is, $(p)= P_1^{e_1}P_2^{e_2}$. For $i = 1,2$ we have $P_i^{e_i}\subseteq P_i$ so again we have \[\frac{p}{\abs{P_i/P_i^{e_i}}} = \frac{\abs{\mathcal{O}_K/P_i^{e_i}}}{\abs{P_i/P_i^{e_i}}}=\abs{\mathcal{O}_K/P_i},\] from which it similarly follows that $P_i\cong P_i^{e_i}$ so that $(p) = P_1P_2$ with $\abs{\mathcal{O}_K/P_1}=\abs{\mathcal{O}_K/P_2}=p$, the second possibility in the problem statement.
+            \end{enumerate}
+        \end{proof}
+        \item Determine the prime ideal factorizations of the primes $p =2,3,5,7,11$ in the ring of integers $\mathcal{O}_K = \mathbb{Z}[\sqrt{-5}]$ of $K = \mathbb{Q}(\sqrt{-5})$.
+        
+        
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Additional Problems}
+\begin{enumerate}
+    \item (16.1.7)
+    \item (16.2.4)
+    \item (16.2.5)
+    \item (16.3.4)
+\end{enumerate}
+\subsection*{Feedback}
+\begin{enumerate}
+    \item None.
+    \item Things seem to be the same I think.
+\end{enumerate}
+\end{document}
