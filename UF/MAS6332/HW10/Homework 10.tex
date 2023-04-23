@@ -138,10 +138,26 @@
 \end{enumerate}
 \subsection*{Additional Problems}
 \begin{enumerate}
-    \item (16.1.7)
-    \item (16.2.4)
-    \item (16.2.5)
-    \item (16.3.4)
+    \item (16.1.7) Suppose $R = F$ is a field. Prove that an $R$-module $M$ is Artinian if and only if it is Noetherian if and only if $M$ is a finite dimensional vector space over $F$. \begin{proof}
+        Certainly every Artinian module is also a Noetherian module.
+        
+        Then a Noetherian vector space must be finite dimensional since the following chain of submodules must terminate: Let $x_1\in M$ and let $M_1 = Fx_1$. Then if $M= M_1$, we are done. If not, choose $x_2$ linearly indpendent with $x_1$ and form $M_2 = Fx_1\oplus Fx_2$, and repeat the above possibly indefinitely to obtain the chain \[M_1\subsetneq M_2 \subsetneq\cdots\subsetneq M_n\subsetneq \cdots\] which must terminate so that there is a maximal linearly independent set; that is, a basis for $M$.
+
+        Now let $M$ be a finite dimensional vector space, and let $M_i$ be a sequence of decreasing submodules. The dimension of $M_1$ is less than or equal to the dimension of $M$, and so by considering the integer sequence $\dim M_i$ we have that the $M_i$ must terminate eventually: The sequence $\dim M_i$ is monotonic decreasing and hence must converge to some nonnegative integer. By linear algebra it follows that the $M_i$ are isomorphic to each other for $i\geq N$ for $N$ large enough. Hence $M$ is Artinian as needed.
+    \end{proof} 
+    %\item (16.2.4)
+    %\item (16.2.5)
+    \item (16.3.4) Suppose $R$ is an integral domain with fraction field $K$ and $A$ is a fractional ideal of $R$ in $K$. Let $A^\prime = \{x\in K\mid xA\subseteq R\}$ as in Proposition 9. \begin{enumerate}
+        \item For any prime ideal $P$ in $R$ prove that the localization $(A^\prime)_P$ of $A^\prime$ at $P$ is a fractional ideal of $R_P$ in $K$. \begin{proof}
+            It is clear that $(A^\prime)_P$ is an $R_P$-submodule of $K$ since the addition is the usual addition of fractions and the scalar multiplication is also the same. There exists a $d^\prime\in R$ such that $d^\prime A^\prime\subseteq R$. For any element $x/d\in (A^\prime)_P$, we have that $(d^\prime/1)(x/d) = d^\prime x/d$. As $d\in R\setminus P$ and $d^\prime x\in R$, we have that $(d^\prime/1)(A^\prime)_P\subseteq R_P$. Hence $(A^\prime)_P$ is a fractional ideal of $R_P$ in $K$. 
+        \end{proof}
+        \item If $A$ is a finitely generated $R$-module, prove that $(A^\prime)_P = (A_P)^\prime$ where $(A_P)^\prime$ is the fractional $R_P$ ideal $\{x\in K\mid xA_P\subseteq R_P\}$ corresponding to the localization $A_P$. \begin{proof} Let $x/d\in (A^\prime)_P$ so that $xA\subseteq R$. Then we check that $(x/d)A_P\subseteq R_P$: For any element $a/e\in A_P$ we have that $(x/d)(a/e) = xa/de$, and since $xa\in R$ and $de\in R\setminus P$ we have that $x/d\in (A_P)^\prime$.
+        
+        Conversely, let $x\in (A_P)^\prime$ so that $xA_P\subseteq R_P$. Then write $x= x_r/x_d$ for $x_r\in R,x_d\in R\setminus\{0\}$. Let $\cbr{a_1,\dots,a_n}$ be a generating set for $A$. Any element $a/d\in A_P$ is of the form $(\sum_i c_ia_i)/d$, from which it follows that $A_P$ is finitely generated as an $R_P$-module.
+
+        For each $a_i/i\in A_P$ we have $x_ra_i/x_d=r_i/e_i\in R_P$, so there is $y_i\in R\setminus P$ with $x_ra_ie_iy_i = x_dr_iy_i$. In $K$ we have the equality $xa_ie_i = r_i$ for each $i$. Note $r_i\in R$ and $e_i\in R\setminus P$ for each $i$, and write $x= x\prod_ie_i/\prod_ie_i$. Then by expanding out any element of $A_P$ via generators we can multiply through by the prior expression for $x$ to see that $x= x\prod_ie_i/\prod_ie_i\in (A^\prime)_P$ as needed. Thus the identity map $(A^\prime)_P\to (A_P)^\prime$ taking $x/d$ to itself is an isomorphism.
+        \end{proof}
+    \end{enumerate}
 \end{enumerate}
 \subsection*{Feedback}
 \begin{enumerate}
