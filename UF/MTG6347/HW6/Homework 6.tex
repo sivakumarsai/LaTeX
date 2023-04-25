@@ -84,13 +84,41 @@
 
 \begin{document}
 \begin{enumerate}
-    \item Prove the following.\begin{enumerate}
-        \item For a continuous map $f\colon X\to Y$, $f_{\#}(f^{\#}\varphi\cap c) = \varphi\cap f_{\#}c$.
-        \item $\partial(\varphi\cap c) = \delta\varphi\cap c + (-1)^{\abs{\varphi}}\varphi\cap \partial c$
-        \item $(\varphi\cup \psi)\cap c = \varphi\cap (\psi\cap c)$
-        \item $1\cap c = c$.
+    \item Prove the following. [Throughout, interpret cochains as mapping into the ring $R$ to suppress having to tensor integers with elements of $R$.]\begin{enumerate}
+        \item For a continuous map $f\colon X\to Y$, $f_{\#}(f^{\#}\varphi\cap c) = \varphi\cap f_{\#}c$. \begin{proof}
+          Let $\varphi\in S^p(Y)$ and $c = \sum_i c_i\sigma_i\in S_{p+q}(X)$. Then we have \begin{align*}
+            f_{\#}(f^{\#}\varphi\cap c) &= f_{\#}(f^{\#}\varphi\cap \sum_i c_i\sigma_i)\\
+            &=  f_{\#}(\sum_i c_i(-1)^{pq}[(f^{\#}\varphi)(\sigma_i|_{[e_q,\dots,e_{p+q}]})]\sigma_i|_{[e_q,\dots,e_{p+q}]})\\
+            &=  \sum_i c_i(-1)^{pq}[\varphi((f_{\#}\sigma_i)|_{[e_q,\dots,e_{p+q}]})](f_{\#}\sigma_i)|_{[e_q,\dots,e_{p+q}]}\\ 
+            &= (-1)^{pq}[\varphi((f_{\#}(\sum_i c_i\sigma_i))|_{[e_q,\dots,e_{p+q}]})](f_{\#}(\sum_i c_i\sigma_i))|_{[e_q,\dots,e_{p+q}]}\\
+            &= (-1)^{pq}[\varphi((f_{\#}c)|_{[e_q,\dots,e_{p+q}]})](f_{\#}c)|_{[e_q,\dots,e_{p+q}]} \\ 
+            &= \varphi\cap f_{\#}c
+          \end{align*} as desired.
+        \end{proof}
+        \item $\partial(\varphi\cap c) = \delta\varphi\cap c + (-1)^{\abs{\varphi}}\varphi\cap \partial c$ \begin{proof}
+          Let $\varphi\in S^p(X)$ (so $\abs{\varphi}=p$) and $c = \sum_i c_i\sigma_i\in S_{p+q}(X)$. Then we have \begin{align}
+            \partial(\varphi\cap c) &= \sum_i\sum_{j=0}^q c_i(-1)^{pq}(-1)^j\varphi(\sigma_i|_{[e_q,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,\hat e_j,\dots,e_q]},\\
+            \delta \varphi\cap c &= \sum_i \sum_{j=q-1}^{p+q}c_i(-1)^{(p+1)q}(-1)^{j-q+1}\varphi(\sigma_i|_{[e_{q-1},\dots,\hat e_j,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_{q-1}]},\\
+            \text{and } (-1)^{\abs{\varphi}}\varphi\cap \partial c &= \sum_i\sum_{j=0}^{q-1}c_i(-1)^p(-1)^j(-1)^{p(q-1)}\varphi(\sigma_i|_{[e_q,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,\hat e_j,\dots,e_q]} \\
+            &\hspace*{2pc}+\sum_i\sum_{j=q}^{p+q}c_i(-1)^p(-1)^j(-1)^{p(q-1)}\varphi(\sigma_i|_{[e_{q-1},\dots,\hat e_j,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_{q-1}]}.
+          \end{align}
+          Collecting exponents and adding terms (2),(3), and (4) together we find that (2) and (4) almost cancel out, leaving (3) plus the term $\sum_ic_i(-1)^{pq}(-1)^{q}\varphi(\sigma_i|_{[e_q,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_{q-1}]}$. But this sum is just the sum in (3) taken to $q$ instead of $q-1$; that is, what remains after the sum is taken is $\partial(\varphi\cap c) = \sum_i\sum_{j=0}^q c_i(-1)^{pq}(-1)^j\varphi(\sigma_i|_{[e_q,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,\hat e_j,\dots,e_q]}$ as needed.
+        \end{proof}
+        \item $(\varphi\cup \psi)\cap c = \varphi\cap (\psi\cap c)$ \begin{proof}
+          Let $\varphi\in S^k(X)$ and $\psi\in S^l(X)$ with $k+l = p$. Let $c = \sum_i c_i\sigma_i\in S_{p+q}(X)$. Then $\varphi\cup\psi\in S^p(X)$ and we have \begin{align*}
+            (\varphi\cup\psi)\cap c &= \sum_i c_i (-1)^{pq}(\varphi\cup\psi)(\sigma_i|_{[e_q,\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_q]}\\
+            &= \sum_i c_i (-1)^{pq}[(-1)^{kl}\varphi(\sigma_i|_{[e_q,\dots,e_{k+q}]})\psi(\sigma_i|_{[e_{k+q},\dots,e_{p+q}]})]\sigma_i|_{[e_0,\dots,e_q]}\\
+            &= \sum_i c_i (-1)^{pq-ql}\varphi(\sigma_i|_{[e_q,\dots,e_{k+q}]})(-1)^{kl+ql}\psi(\sigma_i|_{[e_{k+q},\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_q]}\\
+            &= \sum_i c_i \varphi\cap ((-1)^{kl+ql}\psi(\sigma_i|_{[e_{k+q},\dots,e_{p+q}]})\sigma_i|_{[e_0,\dots,e_{k+q}]})\\
+            &= \sum_i c_i \varphi\cap (\psi\cap\sigma_i)\\
+            &= \varphi\cap(\psi\cap\sigma)
+          \end{align*} as needed.
+        \end{proof}
+        \item $1\cap c = c$.\begin{proof}
+          Let $1\in S^0(X)$ be the cochain that takes every chain to $1_R$ and let $c = \sum_ic_i\in S_n(X)$. Then \[1\cap c = \sum_i c_i 1(\sigma_i|_{[e_n]})\sigma_i|_{[e_0,\dots,e_n]} = \sum_i c_i\sigma_i = c\] as needed.
+        \end{proof}
     \end{enumerate}
-    \item Let $N_g$ denote the non-orientable surface of genus $g$. Consider homology and cohomology with coefficients in $\mathbb{Z}_2$. Sketch a $\Delta$-complex structure for $N_g$ for smal small $g$, and use the cap product to determine the Poincar\'e duality for arbitrary $g$.
+    \item Let $N_g$ denote the non-orientable surface of genus $g$. Consider homology and cohomology with coefficients in $\mathbb{Z}_2$. Sketch a $\Delta$-complex structure for $N_g$ for small $g$, and use the cap product to determine the Poincar\'e duality for arbitrary $g$.
     \item (Hatcher 3.3.20) Show that $H^0_c(X;G)=0$ if $X$ is path connected and noncompact.
     \item (Hatcher 3.3.21) For a space $X$, let $X^+$ be the one point compactification. If the added point, denoted $\infty$, has a neighborhood in $X^+$ that is a cone with $\infty$ the cone point, show that the evident map $H^n_c(X;G)\to H^n(X^+,\infty;G)$ is an isomorphism for all $n$. [Question: Does this result hold when $X = \mathbb{Z}\times \mathbb{R}$?]
     \item (Hatcher 3.3.22) Show that $H^n_c(X\times\mathbb{R};G)\cong H^{n-1}_c(X;G)$ for all $n$.
