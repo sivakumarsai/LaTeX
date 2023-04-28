@@ -1,6 +1,4 @@
-\documentclass[mathserif
-    , handout
-   ]{beamer}
+\documentclass[mathserif,handout]{beamer}
 \usepackage[utf8]{inputenc}
 
 % packages
@@ -94,10 +92,9 @@
 {\color{GTtechgold}Thank you for inviting me to speak!}
 \vspace{0.75pc}
 \hrule
-\pause
 \vspace{0.75pc}
 This is joint work with Erick Boniface (NC State), Andrew Rodriguez (Baruch College), and Dr. Ashley Wheeler (Georgia Tech).
-\pause
+
 This project arose from the Georgia Tech REU 2022. 
 \end{frame}
 
@@ -248,14 +245,62 @@ We now illustrate a third way to describe an affine toric variety, using cones.
 
 % % %
 \begin{frame}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
 The torus $T=\im(\Phi_{\mathscr A})\subseteq Y_{\mathscr A}$ comes equipped with dual lattices $M=\Z\mathscr A$ and $N=\Hom_{\Z}(M,\Z)$, both with rank equal to $\dim T$.
 
-\pause
-\vspace{0.75pc}
 $Y_{\mathscr A}$ can be described as $\Spec K[S_{\sigma}]$ for some rational polyhedral cone $\sigma\subseteq N_{\R}=N\otimes_{\Z}\R$.
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}
+\begin{tikzfigure}{$\cone(\mathscr A_2)$}
+\begin{tikzpicture}%
+        [x={(-0.707106cm, -0.707106cm)},
+        y={(1cm, 0cm)},
+        z={(0cm, 1cm)},
+        scale=0.75,
+        back/.style={loosely dotted, thin},
+        edge/.style={color=blue!50!black, very thick},
+        facet/.style={fill=green!50!white,fill opacity=0.400000},
+        facet2/.style={fill=green!75!black,fill opacity=0.400000},
+        vertex/.style={inner sep=1pt,circle,draw=blue!50!black,fill=blue!50!black,thick}]
 
-\pause
-\vspace{0.75pc}
+    %% Drawing the axes
+    \draw[color=black,thick,->] (0,0,0) -- (1.5,0,0) node[anchor=north east]{$x_{11}$};
+    \draw[color=black,thick,->] (0,0,0) -- (0,1.5,0) node[anchor=north west]{$x_{22}$};
+    \draw[color=black,thick,->] (0,0,0) -- (0,0,1.5) node[anchor=south]{$x_{12}$};
+    %% Rays for cone:   
+    \draw[color=green!25!black,very thick,-latex] (0,0,0)--(0,0,1);
+    \draw[color=green!25!black,very thick,-latex] (0,0,0)--(0,1,0);
+    \draw[color=green!25!black,very thick,-latex] (0,0,0)--(1,0,0);
+    \draw[color=green!25!black,very thick,-latex] (0,0,0)--(1,1,-1);
+    %%
+    %% Drawing the interior
+    %%
+    \fill[facet] (0, 0, 0) -- (0, 1, 0) -- (0, 0, 1) -- (0, 0, 0) -- cycle {};
+    \fill[facet] (0,0,0) -- (1, 1, -1) -- (0, 1, 0) -- (0, 0, 0) -- cycle {};
+    \fill[facet2] (0,0,0) -- (1,0,0) -- (1, 1, -1) -- (0, 0, 0) -- cycle {};
+    \fill[facet2] (0, 0, 0) -- (1, 0, 0) -- (0, 0, 1) -- (0, 0, 0) -- cycle {};
+    %%
+    %% Drawing the vertices
+    %%
+    \node[label={[label distance=0.1cm]0:$(0,1,0)$}] at (0.00000, 0.00000, 1.00000)    {};
+    \node[label={[label distance=0.1cm]15:$(0,0,1)$}] at (0.00000, 1.00000, 0.00000)     {};
+    \node[label={[label distance=0.1cm]150:$(1,0,0)$}] at (1.00000, 0.00000, 0.00000)     {};
+    \node[label={[label distance=0.1cm]0:$(1,-1,1)$}] at (1.00000, 1.00000, -1.00000)     {};
+    %%
+    %%
+    \end{tikzpicture}
+\end{tikzfigure}
+
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
 $S_{\sigma}=\sigma^{\vee}\cap M$, where $\sigma^{\vee}$ is the \textbf{dual cone} of $\sigma$:
 \[
 \sigma^{\vee} = \{\vect m\in M\otimes_{\Z}\R\mid \langle \vect m,\vect u\rangle\geq 0 \text{ for all $\vect u\in\sigma$}\}.
@@ -276,6 +321,50 @@ Then $\sigma_n=(\sigma_n^{\vee})^{\vee}$ is strongly convex and rational.  There
 
 \pause
 It can be shown that $Y_{\mathscr A_n}\cong\Spec K[S_{\sigma_n}]$.
+\end{frame}
+
+% % %
+\begin{frame}
+\begin{tikzfigure}[$\cone(\mathscr B_2)$]
+\begin{tikzpicture}%
+        [x={(-0.707106cm, -0.707106cm)},
+        y={(1cm, 0cm)},
+        z={(0cm, 1cm)},
+        scale=3.000000,
+        back/.style={loosely dotted, thin},
+        edge/.style={color=blue!50!black, very thick},
+        facet/.style={fill=blue!75!white,fill opacity=0.400000},
+        facet2/.style={fill=blue!75!black,fill opacity=0.400000},
+        vertex/.style={inner sep=1pt,circle,draw=blue!50!black,fill=blue!50!black,thick}]
+
+    %% Drawing the axes
+    \draw[color=black,thick,->] (0,0,0) -- (1.5,0,0) node[anchor=north east]{$x_{11}$};
+    \draw[color=black,thick,->] (0,0,0) -- (0,1.5,0) node[anchor=north west]{$x_{22}$};
+    \draw[color=black,thick,->] (0,0,0) -- (0,0,1.5) node[anchor=south]{$x_{12}$};
+    %% Rays for cone:   
+    \draw[color=blue!50!black,very thick,-latex] (0,0,0)--(1,0,1);
+    \draw[color=blue!50!black,very thick,-latex] (0,0,0)--(0,1,0);
+    \draw[color=blue!50!black,very thick,-latex] (0,0,0)--(1,0,0);
+    \draw[color=blue!50!black,very thick,-latex] (0,0,0)--(0,1,1);
+    %%
+    %% Drawing the interior
+    %%
+    \fill[facet] (0, 0, 0) -- (0, 1, 0) -- (0, 1, 1) -- (0, 0, 0) -- cycle {};
+    \fill[facet2] (0,0,0) -- (0, 1, 1) -- (1, 0, 1) -- (0, 0, 0) -- cycle {};
+    \fill[facet2] (0,0,0) -- (1,0,1) -- (1, 0, 0) -- (0, 0, 0) -- cycle {};
+    \fill[facet] (0, 0, 0) -- (1, 0, 0) -- (0, 1, 0) -- (0, 0, 0) -- cycle {};
+    %%
+    %% Drawing the vertices
+    %%
+    \node[label={[label distance=0.1cm]0:$(0,1,1)$}] at (0.00000, 1.00000, 1.00000)    {};
+    \node[label={[label distance=0.1cm]15:$(0,0,1)$}] at (0.00000, 1.00000, 0.00000)     {};
+    \node[label={[label distance=0cm]150:$(1,0,0)$}] at (1.00000, 0.00000, -0.100000)     {};
+    \node[label={[label distance=-4.5cm]0:$(1,1,0)$}] at (1.00000, 0.00000, 1.00000)     {};
+    %%
+    %%
+    \end{tikzpicture}
+\end{tikzfigure}
+
 \end{frame}
 
 % % % 
