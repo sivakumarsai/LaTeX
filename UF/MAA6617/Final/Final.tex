@@ -65,6 +65,7 @@
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\id}{id}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -72,6 +73,12 @@
 \begin{document}
 Do any THREE problems.
 \begin{enumerate}
-    \item[1.]
+    \item[1.] We use the closed graph theorem to show that $M_g\colon B\to B$ is bounded, as $B$ is a Banach space.
+    
+    The graph of $M_g$ is closed if and only if whenever the sequence $(f_n,gf_n)\subseteq B\times B$ converges to $(f,h)$, we have $h = M_g f = gf$. 
+    
+    Suppose that $(f_n,gf_n)$ converges to $(f,h)$. Since $E_x$ for each $x\in X$ is continuous, we have that the sequence $(\id_B\times E_x)(f_n,gf_n) = (f_n,g(x)f_n(x))\subseteq B\times \mathbb{C}$ converges to $(f,h(x))$. Then we must have that $(f_n)$ converges to $f$ and $(g(x)f_n(x))$ converges to $h(x)$. In the following estimate \begin{multline*}
+      \norm{g(x)f(x)-h(x)} \leq \norm{g(x)f(x)-g(x)f_n(x)} + \norm{g(x)f_n(x)-h(x)}\\\leq \abs{g(x)}\norm{E_x}\norm{f_n-f}+\norm{g(x)f_n(x)-h(x)}
+    \end{multline*} take the limit as $n\to \infty$ so that the quantity $\abs{g(x)}\norm{E_x}\norm{f_n-f}+\norm{g(x)f_n(x)-h(x)}$ is arbitrarily small. It follows that $h(x) = g(x)f(x)$, and this was true for any fixed $x$ so we must have that $h = gf =M_gf$ as needed. Thus the graph of $M_g$ is closed, so $M_g$ is bounded.
 \end{enumerate}
 \end{document}
