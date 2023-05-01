@@ -66,6 +66,9 @@
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\ball}{ball}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -80,5 +83,37 @@ Do any THREE problems.
     Suppose that $(f_n,gf_n)$ converges to $(f,h)$. Since $E_x$ for each $x\in X$ is continuous, we have that the sequence $(\id_B\times E_x)(f_n,gf_n) = (f_n,g(x)f_n(x))\subseteq B\times \mathbb{C}$ converges to $(f,h(x))$. Then we must have that $(f_n)$ converges to $f$ and $(g(x)f_n(x))$ converges to $h(x)$. In the following estimate \begin{multline*}
       \norm{g(x)f(x)-h(x)} \leq \norm{g(x)f(x)-g(x)f_n(x)} + \norm{g(x)f_n(x)-h(x)}\\\leq \abs{g(x)}\norm{E_x}\norm{f_n-f}+\norm{g(x)f_n(x)-h(x)}
     \end{multline*} take the limit as $n\to \infty$ so that the quantity $\abs{g(x)}\norm{E_x}\norm{f_n-f}+\norm{g(x)f_n(x)-h(x)}$ is arbitrarily small. It follows that $h(x) = g(x)f(x)$, and this was true for any fixed $x$ so we must have that $h = gf =M_gf$ as needed. Thus the graph of $M_g$ is closed, so $M_g$ is bounded.
+
+    \item[2.] \begin{enumerate}
+      \item Suppose that $x$ is not an extreme point of $B$; that is, there exists $y,z\in B$ with $y\neq x$ or $z\neq x$ or $y\neq z$, and $0<t<1$ such that $x = ty+(1-t)z$. However, if any one of the equalities $y=x$ or $z=x$ or $y=z$ hold, then $y=z=x$, a contradiction. Hence we must have $y\neq x$ and $z\neq x$ and $y\neq z$. Suppose further without loss of generality that $\norm{x-y}\geq \norm{x-z}$ (or take the minimum of the two norms and keep track of the argument in $\norm{x-\cdot}$; I think the notation $\argmin$ could be used for this).
+      
+      We have that $x-z$ is nonzero. To show that $x-z\in B$, note first that from $0 = t(y-x)+(1-t)(z-x)$ and $\norm{x-y}\geq \norm{x-z}>0$ that $t/(1-t)= \norm{z-x}/\norm{y-x}\leq 1$, which then implies that $t\leq (1-t)$, from which we obtain $1= t+(1-t)\geq 2t$ and hence $t\leq 1/2$. Then from $x-z = t(y-z)$ we have $\norm{x-z}\leq t\norm{y-z}\leq t(\norm{y}+\norm{z})\leq 2t\leq 1$, so that $x-z\in B$. Then it follows that $\norm{x\pm(x-z)}\leq 1$: $\norm{x-(x-z)}=\norm{z}\leq 1$, and $\norm{x+(x-z)}=\norm{x-t(y-z)}=\norm{(x-ty)+tz}=\norm{(1-t)z+tz}=\norm{z}\leq 1$.
+
+      Conversely, suppose that there is a nonzero $y\in B$ with $\norm{x\pm y}\leq 1$. Then with $t = 1/2$, we have $x = t(x+y)+(1-t)(x-y)$, so that $x$ is not an extreme point.
+
+      \item Let $E$ be the extreme points of $B = \ball(\mathcal{X})$ and $E^\prime$ the extreme points of $B^\prime = \ball(\mathcal{Y})$. Since $T\colon \mathcal{X}\to\mathcal{Y}$ is an isometry, it is an injection as well. Restricting $T$ to $E\subseteq \mathcal{X}$ must necessarily yield an injection also. It remains to show that $T|_{E}$ is a map into $E^\prime$ (i.e. $T|_{E}\colon E\to E^\prime$) which is surjective.
+      
+      If $x\in E$, there is no nonzero $y\in B$ such that $\norm{x\pm y}\leq 1$. Suppose that there is $y^\prime = Ty\in B^\prime$ (with $y\in B$ since $T$ is an isometry) such that $\norm{Tx\pm Ty}\leq 1$. As $T$ is an isometry we have also that $\norm{x\pm y}\leq 1$, which is a contradiction. Hence $Tx$ is an extreme point of $B^\prime$.
+
+      If $x^\prime = Tx \in E^\prime$, there is no nonzero $y^\prime\in B^\prime$ such that $\norm{x^\prime\pm y^\prime}\leq 1$. If there is a nonzero $y\in B$ with $\norm{x\pm y}\leq 1$, then since $T$ is an isometry we have that $\norm{Tx\pm Ty}\leq 1$, which is a contradiction. Hence $x$ is an extreme point of $B$. 
+      
+      \item Let $T\colon \ell_2^1\to \ell_2^\infty$ be the isomorphism given by multiplication by the matrix \[\begin{pmatrix}
+        1 & -1 \\ 1 & 1
+      \end{pmatrix},\] which is counterclockwise rotation by $\pi/4$ radians followed by scaling by $\sqrt{2}$ (or see the determinant is $2$ to obtain invertibility). To see that this map is an isometry, we have the following equalities: \begin{align*}
+        \norm{(a,b)}_1 &= \abs{a}+\abs{b} \\
+        &= \max\{a,-a\} + \max\{b,-b\}\\
+        &= \max\{a+b,a-b,-a+b,-a-b\}\\
+        &= \max\{\max\{a+b,-a-b\},\max\{a-b,-a+b\}\}\\
+        &= \max\{\abs{a-b},\abs{a+b}\}\\
+        &= \norm{(a-b,a+b)}_\infty\\ 
+        &=\norm{T(a,b)}_\infty
+      \end{align*}
+
+      An isometry between $\ell_3^1$ and $\ell_3^\infty$ induces a bijection between the extreme points of their respective unit balls. The unit ball in the $1$-norm is given by the region bounded by the octahedron with vertices at $\pm e_1, \pm e_2,\pm e_3$. The unit ball in the $\infty$-norm is given by the cube with vertices $\pm e_1\pm e_2\pm e_3$. The extreme points of these polytopes are exactly the vertices: If we picked a non-vertex point it is either an interior point of the polytope or it is on the boundary of the polytope. Interior points cannot be extreme points since about an interior point there is a small neighborhood, and so we can pick antipodal points in a small ball about an interior point to obtain $\norm{x\pm y}\leq \delta\leq 1$. Otherwise a boundary point is contained in a face of some higher dimension (i.e. an edge, a facet, etc.) and so is in the convex hull of the vertices found within that face. 
+
+      In any case, by counting we obtain that the octahedron has six vertices while the cube has eight, so there is no bijection between them. Hence there is no isometry between $\ell_3^1$ and $\ell_3^\infty$.
+    \end{enumerate}
+
+    \item[3.] 
 \end{enumerate}
 \end{document}
