@@ -114,6 +114,14 @@ Do any THREE problems.
       In any case, by counting we obtain that the octahedron has six vertices while the cube has eight, so there is no bijection between them. Hence there is no isometry between $\ell_3^1$ and $\ell_3^\infty$.
     \end{enumerate}
 
-    \item[3.] 
+    \item[3.] We show first that the functions $f(\cdot-y)$ converge uniformly to $f$ as $y$ tends to zero: Let $\varepsilon>0$ be given. As $f\in C_0(\mathbb{R})$, we have that $f(\cdot-y)\in C_0(\mathbb{R})$ also for each $y$. Then there is $N$ large enough so that $\abs{f(\cdot-t)}$ for each $0<t\leq 1$ and $\abs{f}$ are less than $\varepsilon$ outside of the interval $[-N,N]$. Now choose $\delta$ small enough (and smaller than $1$) so that $\sup_{x\in[-N,N]}\{\abs{f(x-y)-f(x)}\}\leq \varepsilon$ for $\abs{y}\leq \delta$ by uniform convergence of $f$ on $[-N,N]$. Then we have for $\abs{y}\leq \delta$ that $\norm{f(\cdot-y)-f}_\infty\leq \sup_{\abs{x}>N}\{\abs{f(x-y)-f(x)}\}+\sup_{\abs{x}\leq N}\{\abs{f(x-y)-f(x)}\}\leq 3\varepsilon$, which proves the claim.
+    
+    Now let $\varepsilon>0$ be given. Choose $\delta>0$ small enough so that for $\abs{y}\leq \delta$, $\sup_{x\in \mathbb{R}}\abs{f(x-y)-f(x)}<\varepsilon$ (by the earlier claim). Then choose $\lambda$ small enough so that the integral $\int_{\abs{y}>\delta}\phi_\lambda(y)\dd{y} \leq \varepsilon$. 
+
+    Note that $C_0(\mathbb{R})$ functions are bounded. We have that \[\int_\mathbb{R} \abs{f(x-y)-f(x)}\phi_\lambda(y)\dd{y} \leq \sup_{\abs{y}\leq \delta}\{\abs{f(x-y)-f(x)}\}\norm{\phi_\lambda}_1 + 2\norm{f}_\infty\int_{\abs{y}>\delta}\phi_\lambda(y)\dd{y}.\] Taking the supremum over all real $x$ and now using the above estimates yields \begin{multline*}
+      \sup_{x\in\mathbb{R}}\cbr{\int_\mathbb{R} \abs{f(x-y)-f(x)}\phi_\lambda(y)\dd{y}} \leq \sup_{\substack{\abs{y}\leq \delta\\x\in\mathbb{R}}}\{\abs{f(x-y)-f(x)}\}\norm{\phi_\lambda}_1 + 2\norm{f}_\infty\int_{\abs{y}>\delta}\phi_\lambda(y)\dd{y}\\\leq \norm{\phi_\lambda}_1\varepsilon + 2\norm{f}_\infty\varepsilon.
+    \end{multline*} 
+
+    We have $\norm{\phi_\lambda\ast f - f}_\infty = \sup_{x\in \mathbb{R}}\{|\int_\mathbb{R} (f(x-y)-f(x))\phi_\lambda(y)\dd{y}|\} \leq \sup_{x\in \mathbb{R}}\{\int_\mathbb{R} |f(x-y)-f(x)|\phi_\lambda(y)\dd{y}\}\leq (\norm{\phi_\lambda}_1 + 2\norm{f}_\infty)\varepsilon$, so that we obtain uniform convergence of $\phi_\lambda\ast f\to f$.
 \end{enumerate}
 \end{document}
