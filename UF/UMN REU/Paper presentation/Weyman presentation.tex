@@ -4,7 +4,6 @@
 
 % colors
 \definecolor{pastelblue}{RGB}{167, 199, 231}
-\definecolor{pastelorange}{RGB}{250, 200, 152}
 \usecolortheme[named=pastelblue]{structure}
 \setbeamercolor{frametitle}{fg=black!85}
 \setbeamercolor{title}{bg=pastelblue,fg=black!85}
@@ -19,70 +18,155 @@
 \setlength{\parskip}{5pt}
 \renewcommand{\baselinestretch}{1.25}
 
+% operators
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\sgn}{sgn}
+\makeatletter
+\newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
+\def\@extp^#1{\mathop{\bigwedge\nolimits^{\!#1}}}
+\makeatother
+
+% theorems
+\newtheorem*{proposition}{Proposition}
+
 \title{Schur modules and highest weight theory}
-\subtitle{from Weyman Cohomology of vector bundles and syzygies}
+\subtitle{from Weyman Cohomology of Vector Bundles and Syzygies}
 
 \author[Sai Sivakumar]{Sai Sivakumar}
 \date{27 June 2023}
 
 \begin{document}
+
+%
 \frame{\titlepage}
 
+%
 \begin{frame}
     \frametitle{The goal}
 
-    
+    \begin{theorem}
+        Let $k$ be an infinite field of any characteristic and $V$ a finite dimensional vector space over $k$. 
+        
+        There is a one-to-one correspondence between \[\left\{ \parbox[c]{1.1in}{\centering
+        simple rational representations of $GL(V)$}
+        \right\}\longleftrightarrow \left\{ \parbox[c]{1.1in}{\centering
+        dominant weights $\lambda$ (i.e. $\lambda_1\geq\cdots\geq \lambda_q$)}
+        \right\}.\]
+
+        The simple representation $L(\lambda)$ coming from a dominant weight $\lambda$ is the $\mathbf{U}$-invariant subspace of $\mathbb{S}_\lambda(V)$.
+    \end{theorem}
+
+    In characteristic $0$, $\mathbb{S}_\lambda(V)$ is already simple, but in nonzero characteristic we obtain a proper subspace.
 
 \end{frame}
 
+%
 \begin{frame}
-    \frametitle{Notations for Young tableaux}
+    \frametitle{Notations involving partitions}
 
-    
+    For $\lambda = (\lambda_1,\dots,\lambda_q)$ a partition, let $|\lambda| = \lambda_1+ \cdots +\lambda_q$. Denote by $\lambda^\prime$ the partition obtained from the Young diagram that is the transpose of the Young diagram for $\lambda$.\vspace*{3cm}
+
+    For $T$ a Young tableau of shape $\lambda$ we denote its entries by $T(\text{row},\text{column})$.
 
 \end{frame}
 
+%
 \begin{frame}
     \frametitle{Construction of Schur module}
 
+    Let $V = \Span_k\{e_1,\dots,e_n\}$ and $\lambda = (\lambda_1,\dots,\lambda_q)$ be a partition. There is a very abstract way to obtain the Schur module $\mathbb{S}_\lambda(V)$:
+
+    Note there is an injection \[\extp^p V\xrightarrow{a} V^{\otimes p}\] which takes $v_1\wedge\cdots\wedge v_p$ to $\sum_\sigma \sgn(\sigma) v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(p)}$ (the anti-skew-symmetrizing map).
+
+\end{frame}
+
+%
+\begin{frame}
+
+    Consider the map \[\extp^{\lambda_1} V\otimes\cdots\otimes \extp^{\lambda_q} V \xrightarrow{a_1\otimes\cdots\otimes a_q} V^{\otimes |\lambda|}\] which is the tensor product of the anti-skew-symmetrizing maps defined prior. Then compose this map with the map \[V^{\otimes |\lambda|}\xrightarrow{\beta_\lambda}S^{\lambda^\prime_1}V\otimes\cdots\otimes S^{\lambda^\prime_t}V\] that takes $f_1\otimes\cdots\otimes f_{|\lambda|}$ to \begin{multline*}
+        f_1f_{\lambda_1+1}f_{\lambda_1+\lambda_2+1}\cdots f_{\lambda_1+\cdots+\lambda_{q-1}+1} \otimes \\ f_2f_{\lambda_2+1}f_{\lambda_2+\lambda_3+1}\cdots\otimes \cdots
+    \end{multline*}
+
+\end{frame}
+
+%
+\begin{frame}
+
+    Then the Schur module $\mathbb{S}_\lambda (V)$ is defined to be the image of the composite map $\beta_\lambda\circ a_1\otimes\cdots\otimes a_q$. 
+
+    In this way regard the Schur module $\mathbb{S}_\lambda (V)$ as a submodule of $S^{\lambda^\prime_1}V\otimes\cdots\otimes S^{\lambda^\prime_t}V$ or as a quotient of $\extp^{\lambda_1} V\otimes\cdots\otimes \extp^{\lambda_q} V$.
+
+    Furthermore, we associate to each tableau $T$ of shape $\lambda$ with entries in $1,\dots,n$ the coset of \begin{multline*}
+        e_{T(1,1)}\wedge\cdots\wedge e_{T(1,\lambda_1)}\otimes e_{T(2,1)}\wedge\cdots\wedge e_{T(2,\lambda_2)}\otimes \cdots \\ \otimes e_{T(q,1)}\wedge\cdots\wedge e_{T(q,\lambda_q)}.
+    \end{multline*}
+
+\end{frame}
+
+%
+\begin{frame}
+
+    \begin{proposition}
+        Let Let $V = \Span_k\{e_1,\dots,e_n\}$ and $\lambda = (\lambda_1,\dots,\lambda_q)$ be a partition. Then the set of ``standard'' tableaux of shape $\lambda$ with entries from $1,\dots,n$ form a basis of $\mathbb{S}_\lambda(V)$.
+    \end{proposition}
+
+    The ``standard'' tableaux are those that have entries increasing along each row and entries nondecreasing along each column.
+
+\end{frame}
+
+%
+\begin{frame}
+    \frametitle{Examples}
+
     
 
 \end{frame}
 
+%
 \begin{frame}
 
     
 
 \end{frame}
 
+%
 \begin{frame}
 
     
 
 \end{frame}
 
+%
 \begin{frame}
+    \frametitle{The $\mathbf{U}$-invariant subspace of $\mathbb{S}_\lambda(V)$}
 
-    
+    The ``canonical'' tableau $c_\lambda$ with $c_\lambda(i,j) = j$ is a $\mathbf{U}$-invariant element in $\mathbb{S}_\lambda(V)$. Furthermore, the subspace $(\mathbb{S}_\lambda(V))^{\mathbf{U}}$ of $\mathbf{U}$-invariants is one-dimensional and is spanned by $c_\lambda$.
+
+    Due to being one-dimensional, this subspace must be a simple $GL(V)$-module. The converse is also true, and has a nice proof.
 
 \end{frame}
 
+%
 \begin{frame}
-    \frametitle{Example}
+    \begin{flushright}
+        {\color{black!15!pastelblue}Thank you for your time.}
+        \end{flushright}
+        \hrule
+    \begin{columns}
+    \begin{column}{0.3\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  Questions?\end{center}}
+        \end{block}\vspace{0em}
+    \end{column}
+    \begin{column}{0.7\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  References:\end{center}}
+    \end{block}
+(1) Jerzy Weyman: \textit{Cohomology of Vector Bundles and Syzygies}
 
-    
+(2) Kaan Akin, David A Buchsbaum, Jerzy Weyman: \textit{Schur Functors and Schur Complexes}
 
-\end{frame}
-
-\begin{frame}
-
-    
-
-\end{frame}
-
-\begin{frame}
-
-    
-
+(3) Michael Perlman: \textit{Representations of the General Linear Group: A User's Guide}
+    \end{column}
+    \end{columns}
 \end{frame}
 \end{document}
