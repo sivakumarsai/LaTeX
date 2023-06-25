@@ -1,5 +1,6 @@
 \documentclass[mathserif]{beamer}
 \usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{ytableau}
 \usetheme{Warsaw}
 
 % colors
@@ -21,6 +22,7 @@
 % operators
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\col}{col}
 \makeatletter
 \newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
 \def\@extp^#1{\mathop{\bigwedge\nolimits^{\!#1}}}
@@ -30,7 +32,7 @@
 \newtheorem*{proposition}{Proposition}
 
 \title{Schur modules and highest weight theory}
-\subtitle{from Weyman Cohomology of Vector Bundles and Syzygies}
+\subtitle{3/3}
 
 \author[Sai Sivakumar]{Sai Sivakumar}
 \date{27 June 2023}
@@ -64,9 +66,24 @@
 \begin{frame}
     \frametitle{Notations involving partitions}
 
-    For $\lambda = (\lambda_1,\dots,\lambda_q)$ a partition, let $|\lambda| = \lambda_1+ \cdots +\lambda_q$. Denote by $\lambda^\prime$ the partition obtained from the Young diagram that is the transpose of the Young diagram for $\lambda$.\vspace*{3cm}
+    For $\lambda = (\lambda_1,\dots,\lambda_q)$ a partition, let $|\lambda| = \lambda_1+ \cdots +\lambda_q$.
+    
+    Let $\col_{\lambda}(i)$ be the number of boxes in column $i$ of the Young diagram of $\lambda$. 
+    
+    For $T$ a Young tableau of shape $\lambda$ we denote its entries by $T(\text{row},\text{column})$. For example:\[\lambda = (3,3,1)\quad \longleftrightarrow\quad \ytableausetup{centertableaux, boxsize=2.5em}
+    \begin{ytableau}
+    \scriptstyle T(1,1) & \scriptstyle T(1,2) & \scriptstyle T(1,3) \\
+    \scriptstyle T(2,1) & \scriptstyle T(2,2) & \scriptstyle T(2,3) \\
+    \scriptstyle T(3,1)
+    \end{ytableau}\]
 
-    For $T$ a Young tableau of shape $\lambda$ we denote its entries by $T(\text{row},\text{column})$.
+\end{frame}
+
+%
+\begin{frame}
+    \frametitle{Example of a Schur module}
+
+    
 
 \end{frame}
 
@@ -76,15 +93,16 @@
 
     Let $V = \Span_k\{e_1,\dots,e_n\}$ and $\lambda = (\lambda_1,\dots,\lambda_q)$ be a partition. There is a very abstract way to obtain the Schur module $\mathbb{S}_\lambda(V)$:
 
-    Note there is an injection \[\extp^p V\xrightarrow{a} V^{\otimes p}\] which takes $v_1\wedge\cdots\wedge v_p$ to $\sum_\sigma \sgn(\sigma) v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(p)}$ (the anti-skew-symmetrizing map).
+    There is an injection \[\extp^p V\xrightarrow{a} V^{\otimes p}\] which takes $v_1\wedge\cdots\wedge v_p$ to $\sum_\sigma \sgn(\sigma) v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(p)}$ (the anti-skew-symmetrizing map).
 
 \end{frame}
 
 %
 \begin{frame}
 
-    Consider the map \[\extp^{\lambda_1} V\otimes\cdots\otimes \extp^{\lambda_q} V \xrightarrow{a_1\otimes\cdots\otimes a_q} V^{\otimes |\lambda|}\] which is the tensor product of the anti-skew-symmetrizing maps defined prior. Then compose this map with the map \[V^{\otimes |\lambda|}\xrightarrow{\beta_\lambda}S^{\lambda^\prime_1}V\otimes\cdots\otimes S^{\lambda^\prime_t}V\] that takes $f_1\otimes\cdots\otimes f_{|\lambda|}$ to \begin{multline*}
-        f_1f_{\lambda_1+1}f_{\lambda_1+\lambda_2+1}\cdots f_{\lambda_1+\cdots+\lambda_{q-1}+1} \otimes \\ f_2f_{\lambda_2+1}f_{\lambda_2+\lambda_3+1}\cdots\otimes \cdots
+    Consider the map \[\extp^{\col_\lambda(1)} V\otimes\cdots\otimes \extp^{\col_\lambda(\lambda_1)} V \xrightarrow{a_1\otimes\cdots\otimes a_{\lambda_1}} V^{\otimes |\lambda|}\] which is the tensor product of the anti-skew-symmetrizing maps defined prior. Then compose this map with the map \[V^{\otimes |\lambda|}\xrightarrow{\beta_\lambda}S^{\lambda_1}V\otimes\cdots\otimes S^{\lambda_q}V\] that takes $f_1\otimes\cdots\otimes f_{|\lambda|}$ to \begin{multline*}
+        f_1f_{\col_\lambda(1)+1}f_{\col_\lambda(1)+\col_\lambda(2)+1}\cdots f_{\col_\lambda(1)+\cdots+\col_\lambda(\lambda_1-1)+1} \otimes \\ f_2f_{\col_\lambda(1)+2}f_{\col_\lambda(1)+\col_\lambda(2)+2}\cdots f_{\col_\lambda(1)+\cdots+\col_\lambda(\lambda_2-1)+2}\otimes \\
+        \cdots \otimes f_{\col_\lambda(1)}f_{\col_\lambda(1)+\col_\lambda(1)}f_{\col_\lambda(1)+\col_\lambda(2)+\col_\lambda(1)}\\\cdots f_{\col_\lambda(1)+\cdots+\col_\lambda(\lambda_{\col_\lambda(1)}-1)+\col_\lambda(1)}
     \end{multline*}
 
 \end{frame}
@@ -92,12 +110,12 @@
 %
 \begin{frame}
 
-    Then the Schur module $\mathbb{S}_\lambda (V)$ is defined to be the image of the composite map $\beta_\lambda\circ a_1\otimes\cdots\otimes a_q$. 
+    Then the Schur module $\mathbb{S}_\lambda (V)$ is defined to be the image of the composite map $\beta_\lambda\circ a_1\otimes\cdots\otimes a_{\lambda_1}$. 
 
-    In this way regard the Schur module $\mathbb{S}_\lambda (V)$ as a submodule of $S^{\lambda^\prime_1}V\otimes\cdots\otimes S^{\lambda^\prime_t}V$ or as a quotient of $\extp^{\lambda_1} V\otimes\cdots\otimes \extp^{\lambda_q} V$.
+    In this way regard the Schur module $\mathbb{S}_\lambda (V)$ as a submodule of $S^{\lambda_1}V\otimes\cdots\otimes S^{\lambda_q}V$ or as a quotient of $\extp^{\col_\lambda(1)} V\otimes\cdots\otimes \extp^{\col_\lambda(\lambda_1)} V$.
 
     Furthermore, we associate to each tableau $T$ of shape $\lambda$ with entries in $1,\dots,n$ the coset of \begin{multline*}
-        e_{T(1,1)}\wedge\cdots\wedge e_{T(1,\lambda_1)}\otimes e_{T(2,1)}\wedge\cdots\wedge e_{T(2,\lambda_2)}\otimes \cdots \\ \otimes e_{T(q,1)}\wedge\cdots\wedge e_{T(q,\lambda_q)}.
+        e_{T(1,1)}\wedge\cdots\wedge e_{T(\col_\lambda(1),1)}\otimes e_{T(1,2)}\wedge\cdots\wedge e_{T(\col_\lambda(2),2)}\otimes \cdots \\ \otimes e_{T(1,\lambda_1)}\wedge\cdots\wedge e_{T(\col_\lambda(\lambda_1),\lambda_1)}.
     \end{multline*}
 
 \end{frame}
@@ -106,32 +124,10 @@
 \begin{frame}
 
     \begin{proposition}
-        Let Let $V = \Span_k\{e_1,\dots,e_n\}$ and $\lambda = (\lambda_1,\dots,\lambda_q)$ be a partition. Then the set of ``standard'' tableaux of shape $\lambda$ with entries from $1,\dots,n$ form a basis of $\mathbb{S}_\lambda(V)$.
+        Let Let $V = \Span_k\{e_1,\dots,e_n\}$ and $\lambda = (\lambda_1,\dots,\lambda_q)$ be a partition. Then the set of semistandard Young tableaux of shape $\lambda$ with entries from $1,\dots,n$ form a basis of $\mathbb{S}_\lambda(V)$.
     \end{proposition}
 
-    The ``standard'' tableaux are those that have entries increasing along each row and entries nondecreasing along each column.
-
-\end{frame}
-
-%
-\begin{frame}
-    \frametitle{Examples}
-
-    
-
-\end{frame}
-
-%
-\begin{frame}
-
-    
-
-\end{frame}
-
-%
-\begin{frame}
-
-    
+    The semistandard Young tableaux are those that are weakly increasing in each row and strictly increasing in each column.
 
 \end{frame}
 
@@ -139,9 +135,9 @@
 \begin{frame}
     \frametitle{The $\mathbf{U}$-invariant subspace of $\mathbb{S}_\lambda(V)$}
 
-    The ``canonical'' tableau $c_\lambda$ with $c_\lambda(i,j) = j$ is a $\mathbf{U}$-invariant element in $\mathbb{S}_\lambda(V)$. Furthermore, the subspace $(\mathbb{S}_\lambda(V))^{\mathbf{U}}$ of $\mathbf{U}$-invariants is one-dimensional and is spanned by $c_\lambda$.
+    The ``canonical'' tableau $c_\lambda$ with $c_\lambda(i,j) = i$ is a $\mathbf{U}$-invariant element in $\mathbb{S}_\lambda(V)$. Furthermore, the subspace $(\mathbb{S}_\lambda(V))^{\mathbf{U}}$ of $\mathbf{U}$-invariants is one-dimensional (spanned by $c_\lambda$) of weight $\lambda$.
 
-    Due to being one-dimensional, this subspace must be a simple $GL(V)$-module. The converse is also true, and has a nice proof.
+    Due to being one-dimensional, this subspace must be a simple $GL(V)$-module. The proof that the simple modules come in this form is omitted but it is nice.
 
 \end{frame}
 
