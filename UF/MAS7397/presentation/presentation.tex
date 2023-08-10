@@ -30,6 +30,8 @@
 }
 \makeatother
 
+\DeclareMathOperator{\GL}{GL}
+
 \usetheme{Warsaw}
 
 % colors
@@ -55,7 +57,7 @@
 {\textcolor{black!85}{Fourier analysis on LCA groups and Pontryagin Duality}}
 
 \author[Sai Sivakumar]{Sai Sivakumar}
-\date{17 April 2023}
+\date{27 July 2023}
 
 \begin{document}
 
@@ -105,23 +107,23 @@
         Let $G$ be a topological group and $V$ a topological vector space.
         
         Then a \textbf{representation} of $G$ on $V$ is a %(continuous)
-        homomorphism $\rho\colon G\to GL(V)$ such that for any $v\in V$, the map \[x\mapsto \rho(x)v\] is continuous from $G$ to $V$. % i.e. $\rho$ is continuous in the strong operator topology
+        homomorphism $\rho\colon G\to \GL(V)$ such that for any $v\in V$, the map \[x\mapsto \rho(x)v\] is continuous from $G$ to $V$. % i.e. $\rho$ is continuous in the strong operator topology
     \end{block} 
     \pause
 
-    We say a representation $\rho\colon G\to GL(V)$ of a topological group $G$ on $V$ is a \textbf{unitary representation} if $V$ is a (complex) Hilbert space and $T$ maps into the unitary operators on $V$. % i.e. bounded operators with inverse their adjoint
+    We say a representation $\rho\colon G\to \GL(V)$ of a topological group $G$ on $V$ is a \textbf{unitary representation} if $V$ is a (complex) Hilbert space and $T$ maps into the unitary operators on $V$. % i.e. bounded operators with inverse their adjoint
 \end{frame}
 
 % irreducible representations
 \begin{frame}
     \frametitle{Irreducible representations}
-    A representation $\rho\colon G\to GL(V)$ is irreducible if there are no closed subspaces of $V$ which are invariant under the action of $G$ (i.e. there are no subrepresentations).
+    A representation $\rho\colon G\to \GL(V)$ is irreducible if there are no closed subspaces of $V$ which are invariant under the action of $G$ (i.e. there are no subrepresentations).
     \pause
 
     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
     \begin{Theorem}[Unitary Schur]
         A unitary representation $\rho$ is irreducible if and only if \begin{center}
-            $\mathcal{C}(\rho)\coloneqq \{T\in GL(V)\mid T\rho(g) = \rho(g) T,\forall g\in G\}$
+            $\mathcal{C}(\rho)\coloneqq \{T\in \GL(V)\mid T\rho(g) = \rho(g) T,\forall g\in G\}$
         \end{center} % set of intertwining operators
         contains only scalar multiples of the identity operator.
     \end{Theorem} Proof in (2) p.71.
@@ -136,7 +138,7 @@
     \pause
 
     \begin{proof}[Proof (from (2) p.71)]
-        Let $\rho\colon G\to GL(V)$ be an irreducible unitary representation of the Abelian group $G$. \pause 
+        Let $\rho\colon G\to \GL(V)$ be an irreducible unitary representation of the Abelian group $G$. \pause 
         
         For all $g\in G$, the operators $\rho(g)$ commute with each other. \pause 
         
@@ -212,7 +214,7 @@ The topology that $\widehat{\mathbb{Z}}\cong S^1$ inherits agrees with the usual
     \frametitle{Example 2}
 The characters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for real $\xi$ so that $\widehat{\mathbb{R}}\cong\mathbb{R}$.
 \pause 
-\begin{block}{Proof (Keith Conrad to the rescue again, see (5))} % actually he gets this from Conway's "A Course in Functional Analysis"
+\begin{block}{Proof (Keith Conrad to the rescue; see (5))} % actually he gets this from Conway's "A Course in Functional Analysis"
     Let $f \colon \mathbb{R}\to S^1$ be a character, and note $f(0) = 1$.\pause 
 
     By continuity of $f$, for $0<\varepsilon<1$ small we can fix $a>0$ sufficiently small so that \begin{center}
@@ -268,7 +270,7 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
     \end{Theorem}
     \pause
 
-    For example, counting measure on any discrete group works, in particular for $\mathbb{Z}$. 
+    For example, counting measure on any discrete group works, such as $\mathbb{Z}$. 
     \pause 
 
     Lebesgue measure on $\mathbb{R}$ is a Haar measure, and the arclength measure on $S^1$ is also.
@@ -313,7 +315,7 @@ The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expec
 
     There is a natural map $\delta\colon G\to \dwidehat{\hspace{0pt}G}$ given by $x\mapsto \delta_x$, where $\delta_x$ is the map given by evaluation at $x$: $\delta_x(\chi) = \chi(x)$.\pause 
 
-    We check briefly that $\delta_x$ is really a character of $\widehat{\hspace{0pt}G}$: We have \[\delta_x(\chi\eta) = (\chi\eta)(x) = \chi(x)\eta(x) = \delta_x(\chi)\delta_x(\eta),\] \pause and we obtain continuity since convergence in the compact-open topology implies pointwise convergence: if we have a convergent net $\chi_j\to \chi$ in $\widehat{\hspace{0pt}G}$, the net $\delta_x(\chi_j) = \chi_j(x)$ converges to $\chi(x)= \delta_x(\chi)$ as needed.
+    We check briefly that $\delta_x$ is really a character of $\widehat{\hspace{0pt}G}$: We have \[\delta_x(\chi\eta) = (\chi\eta)(x) = \chi(x)\eta(x) = \delta_x(\chi)\delta_x(\eta),\] \pause and we obtain continuity since convergence in the compact-open topology implies pointwise convergence: if we have a convergent net $\chi_j\to \chi$ in $\widehat{\hspace{0pt}G}$, the net $\delta_x(\chi_j) = \chi_j(x)$ converges to $\delta_x(\chi) = \chi(x)$ as needed.
 \end{frame}
 
 % more pontryagin duality
