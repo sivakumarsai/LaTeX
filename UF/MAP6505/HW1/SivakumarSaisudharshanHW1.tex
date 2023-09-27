@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP6505}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage/n}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item[3.3] \begin{enumerate}
+        \item Not Lebesgue integrable. Lebesgue integrability implies absolute integrability, but \[\int \abs{\frac{\sin x}{x}}\dd x = 2\int_0^\infty \frac{\abs{\sin x}}{x}\dd x = \infty\] (via estimates from p.37).
+        \item Not Lebesgue integrable. Again \[\int \abs{\frac{e^{ikx}}{x}}\dd x = 2\int_0^\infty \frac{1}{x}\dd x=\infty ,\] so $e^{ikx}/x$ failed to be absolutely integrable.
+        \item Not Lebesgue integrable. In any neighborhood around the origin, 
+        \item Not Lebesgue integrable. The function $e^{-x}$ fails absolute integrability (note it is already nonnegative), since $\int e^{-x}\dd x = \int e^x \dd x = \infty$.
+        \item Lebesgue integrable. In any interval centered at the origin, $x^{100}e^{-x^2}$ is bounded. 
+    \end{enumerate}
+    \item[4.8]
+    \item[5.6]
+    \item[8.6]
+    \item[9.2]
+\end{enumerate}
+\vspace*{7em}
+
+\end{document}
