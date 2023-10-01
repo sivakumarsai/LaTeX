@@ -61,8 +61,11 @@
         \item No. The function $e^{-x}$ fails absolute integrability (note it is already nonnegative), since $\int e^{-x}\dd x = \int e^x \dd x = \infty$.
         \item Yes. First, $x^{100}e^{-x^2}$ is bounded, and nonnegative. Then we have the estimate \[\frac{1}{x^{-100}e^{x^2}} = \frac{1}{\sum_{k=0}^\infty x^{2k-100}/k!}\leq \frac{C}{D+x^2}\] for some positive constants $C,D$, for any $x$. It follows that $x^{100}e^{-x^2}$ is absolutely integrable and hence Lebesgue integrable.
     \end{enumerate}
-    \item[4.8] For each $n$, change variables $nx\mapsto x$ to obtain \[\int f_n(x)\varphi(x)\dd x = \int nf(nx)\varphi(x)\dd x = \int f(x)\varphi(x/n)\dd x.\] The sequence of functions $g_n(x) = f(x)\varphi(x/n)$ converges to $f(x)\varphi(0)$ almost everywhere and is uniformly bounded above by $Mf(x)$, where $\abs{\varphi(x)}\leq M$ for all $x$. (Note $\varphi(x)$ has bounded support so $\varphi(x/n)$ does also, hence for all $n$, $\abs{\varphi(x/n)}$ is uniformly bounded by $M$ using the fact that continuous functions with bounded support are bounded.) Then by the 
-    \item[5.6]
+    \item[4.8] For each $n$, change variables $nx\mapsto x$ to obtain \[\int f_n(x)\varphi(x)\dd x = \int nf(nx)\varphi(x)\dd x = \int f(x)\varphi(x/n)\dd x.\] The sequence of functions $g_n(x) = f(x)\varphi(x/n)$ converges to $f(x)\varphi(0)$ almost everywhere and is uniformly bounded above by $Mf(x)$, where $\abs{\varphi(x)}\leq M$ for all $x$. (Note $\varphi(x)$ has bounded support so $\varphi(x/n)$ does also, hence for all $n$, $\abs{\varphi(x/n)}$ is uniformly bounded by $M$ using the fact that continuous functions with bounded support are bounded.) Then by the Lebesgue dominated convergence theorem, \[\lim_{n\to\infty} \int f(x)\varphi(x/n)\dd x = \varphi(0)\int f(x)\dd x= \varphi(0)\] as desired.
+    \item[5.6] \begin{enumerate}
+        \item[(i)] We have \[\int_1^\infty\bigg(\int_1^\infty \frac{\abs{x^2-y^2}}{(x^2+y^2)^2} \dd x\bigg)\dd y = \int_{1}^\infty \frac{1}{y} \bigg(\int_{\arctan(y^{-1})}^{\pi/2}\abs{\cos(2\theta)}\dd \theta\bigg) \dd y,\] but since $0<y^{-1}< 1$, $0 \leq \arctan(y^{-1})\leq \pi/4$ ($\arctan$ is monotonic). Thus \[\int_{1}^\infty \frac{1}{y} \bigg(\int_{\arctan(y^{-1})}^{\pi/2}\abs{\cos(2\theta)}\dd \theta\bigg) \dd y\geq \bigg(\int_{1}^\infty \frac{1}{y} \dd y\bigg)\bigg(\int_{\pi/4}^{\pi/2}-\cos(2\theta)\dd \theta\bigg) = \frac{1}{2}\int_1^\infty \frac{1}{y}\dd y \to \infty.\] If $f$ were Lebesgue integrable on $\Omega$, computing the integral using Fubini's theorem would have yielded a finite value, but $\int_1^\infty (\int_1^\infty |f(x,y)|\dd x) \dd y \to \infty$. So $f$ is not Lebesgue integrable on $\Omega$.
+        \item[(ii)]
+    \end{enumerate}
     \item[8.6]
     \item[9.2]
 \end{enumerate}
