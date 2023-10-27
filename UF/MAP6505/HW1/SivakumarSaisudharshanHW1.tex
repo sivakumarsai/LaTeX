@@ -26,7 +26,7 @@
 \fancyhead[L]{MAP6505}
 \fancyhead[C]{HW1}
 \fancyhead[R]{Sai Sivakumar}
-\fancyfoot[R]{\thepage/n}
+\fancyfoot[R]{\thepage/6}
 \renewcommand{\headrulewidth}{1pt}
 
 % paragraph indentation/spacing
@@ -56,6 +56,7 @@
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\dist}{dist}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -64,7 +65,7 @@
 
 \begin{enumerate}
     \item[3.3] \begin{enumerate}
-        \item No. Lebesgue integrability implies absolute integrability, but \[\int \abs{\frac{\sin x}{x}}\dd x = 2\int_0^\infty \frac{\abs{\sin x}}{x}\dd x \to \infty\] (via estimates from p.37).
+        \item No. Lebesgue integrability implies absolute integrability, but \[\int \abs{\frac{\sin x}{x}}\dd x = 2\int_0^\infty \frac{\abs{\sin x}}{x}\dd x \to \infty\] (via estimates from p.37 of the text).
         \item No. Again \[\int \abs{\frac{e^{ikx}}{x}}\dd x = 2\int_0^\infty \frac{1}{x}\dd x\to \infty ,\] so $e^{ikx}/x$ failed to be absolutely integrable.
         \item No. In any neighborhood around the origin, $\abs{ \cos x}/\sqrt{\abs{x}}\leq 1/\sqrt{\abs{x}}$, which is integrable around the origin. Note $\cos x/\sqrt{\abs{x}}$ is an even function. Then integrating the estimate \[\frac{\sqrt 2\abs{\cos x}}{\sqrt{\pi(2k+1)}}\leq \frac{\abs{\cos x}}{\sqrt{\abs{x}}}\leq \frac{\sqrt 2\abs{\cos x}}{\sqrt{\pi(2k-1)}}\] valid for for positive integers $k$ and $x\in [(2k-1)\pi/2,(2k+1)\pi/2]$ from $(2k-1)\pi/2$ to $(2k+1)\pi/2$ yields \[\frac{2\sqrt 2}{\sqrt{\pi(2k+1)}}\leq \int_{\frac{(2k-1)\pi}{2}}^{\frac{(2k+1)\pi}{2}}\frac{\abs{\cos x}}{\sqrt{\abs{x}}}\dd x\leq \frac{2\sqrt 2}{\sqrt{\pi(2k-1)}}.\] Then \[\int_{\mathbb{R}\setminus B_{\pi/2}} \frac{\abs{\cos x}}{\sqrt{\abs{x}}}\dd x = 2\int_{\pi/2}^\infty \frac{\abs{\cos x}}{\sqrt{x}}\dd x\to \infty,\] and by the above estimate and the first comment, it follows that $\cos x /\sqrt{\abs{x}}$ is not absolutely integrable.
         \item No. The function $e^{-x}$ fails absolute integrability (note it is already nonnegative), since $\int e^{-x}\dd x = \int e^x \dd x = \infty$.
@@ -89,13 +90,87 @@
         The iterated integrals do not match and are off by a sign.
     \end{enumerate}
     \hrulefill
-    \item[8.6]
+    \item[8.6] for $\rho\in C^1(\mathbb R^3)$ bounded support $\Omega$, $\partial \Omega$ piecewise smooth. prove $\Delta u = -4\pi \rho(x)$, $x\in \mathbb{R}^3$, $u(x) = \int\frac{\rho(y)}{\abs{x-y}}\dd^3y$. 
+    \begin{enumerate}
+        \item[(i)] %$u\in C^1(\mathbb R^3), u\in C^\infty(\mathbb R^3\setminus \Omega)$
+        
+        First, $u(x)$ exists for all $x$ since $\rho$ has bounded support and is continuous, so $\abs{\rho(y)}\leq M$ for some $M$, on $\Omega$. With $1<3$, we have $\int_\Omega\abs{\frac{\rho(y)}{\abs{x-y}}}\dd^3y\leq \int_\Omega \frac{M}{\abs{x-y}}\dd^3y<\infty$. Now we establish continuous differentiability depending on whether $x\in\overline \Omega$ or not.
+
+        Since $\rho$ is bounded by $M$ on $\Omega$, it follows by 8.5 in the text (p.115) that $u(x)$ has continuous partial derivatives up to order $1$ everywhere (as $1+1<3$), with $\pdv{x_i} u(x) = \int_\Omega \rho(y)\pdv{x_i}\frac{1}{\abs{x-y}}\dd^3y$. So $u(x)\in C^1(\mathbb R^3)$.
+
+        On the complement of $\overline \Omega$, $u(x)$ is infinitely many times continuously differentiable. This follows from 8.3 in the text (p.112), arguing by showing that $u(x)\in C^\infty(\mathbb R^3\setminus \Omega_\delta)$ for any $\delta>0$. So $u(x)\in C^\infty(\mathbb R^3\setminus \overline{\Omega})$ with $D^\beta_xu(x) = \int_\Omega \rho(y)D^\beta_x\frac{1}{\abs{x-y}}\dd^3y$.
+        
+        %We have $\pdv{x_i}\frac{\rho(y)}{\abs{x-y}} = \frac{\rho(y)(x_i-y_i)}{\abs{x-y}^3}$ which is continuous in $x$ for almost all $y$. %For $x\in \overline \Omega$, 
+        %Note that $\abs{\frac{\rho(y)(x_i-y_i)}{\abs{x-y}^3}}\leq \frac{M}{\abs{x-y}^2}$ (since $\abs{x_i-y_i}\leq \abs{x-y}$)
+        \item[(ii)] %$\Delta_x\frac{1}{\abs{x-y}} = 0$ for all $x\neq y$
+        
+        We have $\pdv{x_i}\frac{1}{\abs{x-y}} = \frac{-(x_i-y_i)}{\abs{x-y}^3}$ for $x\neq y$, so that $\pdv{x_i}\frac{-(x_i-y_i)}{\abs{x-y}^3} = \frac{3(x_i-y_i)^2}{\abs{x-y}^5} - \frac{1}{\abs{x-y}^3}$. Then $\Delta_x \frac{1}{\abs{x-y}^2} = \frac{3\sum_i(x_i-y_i)^2}{\abs{x-y}^5} - \frac{3}{\abs{x-y}^3} = \frac{3\abs{x-y}^2}{\abs{x-y}^5} - \frac{3}{\abs{x-y}^3} = 0$ for $x\neq y$.
+        \item[(iii)] %$x\not\in\Omega$ implies $\Delta u(x) = 0$
+        
+        When $x\not\in\overline\Omega$ (so $x\neq y$), $u(x)\in C^\infty(\mathbb R^3\setminus \overline \Omega)$, with $\Delta_xu(x) = \int_\Omega \rho(y)\Delta_x\frac{1}{\abs{x-y}}\dd^3y = \int_\Omega 0\dd^3y = 0.$
+        
+        \item[(iv)] %$x\in \Omega$ implies $\Delta u(x) = -\bigg(\nabla, \int_\Omega \rho(y)\nabla_y\frac{1}{\abs{x-y}}\dd^3y\bigg) = -\int_\Omega \bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y$
+        
+        %$= -\bigg(\int_{\Omega\setminus B_{\varepsilon}(x)}+\int_{B_{\varepsilon}(x)}\bigg)\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y$
+        
+        We have \begin{align*}
+            \Delta u(x) = (\nabla, \nabla)u(x) = (\nabla, \nabla u(x)) &\overset{(1)}{=} \bigg(\nabla, \int_\Omega \rho(y)\nabla_x\frac{1}{\abs{x-y}}\dd^3y\bigg) \\
+            &\overset{(2)}{=} -\bigg(\nabla, \int_\Omega \rho(y)\nabla_y\frac{1}{\abs{x-y}}\dd^3y\bigg) \\
+            &\overset{(3)}{=} -\bigg(\nabla, \bigg(\int_\Omega \rho(y)\pdv{y_i}\frac{1}{\abs{x-y}}\dd^3y\bigg)_{i=1}^3\bigg)\\
+            &\overset{(4)}{=} -\bigg(\nabla, \bigg(-\int_\Omega \pdv{\rho(y)}{y_i}\frac{1}{\abs{x-y}}\dd^3y\bigg)_{i=1}^3\bigg)\\
+            &\overset{(5)}{=} \sum_i \pdv{x_i} \int_\Omega \pdv{\rho(y)}{y_i}\frac{1}{\abs{x-y}}\dd^3y\\
+            &\overset{(6)}{=} -\int_{\Omega}\sum_i \pdv{\rho(y)}{y_i}\pdv{y_i}\frac{1}{\abs{x-y}}\dd^3y\\
+            &\overset{(7)}{=} -\int_{\Omega}\bigg(\nabla_y \rho(y), \nabla_y \frac{1}{\abs{x-y}}\bigg)\dd^3y \\
+            &\overset{(8)}{=} -\bigg(\int_{\Omega\setminus B_{\varepsilon}(x)}+\int_{B_{\varepsilon}(x)}\bigg)\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y,
+        \end{align*} where \begin{enumerate}
+            \item[(1)] uses differentiability of $u(x)$ from earlier,
+            \item[(2)] is $\pdv{x_i}\frac{1}{\abs{x-y}} = \frac{-(x_i-y_i)}{\abs{x-y}^3} = -\pdv{y_i}\frac{1}{\abs{x-y}}$ for all $x\neq y$,
+            \item[(3)] is writing everything out more explicitly,
+            \item[(4)] is integration by parts and seeing that the integral along the boundary vanishes since $\rho(y)$ vanishes along $\partial \Omega$ due to continuity and bounded support in $\Omega$, 
+            \item[(5)] is taking the inner product,
+            \item[(6)] is differentiating under the integral sign via 8.5 in the text, since each $\pdv{\rho(y)}{y_i}$ are bounded (since $\rho(y)\in C^1(\mathbb R^3)$, and also its derivatives have the same bounded support $\Omega$ and are continuous in $\mathbb R^3$); we also use the same identity as in (2),
+            \item[(7)] is rewriting the expression more compactly, and
+            \item[(8)] is by additivity of the integral.
+        \end{enumerate}
+        
+       
+        \item[(v)]%$\lim_{\varepsilon\to 0} \int_{\Omega\setminus B_{\varepsilon}(x)}\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y = 4\pi\rho(x),x\in\Omega$.
+        
+        Fix $\varepsilon>0$. We have from the above equalities that \[\int_{\Omega\setminus B_{\varepsilon}(x)}\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y = \sum_i \int_{\Omega\setminus B_\varepsilon(x)} \pdv{\rho(y)}{y_i}\pdv{y_i}\frac{1}{\abs{x-y}}\dd^3y,\] and with $x\in\Omega$, the function $1/\abs{x-y}$ becomes twice continuously differentiable in $y_i$ on $\Omega\setminus B_\varepsilon(x)$. Now we can integrate by parts again to obtain \[\sum_i \bigg[\oint_{\partial[\Omega\setminus B_\varepsilon(x)]} \rho(y)\pdv{y_i}\frac{1}{\abs{x-y}}\dd \Sigma_i- \int_{\Omega\setminus B_\varepsilon(x)} \rho(y) \pdv[2]{y_i}\frac{1}{\abs{x-y}}\dd^3y\bigg],\] but from a similar computation to (iii) above we have that only the surface integrals survive. In the surface integrals, only the integral along the inward-oriented sphere of radius $\varepsilon$ centered at $x$ (denoted by $-\partial B_\varepsilon(x)$) survives, since $\rho(y)$ vanishes at $\partial \Omega$. With $y=z+ x$ and $\abs{z} = \varepsilon$, obtain \[\sum_i \oint_{-\partial B_\varepsilon(x)} \rho(y)\pdv{y_i}\frac{1}{\abs{x-y}}\dd \Sigma_i = \oint_{-\partial B_\varepsilon(x)}\rho(z+x)\frac{-(z_1+z_2+z_3)}{\varepsilon^3}\dd S.\] Converting to spherical coordinates and flipping the orientation via the extra minus sign in the integrand, we get \[\int_0^\pi\int_0^{2\pi}\rho(\varepsilon\sin\varphi\cos\theta +x_1, \varepsilon\sin\varphi\sin\theta +x_2, \varepsilon\cos\varphi+x_3)(\sin\varphi\cos\theta + \sin\varphi\sin\theta + \cos\varphi)\sin\varphi\dd\theta\dd\varphi,\] and take the limit as $\varepsilon\to 0$. To pass the limit inside use the Lebesgue dominated convergence theorem since the integration region is bounded and $\rho$ is bounded (also trigonometric functions are integrable). Then the integral becomes \[\rho(x)\int_0^\pi\int_0^{2\pi}(\sin\varphi\cos\theta + \sin\varphi\sin\theta + \cos\varphi)\sin\varphi\dd\theta\dd\varphi,\] but this integral is zero ? I did something wrong \sad. It should probably have been $\rho(x)\int_{\abs{z}=1}\dd S,$ which gives $4\pi \rho(x)$ as needed.
+        \item[(vi)] %$\lim_{\varepsilon\to 0} \int_{B_{\varepsilon}(x)}\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y = 0$
+        
+        Fix $\varepsilon>0$. Then by Cauchy-Schwarz and the fact that derivatives of $\rho(y)$ are bounded, \[\abs{\int_{B_{\varepsilon}(x)}\bigg(\nabla_y\rho(y),\nabla_y\frac{1}{\abs{x-y}}\bigg)\dd^3y}\leq \int_{B_{\varepsilon}(x)}\abs{\nabla_y\rho(y)}\abs{\nabla_y\frac{1}{\abs{x-y}}}\dd^3y\leq M^\prime\int_{B_\varepsilon(x)}\frac{1}{\abs{x-y}^2}\dd^3y.\] By the Lebesgue dominated convergence theorem $\lim_{\varepsilon\to 0}\int_{B_\varepsilon(x)}\frac{1}{\abs{x-y}^2}\dd^3y = 0$, since $\frac{1}{\abs{x-y}^2}$ is integrable already (and is a uniform upper bound to $\chi_{B_\varepsilon(x)}\frac{1}{\abs{x-y}^2}$). The result follows.
+    \end{enumerate}
+
+    Finally, as $\rho(x) = 0$ for $x\not\in\Omega$, combining the above results yields $\Delta u(x) = -4\pi\rho(x)$ for all $x$.
     
     \hrulefill
-    \item[9.2]
-    
+    \item[9.2] \begin{enumerate}
+        \item[(i)] The partial derivatives 
+        \[\pdv{k} \frac{\cos(kx)}{1+x^4} = \frac{-x\sin(kx)}{1+x^4}, \quad \pdv[2]{k} \frac{\cos(kx)}{1+x^4} = \frac{-x^2\cos(kx)}{1+x^4}\] are continuous with respect to $k$ for every $x$, and \[\frac{\abs{-x\sin(kx)}}{1+x^4}\leq \frac{\abs{x}}{1+x^4},\quad \frac{\abs{-x^2\cos(kx)}}{1+x^4}\leq \frac{x^2}{1+x^4},\] and both upper bounds are Lebesgue integrable functions, independent of $k$. (Also note that the integrals $\int \frac{\cos(kx)}{1+x^4}\dd x$ and $\int \frac{-x\sin(kx)}{1+x^4}\dd x$ exist for at least one choice of $k$, e.g., $k = 0$.) Then by Theorem 5.2 in the text on differentiability of functions given by integrals, $F\in C^2(\mathbb{R})$.
+        \item[(ii)] Define the sequence of functions \[F_n(k) = \int_{-n}^n \frac{\cos(kx)}{1+x^4}\dd x.\] Since $\frac{\cos(kx)}{1+x^4}$ is integrable for any $k\in \mathbb{R}$, by the Lebesgue dominated convergence theorem $F_n(k)$ converges to $F(k)$. The function $\abs{\pdv[3]{k}\frac{\cos(kx)}{1+x^4}} = \abs{\frac{x^3\sin(kx)}{1+x^4}}$ is Lebesgue integrable on $(-n,n)$ (and not on $\mathbb{R}$ for the same reason as in 3.3(a)), from which it follows by Theorem 5.2 that $F_n$ is thrice continuously differentiable with \[\dv[3]{k} F_n(k) = \int_{-n}^n \pdv[3]{k}\frac{\cos(kx)}{1+x^4}\dd x = \int_{-n}^n \frac{x^3\sin(kx)}{1+x^4} \dd x = 2\int_0^n \frac{x^3\sin(kx)}{1+x^4} \dd x.\] The function $x^3/(1+x^4)$ is positive, monotonically decreasing to zero in $(\sqrt[4]{3},\infty)$, and the function $\sin(kx)$ we saw had integrals over any bounded interval which were bounded by $2/\abs{k}$ (p.122 in the text), independent of the interval, provided $k\neq 0$. By Abel's theorem the sequence of third partial derivatives $F^{\prime\prime\prime}_n(k)$ converges pointwise to some $G(k)$ for $k\neq 0$ (and $G(k) = 2\int_0^\infty \frac{x^3\sin(kx)}{1+x^4} \dd x$).
+        
+        Now let $\abs{k}\geq\delta$ for any fixed $\delta >0$. By Abel's theorem (used in the first inequality below) we have \[\abs{G(k)-F^{\prime\prime\prime}_n(k)} = \abs{2\int_{n}^\infty \frac{x^3\sin(kx)}{1+x^4} \dd x}\leq 2\cdot \frac{2}{\abs{k}}\cdot \frac{n^3}{1+n^4}\leq \frac{4n^3}{\delta(1+n^4)}.\] The above inequality holds for all $\abs{k}>\delta>0$ and all $n$, so take the supremum over $\abs{k}>\delta>0$ and then the limit as $n\to\infty$ in the above inequality to obtain \[\lim_{n\to\infty}\sup_{\abs{k}>\delta>0}\abs{G(k)-F^{\prime\prime\prime}_n(k)} = 0,\] which yields the uniform convergence of $F^{\prime\prime\prime}_n(k)$ to $G(k) = 2\int_0^\infty \frac{x^3\sin(kx)}{1+x^4} \dd x = \int_{-\infty}^\infty \pdv[3]{k}\frac{\cos(kx)}{1+x^4}\dd x$ in the set $\abs{k}>\delta$. Thus by Theorem 1.3, it follows that $F\in C^3(\abs{k}>\delta)$, for any $\delta>0$.
+        \item[(iii)] First, $F(k) = \int_{\mathbb{R}}e^{ikz}/(1+z^4)\dd z$ ($\sin$ is an odd function while $1/(1+x^4)$ is even). Define for $R>2$ the sets $I_R = [-R,R]$, $S_R^+ = \{Re^{it}\mid 0\leq t\leq \pi\}$, and $S_R^- = \{Re^{it}\mid \pi\leq t\leq 2\pi\}$. Let $C_R^+ = S_R^+\cup I_R$ and $C_R^- = S_R^-\cup I_R$, both oriented counterclockwise. There are four simple poles of $f(z) = e^{ikz}/(1+z^4)$ at $e^{i\pi/4}, e^{i3\pi/4}, e^{-i\pi/4}, e^{-i3\pi/4}$ with corresponding residues 
+        \[\res{e^{i\pi/4}} f = \frac{e^{ik\sqrt{2}/2}e^{-k\sqrt{2}/2}}{2\sqrt{2}(-1+i)}, \quad \res{e^{i3\pi/4}} f = \frac{e^{-ik\sqrt{2}/2}e^{-k\sqrt{2}/2}}{2\sqrt{2}(1+i)},\]
+        \[\res{e^{-i\pi/4}} f = \frac{e^{ik\sqrt{2}/2}e^{k\sqrt{2}/2}}{2\sqrt{2}(-1-i)}, \quad \res{e^{-i3\pi/4}} f = \frac{e^{-ik\sqrt{2}/2}e^{k\sqrt{2}/2}}{2\sqrt{2}(1-i)},\] using the usual formula for finding the residues at simple poles. With $f$ absolutely integrable, we may compute $\int_{\mathbb{R}}e^{ikz}/(1+z^4)\dd z$ using any suitable regularization.
+
+        We have for $k>0$, from the residue theorem, that \begin{multline*}
+            \frac{\pi}{\sqrt{2} }e^{-k\frac{\sqrt{2}}{2}}\bigg[\sin(k\sqrt{2}/2) + \cos(k\sqrt{2}/2)\bigg]= 2\pi i (\res{e^{i\pi/4}} f + \res{e^{i3\pi/4}} f)= \lim_{R\to\infty} \int_{C_R^+}\frac{e^{ikz}}{1+z^4}\dd z = \\ \lim_{R\to\infty} \bigg(\int_{-R}^R +\int_{S_R^+}\bigg)\frac{e^{ikz}}{1+z^4}\dd z= \int_{-\infty}^\infty \frac{e^{ikz}}{1+z^4}\dd z,
+        \end{multline*} where the integral over $S_R^+$ vanishes due to the estimate \[\abs{\int_{S_R^+}\frac{e^{ikz}}{1+z^4}\dd z}\overset{(1)}{=} \abs{\int_{0}^\pi\frac{e^{ikRe^{it}}}{1+R^4e^{4it}}iRe^{it}\dd t}\overset{(2)}{\leq} R\int_{0}^\pi\frac{e^{-kR\sin t}}{\abs{{1+R^4e^{4it}}}}\dd t\overset{(3)}{\leq} \frac{n}{n^4-1}\int_0^\pi \dd t= \frac{\pi n}{n^4-1}\to 0\] as $R\to \infty$, where \begin{enumerate}
+            \item[(1)] is parameterization,
+            \item[(2)] is taking the absolute value inside, and
+            \item[(3)] is using $k>0$, $\sin t\geq 0$ for $0\leq t\leq \pi$, and the reverse triangle inequality in the denominator.
+        \end{enumerate} 
+
+        A similar computation (the details are essentially the same with signs reversed in multiple locations which yields similar estimates as above) with the details omitted determines $F(k)$ for $k<0$:
+        \begin{multline*}
+            -\frac{\pi}{\sqrt{2} }e^{k\frac{\sqrt{2}}{2}}\bigg[\sin(-k\sqrt{2}/2) + \cos(-k\sqrt{2}/2)\bigg]= 2\pi i (\res{e^{-i\pi/4}} f + \res{e^{-i3\pi/4}} f)= \lim_{R\to\infty} \int_{C_R^-}\frac{e^{ikz}}{1+z^4}\dd z = \\ \lim_{R\to\infty} \bigg(\int_{R}^{-R} +\int_{S_R^-}\bigg)\frac{e^{ikz}}{1+z^4}\dd z= -\int_{-\infty}^\infty \frac{e^{ikz}}{1+z^4}\dd z,
+        \end{multline*} from which it follows that for $k\neq 0$ we have $F(k) = \frac{\pi}{\sqrt{2} }e^{-\abs{k}\frac{\sqrt{2}}{2}}\bigg[\sin(\abs{k}\sqrt{2}/2) + \cos(\abs{k}\sqrt{2}/2)\bigg]$. For $k = 0$ the equality is still maintained since $F(0) = \int_{-\infty}^\infty 1/(1+x^4)\dd x = \pi/\sqrt{2}$ (may be obtained by computing an easier contour integral or maybe there are fun real-valued tricks; alternatively this is just continuous extension since we know $F$ is at least $C^2(\mathbb{R})$). This expression for $F(k)$ is not thrice differentiable at $k=0$.
+
+        \item[(iv)] We have \[\pdv[3]{k} \frac{\cos(kx)}{1+x^4} = \frac{x^3\sin(kx)}{1+x^4},\] which is not bounded above uniformly by a Lebesgue integrable function; in fact, for $|x|$ large enough, we can bound below by a function which is not Lebesgue integrable (some multiple of $\sin(kx)/kx$), so the hypotheses of Theorem 5.2 are not met. Hence we cannot differentiate $F(k)$ by moving the derivatives inside the integral.
+    \end{enumerate}   
     \hrulefill
 \end{enumerate}
-\vspace*{7em}
-
+Honor Code: \vspace*{7em}
 \end{document}

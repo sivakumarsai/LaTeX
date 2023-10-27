@@ -1,27 +1,28 @@
 \documentclass{amsart}
+\usepackage{mathrsfs}
 \begin{document}
-1. Determine if the below DE is separable. If it is, find all of its solutions. 
-\[\left(\frac{1}{y}\right)\frac{dy}{dx}+\ln\left(\frac{1}{y}\right) = 0\]
+1. Find 
+\[\mathscr{L}^{-1}\left\{\frac{e^{-5s}}{s-2} + \frac{2e^{-5s}}{s^2-2s+5}\right\}, \quad s>1\]
 
-a) $1$
+a) $(e^{2t} + e^{t}\sin(2t))u(t)$
 
-b) $e^{x+C}, 1$
+b) $(e^{2t} + e^{t}\sin(2t))u(t-5)$
 
-c) $e^{e^{x}}, 1, 0$ 
+c) $(e^{2(t-5)} + e^{t-5}\cos(2(t-5)))u(t-5)$
 
-d) $e^{Ce^x}, 1$ % correct
+d) $(e^{5(t+2)} + e^{t+2}\sin(5(t+2)))u(t+2)$
 
-e) The DE is not separable.
+e) $(e^{2(t-5)} + e^{t-5}\sin(2(t-5)))u(t-5)$ % correct
 
-2. Find a particular solution to the IVP $\displaystyle \frac{dy}{dx} = \frac{y^2-9}{x^2+1}$, $y(0)=-9$.
+2. Solve the ODE \[y+ ty^{\prime} = 3\cos(3(t-6))u(t-6).\]
 
-a) $\displaystyle y = \frac{3 (1 + 2e^{6\arctan(x)})}{1 - 2e^{6\arctan(x)}}$ % correct
+a) $\displaystyle \bigg(\frac{\sin(3(t-6))}{t}\bigg)u(t-6)$ % correct
 
-b) $\displaystyle y = \frac{3 (1 + 2e^{6\arctan(x)})}{2e^{6\arctan(x)}-1}$
+b) $\displaystyle \bigg(\frac{\sin(3(t-6))}{t-6}\bigg)u(t-6)$
 
-c) $\displaystyle y = \frac{3 (1 + 2e^{3\arctan(x)})}{1 - 2e^{3\arctan(x)}}$
+c) $\displaystyle \bigg(\frac{\sin(3t)}{t}\bigg)u(t)$
 
-d) $\displaystyle y = \frac{1 + 2e^{6\arctan(x)}}{1 - 2e^{6\arctan(x)}}$
+d) $\displaystyle \bigg(\frac{\cos(3(t+6))}{t}\bigg)u(t-6)$
 
-e) $\displaystyle y = \frac{3 (2 + e^{6\arctan(x)})}{2 - e^{6\arctan(x)}}$
+e) $\displaystyle \bigg(-\frac{\sin(3(t+6))}{t}\bigg)u(t+6)$
 \end{document}
