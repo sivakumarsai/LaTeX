@@ -1,1 +1,160 @@
-peegalicious
+\documentclass[11pt,leqno]{article}
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{fancyhdr}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{quiver}
+\usepackage{hyperref}
+%\hypersetup{colorlinks=true,linkcolor=blue}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+% % permutations (second line is for spacing)
+% \usepackage{permute}
+% \renewcommand*\pmtseparator{\,}
+
+% % colors
+% \usepackage{xcolor}
+% \definecolor{p}{HTML}{FFDDDD}
+% \definecolor{g}{HTML}{D9FFDF}
+% \definecolor{y}{HTML}{FFFFCF}
+% \definecolor{b}{HTML}{D9FFFF}
+% \definecolor{o}{HTML}{FADECB}
+% %\definecolor{}{HTML}{}
+
+% % \highlight[<color>]{<stuff>}
+% \newcommand{\highlight}[2][p]{\mathchoice%
+%   {\colorbox{#1}{$\displaystyle#2$}}%
+%   {\colorbox{#1}{$\textstyle#2$}}%
+%   {\colorbox{#1}{$\scriptstyle#2$}}%
+%   {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Strong Multiplicity One}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% new commands
+\newcommand{\textib}[1]{\textbf{\textit{#1}}}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\newcommand{\smod}[1]{\;(\bmod\; #1)}
+% \DeclareMathOperator{\Span}{span}
+% \DeclareMathOperator{\nullity}{nullity}
+% \DeclareMathOperator\Aut{Aut}
+% \DeclareMathOperator\Inn{Inn}
+% \DeclareMathOperator{\Orb}{Orb}
+% \DeclareMathOperator{\lcm}{lcm}
+% \DeclareMathOperator{\Hol}{Hol}
+% \DeclareMathOperator{\Jac}{Jac}
+% \DeclareMathOperator{\rad}{rad}
+% \DeclareMathOperator{\Tor}{Tor}
+% \DeclareMathOperator{\End}{End}
+% \DeclareMathOperator{\Gal}{Gal}
+% \DeclareMathOperator{\Nat}{Nat}
+% \DeclareMathOperator{\Frac}{Frac}
+% \DeclareMathOperator{\id}{id}
+% \DeclareMathOperator{\im}{im}
+% \DeclareMathOperator{\Hom}{Hom}
+% \DeclareMathOperator{\Ext}{Ext}
+% \DeclareMathOperator{\aug}{aug}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% toc header rename
+\renewcommand{\contentsname}{Outline:}
+
+\begin{document}
+Prove Strong Multiplicity One as it appears in Miyake 4.6.19.
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\newpage\section{Preliminaries} In this section we collect basic definitions and results used to define modular forms, without many proofs? There would be minimal coverage of automorphy.
+\subsection{The modular group and congruence subgroups}
+Let $R$ be a unital ring. The \textib{general linear group} $\GL_n(R)$ is the group of $n\times n$ invertible matrices with entries from $R$; that is, matrices with unit determinant, under matrix multiplication. The \textib{special linear group} $\SL_n(R)$ is the subgroup of $\GL_n(R)$ whose matrices have determinant $1_R$.
+
+The \textib{modular group} $\SL_2(\mathbb{Z})$ is the group of $2\times 2$ integer-valued matrices with determinant $1$, and is a subgroup of $\GL_2(\mathbb{R})$. It is well known that 
+\begin{equation}\label{eq: generators modular group}
+    \SL_2(\mathbb{Z}) = \left\langle\begin{pmatrix}
+        1 & 1 \\ 0 & 1
+    \end{pmatrix}, \begin{pmatrix}
+        0 & -1 \\ 1 & 0
+    \end{pmatrix}\right\rangle, 
+\end{equation}
+and that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}} = \mathbb{C}\cup \{\infty\}$ by fractional linear transformations
+\[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}(z) = \frac{az + b}{cz + d}.\] In this way it is also clear that these fractional linear transformations are automorphisms, for example \[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}^{-1}\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}(z) = \begin{pmatrix}
+    d & -b \\ -c & a
+\end{pmatrix}\bigg(\frac{az+b}{cz+d}\bigg) = \frac{\frac{d(az+b)}{cz+d}- b}{\frac{-c(az+b)}{cz+d}+a} = \frac{(ad-bc)z}{ad-bc} = z.\] For $c\neq 0$, $-d/c$ is sent to $\infty$ and $\infty$ is sent to $a/c$; if $c = 0$ then $\infty$ is sent to $\infty$. Both $I$ and $-I$ act as the identity on $\widehat{\mathbb{C}}$, so for any $A\in \SL_2(\mathbb{Z})$, the action of $A$ and $-A$ are the same. The generators in \cref{eq: generators modular group} correspond to the maps
+\[z\mapsto z+1\quad\text{and}\quad z\mapsto -1/z.\]
+We consider particular subgroups of the modular group. For $N$ a positive integer, the \textib{principal congruence subgroup of level $N$} is the subgroup
+\[\Gamma(N) = \cbr{\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\in \SL_2(\mathbb{Z})\colon \begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\equiv \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+\end{pmatrix}\smod N}\]
+with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. This natural homomorphism is also surjective since a matrix \[\overline \gamma = \begin{pmatrix}
+    \overline a & \overline b \\ \overline c & \overline d
+\end{pmatrix}\] with determinant $\overline 1$ has preimage \[\gamma = \begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\] under the natural homomorphism, and it is a routine computation to see that $\det\gamma =1$.
+\subsection{Modular curves}
+\subsection{Elliptic points and cusps}
+
+\newpage\section{Modular forms}
+\subsection{Basic definitions}
+\subsection{Dimension formulas}
+\subsection{Eisenstein series}
+\subsection{Dirichlet characters and $L$-functions}
+
+\newpage\section{Hecke operators}
+\subsection{Double coset operators}
+\subsection{Hecke operators $\abr{n}$ and $T_n$}
+\subsection{The Petersson inner product, adjoints of Hecke operators}
+\subsection{Oldforms, newforms, and primitive forms}
+
+\newpage\section{Strong Multiplicity One}
+\subsection{Main result and relevant corollaries}
+\subsection{applications!}
+
+\newpage\section{unknown!}
+
+\end{document}
