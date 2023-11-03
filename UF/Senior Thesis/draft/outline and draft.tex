@@ -1,4 +1,4 @@
-\documentclass[11pt,leqno]{article}
+\documentclass[10pt,leqno]{article}
 
 % packages
 \usepackage{physics}
@@ -131,11 +131,31 @@ We consider particular subgroups of the modular group. For $N$ a positive intege
 \end{pmatrix}\equiv \begin{pmatrix}
     1 & 0 \\ 0 & 1
 \end{pmatrix}\smod N}\]
-with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. This natural homomorphism is also surjective since a matrix \[\overline \gamma = \begin{pmatrix}
-    \overline a & \overline b \\ \overline c & \overline d
-\end{pmatrix}\] with determinant $\overline 1$ has preimage \[\gamma = \begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\] under the natural homomorphism, and it is a routine computation to see that $\det\gamma =1$. 
+with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. This natural homomorphism is surjective: 
+\begin{proof}
+    When $N = 1$, the natural homomorphism is the zero map. Let $N>1$, and consider an element \[\begin{pmatrix}
+        \overline a & \overline b \\ \overline c & \overline d
+    \end{pmatrix}\in \SL_2(\mathbb{Z}/N\mathbb{Z}),\] so that $\overline{ad-bc} = \overline 1$ (here $\overline{\,\cdot\,}$ denotes passage from $\mathbb{Z}$ to $\mathbb{Z}/N\mathbb{Z}$). Then for some integer $k$, $ad-bc = 1+kN$. It follows that $1+kN$ is a multiple of $g = \gcd(c,d)$, so that $\gcd(g,N)=1$ and $\gcd(c,d,N)=1$. We show that there exist integers $i,j$ such that $c+iN$ and $d+jN$ are coprime.
+    
+    Suppose there is no choice of $i,j$ such that $c+iN$ and $d+jN$ are coprime, so that for fixed $i$, $\gcd(c+iN,d+jN)>1$ for every $j$. By Dirichlet's theorem on arithmetic progressions, the sequence $(d+mN)$ contains infinitely many primes, which yields a contradiction.
+    
+    Alternatively, if $c\neq 0$, consider a solution $j$ to the system of congruences 
+    \[\begin{cases}
+        j\equiv 1\smod{p} & p\mid g\\
+        j\equiv 0\smod{p} & p\nmid g, p\mid c,
+    \end{cases}\] which may be obtained via the Chinese remainder theorem. Then $\gcd(c,d+jN) = 1$ since any prime $p$ dividing $c$ will not divide $d+jN$ with $j$ chosen as above [of primes $p$ dividing $c$, when $p\mid g$, still $p\nmid N$, and when $p\nmid g$, still $p\nmid d$]. If $c = 0$, then $d\neq 0$ and repeat this argument with $d,i$ in place of $c,j$ respectively.
+
+    With integers $c+iN$ and $d+jN$ coprime, there exist integers $s,t$ with $s(c+iN) + t(d+jN) = 1$. Then \begin{multline*}
+        \det\begin{pmatrix}
+            a-(k+aj-bi)tN & b+(k+aj-bi)sN \\ c+iN & d+jN
+        \end{pmatrix} = ad+ajN-(k+aj-bi)tN(d+jN)\\-bc-biN-(k+aj-bi)sN(c+iN) = 1+kN+ajN-biN-(k+aj-bi)N = 1
+    \end{multline*} and 
+    \[\begin{pmatrix}
+        \overline{a-(k+aj-bi)tN} & \overline{b+(k+aj-bi)sN} \\ \overline{c+iN} & \overline{d+jN}
+    \end{pmatrix} = \begin{pmatrix}
+        \overline a & \overline b \\ \overline c & \overline d
+    \end{pmatrix}\] as needed.
+\end{proof}
 \subsection{Modular curves}
 \subsection{Elliptic points and cusps}
 
