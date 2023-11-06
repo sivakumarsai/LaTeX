@@ -64,6 +64,7 @@
 
 % new commands
 \newcommand{\textib}[1]{\textbf{\textit{#1}}}
+\DeclareMathOperator{\Mat}{M}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
 \newcommand{\smod}[1]{\;(\bmod\; #1)}
@@ -131,7 +132,7 @@ We consider particular subgroups of the modular group. For $N$ a positive intege
 \end{pmatrix}\equiv \begin{pmatrix}
     1 & 0 \\ 0 & 1
 \end{pmatrix}\smod N}\]
-with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. This natural homomorphism is surjective: 
+with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. The natural homomorphism is surjective.
 \begin{proof}
     When $N = 1$, the natural homomorphism is the zero map. Let $N>1$, and consider an element \[\begin{pmatrix}
         \overline a & \overline b \\ \overline c & \overline d
@@ -156,7 +157,34 @@ with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note
         \overline a & \overline b \\ \overline c & \overline d
     \end{pmatrix}\] as needed.
 \end{proof}
-Therefore, $\SL_2(\mathbb{Z})/\Gamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The index of $\Gamma(N)$ in $\SL_2(\mathbb{Z})$ is $[\SL_2(\mathbb{Z})\colon \Gamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$. To see this, 
+Therefore, $\SL_2(\mathbb{Z})/\Gamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The index of $\Gamma(N)$ in $\SL_2(\mathbb{Z})$ is $[\SL_2(\mathbb{Z})\colon \Gamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$.
+\begin{proof}
+    We first show that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for a prime $p$ by induction on $e$.
+
+    The determinant is a surjective homomorphism from $\GL_2(\mathbb{Z}/p\mathbb{Z})$ to $(\mathbb{Z}/p\mathbb{Z})^\times\cong \mathbb{Z}/(p-1)\mathbb{Z}$ with kernel $\SL_2(\mathbb{Z}/p\mathbb{Z})$. Observe that $\abs{\GL_2(\mathbb{Z}/p\mathbb{Z})}$ is the number of ordered bases of $(\mathbb{Z}/p\mathbb{Z})^2$, given by $(p^2-1)(p^2-p)$. [The first factor counts the number of valid first basis vectors, and the second factor counts the number of valid second basis vectors after choosing a first basis vector.] Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p\mathbb{Z})} = (p^2-1)(p^2-p)/(p-1) = p(p^2-1) = p^3(1-1/p^2)$.
+    
+    Suppose that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for some $e$. From the previous result, we have that the natural homomorphisms $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ and $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ are surjective. Composing the map $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ with the natural homomorphism $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ yields the commutative diagram \[\begin{tikzcd}
+        {\SL_2(\mathbb{Z})} & {\SL_2(\mathbb{Z}/p^e\mathbb{Z})} \\
+        {\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})}
+        \arrow[from=2-1, to=1-2]
+        \arrow[two heads, from=1-1, to=2-1]
+        \arrow[two heads, from=1-1, to=1-2]
+    \end{tikzcd}\] from which we find that the map $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective.
+
+    We deduce $\ker(\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z}))$ directly. If \[\begin{pmatrix}
+        \overline a & \overline b \\ \overline c & \overline d
+    \end{pmatrix}\mapsto \begin{pmatrix}
+        \overline 1 & \overline 0 \\ \overline 0 & \overline 1
+    \end{pmatrix},\] then all possible preimages of \[\begin{pmatrix}
+        \overline 1 & \overline 0 \\ \overline 0 & \overline 1
+    \end{pmatrix}\] are of the form \[\begin{pmatrix}
+        \overline{1+ip^e} & \overline{rp^e} \\ \overline{sp^e} & \overline{1+jp^e}
+    \end{pmatrix},\] for $i,j,r,s\in \{0,\dots,p-1\}$. Of these preimages, only $p^3$ many are elements of $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$. [We may take any $r,s$ in the above range, but we require $i=-j$.] Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})} = p^3\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^3p^{3e}(1-1/p^2) = p^{3(e+1)}(1-1/p^2)$ as needed. By induction, $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for any $e$.
+
+    There is an isomorphism of matrix groups $\Mat_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\Mat_2(R_i)$ for rings $R_i$ which restricts to the isomorphisms $\GL_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\GL_2(R_i)$ and $\SL_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\SL_2(R_i)$ since $(\prod_{i=1}^nR_i)^\times\cong \prod_{i=1}^nR_i^\times$ and $1_{\prod_{i=1}^nR_i} = \prod_{i=1}^n1_{R_i}$.
+
+    Let $N$ have prime factorization $N = \prod_{p\mid N} p^{e}$ so that by the Chinese remainder theorem, $\mathbb{Z}/N\mathbb{Z}\cong \prod_{p\mid N}\mathbb{Z}/p^{e}\mathbb{Z}$. It follows that $\SL_2(\mathbb{Z}/N\mathbb{Z})\cong \prod_{p\mid N}\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})$, from which we have \[\abs{\SL_2(\mathbb{Z}/N\mathbb{Z})}= \prod_{p\mid N}\abs{\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})} = \prod_{p\mid N}p^{3e}(1-1/p^2) = N^3\prod_{p\mid N}(1-1/p^2)\] as desired.
+\end{proof}
 
 A subgroup $\Gamma$ of $\SL_2(\mathbb{Z})$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\Gamma(N)\subseteq \Gamma$. 
 
