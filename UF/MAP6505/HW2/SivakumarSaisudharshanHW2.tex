@@ -38,6 +38,7 @@
 \newcommand{\br}[1]{\left(#1\right)}
 \newcommand{\sbr}[1]{\left[#1\right]}
 \newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -64,11 +65,38 @@
 \begin{document}
 
 \begin{enumerate}
-    \item[13.2] 
+    \item[13.2] Consider the sequence of functions $f_n\colon\mathbb{R}^3\to\mathbb{R}$ defined by \[f_n(x) = \begin{cases}
+        c_{1/n}\exp(-\frac{1/n^2}{1/n^2- (\abs{x}-a)^2}) & \abs{\abs{x}-a}<1/n\\
+        0 & \abs{\abs{x}-a}\geq 1/n,
+    \end{cases}\] where $c_{1/n}$ is a normalization constant given by $c_{1/n} = n/2c_1$, with $c_1 = \int_0^1\exp(-1/(1-u^2))\dd{u}$. In other words, $f_n(x)$ is equal to the hat function $\omega_{1/n}(\abs{x}-a)$, which is evidently locally integrable for all $n$ (the $f_n$ are continuous). Then for any test function $\varphi\in \mathcal{D}(\mathbb{R}^3)$ and $n$ such that $1/n<a$,
+    \begin{align*}
+        \lim_{n\to\infty} (f_n,\varphi) &\eq{1} \lim_{n\to\infty}\int_{\mathbb{R}^3}\omega_{1/n}(\abs{x}-a)\varphi(x)\dd[3]x\\
+        &\eq{2} \lim_{n\to\infty}\int_{\abs{r-a}<1/n}\omega_{1/n}(r-a)\int_0^{2\pi}\int_0^\pi\varphi(x(r,\phi,\theta))\sin(\phi)r^2 \dd\phi \dd\theta \dd r\\
+        &\eq{3} \lim_{n\to\infty}\int_{\abs{u}<1/n}n\omega_{1}(nu)\int_0^{2\pi}\int_0^\pi\varphi(x(u+a,\phi,\theta))\sin(\phi)(u+a)^2 \dd\phi \dd\theta \dd u\\
+        &\eq{4} \lim_{n\to\infty}\int_{\abs{z}<1}\omega_{1}(z)\int_0^{2\pi}\int_0^\pi\varphi(x(z/n+a,\phi,\theta))\sin(\phi)(z/n+a)^2 \dd\phi \dd\theta \dd z\\
+        &\eq{5} a^2\int_0^{2\pi}\int_0^\pi\varphi(x(a,\phi,\theta))\sin(\phi) \dd\phi \dd\theta\\
+        &\eq{6} \int_{\abs{x}=a}\varphi(x)\dd{S},
+    \end{align*}where \begin{enumerate}
+        \item[(1)] is by definition,
+        \item[(2)] is converting to spherical coordinates, applying the support of the hat function, using Fubini's theorem,
+        \item[(3)] is the change of coordinates $u = r-a$ followed by applying the property of $\omega_\alpha(x) = \omega_1(x/\alpha)/\alpha$ of our hat function,
+        \item[(4)] is the change of coordinates $u = z/n$,
+        \item[(5)] is by the Lebesgue dominated convergence theorem (on the bounded set we are integrating over, $\varphi$ is continuous hence bounded, and $\abs{z/n+a}\leq 1+a$), and
+        \item[(6)] is by definition.
+    \end{enumerate} Hence $f_n(x)$ converges to $\delta_{S_a}$.
 
     \hrulefill
 
-    \item[13.4](v)
+    \item[13.4](v) \textbf{WHAT} Indeed, for each $t>0$, the functions $t^ne^{itx}\theta(x)$ are locally integrable and hence define regular distributions. For any test function $\varphi\in \mathcal{D}(\mathbb{R})$ and $t$ such that $t>1$, \begin{align*}
+        \lim_{t\to\infty}(t^ne^{itx}\theta(x),\varphi(x)) &\eq{1} \lim_{t\to\infty}\int_0^\infty (-i)^n\biggl(\dv{x}\biggr)^ne^{itx} \varphi(x)\dd{x}\\
+        &\eq{2} \lim_{t\to\infty}(-i)^n\Bigg[\sum_{i=0}^{n-1}(-1)^i\biggl(\dv{x}\biggr)^{n-1-i}e^{itx}\varphi^{(i)}(x)\bigg|_0^\infty + (-1)^n\frac{e^{itx}}{it}\varphi^{(n)}(x)\bigg|_0^\infty \\&\hspace{7em} + (-1)^{n+1}\int_0^\infty \frac{e^{itx}}{it}\varphi^{(n+1)}(x)\dd{x}\Bigg]\\
+        &\eq{3} \lim_{t\to\infty}(-i)^n\Bigg[(-1)^{n}\varphi^{(n-1)}(0) + (-1)^{n+1}\frac{1}{it}\varphi^{(n)}(0) \\&\hspace{7em} + (-1)^{n+1}\int_0^R \frac{e^{itx}}{it}\varphi^{(n+1)}(x)\dd{x}\Bigg]\\
+        &\eq{4} i^n\varphi^{(n-1)}(0)
+    \end{align*} where \begin{enumerate}
+        \item[(1)] is by definition, $\theta(x)$ gives the bounds of integration, and since \[\biggl(\dv{x}\biggr)^ne^{itx} = (it)^ne^{itx},\]
+        \item[(2)] is integration by parts, 
+        \item[(3)] is by evaluating the boundary terms: use the fact that $\varphi$ and its derivatives all have bounded support to find that all but the $n-1$ term in the sum survive, and  
+    \end{enumerate}
 
     \hrulefill
 
