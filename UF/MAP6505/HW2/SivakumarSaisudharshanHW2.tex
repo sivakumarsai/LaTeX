@@ -26,7 +26,7 @@
 \fancyhead[L]{MAP6505}
 \fancyhead[C]{HW2}
 \fancyhead[R]{Sai Sivakumar}
-\fancyfoot[R]{\thepage/??}
+\fancyfoot[R]{\thepage/11}
 \renewcommand{\headrulewidth}{1pt}
 
 % paragraph indentation/spacing
@@ -102,7 +102,7 @@
 
     \hrulefill
 
-    \item[14.7] The largest open set $O_f$ on which $f$ vanishes is given by the complement of the closed cone \[C = \cbr{(x,t)\in\mathbb{R}^3\colon t = \abs{x}/c}.\] The cone $C$ is parameterized by $(x,t) = (cr\cos(\theta),cr\sin(\theta),r)$ for $(r,\theta)\in [0,\infty)\times[0,2\pi]$ with Jacobian $cr\sqrt{c^2+1}$ only vanishing at one point, $r = 0$ (the cone is not smooth at its cone point, which is measure zero). For any test function $\varphi\in \mathcal{D}(\mathbb{R}^3)$, we have that \begin{align*}
+    \item[14.7] The largest open set $O_f$ on which $f$ vanishes is given by the complement of the closed cone \[C = \cbr{(x,t)\in\mathbb{R}^3\colon t = \abs{x}/c, t\geq 0}.\] The cone $C$ is parameterized by $(x,t) = (cr\cos(\theta),cr\sin(\theta),r)$ for $(r,\theta)\in [0,\infty)\times[0,2\pi]$ with Jacobian $cr\sqrt{c^2+1}$ only vanishing at one point, $r = 0$ (the cone is not smooth at its cone point, which is measure zero). For any test function $\varphi\in \mathcal{D}(\mathbb{R}^3)$, we have that \begin{align*}
         (f,\varphi) &\eq{1} \int_0^\infty\int_{\abs{x} = ct}\varphi(x,t)\dd S \dd t \\
         &\eq{2} \int_0^\infty \int_0^{2\pi}\varphi(ct\cos(\theta), ct\sin(\theta), t) \frac{ct\sqrt{c^2+1}}{\sqrt{c^2+1}}\dd\theta\dd t \\
         &\eq{3} \frac{1}{\sqrt{c^2+1}}\int_{C\cap \supp\varphi}\varphi(x,t)\dd S,
@@ -212,14 +212,19 @@
         &\eq{3} -\lim_{a\to 0^+}\int_{B_R\cap\Omega_a}f(x)\nabla\varphi(x)\dd[n]x -\lim_{a\to 0^+}\int_{B_R\cap\Omega^\prime_a}f(x)\nabla\varphi(x)\dd[n]x\\
         &\eq{4} -\lim_{a\to 0^+}\int_{\partial (B_R\cap \Omega_a)}n_xf(x)\varphi(x)\dd S_x + \int_{B_R\cap\overline\Omega}\cbr{\nabla f(x)}\varphi(x)\dd[N]x\\
         &\hspace{5em} -\lim_{a\to 0^+}\int_{\partial (B_R\cap \Omega^\prime_a)}n_xf(x)\varphi(x)\dd S_x + \int_{B_R\cap\overline{\Omega^\prime}}\cbr{\nabla f(x)}\varphi(x)\dd[N]x\\
-        &\eq{5} \int_{B_R}\cbr{\nabla f(x)}\varphi(x)\dd[N]x - \int_{\partial\Omega\cap B_R} \Big(\lim_{y\to x}f(y)\Big)n_x\varphi(x)\dd[N]x + \int_{\partial\Omega\cap B_R} \Big(\lim_{z\to x}f(y)\Big)n_x\varphi(x)\dd[N]x\int
+        &\eq{5} \int_{B_R}\cbr{\nabla f(x)}\varphi(x)\dd[N]x - \int_{\partial\Omega\cap B_R} \Big(\lim_{\substack{y\to x\\ y\in\Omega}}f(z)\Big)n_x\varphi(x)\dd[N]x + \int_{\partial\Omega\cap B_R} \Big(\lim_{\substack{z\to x\\ z\in\Omega^\prime}}f(y)\Big)n_x\varphi(x)\dd[N]x\\
+        &\eq{6} \big(\cbr{\nabla f},\varphi\big) - \int_{\partial\Omega\cap B_R} n_x[f]_{\partial\Omega}(x) \varphi(x)\dd[N]x\\
+        &\eq{7} \big(\cbr{\nabla f},\varphi\big) - \big(n_x[f]_{\partial\Omega}\delta_{\partial\Omega},\varphi\big)
     \end{align*} where \begin{enumerate}
         \item[(1)] is by definition of distributional derivatives,
         \item[(2)] is since $f$ defines a regular distribution,
         \item[(3)] holds since $f\nabla\varphi$ is locally integrable,
         \item[(4)] is by integration by parts and using the fact that $\cbr{\nabla f}$ is locally integrable to take limits in the non-surface integrals,
         \item[(5)] is by additivity of the integral and using the Lebesgue dominated convergence theorem to pass limits inside for the surface integrals since $f\varphi$ has continuous extension to $\partial\Omega$ from within $\Omega$ and $\Omega^\prime$, noting that one is oriented outwards while the other is oriented inwards, and using the fact that $\varphi$ vanishes at the boundary of $B_R$ to simplify the region of integration,
+        \item[(6)] is by additivity, definition of the jump discontinuity of $f$, the fact that $\cbr{\nabla f}$ is locally integrable and hence defines a regular distribution, and 
+        \item[(7)] is by definition of the surface delta distribution (by the definition in the text, we require $n_x[f]_{\partial \Omega}(x)$ to be continuous, which is true since $[f]_{\partial \Omega}(x)$ is continuous by hypothesis).
     \end{enumerate}
+    Hence the distributional equality $\nabla f = \cbr{\nabla f} - n_x[f]_{\partial\Omega}\delta_{\partial\Omega}$ holds. By inspecting components of the vectors in this equality, the distributional equality $\pdv{x_j}f = \cbr{\pdv{x_j}f}-(n_x)_j[f]_{\partial\Omega}\delta_{\partial\Omega}$ holds for each $j$.
 
 
     \hrulefill
@@ -237,7 +242,17 @@
 
     \hrulefill
 
-    \item[19.1](ii) 
+    \item[19.1](ii) The transformation $T(x) = x^2-x_0^2$ is smooth but not one-to-one, but give diffeomorphisms of the sets $(-\infty,0),(0,\infty)$ with $(-x_0^2,\infty)$ each. Inverses for each are given by taking the respective sign in $\pm\sqrt{y+x_0^2}$, with nonvanishing derivatives $\pm (y+x_0^2)^{-1/2}/2$. Let $\varphi\in\mathcal{D}(\mathbb{R})$ be any test function, and $\eta(y)$ a unit bump function which has support in $(-x_0^2,\infty)$. Then we have that $(\delta(T(x)),\varphi(x)) = (\delta(y),\varphi_T(y)) = \varphi_T(0)$, where \[\varphi_T(y) = 2\eta(y)\bigg[\sqrt{y+x_0^2}\varphi\Big(\sqrt{y+x_0^2}\Big) -\sqrt{y+x_0^2} \varphi\Big(-\sqrt{y+x_0^2}\Big)\bigg].\] Hence $\varphi_T(0) = 2x_0\varphi(x_0) - 2x_0\varphi(-x_0)$, from which it follows that $\delta(x^2-x_0^2) = 2x_0\delta(x-x_0) - 2x_0\delta(x+x_0)$.
+    
+    The singular support of $\delta(x^2-x_0^2)$ are the two points $\pm x_0$, and the singular support of $\mathcal{P}\frac{1}{\abs{x}}$ is the origin. Let $\Omega_1 = (-3x_0/4,3x_0/4)$ and let $\Omega_2 = (-\infty,-x_0/4)\cup (x_0/4,\infty)$ so that $\mathbb{R} = \Omega_1\cup\Omega_2$ (locally finite cover). The restriction of the distribution $\delta(x^2-x_0^2)$ to $\Omega_1$ is zero, and restriction $\mathcal{P}\frac{1}{\abs{x}}$ to $\Omega_2$ yields the regular distribution given by $\frac{1}{\abs{x}}\in C^\infty(\Omega_2)$.
+
+    Then on $\Omega_1$, the product $\mathcal{P}\frac{1}{\abs{x}}\delta(x^2-x_0^2)$ is zero since the distribution there is $0\mathcal{P}\frac{1}{\abs{x}}$, which acts as zero on test functions. On $\Omega_2$, the product $\mathcal{P}\frac{1}{\abs{x}}\delta(x^2-x_0^2)$ is given by $\frac{1}{\abs{x}}\delta(x^2-x_0^2) = \frac{1}{\abs{x}}\big[2x_0\delta(x-x_0) - 2x_0\delta(x+x_0)\big] = 2\delta(x-x_0)-2\delta(x+x_0)$ [on test functions, multiply by $\frac{1}{\abs{x}}$ and apply linearity of evaluating distributions and reverse the multiplication by the smooth function $\frac{1}{\abs{x}}$ and use the identity $a(x)\delta(x-x_0) = a(x_0)\delta(x-x_0)$ to obtain the last equality]. These products evidently agree on the intersection $\Omega_1\cap\Omega_2$. 
+
+    Let $\varphi\in\mathcal{D}(\mathbb{R})$ be any test function, and let $K =\supp\varphi$. Take any partition of unity $\psi_j\in\mathcal{D}(\Omega_j)$ for $j =1,2$ such that $\psi_1(x) +\psi_2(x) = 1$ for $x\in K$. By the localization method, \begin{align*}
+        \bigg(\mathcal{P}\frac{1}{\abs{x}}\delta(x^2-x_0^2),\varphi(x)\bigg) &= \bigg(\mathcal{P}\frac{1}{\abs{x}},0\psi_1(x)\varphi(x)\bigg) + \bigg(2x_0\delta(x-x_0) - 2x_0\delta(x+x_0),\frac{1}{\abs{x}}\psi_2(x)\varphi(x)\bigg)\\
+        &= 0 + 2\psi_2(x_0)\varphi(x_0) - 2\psi_2(-x_0)\varphi(-x_0)\\
+        &\eq{\smiley} \big(2\delta(x-x_0)-2\delta(x+x_0),\varphi(x)\big)
+    \end{align*} where in (\smiley) we used the fact that $\psi(\pm x_0) = 1$ when $K\cap \Omega_2$ is nonempty, since $\pm x_0$ only belong to $\Omega_2$ [when $K\cap \Omega_2$ is empty, $\psi_2(\pm x_0)$ need not be $1$, but in this case there is no problem since $\varphi(\pm x_0) = 0$]. Hence $\mathcal{P}\frac{1}{\abs{x}}\delta(x^2-x_0^2) = 2\delta(x-x_0)-2\delta(x+x_0)$.
 
     \hrulefill
 
