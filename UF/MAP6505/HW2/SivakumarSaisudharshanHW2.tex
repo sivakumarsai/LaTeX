@@ -57,6 +57,7 @@
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 
 % set page count index to begin from 1
@@ -77,7 +78,7 @@
         &\eq{5} a^2\int_0^{2\pi}\int_0^\pi\varphi(x(a,\phi,\theta))\sin(\phi) \dd\phi \dd\theta\\
         &\eq{6} \int_{\abs{x}=a}\varphi(x)\dd{S},
     \end{align*}where \begin{enumerate}
-        \item[(1)] is by definition,
+        \item[(1)] is by definition and the $f_n$ define regular distributions,
         \item[(2)] is converting to spherical coordinates, applying the support of the hat function, using Fubini's theorem,
         \item[(3)] is the change of coordinates $u = r-a$ followed by applying the property of $\omega_\alpha(x) = \omega_1(x/\alpha)/\alpha$ of our hat function,
         \item[(4)] is the change of coordinates $u = z/n$,
@@ -87,56 +88,184 @@
 
     \hrulefill
 
-    \item[13.4](v) \textbf{WHAT} Indeed, for each $t>0$, the functions $t^ne^{itx}\theta(x)$ are locally integrable and hence define regular distributions. For any test function $\varphi\in \mathcal{D}(\mathbb{R})$ and $t$ such that $t>1$, \begin{align*}
-        \lim_{t\to\infty}(t^ne^{itx}\theta(x),\varphi(x)) &\eq{1} \lim_{t\to\infty}\int_0^\infty (-i)^n\biggl(\dv{x}\biggr)^ne^{itx} \varphi(x)\dd{x}\\
-        &\eq{2} \lim_{t\to\infty}(-i)^n\Bigg[\sum_{i=0}^{n-1}(-1)^i\biggl(\dv{x}\biggr)^{n-1-i}e^{itx}\varphi^{(i)}(x)\bigg|_0^\infty + (-1)^n\frac{e^{itx}}{it}\varphi^{(n)}(x)\bigg|_0^\infty \\&\hspace{7em} + (-1)^{n+1}\int_0^\infty \frac{e^{itx}}{it}\varphi^{(n+1)}(x)\dd{x}\Bigg]\\
-        &\eq{3} \lim_{t\to\infty}(-i)^n\Bigg[(-1)^{n}\varphi^{(n-1)}(0) + (-1)^{n+1}\frac{1}{it}\varphi^{(n)}(0) \\&\hspace{7em} + (-1)^{n+1}\int_0^R \frac{e^{itx}}{it}\varphi^{(n+1)}(x)\dd{x}\Bigg]\\
-        &\eq{4} i^n\varphi^{(n-1)}(0)
+    \item[13.4](v) 
+    Indeed, for each $t>0$, the functions $t^ne^{itx}\theta(x)$ are locally integrable and hence define regular distributions.
+    Let $\varphi(x) = e^x\eta_{\varepsilon}(x)$ for some $\varepsilon>0$, so that $\varphi\in\mathcal{D}(\mathbb{R})$. Then at the origin, all derivatives of $\varphi$ are $1$. [Indeed, we have $(\dv{x})^n(e^x\eta_\varepsilon(x))\big|_{x=0} = \sum_{k=0}^n\binom{n}{k}e^x\eta_\varepsilon^{(n-k)}(x)\big|_{x=0} = e^0\eta_\varepsilon(0) = 1$.] Then \begin{align*}
+        \lim_{t\to\infty}(t^ne^{itx}\theta(x),\varphi(x)) &\eq{1} \lim_{t\to\infty}\int_0^{3\varepsilon} (-i)^n\biggl(\dv{x}\biggr)^ne^{itx} \varphi(x)\dd{x}\\
+        &\eq{2} \lim_{t\to\infty}(-i)^n\Bigg[\sum_{k=0}^{n-1}(-1)^k\biggl(\dv{x}\biggr)^{n-1-k}e^{itx}\varphi^{(k)}(x)\Big|_0^{3\varepsilon} + (-1)^n\frac{e^{itx}}{it}\varphi^{(n)}(x)\Big|_0^{3\varepsilon} \\&\hspace{7em} + (-1)^{n+1}\int_0^{3\varepsilon} \frac{e^{itx}}{it}\varphi^{(n+1)}(x)\dd{x}\Bigg] \\
+        &\eq{3} \lim_{t\to\infty}(-i)^n\Bigg[\sum_{k=0}^{n-1}(-1)^k(it)^{n-1-k} + \frac{(-1)^n}{it} \\&\hspace{7em} + \frac{(-1)^{n+1}}{it}\int_0^{3\varepsilon} e^{itx}\varphi^{(n+1)}(x)\dd{x}\Bigg]\\
     \end{align*} where \begin{enumerate}
-        \item[(1)] is by definition, $\theta(x)$ gives the bounds of integration, and since \[\biggl(\dv{x}\biggr)^ne^{itx} = (it)^ne^{itx},\]
-        \item[(2)] is integration by parts, 
-        \item[(3)] is by evaluating the boundary terms: use the fact that $\varphi$ and its derivatives all have bounded support to find that all but the $n-1$ term in the sum survive, and  
+        \item[(1)] is by definition, $\theta(x)$ and $\varphi$ give the bounds of integration, and \[\biggl(\dv{x}\biggr)^ne^{itx} = (it)^ne^{itx},\]
+        \item[(2)] is integration by parts,
+        \item[(3)] holds since $\varphi$ and all of its derivatives vanish at $3\varepsilon$.
+    \end{enumerate} If $n\geq 2$, then the expression in (3) above is $O(t) + O(1/t)$, from which it follows that $\lim_{t\to\infty}(t^ne^{itx}\theta(x),\varphi(x))$ does not exist, so for $n\geq 2$ the distributional limit $\lim_{t\to\infty}t^ne^{itx}\theta(x)$ does not exist. But for $n=1$, the limit will exist. Repeat steps (1) and (2) with $n = 1$ and any $\varphi\in \mathcal{D}(\mathbb{R})$ (replacing $3\varepsilon$ by large enough $R$) and find that the expression becomes \[-i\lim_{t\to\infty}\Bigg[\varphi(0) -\frac{1}{it}\varphi^\prime(0) + \frac{1}{it}\int_0^{R} e^{itx}\varphi^{\prime\prime}(x)\dd{x}\Bigg] = -i\varphi(0) = (-i\delta(x),\varphi(x)).\] Hence for $n = 1$, $\lim_{t\to\infty}t^ne^{itx}\theta(x) = -i\delta(x)$.
+
+    \hrulefill
+
+    \item[14.7] The largest open set $O_f$ on which $f$ vanishes is given by the complement of the closed cone \[C = \cbr{(x,t)\in\mathbb{R}^3\colon t = \abs{x}/c}.\] The cone $C$ is parameterized by $(x,t) = (cr\cos(\theta),cr\sin(\theta),r)$ for $(r,\theta)\in [0,\infty)\times[0,2\pi]$ with Jacobian $cr\sqrt{c^2+1}$ only vanishing at one point, $r = 0$ (the cone is not smooth at its cone point, which is measure zero). For any test function $\varphi\in \mathcal{D}(\mathbb{R}^3)$, we have that \begin{align*}
+        (f,\varphi) &\eq{1} \int_0^\infty\int_{\abs{x} = ct}\varphi(x,t)\dd S \dd t \\
+        &\eq{2} \int_0^\infty \int_0^{2\pi}\varphi(ct\cos(\theta), ct\sin(\theta), t) \frac{ct\sqrt{c^2+1}}{\sqrt{c^2+1}}\dd\theta\dd t \\
+        &\eq{3} \frac{1}{\sqrt{c^2+1}}\int_{C\cap \supp\varphi}\varphi(x,t)\dd S,
+    \end{align*} where \begin{enumerate}
+        \item[(1)] is by definition,
+        \item[(2)] is by change of coordinates to evaluate the line integral and algebra, 
+        \item[(3)] is using the fact that $\varphi$ is integrable over $C$ due to bounded support, so use any regularization, i.e. the one coming from the parameterization defined earlier [we had defined integration over bounded surfaces it seems, so since $\varphi$ has bounded support take $(r,\theta)\in [0,T)\times[0,2\pi]$ for large enough $T$ to parameterize a truncated cone], and we take the surface integral over the part of the cone which intersects with the support of $\varphi$.
+    \end{enumerate} Hence $f$ is some kind of surface delta function for the cone $C$ (notation suggests a light cone). If $\varphi$ has support in $\mathbb{R}^3\setminus C$, we have by the above that $(f,\varphi) = 0$ since the surface integral is over the empty set. It is also evident that there is no larger open set $O_f$ could be, since that would mean $O_f = \mathbb{R}^3\setminus C^\prime$ for $C^\prime$ a proper closed subset of $C$. If this is the case, take a hat function $\omega_a$ supported on a ball of some fixed radius $\varepsilon$ centered at a point $c\in C$, and find that the intersection of $\supp\omega_a$ with $C$ will contain a small open subset of $C$ (e.g. the intersection of the open ball of radius $\varepsilon/2$ centered at $c$ with $C$) Now put $c\in C\setminus C^\prime\subset O_f$ and take $\varepsilon$ small enough so that $(f,\omega_a)\neq 0$ since open sets of $C$ have nonzero measure (locally in $\mathbb{R}^2$, not in $\mathbb{R}^3$, for computing the surface integral), a contradiction. Thus $O_f = \mathbb{R}^3\setminus C$, so that the support of $f$ is $C$.
+
+    \hrulefill
+
+    \item[14.15](iii) For any test function $\varphi\in\mathcal{D}(\mathbb{R})$, \begin{align*}
+        \lim_{t\to+\infty}\bigg(e^{-itx}\frac{1}{x+i0^+},\varphi(x)\bigg) &\eq{1}\lim_{t\to+\infty} \bigg(\frac{1}{x+i0^+},e^{-itx}\varphi(x)\bigg)\\
+        &\eq{2}\lim_{t\to+\infty} \bigg(-i\pi\delta(x)+\mathcal{P}\frac{1}{x}, e^{-itx}\varphi(x)\bigg)\\
+        &\eq{3}\lim_{t\to+\infty}\bigg[-i\pi\varphi(0)+ \bigg(\mathcal{P}\frac{1}{x}, e^{-itx}\varphi(x)\bigg)\bigg],
+    \end{align*} where \begin{enumerate}
+        \item[(1)] holds since $e^{-itx}$ is in $C^\infty(\mathbb{R})$,
+        \item[(2)] is by Sokhotsky's equation,
+        \item[(3)] is by linearity of evaluation and by definition of the delta distribution. 
+    \end{enumerate}
+    We investigate $(\mathcal{P}\frac{1}{x}, e^{-itx}\varphi(x))$: \begin{align*}
+        \lim_{t\to +\infty}\bigg(\mathcal{P}\frac{1}{x}, e^{-itx}\varphi(x)\bigg) &\eq{4}\lim_{t\to +\infty} \lim_{a\to 0}\int_{a<\abs{x}<R}\frac{e^{-itx}\varphi(x)}{x}\dd x\\
+        &\eq{5}\lim_{t\to +\infty} \lim_{a\to 0}\bigg[\int_{\abs{x}<R}e^{-itx}\psi(x)\dd x  + \varphi(0)\int_{a<\abs{x}<R}\frac{e^{-itx}}{x}\dd x\bigg],\quad  \psi(x)= \frac{\varphi(x)-\varphi(0)}{x}\\
+        &\eq{6}\lim_{t\to +\infty} \lim_{a\to 0}\bigg[\frac{e^{-itx}}{-it}\psi(x)\Big|_{-R}^R+ \frac{1}{it}\int_{\abs{x}<R}e^{-itx}\psi^\prime(x)\dd x + \varphi(0)\int_{a<\abs{x}<R}\frac{e^{-itx}}{x}\dd x\bigg]\\
+        &\eq{7}\lim_{t\to +\infty}\lim_{a\to 0}\varphi(0)\int_{a<\abs{x}<R}\frac{e^{-itx}}{x}\dd x\\
+        &\eq{8} \varphi(0)\lim_{t\to +\infty}\lim_{a\to 0}\bigg(\int_{C_R^-}-\int_{C_a^-}\bigg)\frac{e^{-itz}}{z}\dd z\\
+        &\eq{9}i\varphi(0)\lim_{t\to +\infty}\lim_{a\to 0}\bigg[\int_\pi^{2\pi} e^{-itRe^{i\theta}}\dd\theta-\int_\pi^{2\pi} e^{-itae^{i\theta}}\dd\theta\bigg]\\
+        &\eq{10} i\varphi(0)\lim_{t\to +\infty}\bigg[\int_\pi^{2\pi} e^{-itRe^{-i\theta}}\dd\theta-\pi\bigg]\\
+        &\eq{11} -i\pi\varphi(0)
+    \end{align*} where \begin{enumerate}
+        \item[(4)] is by definition of $\mathcal{P}\frac{1}{x}$,
+        \item[(5)] is algebra and with $\psi = \varphi^\prime(0) + \varphi^{\prime\prime}(0)x/2+ O(x^2)$ continuously differentiable [somehow we need to use the fact that $\varphi$ is analytic everywhere except at the boundary of its support to write this equality; so suppose here that the boundary of $\supp\varphi$ does not contain zero] we can replace $a$ with zero as it appears in the first integral in (5),
+        \item[(6)] is integration by parts,
+        \item[(7)] is by using the fact that $\psi,\psi^\prime$ are continuous on $[-R,R]$ hence bounded, so that $\abs{\frac{e^{-itx}}{-it}\psi(x)\Big|_{-R}^R} \leq O(1/t)$ and $\abs{\frac{1}{it}\int_{\abs{x}<R}e^{-itx}\psi^\prime(x)\dd x}\leq \frac{1}{t}\int_{\abs{x}<R}M\dd x = O(1/t)$, so that the limit of these terms as $t\to +\infty$ is zero,
+        \item[(8)] is by contour integration surgery, since $e^{-itz}/z$ is analytic in the region bounded by the intervals defined by $a<\abs{x}<R$ and the lower semicircles $C_R^-,C_a^-$ of radii $R,a$ respectively,
+        \item[(9)] is parameterization,
+        \item[(10)] holds by the Lebesgue dominated convergence theorem (we have $\abs{e^{-itae^{i\theta}}}\leq e^{at\sin(\theta)}\leq 1$ on $[\pi,2\pi]$ for all $t,a>0$ and $\lim_{a\to 0}e^{-itae^{i\theta}} = 1$), and
+        \item[(11)] holds by the Lebesgue dominated convergence theorem similarly (again $\abs{e^{-itRe^{i\theta}}}\leq e^{Rt\sin(\theta)}\leq 1$ on $[\pi,2\pi]$ for all $t>0$, and since $\theta\in [\pi,2\pi]$, $\lim_{t\to +\infty}e^{-itRe^{i\theta}} = 0$ a.e.).
+    \end{enumerate}
+    Then $\lim_{t\to+\infty}(e^{-itx}\frac{1}{x+i0^+},\varphi(x)) = -2\pi i\varphi(0) = (-2\pi i\delta(x),\varphi)$, so that $\lim_{t\to +\infty}e^{-itx}\frac{1}{x+i0^+} = -2\pi i \delta(x)$.
+    Amusingly, taking the formal conjugate of $e^{-itx}\frac{1}{x+i0^+}$ yields $e^{itx}\frac{1}{x-i0^+}$, which has limit $2\pi i \delta(x)$ as $t$ is taken to $+\infty$.
+
+    \hrulefill
+
+    \item[16.2] \begin{enumerate}
+        \item[(i)] Take any test function $\varphi\in\mathcal{D}(\mathbb{R})$. Observe first that only finitely many $x_n$ are contained in $\supp\varphi$, due to compactness of $\supp\varphi$ and since the sequence $\cbr{x_n}$ does not accumulate anywhere [if there were infinitely many $x_n$ in $\supp\varphi$, then by the Bolzano-Weierstrass theorem there is a convergent subsequence of these $x_n$, which is impossible]. Then there is $M$ large enough such that for $n>M$, $x_n\not\in\supp\varphi$. Then the numerical sequence $\{(\sum_{n\leq N}a_n\delta(x-x_n),\varphi)\}_N = \{\sum_{n\leq N}(\delta_{x},a_n\varphi(x+x_n))\}_N = \{\sum_{n\leq N}a_n\varphi(x_n)\}_N$ for $N>M$ becomes constant at value $\sum_{n\leq M}a_n\varphi(x_n)$, hence converges. By completeness of the space of distributions $\mathcal{D}^\prime(\mathbb{R})$, the series $\sum_na_n\delta(x-x_n)$ converges.
+        \item[(ii)] If $\cbr{x_n}$ converges to $x_0$, the series no longer converges. Take $\cbr{a_n} = \cbr{1}$ and take a bump function $\eta$ which is $1$ on an open ball $B_{\varepsilon}(x_0)$ of some fixed radius $\varepsilon$ around $x_0$. Then there is $M$ large enough so that $\cbr{x_n}_{n\geq M}\subset B_{\varepsilon}(x_0)$. Then for $N>M$, $(\sum_{n\leq N}a_n\delta(x-x_n),\eta) = \sum_{n\leq N}\eta(x_n)\geq \sum_{n = M}^N 1$. However, $\sum_{n = M}^N 1$ grows unboundedly as $N$ grows. It follows that the sequence $\{(\sum_{n\leq N}a_n\delta(x-x_n),\eta)\}_N$ does not converge, from which it follows the series $\sum_na_n\delta(x-x_n)$ does not converge (Theorem 13.1 gives sufficient and necessary conditions).
     \end{enumerate}
 
     \hrulefill
 
-    \item[14.7]
+    \item[16.9] With $T(y) = \sin(y)$, denote by $y = \arcsin(x)\in (-\pi/2,\pi/2)$ the main branch of $T^{-1}$. Then following Example 16.5.3, choosing $\eta(x)$ to be a bump function supported in $(-1,1)$ with $\eta(x)=1$ and vanishing derivative in a neighborhood of the origin we have the following rule for the distribution $\delta^\prime(\sin(y))$ for any $\varphi\in\mathcal{D}(\mathbb{R})$: 
+    \[\Big(\delta^\prime(\sin(y)),\varphi(y)\Big) = \Big(\delta^\prime(x),\varphi_T(x)\Big),\] where \[\varphi_T(x) = \frac{\eta(x)}{\sqrt{1-x^2}}\sum_n\varphi\Big(\pi n + (-1)^n\arcsin(x)\Big)\in\mathcal{D}(-1,1).\]
+    Then by definition of the distributional derivative, $\big(\delta^\prime(x),\varphi_T(x)\big) = \big(\delta(x),\dv x \varphi_T(x)\big)$, where
+    \begin{align*}
+        \dv x \varphi_T(x) &\eq{1} \dv{x}\bigg(\frac{\eta(x)}{\sqrt{1-x^2}}\bigg)\sum_n\varphi\Big(\pi n + (-1)^n\arcsin(x)\Big) + \frac{\eta(x)}{\sqrt{1-x^2}}\sum_n\dv{x}\varphi\Big(\pi n + (-1)^n\arcsin(x)\Big)\\
+        &\eq{2} \frac{\eta^\prime(x)(1-x^2)^{1/2}+\eta(x)(1-x^2)^{-1/2}}{1-x^2}\sum_n\varphi\Big(\pi n + (-1)^n\arcsin(x)\Big)\\
+        &\hspace{5em}+\frac{\eta(x)}{1-x^2}\sum_n(-1)^n\varphi^\prime\Big(\pi n + (-1)^n\arcsin(x)\Big)
+    \end{align*} and \begin{enumerate}
+        \item[(1)] is by the product rule as well as passing the derivative inside the sum since $\varphi$ has bounded support, so only finitely many $n$ produce nonzero terms in the sum, and
+        \item[(2)] is by differentiation. 
+    \end{enumerate}
+    Then by setting $x = 0$ above, we have \[\Big(\delta(x),\dv x \varphi_T(x)\Big) = \sum_n\varphi(\pi n) + \sum_n(-1)^n\varphi^\prime(\pi n) = \Big(\sum_n\delta(y-\pi n) - \sum_n(-1)^n\delta^\prime(y-\pi n),\varphi(y)\Big)\] so that distributionally $\delta^\prime(\sin(y)) = \sum_n\delta(y-\pi n) - \sum_n(-1)^n\delta^\prime(y-\pi n)$. Multiplying this distribution by a smooth $a(y)$ yields \begin{align*}
+        a(y)\delta^\prime(\sin(y)) &\eq{3} \sum_n a(\pi n)\delta(y-\pi n) - \sum_n(-1)^na(y)\delta^\prime(y-\pi n)\\
+        &\eq{4} \sum_n a(\pi n)\delta(y-\pi n) - \sum_n (-1)^n[-a^\prime(\pi n)\delta(y-\pi n) + a(\pi n)\delta^\prime(y-\pi n)]\\
+        &\eq{5} \sum_n [a(\pi n) + (-1)^n a^\prime(\pi n)]\delta(y-\pi n) - \sum_n (-1)^na(\pi n)\delta^\prime(y-\pi n)
+    \end{align*} where \begin{enumerate}
+        \item[(3)] holds since test functions have bounded support which renders the sums finite, so we can pass $a(y)$ inside the sum and use the identity $a(y)\delta(y-\pi n) = a(\pi n)\delta(y-\pi n)$,
+        \item[(4)] holds since for any test function $\varphi$, $(a(y)\delta^\prime(y-\pi n),\varphi(y)) = -(\delta(y-\pi n),a^\prime(y)\varphi(y)+ a(y)\varphi^\prime(y)) = -a^\prime(\pi n)\varphi(\pi n) - a(\pi n)\varphi(\pi n)$, which implies $a(y)\delta^\prime(y-\pi n) = -a^\prime(\pi n)\delta(y-\pi n) + a(\pi n)\delta^\prime(y-\pi n)$, and
+        \item[(5)] is algebra. 
+    \end{enumerate} So in summary \[a(y)\delta^\prime(\sin(y)) = \sum_n [a(\pi n) + (-1)^n a^\prime(\pi n)]\delta(y-\pi n) - \sum_n (-1)^na(\pi n)\delta^\prime(y-\pi n).\]
 
     \hrulefill
 
-    \item[14.15](iii)
+    \item[17.3] \begin{enumerate}
+        \item[(i)] Outside of any neighborhood of the origin, $f(x) = \ln\abs{x}$ is infinitely many times differentiable, with $D_{x_i}f(x) = x_i/\abs{x}^2$ for $i =1,2$ and $D_{x_i} [x_i/\abs{x}^2] = (\abs{x}^2-2x_i^2)/\abs{x}^4 = 1/\abs{x}^2-2x_i^2/\abs{x}^4$. Then $\Delta f = 1/\abs{x}^2-2x_1^2/\abs{x}^4+1/\abs{x}^2-2x_2^2/\abs{x}^4 = 2/\abs{x}^2-2\abs{x}^2/\abs{x}^4 = 0$ as expected.
+        \item[(ii)] The function $f(x) = \ln\abs{x}$ is locally integrable; integration over any compact set $K$ not containing the origin is fine since $f$ is continuous on $K$. When a compact set $K$ contains the origin, for fixed $0<R\leq 1$, $\int_K\abs{f}\leq \int_{K\cup B_{R}} \abs{f} = \int_{K\setminus B_R}\abs{f} + \int_{B_R}\abs{f}$. To show local integrability it will suffice to show that $\int_{B_R}\abs{f}$ converges (as an improper integral, and note $\abs{f}$ is nonnegative; see Cor. 2.1 in the text): \[\int_{B_R}\abs{f}\dd{x} = \lim_{\varepsilon\to 0}\int_{B_R\setminus B_\varepsilon}\abs{f}\dd{x} \eq{1} -2\pi\lim_{\varepsilon\to 0}\int_\varepsilon^R r\ln r \dd{r} = -2\pi R^2\bigg(\frac{\ln R}{2}-\frac{1}{4}\bigg)+0< \infty\] where (1) holds by changing to polar coordinates and using the fact that $R\leq 1$ to write $\abs{\ln r} = -\ln r$, and (2) is integration and using L'Hopital's rule to evaluate the limit. Thus any regularization may be used to evaluate the integral of $f$ on any compact set.
+        
+        For any test function $\varphi\in\mathcal{D}(\mathbb{R}^2)$ (and we may take $0\in \supp\varphi\subset B_R$ for some $R$ since $\Delta f$ defines a regular distribution on $\mathbb{R}^2\setminus\cbr{0}$ on which $\Delta f =0$), \begin{align*}
+            (\Delta f,\varphi) &\eq{1} (\ln\abs{x},\Delta\varphi) \eq{2} \int_{B_R} \ln\abs{x}\Delta\varphi \dd x\\
+            &\eq{3}\lim_{a\to 0}\int_{B_R\setminus B_a}\ln\abs{x}\Delta\varphi - \Delta\ln\abs{x}\varphi\dd x\\
+            &\eq{4}\lim_{a\to 0}\int_{\partial(B_R\setminus B_a)}\ln\abs{x}\pdv{\varphi}{n}-\pdv{\ln\abs{x}}{n}\varphi \dd S\\
+            &\eq{5} \lim_{a\to 0}\int_{\abs{x} =a}\ln\abs{x}\pdv{\varphi}{n}-\pdv{\ln\abs{x}}{n}\varphi \dd S\\
+            &\eq{6} -\lim_{a\to 0}\frac{1}{a}\int_{\abs{x} = a}\ln\abs{x}(x,\nabla \varphi)\big|_{\abs{x} = a} - \varphi \dd S\\
+            &\eq{7}-\lim_{a\to 0}2\pi [\ln a(x,\nabla\varphi)-\varphi]\big|_{x = x_a,\abs{x_a}=a} \\
+            &\eq{8}2\pi\varphi(0) \eq{9} (2\pi\delta,\varphi),
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is by definition of distributional derivatives,
+            \item[(2)] holds since $\ln\abs{x}$ defines a regular distribution,
+            \item[(3)] is by continuity of the Lebesgue integral (any regularization may be used) and since $\Delta f = 0$,
+            \item[(4)] is by the Green's formula,
+            \item[(5)] holds since $\varphi$ and all of its derivatives vanish on the outer boundary $\abs{x} = R$,
+            \item[(6)] holds since the unit normal vector $n = -x/a$ and $\partial n = -(x,\nabla)/a\big|_{\abs{x} = a}$; it follows $\pdv n [\ln\abs{x}] = -(x,x)/\abs{x}^3\big|_{\abs{x} = a} = -1/a$,
+            \item[(7)] is by the integral mean value theorem as the integrand is continuous on the sphere $\abs{x} = a$, which gives existence of $x_a$ on the sphere as needed,
+            \item[(8)] is by limit laws to distribute the limit ($\varphi$ is continuous so the limit in the second term exists), Cauchy-Schwarz and L'Hopital's rule (and derivatives of $\varphi$ are uniformly bounded) to find that $\abs{\ln a(x_a,\nabla\varphi(x_a))} \leq C\lim_{a\to 0}a\ln a,$ which tends to $0$ as $a$ tends to $0$, and
+            \item[(9)] is by definition of the delta distribution. 
+        \end{enumerate} Hence $\Delta \ln\abs{x} = 2\pi\delta(x)$.
+    \end{enumerate}
 
     \hrulefill
 
-    \item[16.2]
+    \item[17.7] With $f\in C^1(\Omega\cup \Omega^\prime)\cap C^0(\overline \Omega)\cap C^0(\overline{\Omega^\prime})$, denote by $\Omega_a,\Omega^\prime_a$ the proper subsets of $\Omega,\Omega^\prime$ which have distance $a$ from their boundary [i.e. take the closures of $\Omega,\Omega^\prime$, and remove a neighborhood of radius $a$ from every point of the shared boundary $\partial \Omega$]. Note also that $f$ is locally integrable since it has continuous extensions of $\Omega,\Omega^\prime$ to the shared boundary $\partial \Omega$; it suffices to see this for any compact set $K$ intersecting $\partial \Omega$: We have %\bigg(\frac{1}{N},\nabla \bigg)\sum_ix_i 
+    \[\lim_{a\to 0^+}\int_{K\cap \Omega_a}f(x)\dd[N]x+\lim_{a\to 0^+}\int_{K\cap\Omega^\prime_a} f(x)\dd[N]x = \int_{K\cap\overline{\Omega}}f(x)\dd[N]x + \int_{K\cap\overline{\Omega^\prime}}f(x)\dd[N]x = \int_{K}f(x)\dd[N]x,\] where we used the Lebesgue dominated convergence theorem twice [as $f$ is continuous on compact sets $K\cap\overline{\Omega},K\cap\overline{\Omega^\prime}$, it is bounded there which gives the integrable bound] or otherwise the continuity of the Lebesgue integral (if reading equalities from right to left) and used the additivity of the integral. Hence $f$ defines a regular distribution. Let $\varphi\in\mathcal{D}(\mathbb{R}^N)$ be any test function with $\supp\varphi\subset B_R$ for some $R$. Then 
+    \begin{align*}
+        \Big(\nabla f,\varphi\Big)&\eq{1} -\Big(f,\nabla \varphi\Big)\\
+        &\eq{2} -\int_{B_R}f(x)\nabla\varphi(x)\dd[n]x\\
+        &\eq{3} -\lim_{a\to 0^+}\int_{B_R\cap\Omega_a}f(x)\nabla\varphi(x)\dd[n]x -\lim_{a\to 0^+}\int_{B_R\cap\Omega^\prime_a}f(x)\nabla\varphi(x)\dd[n]x\\
+        &\eq{4} -\lim_{a\to 0^+}\int_{\partial (B_R\cap \Omega_a)}n_xf(x)\varphi(x)\dd S_x + \int_{B_R\cap\overline\Omega}\cbr{\nabla f(x)}\varphi(x)\dd[N]x\\
+        &\hspace{5em} -\lim_{a\to 0^+}\int_{\partial (B_R\cap \Omega^\prime_a)}n_xf(x)\varphi(x)\dd S_x + \int_{B_R\cap\overline{\Omega^\prime}}\cbr{\nabla f(x)}\varphi(x)\dd[N]x\\
+        &\eq{5} \int_{B_R}\cbr{\nabla f(x)}\varphi(x)\dd[N]x - \int_{\partial\Omega\cap B_R} \Big(\lim_{y\to x}f(y)\Big)n_x\varphi(x)\dd[N]x + \int_{\partial\Omega\cap B_R} \Big(\lim_{z\to x}f(y)\Big)n_x\varphi(x)\dd[N]x\int
+    \end{align*} where \begin{enumerate}
+        \item[(1)] is by definition of distributional derivatives,
+        \item[(2)] is since $f$ defines a regular distribution,
+        \item[(3)] holds since $f\nabla\varphi$ is locally integrable,
+        \item[(4)] is by integration by parts and using the fact that $\cbr{\nabla f}$ is locally integrable to take limits in the non-surface integrals,
+        \item[(5)] is by additivity of the integral and using the Lebesgue dominated convergence theorem to pass limits inside for the surface integrals since $f\varphi$ has continuous extension to $\partial\Omega$ from within $\Omega$ and $\Omega^\prime$, noting that one is oriented outwards while the other is oriented inwards, and using the fact that $\varphi$ vanishes at the boundary of $B_R$ to simplify the region of integration,
+    \end{enumerate}
+
 
     \hrulefill
 
-    \item[16.9]
+    \item[18.6] The periodic function $f(x) = 1-\abs{x}$ for $\abs{x}<1$ and $f(x+2)=f(x)$ has bounded derivative (where it exists), which implies it is Lipschitz. [For $x\not\in\mathbb{Z}$, take $\abs{y}<\delta$ where $\delta = \min\cbr{\cbr{x},1-\cbr{x}}$ where $\cbr{x}$ is the fractional part of $x$. Then by the mean value theorem and $f^\prime$ bounded by $1$ between $x$ and $y$, deduce that $\abs{f(x+y)-f(x)}\leq \abs{y}$. For $x\in\mathbb{Z}$, take $\abs{y}<1/2$, and consider cases. If $x$ is even, $\abs{f(x+y)-f(x)} = \abs{1-\abs{y}-1} = \abs{y}$. If $x$ is odd, $\abs{f(x+y)-f(x)} = \abs{1-\abs{y\pm 1}}$, where $\pm$ is chosen opposite the sign of $y$, so that $y\pm 1\in [-1,1]$. Investigating cases of the sign of $y$ and using the definition of the absolute value yields $\abs{1-\abs{y\pm 1}} = \abs{y}$ as needed.]
+    
+    Hence the trigonometric Fourier series for $f$, given by $\sum_n a_ne^{i\pi nx}$ for $a_n = \frac{1}{2}\int_{-1}^1 (1-\abs{x})\exp(-\pi inx)\dd x$, converges to $f(x)$ for all $x$. Then \begin{align*}
+        a_n &= \frac{1}{2}\int_{-1}^{1}(1-\abs{x})\exp(-\pi inx)\dd x \\
+        &= \frac{1}{2}\bigg[\int_{-1}^0(1+x)\exp(-\pi inx)\dd x + \int_0^1(1-x)\exp(-\pi inx)\dd x\bigg]\\
+        &= \frac{1}{2}\bigg[\int_0^1(-1)^nx\exp(-\pi inx)\dd x+ \int_0^1(1-x)\exp(-\pi inx)\dd x\bigg]\\
+        &= \frac{1}{2}\bigg[\int_0^1\exp(-\pi inx)\dd x + ((-1)^n-1)\int_0^1x\exp(-\pi inx)\dd x\bigg]\quad \text{for all $n$}\\
+        &= \frac{1}{2}\bigg[\frac{(-1)^n-1}{-\pi in}+ ((-1)^n-1)\bigg(\frac{(-1)^n}{-\pi in}+\frac{(-1)^n-1}{\pi^2n^2}\bigg)\bigg]\quad \text{for nonzero $n$}.
+    \end{align*}
+    Then $a_0 = \frac{1}{2}$, $a_{\text{2j}} = 0$ for nonzero integer $j$, and $a_{2k+1} = \frac{2}{\pi^2(2k+1)^2}$ for integer $k$. Then from Theorem 18.2 for differentiating Fourier series distributionally, the coefficients $a_n$ satisfy the growth requirements and so by termwise differentiation (Theorem 18.2) $f^{\prime\prime} = D_x^2 [1/2+\sum_{k}2\exp (i\pi(2k+1)x)/\pi^2(2k+1)^2] = -2\sum_k\exp(i\pi(2k+1)x)$ as desired.
 
     \hrulefill
 
-    \item[17.3]
+    \item[19.1](ii) 
 
     \hrulefill
 
-    \item[17.7]
+    \item[20.1](iv) Multiply $x^2$ to both sides of $(x-a)f(x) =\delta^\prime(x)$ to obtain the equation $x^2(x-a)f(x) = x^2\delta^\prime(x) = 0$. The polynomial $x^2(x-a)$ is analytic and has zeroes $0,a$ of multiplicity $2,1$ respectively. Thus a solution to the new equation is (section 20.2.2 page 279) \[f(x) = A\delta^\prime(x) + B\delta(x) + C\delta(x-a),\] and note that the term $C\delta(x-a)$ is the solution to the homogeneous equation $(x-a)f(x)= 0$, so $C$ will remain undetermined. To obtain $A,B$, substitute this expression of $f(x)$ into the original equation to obtain \[\delta^\prime(x) = (x-a)[A\delta^\prime(x) + B\delta(x) + C\delta(x-a)].\] Since multiplication of smooth functions distributes and $(x-a)\delta(x-a) = 0$, we obtain the equality \[\delta^\prime(x) = A(x-a)\delta^\prime(x) + B(x-a)\delta(x).\] Then $(x-a)\delta(x) = -a\delta(x)$ and $(x-a)\delta^\prime(x) = -\delta(x)-a\delta^\prime(x)$ [on any test function $\varphi\in\mathcal{D}(\mathbb{R})$, we have $((x-a)\delta^\prime(x),\varphi(x)) = (\delta^\prime,(x-a)\varphi(x)) = -(\delta(x),\varphi(x)+(x-a)\varphi^\prime(x)) = -(\delta(x),\varphi(x))-(\delta(x),(x-a)\varphi^\prime(x)) = -(\delta(x),\varphi(x))+a\varphi^\prime(0) = -(\delta(x),\varphi(x))-a(\delta^\prime(x),\varphi(x))$ as needed]. The above equality becomes, after collecting terms, \[(-A-Ba)\delta(x) - Aa\delta^\prime(x) = \delta^\prime(x),\] so that by equating the coefficients of the delta functions we obtain $A = -1/a$ and $B = 1/a^2$. Hence $f(x) = \frac{1}{a^2}\delta(x) - \frac{1}{a}\delta^\prime(x) + C\delta(x-a)$ for any $C$.
 
     \hrulefill
 
-    \item[18.6]
+    \item[21.2](ii) Multiplying both sides of the equation $(x-a)(x-b)f^{\prime\prime}(x) = \delta(x)$ by $x$ yields (as $x\delta(x) = 0$) the homogeneous equation $a(x)f^{\prime\prime}(x) = x(x-a)(x-b)f^{\prime\prime}(x) = 0$ (and $a(x)$ is a polynomial hence analytic). Without loss of generality, there are four cases to consider.\begin{enumerate}
+        \item $a\neq b$ and $a\neq 0$:
+        In this case $a(x) = x(x-a)(x-b)$, so that the homogeneous solution to $a(x)f^{\prime\prime}(x) = 0$ is (again section 20.2.2 page 279) is of the form $f^{\prime\prime}(x) = A\delta(x-a) + B\delta(x-b) + C\delta(x)$, and substituting back into the original equation gives (with $(x-a),(x-b)$ nullifying $\delta(x-a),\delta(x-b)$ respectively) $\delta(x) = (x-a)(x-b)f^{\prime\prime}(x) = C(-a)(-b)\delta(x)$, so that $C = 1/ab$.
 
-    \hrulefill
+        What remains is to take two antiderivatives of $f^{\prime\prime}(x) = A\delta(x-a) + B\delta(x-b) + \frac{1}{ab}\delta(x)$. Note that $\dv{(x-\alpha)} = \dv{x}$ by the chain rule, so antidifferentiation is the same. Then knowing antiderivatives of delta distributions, we have \begin{align*}
+            f &= D^{-2}\bigg[A\delta(x-a) + B\delta(x-b) + \frac{1}{ab}\delta(x)\bigg]\\
+            &=D^{-1}\bigg[A\theta(x-a)+B\theta(x-b) + \frac{1}{ab}\theta(x) + E\bigg]\\
+            &=A(x-a)\theta(x-a) + B(x-b)\theta(x-b) + \frac{1}{ab}x\theta(x) + Ex + F,
+        \end{align*} where extra linear and constant terms were collected throughout, so $E,F$ are arbitrary constants.
 
-    \item[19.1](ii)
+        \item $a\neq b$ and $a= 0$:
+        Here $a(x) = x^2(x-b)$ so that $f^{\prime\prime}(x) = A\delta(x) + B\delta^{\prime}(x) + C\delta(x-b)$ for undetermined constants $A,B,C$. Plugging this expression into the original equation and using the fact that $(x-b)\delta^\prime(x) = -\delta(x)-b\delta^\prime(x)$ (from the previous problem) yields the equation $\delta(x) = B(x-b)\delta^{\prime}(x) = -B\delta(x)-bB\delta^\prime(x)$. Evidently there is no valid choice of $B$ as $b\neq 0$.
 
-    \hrulefill
+        In this case the original differential equation becomes $x(x-b)f^{\prime\prime}(x) = \delta(x)$, and since $0$ is a zero of $x$ and is a singular value of $\delta(x)$, we cannot find $f^{\prime\prime}(x)$ algebraically (c.f. the discussion in section 20.4.2, and the special case in 20.4.3 would require a smooth inhomogeneity).
 
-    \item[20.1](v)
-
-    \hrulefill
-
-    \item[21.2](ii)
+        \item $a=b$ and $a\neq 0$: Here $a(x) = x(x-a)^2$ so that $f^{\prime\prime}(x) = A\delta(x) + B\delta(x-a) + C\delta^\prime(x-a)$ for undetermined constants $A,B,C$. Plugging this back into the original differential equation yields $\delta(x) = A(x-a)^2\delta(x) = a^2A\delta(x)$ so that $A = 1/a^2$. Then antidifferentiate $f^{\prime\prime}(x)$ twice to obtain $f(x) = x\theta(x)/a^2 + B(x-a)\theta(x-a) + C\theta(x-a) + Ex+ F$, where $E,F$ are arbitrary constants.
+        
+        \item $a=b$ and $a = 0$: This case cannot be resolved for a similar reason as in case (b).
+        
+        
+    \end{enumerate}
 
     \hrulefill
 
