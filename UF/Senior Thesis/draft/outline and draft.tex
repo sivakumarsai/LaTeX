@@ -94,6 +94,11 @@
 % toc header rename
 \renewcommand{\contentsname}{Outline:}
 
+% array column and row separation
+\arraycolsep = 3pt
+\renewcommand{\arraystretch}{.8}
+
+
 \begin{document}
 Prove Strong Multiplicity One as it appears in Miyake 4.6.19.
 \tableofcontents
@@ -125,14 +130,14 @@ and that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}} = 
 \end{pmatrix}\bigg(\frac{az+b}{cz+d}\bigg) = \frac{\frac{d(az+b)}{cz+d}- b}{\frac{-c(az+b)}{cz+d}+a} = \frac{(ad-bc)z}{ad-bc} = z.\] For $c\neq 0$, $-d/c$ is sent to $\infty$ and $\infty$ is sent to $a/c$; if $c = 0$ then $\infty$ is sent to $\infty$. Both $I$ and $-I$ act as the identity on $\widehat{\mathbb{C}}$, so for any $A\in \SL_2(\mathbb{Z})$, the action of $A$ and $-A$ are the same. The generators in \cref{eq: generators modular group} correspond to the maps
 \[z\mapsto z+1\quad\text{and}\quad z\mapsto -1/z.\]
 We consider particular subgroups of the modular group. For $N$ a positive integer, the \textib{principal congruence subgroup of level $N$} is the subgroup
-\[\Gamma(N) = \cbr{\begin{pmatrix}
+\[\varGamma(N) = \cbr{\begin{pmatrix}
     a & b \\ c & d
-\end{pmatrix}\in \SL_2(\mathbb{Z})\colon \begin{pmatrix}
+\end{pmatrix}\in \SL_2(\mathbb{Z}): \begin{pmatrix}
     a & b \\ c & d
 \end{pmatrix}\equiv \begin{pmatrix}
     1 & 0 \\ 0 & 1
 \end{pmatrix}\smod N}\]
-with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\Gamma(1) = \SL_2(\mathbb{Z})$, and that $\Gamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\Gamma(N)$ is normal in $\SL_2(\mathbb{Z})$. The natural homomorphism is surjective.
+with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\varGamma(1) = \SL_2(\mathbb{Z})$, and that $\varGamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\varGamma(N)$ is normal in $\SL_2(\mathbb{Z})$. The natural homomorphism is surjective.
 \begin{proof}
     When $N = 1$, the natural homomorphism is the zero map. Let $N>1$, and consider an element \[\begin{pmatrix}
         \overline a & \overline b \\ \overline c & \overline d
@@ -157,7 +162,7 @@ with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note
         \overline a & \overline b \\ \overline c & \overline d
     \end{pmatrix}\] as needed.
 \end{proof}
-Therefore, $\SL_2(\mathbb{Z})/\Gamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The index of $\Gamma(N)$ in $\SL_2(\mathbb{Z})$ is $[\SL_2(\mathbb{Z})\colon \Gamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$.
+Therefore, $\SL_2(\mathbb{Z})/\varGamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The index of $\varGamma(N)$ in $\SL_2(\mathbb{Z})$ is $[\SL_2(\mathbb{Z}): \varGamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$.
 \begin{proof}
     We first show that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for a prime $p$ by induction on $e$.
 
@@ -186,7 +191,57 @@ Therefore, $\SL_2(\mathbb{Z})/\Gamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The
     Let $N$ have prime factorization $N = \prod_{p\mid N} p^{e}$ so that by the Chinese remainder theorem, $\mathbb{Z}/N\mathbb{Z}\cong \prod_{p\mid N}\mathbb{Z}/p^{e}\mathbb{Z}$. It follows that $\SL_2(\mathbb{Z}/N\mathbb{Z})\cong \prod_{p\mid N}\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})$, from which we have \[\abs{\SL_2(\mathbb{Z}/N\mathbb{Z})}= \prod_{p\mid N}\abs{\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})} = \prod_{p\mid N}p^{3e}(1-1/p^2) = N^3\prod_{p\mid N}(1-1/p^2)\] as desired.
 \end{proof}
 
-A subgroup $\Gamma$ of $\SL_2(\mathbb{Z})$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\Gamma(N)\subseteq \Gamma$. 
+A subgroup $\varGamma$ of $\SL_2(\mathbb{Z})$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\varGamma(N)\subseteq \varGamma$. Any congruence subgroup $\varGamma$ has finite index in $\SL_2(\mathbb{Z})$. Let $\varGamma$ be a level $N$ congruence subgroup. Then 
+\[\frac{\SL_2(\mathbb{Z})}{\varGamma}\cong \frac{\SL_2(\mathbb{Z})/\varGamma(N)}{\varGamma/\varGamma(N)},\] and since $\SL_2(\mathbb{Z})/\varGamma(N)$ is finite the result holds. [Indeed, $\varGamma/\varGamma(N)$ is a subgroup of $\SL_2(\mathbb{Z})/\varGamma(N)$; additionally observe that $\varGamma(N)$ has finite index in $\varGamma$ due to the inclusions $\varGamma(N)\subset \varGamma \subset \SL_2(\mathbb{Z})$ or also by the above argument.]
+
+Frequently used congruence subgroups are 
+\[\varGamma_0(N) = \cbr{\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\in\SL_2(\mathbb{Z}): \begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\equiv\begin{pmatrix}
+    \ast & \ast \\ 0 & \ast
+\end{pmatrix}\smod N}\text{ and}\]
+\[\varGamma_1(N) = \cbr{\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\in \SL_2(\mathbb{Z}): \begin{pmatrix}
+    a & b \\ c & d 
+\end{pmatrix}\equiv \begin{pmatrix}
+    1 & \ast \\ 0 & 1
+\end{pmatrix}\smod N},\] where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise. Furthermore, we have the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\SL_2(\mathbb{Z})$.
+
+The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
+\begin{proof}
+    Let $\overline b\in\mathbb{Z}/N\mathbb{Z}$ be given. Let $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, and write $a= iN+1$, $d = jN+1$, and $c = kN$ for some integers $i,j,k$. If $1= ad-bc = ijN^2 + (i+j)N + 1 - bkN$, then $(ijN+ i + j)/k = b$. Take $k=1$ and reduce modulo $N$ to obtain the equation $i+j\equiv b \smod N$, which has many solutions, for example $i = b$ and $j =0$. These choices for $i,j,k$ produce a preimage of $b\smod N$ under the above map. Indeed, \[\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix} = \begin{pmatrix}
+        bN+1 & b \\ N & 1
+    \end{pmatrix}\mapsto b\quad\text{and}\quad \det\begin{pmatrix}
+        bN+1 & b \\ N & 1
+    \end{pmatrix} = 1.\]
+    If $A\in \varGamma_1(N)$ and \[A = \begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}\mapsto \overline 0,\] then $b \equiv 0\smod N$ for some integer $k$. Since $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, it follows that $A\in \varGamma(N)$. Certainly any element of $\varGamma(N)$ is contained in the kernel of the above map.
+\end{proof} 
+It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$.
+
+Similarly, the map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ defined by \[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\mapsto \overline d\] 
+is surjective with kernel $\varGamma_1(N)$.
+\begin{proof}
+    Let $\overline d \in (\mathbb{Z}/N\mathbb{Z})^\times$ be given, and note that $\gcd(d,N)=1$. Let $c \equiv 0\smod N$ so that $c=kN$ for some integer $k$. Choose $k$ coprime to $d$ so that $\gcd(d,kN) = \gcd(d,c) = 1$. Then there exist integers $a,b$ with $ad-bc = 1$. Then \[\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}\mapsto d\quad\text{and}\quad \det\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix} = 1.\] 
+    If $A\in \varGamma_0(N)$ and \[A = \begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}\mapsto \overline 1,\] so $d = jN+1$ for some integer $j$. Since $c\equiv 0\smod N$, $c= kN$ and $\gcd(d,c) = 1$. There exist integers $a,b$ with $1 = ad-bc = a(jN+1) + bkN = a+ (aj + bk)N$. Reducing modulo $N$ gives $a\equiv 1\smod N$. It follows that $A\in \varGamma_1(N)$. Conversely, if $A\in \varGamma_1(N)$, then $A\mapsto \overline 1$.
+\end{proof}
+Hence $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb{Z}/N\mathbb{Z})^\times$, so that the index of $\varGamma_1(N)$ in $\varGamma_0(N)$ is $\phi(N) = \abs{(\mathbb{Z}/N\mathbb{Z})^\times} = N\prod_{p\mid N}(1-1/p)$, where $\phi$ denotes the Euler totient function. Finally, we obtain \[[\SL_2(\mathbb{Z}) : \varGamma_0(N)] = \frac{[\SL_2(\mathbb{Z}) : \varGamma(N)]}{[\varGamma_0(N) : \varGamma_1(N)][\varGamma_1(N) : \varGamma(N)]} = \frac{N^3\prod_{p\mid N}(1-1/p^2)}{N\cdot N\prod_{p\mid N}(1-1/p)} = N\prod_{p\mid N}(1+1/p).\]
 
 \subsection{Modular curves}
 \subsection{Elliptic points and cusps}
