@@ -49,8 +49,8 @@
 
 % paragraph indentation/spacing
 \setlength{\parindent}{0cm}
-\setlength{\parskip}{10pt}
-\renewcommand{\baselinestretch}{1.25}
+\setlength{\parskip}{6pt}
+\renewcommand{\baselinestretch}{1.00}
 
 % extra commands defined here
 \newcommand{\br}[1]{\left(#1\right)}
@@ -106,11 +106,13 @@ Prove Strong Multiplicity One as it appears in Miyake 4.6.19.
 
 \section{Introduction}
 
-\newpage\section{Preliminaries} In this section we collect basic definitions and results used to define modular forms, without many proofs? There would be minimal coverage of automorphy.
+\newpage\section{Preliminaries} In this section we collect basic definitions and results used to define modular forms. %There would be minimal coverage of automorphy.
 \subsection{The modular group and congruence subgroups}
 Let $R$ be a unital ring. The \textib{general linear group} $\GL_n(R)$ is the group of $n\times n$ invertible matrices with entries from $R$; that is, matrices with unit determinant, under matrix multiplication. The \textib{special linear group} $\SL_n(R)$ is the subgroup of $\GL_n(R)$ whose matrices have determinant $1_R$.
 
-The \textib{modular group} $\SL_2(\mathbb{Z})$ is the group of $2\times 2$ integer-valued matrices with determinant $1$, and is a subgroup of $\GL_2(\mathbb{R})$. It is well known that 
+The \textib{modular group} $\SL_2(\mathbb{Z})$ is the group of $2\times 2$ integer-valued matrices with determinant $1$, and is a subgroup of $\GL_2(\mathbb{R})$. Equivalently, the elements of $\SL_2(\mathbb{Z})$ are the integer-valued matrices $\begin{psmallmatrix}
+    a & b \\ c & d
+\end{psmallmatrix}$ with $\gcd(c,d) = 1$, since $ad-bc = 1$ is equivalent to $c$ and $d$ being coprime. It is well known (see \cref{text: serre} Chapter 7, Section 1, Theorems 1 and 2) that 
 \begin{equation}\label{eq: generators modular group}
     \SL_2(\mathbb{Z}) = \left\langle\begin{pmatrix}
         1 & 1 \\ 0 & 1
@@ -121,7 +123,7 @@ The \textib{modular group} $\SL_2(\mathbb{Z})$ is the group of $2\times 2$ integ
 and that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}} = \mathbb{C}\cup \{\infty\}$ by fractional linear transformations
 \[\begin{pmatrix}
     a & b \\ c & d
-\end{pmatrix}(z) = \frac{az + b}{cz + d}.\] In this way it is also clear that these fractional linear transformations are automorphisms, for example \[\begin{pmatrix}
+\end{pmatrix}(z) = \frac{az + b}{cz + d}.\] These transformations are (bi)holomorphic and are automorphisms; for example, \[\begin{pmatrix}
     a & b \\ c & d
 \end{pmatrix}^{-1}\begin{pmatrix}
     a & b \\ c & d
@@ -225,7 +227,7 @@ The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\begin{pmatrix}
         a & b \\ c & d
     \end{pmatrix}\mapsto \overline 0,\] then $b \equiv 0\smod N$ for some integer $k$. Since $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, it follows that $A\in \varGamma(N)$. Certainly any element of $\varGamma(N)$ is contained in the kernel of the above map.
 \end{proof} 
-It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$.
+It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$, so that the index of $\varGamma(N)$ in $\varGamma_1(N)$ is $N$.
 
 Similarly, the map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ defined by \[\begin{pmatrix}
     a & b \\ c & d
@@ -244,10 +246,74 @@ is surjective with kernel $\varGamma_1(N)$.
 Hence $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb{Z}/N\mathbb{Z})^\times$, so that the index of $\varGamma_1(N)$ in $\varGamma_0(N)$ is $\phi(N) = \abs{(\mathbb{Z}/N\mathbb{Z})^\times} = N\prod_{p\mid N}(1-1/p)$, where $\phi$ denotes the Euler totient function. Finally, we obtain \[[\SL_2(\mathbb{Z}) : \varGamma_0(N)] = \frac{[\SL_2(\mathbb{Z}) : \varGamma(N)]}{[\varGamma_0(N) : \varGamma_1(N)][\varGamma_1(N) : \varGamma(N)]} = \frac{N^3\prod_{p\mid N}(1-1/p^2)}{N\cdot N\prod_{p\mid N}(1-1/p)} = N\prod_{p\mid N}(1+1/p).\]
 
 \subsection{Modular curves}
+Recall that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}}$ by fractional linear transformations \[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}(z) = \frac{az + b}{cz+d}.\] The \textib{upper half plane} $\mathcal{H} = \cbr{z\in\mathbb{C} : \Im(z)}$ inherits this action. If $\gamma\in \SL_2(\mathbb{Z})$ with $\gamma = \begin{psmallmatrix}
+    a & b \\ c & d
+\end{psmallmatrix}$ and $z\in \mathbb C$, the computation $(az+b)(c\overline z + d) = ac\abs{z}^2+bd + adz + bc\overline z = ac\abs{z}^2+bd + adz + (ad-1)\overline z = ac\abs{z}^2+bd + ad(z+\overline z) -\overline z$ shows that
+\begin{equation}\label{eq: imaginary parts}
+    \Im(\gamma(z)) = \Im\bigg(\frac{az+b}{cz+d}\bigg) = \frac{\Im((az+b)(c\overline z + d))}{\abs{cz+d}^2} = \frac{\Im(-\overline z)}{\abs{cz+d}^2} = \frac{\Im(z)}{\abs{cz+d}^2}.
+\end{equation}
+It follows that if $z\in \mathcal{H}$, then $\gamma(z)\in \mathcal{H}$ also.
+
+Since $\SL_2(\mathbb{Z})$ acts on the upper half plane, so does any congruence subgroup $\varGamma$. The \textib{modular curve} $Y(\varGamma)$ is the orbit space $\varGamma\backslash \mathcal{H} = \cbr{\varGamma z : z\in\mathcal H}$. The modular curves for the congruence subgroups $\varGamma_0(N), \varGamma_1(N)$, and $\varGamma(N)$ are denoted by $Y_0(N), Y_1(N)$, and $Y(N)$, respectively.
+
+We topologize modular curves and briefly show they are compact Riemann surfaces. Let $\varGamma$ be a congruence subgroup. The upper half plane $\mathcal H$ is given the Euclidean topology (as a subspace of $\mathbb{C}$ or of $\mathbb{R}^2$), and the natural surjection \[\pi \colon \mathcal H \to Y(\varGamma)\quad \text{defined by}\quad  z\mapsto \varGamma z\] induces the quotient topology on $Y(\varGamma)$ (i.e., the open sets in $Y(\varGamma)$ are those with open preimages under $\pi$). In fact, $\pi$ is an open mapping. It suffices to show that the projection $\pi$ takes an open ball $B$ in $\mathcal{H}$ to an open set in $Y(\varGamma)$; that is, to show that \[\bigcup_{\gamma\in \varGamma}\gamma(B)\] is open. By the Open Mapping Theorem, each $\gamma(B)$ is open (or since $\gamma^{-1}$ is continuous), so the result holds. Note that since $\pi$ is open, $Y(\varGamma)$ is second-countable.
+
+Furthermore, $\pi(U_1)\cap \pi(U_2)=\emptyset$ in $Y(\varGamma)$ is equivalent to $\big(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ in $\mathcal H$. The equality
+\begin{multline}\label{eq: disjoint nbds in modular curve}
+    \emptyset = \pi^{-1}(\pi(U_1)\cap \pi(U_2)) = \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\Bigg)\cap \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_2)\Bigg) = \bigcup_{\gamma,\eta\in \varGamma}\gamma(U_1)\cap \eta(U_2)\\ = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma\in \varGamma}(\eta^{-1}\gamma)(U_1)\Bigg)\cap U_2\Bigg] = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\Bigg)\cap U_2\Bigg]
+\end{multline}
+implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\cap U_2$ must be empty, from which the above equivalence follows.
+As a remark, $\mathcal H$ is connected, so $Y(\varGamma)$ is connected as well.
+
+We show that $Y(\varGamma)$ is Hausdorff. Observe that the action of $\SL_2(\mathbb{Z})$ (hence also of $\varGamma$) on $\mathcal H$ is properly discontinuous. Given $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \SL_2(\mathbb{Z})$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\SL_2(\mathbb{Z})$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
+\begin{proof}
+    Take $V_1$ and $V_2$ to be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open balls or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$, and $Y_1 = \sup_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eq: imaginary parts}, we have for $\gamma = \begin{psmallmatrix}
+        a & b \\ c & d
+    \end{psmallmatrix}\in \SL_2(\mathbb{Z})$ (i.e., $\gcd(c,d) = 1$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where the inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_1$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many coprime integers $c,d$ we have \begin{equation}\label{eq: sup inf}
+        \sup_{\substack{\gamma  = \begin{psmallmatrix}
+            a & b \\ c & d
+        \end{psmallmatrix}\in \SL_2(\mathbb{Z})\\z\in V_1}}\cbr{\Im(\gamma(z))}< \inf_{z\in V_2}\cbr{\Im(z)}.
+    \end{equation} Thus for $\gamma = \begin{psmallmatrix}
+        a & b \\ c & d
+    \end{psmallmatrix}\in \SL_2(\mathbb{Z})$ satisfying \cref{eq: sup inf}, $\gamma(V_1)\cap V_2=\emptyset$. We show that there are only finitely many $\gamma\in \SL_2(\mathbb{Z})$ for which $\gamma(V_1)\cap V_2\neq\emptyset$.
+
+    We determine the matrices in $\SL_2(\mathbb{Z})$ which have fixed bottom row $(c,d)$ for fixed coprime $c,d$. This is equivalent to finding all matrices $\eta = \begin{psmallmatrix}
+        A & B \\ C & D
+    \end{psmallmatrix}\in \SL_2(\mathbb{Z})$ such that $\eta\gamma$ has bottom row $(c,d)$, where $\gamma\in \SL_2(\mathbb{Z})$ is a fixed matrix with  bottom row $(c,d)$. Evidently $C=0$ and $D = 1$, and since $1 = AD - BC = A$, we have that $\eta$ must have the form $\begin{psmallmatrix}
+        1 & B \\ 0  & 1
+    \end{psmallmatrix}$, and $B$ may be taken to be any integer. [As expected, $\det(\eta\gamma) = \det(\eta)\det(\gamma) = 1$.] Explicitly, the matrices in $\SL_2(\mathbb{Z})$ with bottom row $(c,d)$ are \[\cbr{\begin{pmatrix}
+        1 & k \\ 0 & 1
+    \end{pmatrix}\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}: k\in \mathbb{Z}},\]
+    where $(a,b)$ is one such pair such that $ad-bc = 1$. Thus for $\gamma\in \cbr{\begin{psmallmatrix}
+        1 & k \\ 0 & 1
+    \end{psmallmatrix}\begin{psmallmatrix}
+        a & b \\ c & d
+    \end{psmallmatrix}: k\in \mathbb{Z}}$, the intersection $\gamma(V_1)\cap V_2 = \big(\begin{psmallmatrix}
+        a & b \\ c & d
+    \end{psmallmatrix}V_1+ k\big)\cap V_2 =\emptyset$ for all but finitely many $k$; that is, for finitely many $\gamma$. So of the finitely many pairs of coprime integers $(c,d)$ for which \cref{eq: sup inf} does not hold, only finitely many matrices $\gamma\in \SL_2(\mathbb{Z})$ with bottom row $(c,d)$ exist with $\gamma(V_1)\cap V_2\neq \emptyset$.
+
+    Let $F = \cbr{\gamma\in \SL_2(\mathbb{Z}): \gamma(V_1)\cap V_2\neq \emptyset, \gamma(z_1)\neq z_2}$, which is finite by the above argument. For each $\gamma \in F$ there exist disjoint neighborhoods $V_{1,\gamma}$ of $\gamma(z_1)$ and $V_{2,\gamma}$ of $z_2$ in $\mathcal H$. Let \[U_1 = V_1\cap \Bigg(\bigcap_{\gamma\in F}\gamma^{-1}(V_{1,\gamma})\Bigg)\quad\text{and}\quad U_2 = V_2\cap \Bigg(\bigcap_{\gamma\in F}V_{2,\gamma}\Bigg),\] and note that $U_1,U_2$ are open, as elements of $\SL_2(\mathbb{Z})$ are open maps on $\mathcal H$. Then take any $\gamma\in \SL_2(\mathbb{Z})$ with $\gamma(U_1)\cap U_2\neq \emptyset$. If $\gamma\not\in F$, then we must have $\gamma(z_1) = z_2$. Suppose that $\gamma\in F$. Then $U_1\subset \gamma^{-1}(U_{1,\gamma})$ and $U_2\subset U_{2,\gamma}$ so that $ \gamma(U_1)\cap U_2\subset U_{1,\gamma}\cap U_{2,\gamma}$. But $\gamma(U_1)\cap U_2\neq \emptyset$, which is in contradiction with $U_{1,\gamma}$ and $U_{2,\gamma}$ chosen to be disjoint. Hence $\gamma\not\in F$, so that $\gamma(z_1)= z_2$.
+\end{proof}
+
+A corollary of this result is that for any congruence subgroup $\varGamma$ of $\SL_2(\mathbb{Z})$, the modular curve $Y(\varGamma)$ is Hausdorff. 
+\begin{proof}
+    Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \SL_2(\mathbb{Z})$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eq: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
+\end{proof} 
+
+What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space.
+
+
 \subsection{Elliptic points and cusps}
 
 \newpage\section{Modular forms}
 \subsection{Basic definitions}
+For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\in \varGamma, z\in \mathcal H.\]
 \subsection{Dimension formulas}
 \subsection{Eisenstein series}
 \subsection{Dirichlet characters and $L$-functions}
