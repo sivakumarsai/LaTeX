@@ -1,0 +1,1 @@
+Prove Strong Multiplicity One as it appears in Miyake 4.6.19.
