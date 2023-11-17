@@ -314,6 +314,12 @@ What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting 
 For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \begin{pmatrix}
     a & b \\ c & d
 \end{pmatrix}\in \varGamma, z\in \mathcal H.\]
+For any matrix $\gamma=\begin{psmallmatrix}
+    a & b \\ c & d
+\end{psmallmatrix}\in \SL_2(\mathbb{Z})$ the \textib{factor of automorphy} $j(\gamma,z)$ for $z\in \mathbb{C}$ is defined by \[j(\gamma,z) = cz+d.\] For any integer $k$ and $\gamma\in \SL_2(\mathbb{Z})$ define the \textib{weight-k operator} $[\gamma]_k$ on functions $f\colon \mathcal H\to \mathbb{C}$ by \[(f[\gamma]_k)(z) = j(\gamma,z)^{-k}f(\gamma(z)),\quad\text{for } z\in \mathcal H.\]
+Since the factor of automorphy $j(\gamma,z) = cz+d$ cannot be zero or infinity (since $z\in \mathcal H$), if $f$ is meromorphic on $\mathcal H$, then so is $f[\gamma]_k$. Furthermore, the poles and zeroes of $f[\gamma]_k$ are the same as those of $f$ since if $z-z_0 = 0$, then
+\[\gamma(z)-z_0 = \frac{az+b}{cz+d}-z_0 = \frac{ac}{}\]
+So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H \to \mathbb{C}$ is weakly modular of weight $k$ (with respect to $\varGamma$) if \[f[\gamma]_k = f\quad\text{for all }\gamma\in \varGamma,\] and this is equivalent to the original definition above.
 \subsection{Dimension formulas}
 \subsection{Eisenstein series}
 \subsection{Dirichlet characters and $L$-functions}
