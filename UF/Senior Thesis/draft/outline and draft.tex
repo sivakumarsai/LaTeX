@@ -13,7 +13,9 @@
 \usepackage{quiver}
 \usepackage{hyperref}
 % \hypersetup{colorlinks=true,linkcolor=blue}
-\usepackage[capitalize,noabbrev]{cleveref}
+\usepackage[noabbrev]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{lemma}~#2#1#3}
 
 % theorems
 \theoremstyle{plain}
@@ -90,6 +92,13 @@
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
 \newcommand{\smod}[1]{\;(\bmod\; #1)}
+\newcommand{\smallabcd}{\big(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\big)}
+\newcommand{\abcd}{\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}}
+\newcommand{\slz}{\SL_2(\mathbb{Z})}
 % \DeclareMathOperator{\Span}{span}
 % \DeclareMathOperator{\nullity}{nullity}
 % \DeclareMathOperator\Aut{Aut}
@@ -147,48 +156,62 @@
 \subsection{The modular group and congruence subgroups}
 Let $R$ be a unital ring. The \textib{general linear group} $\GL_n(R)$ is the group of $n\times n$ invertible matrices with entries from $R$; that is, matrices with unit determinant, under matrix multiplication. The \textib{special linear group} $\SL_n(R)$ is the subgroup of $\GL_n(R)$ whose matrices have determinant $1_R$.
 
-The \textib{modular group} $\SL_2(\mathbb{Z})$ is the group of $2\times 2$ integer-valued matrices with determinant $1$, and is a subgroup of $\GL_2(\mathbb{R})$. Equivalently, the elements of $\SL_2(\mathbb{Z})$ are the integer-valued matrices $\big(\!\begin{smallmatrix}
-    a & b \\ c & d
-\end{smallmatrix}\!\big)$ with $\gcd(c,d) = 1$, since $ad-bc = 1$ is equivalent to $c$ and $d$ being coprime. It is well known (e.g., \cite{serre} p.78) that 
+\begin{definition}
+    The \textib{modular group} $\slz$ is the group of $2\times 2$ integer-valued matrices with determinant $1$, and is a subgroup of $\GL_2(\mathbb{R})$.
+\end{definition} 
+% Equivalently, the elements of $\slz$ are the integer-valued matrices $\big(\!\begin{smallmatrix}
+%     a & b \\ c & d
+% \end{smallmatrix}\!\big)$ with $\gcd(c,d) = 1$, since $ad-bc = 1$ is equivalent to $c$ and $d$ being coprime. 
+It is well known (e.g., \cite{serre} Chapter 7, Section 1.2, Theorem 2) that 
 \begin{equation}\label{eq: generators modular group}
-    \SL_2(\mathbb{Z}) = \left\langle\begin{pmatrix}
+    \slz = \left\langle\begin{pmatrix}
         1 & 1 \\ 0 & 1
     \end{pmatrix}, \begin{pmatrix}
         0 & -1 \\ 1 & 0
     \end{pmatrix}\right\rangle, 
 \end{equation}
-and that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}} = \mathbb{C}\cup \{\infty\}$ by fractional linear transformations
+and that $\slz$ acts on the Riemann sphere $\widehat{\mathbb{C}} = \mathbb{C}\cup \{\infty\}$ by fractional linear transformations
+\[\abcd(z) = \frac{az + b}{cz + d}.\] For $c\neq 0$, $-d/c$ is sent to $\infty$ and $\infty$ is sent to $a/c$; if $c = 0$ then $\infty$ is sent to $\infty$. We check that this action defines a group action: It is clear that the identity matrix sends $z$ to itself, and that 
 \[\begin{pmatrix}
+    q & r \\ s & t
+\end{pmatrix}\abcd(z) = \begin{pmatrix}
+    q & r \\ s & t
+\end{pmatrix}\Big(\frac{az+b}{cz+d}\Big) = \frac{q\frac{az+b}{cz+d}+r}{s\frac{az+b}{cz+d}+t} = \frac{(qa+rc)z+qb+rd}{(sa+tb)z+sb+td} = \begin{pmatrix}
+    qa+rc & qb+rd \\ sa+tb & sb+td
+\end{pmatrix}(z)\] for $\big(\!\begin{smallmatrix}
+    q & r \\ s & t
+\end{smallmatrix}\!\big),\big(\!\begin{smallmatrix}
     a & b \\ c & d
-\end{pmatrix}(z) = \frac{az + b}{cz + d}.\] These transformations are (bi)holomorphic and are automorphisms; for example, \[\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}^{-1}\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}(z) = \begin{pmatrix}
-    d & -b \\ -c & a
-\end{pmatrix}\Big(\frac{az+b}{cz+d}\Big) = \frac{\frac{d(az+b)}{cz+d}- b}{\frac{-c(az+b)}{cz+d}+a} = \frac{(ad-bc)z}{ad-bc} = z.\] For $c\neq 0$, $-d/c$ is sent to $\infty$ and $\infty$ is sent to $a/c$; if $c = 0$ then $\infty$ is sent to $\infty$. Both $I$ and $-I$ act as the identity on $\widehat{\mathbb{C}}$, so for any $A\in \SL_2(\mathbb{Z})$, the action of $A$ and $-A$ are the same. The generators in \cref{eq: generators modular group} correspond to the maps
+\end{smallmatrix}\!\big)\in \slz$.
+It follows that these transformations are (bi)holomorphic and are automorphisms.
+% ; indeed, \[\abcd^{-1}\abcd(z) = \begin{pmatrix}
+%     d & -b \\ -c & a
+% \end{pmatrix}\Big(\frac{az+b}{cz+d}\Big) = \frac{\frac{d(az+b)}{cz+d}- b}{\frac{-c(az+b)}{cz+d}+a} = \frac{(ad-bc)z}{ad-bc} = z.\]
+Furthermore, both $I$ and $-I$ act as the identity on $\widehat{\mathbb{C}}$, so for any $A\in \slz$, the actions of $A$ and $-A$ agree. The generators in \cref{eq: generators modular group} correspond to the maps
 \[z\mapsto z+1\quad\text{and}\quad z\mapsto -1/z.\]
-We consider particular subgroups of the modular group. For $N$ a positive integer, the \textib{principal congruence subgroup of level $N$} is the subgroup
-\[\varGamma(N) = \cbr{\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\in \SL_2(\mathbb{Z}): \begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\equiv \begin{pmatrix}
+We consider particular subgroups of the modular group. 
+\begin{definition}
+    For $N$ a positive integer, the \textib{principal congruence subgroup of level $N$} is the subgroup
+\[\varGamma(N) = \cbr{\abcd\in \slz: \abcd\equiv \begin{pmatrix}
     1 & 0 \\ 0 & 1
 \end{pmatrix}\smod N}\]
-with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note $\varGamma(1) = \SL_2(\mathbb{Z})$, and that $\varGamma(N)$ is the kernel of the natural homomorphism $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\varGamma(N)$ is normal in $\SL_2(\mathbb{Z})$. The natural homomorphism is surjective.
+with the matrix congruence interepreted as congruence modulo $N$ entrywise.
+\end{definition}
+\begin{lemma}\label{lem: varGamma(N) kernel of projection}
+    The principal congruence subgroup $\varGamma(N)$ is the kernel of the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\varGamma(N)$ is normal in $\slz$; furthermore, the natural homomorphism is surjective.
+\end{lemma}
 \begin{proof}
-    When $N = 1$, the natural homomorphism is the zero map. Let $N>1$, and consider an element \[\begin{pmatrix}
+    It is clear that $\varGamma(N)$ is the kernel of the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so we prove that this map is surjective. When $N = 1$, the natural homomorphism is the zero map (so $\varGamma(1) = \slz$). Let $N>1$, and consider an element \[\begin{pmatrix}
         \overline a & \overline b \\ \overline c & \overline d
-    \end{pmatrix}\in \SL_2(\mathbb{Z}/N\mathbb{Z}),\] so that $\overline{ad-bc} = \overline 1$ (here $\overline{\,\cdot\,}$ denotes passage from $\mathbb{Z}$ to $\mathbb{Z}/N\mathbb{Z}$). Then for some integer $k$, $ad-bc = 1+kN$. It follows that $1+kN$ is a multiple of $g = \gcd(c,d)$, so that $\gcd(g,N)=1$ and $\gcd(c,d,N)=1$. We show that there exist integers $i,j$ such that $c+iN$ and $d+jN$ are coprime.
+    \end{pmatrix}\in \SL_2(\mathbb{Z}/N\mathbb{Z}),\] so that $\overline{ad-bc} = \overline 1$ (here $\overline{\,\cdot\,}$ denotes reduction modulo $N$). Then for some integer $k$, $ad-bc = 1+kN$. It follows that $1+kN$ is a multiple of $g = \gcd(c,d)$, so that $\gcd(g,N)=1$ and $\gcd(c,d,N)=1$. We show that there exist integers $i,j$ such that $c+iN$ and $d+jN$ are coprime.
     
-    Suppose there is no choice of $i,j$ such that $c+iN$ and $d+jN$ are coprime, so that for fixed $i$, $\gcd(c+iN,d+jN)>1$ for every $j$. By Dirichlet's theorem on arithmetic progressions, the sequence $(d+mN)$ contains infinitely many primes, which yields a contradiction.
+    % Suppose there is no choice of $i,j$ such that $c+iN$ and $d+jN$ are coprime, so that for fixed $i$, $\gcd(c+iN,d+jN)>1$ for every $j$. By Dirichlet's theorem on arithmetic progressions, the sequence $(d+mN)$ contains infinitely many primes, which yields a contradiction.
     
-    Alternatively, if $c\neq 0$, consider a solution $j$ to the system of congruences 
+    If $c\neq 0$, consider a solution $j$ to the system of congruences 
     \[\begin{cases}
         j\equiv 1\smod{p} & p\mid g\\
         j\equiv 0\smod{p} & p\nmid g, p\mid c,
-    \end{cases}\] which may be obtained via the Chinese remainder theorem. Then $\gcd(c,d+jN) = 1$ since any prime $p$ dividing $c$ will not divide $d+jN$ with $j$ chosen as above [of primes $p$ dividing $c$, when $p\mid g$, still $p\nmid N$, and when $p\nmid g$, still $p\nmid d$]. If $c = 0$, then $d\neq 0$ and repeat this argument with $d,i$ in place of $c,j$ respectively.
+    \end{cases}\] which may be obtained via the Chinese remainder theorem. Then $\gcd(c,d+jN) = 1$ since any prime $p$ dividing $c$ will not divide $d+jN$ with $j$ chosen as above (of primes $p$ dividing $c$, when $p\mid g$, we have $p\nmid N$, and when $p\nmid g$, we have $p\nmid d$). If $c = 0$, then $d\neq 0$ and repeat this argument with $d,i$ in place of $c,j$ respectively.
 
     With integers $c+iN$ and $d+jN$ coprime, there exist integers $s,t$ with $s(c+iN) + t(d+jN) = 1$. Then \begin{multline*}
         \det\begin{pmatrix}
@@ -201,126 +224,134 @@ with the matrix congruence interepreted as congruence modulo $N$ entrywise. Note
         \overline a & \overline b \\ \overline c & \overline d
     \end{pmatrix}\] as needed.
 \end{proof}
-Therefore, $\SL_2(\mathbb{Z})/\varGamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. The index of $\varGamma(N)$ in $\SL_2(\mathbb{Z})$ is $[\SL_2(\mathbb{Z}): \varGamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$.
+Therefore, by the first isomorphism theorem, $\slz/\varGamma(N)\cong \SL_2(\mathbb{Z}/N\mathbb{Z})$. 
+\begin{lemma}
+    The index of $\varGamma(N)$ in $\slz$ is $[\slz: \varGamma(N)] = N^3\prod_{p\mid N}(1-1/p^2)$.
+\end{lemma}
 \begin{proof}
     We first show that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for a prime $p$ by induction on $e$.
 
-    The determinant is a surjective homomorphism from $\GL_2(\mathbb{Z}/p\mathbb{Z})$ to $(\mathbb{Z}/p\mathbb{Z})^\times\cong \mathbb{Z}/(p-1)\mathbb{Z}$ with kernel $\SL_2(\mathbb{Z}/p\mathbb{Z})$. Observe that $\abs{\GL_2(\mathbb{Z}/p\mathbb{Z})}$ is the number of ordered bases of $(\mathbb{Z}/p\mathbb{Z})^2$, given by $(p^2-1)(p^2-p)$. [The first factor counts the number of valid first basis vectors, and the second factor counts the number of valid second basis vectors after choosing a first basis vector.] Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p\mathbb{Z})} = (p^2-1)(p^2-p)/(p-1) = p(p^2-1) = p^3(1-1/p^2)$.
+    The determinant is a surjective homomorphism from $\GL_2(\mathbb{Z}/p\mathbb{Z})$ to $(\mathbb{Z}/p\mathbb{Z})^\times\cong \mathbb{Z}/(p-1)\mathbb{Z}$ with kernel $\SL_2(\mathbb{Z}/p\mathbb{Z})$. Observe that $\abs{\GL_2(\mathbb{Z}/p\mathbb{Z})}$ is the number of ordered bases of $(\mathbb{Z}/p\mathbb{Z})^2$, given by $(p^2-1)(p^2-p)$. (The first factor counts the number of valid first basis vectors, and the second factor counts the number of valid second basis vectors after choosing a first basis vector.) Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p\mathbb{Z})} = (p^2-1)(p^2-p)/(p-1) = p(p^2-1) = p^3(1-1/p^2)$.
     
-    Suppose that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for some $e$. From the previous result, we have that the natural homomorphisms $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ and $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ are surjective. Composing the map $\SL_2(\mathbb{Z})\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ with the natural homomorphism $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ yields the commutative diagram \[\begin{tikzcd}
-        {\SL_2(\mathbb{Z})} & {\SL_2(\mathbb{Z}/p^e\mathbb{Z})} \\
-        {\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})}
-        \arrow[from=2-1, to=1-2]
-        \arrow[two heads, from=1-1, to=2-1]
-        \arrow[two heads, from=1-1, to=1-2]
-    \end{tikzcd}\] from which we find that the map $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective.
+    By \cref{lem: varGamma(N) kernel of projection}, the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective. The surjection $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is the composition of the natural homomorphisms $\slz\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ and $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$, from which it follows that $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective also.
+    % \[\begin{tikzcd}
+    %     {\slz} & {\SL_2(\mathbb{Z}/p^e\mathbb{Z})} \\
+    %     {\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})}
+    %     \arrow[from=2-1, to=1-2]
+    %     \arrow[two heads, from=1-1, to=2-1]
+    %     \arrow[two heads, from=1-1, to=1-2]
+    % \end{tikzcd}\]
+    % from which we find that the map $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective.
 
-    We deduce $\ker(\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z}))$ directly. If \[\begin{pmatrix}
-        \overline a & \overline b \\ \overline c & \overline d
-    \end{pmatrix}\mapsto \begin{pmatrix}
-        \overline 1 & \overline 0 \\ \overline 0 & \overline 1
-    \end{pmatrix},\] then all possible preimages of \[\begin{pmatrix}
-        \overline 1 & \overline 0 \\ \overline 0 & \overline 1
-    \end{pmatrix}\] are of the form \[\begin{pmatrix}
+    Any element $\gamma$ of $\ker(\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z}))$ is of the form
+    \[\begin{pmatrix}
         \overline{1+ip^e} & \overline{rp^e} \\ \overline{sp^e} & \overline{1+jp^e}
-    \end{pmatrix},\] for $i,j,r,s\in \{0,\dots,p-1\}$. Of these preimages, only $p^3$ many are elements of $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$. [We may take any $r,s$ in the above range, but we require $i=-j$.] Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})} = p^3\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^3p^{3e}(1-1/p^2) = p^{3(e+1)}(1-1/p^2)$ as needed. By induction, $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for any $e$.
+    \end{pmatrix},\] for $i,j,r,s\in \{0,\dots,p-1\}$ and $i = p-j$ (so that $\det \gamma = 1$). Hence $\abs{\ker(\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z}))} = p^3$. Suppose that $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$. Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})} = p^3\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^3p^{3e}(1-1/p^2) = p^{3(e+1)}(1-1/p^2)$ as needed. By induction, $\abs{\SL_2(\mathbb{Z}/p^e\mathbb{Z})} = p^{3e}(1-1/p^2)$ for any $e$.
 
     There is an isomorphism of matrix groups $\Mat_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\Mat_2(R_i)$ for rings $R_i$ which restricts to the isomorphisms $\GL_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\GL_2(R_i)$ and $\SL_2(\prod_{i=1}^nR_i)\cong \prod_{i=1}^n\SL_2(R_i)$ since $(\prod_{i=1}^nR_i)^\times\cong \prod_{i=1}^nR_i^\times$ and $1_{\prod_{i=1}^nR_i} = \prod_{i=1}^n1_{R_i}$.
 
     Let $N$ have prime factorization $N = \prod_{p\mid N} p^{e}$. By the Chinese remainder theorem, $\mathbb{Z}/N\mathbb{Z}\cong \prod_{p\mid N}\mathbb{Z}/p^{e}\mathbb{Z}$. It follows that $\SL_2(\mathbb{Z}/N\mathbb{Z})\cong \prod_{p\mid N}\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})$, from which we have \[\abs{\SL_2(\mathbb{Z}/N\mathbb{Z})}= \prod_{p\mid N}\abs{\SL_2(\mathbb{Z}/p^{e}\mathbb{Z})} = \prod_{p\mid N}p^{3e}(1-1/p^2) = N^3\prod_{p\mid N}(1-1/p^2)\] as desired.
 \end{proof}
 
-A subgroup $\varGamma$ of $\SL_2(\mathbb{Z})$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\varGamma(N)\subseteq \varGamma$. Any congruence subgroup $\varGamma$ has finite index in $\SL_2(\mathbb{Z})$. Let $\varGamma$ be a level $N$ congruence subgroup. By the third isomorphism theorem,
-\[\frac{\SL_2(\mathbb{Z})}{\varGamma}\cong \frac{\SL_2(\mathbb{Z})/\varGamma(N)}{\varGamma/\varGamma(N)},\] and since $\SL_2(\mathbb{Z})/\varGamma(N)$ is finite the result holds. [Indeed, $\varGamma/\varGamma(N)$ is a subgroup of $\SL_2(\mathbb{Z})/\varGamma(N)$; additionally observe that $\varGamma(N)$ has finite index in $\varGamma$ due to the inclusions $\varGamma(N)\subset \varGamma \subset \SL_2(\mathbb{Z})$ or also by the above argument.]
+\begin{definition}
+    A subgroup $\varGamma$ of $\slz$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\varGamma(N)\subseteq \varGamma$.
+\end{definition}
+Any congruence subgroup $\varGamma$ has finite index in $\slz$. Let $\varGamma$ be a level $N$ congruence subgroup. By the third isomorphism theorem,
+\[\frac{\slz}{\varGamma}\cong \frac{\slz/\varGamma(N)}{\varGamma/\varGamma(N)},\] and since $\slz/\varGamma(N)$ is finite the result holds. (Indeed, $\varGamma/\varGamma(N)$ is a subgroup of $\slz/\varGamma(N)$; additionally observe that $\varGamma(N)$ has finite index in $\varGamma$ due to the inclusions $\varGamma(N)\subset \varGamma \subset \slz$ or also by the above argument.)
 
-Frequently used congruence subgroups are 
-\[\varGamma_0(N) = \cbr{\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\in\SL_2(\mathbb{Z}): \begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\equiv\begin{pmatrix}
-    \ast & \ast \\ 0 & \ast
-\end{pmatrix}\smod N}\text{ and}\]
-\[\varGamma_1(N) = \cbr{\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\in \SL_2(\mathbb{Z}): \begin{pmatrix}
-    a & b \\ c & d 
-\end{pmatrix}\equiv \begin{pmatrix}
-    1 & \ast \\ 0 & 1
-\end{pmatrix}\smod N},\] where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise. Furthermore, we have the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\SL_2(\mathbb{Z})$.
+\begin{definition}
+    Frequently used congruence subgroups are 
+    \[\varGamma_0(N) = \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
+        \ast & \ast \\ 0 & \ast
+    \end{pmatrix}\smod N}\text{ and}\]
+    \[\varGamma_1(N) = \cbr{\abcd\in \slz: \begin{pmatrix}
+        a & b \\ c & d 
+    \end{pmatrix}\equiv \begin{pmatrix}
+        1 & \ast \\ 0 & 1
+    \end{pmatrix}\smod N},\] where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise.    
+\end{definition}
+We have the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\slz$.
 
-The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
+\begin{lemma}
+    The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\abcd\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
+\end{lemma}
 \begin{proof}
-    Let $\overline b\in\mathbb{Z}/N\mathbb{Z}$ be given. Let $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, and write $a= iN+1$, $d = jN+1$, and $c = kN$ for some integers $i,j,k$. If $1= ad-bc = ijN^2 + (i+j)N + 1 - bkN$, then $(ijN+ i + j)/k = b$. Take $k=1$ and reduce modulo $N$ to obtain the equation $i+j\equiv b \smod N$, which has many solutions, for example $i = b$ and $j =0$. These choices for $i,j,k$ produce a preimage of $b\smod N$ under the above map. Indeed, \[\begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix} = \begin{pmatrix}
-        bN+1 & b \\ N & 1
-    \end{pmatrix}\mapsto b\quad\text{and}\quad \det\begin{pmatrix}
-        bN+1 & b \\ N & 1
-    \end{pmatrix} = 1.\]
-    If $A\in \varGamma_1(N)$ and \[A = \begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix}\mapsto \overline 0,\] then $b \equiv 0\smod N$ for some integer $k$. Since $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, it follows that $A\in \varGamma(N)$. Certainly any element of $\varGamma(N)$ is contained in the kernel of the above map.
+    For $\overline b\in\mathbb{Z}/N\mathbb{Z}$, \[\begin{pmatrix}
+        1 & b \\ 0 & 1
+    \end{pmatrix}\] has unit determinant and maps to $\overline b$ under the above map. It is clear that the kernel of the above map is $\varGamma(N)$.
+    % Let $\overline b\in\mathbb{Z}/N\mathbb{Z}$ be given. Let $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, and write $a= iN+1$, $d = jN+1$, and $c = kN$ for some integers $i,j,k$. If $1= ad-bc = ijN^2 + (i+j)N + 1 - bkN$, then $(ijN+ i + j)/k = b$. Take $k=1$ and reduce modulo $N$ to obtain the equation $i+j\equiv b \smod N$, which has many solutions, for example $i = b$ and $j =0$. These choices for $i,j,k$ produce a preimage of $b\smod N$ under the above map. Indeed, \[\begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix} = \begin{pmatrix}
+    %     bN+1 & b \\ N & 1
+    % \end{pmatrix}\mapsto b\quad\text{and}\quad \det\begin{pmatrix}
+    %     bN+1 & b \\ N & 1
+    % \end{pmatrix} = 1.\]
+    % If $A\in \varGamma_1(N)$ and \[A = \begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix}\mapsto \overline 0,\] then $b \equiv 0\smod N$ for some integer $k$. Since $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, it follows that $A\in \varGamma(N)$. Certainly any element of $\varGamma(N)$ is contained in the kernel of the above map.
 \end{proof} 
 It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$, so that the index of $\varGamma(N)$ in $\varGamma_1(N)$ is $N$.
 
-Similarly, the map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ defined by \[\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\mapsto \overline d\] 
-is surjective with kernel $\varGamma_1(N)$.
+\begin{lemma}
+    The map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ given by \[\abcd\mapsto \overline d\] 
+    is surjective with kernel $\varGamma_1(N)$.
+\end{lemma}
 \begin{proof}
-    Let $\overline d \in (\mathbb{Z}/N\mathbb{Z})^\times$ be given, and note that $\gcd(d,N)=1$. Let $c \equiv 0\smod N$ so that $c=kN$ for some integer $k$. Choose $k$ coprime to $d$ so that $\gcd(d,kN) = \gcd(d,c) = 1$. Then there exist integers $a,b$ with $ad-bc = 1$. Then \[\begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix}\mapsto d\quad\text{and}\quad \det\begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix} = 1.\] 
-    If $A\in \varGamma_0(N)$ and \[A = \begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix}\mapsto \overline 1,\] so $d = jN+1$ for some integer $j$. Since $c\equiv 0\smod N$, $c= kN$ and $\gcd(d,c) = 1$. There exist integers $a,b$ with $1 = ad-bc = a(jN+1) + bkN = a+ (aj + bk)N$. Reducing modulo $N$ gives $a\equiv 1\smod N$. It follows that $A\in \varGamma_1(N)$. Conversely, if $A\in \varGamma_1(N)$, then $A\mapsto \overline 1$.
+    Exercise 1.2.3. (d) in \cite{diamond}.% DO NOT DELETE SOLUTION Let $\overline d \in (\mathbb{Z}/N\mathbb{Z})^\times$ be given, and note that $\gcd(d,N)=1$. Let $c \equiv 0\smod N$ so that $c=kN$ for some integer $k$. Choose $k$ coprime to $d$ so that $\gcd(d,kN) = \gcd(d,c) = 1$. Then there exist integers $a,b$ with $ad-bc = 1$. Then \[\begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix}\mapsto d\quad\text{and}\quad \det\begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix} = 1.\] 
+    % If $A\in \varGamma_0(N)$ and \[A = \begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix}\mapsto \overline 1,\] so $d = jN+1$ for some integer $j$. Since $c\equiv 0\smod N$, $c= kN$ and $\gcd(d,c) = 1$. There exist integers $a,b$ with $1 = ad-bc = a(jN+1) + bkN = a+ (aj + bk)N$. Reducing modulo $N$ gives $a\equiv 1\smod N$. It follows that $A\in \varGamma_1(N)$. Conversely, if $A\in \varGamma_1(N)$, then $A\mapsto \overline 1$.
 \end{proof}
-Hence $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb{Z}/N\mathbb{Z})^\times$, so that the index of $\varGamma_1(N)$ in $\varGamma_0(N)$ is $\phi(N) = \abs{(\mathbb{Z}/N\mathbb{Z})^\times} = N\prod_{p\mid N}(1-1/p)$, where $\phi$ denotes the Euler totient function. Finally, we obtain \[[\SL_2(\mathbb{Z}) : \varGamma_0(N)] = \frac{[\SL_2(\mathbb{Z}) : \varGamma(N)]}{[\varGamma_0(N) : \varGamma_1(N)][\varGamma_1(N) : \varGamma(N)]} = \frac{N^3\prod_{p\mid N}(1-1/p^2)}{N\cdot N\prod_{p\mid N}(1-1/p)} = N\prod_{p\mid N}(1+1/p).\]
+Hence $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb{Z}/N\mathbb{Z})^\times$, so that the index of $\varGamma_1(N)$ in $\varGamma_0(N)$ is $\phi(N) = \abs{(\mathbb{Z}/N\mathbb{Z})^\times} = N\prod_{p\mid N}(1-1/p)$, where $\phi$ denotes the Euler totient function. 
+\begin{corollary}
+    We obtain \[[\slz : \varGamma_0(N)] = \frac{[\slz : \varGamma(N)]}{[\varGamma_0(N) : \varGamma_1(N)][\varGamma_1(N) : \varGamma(N)]} = \frac{N^3\prod_{p\mid N}(1-1/p^2)}{N\cdot N\prod_{p\mid N}(1-1/p)} = N\prod_{p\mid N}(1+1/p).\]
+\end{corollary} 
 
 \subsection{Modular curves}
-Recall that $\SL_2(\mathbb{Z})$ acts on the Riemann sphere $\widehat{\mathbb{C}}$ by fractional linear transformations \[\begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}(z) = \frac{az + b}{cz+d}.\] The \textib{upper half plane} $\mathcal{H} = \cbr{z\in\mathbb{C} : \Im(z)}$ inherits this action. If $\gamma\in \SL_2(\mathbb{Z})$ with $\gamma = \big(\!\begin{smallmatrix}
-    a & b \\ c & d
-\end{smallmatrix}\!\big)$ and $z\in \mathbb C$, the computation $(az+b)(c\overline z + d) = ac\abs{z}^2+bd + adz + bc\overline z = ac\abs{z}^2+bd + adz + (ad-1)\overline z = ac\abs{z}^2+bd + ad(z+\overline z) -\overline z$ shows that
+Recall that $\slz$ acts on the Riemann sphere $\widehat{\mathbb{C}}$ by fractional linear transformations \[\abcd(z) = \frac{az + b}{cz+d}.\] The \textib{upper half plane} $\mathcal{H} = \cbr{z\in\mathbb{C} : \Im(z)}$ inherits this action. If $\gamma\in \slz$ with $\gamma = \smallabcd$ and $z\in \mathbb C$, the computation $(az+b)(c\overline z + d) = ac\abs{z}^2+bd + adz + bc\overline z = ac\abs{z}^2+bd + adz + (ad-1)\overline z = ac\abs{z}^2+bd + ad(z+\overline z) -\overline z$ shows that
 \begin{equation}\label{eq: imaginary parts}
     \Im(\gamma(z)) = \Im\Big(\frac{az+b}{cz+d}\Big) = \frac{\Im((az+b)(c\overline z + d))}{\abs{cz+d}^2} = \frac{\Im(-\overline z)}{\abs{cz+d}^2} = \frac{\Im(z)}{\abs{cz+d}^2}.
 \end{equation}
 It follows that if $z\in \mathcal{H}$, then $\gamma(z)\in \mathcal{H}$ also.
 
-Since $\SL_2(\mathbb{Z})$ acts on the upper half plane, so does any congruence subgroup $\varGamma$. The \textib{modular curve} $Y(\varGamma)$ is the orbit space $\varGamma\backslash \mathcal{H} = \cbr{\varGamma z : z\in\mathcal H}$. The modular curves for the congruence subgroups $\varGamma_0(N), \varGamma_1(N)$, and $\varGamma(N)$ are denoted by $Y_0(N), Y_1(N)$, and $Y(N)$, respectively.
+Since $\slz$ acts on the upper half plane, so does any congruence subgroup $\varGamma$. 
+\begin{definition}
+    The \textib{modular curve} $Y(\varGamma)$ is the orbit space $\varGamma\backslash \mathcal{H} = \cbr{\varGamma z : z\in\mathcal H}$.
+\end{definition}
+The modular curves for the congruence subgroups $\varGamma_0(N), \varGamma_1(N)$, and $\varGamma(N)$ are denoted by $Y_0(N), Y_1(N)$, and $Y(N)$, respectively.
 
-We topologize modular curves and briefly show they are compact Riemann surfaces. Let $\varGamma$ be a congruence subgroup. The upper half plane $\mathcal H$ is given the Euclidean topology (as a subspace of $\mathbb{C}$ or of $\mathbb{R}^2$), and the natural surjection \[\pi \colon \mathcal H \to Y(\varGamma)\quad \text{defined by}\quad  z\mapsto \varGamma z\] induces the quotient topology on $Y(\varGamma)$ (i.e., the open sets in $Y(\varGamma)$ are those with open preimages under $\pi$). In fact, $\pi$ is an open mapping. It suffices to show that the projection $\pi$ takes an open ball $B$ in $\mathcal{H}$ to an open set in $Y(\varGamma)$; that is, to show that \[\bigcup_{\gamma\in \varGamma}\gamma(B)\] is open. By the Open Mapping Theorem, each $\gamma(B)$ is open (or since $\gamma^{-1}$ is continuous), so the result holds. Note that since $\pi$ is open, $Y(\varGamma)$ is second-countable.
+We topologize modular curves and briefly show they are compact Riemann surfaces. Let $\varGamma$ be a congruence subgroup. The upper half plane $\mathcal H$ is given the Euclidean topology (as a subspace of $\mathbb{C}$ or of $\mathbb{R}^2$), and the natural surjection \[\pi \colon \mathcal H \to Y(\varGamma)\quad \text{defined by}\quad  z\mapsto \varGamma z\] induces the quotient topology on $Y(\varGamma)$ (i.e., the open sets in $Y(\varGamma)$ are those with open preimages under $\pi$).
 
-Furthermore, $\pi(U_1)\cap \pi(U_2)=\emptyset$ in $Y(\varGamma)$ is equivalent to $\big(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ in $\mathcal H$. The equality
-\begin{multline}\label{eq: disjoint nbds in modular curve}
-    \emptyset = \pi^{-1}(\pi(U_1)\cap \pi(U_2)) = \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\Bigg)\cap \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_2)\Bigg) = \bigcup_{\gamma,\eta\in \varGamma}\gamma(U_1)\cap \eta(U_2)\\ = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma\in \varGamma}(\eta^{-1}\gamma)(U_1)\Bigg)\cap U_2\Bigg] = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\Bigg)\cap U_2\Bigg]
-\end{multline}
-implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\cap U_2$ must be empty, from which the above equivalence follows.
-As a remark, $\mathcal H$ is connected, so $Y(\varGamma)$ is connected as well.
-
-We show that $Y(\varGamma)$ is Hausdorff. Observe that the action of $\SL_2(\mathbb{Z})$ (hence also of $\varGamma$) on $\mathcal H$ is properly discontinuous. Given $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \SL_2(\mathbb{Z})$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\SL_2(\mathbb{Z})$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
+\begin{lemma}\label{lem: slz acts as open maps}
+    The quotient map $\pi \colon \mathcal H \to Y(\varGamma)$ is an open map.
+\end{lemma}
 \begin{proof}
-    Take $V_1$ and $V_2$ to be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open balls or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$, and $Y_1 = \sup_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eq: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
+    It suffices to show that the projection $\pi$ takes an open ball $B$ in $\mathcal{H}$ to an open set in $Y(\varGamma)$; that is, to show that \[\bigcup_{\gamma\in \varGamma}\gamma(B)\] is open. Since each $\gamma^{-1}$ is continuous, each $\gamma(B)$ is open, so $\pi$ is an open map.
+\end{proof}
+
+\begin{lemma}
+    The action of the modular group $\slz$ on $\mathcal H$ is properly discontinuous; that is, for $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\slz$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
+\end{lemma}
+\begin{proof}
+    Let $V_1$ and $V_2$ be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open balls or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $Y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, and $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eq: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
         a & b \\ c & d
-    \end{smallmatrix}\!\big)\in \SL_2(\mathbb{Z})$ (i.e., $\gcd(c,d) = 1$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where the inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_1$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many coprime integers $c,d$ we have \begin{equation}\label{eq: sup inf}
-        \sup_{\substack{\gamma  = \big(\!\begin{smallmatrix}
-            a & b \\ c & d
-        \end{smallmatrix}\!\big)\in \SL_2(\mathbb{Z})\\z\in V_1}}\cbr{\Im(\gamma(z))}< \inf_{z\in V_2}\cbr{\Im(z)}.
+    \end{smallmatrix}\!\big)\in \slz$ not equal to $\pm I$ (i.e., $c\neq 0$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where this inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_2$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many integers $c,d$, if $\gamma  = \big(\!\begin{smallmatrix}
+        a & b \\ c & d
+    \end{smallmatrix}\!\big)\in \slz$, then \begin{equation}\label{eq: sup inf}
+        \sup_{z\in V_1}\cbr{\Im(\gamma(z))}< \inf_{z\in V_2}\cbr{\Im(z)}.
     \end{equation} Thus for $\gamma = \big(\!\begin{smallmatrix}
         a & b \\ c & d
-    \end{smallmatrix}\!\big)\in \SL_2(\mathbb{Z})$ satisfying \cref{eq: sup inf}, $\gamma(V_1)\cap V_2=\emptyset$. We show that there are only finitely many $\gamma\in \SL_2(\mathbb{Z})$ for which $\gamma(V_1)\cap V_2\neq\emptyset$.
+    \end{smallmatrix}\!\big)\in \slz$ satisfying \cref{eq: sup inf}, $\gamma(V_1)\cap V_2=\emptyset$. We show that there are only finitely many $\gamma\in \slz$ for which $\gamma(V_1)\cap V_2\neq\emptyset$.
 
-    We determine the matrices in $\SL_2(\mathbb{Z})$ which have fixed bottom row $(c,d)$ for fixed coprime $c,d$. This is equivalent to finding all matrices $\eta = \big(\!\begin{smallmatrix}
+    We determine the matrices in $\slz$ which have fixed bottom row $(c,d)$. This is equivalent to finding all matrices $\eta = \big(\!\begin{smallmatrix}
         A & B \\ C & D
-    \end{smallmatrix}\!\big)\in \SL_2(\mathbb{Z})$ such that $\eta\gamma$ has bottom row $(c,d)$, where $\gamma\in \SL_2(\mathbb{Z})$ is a fixed matrix with  bottom row $(c,d)$. Evidently $C=0$ and $D = 1$, and since $1 = AD - BC = A$, we have that $\eta$ must have the form $\big(\!\begin{smallmatrix}
+    \end{smallmatrix}\!\big)\in \slz$ such that $\eta\gamma$ has bottom row $(c,d)$, where $\gamma\in \slz$ is a fixed matrix with  bottom row $(c,d)$. Evidently $C=0$ and $D = 1$, and since $1 = AD - BC = A$, we have that $\eta$ must have the form $\big(\!\begin{smallmatrix}
         1 & B \\ 0  & 1
-    \end{smallmatrix}\!\big)$, and $B$ may be taken to be any integer. [As expected, $\det(\eta\gamma) = \det(\eta)\det(\gamma) = 1$.] Explicitly, the matrices in $\SL_2(\mathbb{Z})$ with bottom row $(c,d)$ are \[\cbr{\begin{pmatrix}
+    \end{smallmatrix}\!\big)$, and $B$ may be taken to be any integer. Explicitly, the matrices in $\slz$ with bottom row $(c,d)$ are \[\cbr{\begin{pmatrix}
         1 & k \\ 0 & 1
     \end{pmatrix}\begin{pmatrix}
         a & b \\ c & d
@@ -331,15 +362,26 @@ We show that $Y(\varGamma)$ is Hausdorff. Observe that the action of $\SL_2(\mat
         a & b \\ c & d
     \end{smallmatrix}\!\big): k\in \mathbb{Z}}$, the intersection $\gamma(V_1)\cap V_2 = \big(\big(\!\begin{smallmatrix}
         a & b \\ c & d
-    \end{smallmatrix}\!\big)V_1+ k\big)\cap V_2 =\emptyset$ for all but finitely many $k$; that is, for finitely many $\gamma$. So of the finitely many pairs of coprime integers $(c,d)$ for which \cref{eq: sup inf} does not hold, only finitely many matrices $\gamma\in \SL_2(\mathbb{Z})$ with bottom row $(c,d)$ exist with $\gamma(V_1)\cap V_2\neq \emptyset$.
+    \end{smallmatrix}\!\big)V_1+ k\big)\cap V_2 =\emptyset$ for all but finitely many $k$; that is, for finitely many $\gamma$. So of the finitely many pairs of integers $(c,d)$ for which \cref{eq: sup inf} does not hold, only finitely many matrices $\gamma\in \slz$ with bottom row $(c,d)$ exist with $\gamma(V_1)\cap V_2\neq \emptyset$.
 
-    Let $F = \cbr{\gamma\in \SL_2(\mathbb{Z}): \gamma(V_1)\cap V_2\neq \emptyset, \gamma(z_1)\neq z_2}$, which is finite by the above argument. For each $\gamma \in F$ there exist disjoint neighborhoods $V_{1,\gamma}$ of $\gamma(z_1)$ and $V_{2,\gamma}$ of $z_2$ in $\mathcal H$. Let \[U_1 = V_1\cap \Bigg(\bigcap_{\gamma\in F}\gamma^{-1}(V_{1,\gamma})\Bigg)\quad\text{and}\quad U_2 = V_2\cap \Bigg(\bigcap_{\gamma\in F}V_{2,\gamma}\Bigg),\] and note that $U_1,U_2$ are open, as elements of $\SL_2(\mathbb{Z})$ are open maps on $\mathcal H$. Then take any $\gamma\in \SL_2(\mathbb{Z})$ with $\gamma(U_1)\cap U_2\neq \emptyset$. If $\gamma\not\in F$, then we must have $\gamma(z_1) = z_2$. Suppose that $\gamma\in F$. Then $U_1\subset \gamma^{-1}(U_{1,\gamma})$ and $U_2\subset U_{2,\gamma}$ so that $ \gamma(U_1)\cap U_2\subset U_{1,\gamma}\cap U_{2,\gamma}$. But $\gamma(U_1)\cap U_2\neq \emptyset$, which is in contradiction with $U_{1,\gamma}$ and $U_{2,\gamma}$ chosen to be disjoint. Hence $\gamma\not\in F$, so that $\gamma(z_1)= z_2$.
+    Let $F = \cbr{\gamma\in \slz: \gamma(V_1)\cap V_2\neq \emptyset, \gamma(z_1)\neq z_2}$, which is finite by the above argument. For each $\gamma \in F$ there exist disjoint neighborhoods $V_{1,\gamma}$ of $\gamma(z_1)$ and $V_{2,\gamma}$ of $z_2$ in $\mathcal H$. Let \[U_1 = V_1\cap \Bigg(\bigcap_{\gamma\in F}\gamma^{-1}(V_{1,\gamma})\Bigg)\quad\text{and}\quad U_2 = V_2\cap \Bigg(\bigcap_{\gamma\in F}V_{2,\gamma}\Bigg),\] and note that $U_1,U_2$ are open, as elements of $\slz$ are open maps on $\mathcal H$ by $\cref{lem: slz acts as open maps}$. Then take any $\gamma\in \slz$ with $\gamma(U_1)\cap U_2\neq \emptyset$. If $\gamma\not\in F$, then we must have $\gamma(z_1) = z_2$. Suppose that $\gamma\in F$. Then $U_1\subset \gamma^{-1}(U_{1,\gamma})$ and $U_2\subset U_{2,\gamma}$ so that $ \gamma(U_1)\cap U_2\subset U_{1,\gamma}\cap U_{2,\gamma}$. But $\gamma(U_1)\cap U_2\neq \emptyset$, which is in contradiction with $U_{1,\gamma}$ and $U_{2,\gamma}$ chosen to be disjoint. Hence $\gamma\not\in F$, so that $\gamma(z_1)= z_2$.
 \end{proof}
 
-A corollary of this result is that for any congruence subgroup $\varGamma$ of $\SL_2(\mathbb{Z})$, the modular curve $Y(\varGamma)$ is Hausdorff. 
+Furthermore, $\pi(U_1)\cap \pi(U_2)=\emptyset$ in $Y(\varGamma)$ is equivalent to $\big(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ in $\mathcal H$. The equality
+\begin{multline}\label{eq: disjoint nbds in modular curve}
+    \emptyset = \pi^{-1}(\pi(U_1)\cap \pi(U_2)) = \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\Bigg)\cap \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_2)\Bigg) = \bigcup_{\gamma,\eta\in \varGamma}\gamma(U_1)\cap \eta(U_2)\\ = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma\in \varGamma}(\eta^{-1}\gamma)(U_1)\Bigg)\cap U_2\Bigg] = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\Bigg)\cap U_2\Bigg]
+\end{multline}
+implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\cap U_2$ must be empty, from which the above equivalence follows.
+
+\begin{proposition}
+    The space $Y(\varGamma)$ is second-countable, connected, and Hausdorff.
+\end{proposition}
+
 \begin{proof}
-    Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \SL_2(\mathbb{Z})$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eq: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
-\end{proof} 
+    Since $\pi$ is open and $\mathcal H$ is second-countable, $Y(\varGamma)$ is second-countable. As $\mathcal H$ is connected and $\pi$ is continuous, $Y(\varGamma)$ is connected.
+
+    Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eq: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
+\end{proof}
 
 What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space.
 
@@ -347,17 +389,13 @@ What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting 
 \subsection{Elliptic points and cusps}
 
 \newpage\section{Modular forms}
-In this section, we define modular forms, 
+In this section, we define modular forms, \textib{TBD}
 \subsection{Definitions}
-For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \begin{pmatrix}
-    a & b \\ c & d
-\end{pmatrix}\in \varGamma, z\in \mathcal H.\]
-For any matrix $\gamma=\big(\!\begin{smallmatrix}
-    a & b \\ c & d
-\end{smallmatrix}\!\big)\in \SL_2(\mathbb{Z})$ the \textib{factor of automorphy} $j(\gamma,z)$ for $z\in \mathbb{C}$ is defined by \[j(\gamma,z) = cz+d.\] For any integer $k$ and $\gamma\in \SL_2(\mathbb{Z})$ define the \textib{weight-k operator} $[\gamma]_k$ on functions $f\colon \mathcal H\to \mathbb{C}$ by \[(f[\gamma]_k)(z) = j(\gamma,z)^{-k}f(\gamma(z)),\quad\text{for } z\in \mathcal H.\]
-Since the factor of automorphy $j(\gamma,z) = cz+d$ cannot be zero or infinity (since $z\in \mathcal H$), if $f$ is meromorphic on $\mathcal H$, then so is $f[\gamma]_k$, and the number of poles and zeroes of $f[\gamma]_k$ and $f$ are the same.
+For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \abcd\in \varGamma, z\in \mathcal H.\]
+For any matrix $\gamma=\smallabcd\in \slz$ the \textib{factor of automorphy} $j(\gamma,z)$ for $z\in \mathbb{C}$ is defined by \[j(\gamma,z) = cz+d.\] For any integer $k$ and $\gamma\in \slz$ define the \textib{weight-k operator} $|_k[\gamma]$ on functions $f\colon \mathcal H\to \mathbb{C}$ by \[(f|_k[\gamma])(z) = j(\gamma,z)^{-k}f(\gamma(z)),\quad\text{for } z\in \mathcal H.\]
+Since the factor of automorphy $j(\gamma,z) = cz+d$ cannot be zero or infinity (since $z\in \mathcal H$), if $f$ is meromorphic on $\mathcal H$, then so is $f|_k[\gamma]$, and the number of poles and zeroes of $f|_k[\gamma]$ and $f$ are the same.
 
-So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H \to \mathbb{C}$ is weakly modular of weight $k$ (with respect to $\varGamma$) if \[f[\gamma]_k = f\quad\text{for all }\gamma\in \varGamma,\] and this is equivalent to the original definition above.
+So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H \to \mathbb{C}$ is weakly modular of weight $k$ (with respect to $\varGamma$) if \[f|_k[\gamma] = f\quad\text{for all }\gamma\in \varGamma,\] and this is equivalent to the original definition above.
 % \subsection{Dimension formulas}
 % \subsection{Eisenstein series}
 % \subsection{Dirichlet characters and $L$-functions}

@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\renewcommand{\familydefault}{\sfdefault}
+\headheight = 14pt
+
+% packages
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{array}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\textbf{Math Coursework at the University of Florida}}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\leftskip 1cm
+\parindent -1cm
+\renewcommand{\baselinestretch}{1.2}
+
+\begin{document}
+\textsl{Courses marked with \textsuperscript{\textdagger} are graduate or mixed graduate/undergraduate level courses:}
+
+\begin{center}
+    \begin{tabular}[h]{|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.1\linewidth}|>{\centering\arraybackslash}m{0.07\linewidth}|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.27\linewidth}|}
+        \hline\textbf{Course} & \textbf{Semester} & \textbf{Grade} & \textbf{Textbook} & \textbf{Topics}\\
+        % F20
+        \hline MHF3202 Sets \& Logic & Fall 2020 & A & Hammack Chs. 1, 2, 3, 5-10, 12, 14 & Elementary set theory and basic proofwriting \\
+        \hline MAP2302 Honors Elem. Diff. Eqns. & Fall 2020 & A & Nagle Saff Snider 7th ed. Chs. 1-8 & Solving basic ODEs, existence and uniqueness, applications in physics \\
+        \hline MAC3474 Honors Calculus III & Fall 2020 & A & Professor's text & Basic multivariable and vector calculus \\
+        % S21
+        \hline MAS4301 Intro. Abstract Algebra & Spr. 2021 & A & Gallian Chs. 1-11 & Elementary group theory \\
+        \hline MAS4203 Intro. Number Theory & Spr. 2021 & A- & Niven \& Zuckerberg Chs. 1-3 & Elementary number theory \\
+        \hline MAS4105 Intro. Linear Algebra & Spr. 2021 & A & Friedberg, Insel, Spence Chs. 1-6 & Proof-based linear algebra \\
+        \hline MAA4402 Intro Complex Analysis & Spr. 2021 & A & Brown \& Churchill Chs. 1-7 & Basic theory of functions of a complex variable \\
+        % Su21
+        \hline MAP4305 Intermediate ODE & Summer 2021 & A & Professor's lectures & Matrix methods, method of Frobenius, Sturm-Liouville BVPs, Green's functions \\
+        % F21
+        \hline MAS5311\textsuperscript{\textdagger} Intro. Algebra I & Fall 2021 & A & Dummit \& Foote Chs. 1-6 & Group theory \\
+        \hline MAS4413 Fourier Analysis & Fall 2021 & A & Stein \& Shakarchi I Chs. 1-7 & Fourier series and Fourier transforms \\
+        \hline MAA4211 Advanced Calculus I & Fall 2021 & A & Abbott Chs. 1-7 & Introductory real analysis \\
+        \hline MAA5228\textsuperscript{\textdagger} Modern Analysis I & Fall 2021 & (audit) & Rudin PMA Chs. 1-5 & Metric spaces, convergence, continuity, differentiation \\
+        % S22
+        \hline MAS5312\textsuperscript{\textdagger} Intro. Algebra II & Spr. 2022 & A- & Dummit \& Foote Chs. 7-13 & Rings, fields, modules \\ 
+        \hline MAP4341\textsuperscript{\textdagger} Intro. PDE & Spr. 2022 & A & Professor's notes & separation of variables, IVP and BVP, method of characteristics, Sturm-Liouville operators \\
+        \hline MAA4212 Advanced Calculus II & Spr. 2022 & A & Professor's notes & metric spaces, multivariable functions \\
+        \hline MTG4303\textsuperscript{\textdagger} Intro. Topology II & Spr. 2022 & A & Munkres Chs. 5-6, 9-12 & basic algebraic topology, topics from point-set topology \\
+        \hline
+    \end{tabular}
+\end{center}
+\begin{center}
+    \begin{tabular}[h]{|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.1\linewidth}|>{\centering\arraybackslash}m{0.07\linewidth}|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.27\linewidth}|}
+        \hline\textbf{Course} & \textbf{Semester} & \textbf{Grade} & \textbf{Textbook} & \textbf{Topics}\\
+        % F22
+        \hline MAS6331\textsuperscript{\textdagger} Algebra I & Fall 2022 & A & Dummit \& Foote Chs. 10.4, 10.5, 13, 14 & Field and Galois theory, tensor products, projective modules \\
+        \hline MAA6616\textsuperscript{\textdagger} Analysis I & Fall 2022 & A & Professor's notes & Sigma-algebras, signed/unsigned measures, the Lebesgue measure, integration, modes of convergence, and differentiation theorems \\
+        \hline MAA6406\textsuperscript{\textdagger} Complex Analysis I & Fall 2022 & A & Professor's notes, Conway Chs. 1-7 & Analytic functions, integral formulas, zeroes and singularities of functions, Morera's and Goursat's theorems, Cauchy's theorem and integral formula, Laurent series, spaces of holomorphic functions \\
+        \hline MTG6346\textsuperscript{\textdagger} Topology I & Fall 2022 & A & tom Dieck Chs. 1-6, 8, 9 & Fundamental group, covering spaces, intro homotopy theory, cofibrations and fibrations, homotopy groups, CW complexes, singular homology \\
+        \hline MAT6932\textsuperscript{\textdagger} Calculus of Variations and Optimal Control & Fall 2022 & A & Professor's lectures & Basic calculus of variations and optimal control following several examples \\
+        \hline
+    \end{tabular}
+\end{center}
+\begin{center}
+    \begin{tabular}[h]{|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.1\linewidth}|>{\centering\arraybackslash}m{0.07\linewidth}|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.27\linewidth}|}
+        \hline\textbf{Course} & \textbf{Semester} & \textbf{Grade} & \textbf{Textbook} & \textbf{Topics}\\
+        % S23
+        \hline MAS6332\textsuperscript{\textdagger} Algebra II & Spr. 2023 & A & Professor's notes, Dummit \& Foote Chs. 15-17 & Projective, injective, and flat modules. Introduction to homological algebra, group cohomology, category theory, commutative algebra, and algebraic geometry \\
+        \hline MAA6617\textsuperscript{\textdagger} Analysis II & Spr. 2023 & A & Professor's notes & Theory of Banach and Hilbert spaces, linear operators, $L^p$ spaces and their duality, $L^1$ and $L^2$ Fourier transform, Sobolev spaces. Touched on Banach algebras \\
+        \hline MAA6407\textsuperscript{\textdagger} Complex Analysis II & Spr. 2023 & A & Professor's notes, Conway Chs. 7, 9, 10, 12 & Weierstrass factorization, analytic continuation and Riemann zeta function, harmonic functions, Picard theorems, and other topics \\
+        \hline MTG6347\textsuperscript{\textdagger} Topology II & Spr. 2023 & A & tom Dieck Chs. 10-12, 16-18, Professor's notes & Singular, axiomatic, and cellular homology/cohomology, and their algebraic structure and dualities \\
+        \hline MAS7397\textsuperscript{\textdagger} Intro. Rep. Theory of groups and Lie algebras & Spr. 2023 & A & Professor's lectures following Fulton-Harris & Representation and character theory of finite groups and of finite-dimensional semisimple complex Lie algebras, theorems of Burnside and Frobenius \\
+        \hline
+    \end{tabular}
+\end{center}
+\begin{center}
+    \begin{tabular}[h]{|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.1\linewidth}|>{\centering\arraybackslash}m{0.07\linewidth}|>{\centering\arraybackslash}m{0.2\linewidth}|>{\centering\arraybackslash}m{0.27\linewidth}|}
+        \hline\textbf{Course} & \textbf{Semester} & \textbf{Grade} & \textbf{Textbook} & \textbf{Topics}\\
+        % F23
+        \hline MAP6505\textsuperscript{\textdagger} Mathematical Methods for Physics and Engineering I & Fall 2023 & TBD & Professor's notes & Theory of distributions, distributional solutions to linear differential equations, and Green’s
+        functions \\
+        \hline MTG6256\textsuperscript{\textdagger} Differential Geometry I & Fall 2023 & (audit) & do Carmo Chs. 1-3 & Basic concepts of differential and Riemannian geometry \\
+        \hline MAT6932\textsuperscript{\textdagger} Analytic Number Theory & Fall 2023 & (audit) & Professor's notes & Topics in analytic number theory including proving the prime number theorem, sieve methods,
+        probablistic number theory \\
+        % S24
+        \hline MAP6506\textsuperscript{\textdagger} Mathematical Methods for Physics and Engineering II & Spr. 2024 & TBD & Professor's notes & IVPs in physics, Lippmann-Schwinger formalism, integral equations in Banach spaces, Green's functions, bounded/unbounded operators in Banach and Hilbert spaces, self-adjoint operators, spectral theorem\\
+        \hline MTG6257\textsuperscript{\textdagger} Differential Geometry II & Spr. 2024 & (audit) & do Carmo & TBD \\
+        \hline MTG 7397\textsuperscript{\textdagger} Advanced Topics in Topology 2 & Spr. 2024 & (audit) & Riehl, Rotman (An Introduction to Homological Algebra) & Category theory, homological algebra, spectral sequences \\
+
+        \hline
+    \end{tabular}
+\end{center}
+\end{document}
