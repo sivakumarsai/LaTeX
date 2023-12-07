@@ -1,4 +1,4 @@
-\documentclass[10pt,leqno]{article}
+\documentclass[10pt,leqno,twoside]{article}
 
 % packages
 \usepackage[alphabetic]{amsrefs}
@@ -34,6 +34,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}[lem]{Definition}
 \newtheorem{definition}[lem]{Definition}
+\AtEndEnvironment{definition}{\null\hfill\ensuremath{\blacklozenge}}
 \newtheorem{example}[lem]{Example}
 \newtheorem{remark}[lem]{Remark}
 \newtheorem{exercise}[lem]{Exercise}
@@ -62,12 +63,12 @@
 \fancypagestyle{frontmatter}{
     \fancyhf{}
     \pagestyle{fancy}
-    \fancyhead[R]{\thepage}
+    \fancyhead[LE,RO]{\thepage}
 }
 \fancypagestyle{body}{
     \pagestyle{fancy}
-    \fancyhead[L]{\rightmark}
-    \fancyhead[R]{\thepage}
+    \fancyhead[LO,RE]{\nouppercase{\rightmark}}
+    \fancyhead[LE,RO]{\thepage}
 }
 \renewcommand{\headrulewidth}{1pt}
 
@@ -127,6 +128,10 @@
 \arraycolsep = 3pt
 \renewcommand{\arraystretch}{.8}
 
+% temporaries for editing
+\usepackage{color}
+\newcommand{\tbd}{{\Huge\color{red}{\textib{TBD}}}}
+
 \begin{document}
 \begin{titlepage}
     \begin{center}
@@ -144,15 +149,13 @@
     \end{center}
 \end{titlepage}
 \pagestyle{frontmatter}
-\tableofcontents\newpage
+\section*{Acknowledgements}
+\newpage\tableofcontents
 
+\newpage\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
 
-\pagestyle{body}
-\newpage\section{Acknowledgements}
-
-\newpage\section{Introduction}
-
-\newpage\section{Preliminaries} In this section, we collect the definitions and results needed to define modular forms.
+\newpage\section{Preliminaries} \pagestyle{body} In this section, we collect the definitions and results needed to define modular forms.
 \subsection{The modular group and congruence subgroups}
 Let $R$ be a unital ring. The \textib{general linear group} $\GL_n(R)$ is the group of $n\times n$ invertible matrices with entries from $R$; that is, matrices with unit determinant, under matrix multiplication. The \textib{special linear group} $\SL_n(R)$ is the subgroup of $\GL_n(R)$ whose matrices have determinant $1_R$.
 
@@ -233,7 +236,7 @@ Therefore, by the first isomorphism theorem, $\slz/\varGamma(N)\cong \SL_2(\math
 
     The determinant is a surjective homomorphism from $\GL_2(\mathbb{Z}/p\mathbb{Z})$ to $(\mathbb{Z}/p\mathbb{Z})^\times\cong \mathbb{Z}/(p-1)\mathbb{Z}$ with kernel $\SL_2(\mathbb{Z}/p\mathbb{Z})$. Observe that $\abs{\GL_2(\mathbb{Z}/p\mathbb{Z})}$ is the number of ordered bases of $(\mathbb{Z}/p\mathbb{Z})^2$, given by $(p^2-1)(p^2-p)$. (The first factor counts the number of valid first basis vectors, and the second factor counts the number of valid second basis vectors after choosing a first basis vector.) Then by the first isomorphism theorem, $\abs{\SL_2(\mathbb{Z}/p\mathbb{Z})} = (p^2-1)(p^2-p)/(p-1) = p(p^2-1) = p^3(1-1/p^2)$.
     
-    By \cref{lem: varGamma(N) kernel of projection}, the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective. The surjection $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is the composition of the natural homomorphisms $\slz\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ and $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$, from which it follows that $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective also.
+    By \cref{lem: varGamma(N) kernel of projection}, the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective. The surjection $\slz\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is equal to the composition of the natural homomorphisms $\slz\to \SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})$ and $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$, from which it follows that $\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})\to \SL_2(\mathbb{Z}/p^e\mathbb{Z})$ is surjective also.
     % \[\begin{tikzcd}
     %     {\slz} & {\SL_2(\mathbb{Z}/p^e\mathbb{Z})} \\
     %     {\SL_2(\mathbb{Z}/p^{e+1}\mathbb{Z})}
@@ -383,13 +386,13 @@ implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\c
     Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eq: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
 \end{proof}
 
-What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space.
+What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space. \tbd
 
 
 \subsection{Elliptic points and cusps}
 
 \newpage\section{Modular forms}
-In this section, we define modular forms, \textib{TBD}
+In this section, we define modular forms, \tbd
 \subsection{Definitions}
 \begin{definition}
     For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \abcd\in \varGamma, ~z\in \mathcal H.\]
@@ -403,7 +406,7 @@ So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic funct
     For any $\gamma,\eta\in \slz$ and $z\in \mathcal H$, we have $j(\gamma\eta,z) = j(\gamma,\eta(z))j(\eta,z)$ and $|_k[\gamma\eta] = |_k\gamma|_k\eta$.
 \end{lemma}
 \begin{proof}
-    Indeed, \textib{TBD}
+    Indeed, \tbd
 \end{proof}
 \subsection{Dimension formulas}
 \subsection{Eisenstein series}
@@ -411,15 +414,118 @@ So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic funct
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
 \begin{definition}
     A \textib{Dirichlet character modulo $N$} is a homomorphism 
-    \[\chi\colon Z_N^\times\to \mathbb{C}^\times.\]
+    \[\chi\colon Z_N^\times\to \mathbb{C}^\times.\] (We will sometimes suppress ``Dirichlet'' when referring to Dirichlet characters.)
 \end{definition}
-The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multiplication $(\chi\psi)(n) = \chi(n)\psi(n)$ for $n\in Z_N^\times$, is a Dirichlet character. The trivial map is a Dirichlet character, called the trivial character. Hence the set of Dirichlet characters of $Z_N^\times$ forms a group called the \textib{dual group} of $Z_N^\times$, denoted $\widehat{Z_N^\times}$. Since $Z_N^\times$ is a finite group, the image of any character lies in the roots of unity. Thus the inverse of a Dirichlet character is its complex conjugate character $\overline \chi$, defined by taking the complex conjugate pointwise: $\overline\chi(n) = \overline{\chi(n)}$
+The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multiplication $(\chi\psi)(n) = \chi(n)\psi(n)$ for $n\in Z_N^\times$, is a Dirichlet character. The trivial map is a Dirichlet character, called the trivial character. Hence the set of Dirichlet characters of $Z_N^\times$ forms a group called the \textib{dual group} of $Z_N^\times$, denoted $\widehat{Z_N^\times}$. Since $Z_N^\times$ is a finite group, the image of any character lies in the roots of unity. Thus the inverse of a Dirichlet character is its complex conjugate character $\overline \chi$, defined by taking the complex conjugate pointwise: $\overline\chi(n) = \overline{\chi(n)}$ for $n\in Z_N^\times$, where $\overline{\,\cdot\,}$ denotes complex conjugation. Note that the only Dirichlet character of $Z_1^\times$ is the trivial character $\mathbf{1}_1$. 
+
+\begin{proposition}
+    The dual group $\widehat{Z_N^\times}$ is (noncanonically) isomorphic to $Z_N^\times$; it follows that the number of Dirichlet characters modulo $N$ is $\phi(N)$.
+\end{proposition}
+
+\begin{proof}
+    This follows from Exercise 5.2.14 in \cite{df}, which states that finite Abelian groups are (noncanonically) self-dual. \tbd
+\end{proof}
+
+\begin{proposition}
+    The groups $Z_N^\times$ and $\widehat{Z_N^\times}$ satisfy the following orthogonality relations:
+\begin{equation}\label{eq: ortho rels}
+    \sum_{n\in Z_N^\times}\chi(n) = \begin{cases}
+    \phi(N) & \text{if $\chi = \mathbf 1$}, \\
+    0 & \text{if $\chi\neq \mathbf 1$},
+\end{cases}\quad \sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = \begin{cases}
+    \phi(N) & \text{if $n = 1$}, \\
+    0 & \text{if $n\neq 1$}.
+\end{cases}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+    Exercise 5.2.14 in \cite{df}. \tbd 
+\end{proof}
+
+Any Dirichlet character $\chi$ modulo $d$ may be lifted to a character $\chi_N$ modulo $N$ when $d\mid N$, by the rule $\chi_N(n\smod N) = \chi(n\smod d)$ for all $n\in\mathbb{Z}$ coprime to $N$. In other words, if $\pi_{N,d}\colon Z_N^\times\to Z_d^\times$ is the natural projection, then $\chi_N = \chi\circ \pi_{N,d}$.
+
+However, given positive $N,d$ with $d\mid N$ and $\chi$ a character modulo $N$, it is not always possible to find a character $\chi_d$ modulo $d$ such that $\chi = \chi_d\circ \pi_{N,d}$. But for every character modulo $N$ there exists a divisor $d$ of $N$ and a character $\chi_d$ modulo $d$ such that $\chi = \chi_d\circ \pi_{N,d}$. 
+\begin{definition}
+    The \textib{conductor} of a Dirichlet character $\chi$ modulo $N$ is the smallest positive divisor $d$ of $N$ such that there exists a Dirichlet character $\chi_d$ modulo $d$ such that $\chi = \chi_d\circ \pi_{N,d}$, equivalently, such that $\chi$ is trivial on the normal subgroup 
+    \[\ker(\pi_{N,d}) = \{n\in Z_N^\times : n\equiv 1\smod d\}.\]
+
+    A Dirichlet character modulo $N$ is \textib{primitive} if its conductor is $N$.
+\end{definition}
+
+Note that the only character modulo $N$ with conductor $1$ is the trivial character $\mathbf 1_N$, so that the trivial character $\mathbf 1_N$ is primitive only for $N = 1$.
+
+Any Dirichlet character $\chi$ modulo $N$ extends to a function (abusing notation) $\chi\colon Z_N\to\mathbb C$ by the rule $\chi(n) = 0$ for noninvertible elements $n$ of the ring $Z_N$. Further extend $\chi$ to a function $\chi\colon\mathbb Z\to\mathbb C$ by the rule $\chi(n) = \chi(n\smod N)$. The resulting map $\chi\colon \mathbb Z\to \mathbb C$ is a totally multiplicative (set) function; that is, $\chi(nm) = \chi(n)\chi(m)$ for all $n,m\in \mathbb Z$.
+
+For example, the extension of the trivial character $\mathbf 1_N$ to a function on $\mathbb Z$ is given by
+\[\mathbf 1_N(n) = \begin{cases}
+    1 & \text{if $\gcd(n,N)=1$},\\
+    0 & \text{if $\gcd(n,N)\neq1$}.
+\end{cases}\]
+Also note that the extension of any Dirichlet character $\chi$ satisfies 
+\[\chi(0) = \begin{cases}
+    1 & \text{if $N = 1$},\\
+    0 & \text{if $N > 1$}.
+\end{cases}\]
+Obtain new orthogonality relations from the ones appearing in \cref{eq: ortho rels} by summing from $0$ to $N-1$ in the first orthogonality relation and by taking $n\in\mathbb Z$ in the second:
+\begin{equation}\label{eq: new ortho rels}
+    \sum_{n=0}^{N-1}\chi(n) = \begin{cases}
+        \phi(N) & \text{if $\chi = \mathbf 1$},\\
+        0 & \text{if $\chi\neq \mathbf 1$},
+    \end{cases}\quad\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = \begin{cases}
+        \phi(N) & \text{if $n\equiv 1\smod N$},\\
+        0 & \text{if $n\not\equiv 1\smod N$}.
+    \end{cases} 
+\end{equation}
+\begin{definition}
+    Let $\chi$ be a Dirichlet character modulo $N$. The \textib{Gauss sum} of $\chi$ is the complex number
+    \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^n,\] where $\mu_N = e^{2\pi i/N}$.
+\end{definition}
+\begin{proposition}
+    If $\chi$ is a primitive character modulo $N$, then for any integer $m$ we have 
+    \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^{nm} = \overline\chi(m)g(\chi).\] Furthermore, the Gauss sum of a primitive character is nonzero.
+\end{proposition}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}
+    Let $N$ be a positive integer. If $N = 1,2$, then every Dirichlet character $\chi$ modulo $N$ satisfies $\chi(-1)=1$. If $N>2$, then the number of Dirichlet characters modulo $N$ is even, of which half satisfy $\chi(-1) = 1$ and the other half satisfy $\chi(-1) = -1$.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varGamma_1(N)), \mathcal S_k(\varGamma_1(N)), \mathcal E_k(\varGamma_1(N))$ into direct sums of interesting subspaces.
+\begin{proposition}
+    For each Dirichlet character $\chi$ modulo $N$, define the $\chi$-\textib{eigenspace} of $\mathcal M_k(\varGamma_1(N))$ by 
+    \[\mathcal M_k(N,\chi) = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(d_\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\},\] where $d_\gamma$ denotes the lower right entry of $\gamma$. Then the following decomposition holds:
+    \[\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi).\] With similar definitions of $\chi$-eigenspaces for $\mathcal S_k(\varGamma_1(N))$ and $\mathcal E_k(\varGamma_1(N))$, we obtain the decompositions
+    \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi S_k(N,\chi),\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \mathcal E_k(N,\chi).\]
+\end{proposition}
+\begin{proof}
+    \tbd also factor of automorphy for elements of quotient $\mathcal E_k(\varGamma_1(N))$??
+\end{proof}
+
+\begin{definition}
+    To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
+    \[L(x,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using geometric series and the fundamental theorem of arithmetic.
+\end{definition}
+It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$ (\tbd ex 4.4.4), which has a simple pole at $s = 1$. Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
+\[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
+\[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$).
 
 \newpage\section{Hecke operators}
 \subsection{Double coset operators}
 \subsection{Hecke operators $\abr{n}$ and $T_n$}
 \subsection{The Petersson inner product, adjoints of Hecke operators}
 \subsection{Oldforms, newforms, and primitive forms}
+We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
+\begin{lemma}
+    If $M\mid N$ then $\mathcal S_k(\varGamma_1(M))\subset \mathcal S_k(\varGamma_1(N))$.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+
 
 \newpage\section{Strong Multiplicity One}
 \subsection{Main result and relevant corollaries}
@@ -430,13 +536,14 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 \newpage\pagestyle{frontmatter}
 \begin{bibdiv}
 \begin{biblist}
-\bib{serre}{book}{
-    title = {A Course in Arithmetic},
-    author = {Serre, Jean-Pierre},
-    isbn = {978-0-387-90040-7},
-    series = {Graduate Texts in Mathematics},
-    year = {1978},
-    publisher = {Springer New York, NY}
+
+\bib{df}{book}{
+    title = {Abstract Algebra},
+    author = {Dummit, David S.},
+    author = {Foote, Richard M.},
+    isbn = {978-0-471-43334-7},
+    year = {2004},
+    publisher = {John Wiley \& Sons, Inc.}
 }
 
 \bib{diamond}{book}{
@@ -451,12 +558,24 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 
 \bib{miyake}{book}{
     title = {Modular Forms},
-    author = {Toshitsune Miyake},
+    author = {Miyake, Toshitsune},
     isbn = {978-3-540-29592-1},
     series = {Springer Monographs in Mathematics},
     year = {2005},
     publisher = {Springer Berlin, Heidelberg}
 }
+
+\bib{serre}{book}{
+    title = {A Course in Arithmetic},
+    author = {Serre, Jean-Pierre},
+    isbn = {978-0-387-90040-7},
+    series = {Graduate Texts in Mathematics},
+    year = {1978},
+    publisher = {Springer New York, NY}
+}
+
+
+
 \end{biblist}
 \end{bibdiv}
 \end{document}
