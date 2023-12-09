@@ -280,7 +280,7 @@ Any congruence subgroup $\varGamma$ has finite index in $\slz$. Let $\varGamma$ 
         1 & \ast \\ 0 & 1
     \end{pmatrix}\smod N},\] where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise.    
 \end{definition}
-We have the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\slz$.
+For any positive integer $N$, the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\slz$ hold.
 
 \begin{lemma}
     The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\abcd\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
@@ -416,7 +416,6 @@ So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic funct
     Indeed, \tbd
 \end{proof}
 \subsection{Dimension formulas}
-\subsection{Eisenstein series}
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
 \begin{definition}
@@ -519,6 +518,10 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
 It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$ (\tbd ex 4.4.4), which has a simple pole at $s = 1$. Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
 \[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
 \[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$).
+
+To define $L$-functions for modular forms, 
+
+\subsection{Eisenstein series}
 
 \newpage\section{Hecke operators}
 \subsection{Double coset operators}
