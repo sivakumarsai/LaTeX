@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP6505}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage/N}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\happy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\smiley}}}
+\newcommand{\darkhappy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\blacksmiley}}}
+\newcommand{\sad}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\mathdarkhappy}{\!\darkhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}
+    \item\begin{enumerate}[label=(\roman*)]
+        \item
+    \end{enumerate}
+
+    \hrulefill
+
+    \item\begin{enumerate}[label=(\roman*)]
+        \item We have
+        \[\mathcal F\Big[\mathcal P\frac{1}{x^2}\Big](k) \eq{1} - \mathcal F\Big[\dv{x}\mathcal P\frac{1}{x}\Big](k) \eq{2} ik\mathcal F\Big[\mathcal P \frac{1}{x}\Big](k) \eq{3} -\pi k\varepsilon(k) \eq{4} -\pi\abs{k},\] where \begin{enumerate}
+            \item[(1)] is by differentiation of $\mathcal P\frac{1}{x}$, 
+            \item[(2)] is by the property $\mathcal F[D^\alpha f] = (-ik)^\alpha\mathcal F[f]$ of the Fourier transform,
+            \item[(3)] is by a computation (Example 27.4.6 in the notes), and
+            \item[(4)] holds since $k\varepsilon(k) = \abs{k}$, where $\varepsilon(x) = \theta(x)-\theta(-x)$ is the sign function.
+        \end{enumerate}
+        \item Take the inverse Fourier transform in (i) above to obtain
+        \[-2\mathcal P \frac{1}{k^2} \eq{1} -2\mathcal F^{-1}\Big[\mathcal F\Big[\mathcal P\frac{1}{k^2}\Big](x)\Big](k) \eq{2} -2\mathcal F^{-1}[-\pi\abs{x}](k) \eq{3} -2(2\pi)^{-1}\mathcal F[-\pi\abs{-x}](k) \eq{4} \mathcal{F}[\abs{x}](k),\] where \begin{enumerate}
+            \item[(1)] is by the property $\mathcal F^{-1}[\mathcal F[f]] = f$ of the Fourier transform,
+            \item[(2)] is by (i) above,
+            \item[(3)] is by the property $\mathcal F[f(k)] = (2\pi)^{-N}\mathcal F[f(-k)]$ of the Fourier transform, and
+            \item[(4)] is algebra.
+        \end{enumerate}
+        \item Let $f(x_0,x) = \theta(x_0-\abs{x})$. We verify that $f_a(x_0,x) = e^{-ax_0}f(x_0,x)$ converges to $f(x_0,x)$ in $\mathcal S^\prime$ as $a\to 0^+$. Let $\varphi\in \mathcal S$ be any test function. Then 
+        \begin{align*}
+            \lim_{a\to0^+}(f_a,\varphi) &\eq{1} \lim_{a\to0^+}\int_{\mathbb R^2}e^{-ax_0}\theta(x_0-\abs{x})\varphi(x_0,x)\dd x_0\dd x\\
+            &\eq{2} \lim_{a\to0^+}\int_0^\infty e^{-ax_0}\int_{-x_0}^{x_0}\varphi(x_0,x)\dd x\dd x_0\\
+            &\eq{3} \int_0^\infty \int_{-x_0}^{x_0}\varphi(x_0,x)\dd x\dd x_0\\
+            &\eq{4} (f,\varphi),
+        \end{align*} where \begin{enumerate}
+            \item[(1)] holds since for any $a>0$, $f_a(x_0,x)$ is locally integrable and $\abs{f_a(x_0,x)} = e^{-ax_0}\theta(x_0-\abs{x}) \leq 1$ (note $\supp f\subset \{x_0\geq 0\}$); hence $f_a$ defines a regular temperate distribution for any $a>0$,
+            \item[(2)] is by Fubini's theorem,
+            \item[(3)] is by the Lebesgue dominated convergence theorem (or even MCT) since $|e^{-ax_0}\int_{-x_0}^{x_0}\varphi(x_0,x)\dd x |\leq \int_{-x_0}^{x_0}\abs{\varphi(x_0,x)}\dd x$, which is integrable in $x_0$ since $\varphi\in \mathcal L(\mathbb R^2)$, and
+            \item[(4)] is since $f(x_0,x)$ is also locally integrable with $\abs{f(x_0,x)}\leq 1$; hence $f$ defines a regular distribution with $(f,\varphi) = \int_0^\infty \int_{-x_0}^{x_0}\varphi(x_0,x)\dd x\dd x_0$ by Fubini's theorem.
+        \end{enumerate} It follows that $f_a\to f$ in $\mathcal S^\prime$ as needed. By continuity of the Fourier transform, $\lim_{a\to 0^+}\mathcal F[f_a](k_0,k) = \mathcal F[f](k_0,k)$ and for $a>0$, $f_a(x_0,x)$ are integrable ($\int_0^\infty \int_{-x_0}^{x_0}e^{-ax_0}\dd x\dd x_0 = 2/a^2$ exists), we have
+        \begin{align*}
+            \lim_{a\to 0^+}\mathcal F[f_a](k_0,k) &\eq{1} \lim_{a\to 0^+} \int_0^\infty e^{(-a+ik_0)x_0}\int_{-x_0}^{x_0}e^{ikx}\dd x \dd x_0\\
+        &\eq{2} \lim_{a\to 0^+} \lim_{R\to+\infty} \frac{2}{k^2}\int_0^{kR} e^{(-a+ik_0)u/k}\sin(u) \dd u\\
+        &\eq{3} \lim_{a\to 0^+}  \frac{2}{k^2}\bigg[\lim_{R\to+\infty} \frac{-e^{-aR+ik_0R}\cos(kR)+1+\frac{-a+ik_0}{k}e^{-aR+ik_0R}\sin(kR)}{[(-a+ik_0)/k]^2+1}\bigg]\\
+        &\eq{4} \lim_{a\to 0^+}  \frac{2}{k^2-(k_0+ia)^2}\\
+        &\eq{5} \textbf{???},
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is by definition and Fubini's theorem,
+            \item[(2)] is by evaluating the inner integral and then making the change of variables $u = kx_0$,
+            \item[(3)] is by integration,
+            \item[(4)] is by taking the inner limit, followed by algebra,
+            \item[(5)] \textbf{???}
+        \end{enumerate}
+        \item Let $\varphi\in\mathcal S$ be any test function. Then \begin{align*}
+            (\mathcal F[\delta_{C_a}(x)](k),\varphi(k)) &\eq{1} (\delta_{C_a}(x),\mathcal F[\varphi(k)](x)) \\
+            &\eq{2} \int_{\abs{x} = a}\int_{\mathbb{R}^2}e^{i(x,y)}\varphi(y)\dd y \dd x\\
+            &\eq{3} 
+        \end{align*}
+    \end{enumerate}
+
+    \hrulefill
+
+    \item\begin{enumerate}[label=(\roman*)]
+        \item 
+    \end{enumerate}
+
+    \hrulefill
+
+    \item\begin{enumerate}[label=(\roman*)]
+        \item 
+    \end{enumerate}
+
+    \hrulefill
+\end{enumerate}
+Honor Code: \vspace*{7em}
+\end{document}
