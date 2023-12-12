@@ -18,6 +18,8 @@
 \usepackage{cancel}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue}
 
 % header/footer formatting
 \pagestyle{fancy}
@@ -67,7 +69,8 @@
 
 \begin{enumerate}
     \item\begin{enumerate}[label=(\roman*)]
-        \item
+        Let $L = D^2+2\gamma D+ \omega^2I$ for $\gamma\geq 0$ denote the differential operator for an oscillator.
+        \item 
     \end{enumerate}
 
     \hrulefill
@@ -114,15 +117,41 @@
         \end{enumerate}
         \item Let $\varphi\in\mathcal S$ be any test function. Then \begin{align*}
             (\mathcal F[\delta_{C_a}(x)](k),\varphi(k)) &\eq{1} (\delta_{C_a}(x),\mathcal F[\varphi(k)](x)) \\
-            &\eq{2} \int_{\abs{x} = a}\int_{\mathbb{R}^2}e^{i(x,y)}\varphi(y)\dd y \dd x\\
-            &\eq{3} 
-        \end{align*}
+            &\eq{2} \int_{\abs{x} = a}\int_{\mathbb{R}^2}e^{i(x,k)}\varphi(k)\dd k \dd x\\
+            &\eq{3} \int_{\mathbb{R}^2}\int_{\abs{x} = a}e^{i(x,k)}\varphi(k) \dd x \dd k\\
+            &\eq{4} \int_{\mathbb R^2}\varphi(k)a\int_0^{2\pi} e^{ia \abs{k}\cos\phi}\dd \phi\dd k\\
+            &\eq{5} \int_{\mathbb R^2}\varphi(k)\frac{2\pi a}{\pi}\int_0^{\pi} \frac{1}{2}\big(e^{ia \abs{k}\cos\phi}+e^{-ia \abs{k}\cos\phi}\big)\dd \phi\dd k\\
+            &\eq{6} \int_{\mathbb R^2}2\pi a J_0(a\abs{k}) \varphi(k)\dd k\\
+            &\eq{7} (2\pi a J_0(a\abs{k}),\varphi(k)),
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is by definition of the Fourier transform,
+            \item[(2)] is by definition of the Fourier transform and the spherical delta function,
+            \item[(3)] is by Fubini's theorem since $\int_{\mathbb R^2}\int_{\abs{x} = a}|e^{i(x,k)}\varphi(k)|\dd x \dd k\leq \int_{\mathbb R^2}\abs{\varphi(k)}\int_{\abs{x} = a}\dd x \dd k = 2\pi a\int\abs{\varphi(k)}\dd k < \infty$ since $\varphi\in \mathcal L$,
+            \item[(4)] is by changing to polar coordinates about the vector $k$, so $\phi$ is the angle between $x$ and $k$ and $(x,k) = \abs{x}\abs{k}\cos\phi$,
+            \item[(5)] is by additivity of the integral ($\int_0^{2\pi} = \int_0^\pi + \int_\pi^{2\pi}$) and making a change of coordinates $\phi\mapsto\phi - \pi$ in the second integral plus algebra,
+            \item[(6)] holds since the inner integrand is equal to $\cos(a\abs{k}\cos\phi)$ and by \hyperref{https://dlmf.nist.gov/10.9}{website}{https://dlmf.nist.gov/10.9}{https://dlmf.nist.gov/10.9} equation 10.9.1,
+            \item[(7)] holds since $J_0(a\abs{k})$ should define a regular distribution (it is locally integrable since $J_0$ is continuous, and has moderate growth since $|\frac{1}{\pi}\int_0^{\pi} \frac{1}{2}\big(e^{ia \abs{k}\cos\phi}+e^{-ia \abs{k}\cos\phi}\big)\dd \phi|\leq \frac{1}{\pi}\int_0^\pi \dd\phi = 1$).
+        \end{enumerate} Hence $\mathcal F[\delta_{C_a}(x)](k) = 2\pi a J_0(a\abs{k})$.
     \end{enumerate}
 
     \hrulefill
 
     \item\begin{enumerate}[label=(\roman*)]
-        \item 
+        \item Certainly $\theta(x), x\theta(x)\in \mathcal D_+^\prime$, so the convolutions $\theta(x)\ast x\theta(x)$ and $\dv x[x\theta(x)\ast x\theta(x)]$ exist (Theorem 24.2 and section 23.5.2 in the notes). Furthermore, 
+        \[\dv x[x\theta(x)\ast x\theta(x)] = \dv x(x\theta(x))\ast x\theta(x) = (\theta(x) + x\delta(x))\ast x\theta(x) = \theta(x)\ast x\theta (x).\] (Note $x\delta(x) = 0$, so we don't need to check distributivity, even though distributivity is satisfied anyways.) The distributions $\theta(x),x\theta(x)$ are regular distributions (they are locally integrable), so their convolution may be computed directly as \[[\theta(t)\ast t\theta(t)](x) = \int_{\mathbb R}\theta(x)(x-\tau)\theta(x-\tau)\dd \tau = \theta(x)\int_0^x x-\tau \dd \tau = \frac{x^2}{2}\theta(x).\]
+        % Using the property $\mathcal F[D^\alpha f] = (-ik)^\alpha\mathcal F[f]$ of the Fourier transform, we have \begin{align*}
+        %     (-ik)^{-1} = (-ik)^{-1}\mathcal F[\delta(x)](k) &= (-ik)^{-1}\mathcal F\bigg[\dv x \theta(x)\bigg](k) = \mathcal F[\theta(x)](k)\\
+        %     (-ik)^{-2} = (-ik)^{-2}\mathcal F[\delta(x)](k) &= (-ik)^{-2}\mathcal F\bigg[\dv[2]x x\theta(x)\bigg](k) = \mathcal F[x\theta(x)](k)\\
+        %     (-ik)^{-3} = (-ik)^{-3}\mathcal F[\delta(x)](k) &= (-ik)^{-3}\mathcal F\bigg[\dv[2]x \frac{x^2}{2}\theta(x)\bigg](k) = \mathcal F\bigg[\frac{x^2}{2}\theta(x)\bigg](k),
+        % \end{align*} where $\dv[2]x \frac{x^2}{2}\theta(x) = \delta(x)$ by a similar computation as above. Then with the properties $\mathcal F^{-1}[\mathcal F[f]] = f$ and $\mathcal F[f\ast g] = \mathcal F[f]\mathcal F[g]$ of the Fourier transform, we have
+        % \begin{align*}
+        %     \theta(x)\ast x\theta(x) &= \mathcal F^{-1}[\mathcal F[\theta(x)\ast x\theta(x)](k)](x)\\
+        %     &= \mathcal F^{-1}[\mathcal F[\theta(x)](k)\mathcal F[x\theta(x)](k)](x)\\
+        %     &= \mathcal F^{-1}[(-ik)^{-3}](x)\\
+        %     &= \frac{x^2}{2}\theta(x).
+        % \end{align*}
+        \item The support of $\delta_{S_a}(x)$ (a sphere) is compact, so the convolution $\frac{1}{\abs{x}}\ast\delta_{S_a}(x)$ exists and 
+        \[\Delta\bigg[\frac{1}{\abs{x}}\ast\delta_{S_a}(x)\bigg] = \Delta\frac{1}{\abs{x}}\ast\delta_{S_a}(x) = \frac{1}{\abs{x}}\ast \Delta \delta_{S_a}(x).\] (Theorem 24.1 and section 23.5.2) Since $\Delta \frac{1}{\abs{x}} = -4\pi\delta(x),$ it follows that $\frac{1}{\abs{x}}\ast \Delta \delta_{S_a} = -4\pi\delta(x)\ast \delta_{S_a}(x) = -4\pi \delta_{S_a}$.
     \end{enumerate}
 
     \hrulefill
