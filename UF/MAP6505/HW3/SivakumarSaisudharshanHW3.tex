@@ -28,7 +28,7 @@
 \fancyhead[L]{MAP6505}
 \fancyhead[C]{HW3}
 \fancyhead[R]{Sai Sivakumar}
-\fancyfoot[R]{\thepage/N}
+\fancyfoot[R]{\thepage/10}
 \renewcommand{\headrulewidth}{1pt}
 
 % paragraph indentation/spacing
@@ -68,9 +68,63 @@
 \begin{document}
 
 \begin{enumerate}
-    \item\begin{enumerate}[label=(\roman*)]
-        Let $L = D^2+2\gamma D+ \omega^2I$ for $\gamma\geq 0$ denote the differential operator for an oscillator.
-        \item 
+    \item Let $L = D^2+2\gamma D+ \omega^2I$ for $\gamma\geq 0$ and $\gamma^2<\omega^2$ denote the differential operator for an oscillator. We investigate the Cauchy problem $Lu(t) = f(t)$, $t>0$, $u|_{t=0} = u_0$, $u^\prime|_{t=0} = u_1$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Let $u(t)$ be a solution to the classical Cauchy problem (that is, $u\in C^2(t>0)\cap C^1(t\geq 0)$). Then let $v(t) = \theta(t)u(t)$ be a regular distribution in $\mathcal D^\prime_+$, so that 
+        \begin{align*}
+            Lv(t) &= \theta^{\prime\prime}(t)u(t) + 2\theta^\prime(t)u^\prime(t) + 2\gamma\theta^\prime(t)u(t) + \theta(t)\{Lu(t)\}\\
+            &= \delta^\prime(t)u(t) + 2\delta(t)u^\prime(t) + 2\gamma\delta(t)u(t) + \theta(t)f(t)\\
+            &= -u_1\delta(t) + u_0\delta^\prime(t) + 2u_1\delta(t) + 2\gamma u_0\delta(t) + \theta(t)f(t)\\
+            &= u_0\delta^\prime(t) + u_1\delta(t) + 2\gamma u_0\delta(t) + \theta(t)f(t) \eq{\text{def}} g(t)
+        \end{align*} (where $\theta(t)f(t)$ is interpreted as the extension of $f$ to all of $\mathbb R$ by zero on $t<0$). The generalized Cauchy problem is to find a distribution $v(t)\in \mathcal D^\prime_+$ satisfying $Lv(t) = g(t)$ for $g(t)\in \mathcal D^\prime_+$ above.
+        \item A causal Green's function $G(t)\in \mathcal D^\prime_+$ is a solution to $LG(t) = \delta(t)$. By Proposition 25.1 in the notes, a fundamental solution $G(t)$ is given by $\theta(t)Z(t)$, where $Z(t)$ is a smooth function that satisfies $LZ(t) = 0$ with $Z(0) = 0$ and $ Z^\prime(0) = 1$. From ordinary differential equations, \[Z(t) = \frac{e^{-\gamma t}\sin(\sqrt{\omega^2-\gamma^2}t)}{\sqrt{\omega^2-\gamma^2}}.\] Thus $G(t) = \theta(t)e^{-\gamma t}\sin(\nu t)/\nu$ where $\nu = \sqrt{\omega^2-\gamma^2}$. A solution $v(t)$ to the generalized Cauchy problem within the algebra $\mathcal D^\prime_+$ is of the form $v(t) = G(t)\ast g(t)$ (since $\mathcal D^\prime_+$ is closed under $\ast$), and is unique (and exists) because the algebra $\mathcal D^\prime_+$ is a subspace of $\mathcal D^\prime_{G(t)}$, the subspace of all distributions for which the convolution with $G(t)$ (Theorem 25.2 in the notes). 
+        \item With $f$ locally integrable, 
+        \begin{align*}
+            v(t) = G(t)\ast g(t) &\eq{1} G(t) \ast (u_0\delta^\prime(t) + u_1\delta(t) + 2\gamma u_0\delta(t) + \theta(t)f(t))\\
+            &\eq{2} u_0G^\prime(t) + u_1G(t) + 2\gamma u_0G(t) + G(t)\ast \theta(t)f(t)\\
+            &\eq{3} u_0\theta(t)\bigg[-\gamma e^{-\gamma t}\frac{\sin(\nu t)}{\nu} + e^{-\gamma t}\cos(\nu t)\bigg] + (u_1 + 2\gamma u_0)\theta(t)e^{-\gamma t}\frac{\sin(\nu t)}{\nu}\\
+            &\hspace{2em} + \frac{1}{\nu}\int_0^t f(\tau)e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\dd \tau,
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is from the form of $g(t)$ above,
+            \item[(2)] holds since the convolution $G(t)\ast \delta(t) = G(t)$ exists, from which it follows the convolution $G(t)\ast \delta^\prime(t) = G^\prime(t)\ast \delta(t)$ exists also, and
+            \item[(3)] is using the form of $G(t)$ above and using the fact that $f(t)$ is a regular distribution so that the convolution is given by an integral, which exists since the factor $\theta(t-\tau)$ restricts the upper limit of the integral to $t$ ($f(t)$ is only locally integrable here).
+        \end{enumerate}
+        We find conditions on $f(t)$ (by investigating the expression following equality (3) above) so that the following hold:
+        \begin{enumerate}[label=(\alph*)]
+            \item $\lim_{t\to 0^+}v(t) = u_0$: This limit exists and is equal to $u_0$ since the integral vanishes (the integration region shrinks to a null set), and $G(t)$ is smooth in $t\geq 0$ with $G(0) = Z(0) = 0$ and $G^\prime(0) = Z^\prime(0) = 1$ as needed. Hence 
+            \[\lim_{t\to 0^+}v(t) = \lim_{t\to 0^+} \bigg[u_0\bigg[-\gamma e^{-\gamma t}\frac{\sin(\nu t)}{\nu} + e^{-\gamma t}\cos(\nu t)\bigg] + (u_1 + 2\gamma u_0)e^{-\gamma t}\frac{\sin(\nu t)}{\nu}\bigg] = u_0\] as desired.
+            \item $v(t)\in C^1(t\geq 0)$: $G(t)$ is smooth so it remains to establish differentiability of the integral in (3). In 
+            \begin{align*}
+                \dv t \frac{1}{\nu}\int_0^t f(\tau)e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\dd \tau &= \frac{f(t)}{\nu}e^{-\gamma\cdot 0}\sin(\nu\cdot 0) + \frac{1}{\nu}\int_0^t \pdv tf(\tau)e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\dd \tau\\
+                &= \frac{1}{\nu}\int_0^t f(\tau)\pdv t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]\dd \tau
+            \end{align*} what is required is continuity of $f(t)$ so that the fundamental theorem of calculus may be used as well as to ensure that the hypotheses of Theorem 5.2 (Differentiation of an integral) are met (the partial derivative of the integrand must be continuous, and $\abs{f(\tau)\pdv t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]}\leq \abs{f(\tau)}(1+\gamma)$). Furthermore, the limit as $t\to 0^+$ of the resulting derivative vanishes since the integration region shrinks away. The other terms of $v(t)$ appearing in (3) above are smooth in $t\geq 0$. Thus taking the limit as $t\to 0^+$ of $v^\prime(t)$ yields 
+            \begin{multline*}
+                \lim_{t\to 0^+}v^\prime(t) = \lim_{t\to 0^+} \bigg[ u_0\bigg(\gamma^2 e^{-\gamma t}\frac{\sin(\nu t)}{\nu} - 2\gamma e^{-\gamma t}\cos(\nu t) - \nu e^{-\gamma t}\sin(\nu t)\bigg) \\+ (u_1 + 2\gamma u_0)\bigg(-\gamma e^{-\gamma t}\frac{\sin(\nu t)}{\nu} + e^{-\gamma t}\cos(\nu t)\bigg)\bigg] = u_1
+            \end{multline*} as desired.
+            \item $v(t) \in C^2(t>0)$: Like before, the terms appearing in (3) above which are not the integral are smooth in $t> 0$ so what remains is to verify differentiability of $\frac{1}{\nu}\int_0^t f(\tau)\pdv t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]\dd \tau$, which for similar reasons as in (b) (use of fundamental theorem of calculus and Theorem 5.2), it is sufficient that $f(t)$ is continuous (note $\abs{f(\tau)\pdv[2]t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]}\leq (\gamma^2+2\gamma+ \nu)\abs{f(\tau)}$). Thus with $Z^\prime(0) = 1$,
+            \[\dv t\frac{1}{\nu}\int_0^t f(\tau)\pdv t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]\dd \tau = f(t) + \frac{1}{\nu}\int_0^t f(\tau)\pdv[2] t \big[e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\big]\dd \tau.\]
+            This is enough to see that $v(t)$ does satisfy the classical initial value problem for $t>0$ since $Z(t)$ satisfies the classical homogeneous differential equation (note $\dv t = \dv{(t-\tau)}$ so $LZ(t-\tau) = 0$), as 
+            \begin{align*}
+                Lv(t) &= u_0LZ^\prime(t) + (u_1+2\gamma u_0)LZ(t) + L\Big(\frac{1}{\nu}\int_0^t f(\tau)e^{-\gamma (t-\tau)}\sin(\nu(t- \tau))\dd \tau\Big)\\
+                &= u_0\dv t [LZ(t)] + f(t) + \frac{1}{\nu}\int_0^t f(\tau)LZ(t-\tau)\dd \tau\\
+                &= f(t).
+            \end{align*}
+        \end{enumerate}
+        \item Let $f(t) = f_0\delta(t-T)$. Then since $f(x)\ast\delta(x+h) = f(x+h)$ for any distribution $f$, we have
+        \begin{multline*}
+            v(t) = G(t)\ast g(t) = u_0\theta(t)\bigg[-\gamma e^{-\gamma t}\frac{\sin(\nu t)}{\nu} + e^{-\gamma t}\cos(\nu t)\bigg] + (u_1 + 2\gamma u_0)\theta(t)e^{-\gamma t}\frac{\sin(\nu t)}{\nu}\\ + f_0\theta(t-T)e^{-\gamma (t-T)}\frac{\sin(\nu (t-T))}{\nu}. 
+        \end{multline*} Evidently for $t\in (0,T)$ the last term above does not contribute so $v(t)$ is smooth there, and for $t\in (T,\infty)$ the last term above reads as $f_0e^{-\gamma (t-T)}\frac{\sin(\nu (t-T))}{\nu}$, which is also smooth so that $v(t)$ is smooth there too. Also see that 
+        \[\lim_{t\to T^-}v(t) = u_0\bigg[-\gamma e^{-\gamma T}\frac{\sin(\nu T)}{\nu} + e^{-\gamma T}\cos(\nu T)\bigg] + (u_1 + 2\gamma u_0)e^{-\gamma T}\frac{\sin(\nu T)}{\nu}\] agrees with $\lim_{t\to T^+}v(t)$ since $\lim_{t\to T^+}v(t)f_0\theta(t-T)e^{-\gamma (t-T)}\frac{\sin(\nu (t-T))}{\nu} = 0$. The exponential terms dominate as $t$ goes to $+\infty$, so for $t>T$ the solution is bounded, and for $t<T$ we have a continuous function on a bounded domain so boundedness is evident. By continuity at $t = T$, the solution is bounded for $t\geq 0$.
+
+        Observe that $\theta(t)Z(t)\ast f_0\sum_{n=0}^\infty\delta(t-nT) = \lim_{m\to\infty} \sum_{n=0}^m f_0 \theta(t)Z(t)\ast\delta(t-nT) = \lim_{m\to\infty} \sum_{n=0}^m f_0 \theta(t-nT)Z(t-nT)$ Thus the distributional solution when $f(t) = f_0\sum_{n=0}^\infty\delta(t-nT)$ is 
+        \begin{multline*}
+            v(t) = u_0\theta(t)\bigg[-\gamma e^{-\gamma t}\frac{\sin(\nu t)}{\nu} + e^{-\gamma t}\cos(\nu t)\bigg] + (u_1 + 2\gamma u_0)\theta(t)e^{-\gamma t}\frac{\sin(\nu t)}{\nu} \\ + \sum_{n=0}^\infty f_0 \theta(t-nT)e^{-\gamma (t-nT)}\frac{\sin(\nu (t-nT))}{\nu}.
+        \end{multline*}
+        \item By a similar computation to the case with just one kick, the solution obtained by this manner is continuous (it's clear that $v(t)$ is continuous on $t\neq mT$ for all $m$, but continuity at $t = mT$ for any $T$ is clear since the limit from the left does not receive any contribution from terms $f_0 \theta(t-nT)Z(t-nT)$ for $n\geq m$, and the same is true for the limit from the right since $\lim_{t\to mT^+}f_0 \theta(t-nT)Z(t-nT) = 0$ for $n\geq m$).
+        
+        If $\gamma = 0$, then $\nu = \omega$ and the exponential terms vanish so that no damping will be present. It suffices to study the ``interference pattern'' of the infinite sum appearing in $v(t)$ to deduce boundedness. In this case, if $T = 2\pi/\omega$, then the solution will not remain bounded, since the contribution from each term in the infinite sum appearing in $v(t)$ will constructively interfere without damping, so as $t$ is taken arbitrarily large, an arbitrary number of terms of the infinite sum will contribute to the maximum amplitude attained by $v(t)$ (e.g., take $t_m = (4m+1)\pi/2\omega$ and see that the sequence $\{v(t_m) = \sum_{n=0}^m f_0/\omega\}$ diverges).
+
+        If $\gamma\neq 0$, I think it is not possible to obtain an unbounded solution since the contribution from the infinite sum at time $t = mT$ will be bounded above by $f_0\nu^{-1}e^{-\gamma m T}\sum_{n=0}^me^{\gamma n T} = f_0\nu^{-1}\frac{e^{-\gamma m T}-e^{\gamma T}}{1-e^{\gamma T}}$ which converges (But you should be able to choose $\gamma>0,T,t$ such that $v(t)$ is bigger than some prescribed value).
     \end{enumerate}
 
     \hrulefill
@@ -106,14 +160,29 @@
             \lim_{a\to 0^+}\mathcal F[f_a](k_0,k) &\eq{1} \lim_{a\to 0^+} \int_0^\infty e^{(-a+ik_0)x_0}\int_{-x_0}^{x_0}e^{ikx}\dd x \dd x_0\\
         &\eq{2} \lim_{a\to 0^+} \lim_{R\to+\infty} \frac{2}{k^2}\int_0^{kR} e^{(-a+ik_0)u/k}\sin(u) \dd u\\
         &\eq{3} \lim_{a\to 0^+}  \frac{2}{k^2}\bigg[\lim_{R\to+\infty} \frac{-e^{-aR+ik_0R}\cos(kR)+1+\frac{-a+ik_0}{k}e^{-aR+ik_0R}\sin(kR)}{[(-a+ik_0)/k]^2+1}\bigg]\\
-        &\eq{4} \lim_{a\to 0^+}  \frac{2}{k^2-(k_0+ia)^2}\\
-        &\eq{5} \textbf{???},
+        &\eq{4} \lim_{a\to 0^+}  \frac{2}{k^2-(k_0+ia)^2} \eq{\text{def}} \frac{2}{k^2-(k_0+i0^+)^2},
         \end{align*} where \begin{enumerate}
             \item[(1)] is by definition and Fubini's theorem,
             \item[(2)] is by evaluating the inner integral and then making the change of variables $u = kx_0$,
             \item[(3)] is by integration,
-            \item[(4)] is by taking the inner limit, followed by algebra,
-            \item[(5)] \textbf{???}
+            \item[(4)] is by taking the inner limit, followed by algebra.
+        \end{enumerate}
+        By the continuity of the Fourier transform, we know that the distributional limit $\lim_{a\to 0^+}  2(k^2-(k_0+ia)^2)^{-1}$ exists. We investigate the action of the distributional limit $2(k^2-(k_0+i0^+)^2)^{-1}$ on a test function $\varphi\in\mathcal S$:
+        \begin{align*}
+            \Big(\frac{2}{k^2-(k_0+i0^+)^2}, \varphi(k_0,k)\Big) &\eq{1} \lim_{a\to 0^+}\int_{\mathbb R^2} \frac{2\varphi(k_0,k)}{k^2-(k_0+ia)^2}\dd^2k\\
+            &\eq{2} \lim_{a\to 0^+}\int_{\mathbb R}\int_{\mathbb R} \frac{2\varphi(k_0,k)}{k^2-(k_0+ia)^2} \dd k_0 \dd k\\
+            &\eq{3} \lim_{a\to 0^+} \int_{\mathbb R}\frac{1}{k} \int_{\mathbb R} \frac{\varphi(k_0,k)}{k_0+k+ia} - \frac{\varphi(k_0,k)}{k_0-k+ia} \dd k_0 \dd k \\ 
+            &\eq{4} \lim_{a\to 0^+} \int_{\mathbb R}\frac{1}{k} \int_{\mathbb R} \frac{1}{k_0+ia}[\varphi(k_0-k,k) - \varphi(k_0+k,k)] \dd k_0 \dd k\\
+            &\eq{5} \lim_{\varepsilon\to 0^+}\int_{\abs{k}>\varepsilon}\frac{1}{k} \lim_{a\to 0^+}\int_{\mathbb R} \frac{1}{k_0+ia}[\varphi(k_0-k,k) - \varphi(k_0+k,k)] \dd k_0 \dd k \quad\mathsad\,?\\
+            &\eq{6} \Big(\mathcal P\frac{1}{k} \cdot \frac{1}{k_0+i0^+}, \varphi(k_0-k,k) - \varphi(k_0+k,k)\Big),
+        \end{align*} where 
+        \begin{enumerate}
+            \item[(1)] is since $2(k^2-(k_0+ia)^2)^{-1}$ defines a regular distribution for all $a>0$,
+            \item[(2)] is by Fubini's theorem,
+            \item[(3)] is by partial fraction decomposition, 
+            \item[(4)] is by two changes of coordinates in the inner integral, and
+            \item[(5)] is somehow by the Lebesgue dominated convergence theorem (?): Let $F_a(k) = \int_{\mathbb R} \frac{1}{k_0+ia}[\varphi(k_0-k,k) - \varphi(k_0+k,k)] \dd k_0$. The numerical sequence $\{\int\abs{F_{1/n}(k)}\dd k\}$ must converge, so there exists an $m$ for which $\int\abs{F_{1/m}(k)}\dd k\geq \int\abs{F_{1/n}(k)}\dd k$ for every $n>0$, so $\abs{F_{1/m}(k)}\geq \abs{F_{1/n}(k)}$ for every $n>0$. Hence an integrable bound exists for $F_a(k)$, and we may pass the limit inside. Follow the interchange of the limit and the integral by regularizing the outer integral by continuity of the integral, and
+            \item[(6)] is by the definition of the direct product.
         \end{enumerate}
         \item Let $\varphi\in\mathcal S$ be any test function. Then \begin{align*}
             (\mathcal F[\delta_{C_a}(x)](k),\varphi(k)) &\eq{1} (\delta_{C_a}(x),\mathcal F[\varphi(k)](x)) \\
@@ -130,7 +199,7 @@
             \item[(4)] is by changing to polar coordinates about the vector $k$, so $\phi$ is the angle between $x$ and $k$ and $(x,k) = \abs{x}\abs{k}\cos\phi$,
             \item[(5)] is by additivity of the integral ($\int_0^{2\pi} = \int_0^\pi + \int_\pi^{2\pi}$) and making a change of coordinates $\phi\mapsto\phi - \pi$ in the second integral plus algebra,
             \item[(6)] holds since the inner integrand is equal to $\cos(a\abs{k}\cos\phi)$ and by \hyperref{https://dlmf.nist.gov/10.9}{website}{https://dlmf.nist.gov/10.9}{https://dlmf.nist.gov/10.9} equation 10.9.1,
-            \item[(7)] holds since $J_0(a\abs{k})$ should define a regular distribution (it is locally integrable since $J_0$ is continuous, and has moderate growth since $|\frac{1}{\pi}\int_0^{\pi} \frac{1}{2}\big(e^{ia \abs{k}\cos\phi}+e^{-ia \abs{k}\cos\phi}\big)\dd \phi|\leq \frac{1}{\pi}\int_0^\pi \dd\phi = 1$).
+            \item[(7)] holds since $J_0(a\abs{k})$ defines a regular distribution (it is locally integrable since $J_0$ is continuous, and has moderate growth since $|\frac{1}{\pi}\int_0^{\pi} \frac{1}{2}\big(e^{ia \abs{k}\cos\phi}+e^{-ia \abs{k}\cos\phi}\big)\dd \phi|\leq \frac{1}{\pi}\int_0^\pi \dd\phi = 1$).
         \end{enumerate} Hence $\mathcal F[\delta_{C_a}(x)](k) = 2\pi a J_0(a\abs{k})$.
     \end{enumerate}
 
@@ -156,8 +225,83 @@
 
     \hrulefill
 
-    \item\begin{enumerate}[label=(\roman*)]
-        \item 
+    \item Let $L = c^{-1}D_t + (s,\nabla_x)+\alpha I$ for $s\in\mathbb R^N$ with $\abs{s} = 1$ and $c,\alpha>0$. We investigate the Cauchy problem $Lu(x,t) = f(x,t)$, $t>0$, $x\in \mathbb R^N$, $u|_{t=0} = u_0(x)$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Let $u(x,t)$ be a classical solution to the Cauchy problem and let $v(x,t) = \theta(t)u(x,t)$ and $g(x,t) = \theta(t)f(x,t)$ be distributions from $\mathcal D^\prime(\mathbb R^{N+1})$. Then differentiating gives
+        \begin{align*}
+            Lv(x,t) &= \frac{1}{c}\pdv t[\theta(t)u(x,t)] + \theta(t)(s,\nabla_x)u(x,t) + \alpha\theta(t)u(x,t)\\
+            &= \frac{1}{c}\delta(t)u(x,t) + \frac{1}{c}\theta(t)\pdv t u(x,t) + \theta(t)(s,\nabla_x)u(x,t) + \alpha\theta(t)u(x,t)\\
+            &= \frac{1}{c}\delta(t)u_0(x) + \theta(t)\{Lu(x,t)\}\\
+            &= \frac{1}{c}\delta(t)u_0(x) + \theta(t)f(x,t)\\
+            &= \frac{1}{c}\delta(t)u_0(x) + g(x,t).
+        \end{align*}
+        \item Let $G_c(x,t)\in\mathcal S^\prime(\mathbb R^{N+1})\subset \mathcal D^\prime(\mathbb R^{N+1})$ with $\supp G_c\subset \{t\geq 0\}$ be the causal Green's function for $L$ satisfying $LG_c(x,t) = \delta^N(x)\delta(t)$. Taking the Fourier transform of the equation the causal Green's function satisfies, we obtain
+        \begin{align*}
+            \delta(t) &\eq{0} \mathcal F_x[\delta^N(x)\delta(t)](k,t)\\
+            &= \mathcal F_x[LG_c(x,t)](k,t) \\
+            &\eq{1} \frac{1}{c}\pdv t \mathcal F_x[G_c(x,t)](k,t) - i\Bigg(\sum_{i=1}^N s_ik_i\Bigg)\mathcal F_x[G_c(x,t)](k,t) + \alpha \mathcal F_x[G_c(x,t)](k,t)\\
+            &= \bigg[\frac{1}{c}\pdv t - i(s,k)+\alpha\bigg]\mathcal F_x[G_c(x,t)](k,t),
+        \end{align*} where \begin{enumerate}
+            \item[(0)] holds since $\mathcal F_x = \mathcal F_t^{-1}\mathcal F_t\mathcal F_x =\mathcal F_t^{-1}\mathcal F$ by Fubini's theorem and $\delta^N(x)\delta(t) = \delta^{N+1}(x,t)$, so that $\mathcal F_x[\delta^N(x)\delta(t)] = \mathcal F_t^{-1}\mathcal F[\delta^{N+1}(x,t)] = \mathcal F_t^{-1}[1] = \delta(t)$, and
+            \item[(1)] holds due to properties of the Fourier transform (note $F_x = F_{x_{\sigma(1)}}\circ\dots\circ F_{x_{\sigma(N)}}$ for any permutation $\sigma$ due to Fubini's theorem) and since $\pdv t$ and $\mathcal F_x$ commute: Let $\varphi(k,t)$ be any test function in $\mathcal S(\mathbb R^{N+1})$. In $(\pdv t \mathcal F_x[f(x,t)](k,t),\varphi(k,t)) = (f,- \int e^{i(x,k)}\pdv t\varphi(k,t)\dd k)$ note that $\pdv t\varphi(x,t)$ is also in $\mathcal S(\mathbb R^{N+1})$ so that $\abs{e^{i(x,k)}\pdv t\varphi(k,t)}\leq M/(1+\abs{x})p$ for any $p>0$, so by taking $p$ large enough we obtain an integrable bound so that by Theorem 5.2 we may interchange integration and differentiation to obtain $(f,- \int e^{i(x,k)}\pdv t\varphi(k,t)\dd k) = (f,-\pdv t\int e^{i(x,k)}\varphi(k,t)\dd k) = (\mathcal F_x[\pdv t f],\varphi)$ as needed.
+        \end{enumerate}
+        The solution to the constant coefficient differential equation $[\partial_t-i(cs,k)+\alpha c]w(k,t) = c\delta(t)$ (with $\supp w \subset \{t\geq 0\}$) is of the form $w(k,t) = \theta(t)Z(t)\ast c\delta(t) = c\theta(t)e^{(i(s,k)-\alpha)ct}$ by Proposition 25.1 in the notes (and is unique among distributions in $\mathcal D^\prime_{w(k,t)}(\mathbb R)$ by Theorem 25.2). Hence $\mathcal F_x[G_c(x,t)](k,t)=c\theta(t)e^{(i(s,k)-\alpha)ct}$.
+        \item We have
+        \begin{align*}
+            G_c(x,t) = \mathcal F^{-1}_x[\mathcal F_x[G_c(x,t)](k,t)](x,t) &= \mathcal F^{-1}_x[c\theta(t)e^{(i(s,k)-\alpha)ct}](x,t) \\
+            &\eq{1} c\theta(t)e^{-\alpha ct}(2\pi)^{-N}\mathcal F_k[e^{-i(cts,k)}](x,t)\\
+            &\eq{2} c\theta(t)e^{-\alpha ct}\delta^N(x-cts),
+        \end{align*} where\begin{enumerate}
+            \item[(1)] is a consequence of the definition of the inverse Fourier transform, and
+            \item[(2)] is using the fact $\mathcal F[e^{-i(k,x_0)}](x) = (2\pi)^N\delta(x-x_0)$.
+        \end{enumerate}
+        \item If $u_0(x)\in\mathcal D^\prime(\mathbb R^N)$ and $\theta(t)f(x,t) = g(x,t)\in \mathcal D^\prime(\mathbb R^{N+1})$ both have bounded supports, then the distribution $h(x,t) = u_0(x)\delta(t) + g(x,t)$ has support inside some half-cylinder $B_R\times [0,\infty)$. Thus the convolution $G_c(x,t)\ast h(x,t)$ exists: Let $\eta_h(x,t)$ be a smooth function that takes unit value in a neighborhood of the support of $h$, and let $\eta(t)$ be a smooth function which takes unit value in a neighborhood of $\{t\geq 0\}$. Then for any unit sequence $\eta_n$ in $\mathbb R^{2N+2}$ and any test function $\varphi\in\mathcal D(\mathbb R^{2N+2})$, we have 
+        \begin{align*}
+            (G_c\ast h,\varphi) &\eq{1} \lim_{n\to \infty} \big(G_c(x,t)\cdot h(y,\tau), \eta_n(x,y,t,\tau)\varphi(x+y,t+\tau)\big)\\
+            &\eq{2} \lim_{n\to \infty} \big(G_c(x,t)\cdot h(y,\tau), \eta_n(x,y,t,\tau)\eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau)\big)\\
+            &\eq{3} \big(G_c(x,t)\cdot h(y,\tau), \eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau)\big)\\
+            &\eq{4} \Big(G_c(x,t),(h(y,\tau), \eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau))\Big)\\
+            &\eq{5} \int_0^\infty ce^{-\alpha ct}(h(y,\tau), \eta(t)\eta_h(y,\tau)\varphi(cts+y,t+\tau))\dd t,
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is by definition, 
+            \item[(2)] is by the supports of $G_c,h$,
+            \item[(3)] holds since $\psi = \eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau)$ is a test function since $t,\tau\geq 0$ and $\psi$ vanishes for $\abs{t+\tau}>R$ for some $R>0$, while $\eta_h$ vanishes for $\abs{y}>R$ for some $R>0$ (this puts bounds on $y$), and $\psi$ vanishes if $\abs{x+y}>R$ for some $R>0$. Hence the support of $\psi$ is contained in the intersection of these regions, which is bounded. Moreover, $\eta_n\psi = \psi$ for large enough $n$, so the limit may be taken above,
+            \item[(4)] is by definition of the direct product, and
+            \item[(5)] is by definition of $G_c$.
+        \end{enumerate} Note that $(h(y,\tau), \eta(t)\eta_h(y,\tau)\varphi(cts+y,t+\tau))$ is a test function in $t$ since its support is bounded (consistency theorem for direct product). Thus the convolution written as the integral above exists.
+
+        A solution to $Lv(x,t) = g(x,t) + u_0(x)\delta(t)$ is given by $v(t) = G_c(x,t)\ast h(x,t)$ (which exists), and is unique among the subspace of all distributions for which the convolution with $G_c$ exists by Theorem 25.2.
+        \item Let $f(x,t)$ and $u_0(x)$ also be regular distributions (and note $u_0(x)$ has bounded support). We have that $G_c(x,t)\ast h(x,t) = G_c(x,t)\ast[u_0(x)\delta(t) + \theta(t)f(x,t)] = G_c(x,t)\ast u_0(x)\delta(t) + G_c(x,t)\ast\theta(t)f(x,t)$ (both convolutions after the last equality do exist by a similar argument as (iv)). We investigate smoothness of each convolution.
+        
+        For $G_c(x,t)\ast u_0(x)\delta(t)$:
+        \begin{align*}
+            (G_c(x,t)\ast u_0(x)\delta(t),\varphi(x,t)) &\eq{1} \big(G_c(x,t)\cdot u_0(y)\delta(\tau), \eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau)\big) \\
+            &\eq{2} \bigg(G_c(x,t) , \int_{\mathbb R} u_0(y) \eta(t)\eta_h(y,0)\varphi(x+y,t)\dd y\bigg)\\
+            &\eq{3} \bigg(G_c(x,t) , \int_{\mathbb R} u_0(y) \eta(t)\eta_h(y,t)\varphi(x+y,t)\dd y\bigg)\\
+            &\eq{4} \int_{\mathbb R}\int_{\mathbb R} \theta(t)e^{-\alpha ct}u_0(y)\eta(t)\eta_h(y,t)\varphi(y+cts,t) \dd y\dd t \\
+            &\eq{5} \int_{\mathbb R}\int_{\mathbb R} \theta(t)e^{-\alpha ct}u_0(y-cts)\eta(t)\eta_h(y-cts,t)\varphi(y,t) \dd y\dd t\\
+            &= (\theta(t)e^{-\alpha ct}u_0(y-cts)\eta(t)\eta_h(y-cts,t), \varphi(y,t))\\
+            &= (\theta(t)e^{-\alpha ct}u_0(y-cts), \varphi(y,t))
+        \end{align*} where \begin{enumerate}
+            \item[(1)] is by definition using the supports of $G_c, h$ as before,
+            \item[(2)] is by definition of the direct product, 
+            \item[(3)] is since the support of $u_0(x)$ is contained in the half-plane $t = 0$,
+            \item[(4)] is by definition of $G_c(x,t)$,
+            \item[(5)] is a change of coordinates.
+        \end{enumerate} It follows that the convolution $G_c(x,t)\ast u_0(x)\delta(t)$ is a function of $t$ given by $\theta(t)e^{-\alpha ct}u_0(y-cts)$ ($y$ ???) If $u_0$ is continuous, we may take the limit as $t\to 0^+$ to obtain $u_0(y)$. If $u_0$ is differentiable, then we may take partial derivatives in $t$ for $t>0$ and in $y_i$. 
+
+        For $G_c(x,t)\ast\theta(t)f(x,t)$: 
+        \begin{align*}
+            (G_c(x,t)\ast \theta(t)f(x,t),\varphi(x,t)) &\eq{1} \big(G_c(x,t)\cdot \theta(\tau)f(y,\tau), \eta(t)\eta_h(y,\tau)\varphi(x+y,t+\tau)\big) \\
+            &\eq{2} \int_{\mathbb R}\int_{\mathbb R}\int_{\mathbb R}\theta(t)e^{-\alpha ct}\theta(\tau)f(y,\tau)\eta(t)\eta_h(y,\tau)\varphi(y+cts,t+\tau)\dd y\dd\tau\dd t\\
+            \eq{3} \int_{\mathbb R}\int_{\mathbb R}\varphi(y,t)\int_{\mathbb R}\theta(t-\tau)&e^{-\alpha c(t-\tau)}\theta(\tau)f(y-cts,\tau)\eta(t-\tau)\eta_h(y-cts,\tau) \dd \tau \dd y \dd t\\
+            = \bigg(\int_{\mathbb R}\theta(t-\tau)&e^{-\alpha c(t-\tau)}\theta(\tau)f(y-cts,\tau)\eta(t-\tau)\eta_h(y-cts,\tau) \dd \tau,\varphi(y,t)\bigg),
+        \end{align*}where \begin{enumerate}
+            \item[(1)] is by definition using the supports of $G_c,h$ as before,
+            \item[(2)] is by the definition of the distributions involved and the direct product,
+            \item[(3)] is by repeated invocations of Fubini and coordinate changes.
+        \end{enumerate}
+        Thus $G_c(x,t)\ast \theta(t)f(x,t) = \int_{\mathbb R}\theta(t-\tau)e^{-\alpha c(t-\tau)}\theta(\tau)f(y-cts,\tau)\eta(t-\tau)\eta_h(y-cts,\tau) \dd \tau$ ?? Something is not right at all with my solution. Differentiability with respect to $t$ and $y_i$ should be obtained via Theorem 5.2 on differentiation of an integral if $f$ is $C^1(t>0)$. This term should also vanish as $t\to 0^+$ but I do not see this (I think the expression is not right anyways)?
     \end{enumerate}
 
     \hrulefill
