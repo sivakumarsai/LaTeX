@@ -1,4 +1,4 @@
-\documentclass[10pt,leqno,twoside]{article}
+\documentclass[10pt,leqno,twoside,b5paper]{article}
 
 % packages
 \usepackage[alphabetic]{amsrefs}
@@ -109,13 +109,12 @@
 \newcommand{\slz}{\SL_2(\mathbb{Z})}
 \newcommand{\glr}{\GL_2(\mathbb{R})}
 \newcommand{\glrp}{\GL_2^+(\mathbb{R})}
-\newcommand{\glqp}{\GL_2^+(\mathbb{Q})}
 % \DeclareMathOperator{\Span}{span}
 % \DeclareMathOperator{\nullity}{nullity}
 % \DeclareMathOperator\Aut{Aut}
 % \DeclareMathOperator\Inn{Inn}
 % \DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\lcm}{lcm}
+% \DeclareMathOperator{\lcm}{lcm}
 % \DeclareMathOperator{\Hol}{Hol}
 % \DeclareMathOperator{\Jac}{Jac}
 % \DeclareMathOperator{\rad}{rad}
@@ -211,7 +210,6 @@ We consider particular subgroups of the modular group.
 \end{pmatrix}\smod N}\]
 with the matrix congruence interepreted as congruence modulo $N$ entrywise.
 \end{definition}
-Alternatively, $\varGamma(N) = (I+N\Mat_2(\mathbb Z))\cap \slz$. Furthermore, observe that if $N\mid M$, then $\varGamma(M)\subset \varGamma(N)$, since $x \equiv y\smod M$ implies $x\equiv y\smod N$ whenever $N\mid M$.
 \begin{lemma}\label{lem: varGamma(N) kernel of projection}
     The principal congruence subgroup $\varGamma(N)$ is the kernel of the natural homomorphism $\slz\to \SL_2(\mathbb{Z}/N\mathbb{Z})$, so $\varGamma(N)$ is normal in $\slz$; furthermore, the natural homomorphism is surjective.
 \end{lemma}
@@ -276,21 +274,18 @@ Any congruence subgroup $\varGamma$ has finite index in $\slz$. Let $\varGamma$ 
 
 \begin{definition}
     Frequently used congruence subgroups are 
-    \begin{align*}
-        \varGamma_0(N) &= \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
-            \ast & \ast \\ 0 & \ast
-        \end{pmatrix}\smod N}\text{ and}\\
-        \varGamma_1(N) &= \cbr{\abcd\in \slz: \begin{pmatrix}
-            a & b \\ c & d 
-        \end{pmatrix}\equiv \begin{pmatrix}
-            1 & \ast \\ 0 & 1
-        \end{pmatrix}\smod N},
-    \end{align*}
-    where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise.    
+    \[\varGamma_0(N) = \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
+        \ast & \ast \\ 0 & \ast
+    \end{pmatrix}\smod N}\text{ and}\]
+    \[\varGamma_1(N) = \cbr{\abcd\in \slz: \begin{pmatrix}
+        a & b \\ c & d 
+    \end{pmatrix}\equiv \begin{pmatrix}
+        1 & \ast \\ 0 & 1
+    \end{pmatrix}\smod N},\] where $\ast$ denotes unspecified quantities and the matrix congruences are to be taken entrywise.    
 \end{definition}
 For any positive integer $N$, the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\slz$ hold.
 
-\begin{lemma}\label{lem: principal normal in gamma 1}
+\begin{lemma}
     The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\abcd\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
 \end{lemma}
 \begin{proof}
@@ -310,21 +305,19 @@ For any positive integer $N$, the inclusions $\varGamma(N)\subset\varGamma_1(N)\
 \end{proof} 
 It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$, so that the index of $\varGamma(N)$ in $\varGamma_1(N)$ is $N$. What follows is a similar result.
 
-\begin{lemma}\label{lem: gamma 1 normal in gamma 0}
+\begin{lemma}
     The map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ given by \[\abcd\mapsto \overline d\] 
     is surjective with kernel $\varGamma_1(N)$.
 \end{lemma}
 \begin{proof}
-    % Exercise 1.2.3. (d) in \cite{diamond}.
-    % DO NOT DELETE SOLUTION, but recommended to omit solution
-    Let $\overline d \in (\mathbb{Z}/N\mathbb{Z})^\times$ be given, and note that $\gcd(d,N)=1$. Let $c \equiv 0\smod N$ so that $c=kN$ for some integer $k$. Choose $k$ coprime to $d$ so that $\gcd(d,kN) = \gcd(d,c) = 1$. Then there exist integers $a,b$ with $ad-bc = 1$. Then \[\begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix}\mapsto d\quad\text{and}\quad \det\begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix} = 1.\] 
-    If $A\in \varGamma_0(N)$ and \[A = \begin{pmatrix}
-        a & b \\ c & d
-    \end{pmatrix}\mapsto \overline 1,\] so $d = jN+1$ for some integer $j$. Since $c\equiv 0\smod N$, $c= kN$ and $\gcd(d,c) = 1$. There exist integers $a,b$ with $1 = ad-bc = a(jN+1) + bkN = a+ (aj + bk)N$. Reducing modulo $N$ gives $a\equiv 1\smod N$. It follows that $A\in \varGamma_1(N)$. Conversely, if $A\in \varGamma_1(N)$, then $A\mapsto \overline 1$.
+    Exercise 1.2.3. (d) in \cite{diamond}.% DO NOT DELETE SOLUTION Let $\overline d \in (\mathbb{Z}/N\mathbb{Z})^\times$ be given, and note that $\gcd(d,N)=1$. Let $c \equiv 0\smod N$ so that $c=kN$ for some integer $k$. Choose $k$ coprime to $d$ so that $\gcd(d,kN) = \gcd(d,c) = 1$. Then there exist integers $a,b$ with $ad-bc = 1$. Then \[\begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix}\mapsto d\quad\text{and}\quad \det\begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix} = 1.\] 
+    % If $A\in \varGamma_0(N)$ and \[A = \begin{pmatrix}
+    %     a & b \\ c & d
+    % \end{pmatrix}\mapsto \overline 1,\] so $d = jN+1$ for some integer $j$. Since $c\equiv 0\smod N$, $c= kN$ and $\gcd(d,c) = 1$. There exist integers $a,b$ with $1 = ad-bc = a(jN+1) + bkN = a+ (aj + bk)N$. Reducing modulo $N$ gives $a\equiv 1\smod N$. It follows that $A\in \varGamma_1(N)$. Conversely, if $A\in \varGamma_1(N)$, then $A\mapsto \overline 1$.
 \end{proof}
 Hence $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb{Z}/N\mathbb{Z})^\times$, so that the index of $\varGamma_1(N)$ in $\varGamma_0(N)$ is $\phi(N) = \abs{(\mathbb{Z}/N\mathbb{Z})^\times} = N\prod_{p\mid N}(1-1/p)$, where $\phi$ denotes the Euler totient function. 
 \begin{corollary}
@@ -416,7 +409,7 @@ In this section, we define modular forms, \tbd
 \end{definition}
 Sometimes we will say that a meromorphic function $f\colon \mathcal H\to \mathcal C$ is just ``weakly modular'' if the weight $k$ and congruence subgroup $\varGamma$ are irrelevant or clear from context.
 \begin{definition}\label{def: automorphy and weight k op}
-    For any matrix $\gamma=\smallabcd\in \glr$ the \textib{factor of automorphy} $j(\gamma,z)$ for $z\in \mathbb{C}$ is defined by \[j(\gamma,z) = cz+d.\] For any integer $k$ and $\gamma\in \glrp$ define the \textib{weight-$k$ $\gamma$ operator} $|_k[\gamma]$ on functions $f\colon \mathcal H\to \mathbb{C}$ by \[(f|_k[\gamma])(z) = (\det\gamma)^{k/2} j(\gamma,z)^{-k}f(\gamma(z)),\quad\text{for } z\in \mathcal H.\qedhere\]
+    For any matrix $\gamma=\smallabcd\in \glr$ the \textib{factor of automorphy} $j(\gamma,z)$ for $z\in \mathbb{C}$ is defined by \[j(\gamma,z) = cz+d.\] For any integer $k$ and $\gamma\in \glrp$ define the \textib{weight-$k$ operator} $|_k[\gamma]$ on functions $f\colon \mathcal H\to \mathbb{C}$ by \[(f|_k[\gamma])(z) = (\det\gamma)^{k/2} j(\gamma,z)^{-k}f(\gamma(z)),\quad\text{for } z\in \mathcal H.\qedhere\]
 \end{definition}
  Note that $|_k[\gamma]$ acts on the right of $f$, and composes left to right with other weight-$k$ operators.
 Since the factor of automorphy $j(\gamma,z) = cz+d$ cannot be zero or infinity (as $z\in \mathcal H$), if $f$ is meromorphic on $\mathcal H$, then so is $f|_k[\gamma]$, and the number of poles and zeroes of $f|_k[\gamma]$ and $f$ are the same.
@@ -468,10 +461,6 @@ From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$
 Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$ \sai{(of the compactified modular curve $X(\varGamma)$?)}. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$\sai{(?)}. 
 
 As congruence subgroups have finite index in $\slz$, only finitely many coset representatives $\alpha_j$ in a decomposition $\slz= \bigcup_{j}\varGamma\alpha_j$ are needed to verify condition (3) in the definition above, and in verifying that the term $a_0$ vanishes for all Fourier series expansions for cusp forms: we have by condition (2) of the above definition that $f|_k[\gamma\alpha_j] = f|_k[\alpha_j]$ for all $\gamma\in\varGamma$.
-
-\begin{lemma}\label{lem: weight k operator properties}
-    \tbd Exercise 1.2.11 in DS
-\end{lemma}
 \subsection{Dimension formulas}
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
@@ -617,7 +606,7 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big),z\big)^{-k}f(\alpha^\prime(Nz)) = (f|_k[\alpha^\prime])(Nz),\] which is holomorphic at $\infty$ since $f\in\mathcal M_k(\varGamma(N))$. If the Fourier expansion of $f$ at $\infty$ is $f(z) = \sum_{n =0}^\infty a_ne^{2\pi i n z/N}$, we have the Fourier expansion
 \[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$.
-\begin{definition}\label{def: L function}
+\begin{definition}
     To each $f\in\mathcal M_k(\varGamma_1(N))$ is an associated Dirichlet series, called an \textib{$L$-function}, given formally by
     \[L(s,f) = \sum_{n=1}^\infty a_nn^{-s}.\] For $M>0$, let 
     \[\varLambda_M(s,f) = (2\pi/\sqrt{M})^{-s}\varGamma(s)L(s,f).\qedhere\]
@@ -628,66 +617,8 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \newpage\section{Hecke operators}
 In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
 \subsection{Double coset operators}
-Let $\glqp = \{\gamma\in \GL_2(\mathbb Q) : \det \gamma >0\}$. Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
-\[\varGamma_1\alpha\varGamma_2 = \{\gamma_1\alpha\gamma_2 : \gamma_1\in\varGamma_1, \gamma_2\in\varGamma_2\}\] is a \textib{double coset} in $\glqp$. The group $\varGamma_1$ acts on the double coset $\varGamma_1\alpha\varGamma_2$ on the left by multiplication, partitioning it into orbits of the form $\varGamma_1\beta$, where $\beta = \gamma_1\alpha\gamma_2$ is some representative for this orbit. We show that the orbit space  $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ is a finite disjoint union $\bigsqcup_j\varGamma_1\beta_j$ for some choice of representatives $\beta_j$.
-\begin{lemma}\label{lem: conjugation congruence subgroup}
-    Let $\alpha\in\glqp$ and $\varGamma$ be a congruence subgroup. Then $\alpha^{-1}\varGamma\alpha\cap\slz$ is also a congruence subgroup.
-\end{lemma}
-\begin{proof}
-    There exists $N$ such that $\varGamma(N)$ is contained in $\varGamma$. Let $M$ be the least common multiple of $N$ and the entries of the matrices $\alpha$ and $\alpha^{-1}$ so that $\varGamma(M)\subset \varGamma$ and $M\alpha, M\alpha^{-1}$ are integer-valued matrices.
-    
-    Observe that $\varGamma(M^3)$ is contained in $I + M^3\Mat_2(\mathbb Z)$ so that 
-    \[\alpha\varGamma(M^3)\alpha^{-1}\subset \alpha(I + M^3\Mat_2(\mathbb Z))\alpha^{-1} = I + M\cdot M\alpha \Mat_2(\mathbb Z) M\alpha^{-1}\subset I+M\Mat_2(\mathbb{Z}).\]
-    
-    Elements of $\alpha\varGamma(M^3)\alpha^{-1}$ have determinant $1$ so that $\alpha\varGamma(M^3)\alpha^{-1}\subset \slz$, from which it follows that $\alpha\varGamma(M^3)\alpha^{-1}\subset \varGamma(M)$. Hence $\varGamma(M^3)\subset \alpha^{-1}\varGamma(M)\alpha \subset \alpha^{-1}\varGamma\alpha$, and so $\varGamma(M^3)\subset \alpha^{-1}\varGamma\alpha\cap \slz$.
-\end{proof}
-\begin{lemma}\label{lem: double coset coset/orbit spaces}
-    Let $\alpha\in\glqp$ and $\varGamma_1,\varGamma_2$ be congruence subgroups. Let $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2\subset \varGamma_2$. Then the map $\varGamma_2\to \varGamma_1\alpha\varGamma_2$ given by left multiplication by $\alpha$, $\gamma_2\mapsto\alpha\gamma_2$, induces a natural bijection of the coset space $\varGamma_3\backslash\varGamma_2$ to the orbit space $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$.
-\end{lemma} In other words, $\{\gamma_{2,j}\}$ is a set of coset representatives for $\varGamma_3\backslash \varGamma_2$ if and only if $\{\alpha\gamma_{2,j}\}$ is a set of orbit representatives for $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$.
-\begin{proof}
-    It is evident that the map $\varGamma_2\to \varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ given by $\gamma_2\mapsto \varGamma_1\alpha\gamma_2$ is surjective, since elements of $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ are of the form $\varGamma_1\gamma_1\alpha\gamma_2$ for some $\gamma_1,\gamma_2$. Two elements $\gamma_2,\gamma_2^\prime\in\varGamma_2$ map to the same orbit if $\varGamma_1\alpha\gamma_2 = \varGamma_1\alpha\gamma_2^\prime$, that is, if $\gamma_2^\prime\gamma_2^{-1}\in \alpha^{-1}\varGamma_1\alpha$. It follows that by taking $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2$ as above, that the induced map from the coset space $\varGamma_3\backslash\varGamma_2\to \varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is a bijection.
-\end{proof}
-\begin{lemma}\label{lem: congruence subgroups commensurable}
-    Let $\varGamma_1,\varGamma_2$ be congruence subgroups. Then they are \textib{commensurable}, that is, the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are finite.
-\end{lemma}
-\begin{proof}
-    There exist positive integers $N_1,N_2$ such that $\varGamma(N_1)\subset \varGamma_1$ and $\varGamma(N_2)\subset \varGamma_2$. Then $\varGamma(\lcm(N_1,N_2))\subset \varGamma(N_1)\cap \varGamma(N_2)\subset \varGamma_1\cap \varGamma_2$ since $N_1,N_2$ divide their least common multiple. Then \begin{align*}
-        [\varGamma_1 : \varGamma(\lcm(N_1,N_2))] &= [\varGamma_1 : \varGamma_1\cap \varGamma_2][\varGamma_1\cap \varGamma_2 : \varGamma(\lcm(N_1,N_2))] \text{ and}\\
-        [\varGamma_2 : \varGamma(\lcm(N_1,N_2))] &= [\varGamma_2 : \varGamma_1\cap \varGamma_2][\varGamma_1\cap \varGamma_2 : \varGamma(\lcm(N_1,N_2))].
-    \end{align*} The indices $[\varGamma_1 : \varGamma(\lcm(N_1,N_2))],[\varGamma_2 : \varGamma(\lcm(N_1,N_2))]$ are finite (see the discussion following \cref{def: congruence subgroup}), so that the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are also finite.
-\end{proof}
-In \cref{lem: conjugation congruence subgroup}, since $\alpha^{-1}\varGamma\alpha\cap\slz$ is a congruence subgroup, the coset space $\varGamma_3\backslash \varGamma_2$ from \cref{lem: double coset coset/orbit spaces} is finite, so that the orbit space $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is also finite as desired.
 
-\begin{definition}\label{def: weight k double coset operator}
-    Let $\alpha\in \glqp$ and $\varGamma_1,\varGamma_2$ be congruence subgroups. The \textib{weight-$k$ $\varGamma_1\alpha\varGamma_2$ operator} (``double coset operator'') $|_k[\varGamma_1\alpha\varGamma_2]$ given by 
-    \[f|_k[\varGamma_1\alpha\varGamma_2] = \sum_jf|_k[\beta_j],\] where $\{\beta_j\}$ is a set of orbit representatives of $\varGamma_1\alpha\varGamma_2$ (so $\varGamma_1\alpha\varGamma_2 = \bigsqcup_j \varGamma_1\beta_j$), takes modular forms in $\mathcal M_k(\varGamma_1)$ to modular forms in $\mathcal M_k(\varGamma_2)$. It also takes cusp forms in $\mathcal S_k(\varGamma_1)$ to cusp forms in $\mathcal S_k(\varGamma_2)$.
-\end{definition}
-We check that this definition is well defined, that is, independent of the choice of orbit representatives for $\varGamma_1\alpha\varGamma_2$. \tbd
-
-We also check that the double coset operator takes modular forms to modular forms and cusp forms to cusp forms. \tbd
-
-Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset operators (with explanations \tbd):
-\begin{enumerate}[label=(\arabic*)]
-    \item If $\varGamma_2\subset \varGamma_1$ and $\alpha = I$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f$ and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural inclusion of $\mathcal M_k(\varGamma_1)$ into $\mathcal M_k(\varGamma_2)$.
-    \item If $\varGamma_2 = \alpha^{-1}\varGamma_1\alpha$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f|_k[\alpha]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural isomorphism of $\mathcal M_k(\varGamma_1)$ with $\mathcal M_k(\varGamma_2)$.
-    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ \sai{(``by symmetrizing over the quotient, a surjection'' what?)}.
-\end{enumerate}
-
-Any double coset operator is a composition of these three operators. Given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
 \subsection{Hecke operators $\abr{n}$ and $T_n$}
-Recall the congruence subgroups \begin{align*}
-    \varGamma_0(N) &= \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
-        \ast & \ast \\ 0 & \ast
-    \end{pmatrix}\smod N}\text{ and}\\
-    \varGamma_1(N) &= \cbr{\abcd\in \slz: \begin{pmatrix}
-        a & b \\ c & d 
-    \end{pmatrix}\equiv \begin{pmatrix}
-        1 & \ast \\ 0 & 1
-    \end{pmatrix}\smod N}.
-\end{align*} Since $\varGamma_1(N)\subset 
-\varGamma_0(N)$, we have the containment $\mathcal M_k(\varGamma_0(N))\subset \mathcal M_k(\varGamma_1(N))$ of modular forms. We define the two operators $\abr{n}$ and $T_n$ on the larger space $\mathcal M_k(\varGamma_1(N))$ (note that we defined $L$-functions for elements of $\mathcal M_k(\varGamma_1(N))$ in \cref{def: L function}).
-
-Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$. From \cref{lem: gamma 1 normal in gamma 0} we have that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ and that $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$, so the double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$ is of the form (2) in the list following \cref{def: weight k double coset operator}\sai{(not quite right location but fix later)} and so the double coset operator translates a function $f\in \mathcal M_k(\varGamma_1(N))$ to $f|_k[\varGamma_1(N)\alpha\varGamma_1(N)] = f|_k[\alpha]\in \mathcal M_k(\varGamma_1(N))$.
 \subsection{The Petersson inner product, adjoints of Hecke operators}
 \subsection{Oldforms, newforms, and primitive forms}
 We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
@@ -700,65 +631,7 @@ We start with some results which are used to take forms from lower levels $M$ di
 
 
 \newpage\section{Strong Multiplicity One}
-\subsection{TEMPORARY lemmas bucket}
-\begin{corollary}\label{cor: miyake cor 4.3.7}
-    If $f(z)\in \mathcal S_k(N,\chi)$, then $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
-    \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,f|_k[\omega_N]).\]
-    \sai{include what it is a corollary to!}
-\end{corollary}
-\begin{lemma}\label{lem: miyake lem 4.5.7}
-    Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
-            (p+1)T(p,p) & \text{if $p\nmid N$ and $e=1$,}\\
-            pT(p,p)T(1,p^{e-1}) & \text{if $p\nmid N$ and $e > 1$,}\\
-            0 & \text{if $p\mid N$.}
-        \end{cases}$
-        \item $T(p)T(p^e) = \begin{cases}
-            T(p^{e+1})+pT(p,p)T(p^{e-1}) & \text{if $p\nmid N$,}\\
-            T(p^{e+1}) & \text{if $p\mid N$.}
-        \end{cases}$
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.5.16}
-    Let $f(z) = \sum_{n=0}^\infty c(n)e^{2\pi i nz}$ be a nonzero element of $\mathcal M_k(N,\chi)$. Then the following are equivalent: \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $f(z)$ is a common eigenfunction of every Hecke operator $T(n)$;
-        \item $c(1)\neq 0$ and 
-        \[L(s,f) = c(1)\prod_{p\in\mathbb P} (1-t(p)p^{-s} + \chi(p)p^{k-1-2s})^{-1}.\]
-        Moreover, if $f(z)$ satisfies the above conditions, then
-        \[f|[T(n)] = t(n)f,\quad t(n) = \frac{c(n)}{c(1)}\] for all $n\geq 1$.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
 \subsection{Main result and relevant corollaries}
-\begin{theorem}\label{thm: sm1 miyake thm 4.6.19}
-    Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}\in \mathcal S_k(M,\lambda)$. If $g(z)$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f(z) = g(z)$.
-\end{theorem}
-\begin{proof}
-    Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, then by \cref{lem: miyake lem 4.5.7}(2) we have
-    \begin{align*}
-        \chi(p)p^{k-1} &= a_p^2 - a_{p^2} \\
-        &= b_p^2 - b_{p^2} \\
-        &= \lambda(p)p^{k-1},
-    \end{align*} so that $\chi(p) = \lambda(p)$. It follows that $\chi(n) = \lambda(n)$ for all $n$ coprime to $L$.
-
-    We show that $M\mid N$. By \cref{thm: miyake thm 4.5.16}, $L(s,f)$ and $L(s,g)$ have Euler product expansions, so that
-    \begin{equation}\label{eqn: ratio varLambdas}
-        \frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \bigg(\frac{\sqrt{N}}{\sqrt{M}}\bigg)^s\prod_{p\mid L}\frac{1-b_pp^{-s} + \lambda(p)p^{k-1-2s}}{1-a_pp^{-s} + \chi(p)p^{k-1-2s}}
-    \end{equation} for $\Re(s)>k/2+1$. In fact, \cref{eqn: ratio varLambdas} holds for all $s$ since the ratio in the right-hand side is a meromorphic function on the whole $s$-plane.
-
-    On the other hand, we have
-    \[\frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])}\] by \cref{cor: miyake cor 4.3.7}. Furthermore, $g|[T(n)] = b_n(g)$, and since $g(z)$ is a common eigenfunction of $T^\ast(n)$ by assumption, we have that $g|[T^\ast(n)] = \overline{b_n}g$ and 
-    \[(g|_k[\omega_M])|[T^\ast(n)] = \overline{b_n}(g|_k[\omega_M])\] by \sai{theorem 4.5.5}. Then by \cref{thm: miyake thm 4.5.16} it follows that $L(s, g|_k[\omega_M])$ also has an Euler product expansion. Combined with \sai{theorem 4.6.15(2)}, we have 
-    \begin{equation}\label{eqn: ratio shifted varLambdas}
-        \frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])} = c\bigg(\frac{\sqrt{N}}{\sqrt{M}}\bigg)^{k-s}\prod_{p\mid L}\frac{1-\overline{b_p}p^{s-k} + \overline{\lambda}(p)p^{2s-k-1}}{1-\overline{a_p}p^{s-k} + \overline{\chi}(p)p^{2s-k-1}}
-    \end{equation} for some constant $c$. By combining equations \labelcref{eqn: ratio varLambdas} and \labelcref{eqn: ratio shifted varLambdas} together, we obtain
-    \[\bigg(\frac{N}{M}\bigg)^s\prod_{p\mid L}\frac{1-b_pp^{-s} + \lambda(p)p^{k-1-2s}}{1-a_pp^{-s} + \chi(p)p^{k-1-2s}} = c\bigg(\frac{\sqrt{N}}{\sqrt{M}}\bigg)^k\prod_{p\mid L}\frac{1-\overline{b_p}p^{s-k} + \overline{\lambda}(p)p^{2s-k-1}}{1-\overline{a_p}p^{s-k} + \overline{\chi}(p)p^{2s-k-1}}.\]
-\end{proof}
 \subsection{applications!}
 
 \newpage\section{unknown!}
