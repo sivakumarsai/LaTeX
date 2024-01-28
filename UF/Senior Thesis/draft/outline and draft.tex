@@ -955,9 +955,9 @@ We start with some results which are used to take forms from lower levels $M$ di
         1-b_pp^{-s} + \lambda(p)p^{k-1-2s} &= 1-b_px + \lambda(p)p^{k-1}x^2
     \end{align*} as polynomials of $x$, respectively. Thus $0\leq u,v\leq 2$. Furthermore, write $M_p/N_p = p^e$, so that \cref{eqn: p-comps} becomes \begin{equation}\label{eqn: x substitution}
         x^e\frac{1-b_px + \lambda(p)p^{k-1}x^2}{1-a_px + \chi(p)p^{k-1}x^2} = c_p\frac{1-\overline{b_p}p^{-k}x^{-1} + \overline{\lambda}(p)p^{-k-1}x^{-2}}{1-\overline{a_p}p^{-k}x^{-1} + \overline{\chi}(p)p^{-k-1}x^{-2}}.
-    \end{equation} We investigate each combination of values that $u,v$ may take, and we show that if a particular combination of $u,v$ implies that $e>0$, that case could not occur. Thus in the remaining cases, $e\leq 0$ so that $M_p\mid N_p$.
+    \end{equation} We investigate each combination of values that $u,v$ may take, and show that if a particular combination of $u,v$ implies that $e>0$, that case could not occur. Thus in the remaining cases, $e\leq 0$ so that $M_p\mid N_p$.
     \begin{enumerate}[label=(\arabic*)]
-        \item If $u = v$, then since the difference of the degrees of the numerator and the denominator of the right hand side of \cref{eqn: x substitution} is zero, we must have $e = 0$ \sai{(actually I think it's easier to just take $x\to \infty$ by taking $\Re(s)\to\infty$)}.
+        \item If $u = v$, take $x\to \infty$ in \cref{eqn: nuts equality} (by taking $\Re(s)\to\infty$) to deduce that $e= 0$.
         \item If $u = 1$ and $v = 0$, then $a_p\neq 0$ so that \cref{eqn: x substitution} may be rewritten as 
         \[x^e(1-\overline{a_p}p^{-k}x^{-1})=c_p(1-a_px).\] Then $e = 1$, and multiplying the above equality by $a^p$ we may rearrange to obtain 
         \[-a_pc_p = \frac{a_px-\abs{a_p}^2p^{-k}}{a_px-1},\] from which it follows that $\abs{a_p}^2 = p^k$. This is in contradiction with \cref{thm: miyake thm 4.6.17}, so this case could not occur.
@@ -969,10 +969,14 @@ We start with some results which are used to take forms from lower levels $M$ di
         \[\chi(p)p^{k-1}c_p = \frac{\chi(p)p^{k-1}x^2-\chi(p)\overline{a_p}p^{-1}x + \abs{\chi(p)}^2p^{-2}}{\chi(p)p^{k-1}x^2-a_px+1}.\] It follows that $\chi(p)p^{k-1}c_p = 1$ and $\abs{\chi(p)}^2 = p^{2}$, of which the latter is impossible.
         \item If $u = 0$ and $v = 2$, deduce that $e = -2$.
         \item If $u = 2$ and $v = 1$, rewrite \cref{eqn: x substitution} as 
-        \[x^e\frac{1-\overline{a_p}p^{-k}x^{-1} + \overline{\chi}(p)p^{-k-1}x^{-2}}{1-\overline{b_p}p^{-k}x^{-1}} = c_p\frac{1-a_px + \chi(p)p^{k-1}x^2}{1-b_px},\] so that \sai{$e = 1$ (by taking limits again most likely)}. Let $t= x^{-1}$. The absolute values of the roots of 
-        \[t^2-a_pt+\chi(p)p^{k-1}\] are $p^{(k-1)/2}$ by \sai{eqn: miyake eqn 4.5.41, which is equivalent to the Ramanujan-Petersson conjecture} and the absolute values of the roots of 
-        \[\overline{\chi}(p)p^{-k-1}t^2 -\overline{a_p}p^{-k}t + 1 = \overline{\chi}(p)p^{-k-1}(t^2-a_ppt + \chi(p)p^{k+1}) \] are $p^{(k+1)/2}$, which makes \cref{eqn: nuts equality} and, hence this case, impossible.
-        \item If $u = 1$ and $v = 2$, deduce that $e = -1$ \sai{(again take limits)}.
+        \[x^e\frac{1-\overline{a_p}p^{-k}x^{-1} + \overline{\chi}(p)p^{-k-1}x^{-2}}{1-\overline{b_p}p^{-k}x^{-1}} = c_p\frac{1-a_px + \chi(p)p^{k-1}x^2}{1-b_px},\] so that $e = 1$, and rewrite this equation as 
+        \[\frac{x^2-\overline{a_p}p^{-k}x + \overline \chi(p)p^{-k-1}}{x-\overline{b_p}p^{-k}} = c_p\frac{x^2-\overline\chi(p)a_pp^{-k+1}x + \overline\chi(p)p^{-k+1}}{\overline\chi(p)p^{-k+1}(1-b_px)}.\] The roots of the polynomials 
+        \[x^2-\overline{a_p}p^{-k}x + \overline \chi(p)p^{-k-1}\quad \text{and}\quad x^2-\overline\chi(p)a_pp^{-k+1}x + \overline\chi(p)p^{-k+1}\] agree. However, since the product of the roots of these polynomials are equal to the constant terms of each polynomial, we must have $\overline \chi(p)p^{-k-1} = \overline\chi(p)p^{-k+1}$, a contradiction. 
+        
+        % Let $t= x^{-1}$. The absolute values of the roots of 
+        % \[t^2-a_pt+\chi(p)p^{k-1}\] are $p^{(k-1)/2}$ by \sai{eqn: miyake eqn 4.5.41, which is equivalent to the Ramanujan-Petersson conjecture} and the absolute values of the roots of 
+        % \[\overline{\chi}(p)p^{-k-1}t^2 -\overline{a_p}p^{-k}t + 1 = \overline{\chi}(p)p^{-k-1}(t^2-a_ppt + \chi(p)p^{k+1}) \] are $p^{(k+1)/2}$, which makes \cref{eqn: nuts equality} and, hence this case, impossible.
+        \item If $u = 1$ and $v = 2$, deduce that $e = -1$ by taking limits.
     \end{enumerate}
     In any case, it follows for any $p$ that $M_p\mid N_p$ so that $M\mid N$, and that $\chi$ is induced by $\lambda$. Then \cref{thm: miyake thm 4.6.12} implies $f(z) = g(z)$, so that $N = M$.
 \end{proof}
