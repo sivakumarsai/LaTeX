@@ -616,9 +616,9 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \end{smallmatrix}\!\big)\big]\Big)(z) = j\big(\alpha^\prime\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big),z\big)^{-k}f(\alpha^\prime(Nz)) = (f|_k[\alpha^\prime])(Nz),\] which is holomorphic at $\infty$ since $f\in\mathcal M_k(\varGamma(N))$. If the Fourier expansion of $f$ at $\infty$ is $f(z) = \sum_{n =0}^\infty a_ne^{2\pi i n z/N}$, we have the Fourier expansion
-\[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$.
+\[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$.\sai{some stuff needs to come before this definition}
 \begin{definition}\label{def: L function}
-    To each $f\in\mathcal M_k(\varGamma_1(N))$ is an associated Dirichlet series, called an \textib{$L$-function}, given formally by
+    To each $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}\in\mathcal M_k(\varGamma_1(N))$ is an associated Dirichlet series, called an \textib{$L$-function}, given formally by
     \[L(s,f) = \sum_{n=1}^\infty a_nn^{-s}.\] For $M>0$, let 
     \[\varLambda_M(s,f) = (2\pi/\sqrt{M})^{-s}\varGamma(s)L(s,f).\qedhere\]
 \end{definition}
@@ -792,7 +792,7 @@ We start with some results which are used to take forms from lower levels $M$ di
 \end{lemma}
 \begin{proof}
     From $\varGamma(s) = \lim_{n\to \infty}\frac{n!n^s}{s(s+1)\cdots(s+n)}$ for real $s>0$ (Euler-Gauss), we have for $v>0$ that
-    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v+1).\]\sai{what?}
+    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v).\]
     Hence there exists $L>0$ such that 
     \[\abs{a_n}\leq L(-1)^n\binom{-v-1}{n}\] for all $n\geq 0$. Let $z = x+iy$, so that 
     \begin{align}\label{eqn: miyake eqn 4.3.9}
@@ -845,7 +845,21 @@ We start with some results which are used to take forms from lower levels $M$ di
     \begin{equation}\label{eqn: new equality 4.3.6}
         \varLambda_N(s,f) = -\frac{a_0}{s} - \frac{b_0}{k-s} + \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t,
     \end{equation} which holds for $\Re(s)>\max\{k,v+1\}$. By \cref{lem: miyake lem 4.3.3}, as $t$ tends to $\infty$, $f(it)-a_0 = \mathcal O(e^{-2\pi t})$ and $g(it)-a_0 = \mathcal O(e^{-2\pi t})$ so that 
-    \[\int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\quad\text{and}\quad \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t\] are convergent absolutely and uniformly on any vertical strip. Therefore the functions these integrals define are holomorphic on the whole $s$-plane. It follows by \cref{eqn: new equality 4.3.6} that $\varLambda_N(s,f)$
+    \[\int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\quad\text{and}\quad \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t\] are convergent absolutely and uniformly on any vertical strip. Therefore the functions these integrals define are holomorphic on the whole $s$-plane. It follows by \cref{eqn: new equality 4.3.6} that $\varLambda_N(s,f)$ is a meromorphic function on the whole $s$-plane with $\varLambda_N(s,f) + a_0/s+b_0/(k-s)$ an entire bounded function on any vertical strip. Similarly analytically continue $\varLambda_N(s,g)$ to the whole $s$-plane, satisfying 
+    \begin{equation}\label{eqn: similar for g 4.3.6}
+        \varLambda_N(k-s,g) = -\frac{a_0}{s}-\frac{b_0}{k-s} + \int_1^\infty t^{k-s}[g(it/\sqrt{N}-b_0)]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N})-a_0]t^{-1}\dd t.
+    \end{equation}
+    It follows from equations \labelcref{eqn: new equality 4.3.6} and \labelcref{eqn: similar for g 4.3.6} that $\varLambda_N(s,f) = \varLambda_N(k-s,g)$.
+
+    Conversely, suppose that (b) holds. Since $e^{-e^x}e^{\sigma x}$ is a Schwartz function for $\sigma>0$, the inverse Mellin transform 
+    \[e^{-t} = \frac{1}{2\pi i}\int_{\Re(s) = \sigma}\varGamma(s)t^{-s}\dd s\]
+    holds for $\sigma>0$. It follows that 
+    \[f(iy) = a_0 + \frac{1}{2\pi i}\sum_{n=1}^\infty a_n\int_{\Re(s) =\alpha}\varGamma(s)(2\pi n y)^{-s}\dd s\] for any $\alpha>0$. Let $\alpha>v+1$, so that $L(s,f) = \sum_{n=1}^\infty a_nn^{-s}$ is uniformly convergent and bounded on $\Re(s) = \alpha$. In this case, Stirling's estimate $\varGamma(s)\sim \sqrt{2\pi} \tau^{\sigma -1/2}e^{-\pi\abs{\tau}/2}$ (for $s = \sigma + i\tau$ and $\abs{\tau}\to\infty$) shows that $\varLambda_N(s,f) = (2\pi/\sqrt{N})^{-s}\varGamma(s)L(s,f)$ is absolutely integrable, so that the order of integration and summation above may be interchanged to obtain
+    \[f(iy) = a_0 + \frac{1}{2\pi i} \int_{\Re(s) = \alpha} (\sqrt{N}y)^{-s}\varLambda_N(s,f)\dd s.\]
+    Since $L(s,f)$ is bounded on $\Re(s) = \alpha$, by Stirling's estimate we have 
+    \begin{equation}
+        
+    \end{equation}
 \end{proof}
 \begin{corollary}\label{cor: miyake cor 4.3.7}
     If $f(z)\in \mathcal S_k(N,\chi)$, then because any element of $\mathcal S_k(N,\chi)$ satisfies the conditions of \cref{prop: miyake prop pre-lemma 4.3.3}, it follows that $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
@@ -982,7 +996,7 @@ We start with some results which are used to take forms from lower levels $M$ di
 \end{proof}
 \subsection{applications!}
 
-\newpage\section{unknown!}
+% \newpage\section{}
 
 \newpage\pagestyle{frontmatter}
 \printindex\newpage
