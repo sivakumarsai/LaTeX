@@ -403,8 +403,20 @@ implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\c
     Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eqn: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
 \end{proof}
 
-What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space. \tbd
+What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space, which we do without proof. 
 
+The group $\glqp = \{\gamma\in \GL_2(\mathbb Q) : \det \gamma >0\}$ acts on $\mathbb Q \cup \{\infty\}$ by 
+\[\abcd \Big(\frac{r}{s}\Big) = \frac{ar+bs}{cr+ds},\] taking $\infty$ to $a/c$ and $-d/c$ to $\infty$ when $c\neq 0$, and taking $\infty$ to $\infty$ when $c = 0$. Since $\smallabcd$ is invertible, the action above never produces indeterminate forms like $0/0$. Furthermore, $\slz$ acts transitively: Any rational number is of the form $a/c$, where $a$ and $c$ are coprime. Choose $b,d$ so that $ad-bc=1$, from which we have $\smallabcd(\infty) = a/c$.
+
+Let $\mathcal H^\ast = \mathcal H\cup \mathbb Q\cup\{\infty\}$ and define the \textib{compactified modular curve} $X(\varGamma) = \varGamma\backslash\mathcal H^\ast = Y(\varGamma)\cup\varGamma\backslash(\mathbb Q\cup \{\infty\})$. Call the points $\varGamma s\in \varGamma\backslash(\mathbb Q\cup \{\infty\})$ \textib{cusps} of $X(\varGamma)$. Denote by $X_0(N)$, $X_1(N)$, and $X(N)$ the modular curves $X(\varGamma_0(N))$, $X(\varGamma_1(N))$, and $X(\varGamma(N))$ respectively.
+
+\begin{lemma}\label{lem: finitely many cusps}
+    The modular curve $X(\varGamma)$ has finitely many cusps for any congruence subgroup $\varGamma$.
+\end{lemma}
+
+\begin{proof}
+    The number of cusps of $X(\varGamma)$ is the index of $\varGamma$ in $\slz$. Let $\slz/\varGamma$ act on $\mathbb Q \cup \{\infty\}$ in the usual way. The orbit $(\slz/\varGamma)x$ of $x\in \mathbb Q \cup \{\infty\}$ is given by finitely many
+\end{proof}
 
 \subsection{Elliptic points and cusps}
 
@@ -628,7 +640,7 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \newpage\section{Hecke operators}
 In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
 \subsection{Double coset operators}
-Let $\glqp = \{\gamma\in \GL_2(\mathbb Q) : \det \gamma >0\}$. Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
+Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
 \[\varGamma_1\alpha\varGamma_2 = \{\gamma_1\alpha\gamma_2 : \gamma_1\in\varGamma_1, \gamma_2\in\varGamma_2\}\] is a \textib{double coset} in $\glqp$. The group $\varGamma_1$ acts on the double coset $\varGamma_1\alpha\varGamma_2$ on the left by multiplication, partitioning it into orbits of the form $\varGamma_1\beta$, where $\beta = \gamma_1\alpha\gamma_2$ is some representative for this orbit. We show that the orbit space  $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ is a finite disjoint union $\bigsqcup_j\varGamma_1\beta_j$ for some choice of representatives $\beta_j$.
 \begin{lemma}\label{lem: conjugation congruence subgroup}
     Let $\alpha\in\glqp$ and $\varGamma$ be a congruence subgroup. Then $\alpha^{-1}\varGamma\alpha\cap\slz$ is also a congruence subgroup.
