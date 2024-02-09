@@ -271,8 +271,9 @@ Therefore, by the first isomorphism theorem, $\slz/\varGamma(N)\cong \SL_2(\math
 \begin{definition}\label{def: congruence subgroup}
     A subgroup $\varGamma$ of $\slz$ is a \textib{congruence subgroup (of level $N$)} if for some positive integer $N$, $\varGamma(N)\subset \varGamma$.
 \end{definition}
-Any congruence subgroup $\varGamma$ has finite index in $\slz$. Let $\varGamma$ be a level $N$ congruence subgroup. By the third isomorphism theorem,
-\[\frac{\slz}{\varGamma}\cong \frac{\slz/\varGamma(N)}{\varGamma/\varGamma(N)},\] and since $\slz/\varGamma(N)$ is finite the result holds. (Indeed, $\varGamma/\varGamma(N)$ is a subgroup of $\slz/\varGamma(N)$; additionally observe that $\varGamma(N)$ has finite index in $\varGamma$ due to the inclusions $\varGamma(N)\subset \varGamma \subset \slz$ or also by the above argument.)
+Note that congruence subgroups need not be normal in $\slz$. % terminology for congruence subgps, see keith conrad page
+
+Let $\varGamma$ be a level $N$ congruence subgroup. We have $[\slz : \varGamma(N)] = [\slz:\varGamma][\varGamma:\varGamma(N)]$, and since $[\slz : \varGamma(N)]$ is finite, $[\slz:\varGamma]$ must also be finite; that is, congruence subgroups have finite index in $\slz$.
 
 \begin{definition}
     Frequently used congruence subgroups are 
@@ -291,12 +292,12 @@ Any congruence subgroup $\varGamma$ has finite index in $\slz$. Let $\varGamma$ 
 For any positive integer $N$, the inclusions $\varGamma(N)\subset\varGamma_1(N)\subset\varGamma_0(N)\subset\slz$ hold.
 
 \begin{lemma}\label{lem: principal normal in gamma 1}
-    The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by \[\abcd\mapsto \overline b\] is surjective with kernel $\varGamma(N)$. 
+    The map $\varGamma_1(N)\to \mathbb{Z}/N\mathbb{Z}$ given by $\smallabcd\mapsto \overline b$ is surjective with kernel $\varGamma(N)$. 
 \end{lemma}
 \begin{proof}
-    For $\overline b\in\mathbb{Z}/N\mathbb{Z}$, \[\begin{pmatrix}
+    For $\overline b\in\mathbb{Z}/N\mathbb{Z}$, $\big(\!\begin{smallmatrix}
         1 & b \\ 0 & 1
-    \end{pmatrix}\] has unit determinant and maps to $\overline b$ under the above map. It is clear that the kernel of the above map is $\varGamma(N)$.
+    \end{smallmatrix}\!\big)$ has unit determinant and maps to $\overline b$ under the above map. It is clear that the kernel of the above map is $\varGamma(N)$.
     % Let $\overline b\in\mathbb{Z}/N\mathbb{Z}$ be given. Let $a,d\equiv 1\smod N$ and $c\equiv 0\smod N$, and write $a= iN+1$, $d = jN+1$, and $c = kN$ for some integers $i,j,k$. If $1= ad-bc = ijN^2 + (i+j)N + 1 - bkN$, then $(ijN+ i + j)/k = b$. Take $k=1$ and reduce modulo $N$ to obtain the equation $i+j\equiv b \smod N$, which has many solutions, for example $i = b$ and $j =0$. These choices for $i,j,k$ produce a preimage of $b\smod N$ under the above map. Indeed, \[\begin{pmatrix}
     %     a & b \\ c & d
     % \end{pmatrix} = \begin{pmatrix}
@@ -311,7 +312,7 @@ For any positive integer $N$, the inclusions $\varGamma(N)\subset\varGamma_1(N)\
 It follows that $\varGamma_1(N)/\varGamma(N)\cong \mathbb{Z}/N\mathbb{Z}$, so that the index of $\varGamma(N)$ in $\varGamma_1(N)$ is $N$. What follows is a similar result.
 
 \begin{lemma}\label{lem: gamma 1 normal in gamma 0}
-    The map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ given by \[\abcd\mapsto \overline d\] 
+    The map $\varGamma_0(N)\to (\mathbb{Z}/N\mathbb{Z})^\times$ given by $\smallabcd\mapsto \overline d$ 
     is surjective with kernel $\varGamma_1(N)$.
 \end{lemma}
 \begin{proof}
@@ -350,14 +351,14 @@ We topologize modular curves and briefly show they are compact Riemann surfaces.
     The quotient map $\pi \colon \mathcal H \to Y(\varGamma)$ is an open map.
 \end{lemma}
 \begin{proof}
-    It suffices to show that the projection $\pi$ takes an open ball $B$ in $\mathcal{H}$ to an open set in $Y(\varGamma)$; that is, to show that \[\bigcup_{\gamma\in \varGamma}\gamma(B)\] is open. Since each $\gamma^{-1}$ is continuous, each $\gamma(B)$ is open, so $\pi$ is an open map.
+    It suffices to show that the projection $\pi$ takes an open disk $B$ in $\mathcal{H}$ to an open set in $Y(\varGamma)$; that is, to show that \[\bigcup_{\gamma\in \varGamma}\gamma(B)\] is open. Since each $\gamma^{-1}$ is continuous, each $\gamma(B)$ is open, so $\pi$ is an open map.
 \end{proof}
 
-\begin{lemma}
+\begin{proposition}\label{prop: properly discontinuous}
     The action of the modular group $\slz$ on $\mathcal H$ is properly discontinuous; that is, for $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\slz$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
-\end{lemma}
+\end{proposition}
 \begin{proof}
-    Let $V_1$ and $V_2$ be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open balls or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $Y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, and $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eqn: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
+    Let $V_1$ and $V_2$ be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open disks or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $Y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, and $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eqn: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
         a & b \\ c & d
     \end{smallmatrix}\!\big)\in \slz$ not equal to $\pm I$ (i.e., $c\neq 0$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where this inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_2$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many integers $c,d$, if $\gamma  = \big(\!\begin{smallmatrix}
         a & b \\ c & d
@@ -403,22 +404,72 @@ implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\c
     Let $\pi(z_1)$ and $\pi(z_2)$ be distinct points in $Y(\varGamma)$ (so that $\gamma(z_1)\neq z_2$ for any $\gamma\in \varGamma$), and take neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$, as per the previous result. Then $\big(\bigcap_{\gamma\in\varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ since $\gamma(z_1)\neq z_2$ for every $\gamma\in \varGamma$. From the discussion surrounding \cref{eqn: disjoint nbds in modular curve}, we have that $\pi(U_1)\cap\pi(U_2) = \emptyset$ as needed, with $\pi(U_1),\pi(U_2)$ open since $\pi$ is an open mapping.
 \end{proof}
 
-What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space, which we do without proof. 
+What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting compact space, which we do without verifying the details. 
 
 The group $\glqp = \{\gamma\in \GL_2(\mathbb Q) : \det \gamma >0\}$ acts on $\mathbb Q \cup \{\infty\}$ by 
 \[\abcd \Big(\frac{r}{s}\Big) = \frac{ar+bs}{cr+ds},\] taking $\infty$ to $a/c$ and $-d/c$ to $\infty$ when $c\neq 0$, and taking $\infty$ to $\infty$ when $c = 0$. Since $\smallabcd$ is invertible, the action above never produces indeterminate forms like $0/0$. Furthermore, $\slz$ acts transitively: Any rational number is of the form $a/c$, where $a$ and $c$ are coprime. Choose $b,d$ so that $ad-bc=1$, from which we have $\smallabcd(\infty) = a/c$.
 
-Let $\mathcal H^\ast = \mathcal H\cup \mathbb Q\cup\{\infty\}$ and define the \textib{compactified modular curve} $X(\varGamma) = \varGamma\backslash\mathcal H^\ast = Y(\varGamma)\cup\varGamma\backslash(\mathbb Q\cup \{\infty\})$. Call the points $\varGamma s\in \varGamma\backslash(\mathbb Q\cup \{\infty\})$ \textib{cusps} of $X(\varGamma)$. Denote by $X_0(N)$, $X_1(N)$, and $X(N)$ the modular curves $X(\varGamma_0(N))$, $X(\varGamma_1(N))$, and $X(\varGamma(N))$ respectively.
+Let $\mathcal H^\ast = \mathcal H\cup \mathbb Q\cup\{\infty\}$ and define the \textib{compactified modular curve} $X(\varGamma)$ as a set by \[X(\varGamma) = \varGamma\backslash\mathcal H^\ast = Y(\varGamma)\cup\varGamma\backslash(\mathbb Q\cup \{\infty\}).\] Call the points $\varGamma s\in \varGamma\backslash(\mathbb Q\cup \{\infty\})$ \textib{cusps} of $X(\varGamma)$. Denote by $X_0(N)$, $X_1(N)$, and $X(N)$ the modular curves $X(\varGamma_0(N))$, $X(\varGamma_1(N))$, and $X(\varGamma(N))$ respectively.
 
 \begin{lemma}\label{lem: finitely many cusps}
     The modular curve $X(\varGamma)$ has finitely many cusps for any congruence subgroup $\varGamma$.
 \end{lemma}
 
 \begin{proof}
-    The number of cusps of $X(\varGamma)$ is the index of $\varGamma$ in $\slz$. Let $\slz/\varGamma$ act on $\mathbb Q \cup \{\infty\}$ in the usual way. The orbit $(\slz/\varGamma)x$ of $x\in \mathbb Q \cup \{\infty\}$ is given by finitely many
+    The number of cusps of $X(\varGamma)$ is equal to the index of $\varGamma$ in $\slz$. Let $\slz$ act on $\varGamma\backslash(\mathbb Q \cup \{\infty\})$ by $\gamma(\varGamma s) = \varGamma (\gamma s)$. The action is well defined: If $\varGamma s = \varGamma t$, then $s = \gamma^\prime t$ for some $\gamma^\prime \in \varGamma$. Then $\varGamma \gamma\gamma^\prime s = \varGamma\gamma^{\prime\prime}\gamma s = \varGamma s$ for some $\gamma^{\prime\prime}\in\varGamma$. This group action is transitive since $\slz$ acts transitively on $\mathbb Q \cup \{\infty\}$, and the isotropy group of $\varGamma\backslash(\mathbb Q \cup \{\infty\})$ is $\varGamma$. Thus $[\slz:\varGamma] = \abs{\varGamma\backslash (\mathbb Q\cup \{\infty\})}$.
 \end{proof}
 
-\subsection{Elliptic points and cusps}
+It follows that the modular curve $X(1) = \slz\backslash \mathcal H^\ast$ has one cusp, namely, $\infty$.
+
+A base for the topology of $\mathcal H^\ast$ consists of open disks centered at elements of $\mathcal H$ and the neighborhoods 
+\[\alpha(\cbr{z\in\mathcal H : \Im(z) > M}\cup\{\infty\})\quad \text{for $M>0,\alpha\in\slz$},\] images of disks centered at $\infty$ under elements of $\slz$. Give $\mathcal H$ the topology these sets generate. As fractional linear transformations are conformal maps, for elements $\gamma\in\slz$ with $\gamma(\infty)\in\mathbb Q$, a disk centered at $\infty$ is mapped to a disk that is tangent to the real axis, containing one rational number.
+
+Choosing this base ensures that $X(\varGamma)$ is Hausdorff (whereas taking open disks at each point in $\mathbb Q \cup \{\infty\}$ would not since $\mathbb Q$ is dense in the real line). Furthermore, every $\gamma\in \slz$ is a homeomorphism of $\mathcal H^\ast$ with itself. Give $X(\varGamma)$ the quotient topology with the quotient map $\pi\colon \mathcal H^\ast\to X(\varGamma)$ defined by extending the natural projection.
+
+\begin{proposition}
+    The modular curve $X(\varGamma)$ is Hausdorff, connected, and compact. 
+\end{proposition}
+\begin{proof}
+    See proposition 2.4.2 in \cite{diamond}.
+\end{proof}
+
+Before defining charts on $X(\varGamma)$, we collect some results about elliptic points.
+
+\begin{definition}
+    Let $\varGamma$ be a congruence subgroup. For $z\in\mathcal H$ let $\varGamma_z = \{\gamma\in\varGamma : \gamma(z) = z\}$, the isotropy subgroup of $z$. Call $z\in\mathcal H$ (and the corresponding point $\pi(z)\in X(\varGamma)$) an \textib{elliptic point} of $\varGamma$ if $\varGamma_z$ is nontrivial; that is, if the containment $\{\pm I\}\subset \{\pm I\}\varGamma_z$ is proper.
+\end{definition}
+
+\begin{proposition}\label{prop: cyclic isotropy subgp}
+    Let $\varGamma$ be a congruence subgroup. Then $X(\varGamma)$ has finitely many elliptic points, and for each elliptic point $z$ of $\varGamma$, its isotropy subgroup $\varGamma_z$ is finite cyclic.
+\end{proposition}
+\begin{proof}
+    See proposition 2.3.3 and corollaries 2.3.4, 2.3.5 in \cite{diamond}.
+\end{proof}
+
+It follows that every point $z\in\mathcal H$ has an associated positive integer
+\[h_z = \abs{\{\pm I\}\varGamma_z/\{\pm I\}} = \begin{cases}
+    \abs{\varGamma_z}/2 & \text{if $-I\in\varGamma_z$}\\
+    \abs{\varGamma_z} & \text{if $-I\not\in\varGamma_z$}
+\end{cases}\] called the period of $z$. Note that $h_z>1$ when $z$ is an elliptic point, and that for $\gamma\in\slz$, the period of $\gamma(z)$ under $\gamma\varGamma\gamma^{-1}$ is the same as the period of $z$ under $\varGamma$. As a result, $h_z = h_{\gamma z}$ for all $\gamma\in\varGamma$, so that the period of $\varGamma z\in Y(\varGamma)\subset X(\varGamma)$ is well defined.
+
+We now define charts for $X(\varGamma)$, starting by defining them on $Y(\varGamma)$. Since $\slz$ acts properly discontinuously on $\mathcal H$, we have the following:
+
+\begin{corollary}[to \cref{prop: properly discontinuous}]
+    Let $\varGamma$ be a congruence subgroup. Then each point $z\in\mathcal H$ is contained in a neighborhood $U\subset \mathcal H$ such that for all $\gamma\in\varGamma$, if $\gamma(U)\cap U \neq \emptyset$ then $\gamma\in\varGamma_z$. Furthermore, $U$ has no elliptic points except possibly $z$.
+\end{corollary}
+
+Given a point $\pi(z)\in Y(\varGamma)$, take a neighborhood $U$ for $z$ as in the corollary above. Let $\delta_z  = \big(\!\begin{smallmatrix}
+    1 & -z \\ 1 & -\overline{z}
+\end{smallmatrix}\!\big)\in \GL_2(\mathbb C)$ be the map from $\mathcal H$ (or $U$ by restriction) to $\mathbb C$ which takes $z$ to $0$ and $\overline{z}$ to $\infty$. Note that the isotropy subgroup of $0$ in the transformation group $(\delta_z\cbr{\pm I}\varGamma\delta_z^{-1})_0/\cbr{\pm I}$ is the conjugate $\delta_z(\cbr{\pm I}\varGamma/\cbr{\pm I})\delta_z^{-1}$ of the isotropy subgroup of $z$, hence is cyclic of order $h_z$ as a group of transformations by \cref{prop: cyclic isotropy subgp} (note $h_z$ may be equal to $1$). Since this group of fractional linear transformations fixes $0$ and $\infty$, these maps are given by $w\mapsto aw$, which are rotations about the origin through angular multiples of $2\pi/h_z$. We call $\delta_z$ a ``straightening map'' since it takes neighborhoods of $z$ to neighborhoods of the origin for which \sai{equivalent points (points in an orbit of the isotropy subgroup?)} are evenly spaced apart angularly. (See figures 2.1, 2.2 in \cite{diamond}.)
+
+Let $\rho\colon \mathbb C\to \mathbb C$ be given by $\rho(w) = w^{h_z}$. Then $\psi = \rho\circ \delta_z \colon U\to V = \psi(U)$ given by $\psi(w) = (\delta(w))^{h_z}$ straightens then ``wraps'' around the neighborhood into a disk. By the open mapping theorem $V$ is an open subset of $\mathbb C$. There exists an bijection $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ (see section 2.2 in \cite{diamond}), which is a homeomorphism as well. The maps $\varphi$ and open sets $U$ for each $z$ are indeed charts for $Y(\varGamma)$.
+
+For neighborhoods containing points in $\mathbb Q\cup\cbr{\infty}$, we specify charts as follows. Let $s\in\mathbb Q\cup\cbr{\infty}$ be a cusp. There exists some $\delta_s\in\slz$ that maps $s$ to $\infty$. We define the width of $s$ to be 
+\[h_s = \abs{\slz_\infty/(\delta_s\cbr{\pm I}\varGamma\delta_s^{-1})_\infty}.\] Where the period of an elliptic point is the number of sectors of the disk containing the point that are identified under isotropy, the width of a cusp is the number of sectors (of the infinitely many that come together to $s$) that are distinct under isotropy (see \cite{diamond} figure 2.6). The width of $s$ is finite and independent of the choice of $\delta_s$, and similarly to elliptic points, for $\gamma\in\slz$, the width of $\gamma(s)$ under $\gamma\varGamma\gamma^{-1}$ is the same as the width of $s$ under $\varGamma$. Thus $h_s$ is the same for all the cusps in $\varGamma s$, making the width well defined on $X(\varGamma)$.
+
+Let $U = \delta_s^{-1}(\cbr{z\in\mathcal H : \Im(z) > 2}\cup\{\infty\})$ and let $\psi = \rho\circ \delta_s$ where $\rho\colon \mathbb C\to\mathbb C$ is given by $\rho(z) = e^{2\pi i z/h_s}$. With $V = \psi(U)$ (an open subset of $\mathbb C$), obtain $\psi\colon U\to V$ with $\psi(z) = e^{2\pi i \delta_s(z)/h_s}$. The effect of $\psi$ is to straighten $U$ by making identified points differ by a constant, and the exponential map wraps the upper half plane into a disk centered at $0$ (where $\infty$ maps to). Similarly, there exists a homeomorphism $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ that gives the chart as desired. Hence the maps $\phi$ and open sets $U$ for each $s$ give charts on the rest of $X(\varGamma)$.
+
+\sai{fundamental domains}\tbd
 
 \newpage\section{Modular forms}
 In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.
@@ -439,7 +490,36 @@ So for an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic funct
     For any $\gamma,\eta\in \glrp$ and $z\in \mathcal H$, we have $j(\gamma\eta,z) = j(\gamma,\eta(z))j(\eta,z)$ and $|_k[\gamma\eta] = |_k[\gamma]|_k[\eta]$.
 \end{lemma}
 \begin{proof}
-    Indeed, \tbd
+    Elements of $\glqp$ act on column vectors in $\mathbb C^2$ by matrix multiplication, and act on points in $\mathbb C$ by fractional linear transformations. Let $\gamma = \smallabcd\in \glqp$ and observe that for $z\in\mathbb C$ we have \[\gamma\begin{pmatrix}
+        z \\ 1
+    \end{pmatrix} = \begin{pmatrix}
+        az+b \\ cz+d
+    \end{pmatrix} = \begin{pmatrix}
+        \gamma(z) \\ 1
+    \end{pmatrix}j(\gamma,z).\]
+    Then for $\eta\in\slz$ we have
+    \begin{align*}
+        \gamma\eta\begin{pmatrix}
+            z \\ 1
+        \end{pmatrix} &= \begin{pmatrix}
+            (\gamma\eta)(z) \\ 1
+        \end{pmatrix}j(\gamma\eta,z)\quad\text{and}\\
+        \gamma\eta\begin{pmatrix}
+            z \\ 1
+        \end{pmatrix} &= \gamma\begin{pmatrix}
+            \eta(z) \\ 1
+        \end{pmatrix}j(\eta,z) = \begin{pmatrix}
+            \gamma(\eta(z)) \\ 1
+        \end{pmatrix}j(\gamma,\eta(z))j(\eta,z).
+    \end{align*} 
+    It follows that $j(\gamma\eta,z) = j(\gamma,\eta(z))j(\eta,z)$.
+    Then for $f\colon \mathcal H\to \mathbb C$,
+    \begin{align*}
+        (f|_k[\gamma\eta])(z) &= (\det(\gamma\eta))^{k/2}j(\gamma\eta,z)^{-k}f((\gamma\eta)(z))\\
+        &= (\det \eta)^{k/2}j(\eta,z)^{-k}(\det \gamma)^{k/2}j(\gamma,\eta(z))^{-k}f(\gamma(\eta(z)))\\
+        &= (\det \eta)^{k/2}j(\eta,z)^{-k}(f|_k[\gamma])(\eta(z))\\
+        &= ((f|_k[\gamma])|_k[\eta])(z)
+    \end{align*} so that $|_k[\gamma\eta] = |_k[\gamma]|_k[\eta]$.
 \end{proof}
 From the lemma it follows that if $f\colon \mathcal H\to\mathbb C$ is weakly modular with respect to some set of matrices $A$, then $f$ is weakly modular with respect to the group generated by $A$. So with $\slz = \big\langle\big(\!\begin{smallmatrix}
     1 & 1 \\ 0 & 1
@@ -468,7 +548,7 @@ Let $D = \cbr{q\in\mathbb C : \abs{q} <1}$ be the open unit disk in $\mathbb C$ 
 
 The logarithm can be defined holomorphically about each $q\in D^\prime$. It follows that $\tilde f$ is meromorphic on $D^\prime$ since $f$ is meromorphic on $\mathcal H$, and so $\tilde f$ has a Laurent expansion $\tilde f(q) = \sum_{n\in\mathbb Z}a_nq^n$ at each $q$ in a punctured neighborhood of $q=0$ (and $a_n = 0$ for all $n$ sufficiently small). Moreover, if $f$ is holomorphic on $\mathcal H$, it follows that $\tilde f$ is also on $D^\prime$.
 
-From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We \textit{define $f$ to be meromorphic (holomorphic) at $\infty$} if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$, given by 
+From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$, given by 
 \[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] valid in a half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for $\tau$ large enough (so that $q$ lies in a punctured neighborhood of zero). If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
 \begin{definition}
     Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ (with respect to $\varGamma$)} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
@@ -477,12 +557,18 @@ From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
     \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ (with respect to $\varGamma$)}. The set of modular forms (cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (\textib{$\mathcal S_k(\varGamma)$}).
 \end{definition}
-Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$ \sai{(of the compactified modular curve $X(\varGamma)$?)}. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$\sai{(?)}. 
+Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$\sai{(?)}. 
 
 As congruence subgroups have finite index in $\slz$, only finitely many coset representatives $\alpha_j$ in a decomposition $\slz= \bigcup_{j}\varGamma\alpha_j$ are needed to verify condition (3) in the definition above, and in verifying that the term $a_0$ vanishes for all Fourier series expansions for cusp forms: we have by condition (2) of the above definition that $f|_k[\gamma\alpha_j] = f|_k[\alpha_j]$ for all $\gamma\in\varGamma$.
 
 \begin{lemma}\label{lem: weight k operator properties}
-    \tbd Exercise 1.2.11 in DS
+    \tbd For any $\gamma\in\glqp$, there exists $\alpha\in\slz$, $r\in\mathbb Q^+$, and $a,b,d\in\mathbb Z$ relatively prime such that $\gamma = r\alpha \big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)$. 
+
+    It follows that for $f\in\mathcal M_k(\varGamma)$ and $\gamma$ with $\gamma = r\alpha \big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$. 
 \end{lemma}
 \subsection{Dimension formulas}
 \subsection{Dirichlet characters and $L$-functions}
@@ -584,7 +670,7 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
     To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
     \[L(s,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using the fundamental theorem of arithmetic combined with the fact that $(1-\chi(p)p^{-s})^{-1}$ is given by a geometric series.
 \end{definition}
-It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$ (\tbd ex 4.4.4), which has a simple pole at $s = 1$. Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
+It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$, which has a simple pole at $s = 1$. (We have $L(s,\mathbf 1_N) = \prod_{p\nmid N}(1-p^{-s})^{-1} = \prod_{p\in\mathbb P}(1-p^{-s})^{-1}\prod_{p\mid N}(1-p^{-s}) = \zeta(s)\prod_{p\mid N}(1-p^{-s})$.) Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
 \[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
 \[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$).
 
@@ -752,6 +838,33 @@ The following lemma justifies the multiplicative definition of $T_n$ above:
 \sai{explicit action of $T_p$ and $T_n$}
 
 \subsection{The Petersson inner product, adjoints of Hecke operators}
+We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will suppress the $(z)$ sometimes). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ (via Wirtinger derivatives) and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
+as desired. In particular $\dd \mu$ is $\slz$-invariant. Since $\mathbb Q\cup\cbr{\infty}$ is countable, its measure is zero, so we may integrate over the extended upper half plane $\mathcal H^\ast$ with respect to $\mu$.
+
+Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$ is given by $\mathcal D^\ast = \cbr{z\in\mathcal H : \abs{\Re(z)}\leq 1/2,\abs{z}\geq 1}\cup\cbr{\infty}$; that is, any point of $\mathcal H$ is sent to a point in $\mathcal D$ by a suitable element of $\slz$, which is unique for most points of $\mathcal H$ (there are a few cases involving points on the boundary of $\mathcal D$). Every point $s\in\mathbb Q\cup\cbr{\infty}$ may be sent to $\infty$ by suitable elements of $\slz$. We show that the integral $\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu$ converges for any continuous, bounded function $\varphi\colon\mathcal H\to\mathbb C$ and any $\alpha\in\slz$: Choose $\gamma\in\slz$ such that $\gamma^{-1}\mathcal D^\ast$ is a compact set. By the invariance of the measure under the action of $\slz$, we have
+\[\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu = \int_{\mathcal \gamma^{-1} D^\ast} \varphi(\alpha(\gamma(z)))\dd \mu, \] from which it follows that the integral converges.
+
+Let $\varGamma$ be a congruence subgroup, and let $\cbr{\alpha_j}$ be a collection of representatives for the coset space $\cbr{\pm I}\varGamma\backslash\slz$; that is, we have the disjoint union $\slz = \bigsqcup_j \cbr{\pm I}\varGamma \alpha_j$. If $\varphi$ is $\varGamma$-invariant, then the sum $\sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu$ is independent of the choice of coset representatives $\alpha_j$. Since $\dd\mu$ is $\slz$-invariant, the sum is equal to $\int_{\bigcup_j \alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu$. Since $\bigcup_j\alpha_j(\mathcal D^\ast)$ represents the modular curve $X(\varGamma)$ up to identification of boundaries, we define 
+\[\int_{X(\varGamma)}\varphi(z)\dd\mu = \int_{\bigcup_j\alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu = \sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu.\] In particular the volume of $X(\varGamma)$ is given by $V_\varGamma = \int_{X(\varGamma)}\dd\mu$. Moreover, $V_\varGamma = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$:\sai{to prove?}\tbd
+
+Observe that for any $f,g\in\mathcal S_k(\varGamma)$ for a congruence subgroup $\varGamma$, the function $\varphi(z) = f(z)\overline{g(z)}(\Im(z))^k$ for $z\in\mathcal H$ is continuous, and more importantly, $\varGamma$-invariant. Indeed, for any $\gamma\in\varGamma$, we have
+\begin{align*}
+    \varphi(\gamma(z)) &= f(\gamma(z))\overline{g(\gamma(z))}(\Im(\gamma(z)))^k\\
+    &= (f|_k[\gamma])(z)j(\gamma,z)^k\overline{(g|_k[\gamma])(z)}\overline{j(\gamma,z)}^k(\Im(z))^k\abs{j(\gamma,z)}^{-2k}\\
+    &= (f|_k[\gamma])(z)\overline{(g|_k[\gamma])(z)}(\Im(z))^k\\
+    &= \varphi(z).
+\end{align*} To show that $\varphi$ is bounded on $\mathcal H$, we show that $\varphi$ is bounded on $\bigcup_j\alpha_j(\mathcal D)$, which is a finite union. Therefore it suffices to show that for any $\alpha\in\slz$, the function $\varphi\circ\alpha$ is bounded on $\mathcal D$. On any compact subset of $\mathcal D$, continuity of $\varphi\circ\alpha$ implies boundedness. For the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$ \sai{$i\infty$?}, note that the Fourier expansions
+\[(f|_k[\alpha])(z) = \sum_{n =1}a_n(f|_k[\alpha])q_h^n,\quad (g|_k[\alpha])(z) = \sum_{n =1}a_n(g|_k[\alpha])q_h^n\quad\text{for $q_h = e^{2\pi i z /h}$ for some $h\in\mathbb Z^+$}\] are of order $\mathcal O(q_h)$ as $\Im(z)\to\infty$. It follows that $\varphi(\alpha(z)) = (f|_k[\gamma])(z)\overline{(g|_k[\gamma])(z)}(\Im(z))^k = \mathcal O(q_h)^2(\Im(z))^k$. Moreover, since $\abs{q_h} = e^{-2\pi \Im(z)/h}$, $\varphi(\alpha(z))\to 0$ as $\Im(z)\to\infty$, from which it follows $\varphi\circ\alpha$ is bounded on the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$ of $\mathcal D$, hence on all of $\mathcal D$.
+\begin{definition}
+    The \textib{Petersson inner product} $\abr{\cdot,\cdot}_\varGamma\colon \mathcal S_k(\varGamma)\times \mathcal S_k(\varGamma)\to\mathbb C$ for a congruence subgroup $\varGamma$ is given by 
+    \[\abr{f,g}_\varGamma = \frac{1}{V_\varGamma}\int_{X(\varGamma)}f(z)\overline{g(z)}(\Im(z))^k\dd\mu.\] (We may sometimes omit the subscript ${}_\varGamma$ in $\abr{\cdot,\cdot}_\varGamma$.)
+\end{definition}
+This inner product is linear in the first component, conjugate linear in the second component, Hermitian, and positive definite. If we have the containment $\varGamma^\prime\subset \varGamma$ of congruence subgroups, then $\abr{\cdot,\cdot}_{\varGamma^\prime} = \abr{\cdot,\cdot}_\varGamma$ on $\mathcal S_k(\varGamma)$.\tbd
+
+Recall that if $T$ is a linear operator on the inner product space $V$, then there exists a unique operator $T^\ast$ called the adjoint of $T$ that satisfies $\abr{Tv,w} = \abr{v,T^\ast w}$ for all $v,w\in V$. If $T$ commutes with $T^\ast$, we say that $T$ is a normal operator. Give $\mathcal S_k(\varGamma_1(N))$ the Petersson inner product. We show that the Hecke operators $\abr{n}$ and $T_n$ for $n$ coprime to $N$ are normal operators.
+
+
+
 \subsection{Oldforms, newforms, and primitive forms}
 We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
 \begin{lemma}
@@ -870,7 +983,7 @@ We start with some results which are used to take forms from lower levels $M$ di
     \[f(iy) = a_0 + \frac{1}{2\pi i} \int_{\Re(s) = \alpha} (\sqrt{N}y)^{-s}\varLambda_N(s,f)\dd s.\]
     Since $L(s,f)$ is bounded on $\Re(s) = \alpha$, by Stirling's estimate we have 
     \begin{equation}
-        
+        s
     \end{equation}
 \end{proof}
 \begin{corollary}\label{cor: miyake cor 4.3.7}
