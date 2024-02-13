@@ -1,0 +1,394 @@
+\documentclass[mathserif
+, handout
+]{beamer}
+
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{hyperref}
+
+% commands
+\DeclareMathOperator{\Circ}{circ}
+
+\usetheme{Warsaw}
+
+% colors
+\definecolor{gold60}{RGB}{193,225,193}
+\definecolor{palettemed}{RGB}{204,224,204}
+\definecolor{palettelight}{RGB}{183,201,255}
+\definecolor{darkgold60}{RGB}{184,160,96}
+\usecolortheme[named=gold60]{structure}
+\setbeamercolor{frametitle}{fg=black!85}
+\setbeamercolor{title}{bg=gold60,fg=black!85}
+\setbeamercolor{block title}{fg=black!85}
+\setbeamercolor{palette quaternary}{bg=palettemed}
+
+% page numbers
+\setbeamertemplate{footline}[frame number]
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\title
+{\textcolor{black!85}{Circulant matrices and convolutions}}
+
+\author[Sai Sivakumar]{Sai Sivakumar}
+\date{15 February 2024}
+
+\begin{document}
+
+% title slide
+\frame{\titlepage}
+
+\begin{frame}{}
+    \begin{center}
+        \begin{minipage}{16em}{
+            \begin{block}{}
+                \centering \Large What is circular is eternal; what is eternal is  circular.
+            \end{block}}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Circulant matrices}
+    An $n\times n$ complex-valued matrix of the form \[C = \begin{pmatrix}
+        c_1 & c_2 & \cdots & c_n \\
+        c_n & c_1 & \cdots & c_{n-1} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        c_2 & c_3 & \cdots & c_1
+    \end{pmatrix} = \Circ(c_1,c_2,\dots,c_n)\] is called a \textbf{circulant matrix} (or \textbf{circulant} for short) of \textbf{order} $n$.
+\end{frame}
+
+% \begin{frame}{}
+
+% \end{frame}
+
+%%%%%%%%%%%%% OLD %%%%%%%%%%%%%
+
+% % motivation and history
+% \begin{frame}{Some motivation for this talk}
+%     Fourier transforms and series have been used in physics to solve partial differential equations like the heat and wave equations. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
+%     \pause
+
+%     The fast Fourier transform is an improvement ($O(N\log N)$) to the usual discrete Fourier transform of a sequence ($O(N^2)$), and is used in signal processing. % digital recording/encoding, large-integer multiplication, solving recurrence relations
+%     \pause
+
+%     A proof of Dirichlet's theorem that there are infinitely many primes in arithmetic progression involves finite Fourier analysis.
+%     \pause
+
+%     I find the theory to be quite elegant and I wish to learn more (e.g. noncommutative harmonic analysis).
+% \end{frame}
+
+% % section 1
+% \begin{frame}{}
+%     \begin{block}{}{
+%         \begin{center}\Large I. Topological groups and their representations\end{center}}
+%     \end{block}
+% \end{frame}
+
+% % topological groups
+% \begin{frame}{Topological groups}
+%     \begin{block}{Definition}
+%         A \textbf{topological group} is a group $G$ and a topology on $G$ such that the map $G\times G\to G$ \[(x,y)\mapsto x^{-1}y\] is continuous.
+%     \end{block} 
+%     \pause
+
+%     A locally compact Abelian (LCA) group is a topological group that is locally compact, Hausdorff, and Abelian.
+%     \pause
+
+%     Of interest are the groups $\mathbb{R}, \mathbb{R}/\mathbb{Z}\cong S^1, \mathbb{Z}$.
+%     \pause
+
+%     There is a similar definition for topological vector spaces.
+% \end{frame}
+
+% % representations of topological groups
+% \begin{frame}{Representations of topological groups}
+%     \begin{block}{Definition}
+%         Let $G$ be a topological group and $V$ a topological vector space.
+        
+%         Then a \textbf{representation} of $G$ on $V$ is a %(continuous)
+%         homomorphism $\rho\colon G\to \GL(V)$ such that for any $v\in V$, the map \[x\mapsto \rho(x)v\] is continuous from $G$ to $V$. % i.e. $\rho$ is continuous in the strong operator topology
+%     \end{block} 
+%     \pause
+
+%     We say a representation $\rho\colon G\to \GL(V)$ of a topological group $G$ on $V$ is a \textbf{unitary representation} if $V$ is a (complex) Hilbert space and $T$ maps into the unitary operators on $V$. % i.e. bounded operators with inverse their adjoint
+% \end{frame}
+
+% % irreducible representations
+% \begin{frame}
+%     \frametitle{Irreducible representations}
+%     A representation $\rho\colon G\to \GL(V)$ is irreducible if there are no closed subspaces of $V$ which are invariant under the action of $G$ (i.e. there are no subrepresentations).
+%     \pause
+
+%     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
+%     \begin{Theorem}[Unitary Schur]
+%         A unitary representation $\rho$ is irreducible if and only if \begin{center}
+%             $\mathcal{C}(\rho)\coloneqq \{T\in \GL(V)\mid T\rho(g) = \rho(g) T,\forall g\in G\}$
+%         \end{center} % set of intertwining operators
+%         contains only scalar multiples of the identity operator.
+%     \end{Theorem} Proof in (2) p.71.
+% \end{frame}
+
+% % one dimensional representations
+% \begin{frame}
+%     \frametitle{Irreducible representations of Abelian groups}
+%     \begin{Corollary}
+%         Irreducible unitary representations of Abelian groups are one-dimensional.
+%     \end{Corollary}
+%     \pause
+
+%     \begin{proof}[Proof (from (2) p.71)]
+%         Let $\rho\colon G\to \GL(V)$ be an irreducible unitary representation of the Abelian group $G$. \pause 
+        
+%         For all $g\in G$, the operators $\rho(g)$ commute with each other. \pause 
+        
+%         By Unitary Schur we have for each $g\in G$ that $\rho(g) = c_gI$. \pause
+
+%         It follows that every one-dimensional subspace of $V$ is invariant, so by irreducibility $\dim V = 1$.
+%     \end{proof} % Gelfand-Raikov theorem gives existence of irreducible unitary representations of a locally compact group separating points in the group
+% \end{frame}
+
+% % characters of representations
+% \begin{frame}{Characters}
+%     \begin{definition}
+%         For $\tau$ a finite dimensional representation of a group $G$, the \textbf{character} of $\tau$ is the class function $\chi_\tau\colon G\to \mathbb{C}$ with \[\chi_\tau(g) = \Tr \tau(g).\]
+%     \end{definition}
+%     \pause
+
+%     Hence if $\rho$ is an irreducible unitary representation of an Abelian group $G$ we have for $g\in G$ that \[\chi_\rho(g) = \Tr \rho(g) = \rho(g).\]
+%     \pause
+%     It follows that characters of irreducible unitary representations of Abelian groups are (continuous) group homomorphisms $\chi\colon G\to S^1$.
+% \end{frame}
+
+% % section 2
+% \begin{frame}{}
+%     \begin{block}{}{
+%         \begin{center}\Large II. Fourier analysis on LCA groups\end{center}}
+%     \end{block}
+% \end{frame}
+
+% % dual group
+% \begin{frame}{The dual group}
+%     \begin{definition}
+%         For $G$ an LCA group, define the \textbf{dual group} $\widehat{\hspace{0pt}G}$ to be the group of characters of irreducible unitary representations of $G$ under pointwise multiplication.\pause 
+        
+%         That is, $\widehat{\hspace{0pt}G}$ is the set of (continuous) group homomorphisms $\chi\colon G\to S^1$.
+%     \end{definition} % in general $\widehat{\hspace{0pt}G}$ is the set of equivalence classes of irreducible unitary representations of $G$
+%     \pause
+
+%     We topologize dual groups by giving them the compact-open topology.
+% \end{frame}
+
+% % compact-open topology
+% \begin{frame}
+%     \frametitle{The compact-open topology}
+%     \begin{definition}
+%         For $X$ a topological space, let $C(X)$ be the $\mathbb{C}$-vector space of all continuous maps $X\to \mathbb C$.
+%         \pause 
+
+%         For compact sets $K\subseteq X$ and open sets $U\subseteq \mathbb C$ the sets \begin{center}
+%             $L(K,U)\coloneqq\{f\in C(X)\mid f(K)\subseteq U\}$
+%         \end{center} generate the \textbf{compact-open} topology on $C(X)$.
+%     \end{definition} 
+%     \pause
+    
+%     So for LCA groups $G$, the dual group $\widehat{\hspace{0pt}G}\subseteq C(G)$ is given the (subspace) compact-open topology.\pause 
+
+%     In general, the dual of an LCA group will be an LCA group, the dual of a compact group is discrete, and vice versa.
+% \end{frame}
+
+% % relevant examples 1. $\mathbb{Z}$
+% \begin{frame}
+%     \frametitle{Example 1}
+% The characters of $\mathbb{Z}$ are the maps $k\mapsto \exp(2\pi i k x)$ for $x\in \mathbb{R}/\mathbb{Z}\cong S^1$, so $\widehat{\mathbb{Z}}\cong S^1$. \pause 
+% \begin{proof}[Proof (from (4) p.101)]
+%     For a character $\chi\colon \mathbb{Z}\to S^1$ we have $\chi(1) = \exp(2\pi i x)$ for some $x\in \mathbb{R}/\mathbb{Z}$. Then $\chi(k) = \chi(1)^k = \exp(2\pi i k x)$ as desired.
+% \end{proof}
+% \pause 
+
+% The topology that $\widehat{\mathbb{Z}}\cong S^1$ inherits agrees with the usual topology on $S^1$.
+% \end{frame}
+
+% % relevant examples 2. $\mathbb{R}$
+% \begin{frame}
+%     \frametitle{Example 2}
+% The characters of $\mathbb{R}$ are of the form $x\mapsto \exp(2\pi i x\xi)$ for real $\xi$ so that $\widehat{\mathbb{R}}\cong\mathbb{R}$.
+% \pause 
+% \begin{block}{Proof (Keith Conrad to the rescue; see (5))} % actually he gets this from Conway's "A Course in Functional Analysis"
+%     Let $f \colon \mathbb{R}\to S^1$ be a character, and note $f(0) = 1$.\pause 
+
+%     By continuity of $f$, for $0<\varepsilon<1$ small we can fix $a>0$ sufficiently small so that \begin{center}
+%         $0<a(1-\varepsilon)\leq \int_0^a f(t)\leq a(1+\varepsilon)$.
+%     \end{center} Let $c = \int_0^a f(t)$.
+% \end{block}
+% \end{frame}
+
+% % continued
+% \begin{frame}
+%     \begin{block}{}
+%         Then for all real $x$ we have \begin{center}
+%             $\int_x^{x+a}f(t) = \int_0^a f(x+t) = f(x)\int_0^a f(t) = cf(x)$.
+%         \end{center} \pause 
+%         Dividing, we obtain $f(x) = \frac{1}{c}\int_x^{x+a}f(t)$. \pause
+
+%         Now $f$ is differentiable by the fundamental theorem of calculus. Differentiating, we obtain the differential equation \begin{center}
+%             $f^\prime(x) = \frac{f(a)-1}{c} f(x),\quad f(0) = 1$.
+%         \end{center} Let $s = \frac{f(a)-1}{c}$. \pause 
+
+%         It follows from ordinary differential equations that $f(x) = \exp(sx)$. \pause 
+
+%         For all $x\in \mathbb{R}$, $|f(x)|= \exp(\Re(s) x)=1$, so $\Re( s) = 0$. \pause 
+
+%         Writing $s = 2\pi i \xi$ for some $\xi\in \mathbb{R}$, the result follows. \pushQED{\qed}\qedhere\popQED
+%     \end{block} \pause The topology on $\widehat{\mathbb{R}}$ is the usual metric topology.
+% \end{frame}
+
+% % relevant examples 3. $\mathbb{R}/\mathbb{Z}\cong S^1$
+% \begin{frame}
+%     \frametitle{Example 3}
+% The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n$ for integer $n$, so that $\widehat{S^1}\cong \mathbb{Z}$. \pause \begin{proof}[Proof (from (5))]
+%     Precompose any character $\chi$ of $\mathbb{R}/\mathbb{Z}$ with the quotient map to obtain a character $\chi^\prime$ of $\mathbb{R}$.\pause 
+
+%     That is, $\chi^\prime(x) = \exp(2\pi i x\xi)$ for some real $\xi$. Hence $\chi(x+\mathbb{Z}) = \exp(2\pi i x\xi)$.\pause 
+
+%     But then $1 = \chi(1) = \exp(2\pi i \xi)$, so that $\xi\in \mathbb{Z}$ as needed. \pause 
+
+%     Identifying $x+\mathbb{Z}$ with $\exp(2\pi i x)$ gives the result.
+% \end{proof} \pause
+% The topology on $\widehat{S^1}\cong\mathbb{Z}$ is the discrete topology as expected.
+% \end{frame}
+
+% % haar measure
+% \begin{frame}{Haar measure for locally compact groups}
+%     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
+%     \begin{Theorem}[Haar]
+%         Let $G$ be a locally compact group. \pause 
+
+%         There exists a nonzero left translation-invariant outer Radon (outer and inner regular) measure on $G$, and it is uniquely determined up to positive multiples.
+
+%         Call any such measure on $G$ a Haar measure.
+%     \end{Theorem}
+%     \pause
+
+%     For example, counting measure on any discrete group works, such as $\mathbb{Z}$. 
+%     \pause 
+
+%     Lebesgue measure on $\mathbb{R}$ is a Haar measure, and the arclength measure on $S^1$ is also.
+% \end{frame}
+
+% % fourier transform
+% \begin{frame}{The Fourier transform}
+%     \begin{definition}
+%         Let $G$ be an LCA group and let $L^1(G)$ be the Banach algebra of integrable functions $G\to \mathbb{C}$. \pause 
+
+%         Then the Fourier transform $\mathcal{F} \colon L^1(G)\to C_0(\widehat{\hspace{0pt}G})$ [Or $C(\widehat{\hspace{0pt}G})$ when $\widehat{\hspace{0pt}G}$ is compact] is given by $\mathcal{F}f =\hat{f}$, where \begin{center}
+%             $\hat{f}(\chi) = \int_G f(g)\overline{\chi(g)}$.
+%         \end{center}
+%     \end{definition}
+%     \pause
+%     \vspace{1em}
+%     \begin{columns}
+%         \begin{column}{0.46\linewidth}
+%             For $G= \mathbb{R}$, $f\mapsto \hat{f}$ is given by \[\hat{f}(\xi) = \int_{\mathbb{R}}f(x)e^{-2\pi i x\xi}\dd{x}.\]
+%         \end{column}\pause \begin{column}{0.46\linewidth}
+%            For $G = S^1$, $f\mapsto\hat{f}$ is given by \[\hat{f}(n) = \frac{1}{2\pi}\int_{0}^{2\pi}f(x)e^{- in x}\dd{x}.\] 
+%         \end{column}
+%     \end{columns}
+%     %So the Fourier transform for $G= \mathbb{R}$ is the familiar \begin{center}
+%     %    $f\mapsto \hat{f},\quad \hat{f}(\xi) = \int_{\mathbb{R}}f(x)\exp(-2\pi i x\xi)\dd{x}.$
+%     %\end{center}\pause 
+%     %Similarly, the Fourier transform for $G = \mathbb{R}/\mathbb{Z}\cong S^1$ is \begin{center}
+%     %    $f\mapsto \hat{f},\quad \hat{f}(n) = \frac{1}{2\pi}\int_{0}^{2\pi}f(x)\exp(- in x)\dd{x}.$
+%     %\end{center}
+% \end{frame}
+
+% % section 3
+% \begin{frame}{}
+%     \begin{block}{}{
+%         \begin{center}\Large III. Pontryagin duality\end{center}}
+%     \end{block}
+% \end{frame}
+
+% % pontryagin duality
+% \begin{frame}{Preliminary considerations}
+%     If $G$ is an LCA group then $\widehat{\hspace{0pt}G}$ is also. We consider the dual group of $\widehat{\hspace{0pt}G}$, denoted $\dwidehat{\hspace{0pt}G}$. \pause
+
+%     There is a natural map $\delta\colon G\to \dwidehat{\hspace{0pt}G}$ given by $x\mapsto \delta_x$, where $\delta_x$ is the map given by evaluation at $x$: $\delta_x(\chi) = \chi(x)$.\pause 
+
+%     We check briefly that $\delta_x$ is really a character of $\widehat{\hspace{0pt}G}$: We have \[\delta_x(\chi\eta) = (\chi\eta)(x) = \chi(x)\eta(x) = \delta_x(\chi)\delta_x(\eta),\] \pause and we obtain continuity since convergence in the compact-open topology implies pointwise convergence: if we have a convergent net $\chi_j\to \chi$ in $\widehat{\hspace{0pt}G}$, the net $\delta_x(\chi_j) = \chi_j(x)$ converges to $\delta_x(\chi) = \chi(x)$ as needed.
+% \end{frame}
+
+% % more pontryagin duality
+% \begin{frame}
+%     \frametitle{Statement of the theorem}
+%     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
+% \begin{Theorem}[Pontryagin duality]
+%     Let $G$ be an LCA group. The map $\delta\colon G\to \dwidehat{\hspace{0pt}G}$ given by $x\mapsto\delta_x$ defined prior is an isomorphism of LCA groups.
+% \end{Theorem} Proof in (3) pp.73-76. \pause
+
+% There is a fun version for finite Abelian groups -- see Exercise 5.2.14 in Dummit and Foote.\pause 
+
+% Indeed, following the previous examples we do have that $\mathbb{R}\cong \dwidehat{\mathbb{R}}$ and $S^1\cong \dwidehat{S^1}$.
+% \end{frame}
+
+% % inversion
+% \begin{frame}
+%     \frametitle{Fourier inversion}
+%     Let $G$ be an LCA group. We may embed $C_0(G)\cap L^1(G)$ into the Banach space $C_0(G)\times C_0(\widehat{\hspace*{0pt}G})$ (with norm $\norm{\cdot} = \max\{\norm{\cdot}_G, \norm{\cdot}_{\widehat{\hspace*{0pt}G}}\}$) by mapping $f$ to $(f,\hat{f})$. Denote by $C_0^\ast(G)$ the closure of the image of this embedding. \pause
+
+%     \begin{block}{Proposition}
+%         For $G$ an LCA group, the Fourier transform is an isometric isomorphism of Banach spaces $\mathcal{F}\colon C^\ast_0(G)\to C^\ast_0(\widehat{\hspace{0pt}G})$ with inverse map given by the dual Fourier transform $\widehat{\mathcal{F}}\colon C^\ast_0(\widehat{\hspace{0pt}G})\to C^\ast_0(G)$, where $\widehat{\mathcal{F}}(g)(x)\coloneqq \hat{g}(\delta_{x^{-1}})$.
+%     \end{block} Proof in (3) p.76.
+% \end{frame}
+
+% % more Fourier inversion
+% \begin{frame}
+%     \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}
+% \begin{theorem}[Inversion formula]
+%     Let $G$ be an LCA group, and let $f\in L^1(G)$ be such that $\hat{f}\in L^1(\widehat{\hspace*{0pt}G})$. Then $f$ is continuous, and for every $x\in G$ we have \[f(x) = \dhat{f}(\delta_{x^{-1}}).\]
+% \end{theorem} \pause \setbeamercolor{block title}{fg=black!85,bg=darkgold60}\begin{proof}[Proof (from (3) p.77)]
+%     With $f$ as above, we have that $\hat{f}\in C_0(\widehat{\hspace*{0pt}G})\cap L^1(\widehat{\hspace*{0pt}G})\subseteq C^\ast_0(\widehat{\hspace*{0pt}G})$.\pause 
+
+%     By the previous proposition, there is $g\in C^\ast_0(G)$ with $\hat{g} = \hat{f}$ and $g(x) = \dhat{f}(\delta_{x^{-1}})$ for every $x\in G$. It is true that the Fourier transform is injective on $C^\ast_0(G)$, so that $f = g$ as needed.
+% \end{proof}
+% \end{frame}
+
+% % questions/end
+% \begin{frame}
+%     \begin{flushright}
+%         {\color{darkgold60}Thank you for your time.}
+%         \end{flushright}
+%         \hrule\pause
+%     \begin{columns}
+%     \begin{column}{0.3\textwidth}
+%         \begin{block}{}{
+%         \begin{center}\Large  Questions?\end{center}}
+%         \end{block}\vspace{0em}
+%     \end{column}
+%     \begin{column}{0.7\textwidth}
+%         \begin{block}{}{
+%         \begin{center}\Large  References:\end{center}}
+%     \end{block}
+% (1) Aleksandr A. Kirillov: \textit{Elements of the Theory of Representations}
+
+% (2) Gerald B. Folland: \textit{A Course in Abstract Harmonic Analysis}
+
+% (3) Anton Deitmar, Siegfried Echterhoff: \textit{Principles of Harmonic Analysis}
+
+% (4) Anton Deitmar: \textit{A First Course in Harmonic Analysis}
+
+% (5) \textcolor{blue}{\href{https://mathoverflow.net/a/89520}{Keith Conrad's mathoverflow post}}%
+%     \end{column}
+%     \end{columns}
+% \end{frame}
+
+% test frame
+%\begin{frame}{test frame with some stuff}
+%\begin{enumerate}[]
+%    \item
+%\end{enumerate}
+%\end{frame}
+\end{document}
