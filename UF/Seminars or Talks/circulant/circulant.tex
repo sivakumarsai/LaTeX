@@ -61,6 +61,63 @@
     \end{pmatrix} = \Circ(c_1,c_2,\dots,c_n)\] is called a \textbf{circulant matrix} (or \textbf{circulant} for short) of \textbf{order} $n$.
 \end{frame}
 
+\begin{frame}{Some facts}
+    Let 
+    \[\pi = \Circ(0,1,0,\dots,0) = \begin{pmatrix}
+        0 & 1 & 0 & \cdots & 0\\
+        0 & 0 & 1 & \cdots & 0\\
+        \vdots & \vdots & \vdots & \ddots & \vdots\\
+        1 & 0 & 0 & \cdots & 0
+    \end{pmatrix}.\] Fact: A matrix $A$ is circulant if and only if $A\pi = \pi A$; as a corollary, $A$ is circulant if and only if its adjoint $A^\ast$ is circulant.
+\end{frame}
+
+\begin{frame}{}
+    Circulant matrices commute with each other and commute with their adjoints; that is, circulants are \textbf{normal} matrices (hence simultaneously diagonalizable).
+
+    Notice that $\Circ(c_1,c_2,\dots,c_n) = c_1 I  + c_2\pi + \cdots + c_n\pi^{n-1}$ (and that $\pi^n = I$). Conversely, any circulant matrix is $p(\pi)$ for some polynomial $p(z)$ (really in $\mathbb C[z]/(z^n)$).
+\end{frame}
+
+\begin{frame}{Discrete Fourier transform}
+    Let $\omega = e^{2\pi i/n}$ (note $\omega^n = 1$) and consider the \textbf{Fourier matrix} $F$ where 
+    \begin{multline*}
+        F^\ast = \frac{1}{\sqrt{n}}\begin{pmatrix}
+        1 & 1 & 1 & \cdots & 1 \\
+        1 & \omega & \omega^2 & \cdots & \omega^{n-1}\\
+        1 & \omega^2 & \omega^4 & \cdots & \omega^{2(n-1)}\\
+        \vdots & \vdots & \vdots & \ddots & \vdots\\
+        1 & \omega^{n-1} & \omega^{2(n-1)} & \cdots & \omega^{(n-1)(n-1)}
+    \end{pmatrix} \\ = \frac{1}{\sqrt{n}}\begin{pmatrix}
+        1 & 1 & 1 & \cdots & 1 \\
+        1 & \omega & \omega^2 & \cdots & \omega^{n-1}\\
+        1 & \omega^2 & \omega^4 & \cdots & \omega^{n-2}\\
+        \vdots & \vdots & \vdots & \ddots & \vdots\\
+        1 & \omega^{n-1} & \omega^{n-2} & \cdots & \omega^{}
+    \end{pmatrix}.
+    \end{multline*} 
+\end{frame}
+
+\begin{frame}{}
+    Let $z \in \mathbb C^n$ be any $n$-tuple. The \textbf{Discrete Fourier transform} (DFT) of $z$ is 
+    \[\hat z = Fz\] where $F$ is the Fourier matrix from the previous slide. The inverse transform is given by $z = F^{-1}\hat z = F^\ast\hat z$.
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+
 % \begin{frame}{}
 
 % \end{frame}
