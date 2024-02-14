@@ -9,6 +9,41 @@
 
 % commands
 \DeclareMathOperator{\Circ}{circ}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rev}{rev}
+
+\makeatletter
+
+\def\mathellipsis{\mathinner{{.}\kern2\p@{.}\kern2\p@{.}}}
+
+\DeclareRobustCommand{\ddots}
+   {
+    \sbox0{$\cdotp$}
+    \mathinner{
+    \raise\dimexpr2.82\p@+.94\wd0\relax\copy0
+    \kern\dimexpr1.41\p@-.19\wd0\relax
+    \raise\dimexpr1.41\p@+.47\wd0\relax\copy0
+    \kern\dimexpr1.41\p@-.19\wd0\relax
+    \box0
+    }
+}
+
+\DeclareRobustCommand{\vdots}
+   {%
+    \sbox0{$\cdotp$}%
+    \vbox{%
+      \offinterlineskip
+      \kern2\p@ %<-- this makes the box somewhat higher (plain TeX and LaTeX have 4\p@) 
+      \hbox{$\cdotp$}%
+      \kern\dimexpr2\p@-.666\wd0\relax
+      \hbox{$\cdotp$}%
+      \kern\dimexpr2\p@-.666\wd0\relax
+      \hbox{$\cdotp$}%
+      \kern-3\p@
+      }%
+}
+
+\makeatother
 
 \usetheme{Warsaw}
 
@@ -16,7 +51,7 @@
 \definecolor{gold60}{RGB}{193,225,193}
 \definecolor{palettemed}{RGB}{204,224,204}
 \definecolor{palettelight}{RGB}{183,201,255}
-\definecolor{darkgold60}{RGB}{184,160,96}
+\definecolor{darkgold60}{RGB}{255,250,160}
 \usecolortheme[named=gold60]{structure}
 \setbeamercolor{frametitle}{fg=black!85}
 \setbeamercolor{title}{bg=gold60,fg=black!85}
@@ -53,31 +88,39 @@
 \end{frame}
 
 \begin{frame}{Circulant matrices}
-    An $n\times n$ complex-valued matrix of the form \[C = \begin{pmatrix}
-        c_1 & c_2 & \cdots & c_n \\
-        c_n & c_1 & \cdots & c_{n-1} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        c_2 & c_3 & \cdots & c_1
-    \end{pmatrix} = \Circ(c_1,c_2,\dots,c_n)\] is called a \textbf{circulant matrix} (or \textbf{circulant} for short) of \textbf{order} $n$.
+    \begin{definition}
+        An $n\times n$ complex-valued matrix of the form \[C = \begin{pmatrix}
+            c_0 & c_1 & \cdots & c_{n-1} \\
+            c_{n-1} & c_0 & \cdots & c_{n-2} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            c_1 & c_2 & \cdots & c_0
+        \end{pmatrix} = \Circ(c_0,c_1,\dots,c_{n-1})\] is called a \textbf{circulant matrix} (or \textbf{circulant} for short) of \textbf{order} $n$.
+    \end{definition}
 \end{frame}
 
 \begin{frame}{Some facts}
     Let 
     \[\pi = \Circ(0,1,0,\dots,0) = \begin{pmatrix}
-        0 & 1 & 0 & \cdots & 0\\
-        0 & 0 & 1 & \cdots & 0\\
-        \vdots & \vdots & \vdots & \ddots & \vdots\\
-        1 & 0 & 0 & \cdots & 0
-    \end{pmatrix}.\] Fact: A matrix $A$ is circulant if and only if $A\pi = \pi A$; as a corollary, $A$ is circulant if and only if its adjoint $A^\ast$ is circulant.
+        0 & 1 & \cdots & 0\\
+        0 & 0 & \cdots & 0\\
+        \vdots & \vdots & \vdots & \vdots\\
+        1 & 0 & \cdots & 0
+    \end{pmatrix}.\] \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}\begin{block}{Fact}
+        A matrix $A$ is circulant if and only if $A\pi = \pi A$; as a corollary, $A$ is circulant if and only if its adjoint $A^\ast$ is circulant.
+    \end{block}
 \end{frame}
 
 \begin{frame}{}
-    Circulant matrices commute with each other and commute with their adjoints; that is, circulants are \textbf{normal} matrices (hence simultaneously diagonalizable).
+    Notice that \[\Circ(c_0,c_1,\dots,c_{n-1}) = c_0 I  + c_1\pi + \cdots + c_{n-1}\pi^{n-1} = p_C(\pi)\] for $p_C(z) = c_0 + c_1z + \cdots + c_{n-1}z^{n-1}$ (note $\pi^n = I$). 
+    
+    Conversely, any polynomial of $\pi$ is a circulant matrix. (The space of circulant matrices is isomorphic to $\mathbb C[z]/(z^n)$).
 
-    Notice that $\Circ(c_1,c_2,\dots,c_n) = c_1 I  + c_2\pi + \cdots + c_n\pi^{n-1}$ (and that $\pi^n = I$). Conversely, any circulant matrix is $p(\pi)$ for some polynomial $p(z)$ (really in $\mathbb C[z]/(z^n)$).
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}\begin{block}{Fact}
+        Circulant matrices commute with each other and commute with their adjoints; that is, circulants are \textbf{normal} matrices (hence simultaneously diagonalizable).
+    \end{block}
 \end{frame}
 
-\begin{frame}{Discrete Fourier transform}
+\begin{frame}{}
     Let $\omega = e^{2\pi i/n}$ (note $\omega^n = 1$) and consider the \textbf{Fourier matrix} $F$ where 
     \begin{multline*}
         F^\ast = \frac{1}{\sqrt{n}}\begin{pmatrix}
@@ -97,30 +140,101 @@
 \end{frame}
 
 \begin{frame}{}
-    Let $z \in \mathbb C^n$ be any $n$-tuple. The \textbf{Discrete Fourier transform} (DFT) of $z$ is 
-    \[\hat z = Fz\] where $F$ is the Fourier matrix from the previous slide. The inverse transform is given by $z = F^{-1}\hat z = F^\ast\hat z$.
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}\begin{block}{Fact}
+        The Fourier matrix simultaneously diagonalizes \textbf{all} circulant matrices.
+    \end{block}
+    That is, given $C = \Circ(c_0,c_1,\dots,c_{n-1})$, 
+    \[C = F^\ast\varLambda_C F\] where $\varLambda_C = \diag(p_C(1), p_C(\omega),\dots,p_C(\omega^{n-1}))$. Thus the eigenvalues of $C$ are $p_C(\omega^{j-1})$ for $j = 0,1,\dots,n-1$.
+
+    Conversely, given any diagonal matrix $\varLambda$, $F^\ast \varLambda F$ is a circulant matrix!
+\end{frame}
+
+\begin{frame}{Convolutions}
+    The convolution of ``ordinary'' (e.g. compactly supported and smooth, or just integrable) functions $f,g\colon\mathbb R\to \mathbb C$ is given by \[(f\ast g)(x) = \int_{\mathbb R}f(y)g(x-y)\dd y.\]
+
+    \begin{definition}
+        The \textbf{circular convolution} of two $n$-tuples $c,z\in\mathbb C^n$ (secretly functions $\mathbb Z/n\mathbb Z\to\mathbb C$) is given by 
+    \[(c\ast z)_i = \sum_{j=0}^{n-1} c_{j}z_{(i-j) \bmod n}.\]
+    \end{definition} (Denote by $a\bmod n$ the nonnegative remainder of $a$ divided by $n$.)
 \end{frame}
 
 \begin{frame}{}
-
+    The circular convolution is a linear operator in the second component, so it may be represented by a matrix.
+    
+    Given $c\in\mathbb C^n$, denote the \textbf{reverse} of $c$ by \[\rev c = (c_{n-1},c_{n-2},\dots,c_0).\] Then the linear operator $c\ast\cdot\colon \mathbb C^n\to \mathbb C^n$ is given by the matrix $\pi \Circ \rev c$.
 \end{frame}
 
 \begin{frame}{}
+    That is,
+    \begin{multline*}
+        \begin{pmatrix}
+            \sum_{j=0}^{n-1} c_{j}z_{(0-j) \bmod n} \\
+            \sum_{j=0}^{n-1} c_{j}z_{(1-j) \bmod n} \\
+            \vdots\\ 
+            \sum_{j=0}^{n-1} c_{j}z_{(n-1-j) \bmod n}
+        \end{pmatrix}= c\ast z = (\pi \Circ \rev c)z \\ = \begin{pmatrix}
+            c_0 & c_{n-1} & \cdots & c_1 \\
+            c_1 & c_0 & \cdots & c_2 \\
+            \vdots & \vdots & \vdots & \vdots \\
+            c_{n-1} & c_{n-2} & \cdots & c_0
+        \end{pmatrix}\begin{pmatrix}
+            z_0\\ z_1\\ \vdots \\ z_{n-1}
+        \end{pmatrix}.
+    \end{multline*}
+\end{frame}
 
+\begin{frame}{Discrete Fourier transform}    
+    \begin{definition}
+        Let $z \in \mathbb C^n$ be any $n$-tuple. The \textbf{Discrete Fourier transform} (DFT) of $z$ is 
+    \[\hat z = Fz\] where $F$ is the Fourier matrix from before.
+    \end{definition} The inverse transform is given by $z = F^{-1}\hat z = F^\ast\hat z$.
+\end{frame}
+
+\begin{frame}{Fourier transform and convolution}
+    The usual Fourier transform $\mathcal F$ that takes $f(x)$ to $\hat f(\xi) = \int_\mathbb R f(x)\exp(-2\pi i x \xi)\dd x$ ``turns convolution into multiplication''; that is,
+    \[\widehat{f\ast g} = \hat f\cdot \hat g.\]
+    
+    A similar thing happens for circular convolutions. Given $c,z\in\mathbb C^n$ with Fourier transforms $\hat z = Fz, \hat c = Fc$, we have
+    \begin{multline*}
+        \widehat{c\ast z} = F(\pi \Circ \rev c)z = FF^\ast\varLambda_{\pi \Circ \rev c}Fz \\ = \varLambda_{\pi \Circ \rev c}\hat z=(\sqrt{n}\diag F c)\hat z = (\sqrt{n}\diag \hat c)\hat z.
+    \end{multline*}
 \end{frame}
 
 \begin{frame}{}
-
+    It suffices to check that $\varLambda_{\pi \Circ \rev c} = \sqrt{n}\diag F c$.
+    \setbeamercolor{block title}{fg=black!85,bg=black!10!darkgold60}\begin{block}{Indeed:}\vspace*{-1.5em}
+        \begin{align*}
+            \varLambda_{\pi \Circ \rev c} &= \diag(p_{\pi \Circ \rev c}(1),p_{\pi \Circ \rev c}(\omega),\dots,\\
+            &\hspace*{11em}p_{\pi \Circ \rev c}(\omega^{n-1}))\\
+            &= \diag(p_{\Circ(c_0,c_{n-1},\dots,c_1)}(1),\dots,\\
+            &\hspace*{8em}p_{\Circ(c_0,c_{n-1},\dots,c_1)}(\omega^{n-1}))\\
+            &= \sqrt{n}\diag\Big(c_0\frac{1}{\sqrt{n}}+c_{n-1}\frac{(\omega^\ast)^{j(n-1)}}{\sqrt{n}}+\cdots\\
+            &\hspace*{11em} +c_1\frac{(\omega^\ast)^j}{\sqrt{n}}\Big)_{0\leq j \leq n-1}\\
+            &= \sqrt{n}\diag Fc
+        \end{align*}
+    \end{block}
 \end{frame}
 
-\begin{frame}{}
-
+\begin{frame}
+    \begin{flushright}
+        {\color{black!20!palettelight}Thank you for your time.}
+        \end{flushright}
+        \hrule\pause
+    \begin{columns}
+    \begin{column}{0.3\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  Questions?\end{center}}
+        \end{block}\vspace{0em}
+    \end{column}
+    \begin{column}{0.7\textwidth}
+        \begin{block}{}{
+        \begin{center}\Large  References:\end{center}}
+    \end{block}
+(1) Philip J. Davis: \textit{Circulant Matrices}
+    \end{column}
+    \end{columns}
 \end{frame}
 
-
-% \begin{frame}{}
-
-% \end{frame}
 
 %%%%%%%%%%%%% OLD %%%%%%%%%%%%%
 
