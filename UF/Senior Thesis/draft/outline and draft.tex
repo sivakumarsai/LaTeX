@@ -110,6 +110,8 @@
 \newcommand{\glr}{\GL_2(\mathbb{R})}
 \newcommand{\glrp}{\GL_2^+(\mathbb{R})}
 \newcommand{\glqp}{\GL_2^+(\mathbb{Q})}
+\newcommand{\old}{\text{old}}
+\newcommand{\new}{\text{new}}
 % \DeclareMathOperator{\Span}{span}
 % \DeclareMathOperator{\nullity}{nullity}
 % \DeclareMathOperator\Aut{Aut}
@@ -469,7 +471,13 @@ For neighborhoods containing points in $\mathbb Q\cup\cbr{\infty}$, we specify c
 
 Let $U = \delta_s^{-1}(\cbr{z\in\mathcal H : \Im(z) > 2}\cup\{\infty\})$ and let $\psi = \rho\circ \delta_s$ where $\rho\colon \mathbb C\to\mathbb C$ is given by $\rho(z) = e^{2\pi i z/h_s}$. With $V = \psi(U)$ (an open subset of $\mathbb C$), obtain $\psi\colon U\to V$ with $\psi(z) = e^{2\pi i \delta_s(z)/h_s}$. The effect of $\psi$ is to straighten $U$ by making identified points differ by a constant, and the exponential map wraps the upper half plane into a disk centered at $0$ (where $\infty$ maps to). Similarly, there exists a homeomorphism $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ that gives the chart as desired. Hence the maps $\phi$ and open sets $U$ for each $s$ give charts on the rest of $X(\varGamma)$.
 
-\sai{fundamental domains}\tbd
+We briefly define fundamental domains obtained from $X(\varGamma)$, without proofs of claims. We first consider the case $\varGamma = \slz$. Consider the set $\mathcal D = \cbr{z\in\mathcal H : \abs{\Re(z)}\leq 1/2,\abs{z}\geq 1}$. The map $\pi\colon\mathcal D\to Y(1) = Y(\slz)$ given by the natural projection $z\mapsto \slz z$ is a surjection, and is not injective since the boundary half lines where $\Re(z) = \pm 1/2$ are identified by the translation $\big(\!\begin{smallmatrix}
+    1 & 1 \\ 0 & 1
+\end{smallmatrix}\!\big)$ which takes $z$ to $z+1$ (similarly, the two halves of the boundary arc where $\abs{z} = 1$ are identified by the inversion $\big(\!\begin{smallmatrix}
+    0 & -1 \\ 1 & 0
+\end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See \cite{diamond} section 2.3) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
+
+For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. It is possible to do a similar procedure for $X(\varGamma)$ to produce fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{?? find a source}. 
 
 \newpage\section{Modular forms}
 In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.
@@ -557,19 +565,26 @@ From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
     \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ (with respect to $\varGamma$)}. The set of modular forms (cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (\textib{$\mathcal S_k(\varGamma)$}).
 \end{definition}
-Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$\sai{(?)}. 
+Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
 
 As congruence subgroups have finite index in $\slz$, only finitely many coset representatives $\alpha_j$ in a decomposition $\slz= \bigcup_{j}\varGamma\alpha_j$ are needed to verify condition (3) in the definition above, and in verifying that the term $a_0$ vanishes for all Fourier series expansions for cusp forms: we have by condition (2) of the above definition that $f|_k[\gamma\alpha_j] = f|_k[\alpha_j]$ for all $\gamma\in\varGamma$.
 
 \begin{lemma}\label{lem: weight k operator properties}
-    \tbd For any $\gamma\in\glqp$, there exists $\alpha\in\slz$, $r\in\mathbb Q^+$, and $a,b,d\in\mathbb Z$ relatively prime such that $\gamma = r\alpha \big(\!\begin{smallmatrix}
-        a & b \\ 0 & d
-    \end{smallmatrix}\!\big)$. 
-
-    It follows that for $f\in\mathcal M_k(\varGamma)$ and $\gamma$ with $\gamma = r\alpha \big(\!\begin{smallmatrix}
-        a & b \\ 0 & d
-    \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$. 
+    \begin{enumerate}[label = \textup{(\alph*)}]
+        \item For any $\gamma\in\glqp$, there exists $\alpha\in\slz$, $r\in\mathbb Q^+$, and $a,b,d\in\mathbb Z$ relatively prime such that $\gamma = r\alpha \big(\!\begin{smallmatrix}
+            a & b \\ 0 & d
+        \end{smallmatrix}\!\big)$. 
+    
+        It follows that for $f\in\mathcal M_k(\varGamma)$ and $\gamma$ with $\gamma = r\alpha \big(\!\begin{smallmatrix}
+            a & b \\ 0 & d
+        \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$.
+        \item Let $\varGamma_1,\varGamma_2$ be congruence subgroups with $\gamma\varGamma_2\gamma^{-1}\subset \varGamma_1$ for some $\gamma\in\glqp$. If $f\in\mathcal M_k(\varGamma_1)$, then $f|_k[\gamma]\in\mathcal M_k(\varGamma_2)$, and the same result holds for cusp forms.
+        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. Show that if $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form (i.e., $g$ is also a cusp form).
+    \end{enumerate}  
 \end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
 \subsection{Dimension formulas}
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
@@ -584,7 +599,11 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 \end{proposition}
 
 \begin{proof}
-    This follows from Exercise 5.2.14 in \cite{df}, which states that finite Abelian groups are (noncanonically) self-dual. \tbd
+    This follows from Exercise 5.2.14 in \cite{df}, which states that finite Abelian groups are (noncanonically) self-dual. 
+
+    Let $G = \abr{x_1}\times\cdots\times\abr{x_r}$ be a finite Abelian group (recall the Fundamental Theorem for Finitely Generated Abelian groups). Define characters $\chi_i\colon \abr{x_i}\to \mathbb C^\times$ by $x_i\mapsto e^{2\pi i/\abs{x_i}}$ for $1\leq i\leq r$, which have order $\abs{x_i}$ in $\widehat{\abr{x_i}}$. It is evident that the group $G^\prime = \abr{\chi_1}\times\cdots\times \abr{\chi_r}$ is isomorphic to $G$.
+
+    Define the homomorphism $\rho\colon G^\prime\to \widehat G$ by $(\chi_1^{e_1},\dots,\chi_r^{e_r})\mapsto \chi_1^{e_1}\pi_1\cdots\chi_r^{e_r}\pi_r$, where $\pi_i$ denotes the projection $G\to \abr{x_i}$. It is evident that $\ker\rho$ is trivial. Let $f\colon G\to\mathbb C^\times$ be a character of $\widehat G$, and let $\iota_i\colon \abr{x_i}\to G$ denote the inclusion $x_i\mapsto (1,\dots,1,x_i,1,\dots,1)$. Then $f\iota_i\in \widehat{\abr{x_i}}$, and a preimage of $f$ under $\rho$ is $(f\iota_1,\dots,f\iota_r)$. The result follows.
 \end{proof}
 
 \begin{proposition}
@@ -601,7 +620,9 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 \end{proposition}
 
 \begin{proof}
-    Exercise 5.2.14 in \cite{df}. \tbd 
+    Let $\chi$ be a Dirichlet character. If $\chi= \mathbf 1$, then $\sum_{n\in Z_N^\times}\chi(n) = \phi(N)$. Suppose $\chi\neq \mathbf 1$, so that there exists $m\in Z_N^\times$ for which $\chi(m)\neq 1$. Then $\sum_{n\in Z_N^\times}\chi(n) = \sum_{n\in Z_N^\times}\chi(mn) = \chi(m)\sum_{n\in Z_N^\times}\chi(n)$, so that $\sum_{n\in Z_N^\times}\chi(n) = 0$.
+
+    Similarly, let $n\in Z_N^\times$. If $n = 1$, $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = \phi(N)$. If $n\neq 1$, there exists a character $\eta$ that is nonvanishing on $n$, and similarly obtain the equality $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) =\sum_{\chi\in \widehat{Z_N^\times}}(\eta\chi)(n) =\eta(n)\sum_{\chi\in \widehat{Z_N^\times}}\chi(n)$, from which $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = 0$ follows.
 \end{proof}
 
 Any Dirichlet character $\chi$ modulo $d$ may be lifted to a character $\chi_N$ modulo $N$ when $d\mid N$, by the rule $\chi_N(n\smod N) = \chi(n\smod d)$ for all $n\in\mathbb{Z}$ coprime to $N$. In other words, if $\pi_{N,d}\colon Z_N^\times\to Z_d^\times$ is the natural projection, then $\chi_N = \chi\circ \pi_{N,d}$.
@@ -663,7 +684,7 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
     \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi S_k(N,\chi),\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \mathcal E_k(N,\chi).\]
 \end{proposition}
 \begin{proof}
-    \tbd also factor of automorphy for elements of quotient $\mathcal E_k(\varGamma_1(N))$??
+    \tbd \sai{also factor of automorphy for elements of quotient $\mathcal E_k(\varGamma_1(N))$??}
 \end{proof}
 
 \begin{definition}
@@ -722,6 +743,9 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \end{definition}
 
 \subsection{Eisenstein series}
+We define the Eisenstein series for a number of spaces of modular forms to provide some examples of modular forms, and do so without proofs of any claims.
+
+Elementary Eisenstein series for $\slz$ are defined for even weights $k\geq 4$, by \[G_k(z) = {\sum_{(c,d)}}^\prime \frac{1}{(cz+d)^k},\quad z\in\mathcal H,\] where the notation $\sum_{(c,d)}^\prime$ denotes summation over all nonzero integer pairs $(c,d)\in\mathbb Z^2$. This sum is absolutely convergent, and converges uniformly on compact subsets of $\mathcal H$. It follows that $G_k$ is holomorphic on $\mathcal H$ and we may rearrange the terms of the sum defining $G_k$. A Fourier series for $G_k$ is given by \[G_k(z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)e^{2\pi i z},\] where $\sigma_{k-1}$ is the arithmetic function $\sigma_{k-1}(n) = \sum_{\substack{m\mid n\\ m>0}}m^{k-1}$. (See \cite{diamond} section 1.1.)
 
 \newpage\section{Hecke operators}
 In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
@@ -863,7 +887,40 @@ This inner product is linear in the first component, conjugate linear in the sec
 
 Recall that if $T$ is a linear operator on the inner product space $V$, then there exists a unique operator $T^\ast$ called the adjoint of $T$ that satisfies $\abr{Tv,w} = \abr{v,T^\ast w}$ for all $v,w\in V$. If $T$ commutes with $T^\ast$, we say that $T$ is a normal operator. Give $\mathcal S_k(\varGamma_1(N))$ the Petersson inner product. We show that the Hecke operators $\abr{n}$ and $T_n$ for $n$ coprime to $N$ are normal operators.
 
+Let $\varGamma$ be a congruence subgroup, and write $\slz = \bigcup_j\cbr{\pm I}\varGamma \alpha_j$ for some representatives $\alpha_j$ of the coset space $\varGamma\backslash \slz$. If $\alpha\in\glqp$, then the map $\mathcal H\to\mathcal H$ given by $z \mapsto \alpha(z)$ induces a bijection $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast\to X(\varGamma)$ \tbd\sai{check}: It follows that the union $\bigcup_j \alpha^{-1}\alpha_j(\mathcal D^\ast)$ up to some boundary identifications is in bijection with $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast$. For continuous, bounded, $\alpha^{-1}\varGamma\alpha$-invariant functions $\varphi\colon \mathcal H\to \mathbb C$ define
+\[\int_{\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast}\varphi(z)\dd\mu = \sum_j \int_{\mathcal D^\ast}\varphi(\alpha^{-1}\alpha_j(z))\dd\mu.\]
 
+\begin{lemma}
+    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$.\begin{enumerate}[label = \textup{(\alph*)}]
+        \item If $\varphi\colon\mathcal H\to\mathbb C$ is continuous, bounded, and $\varGamma$-invariant, then \[\int_{\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast}\varphi(\alpha(z))\dd\mu = \int_{X(\varGamma)}\varphi(z)\dd\mu.\]
+        \item If $\alpha^{-1}\varGamma\alpha\subset \slz$, then $V_{\alpha^{-1}\varGamma\alpha} = V_\varGamma$ and $[\slz : \alpha^{-1}\varGamma\alpha] = [\slz : \varGamma]$.
+        \item There exist $\beta_1,\dots,\beta_n\in \glqp$ with $n=[\varGamma : \alpha^{-1}\varGamma\alpha\cap\varGamma] = [\varGamma : \alpha\varGamma\alpha^{-1}\cap \varGamma]$, such that \[\varGamma\alpha\varGamma = \bigsqcup_j\varGamma \beta_j = \bigsqcup_j\beta_j\varGamma.\]
+    \end{enumerate}
+    \begin{proof}
+        \tbd
+    \end{proof}
+\end{lemma}
+
+The following proposition will be used to compute adjoints of the Hecke operators.
+\begin{proposition}
+    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$. \begin{enumerate}[label = \textup{(\alph*)}]
+        \item If $\alpha^{-1}\varGamma\alpha\subset \slz$, then for all $f\in\mathcal S_k(\varGamma)$ and $g\in\mathcal S_k(\alpha^{-1}\varGamma\alpha)$ \[\abr{f|_k[\alpha],g}_{\alpha^{-1}\varGamma\alpha} = \abr{f,g|_k[\det(\alpha)\alpha^{-1}]}_\varGamma.\]
+        \item For all $f,g\in\mathcal S_k(\varGamma)$, \[\abr{f|_k[\varGamma\alpha\varGamma],g}  = \abr{f,g|_k[\varGamma\det(\alpha)\alpha^{-1}\varGamma]}.\]
+        We have $|_k[\varGamma\alpha\varGamma]^\ast = |_k[\varGamma\det(\alpha)\alpha^{-1}\varGamma]$. If $\alpha^{-1}\varGamma\alpha = \varGamma$, then $|_k[\alpha]^\ast = |_k[\det(\alpha)\alpha^{-1}]$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{theorem}
+    For $p\nmid N$, the Hecke operators $\abr{p},T_p\colon \mathcal S_k(\varGamma_1(N))\to \mathcal S_k(\varGamma_1(N))$ have adjoints \[\abr{p}^\ast = \abr{p}^{-1}\quad\text{and}\quad T_p^\ast = \abr{p}^{-1}T_p.\] It follows that the Hecke operators $\abr{n},T_n$ for $n$ coprime to $N$ are normal operators.
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{corollary}
+    By the Spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textib{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+\end{corollary}
 
 \subsection{Oldforms, newforms, and primitive forms}
 We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
@@ -873,7 +930,30 @@ We start with some results which are used to take forms from lower levels $M$ di
 \begin{proof}
     \tbd
 \end{proof}
+Let $M\mid N$ and let $d$ be a factor of $N/M$. Define $\alpha_d = \big(\!\begin{smallmatrix}
+    d & 0 \\ 0 & 1
+\end{smallmatrix}\!\big)$ and consider the map $|_k[\alpha_d]$, which is an injective map $\mathcal S_k(\varGamma_1(M))\to\mathcal S_k(\varGamma_1(N))$ by \cref{lem: weight k operator properties}. Explicitly, for $f\colon\mathcal H\to\mathbb C$ we have $(f|_k[\alpha_d])(z) = d^{k/2}f(dz)$.
 
+We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp forms which may be obtained from cusp forms at lower levels via a combination of the two embeddings discussed earlier.
+
+\begin{definition}
+    For each divisor $d$ of $N$, define 
+    \[i_d\colon (\mathcal S_k(\varGamma_1(Nd^{-1})))^2\to\mathcal S_k(\varGamma_1(N))\] by $(f,g)\mapsto f + g|_k[\alpha_d]$. The subpace of \textib{oldforms at level $N$} is 
+    \[\mathcal S_k(\varGamma_1(N))^\old = \sum_{\substack{p\mid N \\ p\text{ prime}}}i_p((\mathcal S_k(\varGamma_1(Np^{-1})))^2),\] and the subspace of \textib{newforms at level $N$} is the orthogonal complement of the subspace of oldforms with respect to the Petersson inner product,
+    \[\mathcal S_k(\varGamma_1(N))^\new = (\mathcal S_k(\varGamma_1(N))^\old)^\perp.\qedhere\]
+\end{definition}
+
+\begin{proposition}
+    The subspace of oldforms and the subspace of newforms in $\mathcal S_k(\varGamma_1(N))$ are stable under the Hecke operators $\abr{n},T_n$ for all $n\in\mathbb Z^+$.
+\end{proposition}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{corollary}
+    The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+\end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
+
+\sai{main lemma?? how do i want to do this}
 
 \newpage\section{Strong Multiplicity One}
 \subsection{TEMPORARY lemmas bucket}
