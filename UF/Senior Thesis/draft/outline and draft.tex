@@ -112,6 +112,7 @@
 \newcommand{\glqp}{\GL_2^+(\mathbb{Q})}
 \newcommand{\old}{\text{old}}
 \newcommand{\new}{\text{new}}
+\DeclareMathOperator{\sgn}{sgn}
 % \DeclareMathOperator{\Span}{span}
 % \DeclareMathOperator{\nullity}{nullity}
 % \DeclareMathOperator\Aut{Aut}
@@ -151,10 +152,10 @@
         \vspace*{4em}
         {\Large\textbf{Strong multiplicity one for classical modular forms}}
 
-        \vspace{6em}
+        \vspace{12em}
         \includegraphics[scale=0.14]{uf.png}
 
-        \vspace{6em}
+        \vspace{14em}
         Sai Sivakumar
 
         Undergraduate Honors Thesis -- Spring 2024\\
@@ -467,7 +468,7 @@ Given a point $\pi(z)\in Y(\varGamma)$, take a neighborhood $U$ for $z$ as in th
 Let $\rho\colon \mathbb C\to \mathbb C$ be given by $\rho(w) = w^{h_z}$. Then $\psi = \rho\circ \delta_z \colon U\to V = \psi(U)$ given by $\psi(w) = (\delta(w))^{h_z}$ straightens then ``wraps'' around the neighborhood into a disk. By the open mapping theorem $V$ is an open subset of $\mathbb C$. There exists an bijection $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ (see section 2.2 in \cite{diamond}), which is a homeomorphism as well. The maps $\varphi$ and open sets $U$ for each $z$ are indeed charts for $Y(\varGamma)$.
 
 For neighborhoods containing points in $\mathbb Q\cup\cbr{\infty}$, we specify charts as follows. Let $s\in\mathbb Q\cup\cbr{\infty}$ be a cusp. There exists some $\delta_s\in\slz$ that maps $s$ to $\infty$. We define the width of $s$ to be 
-\[h_s = \abs{\slz_\infty/(\delta_s\cbr{\pm I}\varGamma\delta_s^{-1})_\infty}.\] Where the period of an elliptic point is the number of sectors of the disk containing the point that are identified under isotropy, the width of a cusp is the number of sectors (of the infinitely many that come together to $s$) that are distinct under isotropy (see \cite{diamond} figure 2.6). The width of $s$ is finite and independent of the choice of $\delta_s$, and similarly to elliptic points, for $\gamma\in\slz$, the width of $\gamma(s)$ under $\gamma\varGamma\gamma^{-1}$ is the same as the width of $s$ under $\varGamma$. Thus $h_s$ is the same for all the cusps in $\varGamma s$, making the width well defined on $X(\varGamma)$.
+\[h_s = \abs{\slz_\infty/(\delta_s\cbr{\pm I}\varGamma\delta_s^{-1})_\infty}.\] Where the period of an elliptic point is the number of sectors of the disk containing the point that are identified under isotropy, the width of a cusp is the number of sectors (of the infinitely many that come together to $s$) that are distinct under isotropy (see figure 2.6 in \cite{diamond}). The width of $s$ is finite and independent of the choice of $\delta_s$, and similarly to elliptic points, for $\gamma\in\slz$, the width of $\gamma(s)$ under $\gamma\varGamma\gamma^{-1}$ is the same as the width of $s$ under $\varGamma$. Thus $h_s$ is the same for all the cusps in $\varGamma s$, making the width well defined on $X(\varGamma)$.
 
 Let $U = \delta_s^{-1}(\cbr{z\in\mathcal H : \Im(z) > 2}\cup\{\infty\})$ and let $\psi = \rho\circ \delta_s$ where $\rho\colon \mathbb C\to\mathbb C$ is given by $\rho(z) = e^{2\pi i z/h_s}$. With $V = \psi(U)$ (an open subset of $\mathbb C$), obtain $\psi\colon U\to V$ with $\psi(z) = e^{2\pi i \delta_s(z)/h_s}$. The effect of $\psi$ is to straighten $U$ by making identified points differ by a constant, and the exponential map wraps the upper half plane into a disk centered at $0$ (where $\infty$ maps to). Similarly, there exists a homeomorphism $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ that gives the chart as desired. Hence the maps $\phi$ and open sets $U$ for each $s$ give charts on the rest of $X(\varGamma)$.
 
@@ -475,7 +476,7 @@ We briefly define fundamental domains obtained from $X(\varGamma)$, without proo
     1 & 1 \\ 0 & 1
 \end{smallmatrix}\!\big)$ which takes $z$ to $z+1$ (similarly, the two halves of the boundary arc where $\abs{z} = 1$ are identified by the inversion $\big(\!\begin{smallmatrix}
     0 & -1 \\ 1 & 0
-\end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See \cite{diamond} section 2.3) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
+\end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See section 2.3 of \cite{diamond}) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
 
 For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. It is possible to do a similar procedure for $X(\varGamma)$ to produce fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{?? find a source}. 
 
@@ -559,13 +560,15 @@ The logarithm can be defined holomorphically about each $q\in D^\prime$. It foll
 From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$, given by 
 \[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] valid in a half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for $\tau$ large enough (so that $q$ lies in a punctured neighborhood of zero). If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
 \begin{definition}
-    Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ (with respect to $\varGamma$)} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
+    Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
         \item $f$ is holomorphic on $\mathcal H$,
         \item $f$ is weakly modular of weight $k$ with respect to $\varGamma$, and
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
-    \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ (with respect to $\varGamma$)}. The set of modular forms (cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (\textib{$\mathcal S_k(\varGamma)$}).
+    \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}}. The set of modular forms (cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (\textib{$\mathcal S_k(\varGamma)$}).
+
+    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We will discuss this space in \sai{insert cref}.
 \end{definition}
-Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$ which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
+Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$, which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
 
 As congruence subgroups have finite index in $\slz$, only finitely many coset representatives $\alpha_j$ in a decomposition $\slz= \bigcup_{j}\varGamma\alpha_j$ are needed to verify condition (3) in the definition above, and in verifying that the term $a_0$ vanishes for all Fourier series expansions for cusp forms: we have by condition (2) of the above definition that $f|_k[\gamma\alpha_j] = f|_k[\alpha_j]$ for all $\gamma\in\varGamma$.
 
@@ -579,13 +582,90 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
             a & b \\ 0 & d
         \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$.
         \item Let $\varGamma_1,\varGamma_2$ be congruence subgroups with $\gamma\varGamma_2\gamma^{-1}\subset \varGamma_1$ for some $\gamma\in\glqp$. If $f\in\mathcal M_k(\varGamma_1)$, then $f|_k[\gamma]\in\mathcal M_k(\varGamma_2)$, and the same result holds for cusp forms.
-        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. Show that if $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form (i.e., $g$ is also a cusp form).
+        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. Show that if $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
     \end{enumerate}  
 \end{lemma}
 \begin{proof}
     \tbd
 \end{proof}
-\subsection{Dimension formulas}
+Lastly, we record the dimensions of various spaces of modular forms below, without proof (See chapter 3 of \cite{diamond}).
+
+\begin{theorem}
+    Let $k$ be an even integer and let $\varGamma$ be a congruence subgroup. Let $g$ be the genus of $X(\varGamma)$, let $\varepsilon_2,\varepsilon_3$ be the number of elliptic points with period $2$, $3$ respectively, and let $\varepsilon_\infty$ be the number of cusps. Then
+
+    \[\dim \mathcal M_k(\varGamma) = \begin{cases}
+        (k-1)(g-1) + \lfloor\frac{k}{4}\rfloor\varepsilon_2 + \lfloor\frac{k}{3}\rfloor\varepsilon_3 + \frac{k}{2}\varepsilon_\infty & \text{if $k\geq 2$},\\
+        1 & \text{if $k = 0$},\\
+        0 & \text{if $k<0$},
+    \end{cases} \quad \text{and}\]
+
+    \[\dim \mathcal S_k(\varGamma) = \begin{cases}
+        (k-1)(g-1) + \lfloor\frac{k}{4}\rfloor\varepsilon_2 + \lfloor\frac{k}{3}\rfloor\varepsilon_3 + (\frac{k}{2}-1)\varepsilon_\infty & \text{if $k\geq 4$},\\
+        g & \text{if $k = 2$},\\
+        0 & \text{if $k<0$},
+    \end{cases}\]
+\end{theorem}
+
+In particular, the modular forms of weight $0$, $\mathcal M_0(\slz)$, is isomorphic to $\mathbb C$ since the genus of $X(1)$ is $0$. Furthermore, $\mathcal M_2(\slz) = 0$ and $\mathcal S_k(\slz) = 0$ for $k = 0,2$. For any even integer $k\geq 4$, $\mathcal M_k(\slz) = \mathcal S_k(\slz)\oplus \mathbb CE_k$ where $E_k$ is the normalized weight $k$ Eisenstein series, which we define in \sai{add cref}, and \[\dim S_k(\slz) = \begin{cases}
+    \lfloor \frac{k}{12}\rfloor - 1 & \text{if $k\equiv 2 \smod{12}$}, \\
+    \lfloor \frac{k}{12}\rfloor & \text{otherwise.}
+\end{cases}\]
+
+\begin{theorem}
+    Let $k$ be an odd integer and let $\varGamma$ be a congruence subgroup. If $-I\in\varGamma$, then both $\mathcal M_k(\varGamma)$ and $\mathcal S_k(\varGamma)$ are zero. Otherwise, let $g$ be the genus of $X(\varGamma)$, $\varepsilon_3$ be the number of elliptic points with period $3$, $\varepsilon_\infty^{\mathrm{reg}}, \varepsilon_\infty^{\mathrm{irr}}$ be the number of regular and irregular cusps, respectively \textup{(}see section 3.6 in \cite{diamond}\textup{)}. Then 
+    \[\dim \mathcal M_k(\varGamma) = \begin{cases}
+        (k-1)(g-1) + \lfloor\frac{k}{3}\rfloor\varepsilon_3 + \frac{k}{2}\varepsilon_\infty^{\mathrm{reg}} + \frac{k-1}{2}\varepsilon_\infty^{\mathrm{irr}} & \text{if $k\geq 3$},\\
+        0 & \text{if $k<0$},
+    \end{cases}\quad \text{and}\]
+    \[\dim \mathcal S_k(\varGamma) = \begin{cases}
+        (k-1)(g-1) + \lfloor\frac{k}{3}\rfloor\varepsilon_3 + (\frac{k}{2}-1)\varepsilon_\infty^{\mathrm{reg}} + \frac{k-1}{2}\varepsilon_\infty^{\mathrm{irr}} & \text{if $k\geq 3$},\\
+        0 & \text{if $k<0$}.
+    \end{cases}\] If $\varepsilon_\infty^{\mathrm{reg}}>2g-2$, then $\dim \mathcal M_1(\varGamma) = \varepsilon_\infty^{\mathrm{reg}}/2$ and $\dim \mathcal S_1(\varGamma) = 0$. If $\varepsilon_\infty^{\mathrm{reg}}\leq 2g-2$, then $\dim \mathcal M_1(\varGamma)\geq \varepsilon_\infty^{\mathrm{reg}}$ and $\dim \mathcal S_1(\varGamma) = \dim \mathcal M_1(\varGamma)- \varepsilon_\infty^{\mathrm{reg}}/2$.
+\end{theorem}
+
+\sai{Consider adding the entries from the table or not}
+
+Let $k$ be an integer and $\varGamma$ a congruence subgroup. Then the dimensions of the Eisenstein spaces are given by 
+\[\dim \mathcal E_k(\varGamma) = \begin{cases}
+    \varepsilon_\infty & \text{if $k\geq 4$ is even},\\
+    \varepsilon_\infty^{\mathrm{reg}} & \text{if $k\geq 3$ is odd and $-I\not\in\varGamma$},\\
+    \varepsilon_\infty-1 & \text{if $k=2$},\\
+    \varepsilon_\infty^{\mathrm{reg}}/2 & \text{if $k=1$ and $-I\not\in\varGamma$},\\
+    1 & \text{if $k=0$},\\
+    0 & \text{if $k<0$, or if $k>0$ is odd and $-I\in\varGamma$}.
+\end{cases}\]
+
+\subsection{Eisenstein series}
+We define the Eisenstein series for a number of spaces of modular forms to provide some examples of modular forms, and do so without proofs of any claims.
+
+Elementary Eisenstein series for $\slz$ are defined for even weights $k\geq 4$, by \[G_k(z) = {\sum_{(c,d)}}^\prime \frac{1}{(cz+d)^k},\quad z\in\mathcal H,\] where the notation $\sum_{(c,d)}^\prime$ denotes summation over all nonzero integer pairs $(c,d)\in\mathbb Z^2$. This sum is absolutely convergent, and converges uniformly on compact subsets of $\mathcal H$. It follows that $G_k$ is holomorphic on $\mathcal H$ and we may rearrange the terms of the sum defining $G_k$. A Fourier series for $G_k$ is given by \[G_k(z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)e^{2\pi i z},\] where $\sigma_{k-1}$ is the arithmetic function $\sigma_{k-1}(n) = \sum_{\substack{m\mid n\\ m>0}}m^{k-1}$. (See section 1.1 in \cite{diamond}) Obtain the normalized Eisenstein series $E_k(z) = G_k(z)/(2\zeta(k))$, which can be shown to be given by 
+\[E_k(z) = \frac{1}{2}\sum_{\substack{(c,d)\in\mathbb Z^2\\\gcd(c,d) = 1}}\frac{1}{(cz+d)^k}\quad \text{or} \quad E_k(z) = \frac{1}{2}\sum_{\gamma\in P_+\backslash \slz}\frac{1}{j(\gamma,z)^k},\] where $P_+ = \cbr{\big(\!\begin{smallmatrix}
+    1 & n \\ 0 & 1
+\end{smallmatrix}\!\big) : n\in\mathbb Z}$ is the positive part of the parabolic subgroup of $\slz$. It is more elegant to verify that the normalized Eisenstein series is weakly modular of weight $k$ using the last equality above. 
+
+Let $g_2(z) = 60 G_4(z)$ and $g_3(z) = 140G_6(z)$, and define the \textib{discriminant function} $\varDelta\colon\mathcal H\to\mathbb C$ by $\varDelta(z) = (g_2(z))^3-27(g_3(z))^2$. The discriminant function is a nonzero cusp form of weight $12$, with Fourier coefficients $a_0 = 0$, $a_1 = (2\pi)^{12}$. In fact, the only zero of $\varDelta$ is at $\infty$. It follows that the \textib{$j$-invariant} $j\colon \mathcal H\to\mathbb C$ given by $j(z) = 1728(g_2(z))^3/\varDelta(z)$ is holomorphic on $\mathcal H$. The $j$-invariant is $\slz$-invariant, is a surjection, and has a simple pole at $\infty$ with residue $1$.
+
+We summarize what the Eisenstein series for $\varGamma(N)$ look like for weights $k\geq 3$. Let $N$ be a positive integer and let $\overline v \in (\mathbb Z/N\mathbb Z)^2$ be an element of order $2$ written as a row vector, where $v$ is some lift of $\overline v$ to $\mathbb Z^2$ (so $\overline{\,\cdot\,}$ denotes reduction modulo $N$). Let $\delta = \big(\!\begin{smallmatrix}
+    a & b \\ c_v & d_v
+\end{smallmatrix}\!\big)\in\slz$ with $(c_v,d_v)$ a lift of $\overline v$ to $\mathbb Z^2$, and let $k\geq 3$ be an integer. Lastly, let $\epsilon_N$ be $1/2$ if $N=1,2$ and $1$ otherwise. 
+
+Define the Eisenstein series $E_k^{\overline v}(z)\colon\mathcal H\to\mathbb C$ by \[E_k^{\overline v}(z) =\epsilon_N\sum_{\substack{(c,d)\equiv v\smod N\\\gcd(c,d) = 1}}\frac{1}{(cz+d)^k},\] and it can be shown that \[E_k^{\overline v}(z) = \sum_{\gamma \in(P_+\cap \varGamma(N)\backslash \varGamma(N)\delta)}\frac{1}{j(\gamma,z)^k}.\] Note that when $N = 1$, we have from this definition that $E_k^{\overline v} = E_k$ since there is only one choice of $\overline v$.
+
+A computation yields the fact that for $\gamma\in\slz$, $E_k^{\overline v}|_k[\gamma] = E_k^{\overline{v\gamma}}$, from which it follows that these series are elements of $\mathcal M_k(\varGamma(N))$. By symmetrizing, one can define Eisenstein series for any congruence subgroup $\varGamma$ by
+\[E_{k,\varGamma}^{\overline v} = \sum_{\gamma_j\in\varGamma(N)\backslash \varGamma}E_k^{\overline v}|_k[\gamma_j],\] where the $\gamma_j$ constitute a set of coset representatives for $\varGamma(N)\backslash \varGamma$.
+
+For odd weights $k$ and $N = 1,2$, the Eisenstein space $\mathcal E_k(\varGamma(N))$ has dimension $0$, since $-I\in\varGamma(N)$. For $k$ even or for $N>2$, $E_k^{\overline v}$ vanishes at $\infty$ for all $\overline v$ except for $\pm\overline{(0,1)}$. One can show that $E_k^{\overline{(c,d)}}$ is nonvanishing on points in the set $\varGamma(N)(-d/c)$ and vanishes on the other cusps of $\varGamma(N)$. A basis of $\mathcal E_k(\varGamma(N))$ may be formed by choosing a set of vectors $\cbr{\overline v} = \cbr{\overline{(c,d)}}$ for which the quotients $-d/c$ represent the cusps of $\varGamma(N)$; it follows from the previous sentence that $\cbr{E_k^{\overline v}}$ is linearly independent. The number of elements in this set is $\varepsilon_\infty$ (for $\varGamma(N)$). Thus for all $k\geq 3$, it is possible to obtain bases for the Eisenstein spaces (recall that for odd weights and $N = 1,2$ the spaces are zero). The basis elements are really cosets of the form $E_k^{\overline v} + \mathcal S_k(\varGamma(N))$, but it is possible to redefine the Eisenstein spaces $\mathcal E_k(\varGamma(N))$ as subspaces of $\mathcal M_k(\varGamma(N))$ so that the basis elements are the Eisenstein series themselves (see section 5.11 in \cite{diamond}).
+
+In view of the definition of the normalized Eisenstein series for $N = 1$, define for any $\overline v\in (\mathbb Z/N\mathbb Z)^2$ of order $N$
+\[G_k^{\overline v}(z) = \sideset{}{^\prime}\sum_{(c,d)\equiv v\smod N}\frac{1}{(cz+d)^k}.\] It can be shown that (see section 4.2 in \cite{diamond})
+\[G_k^{\overline v}(z) = \frac{1}{\epsilon_N}\sum_{n\in(\mathbb Z/N\mathbb Z)^\times}\zeta_+^n(k)E_k^{n^{-1}\overline v}(z),\] where \[\zeta_+^n(k) = \sum_{\substack{m=1\\m\equiv n\smod N}}^\infty \frac{1}{m^k}\quad \text{for $n\in (\mathbb Z/N\mathbb Z)^\times$}.\] 
+
+The Fourier series expansion of $G_k^{\overline v}(z)$ for $k\geq 3$ and $\overline v\in (\mathbb Z/N\mathbb Z)^2$ of order $N$ is given by \[G_k^{\overline v}(z) = \delta(\overline c_v)\zeta^{\overline d_v}(k) + \frac{(-2\pi i)^k}{N^k(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}^{\overline v}(n)e^{2\pi i n t/N},\] where \[\delta(\overline c_v) = \begin{cases}
+    1 & \text{if $\overline c_v =\overline 0$},\\
+    0 & \text{otherwise},
+\end{cases}\quad \zeta^{\overline d_v}(k) = \sideset{}{^\prime}\sum_{d\equiv d_v\smod N}\frac{1}{d^k},\] and 
+\[\sigma_{k-1}^{\overline v}(n) = \sum_{\substack{m\mid n\\n/m \equiv c_v\smod n}}\sgn(m)m^{k-1}\mu_N^{d_vm}.\] In the sum for $\zeta^{\overline d_v}(k)$, we sum over positive and negative $d$, and similarly for $m$ in the sum for $\sigma_{k-1}^{\overline v}$. Similarly to the Eisenstein series, one may form a basis $\cbr{G_k^{\overline v}}$ of the Eisenstein space $\mathcal E_k(\varGamma(N))$ (using the same choice of $\cbr{\overline v}$ as before). Since the $n$-th Fourier coefficient is of the order $n^k$, it follows from \sai{i need that result on the order of Fourier coeffs bruh} that $E_k^{\overline v}$ is a modular form.
+
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
 \begin{definition}
@@ -622,7 +702,7 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 \begin{proof}
     Let $\chi$ be a Dirichlet character. If $\chi= \mathbf 1$, then $\sum_{n\in Z_N^\times}\chi(n) = \phi(N)$. Suppose $\chi\neq \mathbf 1$, so that there exists $m\in Z_N^\times$ for which $\chi(m)\neq 1$. Then $\sum_{n\in Z_N^\times}\chi(n) = \sum_{n\in Z_N^\times}\chi(mn) = \chi(m)\sum_{n\in Z_N^\times}\chi(n)$, so that $\sum_{n\in Z_N^\times}\chi(n) = 0$.
 
-    Similarly, let $n\in Z_N^\times$. If $n = 1$, $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = \phi(N)$. If $n\neq 1$, there exists a character $\eta$ that is nonvanishing on $n$, and similarly obtain the equality $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) =\sum_{\chi\in \widehat{Z_N^\times}}(\eta\chi)(n) =\eta(n)\sum_{\chi\in \widehat{Z_N^\times}}\chi(n)$, from which $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = 0$ follows.
+    Similarly, let $n\in Z_N^\times$. If $n = 1$, $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = \phi(N)$. If $n\neq 1$, there exists a character $\eta$ that is not $1$ on $n$, and similarly obtain the equality $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) =\sum_{\chi\in \widehat{Z_N^\times}}(\eta\chi)(n) =\eta(n)\sum_{\chi\in \widehat{Z_N^\times}}\chi(n)$, from which $\sum_{\chi\in \widehat{Z_N^\times}}\chi(n) = 0$ follows.
 \end{proof}
 
 Any Dirichlet character $\chi$ modulo $d$ may be lifted to a character $\chi_N$ modulo $N$ when $d\mid N$, by the rule $\chi_N(n\smod N) = \chi(n\smod d)$ for all $n\in\mathbb{Z}$ coprime to $N$. In other words, if $\pi_{N,d}\colon Z_N^\times\to Z_d^\times$ is the natural projection, then $\chi_N = \chi\circ \pi_{N,d}$.
@@ -674,7 +754,9 @@ Obtain new orthogonality relations from the ones appearing in \cref{eqn: ortho r
     Let $N$ be a positive integer. If $N = 1,2$, then every Dirichlet character $\chi$ modulo $N$ satisfies $\chi(-1)=1$. If $N>2$, then the number of Dirichlet characters modulo $N$ is even, of which half satisfy $\chi(-1) = 1$ and the other half satisfy $\chi(-1) = -1$.
 \end{lemma}
 \begin{proof}
-    \tbd
+    The extensions of a Dirichlet character to functions on $\mathbb Z$ are unique, so it suffices to study Dirichlet characters given by homomorphisms $Z_N^\times\to\mathbb C^\times$. For $N = 1,2$, $\phi(N) = 1$ so that the only Dirichet character is the trivial one. For $N>2$, $\phi(N)$ is even, so there are an even number of characters modulo $N$.
+
+    For $N>2$, the map $\widehat{Z_N^\times}\to Z_2$ given by evaluation at $N-1$ (which corresponds to evaluation at $-1$) is a nontrivial homomorphism since there exists a character which is not $1$ on $N-1$. By the first isomorphism theorem, the result follows.
 \end{proof}
 Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varGamma_1(N)), \mathcal S_k(\varGamma_1(N)), \mathcal E_k(\varGamma_1(N))$ into direct sums of interesting subspaces.
 \begin{proposition}\label{prop: eigenspace decomp}
@@ -691,9 +773,9 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
     To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
     \[L(s,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using the fundamental theorem of arithmetic combined with the fact that $(1-\chi(p)p^{-s})^{-1}$ is given by a geometric series.
 \end{definition}
-It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$, which has a simple pole at $s = 1$. (We have $L(s,\mathbf 1_N) = \prod_{p\nmid N}(1-p^{-s})^{-1} = \prod_{p\in\mathbb P}(1-p^{-s})^{-1}\prod_{p\mid N}(1-p^{-s}) = \zeta(s)\prod_{p\mid N}(1-p^{-s})$.) Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
+It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$, which has a simple pole at $s = 1$. (Indeed, $L(s,\mathbf 1_N) = \prod_{p\nmid N}(1-p^{-s})^{-1} = \prod_{p\in\mathbb P}(1-p^{-s})^{-1}\prod_{p\mid N}(1-p^{-s}) = \zeta(s)\prod_{p\mid N}(1-p^{-s})$.) Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
 \[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
-\[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$).
+\[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$). 
 
 Before defining $L$-functions for modular forms, we make a few observations. Let $\varGamma$ be a congruence subgroup, so that by definition there exists a positive integer $N$ such that $\varGamma(N)\subset \varGamma$, from which it follows that $\mathcal M_k(\varGamma)\subset \mathcal M_k(\varGamma(N))$. Furthermore, $\varGamma_1(N^2)$ is contained in 
 \[\begin{pmatrix}
@@ -741,11 +823,6 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
     \[L(s,f) = \sum_{n=1}^\infty a_nn^{-s}.\] For $M>0$, let 
     \[\varLambda_M(s,f) = (2\pi/\sqrt{M})^{-s}\varGamma(s)L(s,f).\qedhere\]
 \end{definition}
-
-\subsection{Eisenstein series}
-We define the Eisenstein series for a number of spaces of modular forms to provide some examples of modular forms, and do so without proofs of any claims.
-
-Elementary Eisenstein series for $\slz$ are defined for even weights $k\geq 4$, by \[G_k(z) = {\sum_{(c,d)}}^\prime \frac{1}{(cz+d)^k},\quad z\in\mathcal H,\] where the notation $\sum_{(c,d)}^\prime$ denotes summation over all nonzero integer pairs $(c,d)\in\mathbb Z^2$. This sum is absolutely convergent, and converges uniformly on compact subsets of $\mathcal H$. It follows that $G_k$ is holomorphic on $\mathcal H$ and we may rearrange the terms of the sum defining $G_k$. A Fourier series for $G_k$ is given by \[G_k(z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)e^{2\pi i z},\] where $\sigma_{k-1}$ is the arithmetic function $\sigma_{k-1}(n) = \sum_{\substack{m\mid n\\ m>0}}m^{k-1}$. (See \cite{diamond} section 1.1.)
 
 \newpage\section{Hecke operators}
 In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
