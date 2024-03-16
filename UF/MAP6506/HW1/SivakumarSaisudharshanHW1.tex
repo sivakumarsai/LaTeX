@@ -28,7 +28,7 @@
 \fancyhead[L]{MAP6506}
 \fancyhead[C]{HW1}
 \fancyhead[R]{Sai Sivakumar}
-\fancyfoot[R]{\thepage/10}
+\fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{1pt}
 
 % paragraph indentation/spacing
@@ -68,8 +68,8 @@
 \begin{document}
 
 \begin{enumerate}
-    \item Since $A$ is real, symmetric, and strictly positive, there exists an $N\times N$ orthogonal matrix $U$ such that $U^{-1}AU = U^TAU = D$ where $D$ is an $N\times N$ diagonal matrix with positive entries. Then $(\nabla, A\nabla) = (\nabla, UDU^T\nabla) = (U^T\nabla, DU^T\nabla)$. Make the change of coordinates $x = U^Ty$, so that $U^T\nabla_x = \nabla_y$ (as $U$ is linear). With $D$ diagonal and $\det U = 1$, it follows that \[(\nabla_x, A\nabla_x)G(x) = (U^T\nabla_x, DU^T\nabla_x)G(x) = (\nabla_y, D\nabla_y)G(U^Ty) = D\Delta_yG(U^Ty) = \delta(U^Ty) = \delta(y).\]
-    \item 31.6.2
+    \item Since $A$ is real, symmetric, and strictly positive, there exists an $N\times N$ orthogonal matrix $U$ such that $U^{-1}AU = U^TAU = D$ where $D$ is an $N\times N$ diagonal matrix with positive entries. Then $(\nabla, A\nabla) = (\nabla, UDU^T\nabla) = (U^T\nabla, DU^T\nabla)$. Make the change of coordinates $x = U^Ty$, so that $U^T\nabla_x = \nabla_y$ (as $U$ is linear). With $D$ diagonal and $\det U = 1$, it follows that \[(\nabla_x, A\nabla_x)G(x) = (U^T\nabla_x, DU^T\nabla_x)G(x) = (\nabla_y, D\nabla_y)G(U^Ty) = D(\Delta_yG)(U^Ty) = \delta(U^Ty) = \delta(y).\]
+    \item 31.6.2 We have (since $\mathcal E^\pm\ast\delta$ exists) that \[u_\pm(x,t) = \frac{e^{-i\omega t}}{c^2}\cdot (\mathcal E^\pm \ast (\nabla, p\nabla)\delta)(x) = \frac{e^{-i\omega t}}{c^2}\cdot (\nabla, p\nabla)\mathcal E^\pm(x)\]
     \item 37.9.4
 
     \hrulefill

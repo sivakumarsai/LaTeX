@@ -478,7 +478,7 @@ We briefly define fundamental domains obtained from $X(\varGamma)$, without proo
     0 & -1 \\ 1 & 0
 \end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See section 2.3 of \cite{diamond}) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
 
-For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. It is possible to do a similar procedure for $X(\varGamma)$ to produce fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{?? find a source}. 
+For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. It is possible to do a similar procedure for $X(\varGamma)$ to produce fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{?? This should be true, but I should find a source}. 
 
 \newpage\section{Modular forms}
 In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.
@@ -558,15 +558,15 @@ Let $D = \cbr{q\in\mathbb C : \abs{q} <1}$ be the open unit disk in $\mathbb C$ 
 The logarithm can be defined holomorphically about each $q\in D^\prime$. It follows that $\tilde f$ is meromorphic on $D^\prime$ since $f$ is meromorphic on $\mathcal H$, and so $\tilde f$ has a Laurent expansion $\tilde f(q) = \sum_{n\in\mathbb Z}a_nq^n$ at each $q$ in a punctured neighborhood of $q=0$ (and $a_n = 0$ for all $n$ sufficiently small). Moreover, if $f$ is holomorphic on $\mathcal H$, it follows that $\tilde f$ is also on $D^\prime$.
 
 From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$, given by 
-\[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] valid in a half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for $\tau$ large enough (so that $q$ lies in a punctured neighborhood of zero). If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
+\[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] which converges absolutely and uniformly on compact subsets of the half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for some large enough $\tau$ (so that $q$ lies in a punctured neighborhood of zero). If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
 \begin{definition}
     Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
         \item $f$ is holomorphic on $\mathcal H$,
         \item $f$ is weakly modular of weight $k$ with respect to $\varGamma$, and
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
-    \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}}. The set of modular forms (cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (\textib{$\mathcal S_k(\varGamma)$}).
+    \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}}. The set of modular forms (respectively cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (respectively \textib{$\mathcal S_k(\varGamma)$}).
 
-    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We will discuss this space in \sai{insert cref}.
+    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We briefly discuss this space in \sai{insert cref}.
 \end{definition}
 Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$, which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
 
@@ -584,6 +584,12 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
         \item Let $\varGamma_1,\varGamma_2$ be congruence subgroups with $\gamma\varGamma_2\gamma^{-1}\subset \varGamma_1$ for some $\gamma\in\glqp$. If $f\in\mathcal M_k(\varGamma_1)$, then $f|_k[\gamma]\in\mathcal M_k(\varGamma_2)$, and the same result holds for cusp forms.
         \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. Show that if $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
     \end{enumerate}  
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: growth of fourier coeffs}
+    \sai{growth of coefficients, either the prop from ds p17 or miyake thm 2.1.4, or both in view of \cref{prop: miyake prop pre-lemma 4.3.3} and the result after?}
 \end{lemma}
 \begin{proof}
     \tbd
@@ -623,7 +629,7 @@ In particular, the modular forms of weight $0$, $\mathcal M_0(\slz)$, is isomorp
     \end{cases}\] If $\varepsilon_\infty^{\mathrm{reg}}>2g-2$, then $\dim \mathcal M_1(\varGamma) = \varepsilon_\infty^{\mathrm{reg}}/2$ and $\dim \mathcal S_1(\varGamma) = 0$. If $\varepsilon_\infty^{\mathrm{reg}}\leq 2g-2$, then $\dim \mathcal M_1(\varGamma)\geq \varepsilon_\infty^{\mathrm{reg}}$ and $\dim \mathcal S_1(\varGamma) = \dim \mathcal M_1(\varGamma)- \varepsilon_\infty^{\mathrm{reg}}/2$.
 \end{theorem}
 
-\sai{Consider adding the entries from the table or not}
+Dimension formulas for other spaces of modular forms (varying $k, N, \varGamma$) may be found in section 3.9 of \cite{diamond}.
 
 Let $k$ be an integer and $\varGamma$ a congruence subgroup. Then the dimensions of the Eisenstein spaces are given by 
 \[\dim \mathcal E_k(\varGamma) = \begin{cases}
@@ -654,7 +660,7 @@ Define the Eisenstein series $E_k^{\overline v}(z)\colon\mathcal H\to\mathbb C$ 
 A computation yields the fact that for $\gamma\in\slz$, $E_k^{\overline v}|_k[\gamma] = E_k^{\overline{v\gamma}}$, from which it follows that these series are elements of $\mathcal M_k(\varGamma(N))$. By symmetrizing, one can define Eisenstein series for any congruence subgroup $\varGamma$ by
 \[E_{k,\varGamma}^{\overline v} = \sum_{\gamma_j\in\varGamma(N)\backslash \varGamma}E_k^{\overline v}|_k[\gamma_j],\] where the $\gamma_j$ constitute a set of coset representatives for $\varGamma(N)\backslash \varGamma$.
 
-For odd weights $k$ and $N = 1,2$, the Eisenstein space $\mathcal E_k(\varGamma(N))$ has dimension $0$, since $-I\in\varGamma(N)$. For $k$ even or for $N>2$, $E_k^{\overline v}$ vanishes at $\infty$ for all $\overline v$ except for $\pm\overline{(0,1)}$. One can show that $E_k^{\overline{(c,d)}}$ is nonvanishing on points in the set $\varGamma(N)(-d/c)$ and vanishes on the other cusps of $\varGamma(N)$. A basis of $\mathcal E_k(\varGamma(N))$ may be formed by choosing a set of vectors $\cbr{\overline v} = \cbr{\overline{(c,d)}}$ for which the quotients $-d/c$ represent the cusps of $\varGamma(N)$; it follows from the previous sentence that $\cbr{E_k^{\overline v}}$ is linearly independent. The number of elements in this set is $\varepsilon_\infty$ (for $\varGamma(N)$). Thus for all $k\geq 3$, it is possible to obtain bases for the Eisenstein spaces (recall that for odd weights and $N = 1,2$ the spaces are zero). The basis elements are really cosets of the form $E_k^{\overline v} + \mathcal S_k(\varGamma(N))$, but it is possible to redefine the Eisenstein spaces $\mathcal E_k(\varGamma(N))$ as subspaces of $\mathcal M_k(\varGamma(N))$ so that the basis elements are the Eisenstein series themselves (see section 5.11 in \cite{diamond}).
+For odd weights $k$ and $N = 1,2$, the Eisenstein space $\mathcal E_k(\varGamma(N))$ has dimension $0$, since $-I\in\varGamma(N)$. For $k$ even or for $N>2$, $E_k^{\overline v}$ vanishes at $\infty$ for all $\overline v$ except for $\pm\overline{(0,1)}$. One can show that $E_k^{\overline{(c,d)}}$ is nonvanishing on points in the set $\varGamma(N)(-d/c)$ and vanishes on the other cusps of $\varGamma(N)$. A basis of $\mathcal E_k(\varGamma(N))$ may be formed by choosing a set of vectors $\cbr{\overline v} = \{\overline{(c,d)}\}$ for which the quotients $-d/c$ represent the cusps of $\varGamma(N)$; it follows from the previous sentence that $\{E_k^{\overline v}\}$ is linearly independent. The number of elements in this set is $\varepsilon_\infty$ (for $\varGamma(N)$). Thus for all $k\geq 3$, it is possible to obtain bases for the Eisenstein spaces (recall that for odd weights and $N = 1,2$ the spaces are zero). The basis elements are really cosets of the form $E_k^{\overline v} + \mathcal S_k(\varGamma(N))$, but it is possible to redefine the Eisenstein spaces $\mathcal E_k(\varGamma(N))$ as subspaces of $\mathcal M_k(\varGamma(N))$ so that the basis elements are the Eisenstein series themselves (see section 5.11 in \cite{diamond}).
 
 In view of the definition of the normalized Eisenstein series for $N = 1$, define for any $\overline v\in (\mathbb Z/N\mathbb Z)^2$ of order $N$
 \[G_k^{\overline v}(z) = \sideset{}{^\prime}\sum_{(c,d)\equiv v\smod N}\frac{1}{(cz+d)^k}.\] It can be shown that (see section 4.2 in \cite{diamond})
@@ -664,7 +670,7 @@ The Fourier series expansion of $G_k^{\overline v}(z)$ for $k\geq 3$ and $\overl
     1 & \text{if $\overline c_v =\overline 0$},\\
     0 & \text{otherwise},
 \end{cases}\quad \zeta^{\overline d_v}(k) = \sideset{}{^\prime}\sum_{d\equiv d_v\smod N}\frac{1}{d^k},\] and 
-\[\sigma_{k-1}^{\overline v}(n) = \sum_{\substack{m\mid n\\n/m \equiv c_v\smod n}}\sgn(m)m^{k-1}\mu_N^{d_vm}.\] In the sum for $\zeta^{\overline d_v}(k)$, we sum over positive and negative $d$, and similarly for $m$ in the sum for $\sigma_{k-1}^{\overline v}$. Similarly to the Eisenstein series, one may form a basis $\cbr{G_k^{\overline v}}$ of the Eisenstein space $\mathcal E_k(\varGamma(N))$ (using the same choice of $\cbr{\overline v}$ as before). Since the $n$-th Fourier coefficient is of the order $n^k$, it follows from \sai{i need that result on the order of Fourier coeffs bruh} that $E_k^{\overline v}$ is a modular form.
+\[\sigma_{k-1}^{\overline v}(n) = \sum_{\substack{m\mid n\\n/m \equiv c_v\smod n}}\sgn(m)m^{k-1}\mu_N^{d_vm}.\] In the sum for $\zeta^{\overline d_v}(k)$, we sum over positive and negative $d$, and similarly for $m$ in the sum for $\sigma_{k-1}^{\overline v}$. Similarly to the Eisenstein series, one may form a basis $\cbr{G_k^{\overline v}}$ of the Eisenstein space $\mathcal E_k(\varGamma(N))$ (using the same choice of $\cbr{\overline v}$ as before). Since the $n$-th Fourier coefficient is of the order $n^k$, it follows from \sai{i need that result on the order of Fourier coeffs bruh} \cref{lem: growth of fourier coeffs} that $E_k^{\overline v}$ is a modular form.
 
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
@@ -681,7 +687,7 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
 \begin{proof}
     This follows from Exercise 5.2.14 in \cite{df}, which states that finite Abelian groups are (noncanonically) self-dual. 
 
-    Let $G = \abr{x_1}\times\cdots\times\abr{x_r}$ be a finite Abelian group (recall the Fundamental Theorem for Finitely Generated Abelian groups). Define characters $\chi_i\colon \abr{x_i}\to \mathbb C^\times$ by $x_i\mapsto e^{2\pi i/\abs{x_i}}$ for $1\leq i\leq r$, which have order $\abs{x_i}$ in $\widehat{\abr{x_i}}$. It is evident that the group $G^\prime = \abr{\chi_1}\times\cdots\times \abr{\chi_r}$ is isomorphic to $G$.
+    Let $G = \abr{x_1}\times\cdots\times\abr{x_r}$ be a finite Abelian group (recall the structure theorem for finitely generated Abelian groups). Define characters $\chi_i\colon \abr{x_i}\to \mathbb C^\times$ by $x_i\mapsto e^{2\pi i/\abs{x_i}}$ for $1\leq i\leq r$, which have order $\abs{x_i}$ in $\widehat{\abr{x_i}}$. It is evident that the group $G^\prime = \abr{\chi_1}\times\cdots\times \abr{\chi_r}$ is isomorphic to $G$.
 
     Define the homomorphism $\rho\colon G^\prime\to \widehat G$ by $(\chi_1^{e_1},\dots,\chi_r^{e_r})\mapsto \chi_1^{e_1}\pi_1\cdots\chi_r^{e_r}\pi_r$, where $\pi_i$ denotes the projection $G\to \abr{x_i}$. It is evident that $\ker\rho$ is trivial. Let $f\colon G\to\mathbb C^\times$ be a character of $\widehat G$, and let $\iota_i\colon \abr{x_i}\to G$ denote the inclusion $x_i\mapsto (1,\dots,1,x_i,1,\dots,1)$. Then $f\iota_i\in \widehat{\abr{x_i}}$, and a preimage of $f$ under $\rho$ is $(f\iota_1,\dots,f\iota_r)$. The result follows.
 \end{proof}
@@ -816,13 +822,149 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big)\big]\Big)(z) = j\big(\alpha^\prime\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big),z\big)^{-k}f(\alpha^\prime(Nz)) = (f|_k[\alpha^\prime])(Nz),\] which is holomorphic at $\infty$ since $f\in\mathcal M_k(\varGamma(N))$. If the Fourier expansion of $f$ at $\infty$ is $f(z) = \sum_{n =0}^\infty a_ne^{2\pi i n z/N}$, we have the Fourier expansion
-\[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$.\sai{some stuff needs to come before this definition}
+\end{smallmatrix}\!\big),z\big)^{-k}f(\alpha^\prime(Nz)) = (f|_k[\alpha^\prime])(Nz),\] which is holomorphic at $\infty$ since $f\in\mathcal M_k(\varGamma(N))$. If the  series expansion of $f$ at $\infty$ is $f(z) = \sum_{n =0}^\infty a_ne^{2\pi i n z/N}$, we have the Fourier expansion
+\[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$. We require a few preliminary results about Dirichlet series:
+\begin{lemma}\label{lem: miyake lem 3.2.1}
+    Assume that both $\sum_{n=1}^\infty a_nn^{-s}$ and $\sum_{n=1}^\infty b_nn^{-s}$ are absolutely convergent at $s = \sigma_0$ with $\sigma_0>0$ real. If $\sum_{n=1}^\infty a_nn^{-s} = \sum_{n=1}^\infty b_nn^{-s}$ on $\Re(s)\geq \sigma_0$, then $a_n = b_n$ for all $n$.
+\end{lemma}
+\begin{proof}
+    By taking differences, it suffices to show that if $\sum_{n=1}^\infty a_nn^{-s} = 0$, then $a_n = 0$ for all $n$. Since $\sum_{n=1}^\infty a_nn^{-s}$ is absolutely convergent at $s = \sigma_0$, it is absolutely and uniformly convergent on $\Re(s)\geq \sigma_0$. Suppose there exists a smallest integer $m$ such that $a_m \neq 0$.
+    
+    By hypothesis, $-a_m = \sum_{n=m+1}^\infty a_n (n/m)^{-\sigma}$. Let $\sigma = \Re(s)\geq \sigma_0$, and note that for $n>m^2$, we have $(n/m)^{-\sigma}<n^{-\sigma/2}$. It follows that
+    \begin{align*}
+        \abs{a_m} &\leq \sum_{n=m+1}^\infty \abs{a_n} (n/m)^{-\sigma}\\
+        &\leq \sum_{n=m+1}^{m^2} \abs{a_n} (n/m)^{-\sigma} + \sum_{n=m^2+1}^\infty \abs{a_n} n^{-\sigma/2}.
+    \end{align*}
+    Choose $N$ large enough so that
+    \[\sum_{n=N+1}^\infty \abs{a_n}n^{-\sigma_0}\leq \abs{a_m}/3,\]
+    and choose $\sigma>2\sigma_0$ large enough so that 
+    \[\sum_{n=m+1}^{m^2} \abs{a_n} (n/m)^{-\sigma} + \sum_{n=m^2+1}^N \abs{a_n}n^{-\sigma/2}\leq \abs{a_m}/3.\] With these choices, $\abs{a_m}\leq 2\abs{a_m}/3$, which is a contradiction.
+\end{proof}
+\begin{proposition}\label{prop: miyake prop pre-lemma 4.3.3}
+    Let $f$ be a holomorphic function on $\mathcal H$ such that: 
+    \begin{enumerate}[label = \textup{(\arabic*)}]
+        \item The Fourier expansion for $f$, \[f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz},\] converges absolutely and uniformly on compact subsets of $\mathcal H$, and
+        \item there exists $v>0$ such that \[f(z) = \mathcal O(\Im(z)^{-v}) \quad \textup{($\Im(z)\to 0$)}\] uniformly on $\Re(z)$. 
+    \end{enumerate}
+    Then $a_n = \mathcal O(n^v)$.
+\end{proposition}
+\begin{proof}
+    By hypothesis, there exists a constant $M>0$ such that $\abs{f(z)}\leq M\Im(z)^{-v}$. Then \begin{align*}
+        \abs{a_n} &= \abs{\int_0^1 g(x+iy)e^{-2\pi i n (x+iy)}\dd x}\\
+        &\leq My^{-v}e^{2\pi n y}.
+    \end{align*} By taking $y = 2/n$, it follows that $\abs{a_n} \leq (Me^{4\pi}2^{-v})n^v$.
+\end{proof} Conversely, we have the following:
+\begin{lemma}\label{lem: miyake lem 4.3.3}
+    Let $\{a_n\}_{n=0}^\infty$ be a sequence of complex numbers, and let $f\colon \mathcal H\to \mathbb C$ be given by $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$. If $a_n = \mathcal O(n^v)$ for some $v >0$, then $\sum_{n=0}^\infty a_ne^{2\pi i nz}$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Moreover, 
+    \begin{align*}
+        f(z) &= \mathcal O(\Im(z)^{-v-1}) \quad\textup{($\Im(z) \to 0$), and }\\
+        f(z) - a_0 &= \mathcal O(e^{-2\pi \Im(z)}) \quad\textup{($\Im(z) \to \infty$)},
+    \end{align*}
+    uniformly on $\Re(z)$.
+\end{lemma}
+\begin{proof}
+    From $\varGamma(s) = \lim_{n\to \infty}\frac{n!n^s}{s(s+1)\cdots(s+n)}$ for real $s>0$ (Euler-Gauss), we have for $v>0$ that
+    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v).\]
+    Thus there exists $L>0$ such that 
+    \[\abs{a_n}\leq L(-1)^n\binom{-v-1}{n}\] for all $n\geq 0$. Let $z = x+iy$, so that 
+    \begin{align}\label{eqn: miyake eqn 4.3.9}
+        \sum_{n=0}^\infty\abs{a_n}|e^{2\pi i n z}|&\leq L\bigg(\sum_{n=0}^\infty (-1)^n\binom{-v-1}{n}e^{-2\pi n y}\bigg)\\
+        &= L(1-e^{-2\pi y})^{-v-1}.\nonumber
+    \end{align}
+    It follows that $f$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Since $1-e^{-2\pi y} = \mathcal O(y)$ as $y\to 0$, we have that $\abs{f(z)} = \mathcal O(y^{-v-1})$. Furthermore, \cref{eqn: miyake eqn 4.3.9} implies that $f$ is bounded as $y$ tends to $\infty$.
+
+    Let $g\colon\mathcal H\to\mathbb C$ be given by $g(z) = \sum_{n=0}^\infty a_{n+1}e^{2\pi i nz}$, and observe that $g$ also satisfies the hypotheses of the lemma. It follows that $g$ is also bounded on a neighborhood of $\infty$. Therefore 
+    \[f(z)-a_0 = e^{2\pi i z}g(z) = \mathcal O(e^{-2\pi y})\quad (y\to \infty).\qedhere\]
+\end{proof}
+\begin{lemma}[Phragmen-Lindel\"of]\label{lem: miyake lem 4.3.4}
+    For two real numbers $v_1,v_2$ with $v_1<v_2$, let 
+    \[F = \cbr{s\in \mathbb C : v_1\leq \Re(s)\leq v_2}.\] Let $\phi$ be a holomorphic function on a domain containing $F$ satisfying \[\abs{\phi(s)} = \mathcal O\big(e^{\abs{\tau}^\delta}\big)\quad \textup{($\abs{\tau}\to\infty$, with $s = \sigma + i\tau$),}\]
+    uniformly on $F$ with $\delta >0$. For a real number $b$, if 
+    \[\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)\quad (\abs{\tau}\to\infty) \quad \text{on $\Re(s) = v_1$ and $\Re(s) = v_2$,}\]
+    then $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ as $\abs{\tau}\to\infty$ uniformly on $F$.
+\end{lemma}
+\begin{proof}
+    By hypothesis, there exists $L>0$ such that $\abs{\phi(s)}\leq Le^{\abs{\tau}^\delta}$. Suppose first that $b = 0$. Then there exists $M>0$ such that $\abs{\phi(s)}\leq M$ on $\Re(s) = v_1$ and on $\Re(s) = v_2$. Let $m$ be a positive integer with $m\equiv 2\smod 4$ and let $s = \sigma + i \tau$. Since $\Re(s^m) = \Re((\sigma  + i\tau)^m)$ is a polynomial of $\sigma$ and $\tau$ with highest term of $\tau$ given by $-\tau^m$, we have 
+    \[\Re(s^m) = -\tau^m + \mathcal O(\abs{\tau}^{m-1})\quad (\abs{\tau}\to\infty),\] uniformly on $F$. With $m$ even, $\Re(s^m)$ has an upper bound on $F$. Choose $m$ and $N$ so that $m>\delta$ and $\Re(s^m)<N$, so that for any $\varepsilon>0$,
+    \[\big|\phi(s)e^{\varepsilon s^m}\big|\leq Me^{\varepsilon N}\quad \text{on $\Re(s) = v_1$ and $\Re(s) = v_2$,}\]
+    and
+    \[\big|\phi(s)e^{\varepsilon s^m}\big| = \mathcal O\big(e^{\abs{\tau}^\delta -\varepsilon\tau^m + K\abs{\tau}^{m-1}}\big)\quad (\abs{\tau}\to\infty\text{, so this quantity tends to zero in the limit}),\] uniformly on $F$. By the maximum principle, it follows that $\big|\phi(s)e^{\varepsilon s^m}\big|\leq Me^{\varepsilon N}$ for $s\in F$. Let $\varepsilon$ tend to $0$ so that $\abs{\phi(s)}\leq M$, that is, $\phi(s) = \mathcal O(\abs{\tau}^0)$.
+
+    Now let $b\neq 0$. Let $\psi(s) = (s-v_1+1)^b = e^{b\log(s-v_1+1)}$ (using the principal branch of the logarithm); note that $\psi$ is holomorphic. Since $\Re(\log(s-v_1+1)) = \log\abs{s-v_1+1}$, we have 
+    \[\abs{\psi(s)} = \abs{s-v_1+1}^b\sim \abs{\tau}^b\quad (\abs{\tau}\to\infty),\] uniformly on $F$ (the notation $\abs{s-v_1+1}^b\sim \abs{\tau}^b$ means that $\lim_{\abs{\tau}\to\infty} \abs{s-v_1+1}^b/\abs{\tau}^b = 1$).
+
+    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$.\sai{i don't like how this was sweeped up}
+\end{proof}
 \begin{definition}\label{def: L function}
-    To each $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}\in\mathcal M_k(\varGamma_1(N))$ is an associated Dirichlet series, called an \textib{$L$-function}, given formally by
-    \[L(s,f) = \sum_{n=1}^\infty a_nn^{-s}.\] For $M>0$, let 
-    \[\varLambda_M(s,f) = (2\pi/\sqrt{M})^{-s}\varGamma(s)L(s,f).\qedhere\]
+    To a holomorphic function $f\colon \mathcal H\to \mathbb C$ satisfying \cref{prop: miyake prop pre-lemma 4.3.3}  with Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$, we associate to it an \textib{$L$-function}, given by the Dirichlet series
+    \[L(s,f) = \sum_{n=1}^\infty a_nn^{-s}.\] Furthermore, for $N>0$, let 
+    \[\varLambda_N(s,f) = (2\pi/\sqrt{N})^{-s}\varGamma(s)L(s,f).\qedhere\]
 \end{definition}
+
+In the above definition, since $a_n = \mathcal O(n^v)$, the Dirichlet series $L(s,f)$ converges absolutely and uniformly on compact subsets of $\cbr{s\in\mathbb C : \Re(s)>1+v}$. We are interested in $L$-functions of modular forms $f\in\mathcal M_k(\varGamma_1(N))$, which do satisfy \cref{prop: miyake prop pre-lemma 4.3.3}. 
+
+For a positive integer $N$, define \textib{$\omega_N$}$\in\GL_2(\mathbb R)$ by 
+\[\omega_n = \begin{pmatrix}
+    0 & -1 \\ N & 0
+\end{pmatrix}.\]
+Its action on functions on $\mathcal H$ appears in several results forthcoming, so we define it here.
+
+\begin{theorem}[Hecke]\label{thm: miyake thm 4.3.6}
+    Fix positive integers $k,N$. Let $f,g$ be holomorphic functions on $\mathcal H$ satisfing the hypotheses of \cref{prop: miyake prop pre-lemma 4.3.3}, with Fourier expansions $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$ and $g(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}$. Then the following conditions are equivalent: 
+    \begin{enumerate}[label = \textup{(\alph*)}]
+        \item $g(z) = (f|_k[\omega_N])(z) = (\sqrt{N}z)^{-k}f(-1/Nz)$
+        \item Both $\varLambda_N(s,f)$ and $\varLambda(s,g)$ can be analytically continued to the whole $s$-plane, satisfy the functional equation \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,g),\] and the function \[\varLambda_N(s,f) + \frac{a_0}{s} + \frac{i^kb_0}{k-s}\] is holomorphic on the whole $s$-plane and is bounded on any vertical strip.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Suppose (a) holds. Since there exists $v>0$ such that $a_n = \mathcal O(n^v)$ and $b_n = \mathcal O(n^v)$, 
+    \[\sum_{n=1}^\infty \abs{a_n}e^{-2\pi n t/\sqrt{N}}\quad (t>0)\] and 
+    \[\sum_{n=1}^\infty \int_0^\infty \abs{a_n}t^\sigma e^{-2\pi n t/\sqrt{N}}t^{-1}\dd t \quad (\sigma > v+1)\] are convergent. Hence for $\Re(s)>v+1$, 
+    \begin{align*}
+        \varLambda_N(s,f) &= \sum_{n=1}^\infty a_n(2\pi n/\sqrt{N})^{-s}\int_0^\infty t^{s-1}e^{-t}\dd t\\
+        &= \sum_{n=1}^\infty \int_0^\infty a_nt^s e^{-2\pi n t/\sqrt{N}}\\
+        &= \int_0^\infty t^s\bigg(\sum_{n=1}^\infty a_n e^{-2\pi nt /\sqrt{N}}\bigg)t^{-1}\dd t\\
+        &= \int_0^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\\
+        &= -\frac{a_0}{s} + \int_1^\infty t^{-s}f(i/\sqrt{N}t)t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t.
+    \end{align*}
+    Since $g(z) = (\sqrt{N}z)^{-k}f(-1/Nz)$, the above equality becomes 
+    \begin{equation}\label{eqn: new equality 4.3.6}
+        \varLambda_N(s,f) = -\frac{a_0}{s} - \frac{i^kb_0}{k-s} + i^k\int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t,
+    \end{equation} which holds for $\Re(s)>\max\{k,v+1\}$. By \cref{lem: miyake lem 4.3.3}, as $t$ tends to $\infty$, $f(it)-a_0 = \mathcal O(e^{-2\pi t})$ and $g(it)-a_0 = \mathcal O(e^{-2\pi t})$ so that 
+    \[\int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\quad\text{and}\quad \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t\] are convergent absolutely and uniformly on any vertical strip. Therefore the functions these integrals define are holomorphic on the whole $s$-plane. It follows by \cref{eqn: new equality 4.3.6} that $\varLambda_N(s,f)$ is a meromorphic function on the whole $s$-plane with $\varLambda_N(s,f) + a_0/s+i^kb_0/(k-s)$ an entire bounded function on any vertical strip. Similarly analytically continue $\varLambda_N(s,g)$ to the whole $s$-plane, satisfying 
+    \begin{equation}\label{eqn: similar for g 4.3.6}
+        i^k\varLambda_N(k-s,g) = -\frac{a_0}{s}-\frac{i^kb_0}{k-s} + i^k\int_1^\infty t^{k-s}[g(it/\sqrt{N}-b_0)]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N})-a_0]t^{-1}\dd t.
+    \end{equation}
+    It follows from equations \labelcref{eqn: new equality 4.3.6} and \labelcref{eqn: similar for g 4.3.6} that $\varLambda_N(s,f) = i^k\varLambda_N(k-s,g)$.
+
+    Conversely, suppose that (b) holds. Since $e^{-e^x}e^{\sigma x}$ is a Schwartz function for $\sigma>0$, the inverse Mellin transform 
+    \[e^{-t} = \frac{1}{2\pi i}\int_{\Re(s) = \sigma}\varGamma(s)t^{-s}\dd s\]
+    holds for $\sigma>0$. It follows that 
+    \[f(iy) = a_0 + \frac{1}{2\pi i}\sum_{n=1}^\infty a_n\int_{\Re(s) =\alpha}\varGamma(s)(2\pi n y)^{-s}\dd s\] for any $\alpha>0$. Let $\alpha>v+1$, so that $L(s,f) = \sum_{n=1}^\infty a_nn^{-s}$ is uniformly convergent and bounded on $\Re(s) = \alpha$. In this case, Stirling's estimate $\varGamma(s)\sim \sqrt{2\pi} \tau^{\sigma -1/2}e^{-\pi\abs{\tau}/2}$ (for $s = \sigma + i\tau$ and $\abs{\tau}\to\infty$) shows that $\varLambda_N(s,f) = (2\pi/\sqrt{N})^{-s}\varGamma(s)L(s,f)$ is absolutely integrable, so that the order of integration and summation above may be interchanged to obtain
+    \begin{equation}\label{eqn: integral for Hecke lemma}
+        f(iy) = a_0 + \frac{1}{2\pi i} \int_{\Re(s) = \alpha} (\sqrt{N}y)^{-s}\varLambda_N(s,f)\dd s.
+    \end{equation}
+    Since $L(s,f)$ is bounded on $\Re(s) = \alpha$, by Stirling's estimate we have for any $\mu>0$ that 
+    \begin{equation}\label{eqn: varLambda big O}
+        |\varLambda_N(s,f)| = \mathcal O(|\Im(s)|^{-\mu})\quad (|\Im(s)|\to\infty)
+    \end{equation}
+    on $\Re(s) = \alpha$. Choose $\beta$ so that $k-\beta > v+1$. Using a similar argument we deduce that for any $\mu>0$, 
+    \[|\varLambda_N(s,f)| = |\varLambda_N(k-s,g)| = \mathcal O(|\Im(s)|^{-\mu})\quad (|\Im(s)|\to\infty)\] on $\Re(s) = \beta$. By assumption, $\varLambda_N(s,f) + a_0/s+i^kb_0/(k-s)$ is bounded on the vertical strip $\beta\leq \Re(s)\leq \alpha$. Thus for any $\mu>0$, \cref{lem: miyake lem 4.3.4} implies that \cref{eqn: varLambda big O} holds uniformly on the strip $\beta\leq \Re(s)\leq \alpha$.
+    
+    We may also assume that $\alpha>k$ and $\beta<0$. Observe that $(\sqrt{N}y)^{-s}\varLambda_N(s,f)$ has simple poles at $s = 0,k$ with corresponding residues $-a_0,(\sqrt{N}y)^{-k}i^kb_0$. Combined with the fact that \cref{eqn: varLambda big O} holds uniformly on the strip $\beta\leq \Re(s)\leq \alpha$, we may change the path of integration from $\Re(s) = \alpha$ to $\Re(s) = \beta$ in \cref{eqn: integral for Hecke lemma} to obtain
+    \[f(iy) = (\sqrt{N}y)^{-k}i^kb_0 + \frac{1}{2\pi i} \int_{\Re(s) = \beta} (\sqrt{N}y)^{-s}\varLambda_N(s,f) \dd s.\]
+    From the functional equation in (b), we have 
+    \begin{align*}
+        f(iy) &= (\sqrt{N}y)^{-k}i^kb_0 + \frac{1}{2\pi i} \int_{\Re(s) = \beta} (\sqrt{N}y)^{-s}i^k\varLambda_N(k-s,g) \dd s\\
+        &= i^k\bigg[(\sqrt{N}y)^{-k}b_0 + \frac{1}{2\pi i} \int_{\Re(s) = k-\beta} (\sqrt{N}y)^{s-k}\varLambda_N(s,g) \dd s\bigg]\\
+        &= i^k(\sqrt{N}y)^{-k}g(-1/iNy).
+    \end{align*}
+    Since $f,g$ are holomorphic on $\mathcal H$, it follows that $f(z) = i^k(\sqrt{N}z/i)^{-k}g(-1/Nz)$, or equivalently $g(z) = (\sqrt{N}z)^{-k}f(-1/Nz)$.
+\end{proof}
+\begin{corollary}\label{cor: miyake cor 4.3.7}
+    If $f(z)\in \mathcal S_k(N,\chi)$, then because any element of $\mathcal S_k(N,\chi)$ satisfies the conditions of \cref{prop: miyake prop pre-lemma 4.3.3}, it follows that $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
+    \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,f|_k[\omega_N]).\]\sai{need the results on growth of coeffs for cuspforms prior to and including miyake cor 2.1.6}
+\end{corollary}
 
 \newpage\section{Hecke operators}
 In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
@@ -847,7 +989,7 @@ Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgrou
     It is evident that the map $\varGamma_2\to \varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ given by $\gamma_2\mapsto \varGamma_1\alpha\gamma_2$ is surjective, since elements of $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ are of the form $\varGamma_1\gamma_1\alpha\gamma_2$ for some $\gamma_1,\gamma_2$. Two elements $\gamma_2,\gamma_2^\prime\in\varGamma_2$ map to the same orbit if $\varGamma_1\alpha\gamma_2 = \varGamma_1\alpha\gamma_2^\prime$, that is, if $\gamma_2^\prime\gamma_2^{-1}\in \alpha^{-1}\varGamma_1\alpha$. It follows that by taking $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2$ as above, that the induced map from the coset space $\varGamma_3\backslash\varGamma_2\to \varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is a bijection.
 \end{proof}
 \begin{lemma}\label{lem: congruence subgroups commensurable}
-    Let $\varGamma_1,\varGamma_2$ be congruence subgroups. Then they are \textib{commensurable}, that is, the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are finite.
+    Let $\varGamma_1,\varGamma_2$ be congruence subgroups. Then we say they are \textib{commensurable} if the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are finite. We write $\varGamma_1\approx\varGamma_2$ in this case.
 \end{lemma}
 \begin{proof}
     There exist positive integers $N_1,N_2$ such that $\varGamma(N_1)\subset \varGamma_1$ and $\varGamma(N_2)\subset \varGamma_2$. Then $\varGamma(\lcm(N_1,N_2))\subset \varGamma(N_1)\cap \varGamma(N_2)\subset \varGamma_1\cap \varGamma_2$ since $N_1,N_2$ divide their least common multiple. Then \begin{align*}
@@ -920,12 +1062,6 @@ Let $p$ be a prime number, and consider the weight-$k$ double coset operator $T_
 So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the double coset $\varGamma_1(N)\big(\!\begin{smallmatrix}
     1 & 0 \\ 0 & p
 \end{smallmatrix}\!\big)\varGamma_1(N)$.
-\begin{definition}
-    The \textib{Hecke operator $T_n$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb Z^+$ is defined inductively. Let $T_1 = \id_{\mathcal M_k(\varGamma_1(N))}$ (the identity operator), and above we had defined $T_p$ for primes $p$. For prime powers, define inductively
-    \[T_{p^r} = T_pT_{p^{r-1}} - p^{k-1}\abr{p}T_{p^{r-2}}\quad \text{for $r\geq 2$}.\] Then for $n = \prod_i p_i^{r_i}$, define 
-    \[T_n = \prod_i T_{p_i^{r_i}}.\qedhere\]
-\end{definition}
-The following lemma justifies the multiplicative definition of $T_n$ above:
 \begin{lemma}
     Let $d,e\in(\mathbb Z/N\mathbb Z)^\times$ and $p,q$ be prime. Then \begin{enumerate}[label = \textup{(\arabic*)}]
         \item $\abr{d}T_p = T_p\abr{d}$,
@@ -936,10 +1072,16 @@ The following lemma justifies the multiplicative definition of $T_n$ above:
 \begin{proof}
     \tbd \sai{p.173 ds}
 \end{proof}
+\begin{definition}
+    The \textib{Hecke operator $T_n$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb Z^+$ is defined inductively. Let $T_1 = \id_{\mathcal M_k(\varGamma_1(N))}$ (the identity operator), and above we had defined $T_p$ for primes $p$. For prime powers, let
+    \[T_{p^r} = T_pT_{p^{r-1}} - p^{k-1}\abr{p}T_{p^{r-2}}\quad \text{for $r\geq 2$}.\] Then for $n = \prod_i p_i^{r_i}$, define 
+    \[T_n = \prod_i T_{p_i^{r_i}},\] where the previous lemma justifies the multiplicative notation above.
+\end{definition}
+
 \sai{explicit action of $T_p$ and $T_n$}
 
 \subsection{The Petersson inner product, adjoints of Hecke operators}
-We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will suppress the $(z)$ sometimes). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ (via Wirtinger derivatives) and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
+We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ (via Wirtinger derivatives) and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
 as desired. In particular $\dd \mu$ is $\slz$-invariant. Since $\mathbb Q\cup\cbr{\infty}$ is countable, its measure is zero, so we may integrate over the extended upper half plane $\mathcal H^\ast$ with respect to $\mu$.
 
 Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$ is given by $\mathcal D^\ast = \cbr{z\in\mathcal H : \abs{\Re(z)}\leq 1/2,\abs{z}\geq 1}\cup\cbr{\infty}$; that is, any point of $\mathcal H$ is sent to a point in $\mathcal D$ by a suitable element of $\slz$, which is unique for most points of $\mathcal H$ (there are a few cases involving points on the boundary of $\mathcal D$). Every point $s\in\mathbb Q\cup\cbr{\infty}$ may be sent to $\infty$ by suitable elements of $\slz$. We show that the integral $\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu$ converges for any continuous, bounded function $\varphi\colon\mathcal H\to\mathbb C$ and any $\alpha\in\slz$: Choose $\gamma\in\slz$ such that $\gamma^{-1}\mathcal D^\ast$ is a compact set. By the invariance of the measure under the action of $\slz$, we have
@@ -996,7 +1138,7 @@ The following proposition will be used to compute adjoints of the Hecke operator
     \tbd
 \end{proof}
 \begin{corollary}
-    By the Spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textib{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+    By the spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textib{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
 \end{corollary}
 
 \subsection{Oldforms, newforms, and primitive forms}
@@ -1034,131 +1176,13 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 
 \newpage\section{Strong Multiplicity One}
 \subsection{TEMPORARY lemmas bucket}
-\begin{lemma}\label{lem: miyake lem 3.2.1}
-    Assume that both $\sum_{n=1}^\infty a_nn^{-s}$ and $\sum_{n=1}^\infty b_nn^{-s}$ are absolutely convergent at $s = \sigma_0$ with $\sigma_0>0$ real. If $\sum_{n=1}^\infty a_nn^{-s} = \sum_{n=1}^\infty b_nn^{-s}$ on $\Re(s)\geq \sigma_0$, then $a_n = b_n$ for all $n$.
-\end{lemma}
-\begin{proof}
-    By taking differences, it suffices to show that if $\sum_{n=1}^\infty a_nn^{-s} = 0$, then $a_n = 0$ for all $n$. Since $\sum_{n=1}^\infty a_nn^{-s}$ is absolutely convergent at $s = \sigma_0$, it is absolutely and uniformly convergent on $\Re(s)\geq \sigma_0$. Suppose there exists a smallest integer $m$ such that $a_m \neq 0$.
-    
-    By hypothesis, $-a_m = \sum_{n=m+1}^\infty a_n (n/m)^{-\sigma}$. Let $\sigma = \Re(s)\geq \sigma_0$, and note that for $n>m^2$, we have $(n/m)^{-\sigma}<n^{-\sigma/2}$. It follows that
-    \begin{align*}
-        \abs{a_m} &\leq \sum_{n=m+1}^\infty \abs{a_n} (n/m)^{-\sigma}\\
-        &\leq \sum_{n=m+1}^{m^2} \abs{a_n} (n/m)^{-\sigma} + \sum_{n=m^2+1}^\infty \abs{a_n} n^{-\sigma/2}.
-    \end{align*}
-    Choose $N$ large enough so that
-    \[\sum_{n=N+1}^\infty \abs{a_n}n^{-\sigma_0}\leq \abs{a_m}/3,\]
-    and choose $\sigma>2\sigma_0$ large enough so that 
-    \[\sum_{n=m+1}^{m^2} \abs{a_n} (n/m)^{-\sigma} + \sum_{n=m^2+1}^N \abs{a_n}n^{-\sigma/2}\leq \abs{a_m}/3.\] With these choices, $\abs{a_m}\leq 2\abs{a_m}/3$, which is a contradiction.
-\end{proof}
-\begin{proposition}\label{prop: miyake prop pre-lemma 4.3.3}
-    Let $f(z)$ be a holomorphic function on $\mathcal H$ satisfying the following: 
-    \begin{enumerate}[label = \textup{(\arabic*)}]
-        \item $f(z)$ has a Fourier expansion \[f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}\] which converges absolutely and uniformly on compact subsets of $\mathcal H$, and
-        \item there exists $v>0$ such that \[f(z) = \mathcal O(\Im(z)^{-v}) \quad \textup{($\Im(z)\to 0$)}\] uniformly on $\Re(z)$. 
-    \end{enumerate}
-    Then $a_n = \mathcal O(n^v)$.
-\end{proposition}
-\begin{proof}
-    By hypothesis, there exists a constant $M>0$ such that $\abs{f(z)}\leq M\Im(z)^{-v}$. Then \begin{align*}
-        \abs{a_n} &= \abs{\int_0^1 g(x+iy)e^{-2\pi i n (x+iy)}\dd x}\\
-        &\leq My^{-v}e^{2\pi n y}.
-    \end{align*} By taking $y = 2/n$, it follows that $\abs{a_n} \leq (Me^{4\pi}2^{-v})n^v$.
-\end{proof} Conversely, we have the following:
-\begin{lemma}\label{lem: miyake lem 4.3.3}
-    Let $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$ for $z\in \mathcal H$ for a sequence $\{a_n\}_{n=0}^\infty$ of complex numbers. If $a_n = \mathcal O(n^v)$ for some $v >0$, then $\sum_{n=0}^\infty a_ne^{2\pi i nz}$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Moreover, 
-    \begin{align*}
-        f(z) &= \mathcal O(\Im(z)^{-v-1}) \quad\textup{($\Im(z) \to 0$), and }\\
-        f(z) - a_0 &= \mathcal O(e^{-2\pi \Im(z)}) \quad\textup{($\Im(z) \to \infty$)},
-    \end{align*}
-    uniformly on $\Re(z)$.
-\end{lemma}
-\begin{proof}
-    From $\varGamma(s) = \lim_{n\to \infty}\frac{n!n^s}{s(s+1)\cdots(s+n)}$ for real $s>0$ (Euler-Gauss), we have for $v>0$ that
-    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v).\]
-    Hence there exists $L>0$ such that 
-    \[\abs{a_n}\leq L(-1)^n\binom{-v-1}{n}\] for all $n\geq 0$. Let $z = x+iy$, so that 
-    \begin{align}\label{eqn: miyake eqn 4.3.9}
-        \sum_{n=0}^\infty\abs{a_n}|e^{2\pi i n z}|&\leq L\bigg(\sum_{n=0}^\infty (-1)^n\binom{-v-1}{n}e^{-2\pi n y}\bigg)\\
-        &= L(1-e^{-2\pi y})^{-v-1}.\nonumber
-    \end{align}
-    It follows that $f(z)$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Since $1-e^{-2\pi y} = \mathcal O(y)$ as $y\to 0$, we have that $\abs{f(z)} = \mathcal O(y^{-v-1})$. Furthermore, \cref{eqn: miyake eqn 4.3.9} implies that $f(z)$ is bounded as $y$ tends to $\infty$.
-
-    Let $g(z) = \sum_{n=0}^\infty a_{n+1}e^{2\pi i nz}$, and note that $g(z)$ also satisfies the hypotheses. Hence $g(z)$ is also bounded on a neighborhood of $\infty$. Therefore 
-    \[f(z)-a_0 = e^{2\pi i z}g(z) = \mathcal O(e^{-2\pi y})\quad (y\to \infty).\qedhere\]
-\end{proof}
-\begin{lemma}[Phragmen-Lindel\"of]\label{lem: miyake lem 4.3.4}
-    For two real numbers $v_1,v_2$ with $v_1<v_2$, let 
-    \[F = \cbr{s\in \mathbb C : v_1\leq \Re(s)\leq v_2}.\] Let $\phi$ be a holomorphic function on a domain containing $F$ satisfying \[\abs{\phi(s)} = \mathcal O\big(e^{\abs{\tau}^\delta}\big)\quad \textup{($\abs{\tau}\to\infty$, with $s = \sigma + i\tau$),}\]
-    uniformly on $F$ with $\delta >0$. For a real number $b$, if 
-    \[\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)\quad (\abs{\tau}\to\infty) \quad \text{on $\Re(s) = v_1$ and $\Re(s) = v_2$,}\]
-    then $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ as $\abs{\tau}\to\infty$ uniformly on $F$.
-\end{lemma}
-\begin{proof}
-    By hypothesis, there exists $L>0$ such that $\abs{\phi(s)}\leq Le^{\abs{\tau}^\delta}$. Suppose first that $b = 0$. Then there exists $M>0$ such that $\abs{\phi(s)}\leq M$ on $\Re(s) = v_1$ and on $\Re(s) = v_2$. Let $m$ be a positive integer with $m\equiv 2\smod 4$ and let $s = \sigma + i \tau$. Since $\Re(s^m) = \Re((\sigma  + i\tau)^m)$ is a polynomial of $\sigma$ and $\tau$ with highest term of $\tau$ given by $-\tau^m$, we have 
-    \[\Re(s^m) = -\tau^m + \mathcal O(\abs{\tau}^{m-1})\quad (\abs{\tau}\to\infty),\] uniformly on $F$. With $m$ even, $\Re(s^m)$ has an upper bound on $F$. Choose $m$ and $N$ so that $m>\delta$ and $\Re(s^m)<N$, so that for any $\varepsilon>0$,
-    \[\big|\phi(s)e^{\varepsilon s^m}\big|\leq Me^{\varepsilon N}\quad \text{on $\Re(s) = v_1$ and $\Re(s) = v_2$,}\]
-    and
-    \[\big|\phi(s)e^{\varepsilon s^m}\big| = \mathcal O\big(e^{\abs{\tau}^\delta -\varepsilon\tau^m + K\abs{\tau}^{m-1}}\big)\quad (\abs{\tau}\to\infty\text{, so this quantity tends to zero in the limit}),\] uniformly on $F$. By the maximum principle, it follows that $\big|\phi(s)e^{\varepsilon s^m}\big|\leq Me^{\varepsilon N}$ for $s\in F$. Let $\varepsilon$ tend to $0$ so that $\abs{\phi(s)}\leq M$, that is, $\phi(s) = \mathcal O(\abs{\tau}^0)$.
-
-    Now let $b\neq 0$. Let $\psi(s) = (s-v_1+1)^b = e^{b\log(s-v_1+1)}$ (using the principal branch of the logarithm); note that $\psi$ is holomorphic. Since $\Re(\log(s-v_1+1)) = \log\abs{s-v_1+1}$, we have 
-    \[\abs{\psi(s)} = \abs{s-v_1+1}^b\sim \abs{\tau}^b\quad (\abs{\tau}\to\infty),\] uniformly on $F$ (the notation $\abs{s-v_1+1}^b\sim \abs{\tau}^b$ means that $\lim_{\abs{\tau}\to\infty} \abs{s-v_1+1}^b/\abs{\tau}^b = 1$).
-
-    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$.\sai{i don't like how this was sweeped up}
-\end{proof}
-\begin{theorem}[Hecke]\label{thm: miyake thm 4.3.6}
-    Let $k,N$ be positive integers. For two holomorphic functions $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$ and $g(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}$ on $\mathcal H$ satisfing the conditions of \cref{prop: miyake prop pre-lemma 4.3.3}, the following conditions are equivalent: 
-    \begin{enumerate}[label = \textup{(\alph*)}]
-        \item $g(z) = (\sqrt{N}z)^{-k}f(-1/Nz)$ \textup{(which is equal to $(f|_k[\omega_N])(z)$)}
-        \item Both $\varLambda_N(s,f)$ and $\varLambda(s,g)$ can be analytically continued to the whole $s$-plane, satisfy the functional equation \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,g),\] and the function \[\varLambda_N(s,f) + \frac{a_0}{s} + \frac{i^kb_0}{k-s}\] is holomorphic on the whole $s$-plane and is bounded on any vertical strip.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    Suppose (a) holds. Since there exists $v>0$ such that $a_n = \mathcal O(n^v)$ and $b_n = \mathcal O(n^v)$, 
-    \[\sum_{n=1}^\infty \abs{a_n}e^{-2\pi n t/\sqrt{N}}\quad (t>0)\] and 
-    \[\sum_{n=1}^\infty \int_0^\infty \abs{a_n}t^\sigma e^{-2\pi n t/\sqrt{N}}t^{-1}\dd t \quad (\sigma > v+1)\] are convergent. Hence for $\Re(s)>v+1$, 
-    \begin{align*}
-        \varLambda_N(s,f) &= \sum_{n=1}^\infty a_n(2\pi n/\sqrt{N})^{-s}\int_0^\infty t^{s-1}e^{-t}\dd t\\
-        &= \sum_{n=1}^\infty \int_0^\infty a_nt^s e^{-2\pi n t/\sqrt{N}}\\
-        &= \int_0^\infty t^s\bigg(\sum_{n=1}^\infty a_n e^{-2\pi nt /\sqrt{N}}\bigg)t^{-1}\dd t\\
-        &= \int_0^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\\
-        &= -\frac{a_0}{s} + \int_1^\infty t^{-s}f(i/\sqrt{N}t)t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t.
-    \end{align*}
-    Since $g(z) = (-i\sqrt{N}z)^{-k}f(-1/Nz)$, the above equality becomes 
-    \begin{equation}\label{eqn: new equality 4.3.6}
-        \varLambda_N(s,f) = -\frac{a_0}{s} - \frac{b_0}{k-s} + \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t,
-    \end{equation} which holds for $\Re(s)>\max\{k,v+1\}$. By \cref{lem: miyake lem 4.3.3}, as $t$ tends to $\infty$, $f(it)-a_0 = \mathcal O(e^{-2\pi t})$ and $g(it)-a_0 = \mathcal O(e^{-2\pi t})$ so that 
-    \[\int_1^\infty t^s[f(it/\sqrt{N}) - a_0]t^{-1}\dd t\quad\text{and}\quad \int_1^\infty t^{k-s}[g(it/\sqrt{N})-b_0]t^{-1}\dd t\] are convergent absolutely and uniformly on any vertical strip. Therefore the functions these integrals define are holomorphic on the whole $s$-plane. It follows by \cref{eqn: new equality 4.3.6} that $\varLambda_N(s,f)$ is a meromorphic function on the whole $s$-plane with $\varLambda_N(s,f) + a_0/s+b_0/(k-s)$ an entire bounded function on any vertical strip. Similarly analytically continue $\varLambda_N(s,g)$ to the whole $s$-plane, satisfying 
-    \begin{equation}\label{eqn: similar for g 4.3.6}
-        \varLambda_N(k-s,g) = -\frac{a_0}{s}-\frac{b_0}{k-s} + \int_1^\infty t^{k-s}[g(it/\sqrt{N}-b_0)]t^{-1}\dd t + \int_1^\infty t^s[f(it/\sqrt{N})-a_0]t^{-1}\dd t.
-    \end{equation}
-    It follows from equations \labelcref{eqn: new equality 4.3.6} and \labelcref{eqn: similar for g 4.3.6} that $\varLambda_N(s,f) = \varLambda_N(k-s,g)$.
-
-    Conversely, suppose that (b) holds. Since $e^{-e^x}e^{\sigma x}$ is a Schwartz function for $\sigma>0$, the inverse Mellin transform 
-    \[e^{-t} = \frac{1}{2\pi i}\int_{\Re(s) = \sigma}\varGamma(s)t^{-s}\dd s\]
-    holds for $\sigma>0$. It follows that 
-    \[f(iy) = a_0 + \frac{1}{2\pi i}\sum_{n=1}^\infty a_n\int_{\Re(s) =\alpha}\varGamma(s)(2\pi n y)^{-s}\dd s\] for any $\alpha>0$. Let $\alpha>v+1$, so that $L(s,f) = \sum_{n=1}^\infty a_nn^{-s}$ is uniformly convergent and bounded on $\Re(s) = \alpha$. In this case, Stirling's estimate $\varGamma(s)\sim \sqrt{2\pi} \tau^{\sigma -1/2}e^{-\pi\abs{\tau}/2}$ (for $s = \sigma + i\tau$ and $\abs{\tau}\to\infty$) shows that $\varLambda_N(s,f) = (2\pi/\sqrt{N})^{-s}\varGamma(s)L(s,f)$ is absolutely integrable, so that the order of integration and summation above may be interchanged to obtain
-    \[f(iy) = a_0 + \frac{1}{2\pi i} \int_{\Re(s) = \alpha} (\sqrt{N}y)^{-s}\varLambda_N(s,f)\dd s.\]
-    Since $L(s,f)$ is bounded on $\Re(s) = \alpha$, by Stirling's estimate we have 
-    \begin{equation}
-        s
-    \end{equation}
-\end{proof}
-\begin{corollary}\label{cor: miyake cor 4.3.7}
-    If $f(z)\in \mathcal S_k(N,\chi)$, then because any element of $\mathcal S_k(N,\chi)$ satisfies the conditions of \cref{prop: miyake prop pre-lemma 4.3.3}, it follows that $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
-    \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,f|_k[\omega_N]).\]\sai{need the results on growth of coeffs for cuspforms prior to and including miyake cor 2.1.6}
-\end{corollary}
-\begin{lemma}\label{lem: miyake lem 4.5.7}
-    Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
-            (p+1)T(p,p) & \text{if $p\nmid N$ and $e=1$,}\\
-            pT(p,p)T(1,p^{e-1}) & \text{if $p\nmid N$ and $e > 1$,}\\
-            0 & \text{if $p\mid N$.}
-        \end{cases}$
-        \item $T(p)T(p^e) = \begin{cases}
-            T(p^{e+1})+pT(p,p)T(p^{e-1}) & \text{if $p\nmid N$,}\\
-            T(p^{e+1}) & \text{if $p\mid N$.}
-        \end{cases}$
-    \end{enumerate}
+\begin{lemma}\label{lem: miyake lem 4.5.2}
+    For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
+    \[\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
+        l & 0 \\ 0 & m
+    \end{pmatrix}\varGamma_0(N)\] \[(\text{respectively }\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
+        m & 0 \\ 0 & l
+    \end{pmatrix}\varGamma_0(N)).\]
 \end{lemma}
 \begin{proof}
     \tbd
@@ -1178,13 +1202,135 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \begin{proof}
     \tbd
 \end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.6}
+    Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+            1 & 0 \\ 0 & p^e
+        \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
+            \cbr{\big(\!\begin{smallmatrix}
+                p^{e-f} & m \\ 0 & p^f
+            \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
+            \cbr{\big(\!\begin{smallmatrix}
+                1 & m \\ 0 & p^e
+            \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
+        \end{cases} \]
+        \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+            1 & 0 \\ 0 & p^e
+        \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
+            p^e + p^{e-1} & \text{if $p\nmid N$,}\\
+            p^e & \text{if $p\mid N$.}
+        \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.7}
+    Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
+            (p+1)T(p,p) & \text{if $p\nmid N$ and $e=1$,}\\
+            pT(p,p)T(1,p^{e-1}) & \text{if $p\nmid N$ and $e > 1$,}\\
+            0 & \text{if $p\mid N$.}
+        \end{cases}$
+        \item $T(p)T(p^e) = \begin{cases}
+            T(p^{e+1})+pT(p,p)T(p^{e-1}) & \text{if $p\nmid N$,}\\
+            T(p^{e+1}) & \text{if $p\mid N$.}
+        \end{cases}$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.8}
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $\gcd(lm,l^\prime m^\prime) = 1$, then $T(l,m)T(l^\prime,m^\prime) = T(ll^\prime,mm^\prime)$.
+        \item If $\gcd(m,n) = 1$, then $T(m)T(n) = T(mn)$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.11}
+    Let $N$ be a positive integer and $p$ a prime. Then 
+    \[\varGamma_0(pN)\begin{pmatrix}
+        1 & 0 \\ 0 & p
+    \end{pmatrix}\varGamma_0(N) = \begin{cases}
+        \coprod_{v = 0}^{p-1}\varGamma_0(pN)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\mid N$},\\
+        \coprod_{v = 0}^p\varGamma_0(pN)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\nmid N$};
+    \end{cases}\]
+    here  $\gamma_v$ for $0\leq v<p$ is an element of $\varGamma_0(N)$ such that $\gamma_v \equiv \big(\!\begin{smallmatrix}
+        1 & v \\ 0 & 1
+    \end{smallmatrix}\!\big)\smod{p}$, and $\gamma_p$ for $p\nmid N$ is an element of $\varGamma_0(N)$ such that 
+    \[\gamma_p \equiv\begin{cases}
+        \big(\!\begin{smallmatrix}
+            0 & -a \\ a^{-1} & 0
+        \end{smallmatrix}\!\big)\smod{p}&\text{for $a$ coprime to $p$},\\
+        \big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)\smod{N}.
+    \end{cases}\]
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.12}
+    Let $K$ be a commutative unital ring, and assume that two sequences $\cbr{t_n}_{n=1}^\infty,\cbr{d_n}_{n=1}^\infty$ of elements of $K$ satisfy the following conditions:
+    \begin{enumerate}[label=\textup{(\roman*)}]
+        \item $t_1 =d_1 = 1$, and 
+        \item $d_{mn} = d_md_n$ for any positive integers $m,n$.
+    \end{enumerate} Then the following are equivalent:
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $\gcd(m,n) = 1$, then $t_{mn} = t_mt_n$ and \[t_pt_{p^e} = t_{p^{e+1}} + pd_pt_{p^{e-1}}\] for all prime numbers $p$ and all positive integers $e$.
+        \item The formal Dirichlet series $\sum_{n=1}^\infty t_nn^{-s}$ has formal Euler product \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}.\]
+        \item For any positive integers $m,n$, \[t_mt_n = \sum_{\substack{l>0\\l\mid \gcd(m,n)}}ld_lt_{mn/l^2}.\]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    We show that (1) implies (2). From the first condition of (1), we have formally that 
+    \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg).\]
+    From the second condition of (1), we have \[(1-t_pp^{-s} + pd_pp^{-2s})\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg) = 1,\] from which (2) follows. 
+
+    We show that (2) implies (3). \sai{If $\gcd(m,n) =1$, then $t_{mn} = t_mt_n$, and this is obvious?? (part of the proof)} Otherwise, let $m = \prod_{p\in\mathbb P}p^e$ and $n = \prod_{p\in\mathbb P}p^f$ be the prime factorizations of $m$ and $n$. Then \[\]
+\end{proof}
+\begin{theorem}\label{thm: miyake thm 4.5.13}
+    We have \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $T(m)T(n) = \sum_{\substack{l>0 \\ l\mid \gcd(m,n)\\ \gcd(l,N)=1}}lT(l,l)T(mn/l^2)$, and
+        \item the formal Dirichlet series $\sum_{n=1}^\infty T(n)n^{-s}$ has the formal Euler product \[\sum_{n=1}^\infty T(n)n^{-s} = \prod_{p\nmid N}(1-T(p)p^{-s} + T(p,p)p^{1-2s})^{-1}\cdot \prod_{p\mid N}(1-T(p)p^{-s})^{-1}\]
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.14}
+    Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \begin{align*}
+        f(z) &= \sum_{n=0}^\infty c_ne^{2\pi i n z},\\
+        (f|_k[T(m)])(z) &= \sum_{n=0}^\infty b_ne^{2\pi i nz}
+    \end{align*} be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.15}
+    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $f|_k[T(p)] = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If all prime factors of a positive integer $m$ lie in $P$, then $f$ is an eigenfunction of $T(m)$. In this case, let $f|_k[T(m)] = t_mf$ for some $t_m\in\mathbb C$, from which it follows that $c_m = t_mc_1$.
+        \item We have $L(s,f) = \prod_{p\in P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}\cdot \sum_n^\prime c_nn^{-s}$, where the summation $\sum_n^\prime$ is taken over the positive integers coprime to every element of $P$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
 \begin{theorem}\label{thm: miyake thm 4.5.16}
     Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i nz}$ be a nonzero element of $\mathcal M_k(N,\chi)$. Then the following are equivalent: \begin{enumerate}[label=\textup{(\arabic*)}]
         \item $f(z)$ is a common eigenfunction of every Hecke operator $T(n)$;
         \item $c_1\neq 0$ and 
         \[L(s,f) = c_1\prod_{p\in\mathbb P} (1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1},\quad t_n = \frac{c_n}{c_1}.\]
         Moreover, if $f(z)$ satisfies the above conditions, then
-        \[f|[T(n)] = t_nf\] for all $n\geq 1$.
+        \[f|_k[T(n)] = t_nf\] for all $n\geq 1$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -1201,6 +1347,23 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
         \item By the action of $\omega_N$, we obtain the isomorphisms $\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi})$ and $\mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi})$, and 
         \item if $f(z)$ is a primitive form of $\mathcal S_k^0(N,\chi)$, then $f_p(z)$ is a primitive form of $\mathcal S_k^0(N,\overline{\chi})$ and 
         \[f|_k[\omega_N] = cf_p(z)\] for some $c\in\mathbb C$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{theorem}\label{thm: miyake thm 4.6.16}
+    With the same notation and assumptions as in the previous \sai{theorem?}, we have
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item By the action of $\eta_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q}),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\chi^\prime_q\overline{\chi_q}).\]
+        \item By the action of $\eta^\prime_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi^\prime_q}\chi_q),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi^\prime_q}\chi_q).\]
+        \item For $f\in\mathcal S_k(N,\chi)$, we have $f|_k[\eta^2_q] = \chi_q(-1)\overline{\chi^\prime_q}(N_q)f$, $f|_k[{\eta^\prime_q}^2] = \chi^\prime_q(-1)\overline{\chi_q}(N/N_q)f$, and $f|_k[\eta_q\eta^\prime_q] = \overline{\chi^\prime_q}(N_q)f|_k[\omega_N]$.
+        \item Let $f\in\mathcal S_k^0(N,\chi)$ be a primitive form with $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i n z}$, and write \[(f|_k[\eta_q])(z) = c\sum_{n=1}^\infty b_ne^{2\pi i n z}\quad \text{\textup{(}with $b_1 = 1$\textup{)}}.\] Let $g_q(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}$.
+        
+        Then $g_q$ is a primitive form of $\mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q})$, with \[b_p = \begin{cases}
+            \overline{\chi_q}(p)a_p &\text{if $p\neq q$},\\
+            \chi^\prime_q(p)\overline{a_p} & \text{if $p = q$}
+        \end{cases}\] for any prime $p$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
