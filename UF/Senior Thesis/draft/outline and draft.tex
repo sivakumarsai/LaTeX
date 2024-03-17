@@ -463,7 +463,7 @@ We now define charts for $X(\varGamma)$, starting by defining them on $Y(\varGam
 
 Given a point $\pi(z)\in Y(\varGamma)$, take a neighborhood $U$ for $z$ as in the corollary above. Let $\delta_z  = \big(\!\begin{smallmatrix}
     1 & -z \\ 1 & -\overline{z}
-\end{smallmatrix}\!\big)\in \GL_2(\mathbb C)$ be the map from $\mathcal H$ (or $U$ by restriction) to $\mathbb C$ which takes $z$ to $0$ and $\overline{z}$ to $\infty$. Note that the isotropy subgroup of $0$ in the transformation group $(\delta_z\cbr{\pm I}\varGamma\delta_z^{-1})_0/\cbr{\pm I}$ is the conjugate $\delta_z(\cbr{\pm I}\varGamma/\cbr{\pm I})\delta_z^{-1}$ of the isotropy subgroup of $z$, hence is cyclic of order $h_z$ as a group of transformations by \cref{prop: cyclic isotropy subgp} (note $h_z$ may be equal to $1$). Since this group of fractional linear transformations fixes $0$ and $\infty$, these maps are given by $w\mapsto aw$, which are rotations about the origin through angular multiples of $2\pi/h_z$. We call $\delta_z$ a ``straightening map'' since it takes neighborhoods of $z$ to neighborhoods of the origin for which \sai{equivalent points (points in an orbit of the isotropy subgroup?)} are evenly spaced apart angularly. (See figures 2.1, 2.2 in \cite{diamond}.)
+\end{smallmatrix}\!\big)\in \GL_2(\mathbb C)$ be the map from $\mathcal H$ (or $U$ by restriction) to $\mathbb C$ which takes $z$ to $0$ and $\overline{z}$ to $\infty$. Note that the isotropy subgroup of $0$ in the transformation group $(\delta_z\cbr{\pm I}\varGamma\delta_z^{-1})_0/\cbr{\pm I}$ is the conjugate $\delta_z(\cbr{\pm I}\varGamma/\cbr{\pm I})\delta_z^{-1}$ of the isotropy subgroup of $z$, hence is cyclic of order $h_z$ as a group of transformations by \cref{prop: cyclic isotropy subgp} (note $h_z$ may be equal to $1$). Since this group of fractional linear transformations fixes $0$ and $\infty$, these maps are given by $w\mapsto aw$, which are rotations about the origin through angular multiples of $2\pi/h_z$. We call $\delta_z$ a ``straightening map'' since it takes neighborhoods of $z$ to neighborhoods of the origin for which \sai{equivalent points (- points in an orbit of the isotropy subgroup?)} are evenly spaced apart angularly. (See figures 2.1, 2.2 in \cite{diamond}.)
 
 Let $\rho\colon \mathbb C\to \mathbb C$ be given by $\rho(w) = w^{h_z}$. Then $\psi = \rho\circ \delta_z \colon U\to V = \psi(U)$ given by $\psi(w) = (\delta(w))^{h_z}$ straightens then ``wraps'' around the neighborhood into a disk. By the open mapping theorem $V$ is an open subset of $\mathbb C$. There exists an bijection $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ (see section 2.2 in \cite{diamond}), which is a homeomorphism as well. The maps $\varphi$ and open sets $U$ for each $z$ are indeed charts for $Y(\varGamma)$.
 
@@ -478,7 +478,7 @@ We briefly define fundamental domains obtained from $X(\varGamma)$, without proo
     0 & -1 \\ 1 & 0
 \end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See section 2.3 of \cite{diamond}) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
 
-For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. It is possible to do a similar procedure for $X(\varGamma)$ to produce fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{?? This should be true, but I should find a source}. 
+For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. A similar procedure for $X(\varGamma)$ produces fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{This last statement should be true, but maybe I should find a source}. 
 
 \newpage\section{Modular forms}
 In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.
@@ -555,10 +555,10 @@ By a similar computation to \cref{eqn: periodicity slz}, it follows that weakly 
 
 Let $D = \cbr{q\in\mathbb C : \abs{q} <1}$ be the open unit disk in $\mathbb C$ and let $D^\prime = D \setminus \!\cbr{0}$ denote the punctured open unit disk in $\mathbb C$. The exponential map $z\mapsto e^{2\pi i z/h} = q$ is a $h\mathbb{Z}$-periodic holomorphic map which maps $\mathcal H$ to $D^\prime$. Since $f$ is $h\mathbb{Z}$-periodic, it follows that the function $\tilde f\colon D^\prime\to\mathbb C$ corresponding to $f$ defined by $\tilde f(q) = f(h\log (q)/2\pi i)$ (so $f(z) = \tilde f(e^{2\pi i z/h})$) is well defined because a branch of the logarithm is determined up to integral multiples of $2\pi i$.
 
-The logarithm can be defined holomorphically about each $q\in D^\prime$. It follows that $\tilde f$ is meromorphic on $D^\prime$ since $f$ is meromorphic on $\mathcal H$, and so $\tilde f$ has a Laurent expansion $\tilde f(q) = \sum_{n\in\mathbb Z}a_nq^n$ at each $q$ in a punctured neighborhood of $q=0$ (and $a_n = 0$ for all $n$ sufficiently small). Moreover, if $f$ is holomorphic on $\mathcal H$, it follows that $\tilde f$ is also on $D^\prime$.
+The logarithm can be defined holomorphically about each $q\in D^\prime$. It follows that $\tilde f$ is meromorphic on $D^\prime$ since $f$ is meromorphic on $\mathcal H$, and so $\tilde f$ has a Laurent expansion $\tilde f(q) = \sum_{n\in\mathbb Z}a_nq^n$ at each $q$ in a punctured neighborhood of $q=0$ (and $a_n = 0$ for all $n$ sufficiently small). Moreover, if $f$ is holomorphic on $\mathcal H$, it follows that $\tilde f$ is also holomorphic on $D^\prime$.
 
-From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$, given by 
-\[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] which converges absolutely and uniformly on compact subsets of the half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for some large enough $\tau$ (so that $q$ lies in a punctured neighborhood of zero). If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
+From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$ about $\infty$, given by 
+\[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] which converges absolutely and uniformly on compact subsets of the half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for some large enough $\tau$ (so that $q$ lies in a punctured neighborhood of zero). When referring to a Fourier series of a $h\mathbb Z$-periodic meromorphic function on $\mathcal H$, we mean the expansion obtained in the above manner. If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
 \begin{definition}
     Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
         \item $f$ is holomorphic on $\mathcal H$,
@@ -566,7 +566,7 @@ From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
     \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}}. The set of modular forms (respectively cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (respectively \textib{$\mathcal S_k(\varGamma)$}).
 
-    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We briefly discuss this space in \sai{insert cref}.
+    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We briefly discuss this space at the end of \cref{section eisenstein series}.
 \end{definition}
 Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$, which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
 
@@ -587,6 +587,33 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
 \end{lemma}
 \begin{proof}
     \tbd
+\end{proof}
+It is possible to determine if a weakly modular holomorphic function on $\mathcal H$ is a modular form by investigating the growth of its Fourier coefficients. First, we prove a few lemmas.
+\begin{lemma}
+    If $x$ is a cusp of a congruence subgroup $\varGamma$ and $\sigma\in\slz$ sends $x$ to $\infty$, then 
+    \[\sigma(\varGamma\cap \slz)\sigma^{-1}\cdot\cbr{\pm I} = \cbr{\pm\begin{pmatrix}
+        1 & h \\ 0 & 1
+    \end{pmatrix}^m : m\in\mathbb Z}\] for some $h>0$.
+\end{lemma}
+\begin{proof}
+    Without loss of generality take $x = \infty$ by taking $\sigma\varGamma\sigma^{-1}$ in place of $\varGamma$. There exists an element  $\gamma = \big(\!\begin{smallmatrix}
+    1 & \ell \\ 0 & 1
+\end{smallmatrix}\!\big)$ with $\ell\neq 0$ in the stabilizer $\varGamma_\infty$ of $\infty$. Let $\alpha$ is an element of $\glq$ of the form $\big(\!\begin{smallmatrix}
+    a & b \\ 0 & a^{-1}
+\end{smallmatrix}\!\big)$ with $a\neq \pm 1$. Assume $\abs{a}<1$ by taking $\alpha^{-1}$ in place of $\alpha$ if needed. Then for any positive integer $n$, the element 
+\[\alpha^n\gamma\alpha^{-n} = \begin{pmatrix}
+    1 & a^{2n}l \\ 0 & 1
+\end{pmatrix}\in \varGamma.\] We take as a fact that congruence subgroups are discrete topological groups, so that the previous statement yields a contradiction. It follows then that $\varGamma_\infty\subset\cbr{\pm\big(\!\begin{smallmatrix}
+    1 & b \\ 0 & 1
+\end{smallmatrix}\!\big) : b\in\mathbb R}$. We obtain the result by observing that $\cbr{\pm\big(\!\begin{smallmatrix}
+    1 & b \\ 0 & 1
+\end{smallmatrix}\!\big) : b\in\mathbb R}/\cbr{\pm I}\cong \mathbb R$.
+\end{proof}
+\begin{lemma}
+    Let $f$ be a weakly modular holomorphic function on $\mathcal H$ with respect to some congruence subgroup $\varGamma$. If there exists a real number $v$ such that $f(z) = \mathcal O(\Im(z)^{-v})$ as $\Im(z)\to\infty$ uniformly with respect to $\Re(z)$, then $f$ is a modular form of weight $k$. Moreover, if $v$ may be chosen so that $v<k$, then $f$ is a cusp form.
+\end{lemma}
+\begin{proof}
+    We may assume that $k$ is even by squaring $f$. Let $x$ be a cusp of $\varGamma$ and suppose that $x$ is rational. Then there exists $\sigma\in\slz$ such that $\sigma(x) = \infty$.
 \end{proof}
 \begin{lemma}\label{lem: growth of fourier coeffs}
     \sai{growth of coefficients, either the prop from ds p17 or miyake thm 2.1.4, or both in view of \cref{prop: miyake prop pre-lemma 4.3.3} and the result after?}
@@ -612,7 +639,7 @@ Lastly, we record the dimensions of various spaces of modular forms below, witho
     \end{cases}\]
 \end{theorem}
 
-In particular, the modular forms of weight $0$, $\mathcal M_0(\slz)$, is isomorphic to $\mathbb C$ since the genus of $X(1)$ is $0$. Furthermore, $\mathcal M_2(\slz) = 0$ and $\mathcal S_k(\slz) = 0$ for $k = 0,2$. For any even integer $k\geq 4$, $\mathcal M_k(\slz) = \mathcal S_k(\slz)\oplus \mathbb CE_k$ where $E_k$ is the normalized weight $k$ Eisenstein series, which we define in \sai{add cref}, and \[\dim S_k(\slz) = \begin{cases}
+In particular, the modular forms of weight $0$, $\mathcal M_0(\slz)$, is isomorphic to $\mathbb C$ since the genus of $X(1)$ is $0$. Furthermore, $\mathcal M_2(\slz) = 0$ and $\mathcal S_k(\slz) = 0$ for $k = 0,2$. For any even integer $k\geq 4$, $\mathcal M_k(\slz) = \mathcal S_k(\slz)\oplus \mathbb CE_k$ where $E_k$ is the normalized weight $k$ Eisenstein series, which we define in \cref{section eisenstein series}, and \[\dim S_k(\slz) = \begin{cases}
     \lfloor \frac{k}{12}\rfloor - 1 & \text{if $k\equiv 2 \smod{12}$}, \\
     \lfloor \frac{k}{12}\rfloor & \text{otherwise.}
 \end{cases}\]
@@ -641,7 +668,7 @@ Let $k$ be an integer and $\varGamma$ a congruence subgroup. Then the dimensions
     0 & \text{if $k<0$, or if $k>0$ is odd and $-I\in\varGamma$}.
 \end{cases}\]
 
-\subsection{Eisenstein series}
+\subsection{Eisenstein series}\label{section eisenstein series}
 We define the Eisenstein series for a number of spaces of modular forms to provide some examples of modular forms, and do so without proofs of any claims.
 
 Elementary Eisenstein series for $\slz$ are defined for even weights $k\geq 4$, by \[G_k(z) = {\sum_{(c,d)}}^\prime \frac{1}{(cz+d)^k},\quad z\in\mathcal H,\] where the notation $\sum_{(c,d)}^\prime$ denotes summation over all nonzero integer pairs $(c,d)\in\mathbb Z^2$. This sum is absolutely convergent, and converges uniformly on compact subsets of $\mathcal H$. It follows that $G_k$ is holomorphic on $\mathcal H$ and we may rearrange the terms of the sum defining $G_k$. A Fourier series for $G_k$ is given by \[G_k(z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)e^{2\pi i z},\] where $\sigma_{k-1}$ is the arithmetic function $\sigma_{k-1}(n) = \sum_{\substack{m\mid n\\ m>0}}m^{k-1}$. (See section 1.1 in \cite{diamond}) Obtain the normalized Eisenstein series $E_k(z) = G_k(z)/(2\zeta(k))$, which can be shown to be given by 
@@ -1175,7 +1202,8 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \sai{main lemma?? how do i want to do this}
 
 \newpage\section{Strong Multiplicity One}
-\subsection{TEMPORARY lemmas bucket}
+\subsection{TEMPORARY bucket}
+
 \begin{lemma}\label{lem: miyake lem 4.5.2}
     For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
     \[\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
@@ -1294,7 +1322,26 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg).\]
     From the second condition of (1), we have \[(1-t_pp^{-s} + pd_pp^{-2s})\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg) = 1,\] from which (2) follows. 
 
-    We show that (2) implies (3). \sai{If $\gcd(m,n) =1$, then $t_{mn} = t_mt_n$, and this is obvious?? (part of the proof)} Otherwise, let $m = \prod_{p\in\mathbb P}p^e$ and $n = \prod_{p\in\mathbb P}p^f$ be the prime factorizations of $m$ and $n$. Then \[\]
+    We show that (2) implies (3). Formal Dirichlet series and formal Euler products are elements of the ring of formal power series $K[[p^{-s} : p\in\mathbb P]]$. Finding inverses in $K[[p^{-s}]]$ of the elements $1-t_pp^{-s} + pd_pp^{-2s}$ recursively (cf. exercise 7.2.3)(c) in \cite{df}), and comparing coefficients of \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}\] reveals that the sequence $\cbr{t_n}_{n=1}^\infty$ is multiplicative. That is, if $\gcd(m,n) =1$, then $t_{mn} = t_mt_n$.
+    
+    Let $m = \prod_{p\in\mathbb P}p^e$ and $n = \prod_{p\in\mathbb P}p^f$ be the prime factorizations of $m$ and $n$. Then \[\sum_{\substack{l>0\\l\mid\gcd(m,n)}} ld_lt_{mn/l^2} = \prod_{p\in\mathbb P} \bigg(\sum_{0\leq g\leq\min\{e,f\}}p^gd_{p^g}t_{p^{e+f-2g}}\bigg).\] Therefore it suffices to prove that (2) implies (3) in the case that $m$ and $n$ are powers of the same prime $p$. By assumption, we have 
+    \[(1-t_pp^{-s} + pd_pp^{-2s})^{-1} = \sum_{e=0}^\infty t_{p^e}p^{-es}.\] Let $\tau_p$ and $\delta_p$ be two indeterminates over $\mathbb Q$, and define a (unital) ring homomorphism $\psi\colon \mathbb Z[\tau_p,\delta_p]\to K$ by $\psi(\tau_p) = t_p$ and $\psi(\delta_p) = d_p$. Define the elements $\tau_{p^e}$ and $\delta_{p^e}$ of $\mathbb Z[\tau_p,\delta_p]$ by $\delta_{p^e} = (\delta_p)^e$ and by the formal power series equality 
+    \begin{equation}\label{eqn: tau power series expansion}
+        \sum_{e=0}^\infty \tau_{p^e}p^{-es} = (1-\tau_pp^{-s} + p\delta_pp^{-2s})^{-s}.
+    \end{equation} It follows that $\psi(\tau_{p^e}) = t_{p^e}$ and $\psi(\delta_{p^e}) = d_{p^e}$.
+
+    Let $u,v$ be indeterminates over $\mathbb Q$, and define a ring homomorphism $\phi\colon \mathbb Z[\tau_p,\delta_p]\to \mathbb Q[u,v]$ by $\phi(\tau_p) = u+v$ and $\phi(\delta_p) = uv/p$. Since $u+v$ and $uv/p$ are algebraically independent over $\mathbb Q$, $\phi$ is injective. Viewing $\mathbb Z[\tau_p,\delta_p]$ as a subring of $\mathbb Q[u,v]$, we may factor $1-\tau_pp^{-s}+p\delta_pp^{-2s}$ into $(1-up^{-s})(1-vp^{-s})$. Inverting this element and comparing coefficients in \cref{eqn: tau power series expansion}, we find that
+    \[\tau_{p^e} = \sum_{i+j=e}u^iv^j = (u^{e+1}-v^{e+1})/(u-v).\]
+
+    Assume that $0\leq e\leq f$. Then \begin{align*}
+        \tau_{p^e}\tau_{p^f} &= \bigg(\sum_{i+j=e}u^iv^j\bigg)\cdot (u^{f+1}-v^{f+1})/(u-v)\\
+        &= \bigg(u^{f+1}\sum_{j=0}^eu^{e-j}v^j - v^{f+1}\sum_{j=0}^eu^{j}v^{e-j}\bigg)\bigg/(u-v)\\
+        &=\sum_{g=0}^e u^gv^g(u^{e+f-2g+1}-v^{e+f-2g+1})/(u-v)\\
+        &=\sum_{g=0}^e p^g\delta_{p^g}\tau_{p^{e+f-2g}}.
+    \end{align*}
+    By taking $\psi$, obtain \[t_{p^e}t_{p^f} = \sum_{g=0}^ep^gd_{p^g}t_{p^{e+f-2g}}\] as desired. So in all cases, (2) implies (3).
+
+    To see that (3) implies (1), observe that (1) is a special case of (3), with $m = p$ and $n = p^e$.
 \end{proof}
 \begin{theorem}\label{thm: miyake thm 4.5.13}
     We have \begin{enumerate}[label=\textup{(\arabic*)}]
@@ -1303,7 +1350,11 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \end{enumerate}
 \end{theorem}
 \begin{proof}
-    \tbd
+    Apply the previous lemma with 
+    \[K = \mathcal R(N),\quad t_n = T(n),\quad \text{and}\quad d_n =\begin{cases}
+        T(n,n) & \text{if $\gcd(n,N) = 1$},\\
+        0 & \text{if $\gcd(n,N)\neq 1$}
+    \end{cases}\] in combination with \cref{lem: miyake lem 4.5.7}(2) and \cref{lem: miyake lem 4.5.8}(2) to obtain the result.
 \end{proof}
 \begin{lemma}\label{lem: miyake lem 4.5.14}
     Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \begin{align*}
@@ -1312,7 +1363,10 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \end{align*} be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
 \end{lemma}
 \begin{proof}
-    \tbd
+    Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T(n)$ on elements of $\mathcal M_k(N,\chi)$ (recorded in \sai{insert cref to when this happens yo, it's after lemma 4.5.9}, we have
+    \[(f|_k[T(m)])(z) = m^{k-1}\sum_{\substack{d>0\\d\mid n}}\sum_{b=0}^{d-1}\chi(m/d)d^{-k}\sum_{n=0}^\infty c_ne^{2\pi in((m/d)z+b)/d}.\] Then use the fact that $\sum_{b=0}^{d-1}e^{2\pi i n b/d}$ is equal to $d$ if $d\mid n$ and is $0$ otherwise to simplify the above expression into 
+    \[\sum_{n=0}^\infty \sum_{\substack{d>0\\d\mid \gcd(m,n)}}\chi(m/d)(m/d)^{k-1}c_ne^{2\pi i(nm/d^2)z}.\] Change summation variables to obtain 
+    \[\sum_{n=0}^\infty \sum_{a>0\\ a\mid \gcd(m,n)}\chi(a)a^{k-1}c_{dn/a}e^{2\pi inz},\] and with $ad = m$, it follows that $c_{dn/a} = c_{mn/a^2}$, and the result follows.
 \end{proof}
 \begin{lemma}\label{lem: miyake lem 4.5.15}
     Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $f|_k[T(p)] = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
