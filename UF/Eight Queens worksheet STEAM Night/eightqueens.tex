@@ -1,0 +1,96 @@
+\documentclass[10pt]{amsart}
+
+\usepackage{amsmath,amsthm,amsfonts,amssymb,epsfig,graphicx,soul,tikz}
+\usepackage{xskak}
+
+
+\usepackage{color}
+\usepackage{graphics,subfigure}
+
+\bibliographystyle{plain}
+
+%\textheight 24cm
+%\textwidth 17cm
+%\topmargin -3cm
+%\oddsidemargin -0.1cm
+%\evensidemargin 5cm
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\banach}{\mathbb{B}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\exponent}{\operatorname{e}}
+\newcommand{\md}{\mathrm{d}}
+\newcommand{\p}{\partial}
+\newcommand{\e}{\varepsilon}
+\newcommand{\no}{\noindent}
+\newcommand{\UU}{\mathcal U}
+
+%\theoremstyle{plain}
+%\newtheorem{defi}{Definition}
+%\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{corol}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem{opm}{Remark}
+
+% \newcommand{\comment}[1]{\textbf{[#1]}}
+
+\begin{document}
+
+\title{STEAM NIGHT AT NORTON ELEMENTARY}
+
+
+\maketitle
+
+\section{Eight queens}
+\noindent {\bf Goal:} Place {\bf eight} chess queens on an $\mathbf {8\times 8}$ chessboard so that no two queens threaten each other. 
+
+Recall that a queen can move any number of squares in a straight line vertically, horizontally, or diagonally: 
+
+\begin{center}
+    \chessboard[showmover=false,setpieces={qe5},pgfstyle=color,
+    opacity=0.3,
+    color=green,
+    markfield={a5, b5, c5, d5, f5, g5, h5, e1, e2, e3, e4, e6, e7, e8, b8, c7, d6, f4, g3, h2, a1, b2, c3, d4, f6, g7, h8}]
+\end{center}
+
+So, the following chessboard is {\bf NOT} a valid solution:
+
+\begin{center}
+    \chessboard[showmover=false,setpieces={qa8, qc7, qb5, qc3, qe4, qg6, qf1, qh2}]
+\end{center}
+
+Indeed, the queen on square \textsf{a8} threatens the queen on square \textsf{e4}, for example. 
+
+Consider a related problem where you attempt to place {\bf four} queens on a $\mathbf{4\times 4}$ chessboard so that no queens threaten each other.
+
+\begin{center}
+    \chessboard[maxfield=d4,showmover=false]
+\end{center}
+
+How many different ways can you solve this problem? How many different ways can you solve the problem for {\bf six} queens on a $\mathbf{6\times 6}$ chessboard? How about for our original {\bf eight} queens on an $\mathbf{8\times 8}$ chessboard? Maybe consider even more queens on an even bigger chessboard?
+
+How many knights can you place on an $8\times 8$ chessboard that do not threaten each other? How about for other pieces?
+
+A blank chessboard:
+
+\begin{center}
+    \chessboard[showmover=false]
+\end{center}
+
+\end{document}
+
+
+
+
+
+ 
+
+
+
+

@@ -143,7 +143,7 @@
 
 % temporaries for editing
 \usepackage{color}
-\newcommand{\tbd}{{\Huge\color{red}{\textib{TBD}}}}
+\newcommand{\tbd}{{\Huge\color{red}{\textib{TO DO}}}}
 \newcommand{\sai}[1]{\textcolor{red}{#1}}
 
 \begin{document}
@@ -566,7 +566,7 @@ From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$
         \item $f|_{k}[\alpha]$ is holomorphic at $\infty$ for all $\alpha\in\slz$.
     \end{enumerate}Furthermore, if for every $\alpha\in\slz$, the coefficient $a_0$ vanishes in the Fourier series expansion of $f|_k[\alpha]$, then we call $f$ a \textib{cusp form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}}. The set of modular forms (respectively cusp forms) of weight $k$ with respect to $\varGamma$ is denoted by \textib{$\mathcal M_k(\varGamma)$} (respectively \textib{$\mathcal S_k(\varGamma)$}).
 
-    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of modular forms by cusp forms, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We briefly discuss this space at the end of \cref{section eisenstein series}.
+    Define also the \textbf{\textit{weight $k$ }}\textib{Eisenstein space \textup{(}of $\varGamma$\textup{)}} by the quotient of the space of modular forms by the space of cusp forms; that is, $\mathcal E_k(\varGamma) = \mathcal M_k(\varGamma)/\mathcal S_k(\varGamma)$. We briefly discuss this space at the end of \cref{section eisenstein series}.
 \end{definition}
 Recall that the $\varGamma$-equivalence classes of points in $\mathbb Q\cup \infty$ are the cusps of $\varGamma$. There are finitely many cusps, at most the index of $\varGamma$ in $\slz$, which we showed was finite in the discussion following \cref{def: congruence subgroup}. Write a cusp $s$ as $\alpha(\infty)$ for some $\alpha\in\slz$. Then holomorphy at $s$ of a modular form $f$ is defined by holomorphy at $\infty$ of $f|_k[\alpha]$, where $f|_k[\alpha]$ is a modular form of weight $k$ with respect to $\alpha^{-1}\varGamma\alpha$, so interpret condition (3) of the above definition as $f$ being holomorphic at the cusps of $\varGamma$. The group $\alpha^{-1}\varGamma\alpha$ is a congruence subgroup since for some $N>0$, the principal congruence subgroup $\varGamma(N)$ is contained in $\varGamma$ and is normal in $\slz$, so that $\varGamma(N) = \alpha^{-1}\varGamma(N)\alpha\subset \alpha^{-1}\varGamma\alpha$. 
 
@@ -582,7 +582,7 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
             a & b \\ 0 & d
         \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$.
         \item Let $\varGamma_1,\varGamma_2$ be congruence subgroups with $\gamma\varGamma_2\gamma^{-1}\subset \varGamma_1$ for some $\gamma\in\glqp$. If $f\in\mathcal M_k(\varGamma_1)$, then $f|_k[\gamma]\in\mathcal M_k(\varGamma_2)$, and the same result holds for cusp forms.
-        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. Show that if $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
+        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. If $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
     \end{enumerate}  
 \end{lemma}
 \begin{proof}
@@ -591,35 +591,92 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
 It is possible to determine if a weakly modular holomorphic function on $\mathcal H$ is a modular form by investigating the growth of its Fourier coefficients. First, we prove a few lemmas.
 \begin{lemma}
     If $x$ is a cusp of a congruence subgroup $\varGamma$ and $\sigma\in\slz$ sends $x$ to $\infty$, then 
-    \[\sigma(\varGamma\cap \slz)\sigma^{-1}\cdot\cbr{\pm I} = \cbr{\pm\begin{pmatrix}
+    \[\sigma\varGamma_x\sigma^{-1}\cdot\cbr{\pm I} = \cbr{\pm\begin{pmatrix}
         1 & h \\ 0 & 1
-    \end{pmatrix}^m : m\in\mathbb Z}\] for some $h>0$.
+    \end{pmatrix}^m : m\in\mathbb Z}\] for some integer $h>0$.
 \end{lemma}
 \begin{proof}
-    Without loss of generality take $x = \infty$ by taking $\sigma\varGamma\sigma^{-1}$ in place of $\varGamma$. There exists an element  $\gamma = \big(\!\begin{smallmatrix}
-    1 & \ell \\ 0 & 1
-\end{smallmatrix}\!\big)$ with $\ell\neq 0$ in the stabilizer $\varGamma_\infty$ of $\infty$. Let $\alpha$ is an element of $\glq$ of the form $\big(\!\begin{smallmatrix}
-    a & b \\ 0 & a^{-1}
-\end{smallmatrix}\!\big)$ with $a\neq \pm 1$. Assume $\abs{a}<1$ by taking $\alpha^{-1}$ in place of $\alpha$ if needed. Then for any positive integer $n$, the element 
-\[\alpha^n\gamma\alpha^{-n} = \begin{pmatrix}
-    1 & a^{2n}l \\ 0 & 1
-\end{pmatrix}\in \varGamma.\] We take as a fact that congruence subgroups are discrete topological groups, so that the previous statement yields a contradiction. It follows then that $\varGamma_\infty\subset\cbr{\pm\big(\!\begin{smallmatrix}
+    Without loss of generality take $x = \infty$ by taking $\sigma\varGamma\sigma^{-1}$ in place of $\varGamma$. From a computation, we have
+    \[\varGamma_\infty \subset \cbr{\pm\begin{pmatrix}
+        1 & b \\ 0 & 1
+    \end{pmatrix} : b\in\mathbb Z}\]
+%     There exists an element  $\gamma = \big(\!\begin{smallmatrix}
+%     1 & \ell \\ 0 & 1
+% \end{smallmatrix}\!\big)$ with $\ell\neq 0$ in the stabilizer $\varGamma_\infty$ of $\infty$. 
+%  Suppose there exists an element $\alpha$ of $\varGamma_\infty$ of the form $\big(\!\begin{smallmatrix}
+%     a & b \\ 0 & a^{-1}
+% \end{smallmatrix}\!\big)$ with $a\neq \pm 1$. Assume $\abs{a}<1$ by taking $\alpha^{-1}$ in place of $\alpha$ if needed. Then for any positive integer $n$, the element 
+% \[\alpha^n\gamma\alpha^{-n} = \begin{pmatrix}
+%     1 & a^{2n}l \\ 0 & 1
+% \end{pmatrix}\in \varGamma.\] We take as a fact that congruence subgroups are discrete topological groups, so that the previous statement yields a contradiction. It follows then that $\varGamma_\infty\subset\cbr{\pm\big(\!\begin{smallmatrix}
+%     1 & b \\ 0 & 1
+% \end{smallmatrix}\!\big) : b\in\mathbb R}$.
+We obtain the result by observing that $\cbr{\pm\big(\!\begin{smallmatrix}
     1 & b \\ 0 & 1
-\end{smallmatrix}\!\big) : b\in\mathbb R}$. We obtain the result by observing that $\cbr{\pm\big(\!\begin{smallmatrix}
-    1 & b \\ 0 & 1
-\end{smallmatrix}\!\big) : b\in\mathbb R}/\cbr{\pm I}\cong \mathbb R$.
+\end{smallmatrix}\!\big) : b\in\mathbb Z}/\cbr{\pm I}\cong \mathbb Z$.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lem: bound growth fourier coeffs}
     Let $f$ be a weakly modular holomorphic function on $\mathcal H$ with respect to some congruence subgroup $\varGamma$. If there exists a real number $v$ such that $f(z) = \mathcal O(\Im(z)^{-v})$ as $\Im(z)\to\infty$ uniformly with respect to $\Re(z)$, then $f$ is a modular form of weight $k$. Moreover, if $v$ may be chosen so that $v<k$, then $f$ is a cusp form.
 \end{lemma}
 \begin{proof}
-    We may assume that $k$ is even by squaring $f$. Let $x$ be a cusp of $\varGamma$ and suppose that $x$ is rational. Then there exists $\sigma\in\slz$ such that $\sigma(x) = \infty$.
+    We may assume that $k$ is even by squaring $f$ \sai{(why do we need $k$ even?)}. Let $x$ be a cusp of $\varGamma$ and suppose that $x$ is rational. Then there exists $\sigma\in\slz$ such that $\sigma(x) = \infty$. Let $h>0$ be an integer satisfying the result of the previous lemma. Then the Fourier series expansion of $f|_k[\sigma^{-1}]$ is 
+    \[(f|_k[\sigma^{-1}])(z) = \sum_{n=-\infty}^\infty a_ne^{2\pi i n z/h},\] with \begin{equation}\label{eqn: fourier coeffs z_0}
+        a_n = \frac{1}{h}\int_{z_0}^{z_0+h}(f|_k[\sigma^{-1}])(z)e^{-2\pi i n z/h}\dd z,\quad \text{for any fixed $z_0\in\mathcal H$.}
+    \end{equation} Let $\smallabcd = \sigma^{-1}$, and note that $c\neq 0$, since $\sigma^{-1}$ does not fix $\infty$. We have that $\Im(\sigma^{-1}(z)) = \Im(z)/\abs{cz+d}^2 = \mathcal O(1/\Im(z))$ as $\Im(z)\to\infty$, uniformly on $\abs{\Re(z)}\leq h/2$. Then by assumption,
+    \[(f|_k[\sigma^{-1}])(z) = f(\sigma^{-1}(z))j(\sigma^{-1},z)^{-k} = \mathcal O(\Im(z)^{v-k})\quad (\text{as }\Im(z)\to\infty),\] uniformly on $\abs{\Re(z)}\leq h/2$. Choosing $z_0 = iy-h/2$ in \cref{eqn: fourier coeffs z_0}, we have that $|a_n| = \mathcal O(y^{v-k}e^{2\pi n y /h})$ as $y\to\infty$.
+
+    So if $n<0$, then $a_n = 0$; moreover, if $v<k$, then $a_0 = 0$. 
+
+    If $x\neq\infty$, then we may send it to a rational cusp via an element of $\varGamma$ since $\varGamma\neq \varGamma_\infty$, and repeat the above argument. It follows that $f$ is holomorphic at all cusps of $\varGamma$, and has a zero at any cusp if $v<k$.
 \end{proof}
-\begin{lemma}\label{lem: growth of fourier coeffs}
-    \sai{growth of coefficients, either the prop from ds p17 or miyake thm 2.1.4, or both in view of \cref{prop: miyake prop pre-lemma 4.3.3} and the result after?}
+\begin{lemma}\label{lem: miyake lem 4.3.3}
+    Let $\{a_n\}_{n=0}^\infty$ be a sequence of complex numbers, and let $f\colon \mathcal H\to \mathbb C$ be given by $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$. If $a_n = \mathcal O(n^v)$ for some $v >0$, then $\sum_{n=0}^\infty a_ne^{2\pi i nz}$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Moreover, 
+    \begin{align*}
+        f(z) &= \mathcal O(\Im(z)^{-v-1}) \quad\textup{($\Im(z) \to 0$), and }\\
+        f(z) - a_0 &= \mathcal O(e^{-2\pi \Im(z)}) \quad\textup{($\Im(z) \to \infty$)},
+    \end{align*}
+    uniformly on $\Re(z)$.
 \end{lemma}
 \begin{proof}
-    \tbd
+    From $\varGamma(s) = \lim_{n\to \infty}\frac{n!n^s}{s(s+1)\cdots(s+n)}$ for real $s>0$ (Euler-Gauss), we have for $v>0$ that
+    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v).\]
+    Thus there exists $L>0$ such that 
+    \[\abs{a_n}\leq L(-1)^n\binom{-v-1}{n}\] for all $n\geq 0$. Let $z = x+iy$, so that 
+    \begin{align}\label{eqn: miyake eqn 4.3.9}
+        \sum_{n=0}^\infty\abs{a_n}|e^{2\pi i n z}|&\leq L\bigg(\sum_{n=0}^\infty (-1)^n\binom{-v-1}{n}e^{-2\pi n y}\bigg)\\
+        &= L(1-e^{-2\pi y})^{-v-1}.\nonumber
+    \end{align}
+    It follows that $f$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Since $1-e^{-2\pi y} = \mathcal O(y)$ as $y\to 0$, we have that $\abs{f(z)} = \mathcal O(y^{-v-1})$. Furthermore, \cref{eqn: miyake eqn 4.3.9} implies that $f$ is bounded as $y$ tends to $\infty$.
+
+    Let $g\colon\mathcal H\to\mathbb C$ be given by $g(z) = \sum_{n=0}^\infty a_{n+1}e^{2\pi i nz}$, and observe that $g$ also satisfies the hypotheses of the lemma. It follows that $g$ is also bounded on a neighborhood of $\infty$. Therefore 
+    \[f(z)-a_0 = e^{2\pi i z}g(z) = \mathcal O(e^{-2\pi y})\quad (y\to \infty).\qedhere\]
+\end{proof}
+Combining the previous few lemmas, we obtain the following:
+\begin{proposition}\label{prop: growth of fourier coeffs}
+    Let $f$ be a weakly modular holomorphic function on $\mathcal H$ with respect to some congruence subgroup $\varGamma$. If in a Fourier expansion of $f$ given by $f(z) = \sum_{n = 0}^\infty a_ne^{2\pi i n z/h}$, the coefficients $a_n$ are of order $\mathcal O(n^v)$ for some $v>0$, then $f$ is a modular form.
+\end{proposition}
+The following result describes the growth of cusp forms:
+\begin{proposition}\label{prop: product cuspform boundedness}
+    Let $f$ be a weakly modular holomorphic function on $\mathcal H$. Then $f$ is a cusp form if and only if $f(z)\Im(z)^{k/2}$ is bounded on $\mathcal H$.
+\end{proposition}
+\begin{proof}
+    We may assume that $k$ is even, and observe that \cref{lem: bound growth fourier coeffs} provides the `if' direction of the result. So assume that $f$ is a cusp form and let $g$ be given by $g(z) = |f(z)|\Im(z)^{k/2}$. Since $g(\gamma(z)) = g(z)$ for any $\gamma\in\varGamma$, view $g$ as a continuous function on $Y(\varGamma)$. Since $\varGamma$ has only finitely many inequivalent cusps, it suffices to show that $g$ is bounded on a neighborhood of a cusp of $\varGamma$. Let $x$ be a cusp of $\varGamma$, and let $\sigma\in\slz$ take $x$ to $\infty$. Choose a positive integer $h$ so that $\sigma\varGamma_x\sigma^{-1}\cdot\cbr{\pm I} = \cbr{\pm\big(\!\begin{smallmatrix}
+        1 & h \\ 0 & 1
+    \end{smallmatrix}\!\big)^m : m\in\mathbb Z}$, and let $(f|_k[\sigma^{-1}])(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz /h}$ be the Fourier expansion of $f$ at $x$. Then \begin{align*}
+        g(\sigma^{-1}(z)) &= \abs{(f|_k[\sigma^{-1}])(z)}\Im(z)^{k/2}\\
+        &= \abs{\sum_{n=1}^\infty a_ne^{2\pi i n z/h}}\Im(z)^{k/2}\quad (\text{as }\Im(z)\to\infty).
+    \end{align*} Hence $g$ is bounded on a neighborhood of $x$.
+\end{proof}
+\begin{corollary}\label{cor: cuspform growth corollary}
+    Let $f$ be an element of $\mathcal S_k(\varGamma)$, let $x$ be a cusp of $\varGamma$, and let $\sigma$ be an element of $\slz$ that maps $x$ to $\infty$. Let $(f|_k[\sigma^{-1}])(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz /h}$ be the Fourier expansion of $f$ at $x$. Then $a_n = \mathcal O(n^{k/2})$.
+\end{corollary}
+\begin{proof}
+    Let $g = f|_k[\sigma^{-1}]$, so that $g\in\mathcal S_k(\sigma\varGamma\sigma^{-1})$. By \cref{prop: product cuspform boundedness}, there exists a constant $M>0$ such that $\abs{g(z)}\leq M\Im(z)^{-k/2}$. Thus 
+    \begin{align*}
+        |a_n| &= \frac{1}{h}\abs{\int_0^h g(x+iy)e^{-2\pi i n(x+iy)/h}\dd x}\\
+        &\leq My^{-k/2}e^{2\pi n y/h}.
+    \end{align*}
+    By taking $y = 2/n$, it follows that $\abs{a_n}\leq (Me^{4\pi /h}2^{-k/2})n^{k/2}$.
 \end{proof}
 Lastly, we record the dimensions of various spaces of modular forms below, without proof (See chapter 3 of \cite{diamond}).
 
@@ -697,7 +754,7 @@ The Fourier series expansion of $G_k^{\overline v}(z)$ for $k\geq 3$ and $\overl
     1 & \text{if $\overline c_v =\overline 0$},\\
     0 & \text{otherwise},
 \end{cases}\quad \zeta^{\overline d_v}(k) = \sideset{}{^\prime}\sum_{d\equiv d_v\smod N}\frac{1}{d^k},\] and 
-\[\sigma_{k-1}^{\overline v}(n) = \sum_{\substack{m\mid n\\n/m \equiv c_v\smod n}}\sgn(m)m^{k-1}\mu_N^{d_vm}.\] In the sum for $\zeta^{\overline d_v}(k)$, we sum over positive and negative $d$, and similarly for $m$ in the sum for $\sigma_{k-1}^{\overline v}$. Similarly to the Eisenstein series, one may form a basis $\cbr{G_k^{\overline v}}$ of the Eisenstein space $\mathcal E_k(\varGamma(N))$ (using the same choice of $\cbr{\overline v}$ as before). Since the $n$-th Fourier coefficient is of the order $n^k$, it follows from \sai{i need that result on the order of Fourier coeffs bruh} \cref{lem: growth of fourier coeffs} that $E_k^{\overline v}$ is a modular form.
+\[\sigma_{k-1}^{\overline v}(n) = \sum_{\substack{m\mid n\\n/m \equiv c_v\smod n}}\sgn(m)m^{k-1}\mu_N^{d_vm}.\] In the sum for $\zeta^{\overline d_v}(k)$, we sum over positive and negative $d$, and similarly for $m$ in the sum for $\sigma_{k-1}^{\overline v}$. Similarly to the Eisenstein series, one may form a basis $\cbr{G_k^{\overline v}}$ of the Eisenstein space $\mathcal E_k(\varGamma(N))$ (using the same choice of $\cbr{\overline v}$ as before). Since the $n$-th Fourier coefficient is of the order $n^k$, it follows from \cref{prop: growth of fourier coeffs} that $E_k^{\overline v}$ is a modular form.
 
 \subsection{Dirichlet characters and $L$-functions}
 For any positive integer $N$, denote by $Z_N$ the group $\mathbb{Z}/N\mathbb{Z}$.
@@ -799,7 +856,7 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
     \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi S_k(N,\chi),\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \mathcal E_k(N,\chi).\]
 \end{proposition}
 \begin{proof}
-    \tbd \sai{also factor of automorphy for elements of quotient $\mathcal E_k(\varGamma_1(N))$??}
+    \tbd 
 \end{proof}
 
 \begin{definition}
@@ -877,32 +934,10 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \end{proposition}
 \begin{proof}
     By hypothesis, there exists a constant $M>0$ such that $\abs{f(z)}\leq M\Im(z)^{-v}$. Then \begin{align*}
-        \abs{a_n} &= \abs{\int_0^1 g(x+iy)e^{-2\pi i n (x+iy)}\dd x}\\
+        \abs{a_n} &= \abs{\int_0^1 f(x+iy)e^{-2\pi i n (x+iy)}\dd x}\\
         &\leq My^{-v}e^{2\pi n y}.
     \end{align*} By taking $y = 2/n$, it follows that $\abs{a_n} \leq (Me^{4\pi}2^{-v})n^v$.
-\end{proof} Conversely, we have the following:
-\begin{lemma}\label{lem: miyake lem 4.3.3}
-    Let $\{a_n\}_{n=0}^\infty$ be a sequence of complex numbers, and let $f\colon \mathcal H\to \mathbb C$ be given by $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$. If $a_n = \mathcal O(n^v)$ for some $v >0$, then $\sum_{n=0}^\infty a_ne^{2\pi i nz}$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Moreover, 
-    \begin{align*}
-        f(z) &= \mathcal O(\Im(z)^{-v-1}) \quad\textup{($\Im(z) \to 0$), and }\\
-        f(z) - a_0 &= \mathcal O(e^{-2\pi \Im(z)}) \quad\textup{($\Im(z) \to \infty$)},
-    \end{align*}
-    uniformly on $\Re(z)$.
-\end{lemma}
-\begin{proof}
-    From $\varGamma(s) = \lim_{n\to \infty}\frac{n!n^s}{s(s+1)\cdots(s+n)}$ for real $s>0$ (Euler-Gauss), we have for $v>0$ that
-    \[\lim_{n\to\infty} n^v/(-1)^n\binom{-v-1}{n} = \varGamma(v).\]
-    Thus there exists $L>0$ such that 
-    \[\abs{a_n}\leq L(-1)^n\binom{-v-1}{n}\] for all $n\geq 0$. Let $z = x+iy$, so that 
-    \begin{align}\label{eqn: miyake eqn 4.3.9}
-        \sum_{n=0}^\infty\abs{a_n}|e^{2\pi i n z}|&\leq L\bigg(\sum_{n=0}^\infty (-1)^n\binom{-v-1}{n}e^{-2\pi n y}\bigg)\\
-        &= L(1-e^{-2\pi y})^{-v-1}.\nonumber
-    \end{align}
-    It follows that $f$ is convergent absolutely and uniformly on compact subsets of $\mathcal H$. Since $1-e^{-2\pi y} = \mathcal O(y)$ as $y\to 0$, we have that $\abs{f(z)} = \mathcal O(y^{-v-1})$. Furthermore, \cref{eqn: miyake eqn 4.3.9} implies that $f$ is bounded as $y$ tends to $\infty$.
-
-    Let $g\colon\mathcal H\to\mathbb C$ be given by $g(z) = \sum_{n=0}^\infty a_{n+1}e^{2\pi i nz}$, and observe that $g$ also satisfies the hypotheses of the lemma. It follows that $g$ is also bounded on a neighborhood of $\infty$. Therefore 
-    \[f(z)-a_0 = e^{2\pi i z}g(z) = \mathcal O(e^{-2\pi y})\quad (y\to \infty).\qedhere\]
-\end{proof}
+\end{proof} A converse to the above proposition is \cref{lem: miyake lem 4.3.3}
 \begin{lemma}[Phragmen-Lindel\"of]\label{lem: miyake lem 4.3.4}
     For two real numbers $v_1,v_2$ with $v_1<v_2$, let 
     \[F = \cbr{s\in \mathbb C : v_1\leq \Re(s)\leq v_2}.\] Let $\phi$ be a holomorphic function on a domain containing $F$ satisfying \[\abs{\phi(s)} = \mathcal O\big(e^{\abs{\tau}^\delta}\big)\quad \textup{($\abs{\tau}\to\infty$, with $s = \sigma + i\tau$),}\]
@@ -920,7 +955,7 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
     Now let $b\neq 0$. Let $\psi(s) = (s-v_1+1)^b = e^{b\log(s-v_1+1)}$ (using the principal branch of the logarithm); note that $\psi$ is holomorphic. Since $\Re(\log(s-v_1+1)) = \log\abs{s-v_1+1}$, we have 
     \[\abs{\psi(s)} = \abs{s-v_1+1}^b\sim \abs{\tau}^b\quad (\abs{\tau}\to\infty),\] uniformly on $F$ (the notation $\abs{s-v_1+1}^b\sim \abs{\tau}^b$ means that $\lim_{\abs{\tau}\to\infty} \abs{s-v_1+1}^b/\abs{\tau}^b = 1$).
 
-    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$.\sai{i don't like how this was sweeped up}
+    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$. \sai{I may rewrite the last part of this proof.}
 \end{proof}
 \begin{definition}\label{def: L function}
     To a holomorphic function $f\colon \mathcal H\to \mathbb C$ satisfying \cref{prop: miyake prop pre-lemma 4.3.3}  with Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$, we associate to it an \textib{$L$-function}, given by the Dirichlet series
@@ -989,8 +1024,8 @@ Its action on functions on $\mathcal H$ appears in several results forthcoming, 
     Since $f,g$ are holomorphic on $\mathcal H$, it follows that $f(z) = i^k(\sqrt{N}z/i)^{-k}g(-1/Nz)$, or equivalently $g(z) = (\sqrt{N}z)^{-k}f(-1/Nz)$.
 \end{proof}
 \begin{corollary}\label{cor: miyake cor 4.3.7}
-    If $f(z)\in \mathcal S_k(N,\chi)$, then because any element of $\mathcal S_k(N,\chi)$ satisfies the conditions of \cref{prop: miyake prop pre-lemma 4.3.3}, it follows that $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
-    \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,f|_k[\omega_N]).\]\sai{need the results on growth of coeffs for cuspforms prior to and including miyake cor 2.1.6}
+    If $f(z)\in \mathcal S_k(N,\chi)$, then because any element of $\mathcal S_k(N,\chi)$ satisfies the conditions of \cref{prop: miyake prop pre-lemma 4.3.3} \textup{(}see \cref{cor: cuspform growth corollary}\textup{)}, it follows that $\varLambda_N(s,f)$ is holomorphic in $s$ and satisfies the functional equation
+    \[\varLambda_N(s,f) = i^k\varLambda_N(k-s,f|_k[\omega_N]).\]
 \end{corollary}
 
 \newpage\section{Hecke operators}
@@ -1016,7 +1051,7 @@ Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgrou
     It is evident that the map $\varGamma_2\to \varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ given by $\gamma_2\mapsto \varGamma_1\alpha\gamma_2$ is surjective, since elements of $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ are of the form $\varGamma_1\gamma_1\alpha\gamma_2$ for some $\gamma_1,\gamma_2$. Two elements $\gamma_2,\gamma_2^\prime\in\varGamma_2$ map to the same orbit if $\varGamma_1\alpha\gamma_2 = \varGamma_1\alpha\gamma_2^\prime$, that is, if $\gamma_2^\prime\gamma_2^{-1}\in \alpha^{-1}\varGamma_1\alpha$. It follows that by taking $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2$ as above, that the induced map from the coset space $\varGamma_3\backslash\varGamma_2\to \varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is a bijection.
 \end{proof}
 \begin{lemma}\label{lem: congruence subgroups commensurable}
-    Let $\varGamma_1,\varGamma_2$ be congruence subgroups. Then we say they are \textib{commensurable} if the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are finite. We write $\varGamma_1\approx\varGamma_2$ in this case.
+    Let $\varGamma_1,\varGamma_2$ be congruence subgroups. Then they are \textib{commensurable}, that is, the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are finite. We write $\varGamma_1\approx\varGamma_2$ in this case.
 \end{lemma}
 \begin{proof}
     There exist positive integers $N_1,N_2$ such that $\varGamma(N_1)\subset \varGamma_1$ and $\varGamma(N_2)\subset \varGamma_2$. Then $\varGamma(\lcm(N_1,N_2))\subset \varGamma(N_1)\cap \varGamma(N_2)\subset \varGamma_1\cap \varGamma_2$ since $N_1,N_2$ divide their least common multiple. Then \begin{align*}
@@ -1038,7 +1073,7 @@ Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset opera
 \begin{enumerate}[label=(\arabic*)]
     \item If $\varGamma_2\subset \varGamma_1$ and $\alpha = I$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f$ and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural inclusion of $\mathcal M_k(\varGamma_1)$ into $\mathcal M_k(\varGamma_2)$.
     \item If $\varGamma_2 = \alpha^{-1}\varGamma_1\alpha$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f|_k[\alpha]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural isomorphism of $\mathcal M_k(\varGamma_1)$ with $\mathcal M_k(\varGamma_2)$.
-    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ \sai{(``by symmetrizing over the quotient, a surjection'' what?)}.
+    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ \sai{by symmetrizing over the quotient, a surjection (I could elaborate on this some more)}.
 \end{enumerate}
 
 Any double coset operator is a composition of these three operators. Given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
@@ -1055,7 +1090,7 @@ Recall the congruence subgroups \begin{align*}
 \end{align*} Since $\varGamma_1(N)\subset 
 \varGamma_0(N)$, we have the containment $\mathcal M_k(\varGamma_0(N))\subset \mathcal M_k(\varGamma_1(N))$ of modular forms. We define the two operators $\abr{n}$ and $T_n$ on the larger space $\mathcal M_k(\varGamma_1(N))$ (note that we defined $L$-functions for elements of $\mathcal M_k(\varGamma_1(N))$ in \cref{def: L function}).
 
-Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$. From \cref{lem: gamma 1 normal in gamma 0} we have that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ and that $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$, so the double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$ is of the form (2) in the list following \cref{def: weight k double coset operator}\sai{(not quite right location but fix later)}. Hence this double coset operator translates a function $f\in \mathcal M_k(\varGamma_1(N))$ to $f|_k[\varGamma_1(N)\alpha\varGamma_1(N)] = f|_k[\alpha]\in \mathcal M_k(\varGamma_1(N))$. In this way the group $\varGamma_0(N)$ acts on $\mathcal M_k(\varGamma_1(N))$, and its subgroup $\varGamma_1(N)$ acts trivially. Thus $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$ acts on $\mathcal M_k(\varGamma_1(N))$. In particular, if $d\in (\mathbb Z/N\mathbb Z)^\times$, there exists $\big(\!\begin{smallmatrix}
+Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$. From \cref{lem: gamma 1 normal in gamma 0} we have that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ and that $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$, so the double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$ is of the form (2) in the list following \cref{def: weight k double coset operator} \sai{(not quite the right location, but fix later)}. Hence this double coset operator translates a function $f\in \mathcal M_k(\varGamma_1(N))$ to $f|_k[\varGamma_1(N)\alpha\varGamma_1(N)] = f|_k[\alpha]\in \mathcal M_k(\varGamma_1(N))$. In this way the group $\varGamma_0(N)$ acts on $\mathcal M_k(\varGamma_1(N))$, and its subgroup $\varGamma_1(N)$ acts trivially. Thus $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$ acts on $\mathcal M_k(\varGamma_1(N))$. In particular, if $d\in (\mathbb Z/N\mathbb Z)^\times$, there exists $\big(\!\begin{smallmatrix}
     a^\prime & b^\prime \\ c^\prime & d^\prime
 \end{smallmatrix}\!\big)\in \varGamma_0(N)/\varGamma_1(N)$ with $d^\prime\equiv d\smod N$. Thus the action of $d$ on $\mathcal M_k(\varGamma_1(N))$, called the diamond operator $\abr{d}\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$, is given by 
 \[\abr{d}f = f|_k[\alpha] \quad \text{for any $\alpha = \begin{pmatrix}
@@ -1084,7 +1119,7 @@ Let $p$ be a prime number, and consider the weight-$k$ double coset operator $T_
     \end{pmatrix}, \det\gamma = p}.\]
 \end{lemma}
 \begin{proof}
-    \tbd \sai{page 105 ds}
+    \tbd \sai{(p.105 in \cite{diamond})}
 \end{proof}
 So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the double coset $\varGamma_1(N)\big(\!\begin{smallmatrix}
     1 & 0 \\ 0 & p
@@ -1097,7 +1132,7 @@ So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the do
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    \tbd \sai{p.173 ds}
+    \tbd \sai{(p.173 in \cite{diamond})}
 \end{proof}
 \begin{definition}
     The \textib{Hecke operator $T_n$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb Z^+$ is defined inductively. Let $T_1 = \id_{\mathcal M_k(\varGamma_1(N))}$ (the identity operator), and above we had defined $T_p$ for primes $p$. For prime powers, let
@@ -1105,7 +1140,7 @@ So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the do
     \[T_n = \prod_i T_{p_i^{r_i}},\] where the previous lemma justifies the multiplicative notation above.
 \end{definition}
 
-\sai{explicit action of $T_p$ and $T_n$}
+\sai{Should include the explicit action of $T_p$ and $T_n$.}
 
 \subsection{The Petersson inner product, adjoints of Hecke operators}
 We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ (via Wirtinger derivatives) and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
@@ -1115,7 +1150,7 @@ Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz
 \[\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu = \int_{\mathcal \gamma^{-1} D^\ast} \varphi(\alpha(\gamma(z)))\dd \mu, \] from which it follows that the integral converges.
 
 Let $\varGamma$ be a congruence subgroup, and let $\cbr{\alpha_j}$ be a collection of representatives for the coset space $\cbr{\pm I}\varGamma\backslash\slz$; that is, we have the disjoint union $\slz = \bigsqcup_j \cbr{\pm I}\varGamma \alpha_j$. If $\varphi$ is $\varGamma$-invariant, then the sum $\sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu$ is independent of the choice of coset representatives $\alpha_j$. Since $\dd\mu$ is $\slz$-invariant, the sum is equal to $\int_{\bigcup_j \alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu$. Since $\bigcup_j\alpha_j(\mathcal D^\ast)$ represents the modular curve $X(\varGamma)$ up to identification of boundaries, we define 
-\[\int_{X(\varGamma)}\varphi(z)\dd\mu = \int_{\bigcup_j\alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu = \sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu.\] In particular the volume of $X(\varGamma)$ is given by $V_\varGamma = \int_{X(\varGamma)}\dd\mu$. Moreover, $V_\varGamma = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$:\sai{to prove?}\tbd
+\[\int_{X(\varGamma)}\varphi(z)\dd\mu = \int_{\bigcup_j\alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu = \sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu.\] In particular the volume of $X(\varGamma)$ is given by $V_\varGamma = \int_{X(\varGamma)}\dd\mu$. Moreover, $V_\varGamma = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$: \sai{(to prove)}\tbd
 
 Observe that for any $f,g\in\mathcal S_k(\varGamma)$ for a congruence subgroup $\varGamma$, the function $\varphi(z) = f(z)\overline{g(z)}(\Im(z))^k$ for $z\in\mathcal H$ is continuous, and more importantly, $\varGamma$-invariant. Indeed, for any $\gamma\in\varGamma$, we have
 \begin{align*}
@@ -1133,7 +1168,7 @@ This inner product is linear in the first component, conjugate linear in the sec
 
 Recall that if $T$ is a linear operator on the inner product space $V$, then there exists a unique operator $T^\ast$ called the adjoint of $T$ that satisfies $\abr{Tv,w} = \abr{v,T^\ast w}$ for all $v,w\in V$. If $T$ commutes with $T^\ast$, we say that $T$ is a normal operator. Give $\mathcal S_k(\varGamma_1(N))$ the Petersson inner product. We show that the Hecke operators $\abr{n}$ and $T_n$ for $n$ coprime to $N$ are normal operators.
 
-Let $\varGamma$ be a congruence subgroup, and write $\slz = \bigcup_j\cbr{\pm I}\varGamma \alpha_j$ for some representatives $\alpha_j$ of the coset space $\varGamma\backslash \slz$. If $\alpha\in\glqp$, then the map $\mathcal H\to\mathcal H$ given by $z \mapsto \alpha(z)$ induces a bijection $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast\to X(\varGamma)$ \tbd\sai{check}: It follows that the union $\bigcup_j \alpha^{-1}\alpha_j(\mathcal D^\ast)$ up to some boundary identifications is in bijection with $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast$. For continuous, bounded, $\alpha^{-1}\varGamma\alpha$-invariant functions $\varphi\colon \mathcal H\to \mathbb C$ define
+Let $\varGamma$ be a congruence subgroup, and write $\slz = \bigcup_j\cbr{\pm I}\varGamma \alpha_j$ for some representatives $\alpha_j$ of the coset space $\varGamma\backslash \slz$. If $\alpha\in\glqp$, then the map $\mathcal H\to\mathcal H$ given by $z \mapsto \alpha(z)$ induces a bijection $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast\to X(\varGamma)$ \tbd\sai{(to check)}: It follows that the union $\bigcup_j \alpha^{-1}\alpha_j(\mathcal D^\ast)$ up to some boundary identifications is in bijection with $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast$. For continuous, bounded, $\alpha^{-1}\varGamma\alpha$-invariant functions $\varphi\colon \mathcal H\to \mathbb C$ define
 \[\int_{\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast}\varphi(z)\dd\mu = \sum_j \int_{\mathcal D^\ast}\varphi(\alpha^{-1}\alpha_j(z))\dd\mu.\]
 
 \begin{lemma}
@@ -1199,10 +1234,10 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
 \end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
 
-\sai{main lemma?? how do i want to do this}
+\sai{The ``Main Lemma'' will appear soon.}
 
 \newpage\section{Strong Multiplicity One}
-\subsection{TEMPORARY bucket}
+\subsection{TEMPORARY collection of preliminary results}
 
 \begin{lemma}\label{lem: miyake lem 4.5.2}
     For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
@@ -1363,7 +1398,7 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \end{align*} be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
 \end{lemma}
 \begin{proof}
-    Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T(n)$ on elements of $\mathcal M_k(N,\chi)$ (recorded in \sai{insert cref to when this happens yo, it's after lemma 4.5.9}, we have
+    Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T(n)$ on elements of $\mathcal M_k(N,\chi)$ (recorded in \sai{insert reference -- it will occur after lemma 4.5.9}), we have
     \[(f|_k[T(m)])(z) = m^{k-1}\sum_{\substack{d>0\\d\mid n}}\sum_{b=0}^{d-1}\chi(m/d)d^{-k}\sum_{n=0}^\infty c_ne^{2\pi in((m/d)z+b)/d}.\] Then use the fact that $\sum_{b=0}^{d-1}e^{2\pi i n b/d}$ is equal to $d$ if $d\mid n$ and is $0$ otherwise to simplify the above expression into 
     \[\sum_{n=0}^\infty \sum_{\substack{d>0\\d\mid \gcd(m,n)}}\chi(m/d)(m/d)^{k-1}c_ne^{2\pi i(nm/d^2)z}.\] Change summation variables to obtain 
     \[\sum_{n=0}^\infty \sum_{a>0\\ a\mid \gcd(m,n)}\chi(a)a^{k-1}c_{dn/a}e^{2\pi inz},\] and with $ad = m$, it follows that $c_{dn/a} = c_{mn/a^2}$, and the result follows.
@@ -1493,7 +1528,6 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \end{enumerate}
     In any case, it follows for any $p$ that $M_p\mid N_p$ so that $M\mid N$, and that $\chi$ is induced by $\lambda$. Then \cref{thm: miyake thm 4.6.12} implies $f(z) = g(z)$, so that $N = M$.
 \end{proof}
-\subsection{applications!}
 
 % \newpage\section{}
 
