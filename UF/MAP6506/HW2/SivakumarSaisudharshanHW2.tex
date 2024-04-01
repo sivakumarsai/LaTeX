@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP6506}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\happy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\smiley}}}
+\newcommand{\darkhappy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\blacksmiley}}}
+\newcommand{\sad}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\mathdarkhappy}{\!\darkhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Green's function for the Sturm-Liouville operator with zero eigenvalue}
+    
+    Consider the boundary value problem \[L_0u = -(pu^\prime)^\prime = f,\quad x\in(a,b),\quad u^\prime(a) = u^\prime(b) = 0.\]
+    \begin{enumerate}[label=\textsf{(\roman*)}]
+        \item The homogeneous boundary value problem $L_0u = 0$ with $-u^\prime(a) = u^\prime(b) = 0$ only has constant non-trivial solution since $q = 0$ and $\alpha_a = \alpha_b = 0$ (see Proposition 44.1).
+        
+        It is also necessary for the integral of $f$ to vanish over $(a,b)$: Suppose $u_p$ is a particular solution to $L_0u_p = f$ with $u_p^\prime(a) = u_p^\prime(b) = 0$. Then $\int_a^b f(x) \dd x = \int_a^b -(p(x)u^\prime_p(x))^\prime\dd x = -p(x)u^\prime_p(x)\big|_a^b = 0$.
+
+        Suppose that $f$ satisfies $\int_a^b f(x)\dd x = 0$ and that $u_p$ is a particular solution to $L_0u_p = -(pu^\prime_p)^\prime = f$ with $u_p^\prime(a) = u_p^\prime(b) = 0$.
+    \end{enumerate}
+    
+    \hrulefill
+    \item 
+
+    \hrulefill
+    \item 
+
+    \hrulefill
+\end{enumerate}
+Honor Code: \vspace*{7em}
+\end{document}
