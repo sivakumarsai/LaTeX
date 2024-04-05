@@ -72,18 +72,146 @@
     
     Consider the boundary value problem \[L_0u = -(pu^\prime)^\prime = f,\quad x\in(a,b),\quad u^\prime(a) = u^\prime(b) = 0.\]
     \begin{enumerate}[label=\textsf{(\roman*)}]
-        \item The homogeneous boundary value problem $L_0u = 0$ with $-u^\prime(a) = u^\prime(b) = 0$ only has constant non-trivial solution since $q = 0$ and $\alpha_a = \alpha_b = 0$ (see Proposition 44.1).
+        \item The homogeneous boundary value problem $L_0u = 0$ with $-u^\prime(a) = u^\prime(b) = 0$ only has constant non-trivial solution since $q = 0$ and $\alpha_a = \alpha_b = 0$ (see Proposition 44.1). A general solution is of the form $u = c+u_p$.
         
         It is also necessary for the integral of $f$ to vanish over $(a,b)$: Suppose $u_p$ is a particular solution to $L_0u_p = f$ with $u_p^\prime(a) = u_p^\prime(b) = 0$. Then $\int_a^b f(x) \dd x = \int_a^b -(p(x)u^\prime_p(x))^\prime\dd x = -p(x)u^\prime_p(x)\big|_a^b = 0$.
 
-        Suppose that $f$ satisfies $\int_a^b f(x)\dd x = 0$ and that $u_p$ is a particular solution to $L_0u_p = -(pu^\prime_p)^\prime = f$ with $u_p^\prime(a) = u_p^\prime(b) = 0$.
+        Suppose that $f$ satisfies $\int_a^b f(x)\dd x = 0$ and that $u_p$ is a particular solution to $L_0u_p = -(pu^\prime_p)^\prime = f$ with $u_p^\prime(a) = u_p^\prime(b) = 0$. Then we integrate the equation $-(p(x)u^\prime_p(x))^\prime = f(x)$ to obtain 
+        \[u^\prime_p(x) = \frac{-1}{p(x)}\int_a^x f(y)\dd y,\] where the lower limit was chosen to be $a$ due to the boundary conditions $u_p^\prime(a) = u_p^\prime(b) = 0$. Integrating again yields 
+        \[u_p(x) = \int_a^x \frac{-1}{p(y)}\int_a^y f(z)\dd z \dd y,\] where the lower limit on the outer integral was chosen to be $a$ since any other choice would change $u_p(x)$ by a constant. Constant functions are solutions to the homogeneous boundary value problem, so we can safely make this choice. Since $f$ is continuous, its antiderivative is differentiable, and since $p$ is nonzero and continuous, $-1/p$ is antidifferentiable, and we integrate by parts to obtain 
+        \begin{align*}
+            u_p(x) &= \bigg[\int_a^y \frac{-1}{p(z)}\dd z\int_a^y f(z)\dd z\bigg]\bigg|_a^x + \int_a^x f(y)\int_a^y \frac{1}{p(z)}\dd z\dd y\\
+            &= \int_a^x \frac{-1}{p(z)}\dd z\int_a^x f(y)\dd y + \int_a^x f(y)\int_a^y \frac{1}{p(z)}\dd z\dd y.
+        \end{align*} Writing the above expression as $\int_a^b G(x,y)f(y)\dd y$, we find that \[G(x,y) = \begin{cases}
+            0 & a\leq x \leq y, \\
+            \int_a^y\frac{1}{p(z)}\dd z - \int_a^x\frac{1}{p(z)}\dd z & y\leq x \leq b
+        \end{cases}\] and $u_p = \int_a^b G(x,y)f(y)\dd y$.
+        \item Let $\varphi\in\mathcal D(a,b)$ be a test function and fix $y\in(a,b)$. Then \begin{align*}
+            (L_{0x}G(x,y),\varphi(x)) &= \bigg(\bigg(-p^\prime(x) \dv x - p(x) \dv[2] x\bigg)G(x,y),\varphi(x)\bigg)\\
+            &= \bigg(G(x,y), \dv x (p^\prime(x) \varphi(x)) -  \dv[2] x (p(x)\varphi(x))\bigg)\\
+            &= \bigg(G(x,y), -p^\prime(x)\varphi^\prime(x) - p(x)\varphi^{\prime\prime}(x) \bigg).
+        \end{align*} 
+        For $x < y$ (i.e., when $\supp\varphi\subseteq (a,y)$), the action of $G(x,y)$ is zero. So let $x > y$ (i.e., let $\supp\varphi \subseteq (y,b)$) so that \begin{align*}
+            \bigg(G(x,y), -p^\prime(x)\varphi^\prime(x) - p(x)\varphi^{\prime\prime}(x) \bigg) &= \int_a^b -G(x,y)p^\prime(x)\varphi^\prime(x)\dd x + \int_a^b -G(x,y)p(x)\varphi^{\prime\prime}(x)\dd x\\
+            &= \int_a^b (G^\prime_x(x,y)p^\prime(x) + G(x,y)p^{\prime\prime}(x))\varphi(x) \dd x\\&\hspace{1em} + \int_a^b (-G^{\prime\prime}_{xx}(x,y)p(x) - 2G^\prime_x(x,y)p^\prime(x) - G(x,y)p^{\prime\prime}(x))\varphi(x)\dd x\\
+            &= \int_a^b \bigg(-\frac{p^\prime(x)}{p^2(x)}p(x) + \frac{1}{p(x)}p^\prime(x)\bigg)\varphi(x)\dd x\\
+            &= 0.
+        \end{align*}
+        Along $x =y$, the derivative of $G(x,y)$ is discontinuous; that is, for fixed $y\in(a,b)$, we have that $\lim_{x\to y^+}p(x)G^\prime_x(x,y) = -1$ and $\lim_{x\to y^-}p(x)G^\prime_x(x,y) = 0$. Hence the distributional derivative of $p(x)G^\prime_x(x,y)$ is $G^\prime_x(x,y) = -\delta(x-y) + \cbr{(p(x)G^\prime_x(x,y))^\prime_x}$. Combined with the above, it follows that $L_{0x}G(x,y) = \delta(x-y)$ for fixed $y\in(a,b)$ in the sense of distributions.
+
+        Fix $y\in (a,b)$. The derivative $G^\prime_x(x,y)$ is a piecewise continuous function on $(a,b)$ in $x$ satisfying the boundary conditions \[\lim_{x\to a^+}G^\prime_x(x,y) = 0 \quad \text{and}\quad \lim_{x\to b^-}G^\prime_x(x,y) = \frac{-1}{p(b)} .\] (These do not match the original boundary conditions $u^\prime(a) = u^\prime(b) = 0$ on $u$?)
     \end{enumerate}
     
     \hrulefill
-    \item 
+    \item \textbf{Nonlinear boundary value problem for the second derivative operator}
+    
+    Consider the nonlinear boundary value problem \[u^{\prime\prime}(x) = \lambda u^4(x),\quad x\in(0,1),\quad u(0) = u(1) = 1,\] with $u\in C^2(0,1)\cap C^0([0,1])$.
+    \begin{enumerate}[label=\textsf{(\roman*)}]
+        \item Linearly independent solutions satisfying zero left and right boundary conditions are $x$ and $1-x$, respectively. The Wronskian $W(x)$ is $x(-1) - (1-x)(1)=-1$. Then the Green's function of the Sturm-Liouville operator $-\dv[2] x$ is \[G(x,y) = \begin{cases}
+            x(1-y) & 0\leq x\leq y,\\
+            (1-x)y & y\leq x \leq 1.
+        \end{cases}\]
+        Indeed, for fixed $y\in (0,1)$, the derivative $G^\prime_x(x,y)$ is a discontinuous function in $x$, and the discontinuity is given by $(\lim_{x\to y^+} G^\prime_x(x,y)) - (\lim_{x\to y^-} G^\prime_x(x,y)) = -y-(1-y) = -1$ so that the distributional derivative of $G^\prime_x(x,y)$ is $G^{\prime\prime}_{xx}(x,y) = -\delta(x-y)$. Thus $-\dv[2] x G(x,y) = \delta(x-y)$.
+        
+        The boundary conditions are met; that is, for fixed $y\in (0,1)$ we have $\lim_{x\to 0^+}G(x,y) = 0$ and $\lim_{x\to 1^-}G(x,y) = 0$.
+        \item Let $u$ be a solution to the boundary value problem. Then for fixed $x$, we have \begin{align*}
+            (Tu)(x) = 1-\lambda\int_0^1 G(x,y)u^4(y)\dd y &= 1-\bigg[\int_0^x (1-x)y u^{\prime\prime}_{yy}(y) \dd y + \int_x^1 x(1-y) u^{\prime\prime}_{yy}(y) \dd y\bigg]\\
+            &= 1-\bigg[(1-x)yu^\prime_y(y)\big|_0^x- \int_0^x (1-x)u^\prime_y(y)\dd y\\
+            &\hspace{1em} +x(1-y)yu^\prime_y(y)\big|_x^1 - \int_x^1 -xu^\prime_y(y)\dd y\bigg]\\
+            &= 1-\big[-(1-x)(u(x)-1)+x(1-u)\big]\\
+            &= u(x).
+        \end{align*} Hence $u$ is a solution to the Fredholm equation.
+        \item Let $u$ be continuous on $[0,1]$. It follows from the continuity of $G(x,y)$ as a function of $x$ on $[0,1]$ for any $y\in [0,1]$ that $G(x,y)u(y)$ is continuous in $x\in [0,1]$ for any $y\in[0,1]$. Since $[0,1]$ is compact, we can bound $G(x,y)u(y)$ by a constant and apply the Lebesgue dominated convergence theorem to see that $\int_0^1 G(x,y)u(y)\dd y$ is continuous in $x$ for any $y\in [0,1]$. It follows that $T$ does define a function $T\colon C^0([0,1])\to C^0([0,1])$.
+        \item Let $u$ satisfy the Fredholm equation $u = Tu$; that is, 
+        \[u(x) = (Tu)(x) = 1-\lambda\int_0^1 G(x,y)u^4(y)\dd y = 1-\lambda\bigg[\int_0^x (1-x)y u^{4}(y) \dd y + \int_x^1 x(1-y) u^{4}(y) \dd y\bigg].\]
+        The partial derivatives $[(1-x)y u^{4}(y)]^\prime_x = -yu^4(y)$, $(-yu^4(y))^\prime_x = 0$, $[x(1-y) u^{4}(y)]^\prime_x = (1-y)u^4(y)$, and $((1-y)u^4(y))^\prime_x = 0$ are continuous in $x$ for all $y\in [0,1]$. Then by the theorem on differentiation of an integral applied twice we obtain 
+        \begin{align*}
+            u^{\prime\prime}(x) &= -\lambda\bigg[(1-x)xu^4(y) + \int_0^x -yu^4(x) \dd y - x(1-x)u^4(x) + \int_x^1 (1-y)u^4(y)\dd y\bigg]^\prime_x \\
+            &= -\lambda[-xu^4(x) - (1-x)u^4(x)]\\
+            &= \lambda u^4(x)
+        \end{align*} for $x\in (0,1)$. Furthermore, since $\lim_{x\to 0^+}G(x,y) = 0$ and $\lim_{x\to 1^-}G(x,y) = 0$, it follows that $u(0) = u(1) = 1$.
+
+        \item The subset $S = \cbr{u\in C^0([0,1])\mid 0\leq u(x)\leq 1}$ is closed. Take any convergent sequence $\cbr{u_n}_{n\geq 0}$ of elements from $S$ and note that convergence in the supremum norm $\norm{\cdot}_\infty$ characterizes uniform convergence. So $u_n$ converges to some $u$ uniformly, from which it follows that $u$ is continuous on $[0,1]$. Since inequalities are preserved under taking limits, it follows that $0\leq u(x)\leq 1$ for all $x\in [0,1]$.
+        
+        The set $S$ is not a linear subspace. The constant function $f \equiv 1$ on $[0,1]$ belongs to $S$ but some constant multiple of $f$, for example $2f\equiv 2$, is not an element of $S$.
+
+        Observe that for $z\in [0,1]$ that $z\geq 0$ and $1-z\geq 0$. Then $0\leq x(1-y)$ and $0\leq (1-x)y$ for $(x,y)\in[0,1]\times [0,1]$. It follows that $G(x,y)$ is nonnegative on $[0,1]\times [0,1]$. We saw in the previous part that $T$ maps continuous functions to continuous functions. When $\lambda \geq 0$, we have that $(Tu)(x)\leq 1$, as $G(x,y)$ and hence also $G(x,y)u^4(y)$ is nonnegative. We find an upper bound on $\lambda$ such that $(Tu)(x)\geq 0$ for $x\in [0,1]$. This is equivalent to finding $\lambda$ such that 
+        \[\lambda\int_0^1G(x,y)u^4(y)\dd y\leq 1.\] Explicit computations yields
+        \begin{align*}
+            \int_0^1 G(x,y)u^4(y)\dd y &\leq \int_0^1 G(x,y)\dd y \\
+            &= (1-x)\int_0^x y\dd y + x\int_x^1 (1-y)\dd y \\
+            &= \frac{x(1-x)}{2}\\
+            &\leq \frac{1}{8}
+        \end{align*}
+        since $\max_{x\in [0,1]}\cbr{x(1-x)} = 1/4$. It follows that for $0\leq \lambda \leq 8$ that $T$ defines a function $T\colon S\to S$.
+        \item For $x\in(0,1)$ we have for $u,v\in S$ that
+        \begin{align*}
+            \abs{v^4(x)-u^4(x)} &= \abs{v(x)-u(x)}\abs{v^3(x) + v^2(x)u(x) + v(x)u^2(x) + u^3(x)}\\
+            &\leq \abs{v(x)-u(x)}\abs{v^3(x)} + \abs{v^2(x)u(x)} + \abs{v(x)u^2(x)} + \abs{u^3(x)}\\
+            &\leq 4\abs{v(x)-u(x)}\\
+            &\leq 4\norm{u-v}_\infty,
+        \end{align*} where in the last inequality we took the supremum. From this we obtain \begin{align*}
+            \abs{(Tv)(x) - (Tu)(x)} &= \lambda\abs{\int_0^1G(x,y)[u^4(x)-v^4(x)]\dd y}\\
+            &\leq 4\lambda\norm{v-u}_\infty\int_0^1 G(x,y)\dd y\\
+            &\leq \frac{\lambda}{2}\norm{v-u}_\infty.
+        \end{align*} Taking the supremum on both sides, we obtain \[\norm{Tv-Tu}_\infty \leq \frac{\lambda}{2}\norm{v-u}_\infty.\] Thus for $\lambda\in [0,2)$, $T$ is a contraction.
+        \item We invoke the contraction mapping principle. Since $S$ is closed (i.e. complete in itself) and $T\colon S\to S$ is a contraction for $\lambda\in [0,2)$, $T$ has a unique fixed point $u$ in $S$ (a solution to the boundary value problem). 
+        
+        Furthermore, for any $u_0\in S$, the sequence $\cbr{T^nu_0}_{n\geq 1}$ converges to $u$. In this sequence, $u_n = Tu_{n-1}$ for $n\geq 1$. Using the same argument as in \textsf{(iv)}, we have $u_n^{\prime\prime}(x) = \lambda u_{n-1}^4(x)$ with $u_n(0) = u_n(1) = 1$. Conversely, given $u_n^{\prime\prime}(x) = \lambda u_{n-1}^4(x)$ with $u_n(0) = u_n(1) = 1$, we must have by repeating the argument in \textsf{(ii)} that $u_n = Tu_{n-1}$. Hence the sequence $\cbr{u_n}$ generated by the iteration scheme $u_n^{\prime\prime} = \lambda u_{n-1}^4$ with $u_n(0) = u_n(1) = 1$ for $n\geq 1$ converges uniformly in $S$ to the solution of the boundary value problem.
+        \item Let $\lambda = 1$ and $u_0(x) = 1$. Then $u_1$ is a second antiderivative of $1$ satisfying the aforementioned boundary conditions. Thus $u_1(x) = x^2/2-x/2+1$. Iterating again, we find (using the \href{https://en.wikipedia.org/wiki/Trinomial_expansion}{trinomial expansion formula on Wikipedia} and a lot of arithmetic) that $u_2(x)$ is 
+        \[\frac{x^{10}}{1440} - \frac{x^9}{288} + \frac{x^8}{64} - \frac{x^7}{24} + \frac{49 x^6}{480} - \frac{7 x^5}{40} + \frac{7 x^4}{24} - \frac{x^3}{3} + \frac{x^2}{2} - \frac{1027 x}{2880} + 1.\]
+    \end{enumerate}
 
     \hrulefill
-    \item 
+    \item \textbf{Initial value problem for the sine-Gordon equation}
+    
+    Consider the Cauchy problem \[u^{\prime\prime}_{tt} - c^2u^{\prime\prime}_{xx} + \lambda\sin(u) = 0,\quad (x,t)\in(-\infty,\infty)\times(0,\infty),\quad u\big|_{t=0} = u_0(x),\quad u^\prime_t\big|_{t=0} = u_1(x)\] where $\lambda$ is a numerical parameter.
+    \begin{enumerate}[label=\textsf{(\roman*)}]
+        \item The corresponding integral equation is 
+        \[u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} u_1(y)\dd y + \frac{1}{2}\big(u_0(x+ct) + u_0(x-ct)\big) - \frac{\lambda}{2c}\int_0^t\int_{x-c(t-\tau)}^{x+c(t-\tau)}\sin(u(y,\tau))\dd y \dd\tau.\]
+        Suppose that $u$ satisfies the integral equation. By inspection, $\lim_{t\to 0}u(x,t) = u_0(x)$. Then $u$ is continuously differentiable in $t$ (fixed $x$): Let $u_0$ be twice differentiable. The first integral is differentiable when $u_1$ is continuous, and the inner integral of the double integral is differentiable since $\sin(u)$ is continuous and the derivative of the inner integral is again a continuous function in $t$ (hence integrable on $(0,t)$). Second differentiability in $t$ holds if we insist that $u_1$ is differentiable, and holds since the derivatives of $\sin(u)$ are integrable on $(0,t)$ since $u$ is continuously differentiable. Similar arguments may be made to see twice differentiability in $x$ (for fixed $t$). The first derivative of $u$ reads 
+        \begin{multline*}
+            \frac{1}{2}\big(u_1(x+ct) + u_1(x-ct)\big) + \frac{1}{2}\big(c\partial_tu_0(x+ct) - c\partial_t(x-ct)\big) \\ - \frac{\lambda}{2c}\int_0^t\bigg[\sin(u(x+c(t-\tau),\tau)) - \sin(u(x-c(t-\tau),\tau))\bigg]\dd \tau,
+        \end{multline*} and as $t$ tends to $0$ we do obtain $u_1(x)$.
+
+        We compute $u^{\prime\prime}_{tt} - c^2u^{\prime\prime}_{xx}$:
+        \begin{align*}
+            u^{\prime\prime}_{tt} - c^2u^{\prime\prime}_{xx} &= 
+        \end{align*}
+        (ran out of time)
+
+        \item
+    \end{enumerate}
+
+    \hrulefill
+    \item[\textbf{EC1.}] \textbf{Parallelogram law in normed spaces}
+    
+    Note that if $X$ is a real inner product space, then \[\frac{1}{4}\big(\norm{u+v}^2 - \norm{u-v}^2\big) = \frac{1}{4}\big(\abr{u+v,u+v} - \abr{u-v,u-v}\big) = \frac{1}{4}\cdot 4\abr{u,v} =\abr{u,v}\] as needed and \[\norm{u+v}^2 + \norm{u-v}^2 = \abr{u+v,u+v} + \abr{u-v,u-v} = 2\abr{u,u} + 2\abr{u,u} = 2\norm{u}^2 + 2\norm{v}^2\] as expected.
+
+    Conversely, suppose that $X$ is a normed space satisfying the parallelogram law and that $\abr{u,v}$ is defined to be the quantity $(\norm{u+v}^2 - \norm{u-v}^2)/4$. We show that each of the inner product axioms hold for $\abr{u,v}$.
+    
+    By definition, $\abr{u,u} = \norm{u}^2$, and from the norm axioms we have that this quantity is nonnegative and is equal to zero if and only if $u$ is the zero vector.
+
+    Observe that $\abr{u,v} = (\norm{u+v}^2 - \norm{u-v}^2)/4 = (\norm{v+u}^2 - \norm{v-u}^2)/4 = \abr{v,u}$ since $\abs{-1} = 1$.
+
+    To show that the inner product is linear, define $F(u,v,w) = 4(\abr{u+v,w} - \abr{u,w} - \abr{v,w})$. Apply the definition of the inner product and the parallelogram law (twice):
+    \begin{align*}
+        F(u,v,w) &= 4\big(\abr{u+v,w} - \abr{u,w} - \abr{v,w}\big)\\
+        (2) &= \norm{u+v+w}^2 - \norm{u+v-w}^2 - \norm{u+w}^2 + \norm{u-w}^2 - \norm{v+w}^2 +\norm{v-w}^2\\
+        % &= \norm{u+v+w}^2 - \norm{w-v-u}^2 - \norm{u+w}^2 + \norm{u-w}^2 - \norm{v+w}^2 +\norm{v-w}^2\\
+        &= -\norm{u+w-v}^2 + 2\norm{u+w}^2 + 2\norm{v}^2 + \norm{u-w-v}^2 - 2\norm{u-w}^2 - 2\norm{v}^2\\
+        &\hspace{1em}- \norm{u+w}^2 + \norm{u-w}^2 - \norm{v+w}^2 +\norm{v-w}^2 \\
+        (5) &= -\norm{u+w-v}^2 + \norm{u-w-v}^2 + \norm{u+w}^2 - \norm{u-w}^2 - \norm{v+w}^2 +\norm{v-w}^2 .
+    \end{align*}
+
+    Sum half of each of the expressions in rows (2) and (5) above to obtain \[F(u,v,w) = (\norm{u+v+w}^2 + \norm{u-w-v}^2)/2 - (\norm{u+w-v}^2 + \norm{u+v-w}^2)/2 - \norm{v+w}^2 +\norm{v-w}^2,\] which we simplify using the parallelogram law another two more times to obtain 
+    \[F(u,v,w) = \norm{u}^2 + \norm{v+w}^2 - \norm{u}^2 - \norm{v-w}^2- \norm{v+w}^2 +\norm{v-w}^2 = 0.\] Then $F(u,v,w) = 0$ implies that $\abr{u+v,w} = \abr{u,w} = \abr{v,w}$ as needed.
+
+    Now define $f(\alpha) = \abr{\alpha u, v}-\alpha\abr{u,v}$. We have that $f(n) = \abr{nu,v}-n\abr{u,v} = \abr{\sum_{i=1}^n u,v}-n\abr{u,v} = \big(\sum_{i=1}^n \abr{u,v}\big)-n\abr{u,v} = n\abr{u,v}-n\abr{u,v}=0$ using the result proved immediately above and induction. Now note that $\abr{u,v} = \frac{1}{q}(q\abr{u,v}) = \frac{1}{q}\abr{qu,v}$ for any positive integer $q$, since $f(n) = 0$ implies that $\abr{nu,v} = n\abr{u,v}$ for positive integers $n$. Let $p/q$ be a positive rational number. It follows from the last result that $f(\frac{p}{q}) = \abr{\frac{p}{q} u, v}-\frac{p}{q}\abr{u,v} = \frac{q}{q}\abr{\frac{p}{q} u, v}-\frac{1}{q}\abr{pu,v} = \frac{1}{q}\abr{\frac{pq}{q} u, v}-\frac{1}{q}\abr{pu,v} = 0$, so that the inner product is linear for positive rational coefficients. 
+
+    The inner product is continuous (in each entry) because the norm is continuous, from which it follows that $f$ is continuous. Then for any positive real number $\alpha$, take any sequence of positive rational numbers $p_n/q_n$ converging to $\alpha$ and find that the sequence $\cbr{f(p_n/q_n)} = \cbr{0}$, so that by continuity $f(\alpha) = 0$. Also see that $f(0) = 0$ since the inner product $\abr{u,v} = 0$ whenever $u$ is the zero vector, by our definition.
+
+    Lastly, note that $\abr{-u,v} = (\norm{-u+v}^2 - \norm{-u-v}^2)/4 = -(\norm{u+v}^2 - \norm{u-v}^2)/4 = -\abr{u,v}$. Hence $f(-\alpha) = \abr{-\alpha u, v}+\alpha\abr{u,v} = -\abr{\alpha u, v}+\alpha\abr{u,v} = 0$, from which it follows that the inner product is $\mathbb R$-linear as needed.
 
     \hrulefill
 \end{enumerate}

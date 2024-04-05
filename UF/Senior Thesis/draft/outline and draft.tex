@@ -166,10 +166,10 @@
 \section*{Acknowledgements}
 \newpage\tableofcontents
 
-\newpage\section*{Introduction}
+\newpage\section*{Introduction}\sai{check this}
 \addcontentsline{toc}{section}{Introduction}
 
-\newpage\section{Preliminaries} \pagestyle{body} In this section, we collect the definitions and results needed to define modular forms.
+\newpage\section{Preliminaries} \pagestyle{body} In this section, we collect the definitions and results needed to define modular forms. \sai{check this}
 \subsection{The modular group and congruence subgroups}
 Let $R$ be a unital ring. The \textib{general linear group} $\GL_n(R)$ is the group of $n\times n$ invertible matrices with entries from $R$; that is, matrices with unit determinant, under matrix multiplication. The \textib{special linear group} $\SL_n(R)$ is the (normal) subgroup of $\GL_n(R)$ whose matrices have determinant $1_R$.
 
@@ -481,7 +481,7 @@ We briefly define fundamental domains obtained from $X(\varGamma)$, without proo
 For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. A similar procedure for $X(\varGamma)$ produces fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{This last statement should be true, but maybe I should find a source}. 
 
 \newpage\section{Modular forms}
-In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.
+In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.\sai{check this}
 \subsection{Definitions}
 \begin{definition}
     For an integer $k$ and a congruence subgroup $\varGamma$, a meromorphic function $f\colon \mathcal H\to \mathbb{C}$ is \textib{weakly modular of weight $k$ (with respect to $\varGamma$)} if \[f(\gamma(z)) = (cz+d)^kf(z)\quad\text{for any}\quad \gamma = \abcd\in \varGamma, ~z\in \mathcal H.\qedhere\]
@@ -937,7 +937,7 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
         \abs{a_n} &= \abs{\int_0^1 f(x+iy)e^{-2\pi i n (x+iy)}\dd x}\\
         &\leq My^{-v}e^{2\pi n y}.
     \end{align*} By taking $y = 2/n$, it follows that $\abs{a_n} \leq (Me^{4\pi}2^{-v})n^v$.
-\end{proof} A converse to the above proposition is \cref{lem: miyake lem 4.3.3}
+\end{proof} A converse to the above proposition is \cref{lem: miyake lem 4.3.3}.
 \begin{lemma}[Phragmen-Lindel\"of]\label{lem: miyake lem 4.3.4}
     For two real numbers $v_1,v_2$ with $v_1<v_2$, let 
     \[F = \cbr{s\in \mathbb C : v_1\leq \Re(s)\leq v_2}.\] Let $\phi$ be a holomorphic function on a domain containing $F$ satisfying \[\abs{\phi(s)} = \mathcal O\big(e^{\abs{\tau}^\delta}\big)\quad \textup{($\abs{\tau}\to\infty$, with $s = \sigma + i\tau$),}\]
@@ -1029,7 +1029,7 @@ Its action on functions on $\mathcal H$ appears in several results forthcoming, 
 \end{corollary}
 
 \newpage\section{Hecke operators}
-In this section we define Hecke operators on modular forms and show that they form an inner product space with the Petersson inner product, and investigate simultaneous eigenfunctions of Hecke operators \tbd
+\sai{check this}
 \subsection{Double coset operators}
 Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
 \[\varGamma_1\alpha\varGamma_2 = \{\gamma_1\alpha\gamma_2 : \gamma_1\in\varGamma_1, \gamma_2\in\varGamma_2\}\] is a \textib{double coset} in $\glqp$. The group $\varGamma_1$ acts on the double coset $\varGamma_1\alpha\varGamma_2$ on the left by multiplication, partitioning it into orbits of the form $\varGamma_1\beta$, where $\beta = \gamma_1\alpha\gamma_2$ is some representative for this orbit. We show that the orbit space  $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ is a finite disjoint union $\bigsqcup_j\varGamma_1\beta_j$ for some choice of representatives $\beta_j$.
@@ -1076,7 +1076,7 @@ Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset opera
     \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ \sai{by symmetrizing over the quotient, a surjection (I could elaborate on this some more)}.
 \end{enumerate}
 
-Any double coset operator is a composition of these three operators. Given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
+Any double coset operator is a composition of these three operators. Indeed, given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
 \subsection{Hecke operators $\abr{n}$ and $T_n$}
 Recall the congruence subgroups \begin{align*}
     \varGamma_0(N) &= \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
@@ -1237,19 +1237,20 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \sai{The ``Main Lemma'' will appear soon.}
 
 \newpage\section{Strong Multiplicity One}
+\sai{check this}
 \subsection{TEMPORARY collection of preliminary results}
 
-\begin{lemma}\label{lem: miyake lem 4.5.2}
-    For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
-    \[\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
-        l & 0 \\ 0 & m
-    \end{pmatrix}\varGamma_0(N)\] \[(\text{respectively }\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
-        m & 0 \\ 0 & l
-    \end{pmatrix}\varGamma_0(N)).\]
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
+% \begin{lemma}\label{lem: miyake lem 4.5.2}
+%     (TO REMOVE?)For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
+%     \[\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
+%         l & 0 \\ 0 & m
+%     \end{pmatrix}\varGamma_0(N)\] \[(\text{respectively }\varGamma_0(N)\alpha\varGamma_0(N) = \varGamma_0(N)\begin{pmatrix}
+%         m & 0 \\ 0 & l
+%     \end{pmatrix}\varGamma_0(N)).\]
+% \end{lemma}
+% \begin{proof}
+%     \tbd
+% \end{proof}
 \begin{theorem}\label{thm: miyake thm 4.5.5}
     The following diagram is commutative: 
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzAsMSwiXFxtYXRoY2FsIE1fayhOLFxcb3ZlcmxpbmV7XFxjaGl9KSJdLFs0LDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbNCwxLCJcXG1hdGhjYWwgTV9rKE4sXFxvdmVybGluZXtcXGNoaX0pIl0sWzAsMSwiXFxvbWVnYV9OIl0sWzEsMywiVF5cXGFzdChuKVxcdGV4dHsgXFx0ZXh0dXB7KH1yZXNwLiAkVF5cXGFzdChtLGwpJFxcdGV4dHVweyl9fSJdLFswLDIsIlQobilcXHRleHR7IFxcdGV4dHVweyh9cmVzcC4gJFQobCxtKSRcXHRleHR1cHspfX0iXSxbMiwzLCJcXG9tZWdhX04iXV0=
@@ -1257,63 +1258,63 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 	{\mathcal M_k(N,\chi)} &&&& {\mathcal M_k(N,\chi)} \\
 	{\mathcal M_k(N,\overline{\chi})} &&&& {\mathcal M_k(N,\overline{\chi}).}
 	\arrow["{\omega_N}", from=1-1, to=2-1]
-	\arrow["{T^\ast(n)\text{ \textup{(}resp. $T^\ast(m,l)$\textup{)}}}", from=2-1, to=2-5]
-	\arrow["{T(n)\text{ \textup{(}resp. $T(l,m)$\textup{)}}}", from=1-1, to=1-5]
+	\arrow["{T^\ast_n}", from=2-1, to=2-5]
+	\arrow["{T_n}", from=1-1, to=1-5]
 	\arrow["{\omega_N}", from=1-5, to=2-5]
 \end{tikzcd}\]
 \end{theorem}
 \begin{proof}
     \tbd
 \end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.6}
-    Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-            1 & 0 \\ 0 & p^e
-        \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
-            \cbr{\big(\!\begin{smallmatrix}
-                p^{e-f} & m \\ 0 & p^f
-            \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
-            \cbr{\big(\!\begin{smallmatrix}
-                1 & m \\ 0 & p^e
-            \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
-        \end{cases} \]
-        \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-            1 & 0 \\ 0 & p^e
-        \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
-            p^e + p^{e-1} & \text{if $p\nmid N$,}\\
-            p^e & \text{if $p\mid N$.}
-        \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.7}
-    Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
-            (p+1)T(p,p) & \text{if $p\nmid N$ and $e=1$,}\\
-            pT(p,p)T(1,p^{e-1}) & \text{if $p\nmid N$ and $e > 1$,}\\
-            0 & \text{if $p\mid N$.}
-        \end{cases}$
-        \item $T(p)T(p^e) = \begin{cases}
-            T(p^{e+1})+pT(p,p)T(p^{e-1}) & \text{if $p\nmid N$,}\\
-            T(p^{e+1}) & \text{if $p\mid N$.}
-        \end{cases}$
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.8}
-    \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item If $\gcd(lm,l^\prime m^\prime) = 1$, then $T(l,m)T(l^\prime,m^\prime) = T(ll^\prime,mm^\prime)$.
-        \item If $\gcd(m,n) = 1$, then $T(m)T(n) = T(mn)$.
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.11}
+% \begin{lemma}\label{lem: miyake lem 4.5.6}
+%     (TO REMOVE?)Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
+%         \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+%             1 & 0 \\ 0 & p^e
+%         \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
+%             \cbr{\big(\!\begin{smallmatrix}
+%                 p^{e-f} & m \\ 0 & p^f
+%             \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
+%             \cbr{\big(\!\begin{smallmatrix}
+%                 1 & m \\ 0 & p^e
+%             \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
+%         \end{cases} \]
+%         \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+%             1 & 0 \\ 0 & p^e
+%         \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
+%             p^e + p^{e-1} & \text{if $p\nmid N$,}\\
+%             p^e & \text{if $p\mid N$.}
+%         \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
+%     \end{enumerate}
+% \end{lemma}
+% \begin{proof}
+%     \tbd
+% \end{proof}
+% \begin{lemma}\label{lem: miyake lem 4.5.7}
+%     (TO REMOVE)Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
+%         \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
+%             (p+1)T(p,p) & \text{if $p\nmid N$ and $e=1$,}\\
+%             pT(p,p)T(1,p^{e-1}) & \text{if $p\nmid N$ and $e > 1$,}\\
+%             0 & \text{if $p\mid N$.}
+%         \end{cases}$
+%         \item $T(p)T(p^e) = \begin{cases}
+%             T(p^{e+1})+pT(p,p)T(p^{e-1}) & \text{if $p\nmid N$,}\\
+%             T(p^{e+1}) & \text{if $p\mid N$.}
+%         \end{cases}$
+%     \end{enumerate}
+% \end{lemma}
+% \begin{proof}
+%     \tbd
+% \end{proof}
+% \begin{lemma}\label{lem: miyake lem 4.5.8}
+%     (TO REMOVE)\begin{enumerate}[label=\textup{(\arabic*)}]
+%         \item If $\gcd(lm,l^\prime m^\prime) = 1$, then $T(l,m)T(l^\prime,m^\prime) = T(ll^\prime,mm^\prime)$.
+%         \item If $\gcd(m,n) = 1$, then $T(m)T(n) = T(mn)$.
+%     \end{enumerate}
+% \end{lemma}
+% \begin{proof}
+%     \tbd
+% \end{proof}
+\begin{lemma}\label{lem: miyake lem 4.5.11} (TO REMOVE?)\sai{bro what is this}
     Let $N$ be a positive integer and $p$ a prime. Then 
     \[\varGamma_0(pN)\begin{pmatrix}
         1 & 0 \\ 0 & p
@@ -1380,33 +1381,32 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \end{proof}
 \begin{theorem}\label{thm: miyake thm 4.5.13}
     We have \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $T(m)T(n) = \sum_{\substack{l>0 \\ l\mid \gcd(m,n)\\ \gcd(l,N)=1}}lT(l,l)T(mn/l^2)$, and
-        \item the formal Dirichlet series $\sum_{n=1}^\infty T(n)n^{-s}$ has the formal Euler product \[\sum_{n=1}^\infty T(n)n^{-s} = \prod_{p\nmid N}(1-T(p)p^{-s} + T(p,p)p^{1-2s})^{-1}\cdot \prod_{p\mid N}(1-T(p)p^{-s})^{-1}\]
+        \item $T_mT_n = \sum_{\substack{l>0 \\ l\mid \gcd(m,n)\\ \gcd(l,N)=1}}l^{k-1}\abr{l}T_{mn/l^2}$, and
+        \item the formal Dirichlet series $\sum_{n=1}^\infty T_nn^{-s}$ has the formal Euler product \[\sum_{n=1}^\infty T_nn^{-s} = \prod_{p\nmid N}(1-T_np^{-s} + (p^{k-2}\abr{p})p^{1-2s})^{-1}\cdot \prod_{p\mid N}(1-T_pp^{-s})^{-1}\]
     \end{enumerate}
 \end{theorem}
 \begin{proof}
     Apply the previous lemma with 
-    \[K = \mathcal R(N),\quad t_n = T(n),\quad \text{and}\quad d_n =\begin{cases}
-        T(n,n) & \text{if $\gcd(n,N) = 1$},\\
+    \[K = \mathcal R(N),\quad t_n = T_n,\quad \text{and}\quad d_n =\begin{cases}
+        n^{k-2}\abr{n} & \text{if $\gcd(n,N) = 1$},\\
         0 & \text{if $\gcd(n,N)\neq 1$}
-    \end{cases}\] in combination with \cref{lem: miyake lem 4.5.7}(2) and \cref{lem: miyake lem 4.5.8}(2) to obtain the result.
+    \end{cases}\] to obtain the result.
 \end{proof}
 \begin{lemma}\label{lem: miyake lem 4.5.14}
-    Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \begin{align*}
-        f(z) &= \sum_{n=0}^\infty c_ne^{2\pi i n z},\\
-        (f|_k[T(m)])(z) &= \sum_{n=0}^\infty b_ne^{2\pi i nz}
-    \end{align*} be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
+    Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \[
+        f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z},\quad
+        (f|_k[T_m])(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}\] be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
 \end{lemma}
-\begin{proof}
+\begin{proof} \tbd \sai{(fix $T(n)$s)}
     Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T(n)$ on elements of $\mathcal M_k(N,\chi)$ (recorded in \sai{insert reference -- it will occur after lemma 4.5.9}), we have
     \[(f|_k[T(m)])(z) = m^{k-1}\sum_{\substack{d>0\\d\mid n}}\sum_{b=0}^{d-1}\chi(m/d)d^{-k}\sum_{n=0}^\infty c_ne^{2\pi in((m/d)z+b)/d}.\] Then use the fact that $\sum_{b=0}^{d-1}e^{2\pi i n b/d}$ is equal to $d$ if $d\mid n$ and is $0$ otherwise to simplify the above expression into 
     \[\sum_{n=0}^\infty \sum_{\substack{d>0\\d\mid \gcd(m,n)}}\chi(m/d)(m/d)^{k-1}c_ne^{2\pi i(nm/d^2)z}.\] Change summation variables to obtain 
     \[\sum_{n=0}^\infty \sum_{a>0\\ a\mid \gcd(m,n)}\chi(a)a^{k-1}c_{dn/a}e^{2\pi inz},\] and with $ad = m$, it follows that $c_{dn/a} = c_{mn/a^2}$, and the result follows.
 \end{proof}
 \begin{lemma}\label{lem: miyake lem 4.5.15}
-    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $f|_k[T(p)] = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
+    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $f|_k[T_p] = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
     \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item If all prime factors of a positive integer $m$ lie in $P$, then $f$ is an eigenfunction of $T(m)$. In this case, let $f|_k[T(m)] = t_mf$ for some $t_m\in\mathbb C$, from which it follows that $c_m = t_mc_1$.
+        \item If all prime factors of a positive integer $m$ lie in $P$, then $f$ is an eigenfunction of $T_m$. In this case, let $f|_k[T_m] = t_mf$ for some $t_m\in\mathbb C$, from which it follows that $c_m = t_mc_1$.
         \item We have $L(s,f) = \prod_{p\in P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}\cdot \sum_n^\prime c_nn^{-s}$, where the summation $\sum_n^\prime$ is taken over the positive integers coprime to every element of $P$.
     \end{enumerate}
 \end{lemma}
@@ -1415,18 +1415,17 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \end{proof}
 \begin{theorem}\label{thm: miyake thm 4.5.16}
     Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i nz}$ be a nonzero element of $\mathcal M_k(N,\chi)$. Then the following are equivalent: \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $f(z)$ is a common eigenfunction of every Hecke operator $T(n)$;
+        \item $f(z)$ is a common eigenfunction of every Hecke operator $T_n$;
         \item $c_1\neq 0$ and 
         \[L(s,f) = c_1\prod_{p\in\mathbb P} (1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1},\quad t_n = \frac{c_n}{c_1}.\]
-        Moreover, if $f(z)$ satisfies the above conditions, then
-        \[f|_k[T(n)] = t_nf\] for all $n\geq 1$.
     \end{enumerate}
+    Moreover, if $f(z)$ satisfies the above conditions, then $f|_k[T_n] = t_nf$ for all $n\geq 1$.
 \end{theorem}
 \begin{proof}
     \tbd
 \end{proof}
 \begin{theorem}\label{thm: miyake thm 4.6.12}
-    Let $f(z)\in \mathcal S_k^0(N,\chi)$ and $g(z)\in \mathcal S_k(N,\chi)$. If $f(z)$ and $g(z)$ are common eigenfunctions of $T(n)$ with the same eigenvalue for each $n$ coprime to some integer $L$, then $g(z)$ is a constant multiple of $f(z)$.
+    Let $f(z)\in \mathcal S_k^0(N,\chi)$ and $g(z)\in \mathcal S_k(N,\chi)$. If $f(z)$ and $g(z)$ are common eigenfunctions of $T_n$ with the same eigenvalue for each $n$ coprime to some integer $L$, then $g(z)$ is a constant multiple of $f(z)$.
 \end{theorem}
 \begin{proof}
     \tbd
@@ -1473,7 +1472,7 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}\in \mathcal S_k(M,\lambda)$. If $g(z)$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f(z) = g(z)$.
 \end{theorem}
 \begin{proof}
-    Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, then by \cref{lem: miyake lem 4.5.7}(2) we have
+    Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, we have from $T_{p^2} = T_pT_p - p^{k-1}\abr{p}\id$ that
     \begin{align*}
         \chi(p)p^{k-1} &= a_p^2 - a_{p^2} \\
         &= b_p^2 - b_{p^2} \\
@@ -1486,8 +1485,8 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     \end{equation} for $\Re(s)>k/2+1$. In fact, \cref{eqn: ratio varLambdas} holds for all $s$ since the ratio in the right-hand side is a meromorphic function on the whole $s$-plane.
 
     On the other hand, we have
-    \[\frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])}\] by \cref{cor: miyake cor 4.3.7}. Furthermore, $g|[T(n)] = b_n(g)$, and since $g(z)$ is a common eigenfunction of $T^\ast(n)$ by assumption, we have that $g|[T^\ast(n)] = \overline{b_n}g$ and 
-    \[(g|_k[\omega_M])|[T^\ast(n)] = \overline{b_n}(g|_k[\omega_M])\] by \cref{thm: miyake thm 4.5.5}. Then by \cref{thm: miyake thm 4.5.16} it follows that $L(s, g|_k[\omega_M])$ also has an Euler product expansion. Combined with \cref{thm: miyake thm 4.6.15}(2), we have 
+    \[\frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])}\] by \cref{cor: miyake cor 4.3.7}. Furthermore, $g|_k[T_n] = b_n(g)$, and since $g(z)$ is a common eigenfunction of $T^\ast_n$ by assumption, we have that $g|_k[T^\ast_n] = \overline{b_n}g$ and 
+    \[(g|_k[\omega_M])|_k[T^\ast_n] = \overline{b_n}(g|_k[\omega_M])\] by \cref{thm: miyake thm 4.5.5}. Then by \cref{thm: miyake thm 4.5.16} it follows that $L(s, g|_k[\omega_M])$ also has an Euler product expansion. Combined with \cref{thm: miyake thm 4.6.15}(2), we have 
     \begin{equation}\label{eqn: ratio shifted varLambdas}
         \frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])} = c\bigg(\frac{\sqrt{N}}{\sqrt{M}}\bigg)^{k-s}\prod_{p\mid L}\frac{1-\overline{b_p}p^{s-k} + \overline{\lambda}(p)p^{2s-k-1}}{1-\overline{a_p}p^{s-k} + \overline{\chi}(p)p^{2s-k-1}}
     \end{equation} for some constant $c$. By combining equations \labelcref{eqn: ratio varLambdas} and \labelcref{eqn: ratio shifted varLambdas} together, we obtain
