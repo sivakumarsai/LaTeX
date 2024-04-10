@@ -162,8 +162,12 @@
         Department of Mathematics, University of Florida
     \end{center}
 \end{titlepage}
+\begin{center}
+    \textbf{Abstract}
+\end{center}
+Classical modular forms are analytic functions of the upper half plane invariant under the action of congruence subgroups of $\slz$ up to a factor of automorphy. In this setting, the Hecke operators on the space of modular forms are normal operators on the subspace of cusp forms, the modular forms that vanish at cusps. Cusp forms satisfy the strong multiplicity one property, which roughly says that normalized eigenforms of the Hecke operators are uniquely determined by their eigenvalues. Strong multiplicity one, and other multiplicity one results, are often presented in the language of automorphic forms and representation theory. We introduce the theory of classical modular forms and provide a self-contained proof of the strong multiplicity one property for classical modular forms, following the proof in Modular Forms by Toshitsune Miyake. This approach avoids using the language of automorphic forms and representation theory by studying L-functions associated to modular forms, and their Euler products. An application of the strong multiplicity one property yields a basis for the space of cusp forms, which is nice since the space of modular forms decomposes into the direct sum of the space of cusp forms and the space of Eisenstein series.\newpage
 \pagestyle{frontmatter}
-\section*{Acknowledgements}
+\section*{Acknowledgements}\sai{check this}
 \newpage\tableofcontents
 
 \newpage\section*{Introduction}\sai{check this}
@@ -360,7 +364,7 @@ We topologize modular curves and briefly show they are compact Riemann surfaces.
 \begin{proposition}\label{prop: properly discontinuous}
     The action of the modular group $\slz$ on $\mathcal H$ is properly discontinuous; that is, for $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\slz$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
 \end{proposition}
-\begin{proof}
+\begin{proof}\sai{i kind of don't think I need this proof, could just cite it}
     Let $V_1$ and $V_2$ be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open disks or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $Y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, and $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eqn: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
         a & b \\ c & d
     \end{smallmatrix}\!\big)\in \slz$ not equal to $\pm I$ (i.e., $c\neq 0$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where this inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_2$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many integers $c,d$, if $\gamma  = \big(\!\begin{smallmatrix}
@@ -391,11 +395,11 @@ We topologize modular curves and briefly show they are compact Riemann surfaces.
     Let $F = \cbr{\gamma\in \slz: \gamma(V_1)\cap V_2\neq \emptyset, \gamma(z_1)\neq z_2}$, which is finite by the above argument. For each $\gamma \in F$ there exist disjoint neighborhoods $V_{1,\gamma}$ of $\gamma(z_1)$ and $V_{2,\gamma}$ of $z_2$ in $\mathcal H$. Let \[U_1 = V_1\cap \Bigg(\bigcap_{\gamma\in F}\gamma^{-1}(V_{1,\gamma})\Bigg)\quad\text{and}\quad U_2 = V_2\cap \Bigg(\bigcap_{\gamma\in F}V_{2,\gamma}\Bigg),\] and note that $U_1,U_2$ are open, as elements of $\slz$ are open maps on $\mathcal H$ by $\cref{lem: slz acts as open maps}$. Then take any $\gamma\in \slz$ with $\gamma(U_1)\cap U_2\neq \emptyset$. If $\gamma\not\in F$, then we must have $\gamma(z_1) = z_2$. Suppose that $\gamma\in F$. Then $U_1\subset \gamma^{-1}(U_{1,\gamma})$ and $U_2\subset U_{2,\gamma}$ so that $ \gamma(U_1)\cap U_2\subset U_{1,\gamma}\cap U_{2,\gamma}$. But $\gamma(U_1)\cap U_2\neq \emptyset$, which is in contradiction with $U_{1,\gamma}$ and $U_{2,\gamma}$ chosen to be disjoint. Hence $\gamma\not\in F$, so that $\gamma(z_1)= z_2$.
 \end{proof}
 
-Furthermore, $\pi(U_1)\cap \pi(U_2)=\emptyset$ in $Y(\varGamma)$ is equivalent to $\big(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ in $\mathcal H$. The equality
+The equality
 \begin{multline}\label{eqn: disjoint nbds in modular curve}
     \emptyset = \pi^{-1}(\pi(U_1)\cap \pi(U_2)) = \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\Bigg)\cap \Bigg(\bigcup_{\gamma\in \varGamma}\gamma(U_2)\Bigg) = \bigcup_{\gamma,\eta\in \varGamma}\gamma(U_1)\cap \eta(U_2)\\ = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma\in \varGamma}(\eta^{-1}\gamma)(U_1)\Bigg)\cap U_2\Bigg] = \bigcup_{\eta\in \varGamma}\eta\Bigg[\Bigg(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\Bigg)\cap U_2\Bigg]
 \end{multline}
-implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\cap U_2$ must be empty, from which the above equivalence follows.
+implies that $\big(\bigcup_{\gamma^\prime\in \varGamma}\gamma^\prime(U_1)\big)\cap U_2$ must be empty, which proves the following: $\pi(U_1)\cap \pi(U_2)=\emptyset$ in $Y(\varGamma)$ is equivalent to $\big(\bigcup_{\gamma\in \varGamma}\gamma(U_1)\big)\cap U_2 = \emptyset$ in $\mathcal H$.
 
 \begin{proposition}
     The space $Y(\varGamma)$ is second-countable, connected, and Hausdorff.
@@ -412,7 +416,7 @@ What remains is to compactify $Y(\varGamma)$ and to put charts on the resulting 
 The group $\glqp = \{\gamma\in \GL_2(\mathbb Q) : \det \gamma >0\}$ acts on $\mathbb Q \cup \{\infty\}$ by 
 \[\abcd \Big(\frac{r}{s}\Big) = \frac{ar+bs}{cr+ds},\] taking $\infty$ to $a/c$ and $-d/c$ to $\infty$ when $c\neq 0$, and taking $\infty$ to $\infty$ when $c = 0$. Since $\smallabcd$ is invertible, the action above never produces indeterminate forms like $0/0$. Furthermore, $\slz$ acts transitively: Any rational number is of the form $a/c$, where $a$ and $c$ are coprime. Choose $b,d$ so that $ad-bc=1$, from which we have $\smallabcd(\infty) = a/c$.
 
-Let $\mathcal H^\ast = \mathcal H\cup \mathbb Q\cup\{\infty\}$ and define the \textib{compactified modular curve} $X(\varGamma)$ as a set by \[X(\varGamma) = \varGamma\backslash\mathcal H^\ast = Y(\varGamma)\cup\varGamma\backslash(\mathbb Q\cup \{\infty\}).\] Call the points $\varGamma s\in \varGamma\backslash(\mathbb Q\cup \{\infty\})$ \textib{cusps} of $X(\varGamma)$. Denote by $X_0(N)$, $X_1(N)$, and $X(N)$ the modular curves $X(\varGamma_0(N))$, $X(\varGamma_1(N))$, and $X(\varGamma(N))$ respectively.
+Let $\mathcal H^\ast = \mathcal H\cup \mathbb Q\cup\{\infty\}$ and define the \textib{compactified modular curve} $X(\varGamma)$ as a set by \[X(\varGamma) = \varGamma\backslash\mathcal H^\ast = Y(\varGamma)\cup\varGamma\backslash(\mathbb Q\cup \{\infty\}).\] Call the points $\varGamma s\in \varGamma\backslash(\mathbb Q\cup \{\infty\})$ \textib{cusps} of $X(\varGamma)$ (or of $\varGamma$). Denote by $X_0(N)$, $X_1(N)$, and $X(N)$ the modular curves $X(\varGamma_0(N))$, $X(\varGamma_1(N))$, and $X(\varGamma(N))$ respectively.
 
 \begin{lemma}\label{lem: finitely many cusps}
     The modular curve $X(\varGamma)$ has finitely many cusps for any congruence subgroup $\varGamma$.
@@ -557,7 +561,7 @@ Let $D = \cbr{q\in\mathbb C : \abs{q} <1}$ be the open unit disk in $\mathbb C$ 
 
 The logarithm can be defined holomorphically about each $q\in D^\prime$. It follows that $\tilde f$ is meromorphic on $D^\prime$ since $f$ is meromorphic on $\mathcal H$, and so $\tilde f$ has a Laurent expansion $\tilde f(q) = \sum_{n\in\mathbb Z}a_nq^n$ at each $q$ in a punctured neighborhood of $q=0$ (and $a_n = 0$ for all $n$ sufficiently small). Moreover, if $f$ is holomorphic on $\mathcal H$, it follows that $\tilde f$ is also holomorphic on $D^\prime$.
 
-From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$ about $\infty$, given by 
+From $\abs{q} = e^{-2\pi \Im z/h}$, it follows that $q$ tends to zero as $\Im z$ tends to infinity. We define $f$ to be meromorphic (respectively holomorphic) at $\infty$ if $\tilde f$ has a meromorphic (respectively holomorphic) extension to $q = 0$ (and in the holomorphic case the Laurent series at $q=0$ sums over the nonnegative integers). The Laurent series of $\tilde f$ about $q=0$ is used to obtain a Fourier series expansion of $f$ about $\infty$, given by 
 \[f(z) = \sum_{n\in\mathbb Z} a_n(f)q^n,\quad q = e^{2\pi i z/h},\] which converges absolutely and uniformly on compact subsets of the half plane $\cbr{z\in\mathbb Z: \Im z>\tau}$ for some large enough $\tau$ (so that $q$ lies in a punctured neighborhood of zero). When referring to a Fourier series of a $h\mathbb Z$-periodic meromorphic function on $\mathcal H$, we mean the expansion obtained in the above manner. If $f$ is holomorphic on $\mathcal H$ and is holomorphic at $\infty$, the Fourier series expansion becomes $f(z) = \sum_{n=0}^\infty a_n(f)q^n$, $q = e^{2\pi i z/h}$, valid for $z\in \mathcal H$. To see that a weakly modular holomorphic function $f\colon \mathcal H\to \mathbb C$ is holomorphic at $\infty$, it suffices to show that $\lim_{\Im z\to\infty} f(z)$ exists or that $f(z)$ is bounded as $\Im z$ grows unboundedly.
 \begin{definition}
     Let $\varGamma$ be a congruence subgroup of $\slz$ and let $k$ be an integer. A function $f\colon \mathcal H\to\mathbb C$ is a \textib{modular form of weight $k$ \textup{(}with respect to $\varGamma$\textup{)}} if it satisfies the following: \begin{enumerate}[label=(\arabic*)]
@@ -832,14 +836,14 @@ Obtain new orthogonality relations from the ones appearing in \cref{eqn: ortho r
 \begin{definition}
     Let $\chi$ be a Dirichlet character modulo $N$. The \textib{Gauss sum} of $\chi$ is the complex number
     \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^n,\] where $\mu_N = e^{2\pi i/N}$.
-\end{definition}
-\begin{proposition}
-    If $\chi$ is a primitive character modulo $N$, then for any integer $m$ we have 
-    \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^{nm} = \overline\chi(m)g(\chi).\] Furthermore, the Gauss sum of a primitive character is nonzero.
-\end{proposition}
-\begin{proof}
-    \tbd
-\end{proof}
+\end{definition} \sai{may want to move this to the one result that does use it}
+% \begin{proposition}
+%     If $\chi$ is a primitive character modulo $N$, then for any integer $m$ we have 
+%     \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^{nm} = \overline\chi(m)g(\chi).\] Furthermore, the Gauss sum of a primitive character is nonzero.
+% \end{proposition}
+% \begin{proof}
+%     \tbd
+% \end{proof}
 \begin{lemma}
     Let $N$ be a positive integer. If $N = 1,2$, then every Dirichlet character $\chi$ modulo $N$ satisfies $\chi(-1)=1$. If $N>2$, then the number of Dirichlet characters modulo $N$ is even, of which half satisfy $\chi(-1) = 1$ and the other half satisfy $\chi(-1) = -1$.
 \end{lemma}
@@ -858,7 +862,7 @@ Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varG
 \begin{proof}
     \tbd 
 \end{proof}
-
+\sai{do i need this discussion of dirichlet L functions}
 \begin{definition}
     To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
     \[L(s,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using the fundamental theorem of arithmetic combined with the fact that $(1-\chi(p)p^{-s})^{-1}$ is given by a geometric series.
@@ -880,31 +884,31 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 \end{pmatrix}.\] So if $f\in \mathcal M_k(\varGamma(N))$,
 \[f(Nz) = f\big(\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)z\big) = N^{-k/2}\Big(f|_k\big[\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)z\big) = N^{-k/2}\Big(f|_k[\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big]\Big)(z)\] and $N^{-k/2}f|_k\big[\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)]\Big)(z)\] and $N^{-k/2}f|_k[\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big]\in \mathcal M_k(\varGamma_1(N^2))$. Indeed, $f(Nz)$ is holomorphic on $\mathcal H$ since $f$ is holomorphic on $\mathcal H$. For $\gamma\in\varGamma_1(N^2)$, $\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)]\in \mathcal M_k(\varGamma_1(N^2))$. Indeed, $f(Nz)$ is holomorphic on $\mathcal H$ since $f$ is holomorphic on $\mathcal H$. For $\gamma\in\varGamma_1(N^2)$, $\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big)\gamma\in \varGamma(N)\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big)$ so that
-\[N^{-k/2}f|_k\big[\big(\!\begin{smallmatrix}
+\[N^{-k/2}f|_k[\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big]|_k[\gamma] = N^{-k/2}f|_k\big[\gamma^\prime\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)]|_k[\gamma] = N^{-k/2}f|_k[\gamma^\prime\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big] = N^{-k/2}f|_k\big[\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)] = N^{-k/2}f|_k[\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big],\] where $\gamma^\prime$ is an element of $\varGamma(N)$. Lastly, let $\alpha\in \slz$, and note that $\slz$ is normal in $\GL_2(\mathbb Z)$ so that $\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)],\] where $\gamma^\prime$ is an element of $\varGamma(N)$. Lastly, let $\alpha\in \slz$, and note that $\slz$ is normal in $\GL_2(\mathbb Z)$ so that $\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big)\alpha = \alpha^\prime \big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big)$ for some $\alpha^\prime\in\slz$. Then 
-\[N^{-k/2}\Big(f|_k\big[\big(\!\begin{smallmatrix}
+\[N^{-k/2}\Big(f|_k[\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big]|_k[\alpha]\Big)(z) = N^{-k/2}\Big(f|_k\big[\alpha^\prime\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)]|_k[\alpha]\Big)(z) = N^{-k/2}\Big(f|_k[\alpha^\prime\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)\big]\Big)(z) = j\big(\alpha^\prime\big(\!\begin{smallmatrix}
+\end{smallmatrix}\!\big)]\Big)(z) = j\big(\alpha^\prime\big(\!\begin{smallmatrix}
     N & 0 \\ 0 & 1
 \end{smallmatrix}\!\big),z\big)^{-k}f(\alpha^\prime(Nz)) = (f|_k[\alpha^\prime])(Nz),\] which is holomorphic at $\infty$ since $f\in\mathcal M_k(\varGamma(N))$. If the  series expansion of $f$ at $\infty$ is $f(z) = \sum_{n =0}^\infty a_ne^{2\pi i n z/N}$, we have the Fourier expansion
 \[f(Nz) = \sum_{n =0}^\infty a_ne^{2\pi i n z},\] and vice versa. So for the purposes of defining $L$-functions for modular forms, it suffices to define them for modular forms in $\mathcal M_k(\varGamma_1(N))$. We require a few preliminary results about Dirichlet series:
@@ -1029,7 +1033,7 @@ Its action on functions on $\mathcal H$ appears in several results forthcoming, 
 \end{corollary}
 
 \newpage\section{Hecke operators}
-\sai{check this}
+\sai{description to be added later}
 \subsection{Double coset operators}
 Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
 \[\varGamma_1\alpha\varGamma_2 = \{\gamma_1\alpha\gamma_2 : \gamma_1\in\varGamma_1, \gamma_2\in\varGamma_2\}\] is a \textib{double coset} in $\glqp$. The group $\varGamma_1$ acts on the double coset $\varGamma_1\alpha\varGamma_2$ on the left by multiplication, partitioning it into orbits of the form $\varGamma_1\beta$, where $\beta = \gamma_1\alpha\gamma_2$ is some representative for this orbit. We show that the orbit space  $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ is a finite disjoint union $\bigsqcup_j\varGamma_1\beta_j$ for some choice of representatives $\beta_j$.
@@ -1046,7 +1050,9 @@ Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgrou
 \end{proof}
 \begin{lemma}\label{lem: double coset coset/orbit spaces}
     Let $\alpha\in\glqp$ and $\varGamma_1,\varGamma_2$ be congruence subgroups. Let $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2\subset \varGamma_2$. Then the map $\varGamma_2\to \varGamma_1\alpha\varGamma_2$ given by left multiplication by $\alpha$, $\gamma_2\mapsto\alpha\gamma_2$, induces a natural bijection of the coset space $\varGamma_3\backslash\varGamma_2$ to the orbit space $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$.
-\end{lemma} In other words, $\{\gamma_{2,j}\}$ is a set of coset representatives for $\varGamma_3\backslash \varGamma_2$ if and only if $\{\alpha\gamma_{2,j}\}$ is a set of orbit representatives for $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$.
+
+    In other words, $\{\gamma_{2,j}\}$ is a set of coset representatives for $\varGamma_3\backslash \varGamma_2$ if and only if $\{\alpha\gamma_{2,j}\}$ is a set of orbit representatives for $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$.
+\end{lemma} 
 \begin{proof}
     It is evident that the map $\varGamma_2\to \varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ given by $\gamma_2\mapsto \varGamma_1\alpha\gamma_2$ is surjective, since elements of $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ are of the form $\varGamma_1\gamma_1\alpha\gamma_2$ for some $\gamma_1,\gamma_2$. Two elements $\gamma_2,\gamma_2^\prime\in\varGamma_2$ map to the same orbit if $\varGamma_1\alpha\gamma_2 = \varGamma_1\alpha\gamma_2^\prime$, that is, if $\gamma_2^\prime\gamma_2^{-1}\in \alpha^{-1}\varGamma_1\alpha$. It follows that by taking $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha\cap \varGamma_2$ as above, that the induced map from the coset space $\varGamma_3\backslash\varGamma_2\to \varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is a bijection.
 \end{proof}
@@ -1059,21 +1065,29 @@ Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgrou
         [\varGamma_2 : \varGamma(\lcm(N_1,N_2))] &= [\varGamma_2 : \varGamma_1\cap \varGamma_2][\varGamma_1\cap \varGamma_2 : \varGamma(\lcm(N_1,N_2))].
     \end{align*} The indices $[\varGamma_1 : \varGamma(\lcm(N_1,N_2))],[\varGamma_2 : \varGamma(\lcm(N_1,N_2))]$ are finite (see the discussion following \cref{def: congruence subgroup}), so that the indices $[\varGamma_1 : \varGamma_1\cap \varGamma_2], [\varGamma_2 : \varGamma_1\cap \varGamma_2]$ are also finite.
 \end{proof}
-In \cref{lem: conjugation congruence subgroup}, since $\alpha^{-1}\varGamma\alpha\cap\slz$ is a congruence subgroup, the coset space $\varGamma_3\backslash \varGamma_2$ from \cref{lem: double coset coset/orbit spaces} is finite, so that the orbit space $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is also finite as desired.
+In \cref{lem: conjugation congruence subgroup}, since $\alpha^{-1}\varGamma\alpha\cap\slz$ is a congruence subgroup, the coset space $\varGamma_3\backslash \varGamma_2$ from \cref{lem: double coset coset/orbit spaces} is finite, so that the orbit space $\varGamma_1\backslash \varGamma_1\alpha\varGamma_2$ is also finite as desired. With this result, we can define an action of double cosets on modular forms.
 
 \begin{definition}\label{def: weight k double coset operator}
     Let $\alpha\in \glqp$ and $\varGamma_1,\varGamma_2$ be congruence subgroups. The \textib{weight-$k$ $\varGamma_1\alpha\varGamma_2$ operator} (``double coset operator'') $|_k[\varGamma_1\alpha\varGamma_2]$ given by 
-    \[f|_k[\varGamma_1\alpha\varGamma_2] = \sum_jf|_k[\beta_j],\] where $\{\beta_j\}$ is a set of orbit representatives of $\varGamma_1\alpha\varGamma_2$ (so $\varGamma_1\alpha\varGamma_2 = \bigsqcup_j \varGamma_1\beta_j$), takes modular forms in $\mathcal M_k(\varGamma_1)$ to modular forms in $\mathcal M_k(\varGamma_2)$. It also takes cusp forms in $\mathcal S_k(\varGamma_1)$ to cusp forms in $\mathcal S_k(\varGamma_2)$.
+    \[f|_k[\varGamma_1\alpha\varGamma_2] = (\det \alpha)^{k/2-1}\sum_jf|_k[\beta_j],\] where $\{\beta_j\}$ is a set of orbit representatives of $\varGamma_1\alpha\varGamma_2$ (that is, $\varGamma_1\alpha\varGamma_2 = \bigsqcup_j \varGamma_1\beta_j$), takes modular forms in $\mathcal M_k(\varGamma_1)$ to modular forms in $\mathcal M_k(\varGamma_2)$. It also takes cusp forms in $\mathcal S_k(\varGamma_1)$ to cusp forms in $\mathcal S_k(\varGamma_2)$.
 \end{definition}
-We check that this definition is well defined, that is, independent of the choice of orbit representatives for $\varGamma_1\alpha\varGamma_2$. \tbd
+We check that this definition is well defined, that is, independent of the choice of orbit representatives for $\varGamma_1\alpha\varGamma_2$. Let $\beta = \gamma_1\alpha\gamma_2$ and $\beta^\prime = \gamma_1^\prime\alpha\gamma_2^\prime$ represent the same orbit in $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$, so that $\varGamma_1\beta = \varGamma_1\beta^\prime$. It follows that $\alpha\gamma_2\in\varGamma_1\alpha\gamma_2^\prime$. Since $f$ is weight-$k$ invariant under $\varGamma_1$, we have $f|_k[\beta] = f|_k[\alpha\gamma_2] = f|_k[\eta_1\alpha\gamma_2^\prime] = f|_k[\alpha\gamma_2^\prime] = f|_k[\beta^\prime]$. Thus the action of the double coset $\varGamma_1\alpha\varGamma_2$ is well defined.
 
-We also check that the double coset operator takes modular forms to modular forms and cusp forms to cusp forms. \tbd
+We also check that the double coset operator takes modular forms to modular forms and cusp forms to cusp forms. For $f\in \mathcal M_k(\varGamma_1)$, we verify that $f|_k[\varGamma_1\alpha\varGamma_2]$ is $\varGamma_2$-invariant and holomorphic at the cusps of $\varGamma_2$.
 
-Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset operators (with explanations \tbd):
+Note that any $\gamma_2\in\varGamma_2$ permutes the orbit space $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ by right multiplication. So given a set of orbit representatives $\cbr{\beta_j}$ for $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$, then $\cbr{\beta_j\gamma_2}$ is also a set of orbit representatives. Therefore 
+\[(f|_k[\varGamma_1\alpha\varGamma_2])|_k[\gamma_2] = (\det\alpha)^{k/2-1}\sum_j f|_k[\beta_j\gamma_2] = f|_k[\varGamma_1\alpha\varGamma_2].\] It follows that $f|_k[\varGamma_1\alpha\varGamma_2]$ is weight-$k$ invariant under $\varGamma_2$ as needed.
+
+Observe that for any $f\in\mathcal M_k(\varGamma_1)$ and any $\gamma\in\glrp$, the function $f|_k[\gamma]$ is holomorphic at infinity; that is, it has a Fourier expansion 
+\[(f|_k[\gamma])(z) = \sum_{n=0}^\infty a_ne^{2\pi i n z/h}\] for some positive integer $h$ by \cref{lem: weight k operator properties}. Then for any $\delta\in\slz$, 
+\[(f|_k[\varGamma_1\alpha\varGamma_2])|_k[\delta] = (\det\alpha)^{k/2-1}\sum_{j}f|_k[\beta_j\delta]\]
+for some set of orbit representatives $\cbr{\beta_j}$ of $\varGamma_1\alpha\varGamma_2$, from which holomorphicity of $f|_k[\varGamma_1\alpha\varGamma_2]$ at all cusps of $\varGamma_2$ follows, since each summand above is holomorphic at infinity. In the case that $f$ is a cusp form, $f|_k[\gamma]$ vanishes at infinity for any $\gamma\in\glrp$ as we saw in \cref{lem: weight k operator properties}. Therefore the double coset operator takes modular forms to modular forms and cusp forms to cusp forms.
+
+Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset operators:
 \begin{enumerate}[label=(\arabic*)]
     \item If $\varGamma_2\subset \varGamma_1$ and $\alpha = I$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f$ and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural inclusion of $\mathcal M_k(\varGamma_1)$ into $\mathcal M_k(\varGamma_2)$.
-    \item If $\varGamma_2 = \alpha^{-1}\varGamma_1\alpha$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f|_k[\alpha]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural isomorphism of $\mathcal M_k(\varGamma_1)$ with $\mathcal M_k(\varGamma_2)$.
-    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ \sai{by symmetrizing over the quotient, a surjection (I could elaborate on this some more)}.
+    \item If $\varGamma_2 = \alpha^{-1}\varGamma_1\alpha$, then $f|_k[\varGamma_1\alpha\varGamma_2] = (\det\alpha)^{k/2-1}f|_k[\alpha]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is an isomorphism of $\mathcal M_k(\varGamma_1)$ with $\mathcal M_k(\varGamma_2)$.
+    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = (\det\alpha)^{k/2-1}\sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is a multiple of the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ by symmetrizing over the quotient, a surjection. (The action of $\varGamma_1$ on $\varGamma_2$ is to permute the coset representatives of $\varGamma_1\backslash\varGamma_2$, so the action of $\varGamma_1$ on elements in the image of the natural trace map is the identity.)
 \end{enumerate}
 
 Any double coset operator is a composition of these three operators. Indeed, given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
@@ -1088,9 +1102,9 @@ Recall the congruence subgroups \begin{align*}
         1 & \ast \\ 0 & 1
     \end{pmatrix}\smod N}.
 \end{align*} Since $\varGamma_1(N)\subset 
-\varGamma_0(N)$, we have the containment $\mathcal M_k(\varGamma_0(N))\subset \mathcal M_k(\varGamma_1(N))$ of modular forms. We define the two operators $\abr{n}$ and $T_n$ on the larger space $\mathcal M_k(\varGamma_1(N))$ (note that we defined $L$-functions for elements of $\mathcal M_k(\varGamma_1(N))$ in \cref{def: L function}).
+\varGamma_0(N)$, we have the containment $\mathcal M_k(\varGamma_0(N))\subset \mathcal M_k(\varGamma_1(N))$ of modular forms. We define the two operators $\abr{n}$ and $T_n$ on the larger space $\mathcal M_k(\varGamma_1(N))$.
 
-Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$. From \cref{lem: gamma 1 normal in gamma 0} we have that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ and that $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$, so the double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$ is of the form (2) in the list following \cref{def: weight k double coset operator} \sai{(not quite the right location, but fix later)}. Hence this double coset operator translates a function $f\in \mathcal M_k(\varGamma_1(N))$ to $f|_k[\varGamma_1(N)\alpha\varGamma_1(N)] = f|_k[\alpha]\in \mathcal M_k(\varGamma_1(N))$. In this way the group $\varGamma_0(N)$ acts on $\mathcal M_k(\varGamma_1(N))$, and its subgroup $\varGamma_1(N)$ acts trivially. Thus $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$ acts on $\mathcal M_k(\varGamma_1(N))$. In particular, if $d\in (\mathbb Z/N\mathbb Z)^\times$, there exists $\big(\!\begin{smallmatrix}
+Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$. From \cref{lem: gamma 1 normal in gamma 0} we have that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ and that $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$, so the double coset operator $|_k[\varGamma_1(N)\alpha\varGamma_1(N)]$ is of the form (2) in the list of notable double coset operators following \cref{def: weight k double coset operator}. Hence this double coset operator translates a function $f\in \mathcal M_k(\varGamma_1(N))$ to $f|_k[\varGamma_1(N)\alpha\varGamma_1(N)] = f|_k[\alpha]\in \mathcal M_k(\varGamma_1(N))$. In this way the group $\varGamma_0(N)$ acts on $\mathcal M_k(\varGamma_1(N))$, and its subgroup $\varGamma_1(N)$ acts trivially. Thus $\varGamma_0(N)/\varGamma_1(N)\cong (\mathbb Z/N\mathbb Z)^\times$ acts on $\mathcal M_k(\varGamma_1(N))$. In particular, if $d\in (\mathbb Z/N\mathbb Z)^\times$, there exists $\big(\!\begin{smallmatrix}
     a^\prime & b^\prime \\ c^\prime & d^\prime
 \end{smallmatrix}\!\big)\in \varGamma_0(N)/\varGamma_1(N)$ with $d^\prime\equiv d\smod N$. Thus the action of $d$ on $\mathcal M_k(\varGamma_1(N))$, called the diamond operator $\abr{d}\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$, is given by 
 \[\abr{d}f = f|_k[\alpha] \quad \text{for any $\alpha = \begin{pmatrix}
@@ -1102,13 +1116,13 @@ It follows that the diamond operator $\abr{d}$ acts on $\mathcal M_k(\varGamma_1
 
 We extend the definition of the diamond operator $\abr{d}$ for $d\in (\mathbb Z/N\mathbb Z)^\times$ to $\abr{n}$ for $n\in\mathbb{Z}^+$.
 \begin{definition}
-    The \textib{Hecke operator $\abr{n}$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb{Z}^+$ is given by the zero operator when $\gcd(n,N)>1$ and is given by $\abr{\overline n}$ when $\gcd(n,N) = 1$ (where $\overline{\,\cdot\,}$ denotes reduction modulo $N$). Observe that the mapping $n\mapsto \abr{n}$ is totally multiplicative; that is, $\abr{nm} = \abr{n}\abr{m}$ for all positive integers $n,m$.
+    The \textib{Hecke operator $\abr{n}$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb{Z}^+$ is given by the zero operator when $\gcd(n,N)>1$ and is given by $\abr{\overline n}$ when $\gcd(n,N) = 1$ (where $\overline{\,\cdot\,}$ denotes reduction modulo $N$).
 \end{definition}
 
 Let $p$ be a prime number, and consider the weight-$k$ double coset operator $T_p = |_k[\varGamma_1(N)\alpha\varGamma_1(N)]\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ where $\alpha = \big(\!\begin{smallmatrix}
     1 & 0 \\ 0 & p
 \end{smallmatrix}\!\big)$. 
-\begin{lemma}
+\begin{lemma}\label{lem: replacement for T_n}
     For a prime $p$, the double coset $\varGamma_1(N)\big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
     \end{smallmatrix}\!\big)\varGamma_1(N)$ is given by 
@@ -1116,15 +1130,170 @@ Let $p$ be a prime number, and consider the weight-$k$ double coset operator $T_
         1 & 0 \\ 0 & p
     \end{smallmatrix}\!\big)\varGamma_1(N) = \cbr{\gamma\in \Mat_2(\mathbb Z) : \gamma \equiv \begin{pmatrix}
         1 & \ast \\ 0 & p
-    \end{pmatrix}, \det\gamma = p}.\]
+    \end{pmatrix}\smod N, \det\gamma = p}.\]
 \end{lemma}
 \begin{proof}
-    \tbd \sai{(p.105 in \cite{diamond})}
+    We sketch the proof since it is rather computational. The containment \[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N) \subseteq \cbr{\gamma\in \Mat_2(\mathbb Z) : \gamma \equiv \begin{pmatrix}
+        1 & \ast \\ 0 & p
+    \end{pmatrix}\smod N, \det\gamma = p}\] is clear. We show that the other containment holds.
+
+    Let $L = \mathbb Z^2$, and let $L_0 = \cbr{\big(\!\begin{smallmatrix}
+        x \\ y
+    \end{smallmatrix}\!\big)\in L : y\equiv 0 \smod N}$. Let $\Mat_2(\mathbb Z)$ acts on $L$ by left multiplication. Choose $\gamma\in\Mat_2(\mathbb Z)$ such that $\gamma\equiv \big(\!\begin{smallmatrix}
+        1 & \ast \\ 0 & p
+    \end{smallmatrix}\!\big)\smod N$ and $\det \gamma = p$. Because the determinant of $\gamma$ is positive, $[L: \gamma L_0] = [L:L_0][L_0:\gamma L_0] = Np$.
+    
+    By the theory of finitely generated Abelian groups there exists a basis $\cbr{u,v}$ of $L$ such that $\det (u~v) = 1$ and $\gamma L_0 = mu\mathbb Z\oplus nv\mathbb Z$, where $0<m,n$, $m\mid n$, and $mn = Np$. Write the first column of $\gamma$ as $\big(\!\begin{smallmatrix}
+        a_\gamma \\ c
+    \end{smallmatrix}\!\big)$ with $a_\gamma\equiv 1\smod N$ and $c\equiv 0 \smod N$. We can also write the first column of $\gamma$ as $\gamma e_1 \in \gamma L_0$ ($e_i$ is the $i$-th standard basis vector), and hence is the zero vector modulo $m$. Since $\gcd(a_\gamma,N) = 1$, we have $\gcd(m,N) = 1$, from which we deduce that $m = 1$ and $n = Np$. Hence $\gamma L_0 = u\mathbb Z\oplus Npv\mathbb Z$.
+    
+    There are unique subgroups $L_0 = u\mathbb Z \oplus Nv\mathbb Z$ and $\gamma L = u\mathbb Z\oplus pv\mathbb Z$, of index $p$ and $N$ respectively inside $L = u\mathbb Z\oplus v\mathbb Z$, that contain $\gamma L_0$. Let $\gamma_1 = (u~v)$. Because $u\in L_0$, it follows that $\gamma_1\in\varGamma_0(N)$. Let $\gamma_2 = \big(\gamma_1\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\big)^{-1}\gamma = \big(\!\begin{smallmatrix}
+        a & b \\ c & d
+    \end{smallmatrix}\!\big)$ be an element of $\glqp$ with determinant $1$. The condition for $\gamma e_1 \in\gamma L_0$ to hold is given by $au + cpv\in u\mathbb Z\oplus Npv\mathbb Z$, so that we must have $a\in\mathbb Z$ and $c\in N\mathbb Z$. Similarly, for $\gamma e_2$ to be an element of $\gamma L$ we must have $b,d \in\mathbb Z$. It follows that $\gamma_2\in\varGamma_0(N)$. Since $a_\gamma\equiv 1\smod N$, $\gamma e_1\equiv e_1\smod N$ and so the equation $\gamma = \gamma_1\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\gamma_2$ shows that $au_1\equiv 1\smod N$ (where $u_1$ is the first component of $u$), using only that $\gamma_1,\gamma_2\in\varGamma_0(N)$. Thus if $\gamma = \gamma_1\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\gamma_2$ for $\gamma_1,\gamma_2\in\varGamma_0(N)$ such that either $\gamma_1$ or $\gamma_2$ lies in $\varGamma_1(N)$, then both do.
+
+    It now suffices to show that $\varGamma_0(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N) = \varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N)$.
+    The containment $\varGamma_0(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N) \supseteq \varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N)$ is clear. For the other containment, note that $\varGamma_1(N)\backslash \varGamma_0(N)$ is represented by matrices of the form $\big(\!\begin{smallmatrix}
+        a & b \\ N & d
+    \end{smallmatrix}\!\big)\in\slz$. Thus it suffices to show that for each such matrix there exists a matrix $\delta\in\varGamma_1(N)$ such that $\big(\!\begin{smallmatrix}
+        a & b \\ N & d
+    \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N) = \delta \big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N)$; equivalently a matrix $\delta^\prime\in\varGamma_1(N)$ such that \[\begin{pmatrix}
+        1 & 0 \\ 0 & p
+    \end{pmatrix}^{-1}\delta^\prime\begin{pmatrix}
+        a & b \\ N & d
+    \end{pmatrix}\begin{pmatrix}
+        1 & 0 \\ 0 & p
+    \end{pmatrix}\in \varGamma_0(N).\]
+    If $p\mid N$, then $\delta^\prime = \big(\!\begin{smallmatrix}
+        dN+1 & -1 \\ -dN & 1
+    \end{smallmatrix}\!\big)$ is a valid choice. Otherwise, if $p\nmid N$, then any $\delta^\prime = \big(\!\begin{smallmatrix}
+        \ast & \ast \\ N & d^\prime
+    \end{smallmatrix}\!\big)$ with $d^\prime\equiv 1\smod N$ and $d^\prime\equiv -a\smod p$ is a valid choice in this case.
 \end{proof}
 So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the double coset $\varGamma_1(N)\big(\!\begin{smallmatrix}
     1 & 0 \\ 0 & p
 \end{smallmatrix}\!\big)\varGamma_1(N)$.
-\begin{lemma}
+
+We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(N))$.
+
+\begin{proposition} 
+    The operator $T_p = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)]$ is given by 
+    \[T_pf = \begin{cases}
+        p^{k/2-1}\sum_{j=0}^{p-1} f|_k[\big(\!\begin{smallmatrix}
+            1 & j \\ 0 & p
+        \end{smallmatrix}\!\big)] & \text{if $p\mid N$,}\\
+        p^{k/2-1}\sum_{j=0}^{p-1}f|_k[\big(\!\begin{smallmatrix}
+            1 & j \\ 0 & p
+        \end{smallmatrix}\!\big)] + p^{k/2-1}f|_k[\big(\!\begin{smallmatrix}
+            m & n \\ N & p
+        \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)] & \text{if $p\nmid N$, where $mp-nN = 1$}.
+    \end{cases}\]
+\end{proposition}
+\begin{proof}
+    We find orbit representatives for $\varGamma_1(N)\backslash \varGamma_1\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)$ by finding coset representatives for $\varGamma_3\backslash\varGamma_1(N)$, where $\varGamma_3 = \big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)^{-1}\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\cap \varGamma_1(N)$.
+
+    Define the subgroups 
+    \[\varGamma^0(p) = \cbr{\smallabcd\in\slz : \smallabcd \equiv \big(\!\begin{smallmatrix}
+        \ast & 0 \\ \ast & \ast
+    \end{smallmatrix}\!\big)\smod p}\] and $\varGamma_1^0(N,p) = \varGamma_1(N)\cap \varGamma^0(p)$. A short computation reveals that $\varGamma_3$ is equal to $\varGamma_1^0(N,p)$. We show that the coset representatives of $\varGamma_3\backslash \varGamma_1(N)$ are $\gamma_{2,j} = \big(\!\begin{smallmatrix}
+        1& j \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for $0\leq j < p$.
+
+    Given $\gamma_2 = \smallabcd\in\varGamma_1(N)$, we have $\gamma_2\in\varGamma_3\gamma_{2,j}$ if $\gamma_2\gamma_{2,j}^{-1}\in\varGamma_3$. Observe that $\gamma_2,\gamma_{2,j}\in\varGamma_1(N)$, so it suffices to find $j$ so that the upper right entry $b-ja$ of $\gamma_2\gamma_{2,j}^{-1}$ is some multiple of $p$.
+    
+    If $p\nmid a$, then $j = ba^{-1}\smod p$ is a valid choice. So in this case we find that $\gamma_{2,j} = \big(\!\begin{smallmatrix}
+        1& j \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for $0\leq j < p$ form a complete set of coset representatives as needed.
+    
+    If $p\mid a$, then $b-ja$ cannot be zero $\smod p$ for any $j$; if there was a choice of $j$ that made $b-ja$ zero, then $p$ would divide $b$ and hence also $\det \smallabcd = 1$, which is impossible. The cases where $\gamma_2\in\varGamma_1(N)$ with $p\mid a$ occur if and only if $p\nmid N$, in which case $\gamma_{2,j} = \big(\!\begin{smallmatrix}
+        1& j \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for $0\leq j < p$ fail to represent $\varGamma_3\backslash\varGamma_1(N)$. To complete the set of coset representatives, set 
+    \[\gamma_{2,\infty} = \begin{pmatrix}
+        mp & n \\ N & 1
+    \end{pmatrix}\quad \text{where $mp-nN = 1$}.\]
+    So given $\gamma_2 = \smallabcd\in\varGamma_1(N)$ with $p\mid a$, we have $\gamma_2\gamma_{2,\infty}^{-1}\equiv \big(\!\begin{smallmatrix}
+        \ast & 0 \\ \ast & \ast
+    \end{smallmatrix}\!\big) \smod p$ as needed. It is also routine to check that the $\gamma_{2,j}$ represent distinct cosets.
+
+    The corresponding orbit representatives of $\varGamma_1(N)\backslash \varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)$ are given by $\alpha\gamma_{2,j}$ for each $j$: \[\alpha\gamma_{2,j} = \begin{pmatrix}
+        1 & j \\ 0 & p
+    \end{pmatrix}\text{ for $0\leq j < p$},\quad \alpha\gamma_{2,\infty} = \begin{pmatrix}
+        m & n \\ N & p
+    \end{pmatrix}\begin{pmatrix}
+        p & 0 \\ 0 & 1
+    \end{pmatrix}\text{ if $p\nmid N$}.\qedhere\]
+\end{proof}
+
+\begin{lemma}\label{lem: Fourier coefficients after Tp-ing}
+    Let $f\in \mathcal M_k(\varGamma_1(N))$, with Fourier expansion 
+    \[f(z) = \sum_{n=0}^\infty a_n(f)q^n,\quad q = e^{2\pi i z}.\] 
+    Then $T_pf$ has Fourier expansion
+    \begin{align*}
+        (T_pf)(z) &= \sum_{n=0}^\infty a_{np}(f)q^n + \mathbf{1}_N(p)p^{k-1}\sum_{n=0}^\infty a_n(\abr{p}f)q^{np}\\
+        &= \sum_{n=0}^\infty (a_{np}(f) + \mathbf{1}_N(p)p^{k-1}a_{n/p}(\abr{p}f))q^n,
+    \end{align*}
+    where $a_{n/p} = 0$ whenever $n/p$ is not an integer.
+\end{lemma}
+\begin{proof}
+    Let $p\mid N$. For $0\leq j<p$, we have
+    \begin{align*}
+        p^{k/2-1}(f|_k[\big(\!\begin{smallmatrix}
+            1 & j \\ 0 & p
+        \end{smallmatrix}\!\big)])(z) &= p^{k-1}p^kf\bigg(\frac{z+j}{p}\bigg)\\
+        &= \frac{1}{p}\sum_{n=0}^\infty a_n(f)e^{2\pi i n(z+j)/p}\\
+        &= \frac{1}{p}\sum_{n=0}^\infty a_n(f)q_p^n\mu_p^{nj},
+    \end{align*}
+    where $q_p = e^{2\pi i z/p}$ and $\mu_p = e^{2\pi i/p}$. Since the geometric sum $\sum_{j=0}^{p-1} \mu_p^{nj}$ is equal to $p$ when $p\mid n$ and is zero otherwise, we obtain
+    \[p^{k/2-1}\sum_{j=0}^{p-1}(f|_k[\big(\!\begin{smallmatrix}
+        1 & j \\ 0 & p
+    \end{smallmatrix}\!\big)])(z) = \sum_{n\equiv 0\smod p}a_n(f)q_p^n = \sum_{n=0}^\infty a_{np}(f)q^n.\]
+
+    When $p\nmid N$, the series expansion for $T_pf$ is the one given above plus the term 
+    \begin{align*}
+        p^{k/2-1}(f|_k[\big(\!\begin{smallmatrix}
+            m & n \\ N & p
+        \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+            p & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)])(z) &= p^{k/2-1}((\abr{p}f)|_k[\big(\!\begin{smallmatrix}
+            p & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)])(z)\\
+        &= p^{k-1}z^{-k}(\abr{p}f)(pz)\\
+        &= p^{k-1}\sum_{n=0}^\infty a_n(\abr{p}f)q^{np}.\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem: properties of baby heckes}
     Let $d,e\in(\mathbb Z/N\mathbb Z)^\times$ and $p,q$ be prime. Then \begin{enumerate}[label = \textup{(\arabic*)}]
         \item $\abr{d}T_p = T_p\abr{d}$,
         \item $\abr{d}\abr{e} = \abr{e}\abr{d} = \abr{de}$, and 
@@ -1132,25 +1301,113 @@ So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the do
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    \tbd \sai{(p.173 in \cite{diamond})}
+    To show (1), let $\alpha = \big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)$ and observe that $\gamma\alpha\gamma^{-1}\equiv \big(\!\begin{smallmatrix}
+        1 & \ast \\ 0 & p
+    \end{smallmatrix}\!\big)\smod N$ for any $\gamma\in\varGamma_0(N)$. If $\varGamma_1(N)\alpha\varGamma_1(N) = \bigcup_j \varGamma_1(N)\beta_j$, then by \cref{lem: replacement for T_n} and the fact that $\varGamma_1(N)$ is normal in $\varGamma_0(N)$ we have that 
+    \[\varGamma_1(N)\alpha\varGamma_1(N) = \varGamma_1(N)\gamma\alpha\gamma^{-1}\varGamma_1(N) = \gamma\varGamma_1(N)\alpha\varGamma_1(N)\gamma^{-1} = \gamma\bigcup_j \varGamma_1(N)\beta_j\gamma^{-1} = \bigcup_j \varGamma_1(N)\gamma\beta_j\gamma^{-1}.\] Comparing the decompositions $\varGamma_1(N)\alpha\varGamma_1(N) = \bigcup_j \varGamma_1(N)\beta_j = \bigcup_j \varGamma_1(N)\gamma\beta_j\gamma^{-1}$ , we find that $\bigcup_j \varGamma_1(N)\beta_j\gamma = \bigcup_j \varGamma_1(N)\gamma\beta_j$. Thus for any $f\in\mathcal M_k(\varGamma_1(N))$ and any $\gamma\in\varGamma_0(N)$ with lower right entry $\delta\equiv d\smod N$, 
+    \[\abr{d}T_pf = \sum_j f|_k[\beta_j\gamma] = \sum_j f|_k[\gamma\beta_j] = T_p\abr{d}.\]
+
+    Because $\abr{d}$ and $T_p$ commute, it follows that the action of $T_p$ on $\mathcal M_k(\varGamma_1(N))$ respects the decomposition $\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi)$, and similarly for $\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal S_k(N,\chi)$ and $\mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal E_k(N,\chi)$. That is, $T_p$ maps a $\chi$-eigenspace to itself.
+
+    To see (2) and (3), it suffices to show that these equalities of operators hold on elements of $\mathcal M_k(N,\chi)$.
+
+    Indeed, let $f\in\mathcal M_k(N,\chi)$. Then \[\abr{d}\abr{e}f = \abr{d}\chi(e)f = \chi(d)\chi(e)f = \chi(de)f = \abr{de}f,\] and similarly obtain that $\abr{d}\abr{e} = \abr{e}\abr{d}$.
+    
+    To see that $T_p$ and $T_q$ commute, we investigate the Fourier coefficients of $T_p(T_q(f))$ for $f\in\mathcal M_k(N,\chi)$. From the definition of the diamond operator and \cref{lem: Fourier coefficients after Tp-ing}, we have that the $n$-th Fourier coefficient of $T_p(f)$ is $a_n(T_pf) = a_{np}(f)+ \chi(p)p^{k-1}a_{n/p}(f)$, where $a_{n/p}(f) = 0$ whenever $n/p$ is not an integer. Applying this formula twice yields the $n$-th Fourier coefficient of $T_p(T_q(f))$:
+    \begin{align*}
+        a_n(T_p(T_qf)) &= a_{np}(T_qf)+ \chi(p)p^{k-1}a_{n/p}(T_qf)\\
+        &= a_{npq}(f) + \chi(q)q^{k-1}a_{np/q}(f)\\
+        &\hspace{1em}+ \chi(p)p^{k-1}(a_{nq/p}(f) + \chi(q)q^{k-1}a_{n/pq}(f))\\
+        &= a_{npq}(f) + \chi(q)q^{k-1}a_{np/q}(f) + \chi(p)p^{k-1}a_{nq/p}(f) + \chi(pq)(pq)^{k-1}a_{n/pq}(f). 
+    \end{align*}
+    Since the above expression is symmetric in $p$ and $q$, we obtain the result.
 \end{proof}
 \begin{definition}
-    The \textib{Hecke operator $T_n$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb Z^+$ is defined inductively. Let $T_1 = \id_{\mathcal M_k(\varGamma_1(N))}$ (the identity operator), and above we had defined $T_p$ for primes $p$. For prime powers, let
+    The \textib{Hecke operator $T_n$}$\colon \mathcal M_k(\varGamma_1(N))\to \mathcal M_k(\varGamma_1(N))$ for $n\in\mathbb Z^+$ is defined inductively. Let $T_1 = \id_{\mathcal M_k(\varGamma_1(N))}$ (the identity operator), and above we had defined $T_p = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)]$ for primes $p$. For prime powers, let
     \[T_{p^r} = T_pT_{p^{r-1}} - p^{k-1}\abr{p}T_{p^{r-2}}\quad \text{for $r\geq 2$}.\] Then for $n = \prod_i p_i^{r_i}$, define 
     \[T_n = \prod_i T_{p_i^{r_i}},\] where the previous lemma justifies the multiplicative notation above.
 \end{definition}
 
-\sai{Should include the explicit action of $T_p$ and $T_n$.}
+By \cref{lem: properties of baby heckes}, the mapping $n\mapsto \abr{n}$ is totally multiplicative; that is, $\abr{nm} = \abr{n}\abr{m}$ for all positive integers $n,m$. The same lemma implies that the mapping $n\mapsto T_n$ is multiplicative; that is, for $n,m$ coprime, $T_{nm} = T_nT_m$.
+
+\begin{definition}
+    The \textib{Hecke algebra $\mathcal R(N)$} is the polynomial ring 
+    \[\mathcal R(N) = \mathbb{Z}[T_p, \abr{q} : p,q\in\mathbb P, q\nmid N].\]
+    From previous results it follows that $\mathcal R(N)$ is a commutative unital ring.
+\end{definition}
+
+Often (and especially so in the next section), we will restrict the action of the Hecke operators to an arbitrary $\chi$-eigenspace. We use the same symbols to denote the restrictions of these operators, since it will be clear from context when we are taking the restriction.
+
+\begin{remark}
+    In \cite{miyake}, the Hecke algebra is generated by Hecke operators $T(q), T(p,p)$ that are defined differently. The Hecke operators $T(q), T(p,p)$ are related to the ones we have defined by the equalities $T(p) = T_p$ and $T(p,p) = p^{k-2}\abr{p}$.
+\end{remark} 
+
+\begin{lemma}\label{lem: miyake lem 4.5.12}
+    Let $K$ be a commutative unital ring, and assume that two sequences $\cbr{t_n}_{n=1}^\infty,\cbr{d_n}_{n=1}^\infty$ of elements of $K$ satisfy the following conditions:
+    \begin{enumerate}[label=\textup{(\roman*)}]
+        \item $t_1 =d_1 = 1$, and 
+        \item $d_{mn} = d_md_n$ for any positive integers $m,n$.
+    \end{enumerate} Then the following are equivalent:
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $\gcd(m,n) = 1$, then $t_{mn} = t_mt_n$ and \[t_pt_{p^e} = t_{p^{e+1}} + pd_pt_{p^{e-1}}\] for all prime numbers $p$ and all positive integers $e$.
+        \item The formal Dirichlet series $\sum_{n=1}^\infty t_nn^{-s}$ has formal Euler product \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}.\]
+        \item For any positive integers $m,n$, \[t_mt_n = \sum_{\substack{l>0\\l\mid \gcd(m,n)}}ld_lt_{mn/l^2}.\]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    We show that (1) implies (2). From the first condition of (1), we have formally that 
+    \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg).\]
+    From the second condition of (1), we have \[(1-t_pp^{-s} + pd_pp^{-2s})\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg) = 1,\] from which (2) follows. 
+
+    We show that (2) implies (3). Formal Dirichlet series and formal Euler products are elements of the ring of formal power series $K[[p^{-s} : p\in\mathbb P]]$. Finding inverses in $K[[p^{-s}]]$ of the elements $1-t_pp^{-s} + pd_pp^{-2s}$ recursively (cf. exercise 7.2.3(c) in \cite{df}), and comparing coefficients of \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}\] reveals that the sequence $\cbr{t_n}_{n=1}^\infty$ is multiplicative. That is, if $\gcd(m,n) =1$, then $t_{mn} = t_mt_n$.
+    
+    Let $m = \prod_{p\in\mathbb P}p^e$ and $n = \prod_{p\in\mathbb P}p^f$ be the prime factorizations of $m$ and $n$. Then \[\sum_{\substack{l>0\\l\mid\gcd(m,n)}} ld_lt_{mn/l^2} = \prod_{p\in\mathbb P} \bigg(\sum_{0\leq g\leq\min\{e,f\}}p^gd_{p^g}t_{p^{e+f-2g}}\bigg).\] Therefore it suffices to prove that (2) implies (3) in the case that $m$ and $n$ are powers of the same prime $p$. By assumption, we have 
+    \[(1-t_pp^{-s} + pd_pp^{-2s})^{-1} = \sum_{e=0}^\infty t_{p^e}p^{-es}.\] Let $\tau_p$ and $\delta_p$ be two indeterminates over $\mathbb Q$, and define a (unital) ring homomorphism $\psi\colon \mathbb Z[\tau_p,\delta_p]\to K$ by $\psi(\tau_p) = t_p$ and $\psi(\delta_p) = d_p$. Define the elements $\tau_{p^e}$ and $\delta_{p^e}$ of $\mathbb Z[\tau_p,\delta_p]$ by $\delta_{p^e} = (\delta_p)^e$ and by the formal power series equality 
+    \begin{equation}\label{eqn: tau power series expansion}
+        \sum_{e=0}^\infty \tau_{p^e}p^{-es} = (1-\tau_pp^{-s} + p\delta_pp^{-2s})^{-s}.
+    \end{equation} It follows that $\psi(\tau_{p^e}) = t_{p^e}$ and $\psi(\delta_{p^e}) = d_{p^e}$.
+
+    Let $u,v$ be indeterminates over $\mathbb Q$, and define a ring homomorphism $\phi\colon \mathbb Z[\tau_p,\delta_p]\to \mathbb Q[u,v]$ by $\phi(\tau_p) = u+v$ and $\phi(\delta_p) = uv/p$. Since $u+v$ and $uv/p$ are algebraically independent over $\mathbb Q$, $\phi$ is injective. Viewing $\mathbb Z[\tau_p,\delta_p]$ as a subring of $\mathbb Q[u,v]$, we may factor $1-\tau_pp^{-s}+p\delta_pp^{-2s}$ into $(1-up^{-s})(1-vp^{-s})$. Inverting this element and comparing coefficients in \cref{eqn: tau power series expansion}, we find that
+    \[\tau_{p^e} = \sum_{i+j=e}u^iv^j = (u^{e+1}-v^{e+1})/(u-v).\]
+
+    Assume that $0\leq e\leq f$. Then \begin{align*}
+        \tau_{p^e}\tau_{p^f} &= \bigg(\sum_{i+j=e}u^iv^j\bigg)\cdot (u^{f+1}-v^{f+1})/(u-v)\\
+        &= \bigg(u^{f+1}\sum_{j=0}^eu^{e-j}v^j - v^{f+1}\sum_{j=0}^eu^{j}v^{e-j}\bigg)\bigg/(u-v)\\
+        &=\sum_{g=0}^e u^gv^g(u^{e+f-2g+1}-v^{e+f-2g+1})/(u-v)\\
+        &=\sum_{g=0}^e p^g\delta_{p^g}\tau_{p^{e+f-2g}}.
+    \end{align*}
+    By taking $\psi$ on both sides of the above equation, obtain \[t_{p^e}t_{p^f} = \sum_{g=0}^ep^gd_{p^g}t_{p^{e+f-2g}}\] as desired. So in all cases, (2) implies (3).
+
+    To see that (3) implies (1), observe that (1) is a special case of (3), with $m = p$ and $n = p^e$.
+\end{proof}
+\begin{theorem}\label{thm: miyake thm 4.5.13}
+    We have \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $T_mT_n = \sum_{\substack{l>0 \\ l\mid \gcd(m,n)\\ \gcd(l,N)=1}}l^{k-1}\abr{l}T_{mn/l^2}$, and
+        \item the formal Dirichlet series $\sum_{n=1}^\infty T_nn^{-s}$ has the formal Euler product \[\sum_{n=1}^\infty T_nn^{-s} = \prod_{p\nmid N}(1-T_np^{-s} + (p^{k-2}\abr{p})p^{1-2s})^{-1}\cdot \prod_{p\mid N}(1-T_pp^{-s})^{-1}\]
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Apply the previous lemma with 
+    \[K = \mathcal R(N),\quad t_n = T_n,\quad \text{and}\quad d_n =\begin{cases}
+        n^{k-2}\abr{n} & \text{if $\gcd(n,N) = 1$},\\
+        0 & \text{if $\gcd(n,N)\neq 1$}
+    \end{cases}\] to obtain the result.
+\end{proof}
 
 \subsection{The Petersson inner product, adjoints of Hecke operators}
-We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ (via Wirtinger derivatives) and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
+We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations using Wirtinger derivatives reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
 as desired. In particular $\dd \mu$ is $\slz$-invariant. Since $\mathbb Q\cup\cbr{\infty}$ is countable, its measure is zero, so we may integrate over the extended upper half plane $\mathcal H^\ast$ with respect to $\mu$.
 
-Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$ is given by $\mathcal D^\ast = \cbr{z\in\mathcal H : \abs{\Re(z)}\leq 1/2,\abs{z}\geq 1}\cup\cbr{\infty}$; that is, any point of $\mathcal H$ is sent to a point in $\mathcal D$ by a suitable element of $\slz$, which is unique for most points of $\mathcal H$ (there are a few cases involving points on the boundary of $\mathcal D$). Every point $s\in\mathbb Q\cup\cbr{\infty}$ may be sent to $\infty$ by suitable elements of $\slz$. We show that the integral $\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu$ converges for any continuous, bounded function $\varphi\colon\mathcal H\to\mathbb C$ and any $\alpha\in\slz$: Choose $\gamma\in\slz$ such that $\gamma^{-1}\mathcal D^\ast$ is a compact set. By the invariance of the measure under the action of $\slz$, we have
+Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$ is given by 
+\[\mathcal D^\ast = \cbr{z\in\mathcal H : \abs{\Re(z)}\leq 1/2,\abs{z}\geq 1}\cup\cbr{\infty};\] that is, any point of $\mathcal H$ is sent to a point in $\mathcal D$ by a suitable element of $\slz$, which is unique for most points of $\mathcal H$ (there are a few cases involving points on the boundary of $\mathcal D$). Every point $s\in\mathbb Q\cup\cbr{\infty}$ may be sent to $\infty$ by suitable elements of $\slz$. We show that the integral $\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu$ converges for any continuous, bounded function $\varphi\colon\mathcal H\to\mathbb C$ and any $\alpha\in\slz$: Choose $\gamma\in\slz$ such that $\gamma^{-1}\mathcal D^\ast$ is a compact set. By the invariance of the measure under the action of $\slz$, we have
 \[\int_{\mathcal D^\ast} \varphi(\alpha(z))\dd \mu = \int_{\mathcal \gamma^{-1} D^\ast} \varphi(\alpha(\gamma(z)))\dd \mu, \] from which it follows that the integral converges.
 
 Let $\varGamma$ be a congruence subgroup, and let $\cbr{\alpha_j}$ be a collection of representatives for the coset space $\cbr{\pm I}\varGamma\backslash\slz$; that is, we have the disjoint union $\slz = \bigsqcup_j \cbr{\pm I}\varGamma \alpha_j$. If $\varphi$ is $\varGamma$-invariant, then the sum $\sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu$ is independent of the choice of coset representatives $\alpha_j$. Since $\dd\mu$ is $\slz$-invariant, the sum is equal to $\int_{\bigcup_j \alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu$. Since $\bigcup_j\alpha_j(\mathcal D^\ast)$ represents the modular curve $X(\varGamma)$ up to identification of boundaries, we define 
-\[\int_{X(\varGamma)}\varphi(z)\dd\mu = \int_{\bigcup_j\alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu = \sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu.\] In particular the volume of $X(\varGamma)$ is given by $V_\varGamma = \int_{X(\varGamma)}\dd\mu$. Moreover, $V_\varGamma = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$: \sai{(to prove)}\tbd
+\[\int_{X(\varGamma)}\varphi(z)\dd\mu = \int_{\bigcup_j\alpha_j(\mathcal D^\ast)}\varphi(z)\dd\mu = \sum_j\int_{\mathcal D^\ast}\varphi(\alpha_j(z))\dd\mu.\] In particular the volume of $X(\varGamma)$ is given by $V_\varGamma = \int_{X(\varGamma)}\dd\mu = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$.
 
 Observe that for any $f,g\in\mathcal S_k(\varGamma)$ for a congruence subgroup $\varGamma$, the function $\varphi(z) = f(z)\overline{g(z)}(\Im(z))^k$ for $z\in\mathcal H$ is continuous, and more importantly, $\varGamma$-invariant. Indeed, for any $\gamma\in\varGamma$, we have
 \begin{align*}
@@ -1162,83 +1419,114 @@ Observe that for any $f,g\in\mathcal S_k(\varGamma)$ for a congruence subgroup $
 \[(f|_k[\alpha])(z) = \sum_{n =1}a_n(f|_k[\alpha])q_h^n,\quad (g|_k[\alpha])(z) = \sum_{n =1}a_n(g|_k[\alpha])q_h^n\quad\text{for $q_h = e^{2\pi i z /h}$ for some $h\in\mathbb Z^+$}\] are of order $\mathcal O(q_h)$ as $\Im(z)\to\infty$. It follows that $\varphi(\alpha(z)) = (f|_k[\gamma])(z)\overline{(g|_k[\gamma])(z)}(\Im(z))^k = \mathcal O(q_h)^2(\Im(z))^k$. Moreover, since $\abs{q_h} = e^{-2\pi \Im(z)/h}$, $\varphi(\alpha(z))\to 0$ as $\Im(z)\to\infty$, from which it follows $\varphi\circ\alpha$ is bounded on the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$ of $\mathcal D$, hence on all of $\mathcal D$.
 \begin{definition}
     The \textib{Petersson inner product} $\abr{\cdot,\cdot}_\varGamma\colon \mathcal S_k(\varGamma)\times \mathcal S_k(\varGamma)\to\mathbb C$ for a congruence subgroup $\varGamma$ is given by 
-    \[\abr{f,g}_\varGamma = \frac{1}{V_\varGamma}\int_{X(\varGamma)}f(z)\overline{g(z)}(\Im(z))^k\dd\mu.\] (We may sometimes omit the subscript ${}_\varGamma$ in $\abr{\cdot,\cdot}_\varGamma$.)
+    \[\abr{f,g}_\varGamma = \frac{1}{V_\varGamma}\int_{X(\varGamma)}f(z)\overline{g(z)}(\Im(z))^k\dd\mu.\] We omit the subscript ${}_\varGamma$ in $\abr{\cdot,\cdot}_\varGamma$ when it is clear from context.
 \end{definition}
-This inner product is linear in the first component, conjugate linear in the second component, Hermitian, and positive definite. If we have the containment $\varGamma^\prime\subset \varGamma$ of congruence subgroups, then $\abr{\cdot,\cdot}_{\varGamma^\prime} = \abr{\cdot,\cdot}_\varGamma$ on $\mathcal S_k(\varGamma)$.\tbd
+One can check that the Petersson inner product is a Hermitian inner product. If we have the containment $\varGamma^\prime\subset \varGamma$ of congruence subgroups, then $\abr{\cdot,\cdot}_{\varGamma^\prime} = \abr{\cdot,\cdot}_\varGamma$ on $\mathcal S_k(\varGamma)$: If $\cbr{\beta_m}$ is a set of coset representatives for $\cbr{\pm I}\varGamma\backslash\slz$ and $\cbr{\gamma_{j}}$ is a set of coset representatives for $\cbr{\pm I}\varGamma^\prime\backslash\cbr{\pm I}\varGamma$, then $\cbr{\gamma_j\beta_m}$ form a set of coset representatives for $\cbr{\pm I}\varGamma^\prime\backslash \slz$, from which we obtain
+\begin{multline*}
+    \frac{1}{V_{\varGamma}}\int_{X(\varGamma)}f(z)\overline{g(z)}(\Im(z))^k\dd\mu = \frac{[\cbr{\pm I}\varGamma:\cbr{\pm I}\varGamma^\prime]}{V_{\varGamma^\prime}}\sum_{m}\int_{\mathcal D^\ast}f(\beta(z))\overline{g(\beta(z))}(\Im(\beta(z)))^k\dd\mu \\ = \frac{1}{V_{\varGamma^\prime}}\sum_{j,m}\int_{\mathcal D^\ast} f((\gamma\beta)(z))\overline{g((\gamma\beta)(z))}(\Im((\gamma\beta)(z)))^k\dd\mu = \frac{1}{V_{\varGamma^\prime}}\int_{X(\varGamma^\prime)}f(z)\overline{g(z)}(\Im(z))^k\dd\mu
+\end{multline*} as expected.
 
 Recall that if $T$ is a linear operator on the inner product space $V$, then there exists a unique operator $T^\ast$ called the adjoint of $T$ that satisfies $\abr{Tv,w} = \abr{v,T^\ast w}$ for all $v,w\in V$. If $T$ commutes with $T^\ast$, we say that $T$ is a normal operator. Give $\mathcal S_k(\varGamma_1(N))$ the Petersson inner product. We show that the Hecke operators $\abr{n}$ and $T_n$ for $n$ coprime to $N$ are normal operators.
 
-Let $\varGamma$ be a congruence subgroup, and write $\slz = \bigcup_j\cbr{\pm I}\varGamma \alpha_j$ for some representatives $\alpha_j$ of the coset space $\varGamma\backslash \slz$. If $\alpha\in\glqp$, then the map $\mathcal H\to\mathcal H$ given by $z \mapsto \alpha(z)$ induces a bijection $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast\to X(\varGamma)$ \tbd\sai{(to check)}: It follows that the union $\bigcup_j \alpha^{-1}\alpha_j(\mathcal D^\ast)$ up to some boundary identifications is in bijection with $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast$. For continuous, bounded, $\alpha^{-1}\varGamma\alpha$-invariant functions $\varphi\colon \mathcal H\to \mathbb C$ define
+Let $\varGamma$ be a congruence subgroup, and write $\slz = \bigcup_j\cbr{\pm I}\varGamma \alpha_j$ for some representatives $\alpha_j$ of the coset space $\cbr{\pm I}\varGamma\backslash \slz$. If $\alpha\in\glqp$, then the map $\mathcal H\to\mathcal H$ given by $z \mapsto \alpha(z)$ induces a bijection $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast\to X(\varGamma)$. It follows that the union $\bigcup_j \alpha^{-1}\alpha_j(\mathcal D^\ast)$ up to some boundary identifications is in bijection with $\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast$. For continuous, bounded, $\alpha^{-1}\varGamma\alpha$-invariant functions $\varphi\colon \mathcal H\to \mathbb C$ define
 \[\int_{\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast}\varphi(z)\dd\mu = \sum_j \int_{\mathcal D^\ast}\varphi(\alpha^{-1}\alpha_j(z))\dd\mu.\]
 
-\begin{lemma}
-    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$.\begin{enumerate}[label = \textup{(\alph*)}]
+\begin{lemma}\label{lem: properties of integral over fund.domain and glqp}
+    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$.\begin{enumerate}[label = \textup{(\arabic*)}]
         \item If $\varphi\colon\mathcal H\to\mathbb C$ is continuous, bounded, and $\varGamma$-invariant, then \[\int_{\alpha^{-1}\varGamma\alpha\backslash \mathcal H^\ast}\varphi(\alpha(z))\dd\mu = \int_{X(\varGamma)}\varphi(z)\dd\mu.\]
         \item If $\alpha^{-1}\varGamma\alpha\subset \slz$, then $V_{\alpha^{-1}\varGamma\alpha} = V_\varGamma$ and $[\slz : \alpha^{-1}\varGamma\alpha] = [\slz : \varGamma]$.
         \item There exist $\beta_1,\dots,\beta_n\in \glqp$ with $n=[\varGamma : \alpha^{-1}\varGamma\alpha\cap\varGamma] = [\varGamma : \alpha\varGamma\alpha^{-1}\cap \varGamma]$, such that \[\varGamma\alpha\varGamma = \bigsqcup_j\varGamma \beta_j = \bigsqcup_j\beta_j\varGamma.\]
     \end{enumerate}
     \begin{proof}
-        \tbd
+        From the discussion above, (1) follows immediately. The first equality in (2) follows from (1), and the second equality is a consequence of the equation $V_\varGamma = [\slz : \cbr{\pm I}\varGamma]V_{\slz}$ and the observation that $-I\in\alpha^{-1}\varGamma\alpha$ if and only if $-I\in\varGamma$.
+
+        To obtain (3), we apply (2) with $\alpha\varGamma\alpha^{-1}\cap \varGamma$ in place of $\varGamma$ to obtain 
+        \[[\slz : \alpha^{-1}\varGamma\alpha\cap \varGamma] = [\slz : \alpha\varGamma\alpha^{-1}\cap\varGamma],\] from which we deduce that $[\varGamma : \alpha^{-1}\varGamma\alpha\cap \varGamma] = [\varGamma : \alpha\varGamma\alpha^{-1}\cap\varGamma]$. Thus there exist coset representatives $\gamma_1,\dots,\gamma_n$ and $\eta^{-1}_1,\dots,\eta^{-1}_n$ in $\varGamma$ for the coset spaces $(\alpha^{-1}\varGamma\alpha\cap \varGamma)\backslash\varGamma$ and $(\alpha\varGamma\alpha^{-1}\cap \varGamma)\backslash\varGamma$ respectively. That is, 
+        \[\varGamma = \bigsqcup_j(\alpha^{-1}\varGamma\alpha\cap \varGamma)\gamma_j = \bigsqcup_j(\alpha\varGamma\alpha^{-1}\cap \varGamma)\eta_j^{-1}.\]
+        In \cref{lem: double coset coset/orbit spaces}, set $\varGamma_1 = \varGamma_2 = \varGamma$ to obtain 
+        \[\varGamma\alpha\varGamma = \bigsqcup_j\varGamma\alpha\gamma_j\quad\text{and}\quad \varGamma\alpha^{-1}\varGamma = \bigsqcup_j \varGamma\alpha^{-1}\eta^{-1}_j.\] The second equation implies that $\varGamma\alpha\varGamma = \bigsqcup_j\eta_j\alpha\varGamma$. For each $j$, the intersection $\varGamma\alpha\gamma_j\cap\eta_j\alpha\varGamma$ is nonempty, since otherwise we would have $\varGamma\alpha\gamma_j\subset\bigsqcup_{i\neq j}\eta_i\alpha\varGamma$. Multiplying this equality from the right by $\varGamma$ gives $\varGamma\alpha\varGamma\subset \bigsqcup_{i\neq j}\eta_i\alpha\varGamma$, a contradiction. So for each $j$, choose some $\beta_j\in \varGamma\alpha\gamma_j\cap\eta_j\alpha\varGamma$, from which we obtain $\varGamma\alpha\varGamma = \bigsqcup_j\varGamma \beta_j = \bigsqcup_j\beta_j\varGamma$.
     \end{proof}
 \end{lemma}
 
 The following proposition will be used to compute adjoints of the Hecke operators.
-\begin{proposition}
-    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$. \begin{enumerate}[label = \textup{(\alph*)}]
+\begin{proposition}\label{prop: computing adjoints}
+    Let $\varGamma$ be a congruence subgroup and let $\alpha\in\glqp$. \begin{enumerate}[label = \textup{(\arabic*)}]
         \item If $\alpha^{-1}\varGamma\alpha\subset \slz$, then for all $f\in\mathcal S_k(\varGamma)$ and $g\in\mathcal S_k(\alpha^{-1}\varGamma\alpha)$ \[\abr{f|_k[\alpha],g}_{\alpha^{-1}\varGamma\alpha} = \abr{f,g|_k[\det(\alpha)\alpha^{-1}]}_\varGamma.\]
         \item For all $f,g\in\mathcal S_k(\varGamma)$, \[\abr{f|_k[\varGamma\alpha\varGamma],g}  = \abr{f,g|_k[\varGamma\det(\alpha)\alpha^{-1}\varGamma]}.\]
         We have $|_k[\varGamma\alpha\varGamma]^\ast = |_k[\varGamma\det(\alpha)\alpha^{-1}\varGamma]$. If $\alpha^{-1}\varGamma\alpha = \varGamma$, then $|_k[\alpha]^\ast = |_k[\det(\alpha)\alpha^{-1}]$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    \tbd
+    To prove (1), note that $\alpha^\prime$ acts on elements of $\mathcal H^\ast$ in the same way as $\alpha^{-1}$, and apply \cref{lem: properties of integral over fund.domain and glqp}(1) to obtain
+    \begin{align*}
+        \int_{\alpha^{-1}\varGamma\alpha\backslash\mathcal H^\ast}(f|_k[\alpha])(z)\overline{g(z)}(\Im(z))^k\dd \mu &= \int_{\alpha^{-1}\varGamma\alpha\backslash\mathcal H^\ast}(\det\alpha)^{k/2}j(\alpha,z)^{-k}f(\alpha(z))\overline{g(z)}(\Im(z))^k\dd \mu \\
+        &= \int_{X(\varGamma)}f(z)(\det\alpha)^{k/2}j(\alpha,\alpha^\prime(z))^{-k}\overline{g(\alpha^\prime(z))}(\Im(\alpha^\prime(z)))^k\dd \mu
+        \intertext{Recall the identities $j(\alpha\alpha^\prime,z) = j(\alpha, \alpha^\prime(z))j(\alpha^\prime,z)$ (a cocycle condition) and $\Im(\alpha^\prime(z)) = (\det\alpha^\prime)\Im(z)/\abs{j(\alpha^\prime,t)}^2$, and observe that $\det\alpha^\prime = \det\alpha$. Continuing with the computation gives}
+        &= \int_{X(\varGamma)}f(z)\overline{(\det\alpha)^{k/2}j(\alpha^\prime,z)^{-k}g(\alpha^\prime(z))}(\Im(z))^k\dd \mu\\
+        &= \int_{X(\varGamma)}f(z)\overline{(g|_k[\alpha^\prime])(z)}(\Im(z))^k\dd\mu.
+    \end{align*} 
+    Since $V_{\alpha^{-1}\varGamma\alpha} = V_\varGamma$ by \cref{lem: properties of integral over fund.domain and glqp}(2), the result follows.
+    
+    To show part (2), from \cref{lem: properties of integral over fund.domain and glqp}(3), there exist $\cbr{\beta_j}$ for which $\varGamma\alpha\varGamma = \bigsqcup_j \beta_j\varGamma$, from which we deduce that $\varGamma\alpha^\prime\varGamma = \bigsqcup_j\varGamma(\det\beta_j)\beta_j^{-1}$. Then apply part (1) of this lemma with each $\beta_j\varGamma\beta_j^{-1}\cap\varGamma$ in place of $\varGamma$ in the following:
+    \begin{align*}
+        \abr{f|_k[\varGamma\alpha\varGamma],g}_\varGamma &= (\det\alpha)^{k/2-1}\sum_j\abr{f|_k[\beta_j],g}_{\varGamma\cap \beta_j^{-1}\varGamma\beta_j}\\
+        &= (\det\alpha^\prime)^{k/2-1}\sum_j\abr{f,g|_k[(\det\beta_j)\beta_j^{-1}]}_{\beta_j\varGamma\beta_j^{-1}\cap \varGamma}\\
+        &= \abr{f,g|_k[\varGamma\alpha^\prime\varGamma]}_{\varGamma}.\qedhere
+    \end{align*} 
 \end{proof}
+We obtain the adjoints of the Hecke operators without much trouble using the above proposition.
 \begin{theorem}
     For $p\nmid N$, the Hecke operators $\abr{p},T_p\colon \mathcal S_k(\varGamma_1(N))\to \mathcal S_k(\varGamma_1(N))$ have adjoints \[\abr{p}^\ast = \abr{p}^{-1}\quad\text{and}\quad T_p^\ast = \abr{p}^{-1}T_p.\] It follows that the Hecke operators $\abr{n},T_n$ for $n$ coprime to $N$ are normal operators.
 \end{theorem}
 \begin{proof}
-    \tbd
+    Let $f,g\in\mathcal S_k(\varGamma_1(N))$. Since $\varGamma_1(N)$ is normal in $\varGamma_0(N)$, we have by \cref{prop: computing adjoints}(1) that 
+    \[\abr{p}^\ast = |_k[\alpha]^\ast = |_k[\alpha^{-1}] = \abr{p}^{-1},\] where $\alpha$ is any element of $\varGamma_0(N)$ such that $\alpha\equiv \big(\!\begin{smallmatrix}
+        \ast & \ast \\ 0 & p
+    \end{smallmatrix}\!\big)\smod N$.
+    
+    From \cref{prop: computing adjoints}(2), we have \[T_p^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)]^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\varGamma_1(N)].\]
+    Choose $m,n$ with $mp-nN = 1$, and observe that $\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big) = \big(\!\begin{smallmatrix}
+        1 & n \\ N & mp
+    \end{smallmatrix}\!\big)^{-1}\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+        p & n \\ N & m
+    \end{smallmatrix}\!\big)$, with $\big(\!\begin{smallmatrix}
+        1 & n \\ N & mp
+    \end{smallmatrix}\!\big)^{-1}\in\varGamma_1(N)$ and $\big(\!\begin{smallmatrix}
+        p & n \\ N & m
+    \end{smallmatrix}\!\big)\in\varGamma_0(N)$. Thus with $\varGamma_1(N)$ normal in $\varGamma_0(N)$, we have 
+    \[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & n \\ N & m
+    \end{smallmatrix}\!\big).\] If $\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \bigsqcup_j\varGamma_1(N)\beta_j$, then $\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \bigsqcup_j\varGamma_1(N)\beta_j\big(\!\begin{smallmatrix}
+        p & n \\ N & m
+    \end{smallmatrix}\!\big)$. Since $m\equiv p^{-1}\smod N$, we have $T_p^\ast = \abr{p}^{-1}T_p$ as desired.
 \end{proof}
 \begin{corollary}
-    By the spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textib{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+    By the spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textit{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
 \end{corollary}
 
-\subsection{Oldforms, newforms, and primitive forms}
-We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
-\begin{lemma}
-    If $M\mid N$ then $\mathcal S_k(\varGamma_1(M))\subset \mathcal S_k(\varGamma_1(N))$.
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-Let $M\mid N$ and let $d$ be a factor of $N/M$. Define $\alpha_d = \big(\!\begin{smallmatrix}
-    d & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)$ and consider the map $|_k[\alpha_d]$, which is an injective map $\mathcal S_k(\varGamma_1(M))\to\mathcal S_k(\varGamma_1(N))$ by \cref{lem: weight k operator properties}. Explicitly, for $f\colon\mathcal H\to\mathbb C$ we have $(f|_k[\alpha_d])(z) = d^{k/2}f(dz)$.
-
-We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp forms which may be obtained from cusp forms at lower levels via a combination of the two embeddings discussed earlier.
-
-\begin{definition}
-    For each divisor $d$ of $N$, define 
-    \[i_d\colon (\mathcal S_k(\varGamma_1(Nd^{-1})))^2\to\mathcal S_k(\varGamma_1(N))\] by $(f,g)\mapsto f + g|_k[\alpha_d]$. The subpace of \textib{oldforms at level $N$} is 
-    \[\mathcal S_k(\varGamma_1(N))^\old = \sum_{\substack{p\mid N \\ p\text{ prime}}}i_p((\mathcal S_k(\varGamma_1(Np^{-1})))^2),\] and the subspace of \textib{newforms at level $N$} is the orthogonal complement of the subspace of oldforms with respect to the Petersson inner product,
-    \[\mathcal S_k(\varGamma_1(N))^\new = (\mathcal S_k(\varGamma_1(N))^\old)^\perp.\qedhere\]
-\end{definition}
-
-\begin{proposition}
-    The subspace of oldforms and the subspace of newforms in $\mathcal S_k(\varGamma_1(N))$ are stable under the Hecke operators $\abr{n},T_n$ for all $n\in\mathbb Z^+$.
-\end{proposition}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{corollary}
-    The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
-\end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
-
-\sai{The ``Main Lemma'' will appear soon.}
+We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space of cusp forms for which all of the Hecke operators are simultaneously diagonalizable.
 
 \newpage\section{Strong Multiplicity One}
 \sai{check this}
-\subsection{TEMPORARY collection of preliminary results}
+\subsection{Primitive forms}
+
+
 
 % \begin{lemma}\label{lem: miyake lem 4.5.2}
 %     (TO REMOVE?)For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
@@ -1251,6 +1539,7 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 % \begin{proof}
 %     \tbd
 % \end{proof}
+
 \begin{theorem}\label{thm: miyake thm 4.5.5}
     The following diagram is commutative: 
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzAsMSwiXFxtYXRoY2FsIE1fayhOLFxcb3ZlcmxpbmV7XFxjaGl9KSJdLFs0LDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbNCwxLCJcXG1hdGhjYWwgTV9rKE4sXFxvdmVybGluZXtcXGNoaX0pIl0sWzAsMSwiXFxvbWVnYV9OIl0sWzEsMywiVF5cXGFzdChuKVxcdGV4dHsgXFx0ZXh0dXB7KH1yZXNwLiAkVF5cXGFzdChtLGwpJFxcdGV4dHVweyl9fSJdLFswLDIsIlQobilcXHRleHR7IFxcdGV4dHVweyh9cmVzcC4gJFQobCxtKSRcXHRleHR1cHspfX0iXSxbMiwzLCJcXG9tZWdhX04iXV0=
@@ -1266,29 +1555,30 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \begin{proof}
     \tbd
 \end{proof}
-% \begin{lemma}\label{lem: miyake lem 4.5.6}
-%     (TO REMOVE?)Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
-%         \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-%             1 & 0 \\ 0 & p^e
-%         \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
-%             \cbr{\big(\!\begin{smallmatrix}
-%                 p^{e-f} & m \\ 0 & p^f
-%             \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
-%             \cbr{\big(\!\begin{smallmatrix}
-%                 1 & m \\ 0 & p^e
-%             \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
-%         \end{cases} \]
-%         \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-%             1 & 0 \\ 0 & p^e
-%         \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
-%             p^e + p^{e-1} & \text{if $p\nmid N$,}\\
-%             p^e & \text{if $p\mid N$.}
-%         \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
-%     \end{enumerate}
-% \end{lemma}
-% \begin{proof}
-%     \tbd
-% \end{proof}
+
+\begin{lemma}\label{lem: miyake lem 4.5.6}
+    (TO REMOVE?)Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+            1 & 0 \\ 0 & p^e
+        \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
+            \cbr{\big(\!\begin{smallmatrix}
+                p^{e-f} & m \\ 0 & p^f
+            \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
+            \cbr{\big(\!\begin{smallmatrix}
+                1 & m \\ 0 & p^e
+            \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
+        \end{cases} \]
+        \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+            1 & 0 \\ 0 & p^e
+        \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
+            p^e + p^{e-1} & \text{if $p\nmid N$,}\\
+            p^e & \text{if $p\mid N$.}
+        \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
 % \begin{lemma}\label{lem: miyake lem 4.5.7}
 %     (TO REMOVE)Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
 %         \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
@@ -1314,6 +1604,7 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 % \begin{proof}
 %     \tbd
 % \end{proof}
+
 \begin{lemma}\label{lem: miyake lem 4.5.11} (TO REMOVE?)\sai{bro what is this}
     Let $N$ be a positive integer and $p$ a prime. Then 
     \[\varGamma_0(pN)\begin{pmatrix}
@@ -1341,57 +1632,7 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
 \begin{proof}
     \tbd
 \end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.12}
-    Let $K$ be a commutative unital ring, and assume that two sequences $\cbr{t_n}_{n=1}^\infty,\cbr{d_n}_{n=1}^\infty$ of elements of $K$ satisfy the following conditions:
-    \begin{enumerate}[label=\textup{(\roman*)}]
-        \item $t_1 =d_1 = 1$, and 
-        \item $d_{mn} = d_md_n$ for any positive integers $m,n$.
-    \end{enumerate} Then the following are equivalent:
-    \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item If $\gcd(m,n) = 1$, then $t_{mn} = t_mt_n$ and \[t_pt_{p^e} = t_{p^{e+1}} + pd_pt_{p^{e-1}}\] for all prime numbers $p$ and all positive integers $e$.
-        \item The formal Dirichlet series $\sum_{n=1}^\infty t_nn^{-s}$ has formal Euler product \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}.\]
-        \item For any positive integers $m,n$, \[t_mt_n = \sum_{\substack{l>0\\l\mid \gcd(m,n)}}ld_lt_{mn/l^2}.\]
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    We show that (1) implies (2). From the first condition of (1), we have formally that 
-    \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg).\]
-    From the second condition of (1), we have \[(1-t_pp^{-s} + pd_pp^{-2s})\bigg(\sum_{e=0}^\infty t_{p^e}p^{-es}\bigg) = 1,\] from which (2) follows. 
 
-    We show that (2) implies (3). Formal Dirichlet series and formal Euler products are elements of the ring of formal power series $K[[p^{-s} : p\in\mathbb P]]$. Finding inverses in $K[[p^{-s}]]$ of the elements $1-t_pp^{-s} + pd_pp^{-2s}$ recursively (cf. exercise 7.2.3)(c) in \cite{df}), and comparing coefficients of \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + pd_pp^{-2s})^{-1}\] reveals that the sequence $\cbr{t_n}_{n=1}^\infty$ is multiplicative. That is, if $\gcd(m,n) =1$, then $t_{mn} = t_mt_n$.
-    
-    Let $m = \prod_{p\in\mathbb P}p^e$ and $n = \prod_{p\in\mathbb P}p^f$ be the prime factorizations of $m$ and $n$. Then \[\sum_{\substack{l>0\\l\mid\gcd(m,n)}} ld_lt_{mn/l^2} = \prod_{p\in\mathbb P} \bigg(\sum_{0\leq g\leq\min\{e,f\}}p^gd_{p^g}t_{p^{e+f-2g}}\bigg).\] Therefore it suffices to prove that (2) implies (3) in the case that $m$ and $n$ are powers of the same prime $p$. By assumption, we have 
-    \[(1-t_pp^{-s} + pd_pp^{-2s})^{-1} = \sum_{e=0}^\infty t_{p^e}p^{-es}.\] Let $\tau_p$ and $\delta_p$ be two indeterminates over $\mathbb Q$, and define a (unital) ring homomorphism $\psi\colon \mathbb Z[\tau_p,\delta_p]\to K$ by $\psi(\tau_p) = t_p$ and $\psi(\delta_p) = d_p$. Define the elements $\tau_{p^e}$ and $\delta_{p^e}$ of $\mathbb Z[\tau_p,\delta_p]$ by $\delta_{p^e} = (\delta_p)^e$ and by the formal power series equality 
-    \begin{equation}\label{eqn: tau power series expansion}
-        \sum_{e=0}^\infty \tau_{p^e}p^{-es} = (1-\tau_pp^{-s} + p\delta_pp^{-2s})^{-s}.
-    \end{equation} It follows that $\psi(\tau_{p^e}) = t_{p^e}$ and $\psi(\delta_{p^e}) = d_{p^e}$.
-
-    Let $u,v$ be indeterminates over $\mathbb Q$, and define a ring homomorphism $\phi\colon \mathbb Z[\tau_p,\delta_p]\to \mathbb Q[u,v]$ by $\phi(\tau_p) = u+v$ and $\phi(\delta_p) = uv/p$. Since $u+v$ and $uv/p$ are algebraically independent over $\mathbb Q$, $\phi$ is injective. Viewing $\mathbb Z[\tau_p,\delta_p]$ as a subring of $\mathbb Q[u,v]$, we may factor $1-\tau_pp^{-s}+p\delta_pp^{-2s}$ into $(1-up^{-s})(1-vp^{-s})$. Inverting this element and comparing coefficients in \cref{eqn: tau power series expansion}, we find that
-    \[\tau_{p^e} = \sum_{i+j=e}u^iv^j = (u^{e+1}-v^{e+1})/(u-v).\]
-
-    Assume that $0\leq e\leq f$. Then \begin{align*}
-        \tau_{p^e}\tau_{p^f} &= \bigg(\sum_{i+j=e}u^iv^j\bigg)\cdot (u^{f+1}-v^{f+1})/(u-v)\\
-        &= \bigg(u^{f+1}\sum_{j=0}^eu^{e-j}v^j - v^{f+1}\sum_{j=0}^eu^{j}v^{e-j}\bigg)\bigg/(u-v)\\
-        &=\sum_{g=0}^e u^gv^g(u^{e+f-2g+1}-v^{e+f-2g+1})/(u-v)\\
-        &=\sum_{g=0}^e p^g\delta_{p^g}\tau_{p^{e+f-2g}}.
-    \end{align*}
-    By taking $\psi$, obtain \[t_{p^e}t_{p^f} = \sum_{g=0}^ep^gd_{p^g}t_{p^{e+f-2g}}\] as desired. So in all cases, (2) implies (3).
-
-    To see that (3) implies (1), observe that (1) is a special case of (3), with $m = p$ and $n = p^e$.
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.5.13}
-    We have \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $T_mT_n = \sum_{\substack{l>0 \\ l\mid \gcd(m,n)\\ \gcd(l,N)=1}}l^{k-1}\abr{l}T_{mn/l^2}$, and
-        \item the formal Dirichlet series $\sum_{n=1}^\infty T_nn^{-s}$ has the formal Euler product \[\sum_{n=1}^\infty T_nn^{-s} = \prod_{p\nmid N}(1-T_np^{-s} + (p^{k-2}\abr{p})p^{1-2s})^{-1}\cdot \prod_{p\mid N}(1-T_pp^{-s})^{-1}\]
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    Apply the previous lemma with 
-    \[K = \mathcal R(N),\quad t_n = T_n,\quad \text{and}\quad d_n =\begin{cases}
-        n^{k-2}\abr{n} & \text{if $\gcd(n,N) = 1$},\\
-        0 & \text{if $\gcd(n,N)\neq 1$}
-    \end{cases}\] to obtain the result.
-\end{proof}
 \begin{lemma}\label{lem: miyake lem 4.5.14}
     Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \[
         f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z},\quad
@@ -1467,12 +1708,12 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
         \tbd
     \end{proof}
 \end{theorem}
-\subsection{Main result and relevant corollaries}
-\begin{theorem}\label{thm: sm1 miyake thm 4.6.19}
+\subsection{Main result}
+\begin{theorem}[Strong multiplicity one]\label{thm: sm1 miyake thm 4.6.19}
     Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}\in \mathcal S_k(M,\lambda)$. If $g(z)$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f(z) = g(z)$.
 \end{theorem}
 \begin{proof}
-    Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, we have from $T_{p^2} = T_pT_p - p^{k-1}\abr{p}\id$ that
+    Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, we have from $T_{p^2} = T_pT_p - p^{k-1}\abr{p}$ that
     \begin{align*}
         \chi(p)p^{k-1} &= a_p^2 - a_{p^2} \\
         &= b_p^2 - b_{p^2} \\
@@ -1528,6 +1769,39 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     In any case, it follows for any $p$ that $M_p\mid N_p$ so that $M\mid N$, and that $\chi$ is induced by $\lambda$. Then \cref{thm: miyake thm 4.6.12} implies $f(z) = g(z)$, so that $N = M$.
 \end{proof}
 
+\subsection{Oldforms and newforms}
+We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
+\begin{lemma}
+    If $M\mid N$ then $\mathcal S_k(\varGamma_1(M))\subset \mathcal S_k(\varGamma_1(N))$.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+Let $M\mid N$ and let $d$ be a factor of $N/M$. Define $\alpha_d = \big(\!\begin{smallmatrix}
+    d & 0 \\ 0 & 1
+\end{smallmatrix}\!\big)$ and consider the map $|_k[\alpha_d]$, which is an injective map $\mathcal S_k(\varGamma_1(M))\to\mathcal S_k(\varGamma_1(N))$ by \cref{lem: weight k operator properties}. Explicitly, for $f\colon\mathcal H\to\mathbb C$ we have $(f|_k[\alpha_d])(z) = d^{k/2}f(dz)$.
+
+We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp forms which may be obtained from cusp forms at lower levels via a combination of the two embeddings discussed earlier.
+
+\begin{definition}
+    For each divisor $d$ of $N$, define 
+    \[i_d\colon (\mathcal S_k(\varGamma_1(Nd^{-1})))^2\to\mathcal S_k(\varGamma_1(N))\] by $(f,g)\mapsto f + g|_k[\alpha_d]$. The subpace of \textib{oldforms at level $N$} is 
+    \[\mathcal S_k(\varGamma_1(N))^\old = \sum_{\substack{p\mid N \\ p\text{ prime}}}i_p((\mathcal S_k(\varGamma_1(Np^{-1})))^2),\] and the subspace of \textib{newforms at level $N$} is the orthogonal complement of the subspace of oldforms with respect to the Petersson inner product,
+    \[\mathcal S_k(\varGamma_1(N))^\new = (\mathcal S_k(\varGamma_1(N))^\old)^\perp.\qedhere\]
+\end{definition}
+
+\begin{proposition}
+    The subspace of oldforms and the subspace of newforms in $\mathcal S_k(\varGamma_1(N))$ are stable under the Hecke operators $\abr{n},T_n$ for all $n\in\mathbb Z^+$.
+\end{proposition}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{corollary}
+    The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+\end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
+
+\sai{The ``Main Lemma'' will appear soon.}
+
 % \newpage\section{}
 
 \newpage\pagestyle{frontmatter}
@@ -1553,6 +1827,19 @@ We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp f
     year = {2005},
     publisher = {Springer New York, NY}
 }
+
+% \bib{im}{article}{
+%     title = {Modular forms and modular curves},
+%     author = {Diamond, Fred},
+%     author = {Im, John},
+%     isbn = {0-8218-0313-1},
+%     journal = {CMS Conf. Proc.},
+%     volume = {17},
+%     year = {1995},
+%     pages = {39-133},
+%     publisher = {American Mathematical Society, Providence, RI},
+%     review = {\MR{1357209}}
+% }
 
 \bib{miyake}{book}{
     title = {Modular Forms},
