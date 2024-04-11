@@ -159,7 +159,8 @@
         Sai Sivakumar
 
         Undergraduate Honors Thesis -- Spring 2024\\
-        Department of Mathematics, University of Florida
+        Department of Mathematics, University of Florida\\
+        v1.0
     \end{center}
 \end{titlepage}
 \begin{center}
@@ -836,7 +837,7 @@ Obtain new orthogonality relations from the ones appearing in \cref{eqn: ortho r
 \begin{definition}
     Let $\chi$ be a Dirichlet character modulo $N$. The \textib{Gauss sum} of $\chi$ is the complex number
     \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^n,\] where $\mu_N = e^{2\pi i/N}$.
-\end{definition} \sai{may want to move this to the one result that does use it}
+\end{definition}
 % \begin{proposition}
 %     If $\chi$ is a primitive character modulo $N$, then for any integer $m$ we have 
 %     \[g(\chi) = \sum_{n=0}^{N-1}\chi(n)\mu_N^{nm} = \overline\chi(m)g(\chi).\] Furthermore, the Gauss sum of a primitive character is nonzero.
@@ -848,16 +849,16 @@ Obtain new orthogonality relations from the ones appearing in \cref{eqn: ortho r
     Let $N$ be a positive integer. If $N = 1,2$, then every Dirichlet character $\chi$ modulo $N$ satisfies $\chi(-1)=1$. If $N>2$, then the number of Dirichlet characters modulo $N$ is even, of which half satisfy $\chi(-1) = 1$ and the other half satisfy $\chi(-1) = -1$.
 \end{lemma}
 \begin{proof}
-    The extensions of a Dirichlet character to functions on $\mathbb Z$ are unique, so it suffices to study Dirichlet characters given by homomorphisms $Z_N^\times\to\mathbb C^\times$. For $N = 1,2$, $\phi(N) = 1$ so that the only Dirichet character is the trivial one. For $N>2$, $\phi(N)$ is even, so there are an even number of characters modulo $N$.
+    The extensions of a Dirichlet character to functions on $\mathbb Z$ are unique, so it suffices to study Dirichlet characters given by homomorphisms $Z_N^\times\to\mathbb C^\times$. For $N = 1,2$, $\phi(N) = 1$ so that the only Dirichlet character is the trivial one. For $N>2$, $\phi(N)$ is even, so there are an even number of characters modulo $N$.
 
     For $N>2$, the map $\widehat{Z_N^\times}\to Z_2$ given by evaluation at $N-1$ (which corresponds to evaluation at $-1$) is a nontrivial homomorphism since there exists a character which is not $1$ on $N-1$. By the first isomorphism theorem, the result follows.
 \end{proof}
 Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varGamma_1(N)), \mathcal S_k(\varGamma_1(N)), \mathcal E_k(\varGamma_1(N))$ into direct sums of interesting subspaces.
 \begin{proposition}\label{prop: eigenspace decomp}
     For each Dirichlet character $\chi$ modulo $N$, define the \textib{$\chi$-eigenspace} of $\mathcal M_k(\varGamma_1(N))$ by 
-    \[\mathcal M_k(N,\chi) = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(d_\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\},\] where $d_\gamma$ denotes the lower right entry of $\gamma$. Then the following decomposition holds:
+    \[\text{\textib{$\mathcal M_k(N,\chi)$}} = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(d_\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\},\] where $d_\gamma$ denotes the lower right entry of $\gamma$. Then the following decomposition holds:
     \[\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi).\] With similar definitions of $\chi$-eigenspaces for $\mathcal S_k(\varGamma_1(N))$ and $\mathcal E_k(\varGamma_1(N))$, we obtain the decompositions
-    \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi S_k(N,\chi),\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \mathcal E_k(N,\chi).\]
+    \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal S_k(N,\chi)$}},\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal E_k(N,\chi)$}}.\]
 \end{proposition}
 \begin{proof}
     \tbd 
@@ -1195,7 +1196,7 @@ So in the definition of $T_p$, we may replace $\alpha$ with any matrix in the do
 
 We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(N))$.
 
-\begin{proposition} 
+\begin{proposition}\label{prop: action of Tp}
     The operator $T_p = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
     \end{smallmatrix}\!\big)\varGamma_1(N)]$ is given by 
@@ -1232,7 +1233,7 @@ We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(
     
     If $p\nmid a$, then $j = ba^{-1}\smod p$ is a valid choice. So in this case we find that $\gamma_{2,j} = \big(\!\begin{smallmatrix}
         1& j \\ 0 & 1
-    \end{smallmatrix}\!\big)$ for $0\leq j < p$ form a complete set of coset representatives as needed.
+    \end{smallmatrix}\!\big)$ for $0\leq j < p$ form a complete set of coset representatives as needed (for each representative, one may also take $j + lp$ for any integer $l$ in place of $j$).
     
     If $p\mid a$, then $b-ja$ cannot be zero $\smod p$ for any $j$; if there was a choice of $j$ that made $b-ja$ zero, then $p$ would divide $b$ and hence also $\det \smallabcd = 1$, which is impossible. The cases where $\gamma_2\in\varGamma_1(N)$ with $p\mid a$ occur if and only if $p\nmid N$, in which case $\gamma_{2,j} = \big(\!\begin{smallmatrix}
         1& j \\ 0 & 1
@@ -1335,7 +1336,7 @@ We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(
 By \cref{lem: properties of baby heckes}, the mapping $n\mapsto \abr{n}$ is totally multiplicative; that is, $\abr{nm} = \abr{n}\abr{m}$ for all positive integers $n,m$. The same lemma implies that the mapping $n\mapsto T_n$ is multiplicative; that is, for $n,m$ coprime, $T_{nm} = T_nT_m$.
 
 \begin{definition}
-    The \textib{Hecke algebra $\mathcal R(N)$} is the polynomial ring 
+    The \textbf{\textit{Hecke algebra}} \textib{$\mathcal R(N)$} is the polynomial ring 
     \[\mathcal R(N) = \mathbb{Z}[T_p, \abr{q} : p,q\in\mathbb P, q\nmid N].\]
     From previous results it follows that $\mathcal R(N)$ is a commutative unital ring.
 \end{definition}
@@ -1399,7 +1400,7 @@ Often (and especially so in the next section), we will restrict the action of th
 \end{proof}
 
 \subsection{The Petersson inner product, adjoints of Hecke operators}
-We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. Let $A$ be a measurable set in $\mathcal H$. A few computations using Wirtinger derivatives reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
+We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. A few computations using Wirtinger derivatives reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then for a measurable set $A$ in $\mathcal H$, \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
 as desired. In particular $\dd \mu$ is $\slz$-invariant. Since $\mathbb Q\cup\cbr{\infty}$ is countable, its measure is zero, so we may integrate over the extended upper half plane $\mathcal H^\ast$ with respect to $\mu$.
 
 Recall that a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$ is given by 
@@ -1483,6 +1484,12 @@ We obtain the adjoints of the Hecke operators without much trouble using the abo
     \[\abr{p}^\ast = |_k[\alpha]^\ast = |_k[\alpha^{-1}] = \abr{p}^{-1},\] where $\alpha$ is any element of $\varGamma_0(N)$ such that $\alpha\equiv \big(\!\begin{smallmatrix}
         \ast & \ast \\ 0 & p
     \end{smallmatrix}\!\big)\smod N$.
+
+    \begin{definition}
+        Denote by \textib{$\mathcal R^\ast(N)$} the polynomial ring 
+        \[\mathcal R^\ast(N) = \mathbb{Z}[T_p^\ast, \abr{q}^\ast : p,q\in\mathbb P, q\nmid N].\]
+        The ring $\mathcal R^\ast(N)$ is just the ring of all adjoints of Hecke operators in the Hecke algebra $\mathcal R(N)$.
+    \end{definition}
     
     From \cref{prop: computing adjoints}(2), we have \[T_p^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
@@ -1524,9 +1531,249 @@ We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space 
 
 \newpage\section{Strong Multiplicity One}
 \sai{check this}
+\subsection{Oldforms and newforms for $\chi$-eigenspaces}
+For the remainder of this work, we restrict our view to various $\chi$-eigenspaces of $\mathcal M_k(\varGamma_1(N))$ and $\mathcal S_k(\varGamma_1(N))$. Specifically, we fix $N$ and consider $\chi$-eigenspaces at different levels $M$, where $M$ divides $N$.
+
+Let \textib{$\alpha_\ell$} be given by 
+\[\begin{pmatrix}
+    \ell & 0 \\ 0 & 1
+\end{pmatrix}\] for a positive integer $\ell$. Then for $f\in\mathcal M_k(N,\chi)$, the function $f\circ\alpha_\ell$ is an element of $\mathcal M_k(\ell N,\chi)$ with
+\[(f\circ\alpha_\ell)(z) = f(\ell z) = d^{-k/2}(f|_k[\alpha_\ell])(z).\] If $f$ is a cusp form, then so is $f\circ\alpha_\ell$.
+
+Indeed, for any $\gamma = \big(\!\begin{smallmatrix}
+    a & b \\ c\ell N & d
+\end{smallmatrix}\!\big)\in\varGamma_0(\ell N)$, 
+\[(f|_k[\alpha_\ell])|_k[\gamma] = (f|_k[\alpha_\ell\gamma\alpha_\ell^{-1}])|_k[\alpha_\ell] = (f|_k[\big(\!\begin{smallmatrix}
+    a & b\ell \\ cN & d
+\end{smallmatrix}\!\big)])|_k[\alpha_\ell] = \chi(d)f|_k[\alpha_\ell]\] as expected. In this setting, the map $\alpha_\ell$ provides a way to move between $\chi$-eigenspaces at different levels.
+
+We saw at the end of the previous section that the Hecke operators $T_n$, for $n$ coprime to $N$, are simultaneously diagonalizable on $\mathcal S_k(\varGamma_1(N))$ and hence also on $\mathcal S_k(N,\chi)$. Unfortunately, $\mathcal S_k(N,\chi)$ does not necessarily have a basis of eigenfunctions of \textit{all} eigenfunctions $T_n$. However, $\mathcal S_k(N,\chi)$ does have such a basis when $\chi$ is a primitive character of conductor $N$. We might expect that if we exclude cusp forms of lower levels in $\mathcal S_k(N,\chi)$ (that is, the cusp forms appearing as the image of some suitable $\alpha_\ell$ in the manner described above), we may be able to simultaneously diagonalize all of the Hecke operators $T_n$. This is indeed the case, as we will see.
+
+\begin{lemma}\label{lem: miyake lemma 4.6.2}
+    The Hecke operators $T_n,\abr{n}$ commute with the action of $\alpha_\ell$ whenever $n$ is coprime to $\ell N$; that is, the diagram 
+    \[\begin{tikzcd}
+	{\mathcal M_k(N,\chi)} &&& {\mathcal M_k(N,\chi)} \\
+	\\
+	{\mathcal M_k(\ell N,\chi)} &&& {\mathcal M_k(\ell N,\chi)}
+	\arrow["{T_n ~(\text{resp. }\abr{n})}", from=1-1, to=1-4]
+	\arrow["{|_k[\alpha_\ell]}", from=1-4, to=3-4]
+	\arrow["{|_k[\alpha_\ell]}"', from=1-1, to=3-1]
+	\arrow["{T_n ~(\text{resp. }\abr{n})}"', from=3-1, to=3-4]
+    \end{tikzcd}\] commutes.
+\end{lemma}
+\begin{proof}
+    Let $f$ be an element of $\mathcal M_k(N,\chi)$. Since $\gcd(n,\ell N) = 1$, we have $(\abr{n}f)|_k[\alpha_\ell] = \chi(n)f|_k[\alpha_\ell] = \abr{n}(f|_k[\alpha_\ell])$.
+
+    Therefore it suffices to show that $T_p$ commutes with the action of $\alpha_\ell$ for primes $p$ not dividing $\ell N$. From \cref{prop: action of Tp}, 
+    \begin{align*}
+        T_p(f|_k[\alpha_\ell]) &= p^{k/2-1}\sum_{j=0}^{p-1}f|_k[\alpha_\ell\big(\!\begin{smallmatrix}
+            1 & j \\ 0 & p
+        \end{smallmatrix}\!\big)] + p^{k/2-1}\chi(p)f|_k[\alpha_\ell\big(\!\begin{smallmatrix}
+            p & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)]\\
+        &= p^{k/2-1}\sum_{j=0}^{p-1}f|_k[\big(\!\begin{smallmatrix}
+            1 & \ell j \\ 0 & p
+        \end{smallmatrix}\!\big)\alpha_\ell] + p^{k/2-1}\chi(p)f|_k[\big(\!\begin{smallmatrix}
+            p & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)\alpha_\ell]\\
+        &= (T_pf)|_k[\alpha_\ell],
+    \end{align*}
+    where in the last equality we used the fact that $\ell$ and $p$ are coprime to see that 
+    \[\cbr{\begin{pmatrix}
+        1 & \ell j \\ 0 & p
+    \end{pmatrix},\begin{pmatrix}
+        m & n \\ N & p
+    \end{pmatrix}\begin{pmatrix}
+        p & 0 \\ 0 & 1
+    \end{pmatrix} : 0\leq j < p}\] form a set of coset representatives for $\varGamma_1(N)\backslash \varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)$. The result follows.
+\end{proof}
+
+We state the next lemma without proof.
+\begin{lemma}\label{lem: miyake lemma 4.6.3}
+    Let $f$ be an element of $\mathcal M_k(N,\chi)$. If there exists an element $\alpha = \smallabcd\in\Mat_2(\mathbb Z)$ such that $c\equiv 0\smod N$, $\gcd(a,N)=1$, and $\det\alpha >0$ that satisfies the following conditions, then $f = 0$.
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $\det\alpha >1$, $\gcd(\det\alpha,N) = 1$, and $\gcd(a,b,c,d) = 1$, and 
+        \item $f|_k[\alpha]\in\mathcal M_k(N,\chi)$.
+    \end{enumerate} 
+\end{lemma}
+This is a technical result that will be used in a few results to come. See \cite[lemma 4.6.3]{miyake} for details.
+
+The next result provides a way to determine if a cusp form may be obtained as a cusp form at a lower level.
+\begin{theorem}\label{thm: miyake thm 4.6.4}
+    Let $\ell$ be a positive integer, and let $f$ be a holomorphic function on $\mathcal H$ such that $f(z+1) = f(z)$ and $f\circ \alpha_\ell\in\mathcal M_k(N,\chi)$. Denote by $m_\chi$ the conductor of $\chi$. Then \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item if $\ell m_\chi\mid N$, then $f\in\mathcal M_k(N/\ell,\chi)$, and 
+        \item if $\ell m_\chi\nmid N$, then $f = 0$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\begin{lemma}\label{lem: miyake lemma 4.6.5}
+    Let $f\in \mathcal M_k(N,\chi)$ have the Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i n z}$. For a positive integer $L$, let $g$ be given by \[g(z) = \sum_{\substack{n\geq 0\\\gcd(n,L)=1}}a_ne^{2\pi i n z}.\]
+    Then $g\in\mathcal M_k(M,\chi)$, with \[M = N\prod_{\substack{p\mid L \\ p\mid N}}p\prod_{\substack{p\mid L\\ p\nmid N}}p^2,\] where the products are to be taken over primes $p$. If $f$ is a cusp form, then so is $g$.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\begin{lemma}\label{lem: miyake lemma 4.6.6}
+    Let $\chi$ be a Dirichlet character $\mod N$, $\ell$ a positive integer, and $p$ a prime number that does not divide $\ell$. Let $M = \ell N$. Then the following diagrams commute. 
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKHBOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2socE0sXFxjaGkpIl0sWzMsMiwiXFxtYXRoY2FsIE1fayhNLFxcY2hpKSJdLFszLDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbMCwzLCJcXHZhckdhbW1hXzAocE4pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE4pIl0sWzAsMV0sWzMsMl0sWzEsMiwiXFx2YXJHYW1tYV8wKHBNKVxcYmlnKFxcIVxcYmVnaW57c21hbGxtYXRyaXh9MSAmIDAgXFxcXCAwICYgcFxcZW5ke3NtYWxsbWF0cml4fVxcIVxcYmlnKVxcdmFyR2FtbWFfMChNKSJdXQ==
+    \begin{equation}
+        \begin{tikzcd}[ampersand replacement=\&]
+            {\mathcal M_k(pN,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
+            \\
+            {\mathcal M_k(pM,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
+            \arrow["{\varGamma_0(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(N)}", from=1-1, to=1-4]
+            \arrow[from=1-1, to=3-1]
+            \arrow[from=1-4, to=3-4]
+            \arrow["{\varGamma_0(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(M)}", from=3-1, to=3-4]
+            \end{tikzcd}
+    \end{equation} \textup{(}In the above diagram, the vertical arrows indicate the natural embeddings.\textup{)}
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKHBOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2socE0sXFxjaGkpIl0sWzMsMiwiXFxtYXRoY2FsIE1fayhNLFxcY2hpKSJdLFszLDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbMCwzLCJcXHZhckdhbW1hXzAocE4pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE4pIl0sWzAsMSwiXFxhbHBoYV9cXGVsbCJdLFszLDIsIlxcYWxwaGFfXFxlbGwiXSxbMSwyLCJcXHZhckdhbW1hXzAocE0pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE0pIl1d
+    \begin{equation}
+        \begin{tikzcd}[ampersand replacement=\&]
+            {\mathcal M_k(pN,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
+            \\
+            {\mathcal M_k(pM,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
+            \arrow["{\varGamma_0(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(N)}", from=1-1, to=1-4]
+            \arrow["{\alpha_\ell}", from=1-1, to=3-1]
+            \arrow["{\alpha_\ell}", from=1-4, to=3-4]
+            \arrow["{\varGamma_0(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(M)}", from=3-1, to=3-4]
+        \end{tikzcd}
+    \end{equation}
+    Similar results hold for cusp forms.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\begin{lemma}\label{lem: miyake lemma 4.6.7}
+    Let $\ell$ be a positive square-free integer, and let $f\in\mathcal M_k(N,\chi)$ have Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i n z}$. If $a_n =0$ for all $n$ coprime to $\ell$, then 
+    \[f(z) = \sum_{p\mid \ell}g_p(pz)\quad \text{where $g_p\in\mathcal M_k(N\ell^2,\chi)$},\] and $p$ runs over all prime factors of $\ell$. Furthermore, if $\ell\mid N$, then we may choose $g_p$ from $\mathcal M_k(N\ell,\chi)$. If $f$ is a cusp form, then each $g_p$ can be chosen to be cusp forms as well.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+
+The following theorem generalizes \cref{thm: miyake thm 4.6.4}.
+\begin{thm}\label{thm: miyake thm 4.6.8}
+    Let $\ell$ be a positive integer, and let $f\in\mathcal M_k(N,\chi)$ have Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$. Let $m_\chi$ be the conductor of $\chi$, and assume that $a_n = 0$ for all $n$ coprime to $\ell$.
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $\gcd(\ell,N/m_\chi) = 1$, then $f = 0$.
+        \item If $\gcd(\ell,N/m_\chi) \neq 1$, then there exist $f_p\in\mathcal M_k(N/p,\chi)$ for all prime factors $p$ of $\gcd(\ell,N/m_\chi)$ such that 
+        \[f(z) = \sum_{p\mid \gcd(\ell,N/m_\chi)}f_p(pz).\] If $f$ is a cusp form, then we may choose $f_p$ to be cusp forms as well.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    \tbd
+\end{proof}
+
+In what follows, we only consider cusp forms.
+\begin{definition}\label{def: eigenspace oldforms and newforms}
+    Denote by \textib{$\mathcal S_k^1(N,\chi)$} the subspace of \textbf{\textit{oldforms at level $N$}} of $\mathcal S_k(N,\chi)$, which is generated by the set 
+    \[\bigcup_M\bigcup_\ell\cbr{f\circ\alpha_\ell : f\in\mathcal S_k(M,\chi)}.\] Here $M$ runs over all positive integers such that $m_\chi\mid M$, $M\mid N$, and $M\neq N$; here $\ell$ runs over all positive divisors of $N/M$, including $1$ and $N/M$. (As usual, $m_\chi$ denotes the conductor of $\chi$.)
+
+    In other words, $\mathcal S_k^1(N,\chi)$ is the subspace of $\mathcal S_k(N,\chi)$ generated by cusp forms coming from lower levels.
+
+    Denote by \textib{$\mathcal S_k^0(N,\chi)$} the subspace of \textbf{\textit{newforms at level $N$}}, given by the orthogonal complement of $\mathcal S_k^1(N,\chi)$ in $\mathcal S_k(N,\chi)$ with respect to the Petersson inner product.
+\end{definition}
+
+By the above definition, we immediately obtain the following lemma:
+\begin{lemma}\label{lem: miyake lemma 4.6.9}
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $\chi$ is a primitive Dirichlet character of conductor $N$, then $\mathcal S_k(N,\chi) = \mathcal S_k^0(N,\chi)$.
+        \item Let $\chi$ be a character of conductor $m_\chi$. If $m_\chi\mid M$, $M\mid N$, and $M\neq N$, then $\mathcal S_k(M,\chi)\subset\mathcal S_k^1(N,\chi)$.
+        \item The space $\mathcal S_k(N,\chi)$ is generated by the set 
+        \[\bigcup_M\bigcup_\ell \cbr{f\circ \alpha_\ell : f\in\mathcal S_k^0(N,\chi)}.\] Here $M$ runs over all positive integers such that $m_\chi\mid M$ and $M\mid N$; here $\ell$ runs over all positive divisors of $N/M$, including $1$ and $N/M$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{lemma}\label{lem: miyake lemma 4.6.10}
+    The subspaces $\mathcal S_k^1(N,\chi)$ and $\mathcal S_k^0(N,\chi)$ are stable under the action of the Hecke operators $T_n$ for $n$ coprime to $N$.
+\end{lemma}
+\begin{proof}
+    \tbd
+\end{proof}
+
+It follows from the above lemma that the subspaces $\mathcal S_k^0(N,\chi)$ and $\mathcal S_k^1(N,\chi)$ of $\mathcal S_k(N,\chi)$ have a basis of simultaneous eigenfunctions of all of the Hecke operators $T_n$, for $n$ coprime to $N$.
+
 \subsection{Primitive forms}
 
+In this section we focus on simultaneous eigenfunctions of the Hecke operators.\sai{check this}
 
+\begin{lemma}\label{lem: miyake lemma 4.6.11}
+    Let $f\in\mathcal S_k^0(N,\chi)$ have series expansion $\sum_{n=1}^\infty a_ne^{2\pi i n z}$. If $f$ is a common eigenfunction of the Hecke operators $T_n$ for all $n$ coprime to some integer $L$, then $a_n\neq 0$.
+\end{lemma}
+\begin{proof}
+    Assume by way of contradiction that $a_1 = 0$. Then by \cref{lem: miyake lem 4.5.15}(1), we have that $a_n = 0$ for all $n$ coprime to $L$. Hence $f\in\mathcal S_k^1(N,\chi)$ by \cref{thm: miyake thm 4.6.8}, which is a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm: miyake thm 4.6.12}
+    Let $f(z)\in \mathcal S_k^0(N,\chi)$ and $g(z)\in \mathcal S_k(N,\chi)$. If $f(z)$ and $g(z)$ are common eigenfunctions of $T_n$ with the same eigenvalue for each $n$ coprime to some integer $L$, then $g(z)$ is a constant multiple of $f(z)$.
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\begin{definition}
+    An element $f\in\mathcal S_k^0(N,\chi)$ is a \textib{primitive form of conductor $N$} if the following conditions are satisfied:
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $f$ is a common eigenfunction of all of the Hecke operators $T_n$ for $n$ coprime to $N$, and
+        \item $f$ is normalized; that is, $f$ has Fourier series expansion $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i n z}$ with $a_1 = 1$.
+    \end{enumerate}
+    We also call $\mathcal S_k^0(N,\chi)$ the space of primitive forms of level $N$ with character $\chi$.
+\end{definition}
+
+\begin{theorem}\label{thm: miyake thm 4.6.13}
+    Primitive forms are common eigenfunctions of all operators in $\mathcal R(N)\cup\mathcal R^\ast(N)$, and $\mathcal S_k^0(N,\chi)$ has a basis consisting of primitive forms.
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\sai{equation 4.6.18 !!!, some elaboration needed} 
+
+\begin{theorem}\label{thm: miyake thm 4.6.15}
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item By the action of $\omega_N$, we obtain the isomorphisms $\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi})$ and $\mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi})$, and 
+        \item if $f(z)$ is a primitive form of $\mathcal S_k^0(N,\chi)$, then $f_p(z)$ is a primitive form of $\mathcal S_k^0(N,\overline{\chi})$ and 
+        \[f|_k[\omega_N] = cf_p(z)\] for some $c\in\mathbb C$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{theorem}\label{thm: miyake thm 4.6.16}
+    With the same notation and assumptions as in the previous \sai{theorem?}, we have
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item By the action of $\eta_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q}),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\chi^\prime_q\overline{\chi_q}).\]
+        \item By the action of $\eta^\prime_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi^\prime_q}\chi_q),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi^\prime_q}\chi_q).\]
+        \item For $f\in\mathcal S_k(N,\chi)$, we have $f|_k[\eta^2_q] = \chi_q(-1)\overline{\chi^\prime_q}(N_q)f$, $f|_k[{\eta^\prime_q}^2] = \chi^\prime_q(-1)\overline{\chi_q}(N/N_q)f$, and $f|_k[\eta_q\eta^\prime_q] = \overline{\chi^\prime_q}(N_q)f|_k[\omega_N]$.
+        \item Let $f\in\mathcal S_k^0(N,\chi)$ be a primitive form with $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i n z}$, and write \[(f|_k[\eta_q])(z) = c\sum_{n=1}^\infty b_ne^{2\pi i n z}\quad \text{\textup{(}with $b_1 = 1$\textup{)}}.\] Let $g_q(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}$.
+        
+        Then $g_q$ is a primitive form of $\mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q})$, with \[b_p = \begin{cases}
+            \overline{\chi_q}(p)a_p &\text{if $p\neq q$},\\
+            \chi^\prime_q(p)\overline{a_p} & \text{if $p = q$}
+        \end{cases}\] for any prime $p$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+\begin{theorem}\label{thm: miyake thm 4.6.17}
+    Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $m$ the conductor of $\chi$. For a prime factor $q$ of $N$, denote by $N_q$ and $m_q$ the $q$-components of $N$ and $m$, respectively; that is, $N_q$ and $m_q$ are the largest powers of $p$ dividing $N$ and $m$, respectively. \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If $N_q = m_q$, then $\abs{a_q} = q^{(k-1)/2}$.
+        \item If $N_q = q$ and $m_q = 1$, then $a_q^2 = \chi^\prime_q(q)q^{k-2}$.
+        \item Otherwise, that is, if $q^2\mid N_q$ and $N_q \neq m_q$, then $a_q = 0$.
+    \end{enumerate}
+    \begin{proof}
+        \tbd
+    \end{proof}
+\end{theorem}
 
 % \begin{lemma}\label{lem: miyake lem 4.5.2}
 %     (TO REMOVE?)For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
@@ -1540,16 +1787,17 @@ We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space 
 %     \tbd
 % \end{proof}
 
+\sai{the following need to be reordered correctly!}
 \begin{theorem}\label{thm: miyake thm 4.5.5}
     The following diagram is commutative: 
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzAsMSwiXFxtYXRoY2FsIE1fayhOLFxcb3ZlcmxpbmV7XFxjaGl9KSJdLFs0LDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbNCwxLCJcXG1hdGhjYWwgTV9rKE4sXFxvdmVybGluZXtcXGNoaX0pIl0sWzAsMSwiXFxvbWVnYV9OIl0sWzEsMywiVF5cXGFzdChuKVxcdGV4dHsgXFx0ZXh0dXB7KH1yZXNwLiAkVF5cXGFzdChtLGwpJFxcdGV4dHVweyl9fSJdLFswLDIsIlQobilcXHRleHR7IFxcdGV4dHVweyh9cmVzcC4gJFQobCxtKSRcXHRleHR1cHspfX0iXSxbMiwzLCJcXG9tZWdhX04iXV0=
 \[\begin{tikzcd}
-	{\mathcal M_k(N,\chi)} &&&& {\mathcal M_k(N,\chi)} \\
-	{\mathcal M_k(N,\overline{\chi})} &&&& {\mathcal M_k(N,\overline{\chi}).}
-	\arrow["{\omega_N}", from=1-1, to=2-1]
-	\arrow["{T^\ast_n}", from=2-1, to=2-5]
-	\arrow["{T_n}", from=1-1, to=1-5]
-	\arrow["{\omega_N}", from=1-5, to=2-5]
+	{\mathcal M_k(N,\chi)} && {\mathcal M_k(N,\chi)} \\\\
+	{\mathcal M_k(N,\overline{\chi})} && {\mathcal M_k(N,\overline{\chi}).}
+	\arrow["{|_k[\omega_N]}", from=1-1, to=3-1]
+	\arrow["{T^\ast_n}", from=3-1, to=3-3]
+	\arrow["{T_n}", from=1-1, to=1-3]
+	\arrow["{|_k[\omega_N]}", from=1-3, to=3-3]
 \end{tikzcd}\]
 \end{theorem}
 \begin{proof}
@@ -1665,49 +1913,8 @@ We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space 
 \begin{proof}
     \tbd
 \end{proof}
-\begin{theorem}\label{thm: miyake thm 4.6.12}
-    Let $f(z)\in \mathcal S_k^0(N,\chi)$ and $g(z)\in \mathcal S_k(N,\chi)$. If $f(z)$ and $g(z)$ are common eigenfunctions of $T_n$ with the same eigenvalue for each $n$ coprime to some integer $L$, then $g(z)$ is a constant multiple of $f(z)$.
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.6.15}
-    \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item By the action of $\omega_N$, we obtain the isomorphisms $\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi})$ and $\mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi})$, and 
-        \item if $f(z)$ is a primitive form of $\mathcal S_k^0(N,\chi)$, then $f_p(z)$ is a primitive form of $\mathcal S_k^0(N,\overline{\chi})$ and 
-        \[f|_k[\omega_N] = cf_p(z)\] for some $c\in\mathbb C$.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.6.16}
-    With the same notation and assumptions as in the previous \sai{theorem?}, we have
-    \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item By the action of $\eta_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q}),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\chi^\prime_q\overline{\chi_q}).\]
-        \item By the action of $\eta^\prime_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi^\prime_q}\chi_q),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi^\prime_q}\chi_q).\]
-        \item For $f\in\mathcal S_k(N,\chi)$, we have $f|_k[\eta^2_q] = \chi_q(-1)\overline{\chi^\prime_q}(N_q)f$, $f|_k[{\eta^\prime_q}^2] = \chi^\prime_q(-1)\overline{\chi_q}(N/N_q)f$, and $f|_k[\eta_q\eta^\prime_q] = \overline{\chi^\prime_q}(N_q)f|_k[\omega_N]$.
-        \item Let $f\in\mathcal S_k^0(N,\chi)$ be a primitive form with $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i n z}$, and write \[(f|_k[\eta_q])(z) = c\sum_{n=1}^\infty b_ne^{2\pi i n z}\quad \text{\textup{(}with $b_1 = 1$\textup{)}}.\] Let $g_q(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}$.
-        
-        Then $g_q$ is a primitive form of $\mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q})$, with \[b_p = \begin{cases}
-            \overline{\chi_q}(p)a_p &\text{if $p\neq q$},\\
-            \chi^\prime_q(p)\overline{a_p} & \text{if $p = q$}
-        \end{cases}\] for any prime $p$.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.6.17}
-    Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $m$ the conductor of $\chi$. For a prime factor $q$ of $N$, denote by $N_q$ and $m_q$ the $q$-components of $N$ and $m$, respectively; that is, $N_q$ and $m_q$ are the largest powers of $p$ dividing $N$ and $m$, respectively. \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item If $N_q = m_q$, then $\abs{a_q} = q^{(k-1)/2}$.
-        \item If $N_q = q$ and $m_q = 1$, then $a_q^2 = \chi^\prime_q(q)q^{k-2}$.
-        \item Otherwise, that is, if $q^2\mid N_q$ and $N_q \neq m_q$, then $a_q = 0$.
-    \end{enumerate}
-    \begin{proof}
-        \tbd
-    \end{proof}
-\end{theorem}
+
+
 \subsection{Main result}
 \begin{theorem}[Strong multiplicity one]\label{thm: sm1 miyake thm 4.6.19}
     Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}\in \mathcal S_k(M,\lambda)$. If $g(z)$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f(z) = g(z)$.
@@ -1769,38 +1976,38 @@ We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space 
     In any case, it follows for any $p$ that $M_p\mid N_p$ so that $M\mid N$, and that $\chi$ is induced by $\lambda$. Then \cref{thm: miyake thm 4.6.12} implies $f(z) = g(z)$, so that $N = M$.
 \end{proof}
 
-\subsection{Oldforms and newforms}
-We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
-\begin{lemma}
-    If $M\mid N$ then $\mathcal S_k(\varGamma_1(M))\subset \mathcal S_k(\varGamma_1(N))$.
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-Let $M\mid N$ and let $d$ be a factor of $N/M$. Define $\alpha_d = \big(\!\begin{smallmatrix}
-    d & 0 \\ 0 & 1
-\end{smallmatrix}\!\big)$ and consider the map $|_k[\alpha_d]$, which is an injective map $\mathcal S_k(\varGamma_1(M))\to\mathcal S_k(\varGamma_1(N))$ by \cref{lem: weight k operator properties}. Explicitly, for $f\colon\mathcal H\to\mathbb C$ we have $(f|_k[\alpha_d])(z) = d^{k/2}f(dz)$.
+% \subsection{Oldforms and newforms}
+% We start with some results which are used to take forms from lower levels $M$ dividing $N$ to $N$.
+% \begin{lemma}
+%     If $M\mid N$ then $\mathcal S_k(\varGamma_1(M))\subset \mathcal S_k(\varGamma_1(N))$.
+% \end{lemma}
+% \begin{proof}
+%     \tbd
+% \end{proof}
+% Let $M\mid N$ and let $d$ be a factor of $N/M$. Define $\alpha_d = \big(\!\begin{smallmatrix}
+%     d & 0 \\ 0 & 1
+% \end{smallmatrix}\!\big)$ and consider the map $|_k[\alpha_d]$, which is an injective map $\mathcal S_k(\varGamma_1(M))\to\mathcal S_k(\varGamma_1(N))$ by \cref{lem: weight k operator properties}. Explicitly, for $f\colon\mathcal H\to\mathbb C$ we have $(f|_k[\alpha_d])(z) = d^{k/2}f(dz)$.
 
-We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp forms which may be obtained from cusp forms at lower levels via a combination of the two embeddings discussed earlier.
+% We consider the subspace of $\mathcal S_k(\varGamma_1(N))$ containing all cusp forms which may be obtained from cusp forms at lower levels via a combination of the two embeddings discussed earlier.
 
-\begin{definition}
-    For each divisor $d$ of $N$, define 
-    \[i_d\colon (\mathcal S_k(\varGamma_1(Nd^{-1})))^2\to\mathcal S_k(\varGamma_1(N))\] by $(f,g)\mapsto f + g|_k[\alpha_d]$. The subpace of \textib{oldforms at level $N$} is 
-    \[\mathcal S_k(\varGamma_1(N))^\old = \sum_{\substack{p\mid N \\ p\text{ prime}}}i_p((\mathcal S_k(\varGamma_1(Np^{-1})))^2),\] and the subspace of \textib{newforms at level $N$} is the orthogonal complement of the subspace of oldforms with respect to the Petersson inner product,
-    \[\mathcal S_k(\varGamma_1(N))^\new = (\mathcal S_k(\varGamma_1(N))^\old)^\perp.\qedhere\]
-\end{definition}
+% \begin{definition}
+%     For each divisor $d$ of $N$, define 
+%     \[i_d\colon (\mathcal S_k(\varGamma_1(Nd^{-1})))^2\to\mathcal S_k(\varGamma_1(N))\] by $(f,g)\mapsto f + g|_k[\alpha_d]$. The subpace of \textib{oldforms at level $N$} is 
+%     \[\mathcal S_k(\varGamma_1(N))^\old = \sum_{\substack{p\mid N \\ p\text{ prime}}}i_p((\mathcal S_k(\varGamma_1(Np^{-1})))^2),\] and the subspace of \textib{newforms at level $N$} is the orthogonal complement of the subspace of oldforms with respect to the Petersson inner product,
+%     \[\mathcal S_k(\varGamma_1(N))^\new = (\mathcal S_k(\varGamma_1(N))^\old)^\perp.\qedhere\]
+% \end{definition}
 
-\begin{proposition}
-    The subspace of oldforms and the subspace of newforms in $\mathcal S_k(\varGamma_1(N))$ are stable under the Hecke operators $\abr{n},T_n$ for all $n\in\mathbb Z^+$.
-\end{proposition}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{corollary}
-    The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
-\end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
+% \begin{proposition}
+%     The subspace of oldforms and the subspace of newforms in $\mathcal S_k(\varGamma_1(N))$ are stable under the Hecke operators $\abr{n},T_n$ for all $n\in\mathbb Z^+$.
+% \end{proposition}
+% \begin{proof}
+%     \tbd
+% \end{proof}
+% \begin{corollary}
+%     The subspace of oldforms and the subspace of newforms each have orthogonal bases of eigenforms for the Hecke operators away from the level $N$; that is, for $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
+% \end{corollary} The condition that $\gcd(n,N) = 1$ can be removed for the space of newforms.
 
-\sai{The ``Main Lemma'' will appear soon.}
+% \sai{The ``Main Lemma'' will appear soon.}
 
 % \newpage\section{}
 
