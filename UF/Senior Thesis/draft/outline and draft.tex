@@ -596,9 +596,9 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
 It is possible to determine if a weakly modular holomorphic function on $\mathcal H$ is a modular form by investigating the growth of its Fourier coefficients. First, we prove a few lemmas.
 \begin{lemma}
     If $x$ is a cusp of a congruence subgroup $\varGamma$ and $\sigma\in\slz$ sends $x$ to $\infty$, then 
-    \[\sigma\varGamma_x\sigma^{-1}\cdot\cbr{\pm I} = \cbr{\pm\begin{pmatrix}
+    \[\sigma\varGamma_x\sigma^{-1}\cdot\cbr{\pm I} = \Big\{\pm\begin{pmatrix}
         1 & h \\ 0 & 1
-    \end{pmatrix}^m : m\in\mathbb Z}\] for some integer $h>0$.
+    \end{pmatrix}^m : m\in\mathbb Z\Big\}\] for some integer $h>0$.
 \end{lemma}
 \begin{proof}
     Without loss of generality take $x = \infty$ by taking $\sigma\varGamma\sigma^{-1}$ in place of $\varGamma$. From a computation, we have
@@ -1034,7 +1034,7 @@ Its action on functions on $\mathcal H$ appears in several results forthcoming, 
 \end{corollary}
 
 \newpage\section{Hecke operators}
-\sai{description to be added later}
+We outline how double cosets act on spaces of modular forms, and using them we define the Hecke operators $\abr{n}$ and $T_n$ on the space $\mathcal M_k(\varGamma_1(N))$. Then we restrict to the space of cusp forms $\mathcal S_k(\varGamma_1(N))$, on which we define the Petersson inner product and find adjoints to the Hecke operators $\abr{p}$ and $T_p$ for $p$ not dividing $N$. By doing so, we deduce that the Hecke operators $\abr{n}$ and $T_n$ are normal operators on $\mathcal S_k(\varGamma_1(N))$ whenever $n$ is coprime to $N$. \sai{check this}
 \subsection{Double coset operators}
 Let $\varGamma_1,\varGamma_2$ be congruence subgroups of $\slz$, so also subgroups of $\glqp$. For $\alpha\in\glqp$, the set
 \[\varGamma_1\alpha\varGamma_2 = \{\gamma_1\alpha\gamma_2 : \gamma_1\in\varGamma_1, \gamma_2\in\varGamma_2\}\] is a \textib{double coset} in $\glqp$. The group $\varGamma_1$ acts on the double coset $\varGamma_1\alpha\varGamma_2$ on the left by multiplication, partitioning it into orbits of the form $\varGamma_1\beta$, where $\beta = \gamma_1\alpha\gamma_2$ is some representative for this orbit. We show that the orbit space  $\varGamma_1\backslash\varGamma_1\alpha\varGamma_2$ is a finite disjoint union $\bigsqcup_j\varGamma_1\beta_j$ for some choice of representatives $\beta_j$.
@@ -1214,7 +1214,7 @@ We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(
     \end{cases}\]
 \end{proposition}
 \begin{proof}
-    We find orbit representatives for $\varGamma_1(N)\backslash \varGamma_1\big(\!\begin{smallmatrix}
+    We find orbit representatives for $\varGamma_1(N)\backslash \varGamma_1(N)\big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
     \end{smallmatrix}\!\big)\varGamma_1(N)$ by finding coset representatives for $\varGamma_3\backslash\varGamma_1(N)$, where $\varGamma_3 = \big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
@@ -1476,8 +1476,8 @@ The following proposition will be used to compute adjoints of the Hecke operator
     \end{align*} 
 \end{proof}
 We obtain the adjoints of the Hecke operators without much trouble using the above proposition.
-\begin{theorem}
-    For $p\nmid N$, the Hecke operators $\abr{p},T_p\colon \mathcal S_k(\varGamma_1(N))\to \mathcal S_k(\varGamma_1(N))$ have adjoints \[\abr{p}^\ast = \abr{p}^{-1}\quad\text{and}\quad T_p^\ast = \abr{p}^{-1}T_p.\] It follows that the Hecke operators $\abr{n},T_n$ for $n$ coprime to $N$ are normal operators.
+\begin{theorem}\label{thm: the actual adjoints}
+    For $p\nmid N$, the Hecke operators $\abr{p},T_p\colon \mathcal S_k(\varGamma_1(N))\to \mathcal S_k(\varGamma_1(N))$ have adjoints \[\abr{p}^\ast = \abr{p}^{-1}\quad\text{and}\quad T_p^\ast = \abr{p}^{-1}T_p.\]  Furthermore, one can show that $T_n^\ast = \abr{n}^{-1}T_n$ for $n$ coprime to $N$. It follows that the Hecke operators $\abr{n},T_n$ for $n$ coprime to $N$ are normal operators.
 \end{theorem}
 \begin{proof}
     Let $f,g\in\mathcal S_k(\varGamma_1(N))$. Since $\varGamma_1(N)$ is normal in $\varGamma_0(N)$, we have by \cref{prop: computing adjoints}(1) that 
@@ -1537,15 +1537,21 @@ For the remainder of this work, we restrict our view to various $\chi$-eigenspac
 Let \textib{$\alpha_\ell$} be given by 
 \[\begin{pmatrix}
     \ell & 0 \\ 0 & 1
-\end{pmatrix}\] for a positive integer $\ell$. Then for $f\in\mathcal M_k(N,\chi)$, the function $f\circ\alpha_\ell$ is an element of $\mathcal M_k(\ell N,\chi)$ with
-\[(f\circ\alpha_\ell)(z) = f(\ell z) = d^{-k/2}(f|_k[\alpha_\ell])(z).\] If $f$ is a cusp form, then so is $f\circ\alpha_\ell$.
+\end{pmatrix}\] for a positive integer $\ell$. 
 
-Indeed, for any $\gamma = \big(\!\begin{smallmatrix}
-    a & b \\ c\ell N & d
-\end{smallmatrix}\!\big)\in\varGamma_0(\ell N)$, 
-\[(f|_k[\alpha_\ell])|_k[\gamma] = (f|_k[\alpha_\ell\gamma\alpha_\ell^{-1}])|_k[\alpha_\ell] = (f|_k[\big(\!\begin{smallmatrix}
-    a & b\ell \\ cN & d
-\end{smallmatrix}\!\big)])|_k[\alpha_\ell] = \chi(d)f|_k[\alpha_\ell]\] as expected. In this setting, the map $\alpha_\ell$ provides a way to move between $\chi$-eigenspaces at different levels.
+\begin{lemma}\label{lem: miyake lem 4.6.1}
+    For $f\in\mathcal M_k(N,\chi)$, the function $f\circ\alpha_\ell$ is an element of $\mathcal M_k(\ell N,\chi)$ with
+    \[(f\circ\alpha_\ell)(z) = f(\ell z) = d^{-k/2}(f|_k[\alpha_\ell])(z).\] If $f$ is a cusp form, then so is $f\circ\alpha_\ell$.
+\end{lemma}
+\begin{proof}
+    Indeed, for any $\gamma = \big(\!\begin{smallmatrix}
+        a & b \\ c\ell N & d
+    \end{smallmatrix}\!\big)\in\varGamma_0(\ell N)$, 
+    \[(f|_k[\alpha_\ell])|_k[\gamma] = (f|_k[\alpha_\ell\gamma\alpha_\ell^{-1}])|_k[\alpha_\ell] = (f|_k[\big(\!\begin{smallmatrix}
+        a & b\ell \\ cN & d
+    \end{smallmatrix}\!\big)])|_k[\alpha_\ell] = \chi(d)f|_k[\alpha_\ell]\] as expected. The last statement is clear.
+\end{proof}
+In this setting, the map $\alpha_\ell$ provides a way to move between $\chi$-eigenspaces at different levels.
 
 We saw at the end of the previous section that the Hecke operators $T_n$, for $n$ coprime to $N$, are simultaneously diagonalizable on $\mathcal S_k(\varGamma_1(N))$ and hence also on $\mathcal S_k(N,\chi)$. Unfortunately, $\mathcal S_k(N,\chi)$ does not necessarily have a basis of eigenfunctions of \textit{all} eigenfunctions $T_n$. However, $\mathcal S_k(N,\chi)$ does have such a basis when $\chi$ is a primitive character of conductor $N$. We might expect that if we exclude cusp forms of lower levels in $\mathcal S_k(N,\chi)$ (that is, the cusp forms appearing as the image of some suitable $\alpha_\ell$ in the manner described above), we may be able to simultaneously diagonalize all of the Hecke operators $T_n$. This is indeed the case, as we will see.
 
@@ -1606,9 +1612,49 @@ The next result provides a way to determine if a cusp form may be obtained as a 
         \item if $\ell m_\chi\mid N$, then $f\in\mathcal M_k(N/\ell,\chi)$, and 
         \item if $\ell m_\chi\nmid N$, then $f = 0$.
     \end{enumerate}
+    Here $m_\chi$ is the conductor of $\chi$. If $f\circ \alpha_\ell$ is a cusp form, then so is $f$.
 \end{theorem}
 \begin{proof}
-    \tbd
+    We may assume that $\ell$ is a prime number. We first show that $f\in\mathcal M_k(N,\chi)$. Let 
+    \[\varGamma^\prime = \Big\{\begin{pmatrix}
+        a & b \\ cN & d
+    \end{pmatrix} \in\varGamma_0(N) : b\equiv 0\smod \ell\Big\},\] and let $\gamma = \big(\!\begin{smallmatrix}
+        a & b\ell \\ cN & d
+    \end{smallmatrix}\!\big)$ be an element of $\varGamma^\prime$. Since $\alpha_\ell^{-1}\gamma\alpha_\ell = \big(\!\begin{smallmatrix}
+        a & b \\ c\ell N & d
+    \end{smallmatrix}\!\big)\in\varGamma_0(N)$, we have
+    \[f|_k[\gamma\alpha_\ell] = f|_k[\alpha_\ell\alpha_\ell^{-1}\gamma\alpha_\ell] =(f|_k[\alpha_\ell])|_k[\alpha_\ell^{-1}\gamma\alpha_\ell] =  \chi(d)f|_k[\alpha_\ell],\] from which it follows that $f|_k[\gamma] = \chi(d)f$. Let $\varGamma^{\prime\prime}$ be the group generated by $\varGamma^\prime$ and the matrix $\big(\!\begin{smallmatrix}
+        1 & 1 \\ 0 & 1
+    \end{smallmatrix}\!\big)$. Since $[\varGamma^{\prime\prime} : \varGamma^\prime]\geq \ell$ and 
+    \[[\varGamma_0(N): \varGamma^\prime] = \begin{cases}
+        \ell & \ell\mid N,\\
+        \ell + 1 & \ell \nmid N,
+    \end{cases}\] we have that $\varGamma^{\prime\prime} = \varGamma_0(N)$ or $\varGamma_0(N)$ is generated by $\big(\!\begin{smallmatrix}
+        1 & 1 \\ 0 & 1
+    \end{smallmatrix}\!\big)$ over $\varGamma^\prime$. Since $f(z+1) = f(z)$, we have that $f\in\mathcal M_k(N,\chi)$.
+
+    Suppose that $\ell$ is coprime to $N$. By taking $\alpha = \alpha_\ell$ in \cref{lem: miyake lemma 4.6.3}, it follows that $f = 0$. So assume that $\ell\mid N$. For any element $\gamma_1 = \big(\!\begin{smallmatrix}
+        a & b \\ cN & d
+    \end{smallmatrix}\!\big)\in\varGamma_0(N)$, we have 
+    \[f|_k[\big(\!\begin{smallmatrix}
+        a & b\ell \\ cN/\ell & d
+    \end{smallmatrix}\!\big)] = f|_k[\alpha_\ell\gamma_1\alpha_\ell^{-1}] = \chi(d)f,\] and in particular we have $f|_k[\big(\!\begin{smallmatrix}
+        1 & 0 \\ N/\ell & 1
+    \end{smallmatrix}\!\big)] = f$. Therefore, with $\gamma = \big(\!\begin{smallmatrix}
+        1 & m \\ 0 & 1
+    \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+        1 & 0 \\ N/\ell & 1
+    \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
+        1 & n \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for any integers $n,m$, we have $f|_k[\gamma] = f$. Now choose $n$ to be any integer such that $nN/\ell + 1\not\equiv 0\smod \ell$, from which we may choose $m$ to be an integer such that $n(1 + mN/\ell) + m = n + m(nN/\ell + 1) \equiv 0\smod \ell$. Then
+    \[\alpha_\ell^{-1}\gamma\alpha_\ell = \begin{pmatrix}
+        1 + mN/\ell & [n(1+mN/\ell) + 1]/\ell\\
+        N & nN/\ell + 1
+    \end{pmatrix}\in\varGamma_0(N),\] and so $f|_k[\gamma] = \chi(1+nN/\ell)f$. 
+
+    Therefore, if $f \neq 0$, then $\chi(1+nN/\ell) = 1$ for any integer $n$ satisfying $\gcd(nN/\ell+1, \ell) = 1$. This implies that $\chi$ is defined modulo $N/\ell$, and that $N$ is divisible by $\ell m_\chi$. This proves (2) in the statement. Now assume that $\ell m_\chi\mid N$. Since $\varGamma_0(N/\ell)$ is generated by $\big(\!\begin{smallmatrix}
+        1 & 0 \\ N/\ell & 1
+    \end{smallmatrix}\!\big)$ over $\varGamma_0(N)$, we have that $f\in\mathcal M_k(N/\ell,\chi)$ as needed. Lastly, it is clear that if $f\circ\alpha_\ell$ is a cusp form, then so is $f$.
 \end{proof}
 
 \begin{lemma}\label{lem: miyake lemma 4.6.5}
@@ -1616,39 +1662,87 @@ The next result provides a way to determine if a cusp form may be obtained as a 
     Then $g\in\mathcal M_k(M,\chi)$, with \[M = N\prod_{\substack{p\mid L \\ p\mid N}}p\prod_{\substack{p\mid L\\ p\nmid N}}p^2,\] where the products are to be taken over primes $p$. If $f$ is a cusp form, then so is $g$.
 \end{lemma}
 \begin{proof}
-    \tbd
+    It suffices to show the result when $L$ is a prime number $p$. Let $N^\prime = N$ if $p\mid N$ and $N^\prime = pN$ otherwise. Since $p\mid N^\prime$, we have by \cref{prop: action of Tp} that
+    \[(T_pf)(z) = \frac{1}{p}\sum_{n=0}^\infty a_n\sum_{m=0}^{p-1}e^{2\pi i n (z+m)/p} = \sum_{n=0}^\infty a_{np}e^{2\pi i n z},\] where $T_p$ is acting at level $N^\prime$. Hence $(T_pf)(pz) = \sum_{n=0}^\infty a_{np}e^{2\pi i n pz}$, which belongs to $\mathcal M_k(N^\prime p,\chi)$ by \cref{lem: miyake lem 4.6.1}. Obtain $g\in\mathcal M_k(N^\prime p, \chi)$, given by
+    \[g(z) = f(z) - (T_pf)(pz).\] The last assertion is clear.
 \end{proof}
 
 \begin{lemma}\label{lem: miyake lemma 4.6.6}
     Let $\chi$ be a Dirichlet character $\mod N$, $\ell$ a positive integer, and $p$ a prime number that does not divide $\ell$. Let $M = \ell N$. Then the following diagrams commute. 
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKHBOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2socE0sXFxjaGkpIl0sWzMsMiwiXFxtYXRoY2FsIE1fayhNLFxcY2hpKSJdLFszLDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbMCwzLCJcXHZhckdhbW1hXzAocE4pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE4pIl0sWzAsMV0sWzMsMl0sWzEsMiwiXFx2YXJHYW1tYV8wKHBNKVxcYmlnKFxcIVxcYmVnaW57c21hbGxtYXRyaXh9MSAmIDAgXFxcXCAwICYgcFxcZW5ke3NtYWxsbWF0cml4fVxcIVxcYmlnKVxcdmFyR2FtbWFfMChNKSJdXQ==
-    \begin{equation}
+    \begin{equation}\label{diag: diagram 1 4.6.6}
         \begin{tikzcd}[ampersand replacement=\&]
             {\mathcal M_k(pN,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
             \\
             {\mathcal M_k(pM,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
-            \arrow["{\varGamma_0(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(N)}", from=1-1, to=1-4]
+            \arrow["{\varGamma_1(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_1(N)}", from=1-1, to=1-4]
             \arrow[from=1-1, to=3-1]
             \arrow[from=1-4, to=3-4]
-            \arrow["{\varGamma_0(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(M)}", from=3-1, to=3-4]
+            \arrow["{\varGamma_1(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_1(M)}", from=3-1, to=3-4]
             \end{tikzcd}
     \end{equation} \textup{(}In the above diagram, the vertical arrows indicate the natural embeddings.\textup{)}
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKHBOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2socE0sXFxjaGkpIl0sWzMsMiwiXFxtYXRoY2FsIE1fayhNLFxcY2hpKSJdLFszLDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbMCwzLCJcXHZhckdhbW1hXzAocE4pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE4pIl0sWzAsMSwiXFxhbHBoYV9cXGVsbCJdLFszLDIsIlxcYWxwaGFfXFxlbGwiXSxbMSwyLCJcXHZhckdhbW1hXzAocE0pXFxiaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0xICYgMCBcXFxcIDAgJiBwXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxiaWcpXFx2YXJHYW1tYV8wKE0pIl1d
-    \begin{equation}
+    \begin{equation}\label{diag: diagram 2 4.6.6}
         \begin{tikzcd}[ampersand replacement=\&]
             {\mathcal M_k(pN,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
             \\
             {\mathcal M_k(pM,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
-            \arrow["{\varGamma_0(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(N)}", from=1-1, to=1-4]
+            \arrow["{\varGamma_1(pN)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_1(N)}", from=1-1, to=1-4]
             \arrow["{\alpha_\ell}", from=1-1, to=3-1]
             \arrow["{\alpha_\ell}", from=1-4, to=3-4]
-            \arrow["{\varGamma_0(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_0(M)}", from=3-1, to=3-4]
+            \arrow["{\varGamma_1(pM)\big(\!\begin{smallmatrix}1 & 0 \\ 0 & p\end{smallmatrix}\!\big)\varGamma_1(M)}", from=3-1, to=3-4]
         \end{tikzcd}
     \end{equation}
     Similar results hold for cusp forms.
 \end{lemma}
 \begin{proof}
-    \tbd
+    By assumption, $p\mid N$ if and only if $p \mid M$. Therefore, by \cref{lem: miyake lem 4.5.11}, the commutativity of diagram \labelcref{diag: diagram 1 4.6.6} is clear.
+
+    Now let $f$ be an element of $\mathcal M_k(pN,\chi)$, and let $g = f|_k[\alpha_\ell]$. Let \[d = \begin{cases}
+        p-1 & \text{if $p\mid M$}\\
+        p & \text{otherwise},
+    \end{cases}\]
+    and $\gamma_v = \big(\!\begin{smallmatrix}
+        1 & v \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for $0\leq v < p$. If $d = p$, choose $\gamma_p$ as in \cref{lem: miyake lem 4.5.11}. Then we have 
+    \[\varGamma_1(pM)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(M) = \bigsqcup_{v=0}^d\varGamma_1(pM)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\gamma_v\] and
+    \begin{align*}
+        p^{1-k/2}g|_k[\varGamma_1(pM)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(M)] &= \sum_{v = 0}^d g|_k[\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v]\\
+        &= \sum_{v = 0}^d f|_k[\alpha_\ell\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v]\\
+        &= \sum_{v=0}^d f|_k[\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)(\alpha_\ell\gamma_v\alpha_\ell^{-1})\alpha_\ell].
+    \end{align*}
+    Observe that $\alpha_\ell\gamma_v\alpha_\ell^{-1} = \big(\!\begin{smallmatrix}
+        1 & \ell v \\ 0 & 1
+    \end{smallmatrix}\!\big)$ for $0\leq v < p$, and that for $p\nmid N$, we have \[\alpha_\ell\gamma_p\alpha_\ell^{-1} \equiv \begin{cases}
+        \big(\!\begin{smallmatrix}
+            0 & -a\ell \\ (a\ell)^{-1} & 0
+        \end{smallmatrix}\!\big)\smod p, \\
+        \big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)\smod N.
+    \end{cases}\] It follows from \cref{lem: miyake lem 4.5.11} that 
+    \[\varGamma_1(pN)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \bigsqcup_{v=0}^d\varGamma_1(pN)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)(\alpha_\ell\gamma_v\alpha_\ell^{-1}).\] Thus 
+    \[g|_k[\varGamma_1(pM)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)] = (f|_k[\varGamma_1(pN)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)])|_k[\alpha_\ell].\qedhere\]
 \end{proof}
 
 \begin{lemma}\label{lem: miyake lemma 4.6.7}
@@ -1656,7 +1750,11 @@ The next result provides a way to determine if a cusp form may be obtained as a 
     \[f(z) = \sum_{p\mid \ell}g_p(pz)\quad \text{where $g_p\in\mathcal M_k(N\ell^2,\chi)$},\] and $p$ runs over all prime factors of $\ell$. Furthermore, if $\ell\mid N$, then we may choose $g_p$ from $\mathcal M_k(N\ell,\chi)$. If $f$ is a cusp form, then each $g_p$ can be chosen to be cusp forms as well.
 \end{lemma}
 \begin{proof}
-    \tbd
+    The proof is by induction on the number of prime factors of $\ell$. Suppose first that $\ell$ is prime. Then $g$ given by $g(z) = g(z/\ell)$ satisfies the conditions of \cref{thm: miyake thm 4.6.4}, so that $g\in\mathcal M_k(N/\ell,\chi)$ or $f = g = 0$, depending on whether $\ell m_\chi$ divides $N$ or not. Thus $g\in \mathcal M_k(N\ell, \chi)$ with $f(z) = g(\ell z)$.
+
+    Now let $\ell$ be a composite number, and assume the result holds for any proper divisor of $\ell$. Let $p$ be a prime factor of $\ell$ and let $\ell^\prime = \ell/p$. Let $h$ be given by 
+    \[h(z) = \sum_{\substack{n\geq 0 \\ \gcd(n,p) = 1}}a_ne^{2\pi i n z}.\] Then $h\in\mathcal M_k(Np^2,\chi)$ by \cref{lem: miyake lemma 4.6.5}. Let $b_n$ for $n\geq 0$ be the Fourier coefficients of $f-h$; that is, $f(z)-h(z) = \sum_{n = 0}^\infty b_ne^{2\pi i n z}$. Then if $\gcd(n,p) = 1$, $b_n = 0$. Define $g_p$ by 
+    \[g_p(z) = f(z/p)- h(z/p),\] and observe that $g_p\in\mathcal M_k(Np,\chi)$ by the inductive hypothesis. Furthermore, note that $h$ satisfies the assumption of the lemma with $Np^2$ and $\ell^\prime$ in place of $N$ and $\ell$, respectively. Therefore we may find $g_q\in\mathcal M_k(Np^2(\ell^\prime)^2,\chi) = \mathcal M_k(N\ell^2,\chi)$ for each prime factor $q$ of $\ell^\prime$ satisfying $h(z) = \sum_{q\mid \ell^\prime}g_q(qz)$. Combining this with the observation that $f(z) = g_p(pz) + h(z)$ yields the first half of the lemma. From \cref{lem: miyake lemma 4.6.5} it is clear that we may take $g_p$ from $\mathcal M_k(N\ell,\chi)$ if $\ell\mid N$. Lastly, it is clear that the $g_p$ may be chosen to be cusp forms if $f$ is a cusp form.
 \end{proof}
 
 The following theorem generalizes \cref{thm: miyake thm 4.6.4}.
@@ -1669,7 +1767,70 @@ The following theorem generalizes \cref{thm: miyake thm 4.6.4}.
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    \tbd
+    We may assume that $\ell$ is square-free, and we prove the result by induction on the number of factors of $\ell$. When $\ell$ is a prime number, the result is obtained from \cref{thm: miyake thm 4.6.4} for $f(z/\ell)$. Now assume that $\ell$ is composite and that the lemma holds for any proper divisor of $\ell$. Let $p$ be a prime factor of $\ell$, and let $\ell^\prime = \ell/p$.
+
+    Let $h$ and $g$ be given by 
+    \[h(z) = \sum_{\substack{n\geq 0\\\gcd(n,\ell^\prime) \neq 1}}a_ne^{2\pi i n z}\quad\text{and}\quad g(z) = f(z) - h(z) = \sum_{\substack{n\geq 0\\\gcd(n,\ell^\prime) = 1}}a_ne^{2\pi i n z}.\]
+    Observe that $h$ and $g$ are elements of $\mathcal M_k(N(\ell^\prime)^2,\chi)$ by \cref{thm: miyake thm 4.6.4}. Let $d = p-1$ if $p^2\mid N$, or let $d = p$ if $p^2\nmid N$. Then choose elements $\gamma_v\in \varGamma_1(N(\ell^\prime)^2/p)$ for $0\leq v < d$ (via \cref{lem: miyake lem 4.5.11}) so that 
+    \[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_0(N(\ell^\prime)^2/p) = \bigsqcup_{v=0}^d\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\gamma_v.\] 
+    Then \begin{align*}
+        g|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)] &= p^{k/2-1}\sum_{v=0}^d \overline{\chi(\gamma_v)}g|_k[\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v]\\
+        &= p^{-1}\sum_{v=0}^d\overline{\chi(\gamma_v)}g_p|_k[\gamma_v]\\
+        &= (d+1)p^{-1}g_p.
+    \end{align*}
+    Hence
+    \[g(z) = g_p(pz) = p(d+1)^{-1}\big(g|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(pz).\] Let 
+    \[f_p(z) = p(d+1)^{-1}\big(f|_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N/p)]\big)(z).\]
+    Then $f_p\in\mathcal M_k(N/p,\chi)$, and by \cref{lem: miyake lemma 4.6.6}(1),
+    \begin{equation}\label{eqn: 4.6.8 equation}
+        f_p(z) = p(d+1)^{-1}\big(f|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(z).
+    \end{equation}
+    We show that $f(z)-f_p(pz)$ satisfies the assumption of the theorem for $\ell^\prime$. It is clear that $f(z)-f_p(pz)$ defines an element of $\mathcal M_k(N,\chi)$. We have 
+    \begin{align}\label{eqn: 4.6.8 equation2}
+        f(z) - f_p(pz) &= f(z) - f_p(pz) - g(z) + g_p(pz)\\
+        &= (f(z) - g(z)) - p(d+1)^{-1}\big((f-g)|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(pz)\nonumber\\
+        &= h(z) - p(d+1)^{-1}\big(h|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(pz).\nonumber
+    \end{align}
+    Since the $n$-th Fourier coefficient of $h$ vanishes if $n$ is coprime to $\ell^\prime$, we may write 
+    \[h(z) = \sum_{q\mid \ell^\prime}h_q(qz)\quad \text{with $h_q\in\mathcal M_k(N(\ell^\prime)^3m,\chi)$}\] by \cref{lem: miyake lemma 4.6.7}. Moreover, for any prime factor $q$ of $\ell^\prime$, 
+    \[h|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)] = h|_k[\varGamma_1(N(\ell^\prime)^3q)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^3q/p)]\] by \cref{lem: miyake lemma 4.6.6}(1). Combined with \cref{lem: miyake lemma 4.6.6}(2), we have that 
+    \begin{align*}
+        \big(h|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(z) &= \bigg(\bigg(\sum_{q\mid \ell^\prime}q^{-k/2}h_q|_k[\alpha_q]\bigg)\bigg|_k[\varGamma_1(N(\ell^\prime)^3)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^3q/p)]\bigg)(z)\\
+        &= \sum_{q\mid \ell^\prime}\big(h_q|_k[\varGamma_1(N(\ell^\prime)^3)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^3/p)]\big)(qz).
+    \end{align*}
+    In particular, the $n$-th Fourier coefficient of $\big(h|_k[\varGamma_1(N(\ell^\prime)^2)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N(\ell^\prime)^2/p)]\big)(z)$ vanishes whenever $\gcd(n,\ell^\prime) = 1$. As a result, the $n$-th Fourier coefficient of $f(z)- f_p(pz)$ vanishes by \cref{eqn: 4.6.8 equation2}. Therefore, by the inductive hypothesis, we have 
+    \[f(z) - f_p(pz) = \sum_qf_q(qz),\quad \text{for $f_q\in\mathcal M_k(N/q,\chi)$},\]
+    where $q$ runs over all prime factors of $\ell^\prime$. This proves part (2) of the theorem. If $f$ is a cusp form, then it is clear that each of the modular forms appearing in the proof may be chosen to be cusp forms also. 
 \end{proof}
 
 In what follows, we only consider cusp forms.
@@ -1696,14 +1857,17 @@ By the above definition, we immediately obtain the following lemma:
     The subspaces $\mathcal S_k^1(N,\chi)$ and $\mathcal S_k^0(N,\chi)$ are stable under the action of the Hecke operators $T_n$ for $n$ coprime to $N$.
 \end{lemma}
 \begin{proof}
-    \tbd
+    Let $f\in\mathcal S_k^1(N,\chi)$. By definition, we may write $f$ as 
+    \[f(z) = \sum_vf_v(\ell_v z)\quad \text{for $f_v\in\mathcal S_k(M_v,\chi)$,}\quad \text{with $\ell_v M_v\mid N$, $M_v\neq N$.}\]
+    Let $g_v$ be given by $g_v(z) = f_v(\ell_v z)$. Since $\gcd(n,\ell_v N) = 1$, we have 
+    \[(T_nf)(z) = \sum_v(T_ng_v)(z) = \sum_v (T_nf_v)(\ell_v z)\] by \cref{thm: miyake thm 4.5.10} and \cref{lem: miyake lemma 4.6.2}. Hence $T_nf\in\mathcal S_k^1(N,\chi)$; that is, $\mathcal S_k^1(N,\chi)$ is stable under $T_n$. Since the adjoint of $T_n$ on $\mathcal S_k(N,\chi)$ is $\abr{n}T_n$ (see \cref{thm: the actual adjoints}), it follows that $\mathcal S_k^0(N,\chi)$ is also stable under $T_n$.
 \end{proof}
 
 It follows from the above lemma that the subspaces $\mathcal S_k^0(N,\chi)$ and $\mathcal S_k^1(N,\chi)$ of $\mathcal S_k(N,\chi)$ have a basis of simultaneous eigenfunctions of all of the Hecke operators $T_n$, for $n$ coprime to $N$.
 
 \subsection{Primitive forms}
 
-In this section we focus on simultaneous eigenfunctions of the Hecke operators.\sai{check this}
+In this section we focus on simultaneous eigenfunctions of the Hecke operators. \sai{check this}
 
 \begin{lemma}\label{lem: miyake lemma 4.6.11}
     Let $f\in\mathcal S_k^0(N,\chi)$ have series expansion $\sum_{n=1}^\infty a_ne^{2\pi i n z}$. If $f$ is a common eigenfunction of the Hecke operators $T_n$ for all $n$ coprime to some integer $L$, then $a_n\neq 0$.
@@ -1853,7 +2017,25 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators.\
 %     \tbd
 % \end{proof}
 
-\begin{lemma}\label{lem: miyake lem 4.5.11} (TO REMOVE?)\sai{bro what is this}
+\begin{theorem}\label{thm: miyake thm 4.5.10}
+    Let $M$ be a multiple of $N$, and $n$ a positive integer coprime to $M$. Then the following diagram is commutative:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzMsMCwiXFxtYXRoY2FsIE1fayhOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2soTSxcXGNoaSkiXSxbMywyLCJcXG1hdGhjYWwgTV9rKE0sXFxjaGkpIl0sWzAsMl0sWzEsM10sWzAsMSwiVF9uIFxcdGV4dHsgKHJlc3AuIH0gVF5cXGFzdF9uKSJdLFsyLDMsIlRfbiBcXHRleHR7IChyZXNwLiB9IFReXFxhc3RfbikiXV0=
+    \[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathcal M_k(N,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
+	\\
+	{\mathcal M_k(M,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-4, to=3-4]
+	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=1-1, to=1-4]
+	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=3-1, to=3-4]
+    \end{tikzcd}\]
+    Here the vertical arrows indicate the natural embeddings. The Hecke operators are taken at the appropriate levels.
+\end{theorem}
+\begin{proof}
+    \tbd
+\end{proof}
+
+\begin{lemma}\label{lem: miyake lem 4.5.11} \sai{bro what is this, i think this needs adjustment due to using $\varGamma_1(N)$}
     Let $N$ be a positive integer and $p$ a prime. Then 
     \[\varGamma_0(pN)\begin{pmatrix}
         1 & 0 \\ 0 & p
@@ -2035,18 +2217,18 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators.\
     publisher = {Springer New York, NY}
 }
 
-% \bib{im}{article}{
-%     title = {Modular forms and modular curves},
-%     author = {Diamond, Fred},
-%     author = {Im, John},
-%     isbn = {0-8218-0313-1},
-%     journal = {CMS Conf. Proc.},
-%     volume = {17},
-%     year = {1995},
-%     pages = {39-133},
-%     publisher = {American Mathematical Society, Providence, RI},
-%     review = {\MR{1357209}}
-% }
+\bib{im}{article}{
+    title = {Modular forms and modular curves},
+    author = {Diamond, Fred},
+    author = {Im, John},
+    isbn = {0-8218-0313-1},
+    journal = {CMS Conf. Proc.},
+    volume = {17},
+    year = {1995},
+    pages = {39-133},
+    publisher = {American Mathematical Society, Providence, RI},
+    review = {\MR{1357209}}
+}
 
 \bib{miyake}{book}{
     title = {Modular Forms},
