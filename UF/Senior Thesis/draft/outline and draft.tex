@@ -365,7 +365,8 @@ We topologize modular curves and briefly show they are compact Riemann surfaces.
 \begin{proposition}\label{prop: properly discontinuous}
     The action of the modular group $\slz$ on $\mathcal H$ is properly discontinuous; that is, for $z_1,z_2\in \mathcal H$, (including the case $z_1 = z_2$) there exist neighborhoods $U_1$ of $z_1$ and $U_2$ of $z_2$ in $\mathcal H$ such that for any $\gamma\in \slz$, if $\gamma(U_1)\cap U_2\neq \emptyset$, then $\gamma(z_1) = z_2$. Equivalently, for any $\gamma\in\slz$, if $\gamma(z_1)\neq z_2$, then $\gamma(U_1)\cap U_2= \emptyset$.
 \end{proposition}
-\begin{proof}\sai{i kind of don't think I need this proof, could just cite it}
+\begin{proof}
+    %\sai{i kind of don't think I need this proof, could just cite it}
     Let $V_1$ and $V_2$ be neighborhoods of $z_1$ and $z_2$, respectively, with compact closure (e.g. open disks or bounded open sets). Let $y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, $Y_1 = \sup_{z\in V_1}\cbr{\Im(z)}$, and $y_2 = \inf_{z\in V_2}\cbr{\Im(z)}$. Then from \cref{eqn: imaginary parts}, we have for $\gamma = \big(\!\begin{smallmatrix}
         a & b \\ c & d
     \end{smallmatrix}\!\big)\in \slz$ not equal to $\pm I$ (i.e., $c\neq 0$) and $z\in V_1$ that \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{\Im(z)}{c^2\abs{z}^2}\leq \frac{1}{c^2\Im(z)}\leq \frac{1}{c^2y_1}\] and \[\Im(\gamma(z)) = \frac{\Im(z)}{\abs{cz+d}^2}\leq \frac{Y_1}{\Re(cz+d)^2} = \frac{Y_1}{(c\Re(z)+d)^2},\] so that $\Im(\gamma(z))\leq\min\cbr{1/c^2y_1,Y_1/(c\Re(z)+d)^2}$. All but finitely many integers $c$ may be chosen so that $1/c^2y_1< y_2$, and of the finitely many $c$ where this inequality does not hold, we may choose all but finitely many $d$ such that $Y_1/(c\Re(z)+d)^2< y_2$ uniformly in $z$ (since $V_1$ has compact closure). Thus for all but finitely many integers $c,d$, if $\gamma  = \big(\!\begin{smallmatrix}
@@ -468,7 +469,9 @@ We now define charts for $X(\varGamma)$, starting by defining them on $Y(\varGam
 
 Given a point $\pi(z)\in Y(\varGamma)$, take a neighborhood $U$ for $z$ as in the corollary above. Let $\delta_z  = \big(\!\begin{smallmatrix}
     1 & -z \\ 1 & -\overline{z}
-\end{smallmatrix}\!\big)\in \GL_2(\mathbb C)$ be the map from $\mathcal H$ (or $U$ by restriction) to $\mathbb C$ which takes $z$ to $0$ and $\overline{z}$ to $\infty$. Note that the isotropy subgroup of $0$ in the transformation group $(\delta_z\cbr{\pm I}\varGamma\delta_z^{-1})_0/\cbr{\pm I}$ is the conjugate $\delta_z(\cbr{\pm I}\varGamma/\cbr{\pm I})\delta_z^{-1}$ of the isotropy subgroup of $z$, hence is cyclic of order $h_z$ as a group of transformations by \cref{prop: cyclic isotropy subgp} (note $h_z$ may be equal to $1$). Since this group of fractional linear transformations fixes $0$ and $\infty$, these maps are given by $w\mapsto aw$, which are rotations about the origin through angular multiples of $2\pi/h_z$. We call $\delta_z$ a ``straightening map'' since it takes neighborhoods of $z$ to neighborhoods of the origin for which \sai{equivalent points (- points in an orbit of the isotropy subgroup?)} are evenly spaced apart angularly. (See figures 2.1, 2.2 in \cite{diamond}.)
+\end{smallmatrix}\!\big)\in \GL_2(\mathbb C)$ be the map from $\mathcal H$ (or $U$ by restriction) to $\mathbb C$ which takes $z$ to $0$ and $\overline{z}$ to $\infty$. Note that the isotropy subgroup of $0$ in the transformation group $(\delta_z\cbr{\pm I}\varGamma\delta_z^{-1})_0/\cbr{\pm I}$ is the conjugate $\delta_z(\cbr{\pm I}\varGamma/\cbr{\pm I})\delta_z^{-1}$ of the isotropy subgroup of $z$, hence is cyclic of order $h_z$ as a group of transformations by \cref{prop: cyclic isotropy subgp} (note $h_z$ may be equal to $1$). Since this group of fractional linear transformations fixes $0$ and $\infty$, these maps are given by $w\mapsto aw$, which are rotations about the origin through angular multiples of $2\pi/h_z$. We call $\delta_z$ a ``straightening map'' since it takes neighborhoods of $z$ to neighborhoods of the origin for which equivalent points 
+% \sai{suspicious about "equivalent points"}
+are evenly spaced apart angularly. (See figures 2.1, 2.2 in \cite{diamond}.)
 
 Let $\rho\colon \mathbb C\to \mathbb C$ be given by $\rho(w) = w^{h_z}$. Then $\psi = \rho\circ \delta_z \colon U\to V = \psi(U)$ given by $\psi(w) = (\delta(w))^{h_z}$ straightens then ``wraps'' around the neighborhood into a disk. By the open mapping theorem $V$ is an open subset of $\mathbb C$. There exists an bijection $\varphi\colon \pi(U)\to V$ such that $\varphi\circ\pi = \psi$ (see section 2.2 in \cite{diamond}), which is a homeomorphism as well. The maps $\varphi$ and open sets $U$ for each $z$ are indeed charts for $Y(\varGamma)$.
 
@@ -483,7 +486,8 @@ We briefly define fundamental domains obtained from $X(\varGamma)$, without proo
     0 & -1 \\ 1 & 0
 \end{smallmatrix}\!\big)$ taking $z$ to $-1/z$). (See section 2.3 of \cite{diamond}) In fact, if two distinct points in $\mathcal D$ are $\slz$-equivalent, then the points lie on the boundary of $\mathcal D$ and are either translates or inverses of each other by the aforementioned maps. So by a suitable identification of points on the boundary of $\mathcal D$ the map $\pi$ can be made a bijection. We say that $\mathcal D$ is a \textib{fundamental domain} for $\mathcal H$ under the action of $\slz$. A similar procedure may be done for $\mathcal D^\ast = \mathcal D \cup\cbr{\infty}$ and $X(1) = X(\slz)$, by which $\mathcal D^\ast$ becomes a fundamental domain for $\mathcal H^\ast$ under the action of $\slz$. 
 
-For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. A similar procedure for $X(\varGamma)$ produces fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$ \sai{This last statement should be true, but maybe I should find a source}. 
+For other congruence subgroups $\varGamma$, write $\slz = \bigcup_j \cbr{\pm I}\varGamma \gamma_j$ for some set of representatives $\gamma_j$ of the coset space $\varGamma\backslash \slz$, and consider the surjection $\pi\colon \bigcup_j \gamma_j\mathcal D\to Y(\varGamma)$ given by $z\mapsto \varGamma z$. By identifying the appropriate boundary points of $\bigcup_j \gamma_j\mathcal D$, $\pi$ may be regarded as a bijection, and so $\bigcup_j \gamma_j\mathcal D$ becomes a fundamental domain for $\mathcal H$ under the action of $\varGamma$. A similar procedure for $X(\varGamma)$ produces fundamental domains of $\mathcal H^\ast$ under the action of $\varGamma$.
+% \sai{This last statement should be true, but maybe I should find a source}. 
 
 \newpage\section{Modular forms}
 In this section, we define modular forms, provide dimension formulas for the spaces of modular forms appearing throughout, discuss $L$-functions corresponding to modular forms, and provide definitions of Eisenstein series as important examples of modular forms.\sai{check this}
@@ -587,11 +591,45 @@ As congruence subgroups have finite index in $\slz$, only finitely many coset re
             a & b \\ 0 & d
         \end{smallmatrix}\!\big)$, since $f|_k[\alpha]$ has a Fourier expansion, so does $f|_k[\gamma]$. Moreover, if the constant term in the Fourier expansion for $f|_k[\alpha]$ is $0$, the same holds for the Fourier expansion for $f|_k[\gamma]$.
         \item Let $\varGamma_1,\varGamma_2$ be congruence subgroups with $\gamma\varGamma_2\gamma^{-1}\subset \varGamma_1$ for some $\gamma\in\glqp$. If $f\in\mathcal M_k(\varGamma_1)$, then $f|_k[\gamma]\in\mathcal M_k(\varGamma_2)$, and the same result holds for cusp forms.
-        \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. If $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
+        % \item Let $N,d$ be positive integers and let $f\in\mathcal M_k(\varGamma_i(N))$. If $g(z) = f(dz)$, then $g\in\mathcal M_k(\varGamma_i(dN))$ for $i = 0,1$, and the same result holds if $f$ is a cusp form \textup{(}i.e., $g$ is also a cusp form\textup{)}.
     \end{enumerate}  
 \end{lemma}
 \begin{proof}
-    \tbd
+    Let $\gamma = \big(\!\begin{smallmatrix}
+        a & b \\ c & d
+    \end{smallmatrix}\!\big)$ be an element of $\glqp$. If $c = 0$, there is nothing to show. So assume that $c\neq 0$. Then write $a/c = a^\prime/c^\prime$ with $a^\prime$ and $c^\prime$ coprime integers; that is, write $a/c$ in lowest terms. Then choose integers $s,t$ such that $sa^\prime  + tc^\prime = 1$, from which it follows that $\big(\!\begin{smallmatrix}
+        s & t \\ -c^\prime & a^\prime
+    \end{smallmatrix}\!\big)\in\slz$. We have 
+    \[\begin{pmatrix}
+        s & t \\ -c^\prime & a^\prime
+    \end{pmatrix}\gamma = c\begin{pmatrix}
+        s & t \\ -c^\prime & a^\prime
+    \end{pmatrix}\begin{pmatrix}
+        a^\prime/c^\prime & b/c \\ 1 & d/c
+    \end{pmatrix} = \begin{pmatrix}
+        sa + tc & sb + tc \\ 0 & a^\prime d - c^\prime b
+    \end{pmatrix} = A\]
+    There exists an integer $r>0$ such that $rA \in \Mat_2(\mathbb Z)$, from which we can divide through by the greatest common divisor $g$ of the (three) nonzero entries of $rA$ to find that the nonzero entries of $\frac{r}{g}A$ are coprime to each other. Rearranging, we obtain $\gamma = \frac{g}{r}\big(\!\begin{smallmatrix}
+        s & t \\ -c^\prime & a^\prime
+    \end{smallmatrix}\!\big)^{-1}\big(\frac{r}{g}A\big)$, which proves the first part of (a).
+
+    %Before showing the second part of (a), note that $f|_k[\alpha]$ has a Fourier expansion about $\infty$.
+
+    To see the second part of (a), observe that if $\gamma=r\alpha\big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)$, then $f|_k[\gamma] = f|_k[r\alpha\big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)] = (f|_k[\alpha])|_k[\big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)]$. Since $f$ is a modular form, $f|_k[\alpha]$ is holomorphic at $\infty$ and hence admits a Fourier series expansion of the form $(f|_k[\alpha])(z) = \sum_{n=0}^\infty a_ne^{2\pi i n z / h}$ for some positive integer $h$. Thus the Fourier series expansion for $(f|_k[\alpha])|_k[\big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)]$ is of the form $(f|_k[\alpha\big(\!\begin{smallmatrix}
+        a & b \\ 0 & d
+    \end{smallmatrix}\!\big)])(z) = \sum_{n=0}^\infty b_ne^{2\pi i az/dh}$. Observe that $b_0$ is proportional to $a_0$.
+
+    Part (b) is clear from the following observation. For any $\alpha\in\slz$ we have that $\gamma\alpha\gamma^{-1}\in\slz$ and
+    \[(f|_k[\gamma])|_k[\alpha] = (f|_k[\gamma\alpha\gamma^{-1}])|_k[\gamma].\] 
+    If $\alpha\in\varGamma_2$, then $\gamma\alpha\gamma^{-1}\in\varGamma_1$ so that $(f|_k[\gamma\alpha\gamma^{-1}])|_k[\gamma] = f|_k[\gamma]$. From part (a) deduce the holomorphicity of $(f|_k[\gamma\alpha\gamma^{-1}])|_k[\gamma]$ for any $\alpha\in\slz$, and that the result in part (b) is true for cusp forms.
 \end{proof}
 It is possible to determine if a weakly modular holomorphic function on $\mathcal H$ is a modular form by investigating the growth of its Fourier coefficients. First, we prove a few lemmas.
 \begin{lemma}
@@ -624,7 +662,9 @@ We obtain the result by observing that $\cbr{\pm\big(\!\begin{smallmatrix}
     Let $f$ be a weakly modular holomorphic function on $\mathcal H$ with respect to some congruence subgroup $\varGamma$. If there exists a real number $v$ such that $f(z) = \mathcal O(\Im(z)^{-v})$ as $\Im(z)\to\infty$ uniformly with respect to $\Re(z)$, then $f$ is a modular form of weight $k$. Moreover, if $v$ may be chosen so that $v<k$, then $f$ is a cusp form.
 \end{lemma}
 \begin{proof}
-    We may assume that $k$ is even by squaring $f$ \sai{(why do we need $k$ even?)}. Let $x$ be a cusp of $\varGamma$ and suppose that $x$ is rational. Then there exists $\sigma\in\slz$ such that $\sigma(x) = \infty$. Let $h>0$ be an integer satisfying the result of the previous lemma. Then the Fourier series expansion of $f|_k[\sigma^{-1}]$ is 
+    % We may assume that $k$ is even by squaring $f$. 
+    % \sai{(why do we need $k$ even?)}
+    Let $x$ be a cusp of $\varGamma$ and suppose that $x$ is rational. Then there exists $\sigma\in\slz$ such that $\sigma(x) = \infty$. Let $h>0$ be an integer satisfying the result of the previous lemma. Then the Fourier series expansion of $f|_k[\sigma^{-1}]$ is 
     \[(f|_k[\sigma^{-1}])(z) = \sum_{n=-\infty}^\infty a_ne^{2\pi i n z/h},\] with \begin{equation}\label{eqn: fourier coeffs z_0}
         a_n = \frac{1}{h}\int_{z_0}^{z_0+h}(f|_k[\sigma^{-1}])(z)e^{-2\pi i n z/h}\dd z,\quad \text{for any fixed $z_0\in\mathcal H$.}
     \end{equation} Let $\smallabcd = \sigma^{-1}$, and note that $c\neq 0$, since $\sigma^{-1}$ does not fix $\infty$. We have that $\Im(\sigma^{-1}(z)) = \Im(z)/\abs{cz+d}^2 = \mathcal O(1/\Im(z))$ as $\Im(z)\to\infty$, uniformly on $\abs{\Re(z)}\leq h/2$. Then by assumption,
@@ -781,7 +821,7 @@ The product of two Dirichlet characters $\chi,\psi$, defined by pointwise multip
     Define the homomorphism $\rho\colon G^\prime\to \widehat G$ by $(\chi_1^{e_1},\dots,\chi_r^{e_r})\mapsto \chi_1^{e_1}\pi_1\cdots\chi_r^{e_r}\pi_r$, where $\pi_i$ denotes the projection $G\to \abr{x_i}$. It is evident that $\ker\rho$ is trivial. Let $f\colon G\to\mathbb C^\times$ be a character of $\widehat G$, and let $\iota_i\colon \abr{x_i}\to G$ denote the inclusion $x_i\mapsto (1,\dots,1,x_i,1,\dots,1)$. Then $f\iota_i\in \widehat{\abr{x_i}}$, and a preimage of $f$ under $\rho$ is $(f\iota_1,\dots,f\iota_r)$. The result follows.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop: orthogonalities of characters}
     The groups $Z_N^\times$ and $\widehat{Z_N^\times}$ satisfy the following orthogonality relations:
 \begin{equation}\label{eqn: ortho rels}
     \sum_{n\in Z_N^\times}\chi(n) = \begin{cases}
@@ -854,23 +894,24 @@ Obtain new orthogonality relations from the ones appearing in \cref{eqn: ortho r
     For $N>2$, the map $\widehat{Z_N^\times}\to Z_2$ given by evaluation at $N-1$ (which corresponds to evaluation at $-1$) is a nontrivial homomorphism since there exists a character which is not $1$ on $N-1$. By the first isomorphism theorem, the result follows.
 \end{proof}
 Dirichlet characters are used to decompose the vector spaces $\mathcal M_k(\varGamma_1(N)), \mathcal S_k(\varGamma_1(N)), \mathcal E_k(\varGamma_1(N))$ into direct sums of interesting subspaces.
+
+For a character $\chi$, define the character (using the same symbol) $\chi\colon \varGamma_0(N)\to\mathbb C^\times$ by $\chi(\gamma) = \chi(d_\gamma)$, where $d_\gamma$ denotes the lower right entry of $\gamma\in\varGamma_0(N)$. (We can also define $\chi$ on any other group of matrices with positive determinant and lower left entry a multiple of $N$.)
+
 \begin{proposition}\label{prop: eigenspace decomp}
     For each Dirichlet character $\chi$ modulo $N$, define the \textib{$\chi$-eigenspace} of $\mathcal M_k(\varGamma_1(N))$ by 
-    \[\text{\textib{$\mathcal M_k(N,\chi)$}} = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(d_\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\},\] where $d_\gamma$ denotes the lower right entry of $\gamma$. Then the following decomposition holds:
-    \[\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi).\] With similar definitions of $\chi$-eigenspaces for $\mathcal S_k(\varGamma_1(N))$ and $\mathcal E_k(\varGamma_1(N))$, we obtain the decompositions
-    \[\mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal S_k(N,\chi)$}},\quad \mathcal E_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal E_k(N,\chi)$}}.\]
+    \[\text{\textib{$\mathcal M_k(N,\chi)$}} = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\}.\] Similarly define $\chi$-eigenspaces of $\mathcal S_k(\varGamma_1(N))$. Then the following decompositions hold:
+    \[\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi),\quad \mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal S_k(N,\chi)$}}.\]
 \end{proposition}
-\begin{proof}
-    \tbd 
-\end{proof}
-\sai{do i need this discussion of dirichlet L functions}
-\begin{definition}
-    To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
-    \[L(s,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using the fundamental theorem of arithmetic combined with the fact that $(1-\chi(p)p^{-s})^{-1}$ is given by a geometric series.
-\end{definition}
-It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$, which has a simple pole at $s = 1$. (Indeed, $L(s,\mathbf 1_N) = \prod_{p\nmid N}(1-p^{-s})^{-1} = \prod_{p\in\mathbb P}(1-p^{-s})^{-1}\prod_{p\mid N}(1-p^{-s}) = \zeta(s)\prod_{p\mid N}(1-p^{-s})$.) Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
-\[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
-\[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$). 
+We prove this result at the beginning of \cref{section hecke operators}.
+
+% \sai{do i need this discussion of dirichlet L functions}
+% \begin{definition}
+%     To every Dirichlet character $\chi$ modulo $N$ there is an associated Dirichlet series, called a \textib{Dirichlet $L$-function}, given by 
+%     \[L(s,\chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s} = \prod_{p\in\mathbb P}\frac{1}{1-\chi(p)p^{-s}},\quad \Re(s)>1.\] Here $\mathbb P$ denotes the set of prime numbers and the second equality above is obtained by using the fundamental theorem of arithmetic combined with the fact that $(1-\chi(p)p^{-s})^{-1}$ is given by a geometric series.
+% \end{definition}
+% It can be shown that these $L$-functions extend meromorphically to the complex plane in $s$, with entire extension unless $\chi = \mathbf 1_N$, which has a simple pole at $s = 1$. (Indeed, $L(s,\mathbf 1_N) = \prod_{p\nmid N}(1-p^{-s})^{-1} = \prod_{p\in\mathbb P}(1-p^{-s})^{-1}\prod_{p\mid N}(1-p^{-s}) = \zeta(s)\prod_{p\mid N}(1-p^{-s})$.) Furthermore, when $\chi(-1) = 1$, the functional equation satisfied by $L(s,\chi)$ is 
+% \[\pi^{-s/2}\varGamma\Big(\frac{s}{2}\Big)N^sL(s,\chi) = \pi^{-(1-s)/2}\varGamma\Big(\frac{1-s}{2}\Big)g(\chi)L(1-s,\chi),\] and when $\chi(-1)=-1$, the functional equation is 
+% \[\pi^{-(s+1)/2}\varGamma\Big(\frac{s+1}{2}\Big)N^sL(s,\chi) = -i\pi^{-(2-s)/2}\varGamma\Big(\frac{2-s}{2}\Big)g(\chi)L(1-s,\chi).\] Here $\varGamma$ denotes Euler's Gamma function (extended to $\mathbb C$).
 
 Before defining $L$-functions for modular forms, we make a few observations. Let $\varGamma$ be a congruence subgroup, so that by definition there exists a positive integer $N$ such that $\varGamma(N)\subset \varGamma$, from which it follows that $\mathcal M_k(\varGamma)\subset \mathcal M_k(\varGamma(N))$. Furthermore, $\varGamma_1(N^2)$ is contained in 
 \[\begin{pmatrix}
@@ -960,7 +1001,8 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
     Now let $b\neq 0$. Let $\psi(s) = (s-v_1+1)^b = e^{b\log(s-v_1+1)}$ (using the principal branch of the logarithm); note that $\psi$ is holomorphic. Since $\Re(\log(s-v_1+1)) = \log\abs{s-v_1+1}$, we have 
     \[\abs{\psi(s)} = \abs{s-v_1+1}^b\sim \abs{\tau}^b\quad (\abs{\tau}\to\infty),\] uniformly on $F$ (the notation $\abs{s-v_1+1}^b\sim \abs{\tau}^b$ means that $\lim_{\abs{\tau}\to\infty} \abs{s-v_1+1}^b/\abs{\tau}^b = 1$).
 
-    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$. \sai{I may rewrite the last part of this proof.}
+    Let $\phi_1(s) = \phi(s)/\psi(s)$. The function $\phi_1$ satisfies the same assumptions as $\phi$ with $b = 0$, so by repeating the above argument with $\phi_1(s)$ in place of $\phi(s)$, we find that $\phi_1(s)$ is bounded on $F$. It follows that $\abs{\phi(s)} = \mathcal O(\abs{\tau}^b)$ for $\abs{\tau}\to\infty$. 
+    %\sai{I may rewrite the last part of this proof.}
 \end{proof}
 \begin{definition}\label{def: L function}
     To a holomorphic function $f\colon \mathcal H\to \mathbb C$ satisfying \cref{prop: miyake prop pre-lemma 4.3.3}  with Fourier series expansion $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$, we associate to it an \textib{$L$-function}, given by the Dirichlet series
@@ -970,11 +1012,13 @@ Before defining $L$-functions for modular forms, we make a few observations. Let
 
 In the above definition, since $a_n = \mathcal O(n^v)$, the Dirichlet series $L(s,f)$ converges absolutely and uniformly on compact subsets of $\cbr{s\in\mathbb C : \Re(s)>1+v}$. We are interested in $L$-functions of modular forms $f\in\mathcal M_k(\varGamma_1(N))$, which do satisfy \cref{prop: miyake prop pre-lemma 4.3.3}. 
 
-For a positive integer $N$, define \textib{$\omega_N$}$\in\GL_2(\mathbb R)$ by 
-\[\omega_n = \begin{pmatrix}
-    0 & -1 \\ N & 0
-\end{pmatrix}.\]
-Its action on functions on $\mathcal H$ appears in several results forthcoming, so we define it here.
+\begin{definition}
+    For a positive integer $N$, define \textib{$\omega_N$}$\in\GL_2(\mathbb R)$ by 
+    \[\omega_n = \begin{pmatrix}
+        0 & -1 \\ N & 0
+    \end{pmatrix}.\]
+    Its action on functions on $\mathcal H$ appears in several results forthcoming, so we define it here.
+\end{definition}
 
 \begin{theorem}[Hecke]\label{thm: miyake thm 4.3.6}
     Fix positive integers $k,N$. Let $f,g$ be holomorphic functions on $\mathcal H$ satisfing the hypotheses of \cref{prop: miyake prop pre-lemma 4.3.3}, with Fourier expansions $f(z) = \sum_{n=0}^\infty a_ne^{2\pi i nz}$ and $g(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}$. Then the following conditions are equivalent: 
@@ -1088,11 +1132,11 @@ Particular choices of $\varGamma_1,\varGamma_2$ yield notable double coset opera
 \begin{enumerate}[label=(\arabic*)]
     \item If $\varGamma_2\subset \varGamma_1$ and $\alpha = I$, then $f|_k[\varGamma_1\alpha\varGamma_2] = f$ and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural inclusion of $\mathcal M_k(\varGamma_1)$ into $\mathcal M_k(\varGamma_2)$.
     \item If $\varGamma_2 = \alpha^{-1}\varGamma_1\alpha$, then $f|_k[\varGamma_1\alpha\varGamma_2] = (\det\alpha)^{k/2-1}f|_k[\alpha]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is an isomorphism of $\mathcal M_k(\varGamma_1)$ with $\mathcal M_k(\varGamma_2)$.
-    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = (\det\alpha)^{k/2-1}\sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is a multiple of the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ by symmetrizing over the quotient, a surjection. (The action of $\varGamma_1$ on $\varGamma_2$ is to permute the coset representatives of $\varGamma_1\backslash\varGamma_2$, so the action of $\varGamma_1$ on elements in the image of the natural trace map is the identity.)
+    \item Finally, if $\varGamma_1\subset\varGamma_2$ and $\alpha = I$, take $\{\gamma_{2,j}\}$ to be a set of coset representatives for $\varGamma_1\backslash \varGamma_2$. Then $f|_k[\varGamma_1\alpha\varGamma_2] = \sum_j f|_k[\gamma_{2,j}]$, and the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$ is the natural trace map projecting $\mathcal M_k(\varGamma_1)$ onto its subspace $\mathcal M_k(\varGamma_2)$ by symmetrizing over the quotient, a surjection. (The action of $\varGamma_1$ on $\varGamma_2$ is to permute the coset representatives of $\varGamma_1\backslash\varGamma_2$, so the action of $\varGamma_1$ on elements in the image of the natural trace map is the identity.)
 \end{enumerate}
 
-Any double coset operator is a composition of these three operators. Indeed, given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto f|_k[\alpha]\mapsto \sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
-\subsection{Hecke operators $\abr{n}$ and $T_n$}
+Any double coset operator is a composition of these three operators. Indeed, given $\varGamma_1,\varGamma_2$, and $\alpha$, set $\varGamma_3 = \alpha^{-1}\varGamma_1\alpha \cap \varGamma_2$ and $\varGamma_3^\prime = \alpha\varGamma_3\alpha^{-1} = \varGamma_1\cap \alpha\varGamma_2\alpha^{-1}$. Then $\varGamma_3^\prime\subset \varGamma_1$, $\alpha^{-1}\varGamma_3^\prime\alpha = \varGamma_3$, and $\varGamma_3\subset \varGamma_2$. Composing their corresponding double coset operators, we have for  $f\in\mathcal M_k(\varGamma_1)$ that $f\mapsto f\mapsto (\det\alpha)^{k/2-1}f|_k[\alpha]\mapsto (\det\alpha)^{k/2-1}\sum_j f|_k[\alpha\gamma_{2,j}]$. By \cref{lem: double coset coset/orbit spaces} the composition above agrees with the double coset operator $|_k[\varGamma_1\alpha\varGamma_2]$.
+\subsection{Hecke operators $\abr{n}$ and $T_n$}\label{section hecke operators}
 Recall the congruence subgroups \begin{align*}
     \varGamma_0(N) &= \cbr{\abcd\in\slz: \abcd\equiv\begin{pmatrix}
         \ast & \ast \\ 0 & \ast
@@ -1112,8 +1156,38 @@ Let $\alpha\in\varGamma_0(N)$ and consider the weight-$k$ double coset operator 
     a^\prime & b^\prime \\ c^\prime & d^\prime
 \end{pmatrix}\in \varGamma_0(N)$ with $d^\prime\equiv d\smod N$}.\]
 For any character $\chi$, we have that the space $\mathcal M_k(N,\chi)$ from \cref{prop: eigenspace decomp} is really the ``$\chi$-eigenspace of the diamond operators''; that is,
-\[\mathcal M_k(N,\chi) = \{f\in \mathcal M_k(\varGamma_1(N)) : \abr{d}f = \chi(d)f \text{ for all } d\in(\mathbb Z/N\mathbb Z)^\times\}.\] 
-It follows that the diamond operator $\abr{d}$ acts on $\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi)$ by acting on each $\chi$-eigenspace by multiplication by $\chi(d)$.
+\[\mathcal M_k(N,\chi) = \{f\in \mathcal M_k(\varGamma_1(N)) : \abr{d}f = \chi(d)f \text{ for all } d\in(\mathbb Z/N\mathbb Z)^\times\},\]
+with a similar definition for $\mathcal S_k(N,\chi)$.
+We can now give an elementary proof of \cref{prop: eigenspace decomp}:
+\begin{proposition}
+    The following decompositions hold:
+    \[\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi),\quad \mathcal S_k(\varGamma_1(N)) = \bigoplus_\chi \text{\textib{$\mathcal S_k(N,\chi)$}}.\]
+\end{proposition}
+\begin{proof}
+    % Recall that for each Dirichlet character $\chi$ modulo $N$, we defined the $\chi$-eigenspace of $\mathcal M_k(\varGamma_1(N))$ by 
+    % \[\text{\textib{$\mathcal M_k(N,\chi)$}} = \{f\in \mathcal M_k(\varGamma_1(N)) : f|_k[\gamma] = \chi(\gamma)f \text{ for all } \gamma\in\varGamma_0(N)\}\] with a similar definition of $\chi$-eigenspaces of $\mathcal S_k(\varGamma_1(N))$ given by replacing $\mathcal M_k(\varGamma_1(N)$ by $\mathcal S_k(\varGamma_1(N)$.
+    For any character $\chi\colon (\mathbb Z/N\mathbb Z)^\times\to\mathbb C^\times$, define the operator $\pi_\chi\colon\mathcal M_k(\varGamma_1(N))\to\mathcal M_k(\varGamma_1(N))$ by
+    \[\pi_\chi = \frac{1}{\phi(N)}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\chi(d)^{-1}\abr{d}.\]
+    Observe that for any $d,e\in(\mathbb Z/N\mathbb Z)^\times$, we have $\abr{d}\abr{e} = \abr{e}\abr{d} = \abr{de}$: For any $f\in\mathcal M_k(N,\chi)$, we have $\abr{d}\abr{e}f = \abr{d}\chi(e)f = \chi(de)f$ as needed. It follows that 
+    \begin{align*}
+        \pi_\chi^2 &= \frac{1}{\phi(N)}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\chi(d)^{-1}\abr{d}\bigg(\frac{1}{\phi(N)}\sum_{e\in(\mathbb Z/N\mathbb Z)^\times}\chi(e)^{-1}\abr{e}\bigg)\\
+        &= \frac{1}{\phi(N)^2}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\sum_{e\in(\mathbb Z/N\mathbb Z)^\times}\chi(de)^{-1}\abr{de}\\
+        &= \frac{1}{\phi(N)}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\chi(d)^{-1}\abr{d}\\
+        &= \pi_\chi.
+    \end{align*} Since $\pi_\chi$ is idempotent, it follows from linear algebra that it is a projection operator of $\mathcal M_k(\varGamma_1(N))$ onto some subspace. Let $f\in\mathcal M_k(\varGamma_1(N))$. Then
+    \[\abr{e}\pi_\chi(f) = \abr{e}\frac{1}{\phi(N)}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\chi(d)^{-1}\abr{d}f = \chi(e)\frac{1}{\phi(N)}\sum_{d\in(\mathbb Z/N\mathbb Z)^\times}\chi(de)^{-1}\abr{de}f = \chi(e)\pi_\chi(f)\] for any $e\in(\mathbb Z/N\mathbb Z)^\times$. Furthermore, for any $f\in\mathcal M_k(N,\chi)$, we have that $\pi_\chi(f) = f$. Hence $\pi_\chi$ is the projection of $\mathcal M_k(\varGamma_1(N))$ onto $\mathcal M_k(N,\chi)$.
+
+    Choose the characters so that they satisfy the orthogonality conditions in \cref{prop: orthogonalities of characters}. Then 
+    \begin{align*}
+        \sum_\chi\pi_\chi &= \frac{1}{\phi(N)}\sum_{\chi}\sum_{d}\chi(d)^{-1}\abr{d}\\
+        &= \frac{1}{\phi(N)}\sum_{d}\bigg(\sum_{\chi}\chi(d)\bigg)\abr{d}\\
+        &= \abr{1}\\
+        &= \id_{\mathcal M_k(\varGamma_1(N))},
+    \end{align*} and for two nonequal characters $\chi,\chi^\prime$, we have 
+    \[\pi_{\chi}\circ\pi_{\chi^\prime} = \frac{1}{\phi(N)}\sum_{d}\chi(d)^{-1}\abr{d}\pi_{\chi^\prime} = \frac{1}{\phi(N)}\sum_{d}\chi(d)^{-1}\chi^\prime(d)\pi_{\chi^\prime} = \frac{1}{\phi(N)}\bigg(\sum_{d}(\chi^{-1}\chi^\prime)(d)\bigg)\pi_{\chi^\prime} = 0.\]
+    It follows that the $\chi$-eigenspaces span $\mathcal M_k(\varGamma_1(N))$ and are pairwise disjoint, which proves the result. The same argument follows for cusp forms.
+\end{proof}
+In other words, the diamond operator $\abr{d}$ acts on $\mathcal M_k(\varGamma_1(N)) = \bigoplus_\chi\mathcal M_k(N,\chi)$ by acting on each $\chi$-eigenspace by multiplication by $\chi(d)$.
 
 We extend the definition of the diamond operator $\abr{d}$ for $d\in (\mathbb Z/N\mathbb Z)^\times$ to $\abr{n}$ for $n\in\mathbb{Z}^+$.
 \begin{definition}
@@ -1209,7 +1283,7 @@ We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(
         \end{smallmatrix}\!\big)] + p^{k/2-1}f|_k[\big(\!\begin{smallmatrix}
             m & n \\ N & p
         \end{smallmatrix}\!\big)\big(\!\begin{smallmatrix}
-            1 & 0 \\ 0 & p
+            p & 0 \\ 0 & 1
         \end{smallmatrix}\!\big)] & \text{if $p\nmid N$, where $mp-nN = 1$}.
     \end{cases}\]
 \end{proposition}
@@ -1255,6 +1329,33 @@ We record the explicit action of $T_p$ on elements of $\mathcal M_k(\varGamma_1(
         p & 0 \\ 0 & 1
     \end{pmatrix}\text{ if $p\nmid N$}.\qedhere\]
 \end{proof}
+
+A related result, which we do not prove but will be used later, is the following:
+\begin{lemma}\label{lem: miyake lem 4.5.11} 
+    Let $N$ be a positive integer and $p$ a prime. Then 
+    \[\varGamma_1(pN)\begin{pmatrix}
+        1 & 0 \\ 0 & p
+    \end{pmatrix}\varGamma_1(N) = \begin{cases}
+        \coprod_{v = 0}^{p-1}\varGamma_1(pN)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\mid N$},\\
+        \coprod_{v = 0}^p\varGamma_1(pN)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\nmid N$};
+    \end{cases}\]
+    here  $\gamma_v$ for $0\leq v<p$ is an element of $\varGamma_0(N)$ such that $\gamma_v \equiv \big(\!\begin{smallmatrix}
+        1 & v \\ 0 & 1
+    \end{smallmatrix}\!\big)\smod{p}$, and $\gamma_p$ for $p\nmid N$ is an element of $\varGamma_0(N)$ such that 
+    \[\gamma_p \equiv\begin{cases}
+        \big(\!\begin{smallmatrix}
+            0 & -a \\ a^{-1} & 0
+        \end{smallmatrix}\!\big)\smod{p}&\text{for $a$ coprime to $p$},\\
+        \big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)\smod{N}.
+    \end{cases}\]
+\end{lemma}
+See \cite[lemma 4.5.11]{miyake} for details.
 
 \begin{lemma}\label{lem: Fourier coefficients after Tp-ing}
     Let $f\in \mathcal M_k(\varGamma_1(N))$, with Fourier expansion 
@@ -1399,6 +1500,57 @@ Often (and especially so in the next section), we will restrict the action of th
     \end{cases}\] to obtain the result.
 \end{proof}
 
+We record one result (without proof) which will be useful in the next result. For $f\in\mathcal M_k(N,\chi)$, we have
+\[(T_nf)(z) = n^{k-1}\sum_{\substack{d>0 \\ d\mid n \\ ad= n}}\sum_{b=0}^{d-1}\chi(a)d^{-k}f((az+b)/d).\]
+
+The following result is similar to \cref{lem: Fourier coefficients after Tp-ing}, but for $T_n$ acting on $\mathcal M_k(N,\chi)$.
+\begin{lemma}\label{lem: miyake lem 4.5.14}
+    Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \[
+        f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z},\quad
+        (T_mf)(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}\] be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
+\end{lemma}
+\begin{proof}
+    Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T_n$ on elements of $\mathcal M_k(N,\chi)$ (which appears just before this lemma), we have
+    \[(T_mf)(z) = m^{k-1}\sum_{\substack{d>0\\d\mid n}}\sum_{b=0}^{d-1}\chi(m/d)d^{-k}\sum_{n=0}^\infty c_ne^{2\pi in((m/d)z+b)/d}.\] Then use the fact that $\sum_{b=0}^{d-1}e^{2\pi i n b/d}$ is equal to $d$ if $d\mid n$ and is $0$ otherwise to simplify the above expression into 
+    \[\sum_{n=0}^\infty \sum_{\substack{d>0\\d\mid \gcd(m,n)}}\chi(m/d)(m/d)^{k-1}c_ne^{2\pi i(nm/d^2)z}.\] Change summation variables to obtain 
+    \[\sum_{n=0}^\infty \sum_{a>0\\ a\mid \gcd(m,n)}\chi(a)a^{k-1}c_{dn/a}e^{2\pi inz},\] and with $ad = m$, it follows that $c_{dn/a} = c_{mn/a^2}$, and the result follows.
+\end{proof}
+
+\begin{lemma}\label{lem: miyake lem 4.5.15}
+    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $T_pf = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
+    \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item If all prime factors of a positive integer $m$ lie in $P$, then $f$ is an eigenfunction of $T_m$. In this case, let $T_mf = t_mf$ for some $t_m\in\mathbb C$, from which it follows that $c_m = t_mc_1$.
+        \item We have $L(s,f) = \prod_{p\in P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}\cdot \sum_n^\prime c_nn^{-s}$, where the summation $\sum_n^\prime$ is taken over the positive integers coprime to every element of $P$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    The first claim in (1) is clear. Let $n$ be a positive integer coprime to $m$. Comparing the $n$-th Fourier coefficients of $T_mf$ and $t_mf$, we obtain $t_mc_n = c(mn)$ by \cref{lem: miyake lem 4.5.14}. By taking $n = 1$, the second claim in (1) follows.
+
+    By the equality $t_mc_n = c(mn)$, we have the formal equality
+    \[L(s,f) = \bigg(\sideset{}{^{\prime\prime}}\sum_{m}t_mm^{-s}\bigg)\cdot \bigg(\sideset{}{^\prime}\sum_nc_nn^{-s}\bigg),\] where the summation $\sum_m^{\prime\prime}$ is taken over $1$ and the positive integers whose prime factors are all contained in $P$, and the summation $\sum_n^\prime$ is taken over the positive integers copimre to all primes in $P$. Then by \cref{thm: miyake thm 4.5.13}(1), 
+    \[t_nt_m = \sum_{\substack{l > 0\\ l\mid \gcd(m,n)\\\gcd(l,N) = 1}}\chi(l)l^{k-1}t_{mn/l^2}\] for $m,n$ in the indexing sets for the summations $\sum_m^{\prime\prime}$ and $\sum_n^\prime$, respectively. So formally obtain
+    \[\sideset{}{^{\prime\prime}}\sum_{m}t_m m^{-s} = \prod_{p\in P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}\] by a similar argument as in \cref{lem: miyake lem 4.5.12}. Furthermore, if $c_n = \mathcal O(n^\alpha)$ for some $\alpha$, then the equality above holds on $\Re(s)>\alpha + 1$. If $f$ is a cusp form, then we have this growth condition on $c_n$ due to \cref{cor: cuspform growth corollary}. We do not prove the result when $f$ is not a cusp form.
+\end{proof}
+
+The next lemma gives a necessary and sufficient condition for a modular form $f\in\mathcal M_k(N,\chi)$ to be a simultaneous eigenfunction of all of the Hecke operators $T_n$, in terms of being able to write down an Euler product for the $L$-function for $f$.
+\begin{theorem}\label{thm: miyake thm 4.5.16}
+    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i nz}$ be a nonzero element of $\mathcal M_k(N,\chi)$. Then the following are equivalent: \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $f(z)$ is a common eigenfunction of every Hecke operator $T_n$;
+        \item $c_1\neq 0$ and 
+        \[L(s,f) = c_1\prod_{p\in\mathbb P} (1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1},\quad t_n = \frac{c_n}{c_1}.\]
+    \end{enumerate}
+    Moreover, if $f(z)$ satisfies the above conditions, then $T_nf = t_nf$ for all $n\geq 1$.
+\end{theorem}
+\begin{proof}
+    Assume that (1) holds, and let $T_nf = t_nf$. By \cref{4.5.lem: miyake lem 4.5.15}, we have $c_n = t_nc_1$ for $n\geq 1$. Then if $c_1 = 0$, $f(z) = c_0$. Since $k\geq 1$, we have in this case that $f(z) = 0$, which cannot happen by assumption. Therefore $c_1\neq 0$. Obtain (2) from \cref{lem: miyake lem 4.5.15}(2), taking $P$ to be the set of all prime numbers $\mathbb P$.
+
+    Now assume that (2) holds, and let $t_n = c_n/c_1$ for $n\geq 1$. Then 
+    \[\sum_{n=1}^\infty t_nn^{-s} = \prod_{p\in\mathbb P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}.\]
+    By \cref{lem: miyake lem 4.5.12}, 
+    \[t_mt_n = \sum_{\substack{d > 0\\d\mid \gcd(m,n)}}d^{k-1}\chi(d)t_{mn/d^2},\] and multiplying both sides of this equality by $c_1$ we obtain 
+    \[t_mc_1 = \sum_{\substack{d > 0\\d\mid \gcd(m,n)}}d^{k-1}\chi(d)c_{mn/d^2}.\] But the expression on the right hand side of this equality is equal to the $n$-th Fourier coefficient of $T_mf$ by \cref{lem: miyake lem 4.5.14}. Let $b_0$ denote the constant term of the Fourier expansion of $T_mf$. Then $(T_mf)(z) - t_mf = b_0-c_0$, and since $T_mf - t_mf$ is an element of $\mathcal M_k(N,\chi)$ with $k\geq 1$, we have that $b_0 = c_0$. Hence $T_mf = t_mf$ as desired.
+\end{proof}
+
 \subsection{The Petersson inner product, adjoints of Hecke operators}
 We study the space $\mathcal S_k(\varGamma_1(N))$ by endowing it with an inner product. Define the \textib{hyperbolic measure} $\mu$ on $\mathcal H$ by $\dd\mu(z) = \dd x \dd y / y^2$ for $z = x+iy\in\mathcal H$ (we will sometimes suppress the $(z)$). This measure is invariant under the action of $\glrp$ on $\mathcal H$: For $\alpha \in \glrp$ and $z=x+iy \in \mathcal H$, let $\alpha(z) = \sigma(x,y) + i\tau(x,y)$. A few computations using Wirtinger derivatives reveal that $\big|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\big| = \abs{\dv{\alpha}{z}}^2 = \big(\det\alpha/\abs{j(\alpha,z)}^2\big)^2$ and $\tau(z) = y\det\alpha/\abs{j(\alpha,z)}^2$. Then for a measurable set $A$ in $\mathcal H$, \[\mu(\alpha(A)) = \int_{\alpha(A)} \frac{\dd\sigma\dd\tau}{\tau^2} = \int_{A}\bigg|\frac{\partial (\sigma,\tau)}{\partial(x,y)}\bigg|\frac{\dd x\dd y}{(\tau(x,y))^2} = \int_A \frac{(\det\alpha)^2}{\abs{j(\alpha,z)}^4}\frac{\abs{j(\alpha,z)}^4\dd x \dd y}{(\det\alpha)^2y^2} =\int_A \frac{\dd x \dd y}{y^2} = \mu(A)\]
 as desired. In particular $\dd \mu$ is $\slz$-invariant. Since $\mathbb Q\cup\cbr{\infty}$ is countable, its measure is zero, so we may integrate over the extended upper half plane $\mathcal H^\ast$ with respect to $\mu$.
@@ -1416,7 +1568,7 @@ Observe that for any $f,g\in\mathcal S_k(\varGamma)$ for a congruence subgroup $
     &= (f|_k[\gamma])(z)j(\gamma,z)^k\overline{(g|_k[\gamma])(z)}\overline{j(\gamma,z)}^k(\Im(z))^k\abs{j(\gamma,z)}^{-2k}\\
     &= (f|_k[\gamma])(z)\overline{(g|_k[\gamma])(z)}(\Im(z))^k\\
     &= \varphi(z).
-\end{align*} To show that $\varphi$ is bounded on $\mathcal H$, we show that $\varphi$ is bounded on $\bigcup_j\alpha_j(\mathcal D)$, which is a finite union. Therefore it suffices to show that for any $\alpha\in\slz$, the function $\varphi\circ\alpha$ is bounded on $\mathcal D$. On any compact subset of $\mathcal D$, continuity of $\varphi\circ\alpha$ implies boundedness. For the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$ \sai{$i\infty$?}, note that the Fourier expansions
+\end{align*} To show that $\varphi$ is bounded on $\mathcal H$, we show that $\varphi$ is bounded on $\bigcup_j\alpha_j(\mathcal D)$, which is a finite union. Therefore it suffices to show that for any $\alpha\in\slz$, the function $\varphi\circ\alpha$ is bounded on $\mathcal D$. On any compact subset of $\mathcal D$, continuity of $\varphi\circ\alpha$ implies boundedness. For the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$, note that the Fourier expansions
 \[(f|_k[\alpha])(z) = \sum_{n =1}a_n(f|_k[\alpha])q_h^n,\quad (g|_k[\alpha])(z) = \sum_{n =1}a_n(g|_k[\alpha])q_h^n\quad\text{for $q_h = e^{2\pi i z /h}$ for some $h\in\mathbb Z^+$}\] are of order $\mathcal O(q_h)$ as $\Im(z)\to\infty$. It follows that $\varphi(\alpha(z)) = (f|_k[\gamma])(z)\overline{(g|_k[\gamma])(z)}(\Im(z))^k = \mathcal O(q_h)^2(\Im(z))^k$. Moreover, since $\abs{q_h} = e^{-2\pi \Im(z)/h}$, $\varphi(\alpha(z))\to 0$ as $\Im(z)\to\infty$, from which it follows $\varphi\circ\alpha$ is bounded on the neighborhoods $\cbr{\Im(z)> M}$ of $i\infty$ of $\mathcal D$, hence on all of $\mathcal D$.
 \begin{definition}
     The \textib{Petersson inner product} $\abr{\cdot,\cdot}_\varGamma\colon \mathcal S_k(\varGamma)\times \mathcal S_k(\varGamma)\to\mathbb C$ for a congruence subgroup $\varGamma$ is given by 
@@ -1484,12 +1636,6 @@ We obtain the adjoints of the Hecke operators without much trouble using the abo
     \[\abr{p}^\ast = |_k[\alpha]^\ast = |_k[\alpha^{-1}] = \abr{p}^{-1},\] where $\alpha$ is any element of $\varGamma_0(N)$ such that $\alpha\equiv \big(\!\begin{smallmatrix}
         \ast & \ast \\ 0 & p
     \end{smallmatrix}\!\big)\smod N$.
-
-    \begin{definition}
-        Denote by \textib{$\mathcal R^\ast(N)$} the polynomial ring 
-        \[\mathcal R^\ast(N) = \mathbb{Z}[T_p^\ast, \abr{q}^\ast : p,q\in\mathbb P, q\nmid N].\]
-        The ring $\mathcal R^\ast(N)$ is just the ring of all adjoints of Hecke operators in the Hecke algebra $\mathcal R(N)$.
-    \end{definition}
     
     From \cref{prop: computing adjoints}(2), we have \[T_p^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
         1 & 0 \\ 0 & p
@@ -1527,17 +1673,92 @@ We obtain the adjoints of the Hecke operators without much trouble using the abo
     By the spectral theorem, the space $\mathcal S_k(\varGamma_1(N))$ has an orthogonal basis of simultaneous eigenvectors, called \textit{eigenforms}, for the Hecke operators $\cbr{\abr{n},T_n : \gcd(n,N) = 1}$.
 \end{corollary}
 
+Recall that $\omega_N = \big(\!\begin{smallmatrix}
+    0 & -1 \\ N & 0
+\end{smallmatrix}\!\big)$.
+The next result will have several consequences in \cref{section primitive forms}, where we discuss simultaneous eigenfunctions of the Hecke operators.
+
+\begin{theorem}\label{thm: miyake thm 4.5.5}
+    The following diagram is commutative: 
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzAsMSwiXFxtYXRoY2FsIE1fayhOLFxcb3ZlcmxpbmV7XFxjaGl9KSJdLFs0LDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbNCwxLCJcXG1hdGhjYWwgTV9rKE4sXFxvdmVybGluZXtcXGNoaX0pIl0sWzAsMSwiXFxvbWVnYV9OIl0sWzEsMywiVF5cXGFzdChuKVxcdGV4dHsgXFx0ZXh0dXB7KH1yZXNwLiAkVF5cXGFzdChtLGwpJFxcdGV4dHVweyl9fSJdLFswLDIsIlQobilcXHRleHR7IFxcdGV4dHVweyh9cmVzcC4gJFQobCxtKSRcXHRleHR1cHspfX0iXSxbMiwzLCJcXG9tZWdhX04iXV0=
+\[\begin{tikzcd}
+	{\mathcal M_k(N,\chi)} && {\mathcal M_k(N,\chi)} \\\\
+	{\mathcal M_k(N,\overline{\chi})} && {\mathcal M_k(N,\overline{\chi}).}
+	\arrow["{|_k[\omega_N]}", from=1-1, to=3-1]
+	\arrow["{T^\ast_n}", from=3-1, to=3-3]
+	\arrow["{T_n}", from=1-1, to=1-3]
+	\arrow["{|_k[\omega_N]}", from=1-3, to=3-3]
+\end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+    It suffices to show the result for $\abr{p}$ and $T_p$ in place of $T_n$.
+
+    Let $f\in\mathcal M_k(N,\overline{\chi})$. Then $\abr{p}^\ast f = \abr{p}^{-1}f = \chi(p)f$, and for any $\gamma\in\varGamma_0(N)$ with $\gamma \equiv \big(\!\begin{smallmatrix}
+        \ast & \ast \\ 0 & p
+    \end{smallmatrix}\!\big)\smod N$, we have $\omega_N^{-1}\gamma\omega_N\equiv \big(\!\begin{smallmatrix}
+        \ast & \ast \\ 0 & p^{-1}
+    \end{smallmatrix}\!\big)\smod N$, where $p^{-1}$ is the inverse of $p$ modulo $N$. Therefore $f|_k[\omega_N^{-1}\gamma\omega_N] = \chi(p)f$ as desired.
+
+    Let $\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \bigsqcup_v \varGamma_1(N)\alpha_v$. A computation reveals that $\omega_N^{-1}\varGamma_1(N)\omega_N = \varGamma_1(N)$, from which we obtain
+    \[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\varGamma_1(N) = \omega_N^{-1}\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)\omega_N = \bigsqcup_v \varGamma_1(N)(\omega_N^{-1}\alpha_v\omega_N).\] Thus 
+    \begin{align*}
+        ((f|_k[\omega_N^{-1}])|_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+            1 & 0 \\ 0 & p
+        \end{smallmatrix}\!\big)\varGamma_1(N)])|_k[\omega_N] &= p^{k/2-1}\sum_vf|_k[\omega_N^{-1}\alpha_v\omega_N]\\
+        &= f|_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+            p & 0 \\ 0 & 1
+        \end{smallmatrix}\!\big)\varGamma_1(N)].
+    \end{align*}
+    The result follows from the fact that $T_p^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & p
+    \end{smallmatrix}\!\big)\varGamma_1(N)]^\ast = |_k[\varGamma_1(N)\big(\!\begin{smallmatrix}
+        p & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\varGamma_1(N)]$.
+\end{proof}
+
+We include the following result without proof.
+\begin{theorem}\label{thm: miyake thm 4.5.10}
+    Let $M$ be a multiple of $N$, and $n$ a positive integer coprime to $M$. Then the following diagram is commutative:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzMsMCwiXFxtYXRoY2FsIE1fayhOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2soTSxcXGNoaSkiXSxbMywyLCJcXG1hdGhjYWwgTV9rKE0sXFxjaGkpIl0sWzAsMl0sWzEsM10sWzAsMSwiVF9uIFxcdGV4dHsgKHJlc3AuIH0gVF5cXGFzdF9uKSJdLFsyLDMsIlRfbiBcXHRleHR7IChyZXNwLiB9IFReXFxhc3RfbikiXV0=
+    \[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathcal M_k(N,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
+	\\
+	{\mathcal M_k(M,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-4, to=3-4]
+	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=1-1, to=1-4]
+	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=3-1, to=3-4]
+    \end{tikzcd}\]
+    Here the vertical arrows indicate the natural embeddings. The Hecke operators are taken at the appropriate levels.
+\end{theorem}
+See \cite[theorem 4.5.10]{miyake} for details.
+
+Similarly to $\mathcal R(N)$, we collect the adjoints of the Hecke operators and form the following algebra:
+\begin{definition}
+    Denote by \textib{$\mathcal R^\ast(N)$} the polynomial ring 
+    \[\mathcal R^\ast(N) = \mathbb{Z}[T_p^\ast, \abr{q}^\ast : p,q\in\mathbb P, q\nmid N].\]
+    The ring $\mathcal R^\ast(N)$ is the ring of all adjoints of Hecke operators in the Hecke algebra $\mathcal R(N)$. 
+\end{definition}
+
 We would like to eliminate the requirement that $\gcd(n,N)= 1$ and find a space of cusp forms for which all of the Hecke operators are simultaneously diagonalizable.
 
-\newpage\section{Strong Multiplicity One}
-\sai{check this}
+\newpage\section{Oldforms, newforms, and strong multiplicity one}
+\sai{to be added}
 \subsection{Oldforms and newforms for $\chi$-eigenspaces}
 For the remainder of this work, we restrict our view to various $\chi$-eigenspaces of $\mathcal M_k(\varGamma_1(N))$ and $\mathcal S_k(\varGamma_1(N))$. Specifically, we fix $N$ and consider $\chi$-eigenspaces at different levels $M$, where $M$ divides $N$.
 
-Let \textib{$\alpha_\ell$} be given by 
-\[\begin{pmatrix}
-    \ell & 0 \\ 0 & 1
-\end{pmatrix}\] for a positive integer $\ell$. 
+\begin{definition}
+    In what follows, denote by \textib{$\alpha_\ell$} the matrix
+    \[\begin{pmatrix}
+        \ell & 0 \\ 0 & 1
+    \end{pmatrix}\] for a positive integer $\ell$. The action of matrices of this form on modular forms appears many times in what follows.
+\end{definition}
 
 \begin{lemma}\label{lem: miyake lem 4.6.1}
     For $f\in\mathcal M_k(N,\chi)$, the function $f\circ\alpha_\ell$ is an element of $\mathcal M_k(\ell N,\chi)$ with
@@ -1865,9 +2086,9 @@ By the above definition, we immediately obtain the following lemma:
 
 It follows from the above lemma that the subspaces $\mathcal S_k^0(N,\chi)$ and $\mathcal S_k^1(N,\chi)$ of $\mathcal S_k(N,\chi)$ have a basis of simultaneous eigenfunctions of all of the Hecke operators $T_n$, for $n$ coprime to $N$.
 
-\subsection{Primitive forms}
+\subsection{Primitive forms}\label{section primitive forms}
 
-In this section we focus on simultaneous eigenfunctions of the Hecke operators. \sai{check this}
+In this section we focus on simultaneous eigenfunctions of the Hecke operators in the space of newforms.
 
 \begin{lemma}\label{lem: miyake lemma 4.6.11}
     Let $f\in\mathcal S_k^0(N,\chi)$ have series expansion $\sum_{n=1}^\infty a_ne^{2\pi i n z}$. If $f$ is a common eigenfunction of the Hecke operators $T_n$ for all $n$ coprime to some integer $L$, then $a_n\neq 0$.
@@ -1880,7 +2101,19 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
     Let $f(z)\in \mathcal S_k^0(N,\chi)$ and $g(z)\in \mathcal S_k(N,\chi)$. If $f(z)$ and $g(z)$ are common eigenfunctions of $T_n$ with the same eigenvalue for each $n$ coprime to some integer $L$, then $g(z)$ is a constant multiple of $f(z)$.
 \end{theorem}
 \begin{proof}
-    \tbd
+    Let $f$ have Fourier expansion $\sum_{n=1}^\infty a_ne^{2\pi i n z}$. Since $a_1\neq 0$ by \cref{lem: miyake lemma 4.6.11}, normalize $f$ so that $a_1=1$. Furthermore assume that $N\mid L$. Decompose $g$ into $g^0+g^1$, the sum of its newform and oldform components. By \cref{lem: miyake lemma 4.6.10}, both $g^0$ and $g^1$ are common eigenfunctions of the operators $T_n$ with the same eigenvalue $a_n$ for each $n$ coprime to $L$. 
+
+    Assume that $g^0\neq 0$, and write $g^0(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}$. By \cref{lem: miyake lemma 4.6.11}, $b_1\neq 0$. We show that $g^0 = b_1f$. Let $\sum_{n=1}^\infty c_ne^{2\pi i n z}$ be the Fourier series expansion for $g^0-b_1f$. Since $b_1a_n = b_n$ for all $n$ coprime to $L$ by \cref{lem: miyake lem 4.5.15}(1), we have that $c_n = 0$ for all $n$ coprime to $L$. Then \cref{thm: miyake thm 4.6.8} implies that $g^0-b_1f\in\mathcal S_k^1(N,\chi)$, and that $g^0 = b_1f$.
+
+    Next we show that $g^1(z) = 0$. First suppose that $N = m_\chi$, the conductor of $\chi$. Then $\mathcal S_k^1(N,\chi) = 0$, so that $g^1 = 0$. If $N\neq m_\chi$.
+    
+    If $g^1\neq 0$, then there exists a proper divisor $M$ of $N$ satisfying $m_\chi\mid M$, and a nonzero element $h$ of $\mathcal S_k^0(M,\chi)$ such that $T_nh = a_nh$ for all $n$ coprime to $L$. Then by definition we may write 
+    \[g^1(z) = \sum_v h_v(\ell_v z),\quad h_v\in\mathcal S_k^0(M_v,\chi), \ell_vM_v\mid N, M_v\neq N.\]
+    Since $M_v$ divides $N$, \cref{lem: miyake lemma 4.6.10} implies that $\mathcal S_k^0(M_v,\chi)$ has a basis consisting of eigenfunctions of the operators $T_n$ for all $n$ coprime to $L$. Therefore we may assume that all $h_v$ are common eigenfunctions of $T_n$ for all $n$ coprime to $L$. Since eigenfunctions with distinct eigenvalues are linearly independent, the summation of all $h_v(\ell_v z)$ whose eigenvalues for $T_n$ are different from $a_n$ must vanish. So by removing those functions from the sum, we may assume that the $h_v$ appearing in the sum $g^1(z) = \sum_v h_v(\ell_v z)$ satisfy $T_nh_v = a_nh_v$ for all $n$ coprime to $L$. Therefore we may take any $h_v$ as $h$ and any $M_v$ as $M$.
+
+    Let $h(z)= \sum_{n=1}^\infty c_n^\prime e^{2\pi i nz}$ be the Fourier series of the element $h$ from before. Since $T_nh = a_nh$ for all $n$ coprime to $L$, we have that $c^\prime_1\neq 0$ by \cref{lem: miyake lemma 4.6.11}. Let $\sum_{n=1}^\infty d_ne^{2\pi i n z}$ be the Fourier series expansion for $h-c^\prime_1f$. By \cref{lem: miyake lem 4.5.15}(1), $d_n = 0$ if $n$ is coprime to $L$, and so by \cref{thm: miyake thm 4.6.8}, $h-c^\prime_1f\in\mathcal S_k^1(N,\chi)$.
+
+    Hence $f(z) = -c^\prime_1(h(z)-c^\prime_1f(z)) + c^\prime_1h(z)$, so that $f$ is an element of $\mathcal S_k^1(N,\chi)$, which contradicts the assumption that $f$ was an element of $\mathcal S_k^0(N,\chi)$. Therefore $g^1$ must be zero, so that $g=g^0 = b_1f$.
 \end{proof}
 
 \begin{definition}
@@ -1896,11 +2129,21 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
     Primitive forms are common eigenfunctions of all operators in $\mathcal R(N)\cup\mathcal R^\ast(N)$, and $\mathcal S_k^0(N,\chi)$ has a basis consisting of primitive forms.
 \end{theorem}
 \begin{proof}
-    \tbd
+    Let $f$ be a primitive form in $\mathcal S_k^0(N,\chi)$, and let $T_nf = a_nf$ for all $n$ coprime to $N$. Let $T$ and $T^\ast$ be elements of $\mathcal R(N)$ and $\mathcal R^\ast(N)$, respectively. Since $T$ commutes with $T_n$, $T^\ast$ commutes with $T_n^\ast$, and $T_nf = \chi(n)T_n^\ast f$, we have that $T^\ast$ commutes with $T_n$. Therefore $Tf$ and $T^\ast f$ are also common eigenfunctions of the operators $T_n$, with the same eigenvalue $a_n$.
+
+    Then \cref{thm: miyake thm 4.6.12} implies that both $Tf$ and $T^\ast f$ are constant multiples of $f$, as desired.
+
+    Since $\mathcal S_k^0(N,\chi)$ and $\mathcal S_k(N,\chi)$ have bases consisting of common eigenfunctions of the operators $T_n$ for $n$ coprime to $N$, what we just proved along with \cref{lem: miyake lemma 4.6.11} imply that $\mathcal S_k^0(N,\chi)$ has a basis of primitive forms.
 \end{proof}
 
-\sai{equation 4.6.18 !!!, some elaboration needed} 
+% \sai{below is equation 4.6.18, maybe more elaboration is needed}
+Let $f$ be a primitive form of $\mathcal S_k^0(N,\chi)$ with Fourier series expansion $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i n z}$. Then  
+\begin{equation}
+    T_n(f|_k[\omega_N]) = \overline{a_n}f|_k[\omega_N]\quad \text{and}\quad T_n^\ast(f|_k[\omega_N]) = a_nf|_k[\omega_N]
+\end{equation}
+for all positive integers $n$.
 
+We omit the proofs of the following three results. 
 \begin{theorem}\label{thm: miyake thm 4.6.15}
     \begin{enumerate}[label=\textup{(\arabic*)}]
         \item By the action of $\omega_N$, we obtain the isomorphisms $\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi})$ and $\mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi})$, and 
@@ -1908,11 +2151,32 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
         \[f|_k[\omega_N] = cf_p(z)\] for some $c\in\mathbb C$.
     \end{enumerate}
 \end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
+See \cite[theorem 4.6.15]{miyake} for details.
+
+Let $\gamma_q$ and $\gamma_q^\prime$ be two elements of $\slz$ such that
+\[\gamma_q \equiv \begin{cases}
+    \big(\!\begin{smallmatrix}
+        0 & -1 \\ 1 & 0
+    \end{smallmatrix}\!\big)\smod{N_q^2}\\
+    \big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big) \smod{(N/N_q)^2}
+\end{cases}\quad\text{and}\quad \gamma_q^\prime\equiv \begin{cases}
+    \big(\!\begin{smallmatrix}
+        1 & 0 \\ 0 & 1
+    \end{smallmatrix}\!\big)\smod{N_q^2}\\
+    \big(\!\begin{smallmatrix}
+        0 & -1 \\ 1 & 0
+    \end{smallmatrix}\!\big)\smod{(N/N_q)^2}.
+\end{cases}\]
+Then let $\eta_q = \gamma_q\big(\!\begin{smallmatrix}
+    N_q & 0 \\ 0 & 1
+\end{smallmatrix}\!\big)$ and $\eta_q^\prime = \gamma_q^\prime \big(\!\begin{smallmatrix}
+    N/N_q & 0 \\ 0 & 1
+\end{smallmatrix}\!\big)$.
+% \sai{need to establish quite a bit of notation here}
 \begin{theorem}\label{thm: miyake thm 4.6.16}
-    With the same notation and assumptions as in the previous \sai{theorem?}, we have
+    We have
     \begin{enumerate}[label=\textup{(\arabic*)}]
         \item By the action of $\eta_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\chi^\prime_q\overline{\chi_q}),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\chi^\prime_q\overline{\chi_q}).\]
         \item By the action of $\eta^\prime_q$, we have the isomorphisms \[\mathcal S_k^0(N,\chi)\cong \mathcal S_k^0(N,\overline{\chi^\prime_q}\chi_q),\quad \mathcal S_k^1(N,\chi)\cong \mathcal S_k^1(N,\overline{\chi^\prime_q}\chi_q).\]
@@ -1925,19 +2189,16 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
         \end{cases}\] for any prime $p$.
     \end{enumerate}
 \end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
+See \cite[theorem 4.6.16]{miyake} for details.
+
 \begin{theorem}\label{thm: miyake thm 4.6.17}
     Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $m$ the conductor of $\chi$. For a prime factor $q$ of $N$, denote by $N_q$ and $m_q$ the $q$-components of $N$ and $m$, respectively; that is, $N_q$ and $m_q$ are the largest powers of $p$ dividing $N$ and $m$, respectively. \begin{enumerate}[label=\textup{(\arabic*)}]
         \item If $N_q = m_q$, then $\abs{a_q} = q^{(k-1)/2}$.
         \item If $N_q = q$ and $m_q = 1$, then $a_q^2 = \chi^\prime_q(q)q^{k-2}$.
         \item Otherwise, that is, if $q^2\mid N_q$ and $N_q \neq m_q$, then $a_q = 0$.
     \end{enumerate}
-    \begin{proof}
-        \tbd
-    \end{proof}
 \end{theorem}
+See \cite[theorem 4.6.17]{miyake} for details.
 
 % \begin{lemma}\label{lem: miyake lem 4.5.2}
 %     (TO REMOVE?)For any $\alpha\in\varDelta_0(N)$ \textup{(}respectively $\varDelta_0^\ast(N)$\textup{)}, there exists a unique pair of positive integers $(l,m)$ such that $l\mid m$, $\gcd(l,N) = 1$, and 
@@ -1951,46 +2212,30 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
 %     \tbd
 % \end{proof}
 
-\sai{the following need to be reordered correctly!}
-\begin{theorem}\label{thm: miyake thm 4.5.5}
-    The following diagram is commutative: 
-    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzAsMSwiXFxtYXRoY2FsIE1fayhOLFxcb3ZlcmxpbmV7XFxjaGl9KSJdLFs0LDAsIlxcbWF0aGNhbCBNX2soTixcXGNoaSkiXSxbNCwxLCJcXG1hdGhjYWwgTV9rKE4sXFxvdmVybGluZXtcXGNoaX0pIl0sWzAsMSwiXFxvbWVnYV9OIl0sWzEsMywiVF5cXGFzdChuKVxcdGV4dHsgXFx0ZXh0dXB7KH1yZXNwLiAkVF5cXGFzdChtLGwpJFxcdGV4dHVweyl9fSJdLFswLDIsIlQobilcXHRleHR7IFxcdGV4dHVweyh9cmVzcC4gJFQobCxtKSRcXHRleHR1cHspfX0iXSxbMiwzLCJcXG9tZWdhX04iXV0=
-\[\begin{tikzcd}
-	{\mathcal M_k(N,\chi)} && {\mathcal M_k(N,\chi)} \\\\
-	{\mathcal M_k(N,\overline{\chi})} && {\mathcal M_k(N,\overline{\chi}).}
-	\arrow["{|_k[\omega_N]}", from=1-1, to=3-1]
-	\arrow["{T^\ast_n}", from=3-1, to=3-3]
-	\arrow["{T_n}", from=1-1, to=1-3]
-	\arrow["{|_k[\omega_N]}", from=1-3, to=3-3]
-\end{tikzcd}\]
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
-
-\begin{lemma}\label{lem: miyake lem 4.5.6}
-    (TO REMOVE?)Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-            1 & 0 \\ 0 & p^e
-        \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
-            \cbr{\big(\!\begin{smallmatrix}
-                p^{e-f} & m \\ 0 & p^f
-            \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
-            \cbr{\big(\!\begin{smallmatrix}
-                1 & m \\ 0 & p^e
-            \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
-        \end{cases} \]
-        \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
-            1 & 0 \\ 0 & p^e
-        \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
-            p^e + p^{e-1} & \text{if $p\nmid N$,}\\
-            p^e & \text{if $p\mid N$.}
-        \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
+% \sai{the following need to be reordered correctly!}
+% \begin{lemma}\label{lem: miyake lem 4.5.6}
+%     (TO REMOVE?)Let $p$ be a prime number, and $e$ a nonnegative integer.Then \begin{enumerate}[label=\textup{(\arabic*)}]
+%         \item A set of representatives for \[\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+%             1 & 0 \\ 0 & p^e
+%         \end{pmatrix}\varGamma_0(N)\] is given by the set \[\begin{cases}
+%             \cbr{\big(\!\begin{smallmatrix}
+%                 p^{e-f} & m \\ 0 & p^f
+%             \end{smallmatrix}\!\big) : 0\leq f\leq e, 0\leq m < p^f, \gcd(m,p^f,p^{e-f}) = 1} & \text{if $p\nmid N$},\\
+%             \cbr{\big(\!\begin{smallmatrix}
+%                 1 & m \\ 0 & p^e
+%             \end{smallmatrix}\!\big) : 0\leq m < p^e} & \text{if $p\mid N$, and}
+%         \end{cases} \]
+%         \item $\deg\Big(\varGamma_0(N)\backslash\varGamma_0(N)\begin{pmatrix}
+%             1 & 0 \\ 0 & p^e
+%         \end{pmatrix}\varGamma_0(N)\Big) = \begin{cases}
+%             p^e + p^{e-1} & \text{if $p\nmid N$,}\\
+%             p^e & \text{if $p\mid N$.}
+%         \end{cases}$ \sai{(i have to define degree, perhaps it is the one on p.73 of miyake)}
+%     \end{enumerate}
+% \end{lemma}
+% \begin{proof}
+%     \sai{DON'T PROVE}
+% \end{proof}
 % \begin{lemma}\label{lem: miyake lem 4.5.7}
 %     (TO REMOVE)Let $p$ be a prime number and $e$ a positive integer. Then \begin{enumerate}[label=\textup{(\arabic*)}]
 %         \item $T(p)T(1,p^e) = T(1,p^{e+1}) + \begin{cases}
@@ -2017,89 +2262,13 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
 %     \tbd
 % \end{proof}
 
-\begin{theorem}\label{thm: miyake thm 4.5.10}
-    Let $M$ be a multiple of $N$, and $n$ a positive integer coprime to $M$. Then the following diagram is commutative:
-    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgTV9rKE4sXFxjaGkpIl0sWzMsMCwiXFxtYXRoY2FsIE1fayhOLFxcY2hpKSJdLFswLDIsIlxcbWF0aGNhbCBNX2soTSxcXGNoaSkiXSxbMywyLCJcXG1hdGhjYWwgTV9rKE0sXFxjaGkpIl0sWzAsMl0sWzEsM10sWzAsMSwiVF9uIFxcdGV4dHsgKHJlc3AuIH0gVF5cXGFzdF9uKSJdLFsyLDMsIlRfbiBcXHRleHR7IChyZXNwLiB9IFReXFxhc3RfbikiXV0=
-    \[\begin{tikzcd}[ampersand replacement=\&]
-	{\mathcal M_k(N,\chi)} \&\&\& {\mathcal M_k(N,\chi)} \\
-	\\
-	{\mathcal M_k(M,\chi)} \&\&\& {\mathcal M_k(M,\chi)}
-	\arrow[from=1-1, to=3-1]
-	\arrow[from=1-4, to=3-4]
-	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=1-1, to=1-4]
-	\arrow["{T_n \text{ \textup{(}resp. } T^\ast_n)}", from=3-1, to=3-4]
-    \end{tikzcd}\]
-    Here the vertical arrows indicate the natural embeddings. The Hecke operators are taken at the appropriate levels.
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
 
-\begin{lemma}\label{lem: miyake lem 4.5.11} \sai{bro what is this, i think this needs adjustment due to using $\varGamma_1(N)$}
-    Let $N$ be a positive integer and $p$ a prime. Then 
-    \[\varGamma_0(pN)\begin{pmatrix}
-        1 & 0 \\ 0 & p
-    \end{pmatrix}\varGamma_0(N) = \begin{cases}
-        \coprod_{v = 0}^{p-1}\varGamma_0(pN)\big(\!\begin{smallmatrix}
-            1 & 0 \\ 0 & p
-        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\mid N$},\\
-        \coprod_{v = 0}^p\varGamma_0(pN)\big(\!\begin{smallmatrix}
-            1 & 0 \\ 0 & p
-        \end{smallmatrix}\!\big)\gamma_v& \text{if $p\nmid N$};
-    \end{cases}\]
-    here  $\gamma_v$ for $0\leq v<p$ is an element of $\varGamma_0(N)$ such that $\gamma_v \equiv \big(\!\begin{smallmatrix}
-        1 & v \\ 0 & 1
-    \end{smallmatrix}\!\big)\smod{p}$, and $\gamma_p$ for $p\nmid N$ is an element of $\varGamma_0(N)$ such that 
-    \[\gamma_p \equiv\begin{cases}
-        \big(\!\begin{smallmatrix}
-            0 & -a \\ a^{-1} & 0
-        \end{smallmatrix}\!\big)\smod{p}&\text{for $a$ coprime to $p$},\\
-        \big(\!\begin{smallmatrix}
-            1 & 0 \\ 0 & 1
-        \end{smallmatrix}\!\big)\smod{N}.
-    \end{cases}\]
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
+\newpage
 
-\begin{lemma}\label{lem: miyake lem 4.5.14}
-    Let $f$ be an element of $\mathcal M_k(N,\chi)$, and let \[
-        f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z},\quad
-        (f|_k[T_m])(z) = \sum_{n=0}^\infty b_ne^{2\pi i nz}\] be Fourier series expansions. Then \[b_n = \sum_{\substack{d>0 \\ d\mid \gcd(m,n)}}\chi(d)d^{k-1}c_{mn/d^2}.\]
-\end{lemma}
-\begin{proof} \tbd \sai{(fix $T(n)$s)}
-    Observe that $f((az+b)/d) = \sum_{n=0}^\infty c_ne^{2\pi in(az+b)/d}$. Then by the explicit action of $T(n)$ on elements of $\mathcal M_k(N,\chi)$ (recorded in \sai{insert reference -- it will occur after lemma 4.5.9}), we have
-    \[(f|_k[T(m)])(z) = m^{k-1}\sum_{\substack{d>0\\d\mid n}}\sum_{b=0}^{d-1}\chi(m/d)d^{-k}\sum_{n=0}^\infty c_ne^{2\pi in((m/d)z+b)/d}.\] Then use the fact that $\sum_{b=0}^{d-1}e^{2\pi i n b/d}$ is equal to $d$ if $d\mid n$ and is $0$ otherwise to simplify the above expression into 
-    \[\sum_{n=0}^\infty \sum_{\substack{d>0\\d\mid \gcd(m,n)}}\chi(m/d)(m/d)^{k-1}c_ne^{2\pi i(nm/d^2)z}.\] Change summation variables to obtain 
-    \[\sum_{n=0}^\infty \sum_{a>0\\ a\mid \gcd(m,n)}\chi(a)a^{k-1}c_{dn/a}e^{2\pi inz},\] and with $ad = m$, it follows that $c_{dn/a} = c_{mn/a^2}$, and the result follows.
-\end{proof}
-\begin{lemma}\label{lem: miyake lem 4.5.15}
-    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i n z}$ be an element of $\mathcal M_k(N,\chi)$, and $P$ a set of prime numbers where $f|_k[T_p] = t_pf$ for $p\in P$, $t_p\in\mathbb C$. Then 
-    \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item If all prime factors of a positive integer $m$ lie in $P$, then $f$ is an eigenfunction of $T_m$. In this case, let $f|_k[T_m] = t_mf$ for some $t_m\in\mathbb C$, from which it follows that $c_m = t_mc_1$.
-        \item We have $L(s,f) = \prod_{p\in P}(1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1}\cdot \sum_n^\prime c_nn^{-s}$, where the summation $\sum_n^\prime$ is taken over the positive integers coprime to every element of $P$.
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    \tbd
-\end{proof}
-\begin{theorem}\label{thm: miyake thm 4.5.16}
-    Let $f(z) = \sum_{n=0}^\infty c_ne^{2\pi i nz}$ be a nonzero element of $\mathcal M_k(N,\chi)$. Then the following are equivalent: \begin{enumerate}[label=\textup{(\arabic*)}]
-        \item $f(z)$ is a common eigenfunction of every Hecke operator $T_n$;
-        \item $c_1\neq 0$ and 
-        \[L(s,f) = c_1\prod_{p\in\mathbb P} (1-t_pp^{-s} + \chi(p)p^{k-1-2s})^{-1},\quad t_n = \frac{c_n}{c_1}.\]
-    \end{enumerate}
-    Moreover, if $f(z)$ satisfies the above conditions, then $f|_k[T_n] = t_nf$ for all $n\geq 1$.
-\end{theorem}
-\begin{proof}
-    \tbd
-\end{proof}
-
-
-\subsection{Main result}
+\subsection{Strong multiplicity one}
+We finally prove the strong multiplicity one property for classical modular forms.
 \begin{theorem}[Strong multiplicity one]\label{thm: sm1 miyake thm 4.6.19}
-    Let $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ be a primitive form of $\mathcal S_k^0(N,\chi)$, and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}\in \mathcal S_k(M,\lambda)$. If $g(z)$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f(z) = g(z)$.
+    Let $f$ be a primitive form of $\mathcal S_k^0(N,\chi)$ and let $g$ be an element of $ \mathcal S_k(M,\lambda)$, with Fourier series expansions $f(z) = \sum_{n=1}^\infty a_ne^{2\pi i nz}$ and $g(z) = \sum_{n=1}^\infty b_ne^{2\pi i n z}$. If $g$ is normalized with $b_1 = 1$, is a common eigenfunction of $\mathcal R(M)\cup \mathcal R^\ast(M)$, and $a_n = b_n$ for all $n$ coprime to some integer $L$, then $N = M$ and $f = g$.
 \end{theorem}
 \begin{proof}
     Without loss of generality we may take $L$ to be a common multiple of $N$ and $M$. If $p$ is a prime number coprime to $L$, we have from $T_{p^2} = T_pT_p - p^{k-1}\abr{p}$ that
@@ -2115,8 +2284,8 @@ In this section we focus on simultaneous eigenfunctions of the Hecke operators. 
     \end{equation} for $\Re(s)>k/2+1$. In fact, \cref{eqn: ratio varLambdas} holds for all $s$ since the ratio in the right-hand side is a meromorphic function on the whole $s$-plane.
 
     On the other hand, we have
-    \[\frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])}\] by \cref{cor: miyake cor 4.3.7}. Furthermore, $g|_k[T_n] = b_n(g)$, and since $g(z)$ is a common eigenfunction of $T^\ast_n$ by assumption, we have that $g|_k[T^\ast_n] = \overline{b_n}g$ and 
-    \[(g|_k[\omega_M])|_k[T^\ast_n] = \overline{b_n}(g|_k[\omega_M])\] by \cref{thm: miyake thm 4.5.5}. Then by \cref{thm: miyake thm 4.5.16} it follows that $L(s, g|_k[\omega_M])$ also has an Euler product expansion. Combined with \cref{thm: miyake thm 4.6.15}(2), we have 
+    \[\frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])}\] by \cref{cor: miyake cor 4.3.7}. Furthermore, $T_ng = b_ng$, and since $g$ is a common eigenfunction of $T^\ast_n$ by assumption, we have that $T^\ast g = \overline{b_n}g$ and 
+    \[T^\ast_n(g|_k[\omega_M]) = \overline{b_n}(g|_k[\omega_M])\] by \cref{thm: miyake thm 4.5.5}. Then by \cref{thm: miyake thm 4.5.16} it follows that $L(s, g|_k[\omega_M])$ also has an Euler product expansion. Combined with \cref{thm: miyake thm 4.6.15}(2), we have 
     \begin{equation}\label{eqn: ratio shifted varLambdas}
         \frac{\varLambda_N(s,f)}{\varLambda_M(s,g)} = \frac{\varLambda_N(k-s,f|_k[\omega_N])}{\varLambda_M(k-s,g|_k[\omega_M])} = c\bigg(\frac{\sqrt{N}}{\sqrt{M}}\bigg)^{k-s}\prod_{p\mid L}\frac{1-\overline{b_p}p^{s-k} + \overline{\lambda}(p)p^{2s-k-1}}{1-\overline{a_p}p^{s-k} + \overline{\chi}(p)p^{2s-k-1}}
     \end{equation} for some constant $c$. By combining equations \labelcref{eqn: ratio varLambdas} and \labelcref{eqn: ratio shifted varLambdas} together, we obtain
