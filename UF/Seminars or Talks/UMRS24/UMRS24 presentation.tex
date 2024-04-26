@@ -1,0 +1,265 @@
+\documentclass[mathserif
+, handout
+]{beamer}
+
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{mathtools}
+
+% commands
+\DeclareMathOperator{\Circ}{circ}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rev}{rev}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\PP}{\mathbb P}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\image}{Im}
+
+\usetheme{Warsaw}
+
+% colors
+\definecolor{gold60}{RGB}{166, 217, 247}
+\definecolor{palettemed}{RGB}{178, 222, 247}
+\definecolor{palettelight}{RGB}{183,201,255}
+\definecolor{darkgold60}{RGB}{255,250,160}
+\usecolortheme[named=gold60]{structure}
+\setbeamercolor{frametitle}{fg=black!85}
+\setbeamercolor{title}{bg=gold60,fg=black!85}
+\setbeamercolor{block title}{fg=black!85}
+\setbeamercolor{palette quaternary}{bg=palettemed}
+
+% page numbers
+\setbeamertemplate{footline}[frame number]
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\title
+{\color{black!85}{Free and Virtual Resolutions}}
+
+\subtitle{Undergraduate Mathematics Research Symposium 2024}
+
+\author[Sai Sivakumar]
+{Sai Sivakumar}
+
+\institute[Georgia Tech]{\color{blue!40!palettelight}{University of Florida}}
+\date{26 April 2024}
+
+\begin{document}
+
+% title page.
+\frame{\titlepage}
+
+\begin{frame}{}{}
+{\color{blue!40!palettelight}Thank you for inviting me to speak!}
+\vspace{0.75pc}
+\hrule
+\vspace{0.75pc}
+This are joint works with Dr. Michael Perlman, Bjorn Cattell-Ravdal, Erin Delargy, Akash Ganguly, and Sean Guan,
+then separately with Dr. Christine Berkesch, Isidora Bailly-Hall, Karina Dovgodko, Sean Guan, and Jishi Sun.
+
+\vspace{0.75pc}
+This project arose from the University of Minnesota, Twin Cities Combinatorics and Algebra REU 2023. 
+\end{frame}
+
+\begin{frame}{Invariant theory}
+    Classifying invariants of $G\curvearrowright \mathbb C[t_1,\dots,t_n]$.
+
+    Example: $G = C_3 = \{1,g,g^2\}$ acting on $R = \mathbb C[u,v]$ by \[g\cdot u = e^{2\pi i /3}u,~ g\cdot v = e^{2\pi i /3}v,~ \text{and} ~ g\cdot f(u,v) = f(g\cdot u,g\cdot v).\]
+    
+    Invariants are elements of $\mathbb C[u^3,u^2v,uv^2,v^3]$.
+\end{frame}
+
+\begin{frame}
+    Probe $R$ with $S = \mathbb C[x,y,z,w]$ by the surjection $R\leftarrow S$, given by
+    \[\begin{cases}
+        u^3 \mapsfrom x \\
+        u^2v \mapsfrom y \\
+        uv^2 \mapsfrom z \\
+        v^3 \mapsfrom w .
+    \end{cases}\]
+    Study $R$ using $S$.
+\end{frame}
+
+\begin{frame}
+    First syzygies:
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJTXjEiXSxbMCwwLCJSIl0sWzUsMCwiU14zIl0sWzAsMSwiXFxzdWJzdGFja3t1XjMgXFxtYXBzZnJvbSB4LCB+dV4ydiBcXG1hcHNmcm9tIHlcXFxcIHV2XjIgXFxtYXBzZnJvbSB6IH52XjMgXFxtYXBzZnJvbSB3fSJdLFsyLDAsIihcXCFcXGJlZ2lue3NtYWxsbWF0cml4fXh6LXleMiAmIHl6LXh3ICYgeXctel4yXFxlbmR7c21hbGxtYXRyaXh9XFwhKSIsMl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	R \&\& {S^1} \&\&\& {S^3}
+	\arrow["{\substack{u^3 \mapsfrom x, ~u^2v \mapsfrom y\\ uv^2 \mapsfrom z ~v^3 \mapsfrom w}}", from=1-3, to=1-1]
+	\arrow["{(\!\begin{smallmatrix}xz-y^2 & yz-xw & yw-z^2\end{smallmatrix}\!)}"', from=1-6, to=1-3]
+\end{tikzcd}\]
+
+Find relations between $x,y,z,w$ with respect to the projection $R\leftarrow S$.
+\end{frame}
+
+\begin{frame}
+    Second syzygies:
+    % https://q.uiver.app/#q=WzAsNSxbNiwwLCJTXjIiXSxbNSwwLCJTXjMiXSxbMiwwLCJTXjEiXSxbMCwwLCJSIl0sWzcsMCwiMCJdLFswLDEsIlxcQmlnKFxcIVxcYmVnaW57c21hbGxtYXRyaXh9dyAmIHogXFxcXCB6ICYgeSBcXFxcIHkgJiB4IFxcZW5ke3NtYWxsbWF0cml4fVxcIVxcQmlnKSIsMl0sWzEsMiwiKFxcIVxcYmVnaW57c21hbGxtYXRyaXh9eHoteV4yICYgeXoteHcgJiB5dy16XjJcXGVuZHtzbWFsbG1hdHJpeH1cXCEpIiwyXSxbMiwzLCJcXHN1YnN0YWNre3VeMyBcXG1hcHNmcm9tIHgsIH51XjJ2IFxcbWFwc2Zyb20geVxcXFwgdXZeMiBcXG1hcHNmcm9tIHogfnZeMyBcXG1hcHNmcm9tIHd9Il0sWzQsMF1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	R \&\& {S^1} \&\&\& {S^3} \& {S^2} \& 0
+	\arrow["{\Big(\!\begin{smallmatrix}w & z \\ z & y \\ y & x \end{smallmatrix}\!\Big)}"', from=1-7, to=1-6]
+	\arrow["{(\!\begin{smallmatrix}xz-y^2 & yz-xw & yw-z^2\end{smallmatrix}\!)}"', from=1-6, to=1-3]
+	\arrow["{\substack{u^3 \mapsfrom x, ~u^2v \mapsfrom y\\ uv^2 \mapsfrom z ~v^3 \mapsfrom w}}", from=1-3, to=1-1]
+	\arrow[from=1-8, to=1-7]
+\end{tikzcd}\]
+
+Find relations between relations. There are no further relations.
+
+We can deduce properties of $R$ from the matrices.
+\end{frame}
+
+\begin{frame}
+    Second syzygies:
+    % https://q.uiver.app/#q=WzAsNSxbNCwwLCJTXjMiXSxbMSwwLCJTXjEiXSxbMCwwLCJcXHVuZGVyc2V0e1xcdGV4dHsoY29tcGxpY2F0ZWQpfX17Un0iXSxbNywwLCIwIl0sWzYsMCwiU14yIl0sWzAsMSwiKFxcIVxcYmVnaW57c21hbGxtYXRyaXh9XFx0ZXh0e2RlZ3JlZSB0d28gcG9seW5vbWlhbHN9XFxlbmR7c21hbGxtYXRyaXh9XFwhKSIsMl0sWzEsMl0sWzMsNF0sWzQsMCwiXFxCaWcoXFwhXFxiZWdpbntzbWFsbG1hdHJpeH0gXFx0ZXh0e2RlZ3JlZSBvbmV9XFxcXFxcdGV4dHtwb2x5bm9taWFsc30gXFxlbmR7c21hbGxtYXRyaXh9XFwhXFxCaWcpIiwyXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\underset{\text{(complicated)}}{R}} \& {S^1} \&\&\& {S^3} \&\& {S^2} \& 0
+	\arrow["{(\!\begin{smallmatrix}\text{degree two polynomials}\end{smallmatrix}\!)}"', from=1-5, to=1-2]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=1-8, to=1-7]
+	\arrow["{\Big(\!\begin{smallmatrix} \text{degree one}\\\text{polynomials} \end{smallmatrix}\!\Big)}"', from=1-7, to=1-5]
+\end{tikzcd}\]
+
+Find relations between relations. There are no further relations.
+
+We can deduce properties of $R$ from the matrices.
+
+The stuff to the right of $R$ is easier to investigate.
+\end{frame}
+
+\begin{frame}{Free resolutions}
+    Let $S$ be a ring and $M$ an $S$-module.
+    \begin{definition}
+    A \textbf{free resolution} of the $S$-module $M$ is an exact sequence of free $S$-modules
+    \[0 \leftarrow M \leftarrow \bigoplus_{d\in \mathbb{N}} S^{\beta_{0,d}} \leftarrow \bigoplus_{d\in \mathbb{N}} S^{\beta_{1,d}} \leftarrow \cdots \]
+
+    A free resolution is \textbf{minimal} (MFR) if each free module has the smallest possible number of generators.
+\end{definition}
+
+\setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}\begin{block}{Fact (Hilbert's syzygy theorem)}
+    If $S$ is a polynomial ring, then the minimal free resolution of $M$ has length at most the number of indeterminates of $S$.
+\end{block}
+\end{frame}
+
+\begin{frame}{One project}
+    Let $k$ be an algebraically closed field with $\Char{k}\neq 0$, and let $\GL_n(k)$ act on $\Span\{x_1,\dots,x_n\}$ in the ``natural way''.
+    
+    Then let $\GL_n(k)$ act on $S = k[x_1,\dots,x_n]$ by 
+    \[A\cdot f(x_1,\dots,x_n) \coloneqq f(Ax_1,\dots,Ax_n).\]
+    \setbeamercolor{block title}{fg=black!85,bg=black!20!palettelight}\begin{block}{Example}
+        Let $S = k[x,y]$. Then \begin{multline*}
+            \big(\!\begin{smallmatrix}
+            1 & a \\ 0 & 1
+        \end{smallmatrix}\!\big) \cdot xy^3 = Ax(Ay)^3 = x(ax+y)^3 \\ = a^3x^4 +  3 a^2 x^3 y + 3 a x^2 y^2 + xy^3 .
+        \end{multline*}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    An ideal $I$ in $S = k[x_1,\dots,x_n]$ is called $\GL_n(k)$-stable (``stable'', also ``invariant'') if $Af\in I$ for all $A\in \GL_n(k)$, $f\in I$.
+
+    We want to find free resolutions of $S/I$ for stable ideals $I$.
+\end{frame}
+
+\begin{frame}
+    \begin{theorem}
+        [C-D-G-G-P-S, 2023+]
+        Let $S = k[x,y]$, where $\Char(k) = p$.
+        There is a large class of ``simple'' stable ideals for which we can find the following:
+        \begin{enumerate}
+        \item The number of generators of $I$.
+           \item The number of distinct degrees of syzygies of the minimal generators of $I$.
+            \item The distinct degrees of syzygies of the minimal generators of $I$.
+         
+            \item The multiplicity of each degree of syzygy.
+            
+        \end{enumerate}
+    \end{theorem}
+    This information is enough to construct minimal free resolutions of these kinds of stable ideals.
+\end{frame}
+
+\begin{frame}
+
+    Tools we used: 
+    \begin{itemize}
+    \item Arithmetic in base $p$
+    \item Combinatorial arguments (?)
+    \item some results from representation theory, also the Doty paper on submodules of $S$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The other project}
+    Let $X$ be a subset of $\PP^n\times \PP^m$. 
+    The \textbf{Cox ring} of $\PP^n\times \PP^m$ is 
+    \[
+    S = k[x_0,\dots,x_n,y_0,\dots,y_m]
+    \]
+    and is $\ZZ^2$-graded, where \(\deg(x_i) = (1,0)\) and \(\deg(y_j) = (0,1)\).
+    
+    The set
+\[I(X) = \{f\in S\mid f(x) = 0\text{ for all } x\in X\}\] is the bihomogeneous \textbf{defining ideal} of $X$.
+
+We also have the \textbf{irrelevant ideal} 
+\[B=\langle x_0,\dots,x_n\rangle \cap \langle y_0,\dots,y_m \rangle.\]
+\end{frame}
+
+\begin{frame}
+    We want to find resolutions for the $S$-modules $S/I(X)$ for finite sets of points $X\subset \PP^n\times\PP^m$.
+
+    Free resolutions are not quite good enough for this situation due to the multigrading. Need new technology.
+\end{frame}
+
+\begin{frame}{Virtual resolutions}
+    \small
+    \begin{definition}
+        \textbf{Virtual resolutions} (VRs) are complexes of free $S$-modules which are not necessarily exact: 
+        \begin{multline*}
+        0 \longleftarrow S/I(X) \xleftarrow{\phi_0} \bigoplus_{\underline{d}\in \mathbb{N}^2} 
+        S(-\underline{d})^{\beta_{0,\underline{d}}}   \xleftarrow{\phi_1} \bigoplus_{\underline{d}\in \mathbb{N}^2} S(-\underline{d})^{\beta_{1,\underline{d}}} \xleftarrow{\phi_2} \cdots 
+        \end{multline*}
+        The modules $\Ker(\phi_{i-1})/\image(\phi_i)$ are allowed to have support in the irrelevant ideal 
+        \[B = \langle x_0,  \ldots, x_n \rangle \cap  \langle y_0, \ldots, y_m\rangle.\] 
+    \end{definition}
+        (1) Every MFR is a VR;
+
+        (2) In $\PP^n\times \PP^m$, while MFRs have length bounded by $n+m+2$, VRs can have length bounded by $n+m$.
+
+\end{frame}
+
+\begin{frame}{Second Approach: Intersection with \(\langle \underline{x} \rangle^a\)}
+    \begin{theorem} [Harada--Nowroozi--Van Tuyl 2022]
+    Let $X$ be a finite set of points in $\mathbb{P}^1 \times \mathbb{P}^1$. Let t denote the number of unique first coordinates. Then for all $a \geq t- 1$, the MFR of $S/(I(X) \cap \langle x_0, x_1 \rangle ^a)$ is a VR of $S/I(X)$ of length two.
+    
+    \end{theorem}
+    
+    Our result: 
+    \begin{theorem}[B-B-D-G-S-S 2023+]
+    Let $X$ be a set of points in $\alert{\PP^n \times  \PP^m}$. Let $t$ denote the number of first coordinates. For all $a \ge t -1$, the MFR of $S / ( I(X) \cap \alert{\langle x_0, \ldots, x_n\rangle}^a)$ is a VR of $S/I(X)$ of length \alert{$n+m$}.
+    \end{theorem}
+    
+ \end{frame}
+
+ \begin{frame}
+    Tools we used: 
+\begin{itemize}
+\item Auslander--Buchsbaum 
+\item Primary decomposition 
+\item Short exact sequences and additivity of the Hilbert Function 
+\end{itemize}
+ \end{frame}
+\end{document}
