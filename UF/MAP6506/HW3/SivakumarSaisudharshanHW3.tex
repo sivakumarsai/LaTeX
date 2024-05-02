@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP6506}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\happy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\smiley}}}
+\newcommand{\darkhappy}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\blacksmiley}}}
+\newcommand{\sad}{\raisebox{-.28em}{\resizebox{1.5em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\mathdarkhappy}{\!\darkhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+As mentioned, here are a few parts of the homework. I will later send by email a writeup of what we discovered in my presentation.
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item[\textbf{2.}] \textbf{Spectrum of a projection operator} 
+    \begin{enumerate}[label=\textsf{(\roman*)}]
+        \item It suffices to show that $P$ is self adjoint. Let $u,v\in\mathcal H$. Then 
+        \[\abr{Pu,v} = \Big\langle\sum_n\abr{u,v_n}v_n,v\Big\rangle \eq{1} \Big\langle u,\sum_n\abr{v,v_n}v_n \Big\rangle.\] Defining $P^\ast v = Pv$ is well defined: if $g$ is another candidate for $P^\ast v$, then $\abr{u,\sum_n\abr{v,v_n}v_n - g} = 0$ for any $u\in \mathcal H$, from which it follows that $g = Pv$ as expected. Hence $P^\ast \colon \mathcal H\to\mathcal H$ given by $P^\ast v = Pv$ defines the adjoint of $P$, and so $P$ is self-adjoint. Thus the spectrum of $P$ is real (thus the approximate spectrum is real) and the residual spectrum of $P$ is empty.
+        \item Zero is an eigenvalue of $P$: to see this, simply take any vector $w$ that lies in the orthogonal complement of $\overline{\Span\cbr{v_n}}\subsetneq \mathcal H$ (this proper containment ensures that $w$ can be chosen nonzero), and see that $Pw = 0w$. Another easy to see fact is that $P$ is idempotent (a nice theorem of finite dimensional linear algebra is that projections are exactly the idempotents, and I am sure that the same result holds for Hilbert spaces if the range and kernel of $P$ is closed):
+        \[P(Pu) = \sum_{n}\Big\langle\sum_j \abr{u,v_j}v_j,v_n\Big\rangle v_n = \sum_{n}\sum_j \abr{u,v_j} \abr{ v_j,v_n} v_n = \sum_n\abr{u,v_n}v_n = Pu.\]
+        So let $\lambda\neq 0$. We investigate solutions to $Pu = \lambda u$. Applying $P$ to both sides of this equation yields $Pu = \lambda Pu$, from which we find that $\lambda = 1$. Hence the point spectrum for $P$ is $\cbr{0,1}$. The linearly independent eigenvectors for the eigenvalue $0$ are given by a orthogonal basis for the orthogonal complement of $\overline{\Span\cbr{v_n}}$, and the linearly independent eigenvectors for the eigenvalue $1$ must be $\cbr{v_n}$.
+        \item By the projection theorem, for any $u\in\mathcal H$, there exists a decomposition of $u$ into the sum $v + w$, where $v \in \overline{\Span\cbr{v_n}}$, $w\in \overline{\Span\cbr{v_n}}^\perp$, and so $\abr{v,w}=0$. Note that $Pv = v$ by continuity of the inner product (this shows that the closure of $P$ is just the projection onto $\overline{\Span\cbr{v_n}}$).
+        
+        Now let $\lambda$ not be in the point spectrum. We have for $u,f\in\mathcal H$ that $u = v+w$ and $f = f_1+ f_2$ with respect to the decomposition $\mathcal H = \overline{\Span\cbr{v_n}} \oplus \overline{\Span\cbr{v_n}}^\perp$. Then $(P-\lambda I)(v+w) = (f_1+f_2)$, from which we obtain that $v = \frac{1}{1-\lambda}f_1$ and $w = \frac{-1}{\lambda}f_2$. Thus the resolvent $\mathcal R_P(\lambda) = (P-\lambda I)^{-1}$ exists and is given by $\mathcal R_P(\lambda) = (1-\lambda)^{-1}P + \lambda^{-1}(P-I)$.
+
+        Note that $\norm{P} = 1$, since any unit vector $u$ may be written as $v+w$ as before, and by choosing $u$ so that $w$ is zero, it follows that $\norm{Pu} = \norm{Pv} = \norm{v} = 1$. The norm of $Pu$ can be no bigger, so the norm of $P$ is $1$ as needed. Then
+        \[\norm{\mathcal R_P(\lambda)}\leq \norm{(1-\lambda)^{-1}P} + \norm{\lambda^{-1}(P-I)} \leq \frac{1}{1-\lambda} + \frac{2}{\lambda}<\infty.\]
+
+        The spectrum of $P$ is then just $\cbr{0,1}$ and the resolvent set is the complement; that is, $\mathbb C\setminus \cbr{0,1}$.
+    \end{enumerate}
+    \hrulefill
+    \item[\textbf{4.}] \textbf{Eigenvalue problem for a Sturm-Liouville operator} 
+    \begin{enumerate}[label=\textsf{(\roman*)}]
+        \item The space $D_A = C^2([0,1])$ is dense in $L^2([0,1])$, and for any $u,v\in D_A$,
+        \begin{align*}
+            \abr{Au,v} &= \int_{0}^{1}-(pu^\prime)^\prime \overline{v} \dd x\\
+            &\eq{1} (-pu^\prime)\overline{v}\big|_0^1 + u\overline{pv^\prime}\big|_0^1+\int_0^1u\overline{(-pv^\prime)^\prime}\dd x\\
+            &\eq{2} \abr{u,Av},
+        \end{align*}
+        where \begin{enumerate}[label=(\arabic*)]
+            \item is by integration by parts twice and the fact that conjugation commutes with differentiation in this case, and
+            \item is due to $u,v,\overline{v}\in D_A$ with the boundary conditions needed to cause the boundary terms to vanish.
+        \end{enumerate}
+        Therefore $A$ is symmetric. An eigenvalue of $A$ is $0$: A solution to $Au = -(pu^\prime)^\prime = 0u$ in $D_A$ is of the form $u = \int_0^x \frac{d}{p} \dd x + c$, where $d,c$ are constants. By enforcing the boundary conditions on $u^\prime$ it follows that $d$ must be zero, from which we obtain the eigenfunction $u \equiv 1$, with eigenvalue $0$ of multiplicity one (since two different constant functions are linearly dependent).
+
+        Let $\lambda \neq 0$. If $u\in D_A$ satisfies $Au = \lambda u$, then $u$ is continuous on $[0,1]$ and also satisfies $\abr{u,1} = 0$. Indeed,
+        \[\abr{u,1} = \int_0^1 u\dd x = \frac{1}{\lambda}\int_0^1-(pu^\prime)^\prime \dd x = -\frac{1}{\lambda}pu^\prime\big|_0^1 = 0\]
+        since $u\in D_A$ and $\lambda\neq 0$. Thus $u\in D_K$, and 
+        \begin{align*}
+            Ku &= \int_0^x u(y) \int_0^y \frac{1}{p(z)}\dd z \dd y  + \int_x^1 u(y)\int_0^x \frac{1}{p(z)}\dd z\dd y\\
+            &=\int_0^x \frac{-1}{p(z)}\dd{z}\int_0^xu(y)\dd y + \int_x^1 u(y)\int_0^x \frac{1}{p(z)}\dd z\dd y + \int_0^x \frac{1}{p(z)}\dd z\int_0^1 u(y)\dd y\\
+            &= \bigg[\int_0^y \frac{-1}{p(z)}\dd{z}\int_0^yu(z)\dd z\bigg]\bigg|_0^x + \int_x^1 u(y)\int_0^x \frac{1}{p(z)}\dd z\dd y\\
+            &= \int_0^x \frac{-1}{p(y)}\int_0^y u(z) \dd z \dd y\\
+            &= \frac{1}{\lambda}\int_0^x \frac{-1}{p(y)}\int_0^y (-p(z)u^\prime(z))^\prime \dd z \dd y\\
+            &= \frac{1}{\lambda}\int_0^x u^\prime(y)\dd y\\
+            &= \frac{1}{\lambda}u(x) - \frac{1}{\lambda}u(0).
+        \end{align*}
+        Aside from the additional term $-u(0)/\lambda$ (which probably should not be there, this term would not be there had we added some multiple of the $\lambda = 0$ eigenfunction $1$ to $u$?; also if $Au = f$ has a solution, then $f$ is orthogonal to a constant function and $u = c + Kf$ for some constant $c$, if we take $f = \lambda u$...), it follows that if $u\in D_A$ solves the differential equation with $\lambda\neq 0$, then it solves the integral equation $Ku = \frac{1}{\lambda}u$. Conversely, let $u\in D_K$ satisfy $Ku = \xi u$, with $\xi\neq 0$ (we will see in the next part that $0$ is not an eigenvalue of $K$). Then
+        \begin{align*}
+            Au &= \dv{x}\bigg[-\frac{p(x)}{\xi}\dv{x}\bigg(\int_0^x u(y) \int_0^y \frac{1}{p(z)}\dd z \dd y  + \int_x^1 u(y)\int_0^x \frac{1}{p(z)}\dd z\dd y\bigg)\bigg]\\
+            &= \dv x \bigg[-\frac{p(x)}{\xi} \bigg(u(x)\int_0^x \frac{1}{p(z)}\dd z - u(x)\int_0^x \frac{1}{p(z)}\dd z + \int_x^1 u(y) \frac{1}{p(x)}\dd y\bigg)\bigg]\\
+            &= \frac{1}{\xi}u(x).
+        \end{align*}
+        So a solution to the integral equation is a solution to the differential equation as well.
+
+        \item We show that $K$ is compact by showing that it is a Hilbert-Schmidt operator: The action of $K$ on square integrable functions matches the definition of a HS-operator. The Green's function $G(x,y)$ given in the problem is square integrable on $[0,1]\times [0,1]$ since $p>0$ implies $1/p$ is continuous, and since the line $x=y$ has measure zero.
+        
+        Every symmetric compact operator is self-adjoint, since a compact operator is bounded and can be extended to the whole Hilbert space.
+
+        The value $0$ is not an eigenvalue of $K$: If $0$ were an eigenvalue of $K$, then $K$ is not injective and does not have a left inverse. But a left inverse of $K$ is $A$. By a similar computation as above,  $AKf = f$. Therefore $0$ cannot be an eigenvalue of $K$.
+
+        However, since $K$ is invertible, $0$ is the only element of the continuum spectrum of $K$ (in comparison to $0$ being an eigenvalue of $A$). The residual spectrum of $K$ is empty as well.
+
+        The spectrum of $K$ is at most countable, so there is a sequence of real numbers $\{\lambda_n\}$ which form $\sigma(K)$. The nonzero elements of $\{\lambda_n\}$ all belong to the point spectrum $\sigma_p(K)$ of $K$. We can order the $\lambda_n$ into a monotonically decreasing sequence in magnitude, that is, $\abs{\lambda_1}\geq \abs{\lambda_2}\geq \cdots$, since $K$ is bounded. To show that $0$ is a limit point of the point spectrum, we need to show that there are infinitely many eigenvalues. But because the eigenspaces associated to each eigenvalue of $K$ are finite dimensional, we must be able to obtain countably infinitely many eigenvalues $\lambda_n$ (otherwise a finite dimensional orthonormal basis exists for $L^2[0,1]$!). Thus zero is the limit point of the eigenvalues $\{\lambda_n\}$.
+
+        Eigenvalues of $A$ are given by the reciprocals of the eigenvalues of $K$, via the computations we did in part \textsf{(i)} (note also that to each eigenvalue, the eigenfunction is the same).
+
+        Because the eigenvalues $\lambda_n$ have limit point $0$, the set of their reciprocals has limit point $\infty$ in the sense of the extended reals, but since we are not in that system we can simply say that the set of nonzero eigenvalues of $A$ form a monotonically increasing sequence. The inclusion of the zero eigenvalue does not change this fact, and also does not change the fact that the set of eigenvalues of $A$ are simple (they are simple because they are obtained from the point spectrum of $K$, which is discrete). Hence the eigenvalues of $A$ are simple and form a monotonically increasing sequence in $[0,\infty)$.
+
+        \item By the spectral theorem for compact self-adjoint operators, the normalized eigenfunctions corresponding to the nonzero elements of the spectrum $\sigma(K)$ (i.e. the point spectrum) can be chosen to form an orthogonal basis of $L^2([0,1])$. Because these same eigenfunctions are also eigenfunctions of $A$, we are close to just saying that the linearly independent eigenfunctions of $A$ form an orthogonal basis of $L^2([0,1])$ as well. The only addition to the orthogonal basis obtained via the basis coming from $K$ is the constant function $1$, which is still linearly independent from the others since it has a different eigenvalue than the other eigenfunctions. So there is no loss in including it with the other eigenfunctions in our set of eigenfunctions. Therefore, the set of all linearly independent eigenfunctions of $A$ may be chosen to form an orthogonal basis of $L^2([0,1])$.
+    \end{enumerate}
+    \hrulefill
+\end{enumerate}
+Honor Code: \vspace*{7em}
+\end{document}

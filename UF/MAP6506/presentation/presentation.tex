@@ -1,0 +1,213 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{MAP6506}
+\fancyhead[C]{Absolutely continuous functions of two variables}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+In these notes, we introduce the notion of absolute continuity for real functions of two real variables and provide a cursory approach for the problem of extending differential operators; for example, partial derivatives, mixed partial derivatives, the gradient, the divergence, or the Laplacian.
+\subsection{Absolutely continuous functions}
+We recall the definition of an absolutely continuous function on a finite interval.
+\begin{definition}
+    Let $I$ be an interval $(a,b)\subset \mathbb R$, with $a,b$ finite. A function $u\colon I\to \mathbb R$ is \textit{absolutely continuous} if for any $\varepsilon>0$, there exists $\delta >0$ such that, for any finite collection of pairwise disjoint intervals $\{I_j = (a_j,b_j)\subset I \mid j = 1,2,\dots,n, I_j\cap I_k = \emptyset \text{ for } j\neq k\}$, the \textit{total absolute variation} of $u$ on these intervals is less than $\varepsilon$ whenever the measure of $\bigcup_{j=1}^n I_j$ does not exceed $\delta$; that is,
+\begin{equation}\label{1}
+    \sum_{j=1}^n|u(b_j)-u(a_j)|<\varepsilon\quad\text{whenever}\quad \sum_{j=1}^n |b_j-a_j| < \delta.
+\end{equation}
+The vector space of absolutely continuous functions on $I$ is denoted by $AC^0(I)$.
+\end{definition}
+
+A famous theorem of analysis is that an absolutely continuous function admits an integral representation matching the integral representation for differentiable functions provided by the fundamental theorem of calculus.
+\begin{theorem}\label{thm1}
+    Let $u$ be absolutely continuous on $I = (a,b)$. Then there exists $f\in L^1(a,b)$ such that 
+    \begin{equation}\label{2}
+        u(x) = u(a) + \int_a^x f(y)\dd y,
+    \end{equation} 
+    and in this case $u^\prime(x) = f(x)$ almost everywhere.
+\end{theorem}
+We may define absolutely continuous functiond on $I$ as functions that satisfy the result of the above theorem.
+We summarize some properties of absolutely continuous functions:
+\begin{proposition}
+    Let $I = (a,b)$ and let $u\in AC^0(I)$, with $u(x) = u(a) + \int_a^x f(y)\dd y$ for some $f\in L^1(I)$. Then \begin{enumerate}[label=\textup{(\arabic*)}]
+        \item $\cbr{v\colon I\to \mathbb R\mid v \text{ is Lipschitz continuous}}\subsetneq AC^0(I)\subsetneq \cbr{v\colon I\to\mathbb R\mid v\text{ is differentiable a.e.}}$,
+        \item $C^1(I)\subsetneq AC^0(I)\subsetneq C^0(I)$,
+        \item $u$ may be written as the difference $u_1-u_2$ of two monotonically increasing functions $u_1,u_2\in AC^0(I)$.
+        \item $u$ satisfies the Luzin $N$ property: if $N\subset I$ with measure zero, then $u(N)$ also has measure zero,
+        \item $u\in AC^0(I)$ if and only if $u$ is continuous, of bounded variation, and satisfies the Luzin $N$ property, and
+        \item $|u|\in AC^0(I)$.
+    \end{enumerate}
+\end{proposition}
+Property (3) resembles the Jordan decomposition for signed measures, and property (4) resembles a similar property that absolutely continuous measures have. Property (5) is called the \textit{Banach-Zarecki} theorem.
+
+We seek to define a notion of absolute continuity for functions of two variables that has some of the nice properties mentioned above. No definition exists that preserves all of the above properties, but there are definitions that preserve some of them. It seems that these are properties that coincide in the one dimensional case, but diverge in higher dimensional settings, so one has to compromise on what properties they want for an ``absolutely continuous function'' of several variables.
+
+For example, Mal\'y (1999) gives a definition of ``$n$-absolutely continuous functions'' $u\colon \Omega\to \mathbb R^d$, where $\Omega\subset \mathbb R^n$ is an open set.
+\begin{definition}
+    The \textit{$n$-variation} of $u\colon \Omega\to\mathbb R^d$ on a set of pairwise disjoint open balls $\cbr{B_i\mid B_i\subset \Omega}$ is given by
+    \begin{equation}
+        \sum_i (\diam f(B_i))^n.
+    \end{equation}
+    The function $u\colon \Omega\to\mathbb R^d$ is \textit{$n$-absolutely continuous} if for any $\varepsilon>0$, there exists $\delta >0$ such that, for any finite collection of pairwise disjoint open balls $\cbr{B_i}$, the $n$-variation of $u$ on these balls is less than $\varepsilon$ whenever the measure of $\bigcup_iB_i$ does not exceed $\delta$; that is,
+    \begin{equation}\label{4}
+        \sum_i (\diam f(B_i))^n <\varepsilon\quad\text{whenever}\quad \sum_i\mu(B_i) < \delta.
+    \end{equation}
+    
+    We denote the vector space of $n$-absolutely continuous functions by $AC^n(\Omega)$.
+\end{definition}
+
+In the same paper by Mal\'y that defines these functions, it is shown that $n$-absolutely continuous functions satisfy weak differentiability and differentiability almost everywhere with integrable derivative.
+
+This definition closely resembles the original definition for absolutely continuous functions (compare \eqref{4} to \eqref{2}), and coincides with it when $n=1$. However, no theorem has been proven yet that provides an integral representation of $n$-absolutely continuous functions similar to \cref{thm1}.
+
+There is one definition of an absolutely continuous function in two variables that admits an integral representation. Caratheodor\'y introduced a definition of absolutely continuous functions of two variables using a new kind of ``variation'' in 1918, and in 2010, \v Sremr showed that this definition was equivalent to that of functions admitting a certain integral representation.
+
+Let $R = [a,b]\times[c,d]$ be a rectangle in $\mathbb R^2$, and denote by $S(R)$ the collection of all rectangles $R^\prime$ of the form $[x_1,x_2]\times[y_1,y_2]$ that are contained in $R$. We will consider rectangles that ``do not overlap''; that is, rectangles whose interiors are disjoint. Two non-overlapping rectangles are ``adjacent'' to each other if their union also belongs to $S(R)$.
+
+\begin{definition}\label{def1}
+    A function $F\colon S(R)\to \mathbb R$ is \textit{additive} if for adjoining rectangles $R_1,R_2\in S(R)$, we have $F(R_1\cup R_2) = F(R_1) + F(R_2)$.
+
+    An additive function of rectangles $F\colon S(R)\to \mathbb R$ is \textit{absolutely continuous} if for any $\varepsilon>0$, there exists $\delta>0$ such that, for any finite set of non-overlapping rectangles $\cbr{R_i}\subset S(R)$,
+    \begin{equation}
+        \sum_{i}|F(R_i)| < \varepsilon\quad \text{whenever}\quad \sum_i\mu(R_i) < \delta.\qedhere
+    \end{equation}
+\end{definition}
+
+Now we can define absolute continuity for functions of two variables:
+
+\begin{definition}\label{def2}
+    Let $u\colon R\to \mathbb R$, and let $F_u\colon S(R)\to \mathbb R$ be given by 
+    \begin{equation}
+        F_u([x_1,x_2]\times[y_1,y_2]) = u(x_1,y_1)-u(x_1,y_2) + u(x_2,y_2)-u(x_2,y_1)
+    \end{equation}
+    for $[x_1,x_2]\times[y_1,y_2]\in S(R)$. Then $u$ is \textit{absolutely continuous} on $R$ if \begin{enumerate}[label=(\arabic*)]
+        \item the function $F_u$ is absolutely continuous in the sense of the previous definition, and
+        \item the functions $u(a,\cdot)\colon [a,b]\to\mathbb R$ and $u(\cdot,c)\colon [c,d]\to\mathbb R$ are absolutely continuous in the usual way.
+    \end{enumerate}
+    Denote the vector space of absolutely continuous functions $u\colon R\to\mathbb R$ by $AC^0(R)$.
+\end{definition}
+
+The restriction to rectangles throughout is of little loss since compact sets in euclidean space may be approximated very well by the union of finitely many rectangles.
+
+This definition lends itself to being generalized for functions $u\colon O\subset \mathbb R^n \to \mathbb R$, where $O$ is some closed orthotope (higher dimensional rectangle). \cref{def1} and the preceding discussion are essentially identical in this setting, but the modification to \cref{def2} has a nice graph-theoretic interpretation.
+
+The quantity $F_u(O^\prime)$ for some smaller orthotope $O^\prime\subset O$ is given by a certain alternating sum of $u$, evaluated at the vertices of $O^\prime$. The choice of the sign on each term corresponds to essentially a $2$-coloring of the vertices of the orthotope $O^\prime$, or otherwise a $2$-coloring of the $n$-cube/``hypercube'' graph. An $\ell$-coloring of a graph $G$ is a way of coloring the vertices of $G$ using $\ell$ colors such that two vertices connected by an edge do not share the same color. In our setting, the ``colors'' are $+$ and $-$, and the vertices are essentially the vertices of $O^\prime$. In the $n=2$ case with $R^\prime = [x_1,x_2]\times[y_1,y_2]$, the coloring is given by the assignment
+\begin{align*}
+    (x_1,y_1) &: + & (x_1,y_2) &: - \\
+    (x_2,y_2) &: + & (x_2,y_1) &: -;
+\end{align*}
+one can imagine starting a coloring of a square's vertices by assigning the bottom left corner a $+$.
+
+A fact of graph theory is that every hypercube graph is \textit{bipartite}, meaning that it can be colored with two colors (e.g., see \href{https://arxiv.org/pdf/2401.00070}{https://arxiv.org/pdf/2401.00070}, Figure 2). This immediately implies that by coloring the orthotope $O^\prime$ by assigning the vertex closest to the origin a $+$ (a $-$ would also be fine), we obtain a definition of $F_u$ that is additive and hence we obtain a definition for absolutely continuous functions of $n$ variables on orthotopes.
+
+To elaborate, consider taking any such orthotope $O^\prime$ and construct a plane parallel to any face of $O^\prime$ that divides $O^\prime$ into two (i.e., the plane does not touch any vertices and the number of vertices on each side of the plane are equal). Then, viewing the plane as a plane of reflection, observe that any coloring made on one side of the plane must be negated on the other side of the plane (this is easiest to see with a rectangle or a rectangular prism). Therefore $F_u$ is additive as needed.
+
+Returning to the two variable case, it is in this setting that we obtain an integral representation for absolutely continuous functions.
+
+\begin{theorem}
+    The following are equivalent:\begin{enumerate}[label=\textup{(\arabic*)}]
+        \item The function $u\colon R\to\mathbb R$ is absolutely continuous on $R$;
+        \item the function $u\colon R\to\mathbb R$ admits the integral representation 
+        \begin{equation}
+            u(x,y) = c + \int_a^x f(t)\dd t + \int_c^y g(s)\dd s + \int_c^y\int_a^x h(t,s)\dd t \dd s
+        \end{equation}
+        for $(x,y)\in R$, a constant $c$, $f\in L^1([a,b])$, $g\in L^1([c,d])$, and $h\in L^1(R)$;
+        \item the function $u\colon R\to\mathbb R$ satisfies the conditions $u(\cdot,y)\in AC([a,b])$ for every $y\in [c,d]$, $u(a,\cdot)\in AC([c,d])$, $u^\prime_x(x,\cdot)\in AC([c,d])$ for almost every $x\in [a,b]$, and $u^{\prime\prime}_{xy}\in L^1(R)$.
+    \end{enumerate}
+\end{theorem}
+By Fubini's theorem, we may replace the conditions in (3) by $u(x,\cdot)\in AC([c,d])$ for every $x\in [a,b]$, $u(\cdot,c)\in AC([a,b])$, $u^\prime_y(\cdot,y)\in AC([a,b])$ for almost every $y\in [c,d]$, and $u^{\prime\prime}_{yx}\in L^1(R)$.
+
+In the theorem statement above, in (2), the functions $f$, $g$, and $h$ are equal to 
+\newpage
+\section*{References}
+Course notes (Chapter 5)
+
+Mal\'y paper: \href{https://www.sciencedirect.com/science/article/pii/S0022247X98962461}{https://www.sciencedirect.com/science/article/pii/S0022247X98962461}
+
+\v Sremr paper: \href{https://ejde.math.txstate.edu/Volumes/2010/154/sremr.pdf}{https://ejde.math.txstate.edu/Volumes/2010/154/sremr.pdf}
+
+Caratheodor\'y monograph: Vorlesungen über reelle funktionen (the \v Sremr paper references this monograph)
+\end{document}
