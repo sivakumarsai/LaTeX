@@ -58,7 +58,7 @@
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[L]{MAP6506}
-\fancyhead[C]{Absolutely continuous functions of two variables}
+\fancyhead[C]{AC functions in two variables, obstructions to closing differential operators}
 \fancyhead[R]{Sai Sivakumar}
 \fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{1pt}
@@ -84,14 +84,15 @@
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
-In these notes, we introduce the notion of absolute continuity for real functions of two real variables and provide a cursory approach for the problem of extending differential operators; for example, partial derivatives, mixed partial derivatives, the gradient, the divergence, or the Laplacian.
-\subsection{Absolutely continuous functions}
+In these notes, we introduce the notion of absolute continuity for real functions of two real variables and provide a discussion about obstructions to closing differential operators in two variables; for example, partial derivatives, mixed second-order partial derivatives, the gradient, the divergence, or the Laplacian using the last notion of absolutely continuous functions of two variables.
+\section{Absolutely continuous functions}
 We recall the definition of an absolutely continuous function on a finite interval.
 \begin{definition}
     Let $I$ be an interval $(a,b)\subset \mathbb R$, with $a,b$ finite. A function $u\colon I\to \mathbb R$ is \textit{absolutely continuous} if for any $\varepsilon>0$, there exists $\delta >0$ such that, for any finite collection of pairwise disjoint intervals $\{I_j = (a_j,b_j)\subset I \mid j = 1,2,\dots,n, I_j\cap I_k = \emptyset \text{ for } j\neq k\}$, the \textit{total absolute variation} of $u$ on these intervals is less than $\varepsilon$ whenever the measure of $\bigcup_{j=1}^n I_j$ does not exceed $\delta$; that is,
@@ -109,7 +110,7 @@ A famous theorem of analysis is that an absolutely continuous function admits an
     \end{equation} 
     and in this case $u^\prime(x) = f(x)$ almost everywhere.
 \end{theorem}
-We may define absolutely continuous functiond on $I$ as functions that satisfy the result of the above theorem.
+We may define absolutely continuous functions on $I$ as functions that satisfy the result of the above theorem.
 We summarize some properties of absolutely continuous functions:
 \begin{proposition}
     Let $I = (a,b)$ and let $u\in AC^0(I)$, with $u(x) = u(a) + \int_a^x f(y)\dd y$ for some $f\in L^1(I)$. Then \begin{enumerate}[label=\textup{(\arabic*)}]
@@ -117,7 +118,8 @@ We summarize some properties of absolutely continuous functions:
         \item $C^1(I)\subsetneq AC^0(I)\subsetneq C^0(I)$,
         \item $u$ may be written as the difference $u_1-u_2$ of two monotonically increasing functions $u_1,u_2\in AC^0(I)$.
         \item $u$ satisfies the Luzin $N$ property: if $N\subset I$ with measure zero, then $u(N)$ also has measure zero,
-        \item $u\in AC^0(I)$ if and only if $u$ is continuous, of bounded variation, and satisfies the Luzin $N$ property, and
+        \item $u\in AC^0(I)$ if and only if $u$ is continuous, of bounded variation, and satisfies the Luzin $N$ property
+        \item $AC^0(I)$ coincides with the Sobolev space $W^{1,p}(I)$, and
         \item $|u|\in AC^0(I)$.
     \end{enumerate}
 \end{proposition}
@@ -175,10 +177,10 @@ The restriction to rectangles throughout is of little loss since compact sets in
 This definition lends itself to being generalized for functions $u\colon O\subset \mathbb R^n \to \mathbb R$, where $O$ is some closed orthotope (higher dimensional rectangle). \cref{def1} and the preceding discussion are essentially identical in this setting, but the modification to \cref{def2} has a nice graph-theoretic interpretation.
 
 The quantity $F_u(O^\prime)$ for some smaller orthotope $O^\prime\subset O$ is given by a certain alternating sum of $u$, evaluated at the vertices of $O^\prime$. The choice of the sign on each term corresponds to essentially a $2$-coloring of the vertices of the orthotope $O^\prime$, or otherwise a $2$-coloring of the $n$-cube/``hypercube'' graph. An $\ell$-coloring of a graph $G$ is a way of coloring the vertices of $G$ using $\ell$ colors such that two vertices connected by an edge do not share the same color. In our setting, the ``colors'' are $+$ and $-$, and the vertices are essentially the vertices of $O^\prime$. In the $n=2$ case with $R^\prime = [x_1,x_2]\times[y_1,y_2]$, the coloring is given by the assignment
-\begin{align*}
+\begin{align}
     (x_1,y_1) &: + & (x_1,y_2) &: - \\
-    (x_2,y_2) &: + & (x_2,y_1) &: -;
-\end{align*}
+    (x_2,y_2) &: + & (x_2,y_1) &: -;\nonumber
+\end{align}
 one can imagine starting a coloring of a square's vertices by assigning the bottom left corner a $+$.
 
 A fact of graph theory is that every hypercube graph is \textit{bipartite}, meaning that it can be colored with two colors (e.g., see \href{https://arxiv.org/pdf/2401.00070}{https://arxiv.org/pdf/2401.00070}, Figure 2). This immediately implies that by coloring the orthotope $O^\prime$ by assigning the vertex closest to the origin a $+$ (a $-$ would also be fine), we obtain a definition of $F_u$ that is additive and hence we obtain a definition for absolutely continuous functions of $n$ variables on orthotopes.
@@ -187,7 +189,7 @@ To elaborate, consider taking any such orthotope $O^\prime$ and construct a plan
 
 Returning to the two variable case, it is in this setting that we obtain an integral representation for absolutely continuous functions.
 
-\begin{theorem}
+\begin{theorem}\label{thm2}
     The following are equivalent:\begin{enumerate}[label=\textup{(\arabic*)}]
         \item The function $u\colon R\to\mathbb R$ is absolutely continuous on $R$;
         \item the function $u\colon R\to\mathbb R$ admits the integral representation 
@@ -200,7 +202,63 @@ Returning to the two variable case, it is in this setting that we obtain an inte
 \end{theorem}
 By Fubini's theorem, we may replace the conditions in (3) by $u(x,\cdot)\in AC([c,d])$ for every $x\in [a,b]$, $u(\cdot,c)\in AC([a,b])$, $u^\prime_y(\cdot,y)\in AC([a,b])$ for almost every $y\in [c,d]$, and $u^{\prime\prime}_{yx}\in L^1(R)$.
 
-In the theorem statement above, in (2), the functions $f$, $g$, and $h$ are equal to 
+Note that in this setting, absolutely continuous functions of two variables have integrable mixed second-order derivatives that satisfy the Clairaut condition $u^{\prime\prime}_{xy} = u^{\prime\prime}_{yx}$ almost everywhere on $R$. This is in contrast to the one variable case, where no mention of integrability of second derivatives is made.
+
+Using this theorem it is easy to see that sufficiently smooth functions; that is, functions in $C^p(R)$ for $p\geq 2$, are absolutely continuous on $R$. Indeed, using the fundamental theorem of calculus three times, we have for $u\in C^2(R)$ that
+\begin{align}
+    u(x,y) &= u(a,y) + \int_a^x u^\prime_x(t,y)\dd t \\
+    &= u(a,c) + \int_c^y u^\prime_y(a,s)\dd s + \int_a^x \bigg[u^\prime_x(t,c) + \int_c^y u^{\prime\prime}_{xy}(t,s)\dd s\bigg] \dd t\nonumber\\
+    &= u(a,c) + \int_a^x u^\prime_x(t,c) \dd t + \int_c^y u^\prime_y(a,s)\dd s  + \int_a^x \int_c^y u^{\prime\prime}_{xy}(t,s)\dd s \dd t.\nonumber
+\end{align} Note that the double integral above is equal to $ \int_c^y \int_a^x u^{\prime\prime}_{yx}(t,s)\dd t \dd s$ by Fubini's theorem and Clairaut's theorem.
+
+\section{Attempting to find closures of differential operators}
+Let $A\colon D_A\to\mathcal H$ be a differential operator where $D_A\subseteq C^p(R)$ for some $p$ sufficiently large to a Hilbert space $\mathcal H$ (which will usually be $L^2(R)$ or some finite cartesian product of copies of $L^2(R)$ in the case that $A$ is e.g., the gradient).
+
+To find $\overline A$, we must find all $u\in L^2(R)$ for which any sequence $\cbr{u_n}\subset D_A$ converging to $u$ also satisfies $\cbr{Au_n}$ converging to some element $f\in L^2(R)$, in which case we define $\overline{A}u = f$.
+
+Let $\cbr{u_n}$ converge to $u$ in $L^2(R)$ and write for each $n$
+\begin{equation}\label{3}
+    u_n(x,y) = u_n(a,c) + \int_a^x u^\prime_{nx}(t,c) \dd t + \int_c^y u^\prime_{ny}(a,s)\dd s  + \int_a^x \int_c^y u^{\prime\prime}_{nxy}(t,s)\dd s \dd t.
+\end{equation}
+By demanding that $\cbr{Au_n}$ converges to some $h\in L^2(R)$, we hope to extract information about $u^\prime_{nx}(t,c)$, $u^\prime_{ny}(a,s)$, and $u^{\prime\prime}_{nxy}(t,s)$ that would imply the equality \begin{equation}\label{5}
+    u(x,y) = u(a,c) + \int_a^x u^\prime_x(t,c) \dd t + \int_c^y u^\prime_y(a,s)\dd s  + \int_a^x \int_c^y u^{\prime\prime}_{xy}(t,s)\dd s \dd t.
+\end{equation}
+One hope is that the information extracted is that $u^\prime_{nx}(\cdot,c)\to f\in L^2([a,b])$, $u^\prime_{ny}(a,\cdot)\to g\in L^2([c,d])$, and $u^{\prime\prime}_{nxy} \to h\in L^2(R)$, since the integrals appearing in \eqref{5} may be written as the action of bounded integral operators on $u^\prime_{nx}(\cdot,c)$, $u^\prime_{ny}(a,\cdot)$, and $u^{\prime\prime}_{nxy}$.
+
+However, this seems sort of hopeless in all cases. For example, consider $A = \pdv x\colon C^1(R)\to L^2(R)$ in the above. If we want to use the approach discussed above, we should restrict the domain of $A$ to $C^2(R)$ at the very least and then compute the closure, which would agree with the closure of $A\colon C^1(R)\to L^2(R)$. Continuing with the restriction of $A$ to $C^2(R)$, we demand that $Au_n = u^\prime_{nx}$ converges to some $v$ in $L^2(R)$. This is not enough to deduce that $u^\prime_{ny}(a,\cdot)\to g\in L^2([c,d])$, and $u^{\prime\prime}_{nxy} \to h\in L^2(R)$. In fact, it is not even possible to deduce that $u^\prime_{nx}(\cdot,c)\to f\in L^2([a,b])$. The reason is that the evaluation operator $\EV_{(\cdot,c)}$ that takes $v\in C^p(R)$ to $v(\cdot,c)\in C^p([a,b])$ could not be extended to a bounded operator in $L^2(R)$. The same phenomenon happens in the one dimensional case and is verified similarly (see \href{https://mathoverflow.net/q/87323}{https://mathoverflow.net/q/87323}).
+
+In the case when $A = \nabla\colon C^1(R)\to (L^2(R))^2$, we restrict the domain of $A$ to be $C^2(R)$ (again we find that the closures of $A\colon C^1(R)\to (L^2(R))^2$ and $A\colon C^2(R)\to (L^2(R))^2$ coincide). We will see that this domain restriction is unnecessary. Then demand that $Au_n$ converges, which is to say that $u^\prime_{nx}$ and $u^\prime_{ny}$ converge to some $v$ and $w$ in $L^2(R)$ respectively. A natural thing to hope for is that at the very least we may use the equations
+\begin{align}\label{6}
+    u_n(x,y) &= u_n(a,y) + \int_a^x u^\prime_{nx}(t,y)\dd t\\
+    u_n(x,y) &= u_n(x,c) + \int_c^y u^\prime_{ny}(x,s)\dd s\nonumber
+\end{align}
+to deduce that 
+\begin{align}\label{7}
+    u(x,y) &= u(a,y) + \int_a^x u^\prime_{x}(t,y)\dd t\\
+    u(x,y) &= u(x,c) + \int_c^y u^\prime_{y}(x,s)\dd s\nonumber
+\end{align}
+since the integrals appearing above may be viewed as bounded integral operators. This approach is a decent start, but does not actually make use of \eqref{3}, so the restriction of the domain to $C^2(R)$ seems unnecessary. Keeping the domain as $C^2(R)$, it is still not clear how to combine the above equations in a way that provides the existence and square integrability of the mixed second-order derivative $u^{\prime\prime}_{xy}$ (if we could obtain this, by symmetry of the argument we should be able to obtain the Clairaut condition $u^{\prime\prime}_{xy} = u^{\prime\prime}_{yx}$ a.e. on $R$). But it is not actually possible to deduce \eqref{7} from \eqref{6} using the assumption that $u^\prime_{nx}\to v\in L^2(R)$ and $u^\prime_{ny}\to w\in L^2(R)$, since the evaluation operators, given by $v\mapsto v(a,\cdot)$ and $v\mapsto v(\cdot,c)$ from $L^2(R)$ to $L^2([c,d])$ and $L^2([a,b])$ respectively, are not bounded. This eliminates the possibility of relaxing the domain of the gradient back to $C^1(R)$ as originally stated and showing that the domain of $\overline A$ is the space of functions in $L^2(R)$ which are absolutely continuous in each variable (i.e., by holding one variable fixed and viewing the resulting function as a function on an interval).
+
+An interesting note is that this space of functions is strictly larger than the space of absolutely continuous functions in two variables in the sense defined prior: Consider the function given by $u(x,y) = |x-y|$ on the standard unit rectangle $[0,1]\times[0,1]$, and observe that it is Lipschitz in each variable (that is, by fixing one variable at a time) and hence absolutely continuous in each variable, but is \textit{not} absolutely continuous in the sense of \cref{thm2} because $u^\prime_x(x,\cdot)$ is not absolutely continuous in $y$. (See Remark 3.4 in the \v Sremr paper included in the references.)
+
+Before elaborating more on the non-boundedness of the evaluation operators discussed prior, one final operator we can consider is the mixed second-order derivative operator $A = \pdv[2]{}{x}{y}\colon \mathcal D(R)\to L^2(R)$ (where $\mathcal D(R)$ denotes the space of test functions on $R$). This operator seemed the most likely to be closable in the above scheme, because of the following equalities: 
+\begin{align}
+    u^\prime_{nx}(x,y) &= u^\prime_{nx}(x,c) + \int_c^y u^{\prime\prime}_{nxy}(x,s)\dd s = \int_c^y u^{\prime\prime}_{nxy}(x,s)\dd s\\
+    u^\prime_{ny}(x,y) &= u^\prime_{ny}(a,y) + \int_a^x u^{\prime\prime}_{nyx}(t,y)\dd t = \int_a^x u^{\prime\prime}_{nxy}(t,y)\dd t\nonumber
+\end{align}
+If we could use these equalities to deduce that $u^\prime_x$ and $u^\prime_y$ converge in $L^2(R)$, then it may be possible to deduce that $u$ actually had the integral representation required to be absolutely continuous in two variables. This is still not possible due to the fact that restricting an $L^2(R)$ function $v$ onto the function $v(\cdot,c)$ or similar is not a continuous operation on $L^2(R)$.
+
+The crucial obstruction to the above approaches is the fact that $v_n\to f\in L^2(R)$ does not imply that $v_n(\cdot,c)\to g\in L^2([a,b])$. An easy example is a rising tent shaped function on the square $R = [-1,1]\times [-1,1]$ given by \begin{equation}
+    v_n(x,y) = \begin{cases}
+        n(1-|n^2y|) & y\in (-1/n^2,1/n^2),\\
+        0 & \text{elsewhere}.
+    \end{cases}
+\end{equation}
+It is clear that $v_n$ converges to the zero function in the $L^2$ norm, but $v_n(\cdot,0) = n$ does not converge in the $L^2$ norm. One can easily smoothen out $v_n$ to produce the same phenomenon for smooth functions.
+
+Therefore, $u^\prime_{nx}\to v\in L^2(R)$ does not imply that $u^\prime_{nx}(\cdot,c)\to f\in L^2([a,b])$, which in turn means we cannot conclude that $\int_a^x u^\prime_{nx}(t,c)\dd t$ converges to $\int_a^x f(t,c)\dd t$ as a function of $x$ in $L^2([a,b])$. This obstruction occurs in some form in all of the above approaches, and so a different approach is likely required.
+
+My suspicion for the obstructions we found above is due to the formulation of absolute continuity in two variables. In this setting, the quality of a function $u$ to be absolutely continuous is intimately related to the absolute continuity of the restrictions $u(\cdot,y)$ and $u(x,\cdot)$, and similar statements for the partial derivatives (see \cref{thm2}). The $L^2$ norm does not seem to be sensitive enough to preserve this connection. The other strange phenomenon is the apparent additional smoothness absolutely continuous functions in two variables have, since their mixed second-order partial derivatives are integrable and satisfy the Clairaut condition. One usual approach for finding closures or closed extensions and even adjoints of differential operators of the kind discussed above, including the Laplacian, seem to involve Sobolev spaces. The space of absolutely continuous functions in one variable coincide with a suitable Sobolev space which is some evidence towards the idea that perhaps we need to find a definition of absolutely continuous functions of several variables that coincide with a suitable Sobolev space \textit{and} admit the right integral representations for these functions.
 \newpage
 \section*{References}
 Course notes (Chapter 5)
@@ -209,5 +267,5 @@ Mal\'y paper: \href{https://www.sciencedirect.com/science/article/pii/S0022247X9
 
 \v Sremr paper: \href{https://ejde.math.txstate.edu/Volumes/2010/154/sremr.pdf}{https://ejde.math.txstate.edu/Volumes/2010/154/sremr.pdf}
 
-Caratheodor\'y monograph: Vorlesungen über reelle funktionen (the \v Sremr paper references this monograph)
+Caratheodor\'y monograph: Vorlesungen über reelle funktionen (the \v Sremr paper references this monograph, beginning with Section 566 on page 652)
 \end{document}
