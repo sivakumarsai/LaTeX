@@ -110,7 +110,7 @@
   
   \item[4. incomplete] Let $(X,d)$ be a metric space.
   \begin{enumerate}
-    \item The function $\rho\colon X\times X\to \mathbb R$ given by $\rho(x,y) = \min\cbr{1,d(x,y)}$ defines a metric on $X$. For any $x,y\in X$, it is clear that $\rho(x,y)\geq 0$ since $d(x,y)\geq 0$. We have $\rho(x,y) = \min\cbr{1,d(x,y)} = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x = y$.
+    \item The function $\rho\colon X\times X\to \mathbb R$ given by $\rho(x,y) = \min\cbr{1,d(x,y)}$ defines a metric on $X$. For any $x,y\in X$, it is clear that $\rho(x,y)\geq 0$ since $d(x,y)\geq 0$. We have $\rho(x,y) = \min\cbr{1,d(x,y)} = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x = y$. Furthermore, it is clear that $\rho(x,y) = \rho(y,x)$ since $d(x,y) = d(y,x)$.
     
     Before verifying the triangle inequality for $\rho$, we prove a small result. For nonnegative $a,b\in\mathbb R$, $\min\cbr{1,a+b}\leq \min\cbr{1,a} + \min\cbr{1,b}$. In the case that $\min\cbr{1,a+b}= a+b$, then both $a,b\leq 1$ so that $\min\cbr{1,a+b} = a+b = \min\cbr{1,a} + \min\cbr{1,b}$. 
     % If both $a,b<1/2$, then $a+b<1$. Hence if $a+b\geq 1$, $a$ or $b$ is greater than or equal to $1/2$. 
@@ -121,7 +121,7 @@
     \end{multline*}
 
     \item It suffices to show that \dots
-    \item The function $\sigma\colon X\times X\to \mathbb R$ given by $\sigma(x,y) = d(x,y)/(1+d(x,y))$ defines a metrix on $X$. For any $x,y\in X$, it is clear that $\sigma(x,y) \geq 0$ since $d(x,y)\geq 0$. We have $\sigma(x,y) = d(x,y)/(1+d(x,y)) = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x=y$.
+    \item The function $\sigma\colon X\times X\to \mathbb R$ given by $\sigma(x,y) = d(x,y)/(1+d(x,y))$ defines a metrix on $X$. For any $x,y\in X$, it is clear that $\sigma(x,y) \geq 0$ since $d(x,y)\geq 0$. We have $\sigma(x,y) = d(x,y)/(1+d(x,y)) = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x=y$. Furthermore, it is clear that $\sigma(x,y) = \sigma(y,x)$ since $d(x,y) = d(y,x)$.
     
     Before verifying the triangle inequality for $\sigma$, we prove a small result. For nonnegative $a,b\in \mathbb R$, if $a/(1+a)< b/(1+b)$, then $a+ ab < b + ba$ implies that $a<b$. It follows that if $a\geq b$, then $a/(1+a)\geq b/(1+b)$. Thus for $x,y,z\in X$, \begin{multline*}
       \sigma(x,y) = d(x,y)/(1+d(x,y)) \leq (d(x,z) + d(z,y))/(1+ d(x,z) + d(z,y))\\ \leq d(x,z)/(1+ d(x,z)) + d(z,y)/(1+d(z,y)) = \sigma(x,z) + \sigma(z,y).
