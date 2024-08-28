@@ -91,5 +91,45 @@
 \setcounter{page}{1}
 
 \begin{document}
-Ch. 2 1, 3, 4, 8
+\subsection*{2.10 Exercises}
+\begin{enumerate}
+  \item[1.] Let $X$ be a vector space.
+  \begin{enumerate}
+    \item Let $A,B\subset X$ be convex, and let $A+B \coloneqq \cbr{a+b\mid a\in A,b\in B}$. Let $x,y\in A+B$ so that $x = a_1+b_1$ and $y = a_2+b_2$ for some $a_1,a_2\in A$ and $b_1,b_2\in B$. Then for $t\in [0,1]$, we have $tx+(1-t)y = (ta_1 + (1-t)a_2) + (tb_1 + (1-t)b_2)\in A+B$, since $A$ and $B$ are convex.
+    
+    Now let $x,y\in A\cap B$. Then for $t\in [0,1]$, the vector $tx + (1-t)y$ is an element of $A$ since $A$ is convex, and is also an element of $B$ since $B$ is convex. Hence $tx + (1-t)y\in A\cap B$ from which it follows that $A\cap B$ is convex.
+
+    For convex sets $A,B\subset X$, $A\cup B$ or $A\setminus B$ need not be convex. Let $X = \mathbb R^2$. Then with $A = B_1(-2,0)$ and $B = B_1(2,0)$, it is clear that $A,B$ are convex but $A\cup B$ is not convex: No line segment with endpoints in each ball is contained in the union of the balls. With $A = B_2(0,0)$ and $B = B_1(0,0)$, it is clear that $A,B$ are convex but $A\setminus B$ is not convex: The set $A\setminus B$ is an annulus.
+
+    \item Let $A\subset X$, and let $cA = \cbr{ca\mid a\in A}$ for $c\in \mathbb R$. Then $2A = \cbr{2a\mid a\in A}$ is a subset of $A + A$, since for any $a\in 2A$, $a = 2b$ for some $b\in A$ so that $a = 2b = b+b$. It follows that $a \in A+A$ and hence $2A\subset A + A$. The reverse containment $A + A\subset 2A$ need not hold, for example if $X = \mathbb R^2$ and $A = \cbr{e_1,e_2}$, then $2A = \cbr{2e_1,2e_2}$ and $A + A =\cbr{2e_1, 2e_2, e_1 + e_2}$.
+    
+    The reverse containment $A + A\subset 2A$ holds whenever $A$ is convex: If $A\subset X$ is convex, it is clear that $2A$ is also convex. An element $x \in A+A$ is of the form $a+b$ for $a,b\in A$, and so $x = (2a)/2 + (2b)/2\in 2A$ since $2A$ is convex. It follows in this case that $2A = A + A$.
+  \end{enumerate}
+
+  \item[3.] Let $(X,d)$ be a metric space and consider $A,B\subset X$ with $A\subset B$. The inequality $\diam(A)\leq \diam(B)$ holds when $A$ or $B$ is empty, and when $A$ or $B$ is unbounded. So assume that $A,B$ are bounded. Then $\cbr{d(x,y)\mid x,y\in A}\subset \cbr{d(x,y)\mid x,y\in B}\subset \mathbb R$, from which it follows that the suprema of these sets (the diameters of $A,B$) exist and $\diam(A) = \sup \cbr{d(x,y)\mid x,y\in A}\leq \sup \cbr{d(x,y)\mid x,y\in B} = \diam(B)$.
+  
+  \item[4. incomplete] Let $(X,d)$ be a metric space.
+  \begin{enumerate}
+    \item The function $\rho\colon X\times X\to \mathbb R$ given by $\rho(x,y) = \min\cbr{1,d(x,y)}$ defines a metric on $X$. For any $x,y\in X$, it is clear that $\rho(x,y)\geq 0$ since $d(x,y)\geq 0$. We have $\rho(x,y) = \min\cbr{1,d(x,y)} = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x = y$.
+    
+    Before verifying the triangle inequality for $\rho$, we prove a small result. For nonnegative $a,b\in\mathbb R$, $\min\cbr{1,a+b}\leq \min\cbr{1,a} + \min\cbr{1,b}$. In the case that $\min\cbr{1,a+b}= a+b$, then both $a,b\leq 1$ so that $\min\cbr{1,a+b} = a+b = \min\cbr{1,a} + \min\cbr{1,b}$. 
+    % If both $a,b<1/2$, then $a+b<1$. Hence if $a+b\geq 1$, $a$ or $b$ is greater than or equal to $1/2$. 
+    Now suppose that $\min\cbr{1,a+b}= 1$ so that $a+b\geq 1$.
+    % ; without loss of generality assume that $a\geq 1/2$. If $\min\cbr{1,b} = 1$ Then $\min\cbr{1,a+b}= 1 \leq 1/2 + $
+    For each of the four values that $\min\cbr{1,a} + \min\cbr{1,b}$ can take, the inequality $\min\cbr{1,a+b}= 1\leq \min\cbr{1,a} + \min\cbr{1,b}$ holds. Thus for $x,y,z\in X$, \begin{multline*}
+      \rho(x,y) = \min\cbr{1,d(x,y)}\leq \min\cbr{1,d(x,z) + d(z,y)}\\\leq \min\cbr{1,d(x,z)} + \min\cbr{1,d(z,y)} = \rho(x,z) + \rho(z,y).
+    \end{multline*}
+
+    \item It suffices to show that \dots
+    \item The function $\sigma\colon X\times X\to \mathbb R$ given by $\sigma(x,y) = d(x,y)/(1+d(x,y))$ defines a metrix on $X$. For any $x,y\in X$, it is clear that $\sigma(x,y) \geq 0$ since $d(x,y)\geq 0$. We have $\sigma(x,y) = d(x,y)/(1+d(x,y)) = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x=y$.
+    
+    Before verifying the triangle inequality for $\sigma$, we prove a small result. For nonnegative $a,b\in \mathbb R$, if $a/(1+a)< b/(1+b)$, then $a+ ab < b + ba$ implies that $a<b$. It follows that if $a\geq b$, then $a/(1+a)\geq b/(1+b)$. Thus for $x,y,z\in X$, \begin{multline*}
+      \sigma(x,y) = d(x,y)/(1+d(x,y)) \leq (d(x,z) + d(z,y))/(1+ d(x,z) + d(z,y))\\ \leq d(x,z)/(1+ d(x,z)) + d(z,y)/(1+d(z,y)) = \sigma(x,z) + \sigma(z,y).
+    \end{multline*}
+
+    To see \dots, it suffices to show that \dots
+  \end{enumerate}
+  
+  \item[8. incomplete] \dots
+\end{enumerate}
 \end{document}
