@@ -16,7 +16,7 @@
 \usepackage{float}
 \usepackage{siunitx}
 \usepackage{esint}
-\usepackage{cancel}
+\usepackage{color}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
 \usepackage{hyperref}
@@ -85,6 +85,7 @@
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 
 % set page count index to begin from 1
@@ -103,12 +104,13 @@
 
     \item Let $A\subset X$, and let $cA = \cbr{ca\mid a\in A}$ for $c\in \mathbb R$. Then $2A = \cbr{2a\mid a\in A}$ is a subset of $A + A$, since for any $a\in 2A$, $a = 2b$ for some $b\in A$ so that $a = 2b = b+b$. It follows that $a \in A+A$ and hence $2A\subset A + A$. The reverse containment $A + A\subset 2A$ need not hold, for example if $X = \mathbb R^2$ and $A = \cbr{e_1,e_2}$, then $2A = \cbr{2e_1,2e_2}$ and $A + A =\cbr{2e_1, 2e_2, e_1 + e_2}$.
     
-    The reverse containment $A + A\subset 2A$ holds whenever $A$ is convex: If $A\subset X$ is convex, it is clear that $2A$ is also convex. An element $x \in A+A$ is of the form $a+b$ for $a,b\in A$, and so $x = (2a)/2 + (2b)/2\in 2A$ since $2A$ is convex. It follows in this case that $2A = A + A$.
+    The reverse containment $A + A\subset 2A$ holds whenever $A$ is convex: If $A\subset X$ is convex, $2A$ is also convex. Take two elements $x,y\in 2A$, so that $x = 2a_1$ and $y = 2a_2$ for $a_1,a_2\in A$. Then for $t\in [0,1]$, $tx+(1-t)y = 2(ta_1 + (1-t)a_2)\in 2A$ since $A$ is convex. An element $x \in A+A$ is of the form $a+b$ for $a,b\in A$, and so $x = (2a)/2 + (2b)/2\in 2A$ since $2A$ is convex. It follows in this case that $2A = A + A$.
   \end{enumerate}
 
-  \item[3.] Let $(X,d)$ be a metric space and consider $A,B\subset X$ with $A\subset B$. The inequality $\diam(A)\leq \diam(B)$ holds when $A$ or $B$ is empty, and when $A$ or $B$ is unbounded. So assume that $A,B$ are bounded. Then $\cbr{d(x,y)\mid x,y\in A}\subset \cbr{d(x,y)\mid x,y\in B}\subset \mathbb R$, from which it follows that the suprema of these sets (the diameters of $A,B$) exist and $\diam(A) = \sup \cbr{d(x,y)\mid x,y\in A}\leq \sup \cbr{d(x,y)\mid x,y\in B} = \diam(B)$.
+  \item[3.] Let $(X,d)$ be a metric space and consider $A,B\subset X$. Suppose that $\diam(A)>\diam(B)$; that is, $\sup \cbr{d(x,y)\mid x,y\in A}> \sup \cbr{d(x,y)\mid x,y\in B}$. There exists $w,z\in A$ such that $\diam(A) \geq d(w,z)>\diam(B)$. We show that one of $w,z$ do not belong to $B$. If both $w,z$ belong to $B$, then $d(w,z)\in \cbr{d(x,y)\mid x,y\in B}$, so $\diam(B)\geq d(w,z)$, a contradiction. It follows that $A\not\subset B$. Hence $A\subset B$ implies that $\diam(A)\leq \diam(B)$. So if $B$ is bounded, $A$ is bounded since $\diam(A)\leq \diam(B)< \infty$.
+  % The inequality $\diam(A)\leq \diam(B)$ holds when $A$ or $B$ is empty, and when $A$ or $B$ is unbounded. So assume that $A,B$ are bounded. Then $\cbr{d(x,y)\mid x,y\in A}\subset \cbr{d(x,y)\mid x,y\in B}\subset \mathbb R$, from which it follows that the suprema of these sets (the diameters of $A,B$) exist and $\diam(A) = \sup \cbr{d(x,y)\mid x,y\in A}\leq \sup \cbr{d(x,y)\mid x,y\in B} = \diam(B)$.
   
-  \item[4. incomplete] Let $(X,d)$ be a metric space.
+  \item[4.] Let $(X,d)$ be a metric space.
   \begin{enumerate}
     \item The function $\rho\colon X\times X\to \mathbb R$ given by $\rho(x,y) = \min\cbr{1,d(x,y)}$ defines a metric on $X$. For any $x,y\in X$, it is clear that $\rho(x,y)\geq 0$ since $d(x,y)\geq 0$. We have $\rho(x,y) = \min\cbr{1,d(x,y)} = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x = y$. Furthermore, it is clear that $\rho(x,y) = \rho(y,x)$ since $d(x,y) = d(y,x)$.
     
@@ -120,16 +122,27 @@
       \rho(x,y) = \min\cbr{1,d(x,y)}\leq \min\cbr{1,d(x,z) + d(z,y)}\\\leq \min\cbr{1,d(x,z)} + \min\cbr{1,d(z,y)} = \rho(x,z) + \rho(z,y).
     \end{multline*}
 
-    \item It suffices to show that \dots
+    \item To see that $U\subset X$ is open in $(X,d)$ if and only if $U$ is open in $(X,\rho)$, it suffices to show that the metric topologies $d$ and $\rho$ induce are the same. In particular, it is enough to show that for any $x\in X$ and $\varepsilon>0$, there exists $\eta, \nu>0$ such that $B_\eta^d(x)\subset B_\varepsilon^\rho(x)$ and $B_\nu^\rho(x)\subset B_\varepsilon^d(x)$. Indeed, for $\varepsilon>0$, choose $\eta < \varepsilon$ and $\nu< \min\cbr{1,\varepsilon}$. An element $y\in B_\eta^d(x)$ satisfies $d(x,y)<\eta<\varepsilon$, so that $\rho(x,y) = \min\cbr{1,d(x,y)} < \varepsilon$ and thus $y\in B_\varepsilon^\rho(x)$. An element $y\in B_\nu^\rho(x)$ satisfies $\min\cbr{1,d(x,y)}<\nu<\min\cbr{1,\varepsilon}$ If $\min\cbr{1,d(x,y)} = 1$, then $1<1$, impossible. Thus $\min\cbr{1,d(x,y)} = d(x,y)$, in which case $d(x,y)<\varepsilon$ and so $y\in B_\varepsilon^d(x)$.
+    
     \item The function $\sigma\colon X\times X\to \mathbb R$ given by $\sigma(x,y) = d(x,y)/(1+d(x,y))$ defines a metrix on $X$. For any $x,y\in X$, it is clear that $\sigma(x,y) \geq 0$ since $d(x,y)\geq 0$. We have $\sigma(x,y) = d(x,y)/(1+d(x,y)) = 0$ if and only if $d(x,y) = 0$, which holds if and only if $x=y$. Furthermore, it is clear that $\sigma(x,y) = \sigma(y,x)$ since $d(x,y) = d(y,x)$.
     
     Before verifying the triangle inequality for $\sigma$, we prove a small result. For nonnegative $a,b\in \mathbb R$, if $a/(1+a)< b/(1+b)$, then $a+ ab < b + ba$ implies that $a<b$. It follows that if $a\geq b$, then $a/(1+a)\geq b/(1+b)$. Thus for $x,y,z\in X$, \begin{multline*}
       \sigma(x,y) = d(x,y)/(1+d(x,y)) \leq (d(x,z) + d(z,y))/(1+ d(x,z) + d(z,y))\\ \leq d(x,z)/(1+ d(x,z)) + d(z,y)/(1+d(z,y)) = \sigma(x,z) + \sigma(z,y).
     \end{multline*}
-
-    To see \dots, it suffices to show that \dots
+    As in part (b) it is sufficient to show that for any $x\in X$ and $\varepsilon>0$, there exists $\eta, \nu>0$ such that $B_\eta^d(x)\subset B_\varepsilon^\sigma(x)$ and $B_\nu^\sigma(x)\subset B_\varepsilon^d(x)$. Indeed, for $\varepsilon>0$, choose $\eta< \varepsilon$ and $\nu <\varepsilon/(1+\varepsilon)$. An element $y\in B_\eta^d(x)$ satisfies $d(x,y)<\eta<\varepsilon$, so that $\sigma(x,y) = d(x,y)/(1+d(x,y))\leq d(x,y)/1 < \varepsilon$ and thus $y\in B_\varepsilon^\sigma(x)$. An element $y\in B_\nu^\sigma(x)$ satisfies $\sigma(x,y) = d(x,y)/(1+d(x,y))<\nu< \varepsilon/(1+\varepsilon)$. Then some algebra yields $d(x,y)<\varepsilon$ so that $y\in B_\varepsilon^d(x)$.
   \end{enumerate}
   
-  \item[8. incomplete] \dots
+  \item[8.] Let $X$ be a vector space. In parts (b) and (c), let $X$ be a normed linear space.
+  \begin{enumerate}
+    \item Let $A\subset X$. Then $\co(A)$ is convex: Let $x,y\in \co(A)$ so that $x = \sum_{i=1}^n t_ia_i$ for some $n\geq 1$, $t_i\in [0,1]$, $\sum_{i=1}^n t_i = 1$, and $a_i\in A$; similarly $y = \sum_{j=1}^m s_jb_j$ for some $m\geq 1$, $s_j\in [0,1]$, $\sum_{j=1}^n s_i = 1$, and $b_i\in A$. Then for $t\in [0,1]$, $tx + (1-t)y = \sum_{i=1}^n tt_ia_i + \sum_{j=1}^m (1-t)s_jb_j$. This constitutes a finite sum with $tt_i,(1-t)s_j\in [0,1]$ and $\sum_{i=1}^n tt_i + \sum_{j=1}^m (1-t)s_i = t + 1-t =1$. Since $a_i,b_j\in A$ for $1\leq i\leq n$ and $1\leq j\leq m$, it follows that $tx + (1-t)y\in A$.
+    
+    The convex hull $\co(A)$ is the intersection of all convex subsets of $X$ containing $A$: The set $A$ is contained in $\co(A)$, since any element $a\in A$ may be written as $\sum_{i=1}^n t_ia_i$ with $n = 1$ and $a_1 = a$, $t_1 = 1$. Since $\co(A)$ is convex, the intersection of all convex subsets of $X$ containing $A$ is a subset of $\co(A)$.
+    
+    Let $x\in \co(A)$, so that $x = \sum_{i=1}^n t_ia_i$ for some $n\geq 1$, $t_i\in [0,1]$, $\sum_{i=1}^n t_i = 1$, and $a_i\in A$; let $C$ be any convex subset of $X$ containing $A$. We prove by induction on $n$ that $x\in C$. Let $y = \sum_{i=1}^n t_ia_i \in \co(A)$. If $n = 1$, then $y = a_1\in A\subset C$. Let $n>1$, and assume that an element $\sum_{j=1}^ms_jb_j\in \co(A)$ (a convex combination of elements of $A$) with $m<n$ is an element of $C$. Then $y = t_1a_1 + (\sum_{i=2}^n t_i)\sum_{i=2}^{n}t_i/(\sum_{i=2}^n t_i)a_i$. We have that $\sum_{i=2}^{n}t_i/(\sum_{i=2}^n t_i)a_i\in \co(A)$, so by hypothesis is also an element of $C$. Then with $a_1\in C$, we have that $y\in C$ since $t_1 + \sum_{i=2}^n t_i = 1$ and $C$ is convex. Thus by induction, $x\in C$. Since $C$ was any convex subset of $X$ containing $A$, it follows that $\co(A)$ is contained in the intersection of all convex subsets of $X$ containing $A$.
+
+    \item \textcolor{red}{(incomplete)} Let $A\subset X$ be an open set. Then $\co(A)$ is open: Let $x\in \co(A)$, so that $x = \sum_{i=1}^n t_ia_i$ for some $n\geq 1$, $t_i\in [0,1]$, $\sum_{i=1}^n t_i = 1$, and $a_i\in A$. Then for each $a_i\in A$, there exists $\varepsilon_i>0$ for which $B_{\varepsilon_i}(a_i)\subset A$
+    
+    \item The convex hull of a closed set need not be closed. Consider taking the convex hull of the subset $A = \cbr{(t,0)\mid t\in \mathbb R}\cup \cbr{(0,t)\mid t\in \mathbb R}$ of $X = \mathbb R^2$, the union of the horizontal and vertical axes. The only convex subset of $X$ containing $A$ is $X$ itself, so $\co(A) = X$, which is open. (Alternatively, for any $x\in X$, one may explicitly find a convex combination of points in $A$ producing $x$.)
+  \end{enumerate}
 \end{enumerate}
 \end{document}
