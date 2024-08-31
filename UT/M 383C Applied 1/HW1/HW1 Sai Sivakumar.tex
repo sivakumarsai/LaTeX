@@ -134,7 +134,7 @@
     As in part (b) it is sufficient to show that for any $x\in X$ and $\varepsilon>0$, there exists $\eta, \nu>0$ such that $B_\eta^d(x)\subset B_\varepsilon^\sigma(x)$ and $B_\nu^\sigma(x)\subset B_\varepsilon^d(x)$. Indeed, for $\varepsilon>0$, choose $\eta< \varepsilon$ and $\nu <\varepsilon/(1+\varepsilon)$. An element $y\in B_\eta^d(x)$ satisfies $d(x,y)<\eta<\varepsilon$, so that $\sigma(x,y) = d(x,y)/(1+d(x,y))\leq d(x,y)/1 < \varepsilon$ and thus $y\in B_\varepsilon^\sigma(x)$. An element $y\in B_\nu^\sigma(x)$ satisfies $\sigma(x,y) = d(x,y)/(1+d(x,y))<\nu< \varepsilon/(1+\varepsilon)$. Then some algebra yields $d(x,y)<\varepsilon$ so that $y\in B_\varepsilon^d(x)$.
   \end{enumerate}
   
-  \item[8.] Let $X$ be a vector space. In parts (b) and (c), let $X$ be a normed linear space.
+  \item[8.] Let $X$ be a vector space. In parts (b), (c), and (d), let $X$ be a normed linear space.
   \begin{enumerate}
     \item Let $A\subset X$. Then $\co(A)$ is convex: Let $x,y\in \co(A)$ so that $x = \sum_{i=1}^n t_ia_i$ for some $n\geq 1$, $t_i\in [0,1]$, $\sum_{i=1}^n t_i = 1$, and $a_i\in A$; similarly $y = \sum_{j=1}^m s_jb_j$ for some $m\geq 1$, $s_j\in [0,1]$, $\sum_{j=1}^n s_i = 1$, and $b_i\in A$. Then for $t\in [0,1]$, $tx + (1-t)y = \sum_{i=1}^n tt_ia_i + \sum_{j=1}^m (1-t)s_jb_j$. This constitutes a finite sum with $tt_i,(1-t)s_j\in [0,1]$ and $\sum_{i=1}^n tt_i + \sum_{j=1}^m (1-t)s_i = t + 1-t =1$. Since $a_i,b_j\in A$ for $1\leq i\leq n$ and $1\leq j\leq m$, it follows that $tx + (1-t)y\in A$.
     
@@ -144,7 +144,10 @@
 
     \item Let $A\subset X$ be an open set. Then $\co(A)$ is open: Let $x\in \co(A)$, so that $x = \sum_{i=1}^n t_ia_i$ for some $n\geq 1$, $t_i\in [0,1]$, $\sum_{i=1}^n t_i = 1$, and $a_i\in A$. Then for each $a_i\in A$, there exists $\varepsilon_i>0$ for which $B_{\varepsilon_i}(a_i)\subset A$ since $A$ is open. Let $\varepsilon = \min\cbr{\varepsilon_1,\dots,\varepsilon_n}$ and let $p\in B_\varepsilon(0)$. Then $x+p = \sum_{i=1}^n t_ia_i + p = \sum_{i=1}^n t_i(a_i + p)$ since $\sum_{i=1}^n t_i = 1$. But $a_i+ p\in A$ for each $i$, so $x+p\in \co(A)$. Since $p$ was arbitrary, $B_\varepsilon(x)\subset \co(A)$, from which it follows that $\co(A)$ is open.
     
-    \item The convex hull of a closed set need not be closed. Consider taking the convex hull of the subset $A = \cbr{(t,0)\mid t\in \mathbb R}\cup \cbr{(0,t)\mid t\in \mathbb R}$ of $X = \mathbb R^2$, the union of the horizontal and vertical axes. The only convex subset of $X$ containing $A$ is $X$ itself, so $\co(A) = X$, which is open. (Alternatively, for any $x\in X$, one may explicitly find a convex combination of points in $A$ producing $x$.)
+    \item The convex hull of a closed set need not be closed.
+    Consider taking the convex hull of the subset $A = \cbr{(t,0)\mid t\in \mathbb R}\cup \cbr{(0,1)}\subset \mathbb R^2$. The intersection of all convex subsets of $\mathbb R^2$ containing $A$ is the strip $\cbr{(t,s)\mid t\in\mathbb R, s\in [0,1)}\cup \cbr{(0,1)}$, which is not closed. A limit point $(s,1)$ for $s\neq 0$ is not attainable as a convex combination of points in $A$: Let $(s,1) = x = t_1(0,1) + \sum_{i= 2}^nt_i(s_i,0)\in \co(A)$. We must have $t_1 = 1$, so that $\sum_{i= 2} t_i = 0$ and hence each $t_i = 0$ for $i\geq 2$, so the equality $x = (s,1)$ could not hold unless $s = 0$.
+    % Consider taking the convex hull of the subset $A = \cbr{(t,0)\mid t\in \mathbb R}\cup \cbr{(0,t)\mid t\in \mathbb R}$ of $X = \mathbb R^2$, the union of the horizontal and vertical axes. The only convex subset of $X$ containing $A$ is $X$ itself, so $\co(A) = X$, which is open. (Alternatively, for any $x\in X$, one may explicitly find a convex combination of points in $A$ producing $x$.)
+    \item The convex hull of a bounded set is bounded. Let $A\subset X$ be a bounded set, so that $A\subset B_R(0)$ for some $R>0$. Proposition 2.4 in the course notes states that open balls in normed linear spaces are convex. It follows that $\co(A)$ is also contained in $B_R(0)$, since $B_R(0)$ is a convex subset of $X$ containing $A$.
   \end{enumerate}
 \end{enumerate}
 \end{document}
