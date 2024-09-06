@@ -1,28 +1,79 @@
-\documentclass{amsart}
-\usepackage{mathrsfs}
+\documentclass[11pt]{amsart}
+
+\textwidth = 6.2 in
+\textheight = 8.5 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.3 in
+\parskip = 0.05 in
+\parindent = 0.3 in
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{color}
+\def\cc{\color{blue}}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{physics}
+
+\title{Homework 9}
+\author{Sai Sivakumar}
+
+\newtheorem{theorem}            {Theorem}[section]
+\newtheorem{proposition}        [theorem]{Proposition}
+
+\newcommand{\RR}{\mathbb{R}}
+
 \begin{document}
-1. Find 
-\[\mathscr{L}^{-1}\left\{\frac{e^{-5s}}{s-2} + \frac{2e^{-5s}}{s^2-2s+5}\right\}, \quad s>1\]
 
-a) $(e^{2t} + e^{t}\sin(2t))u(t)$
+ Given $L\in \mathbb{R}$  and  $f:[0,\infty)\to \mathbb{R},$
+  the function  \emph{$f$ has limit $L$ at infinity,}   written,
+ \begin{equation*}
+   \lim_{x\to \infty}f(x)=L,
+ \end{equation*}
+  if for every $\epsilon>0$ there is a $C>0$ such that
+  if $x>C$, then $|f(x)-L| <\epsilon.$
 
-b) $(e^{2t} + e^{t}\sin(2t))u(t-5)$
+  Prove if $f:[0,\infty)\to \mathbb{R}$ is continuous, $L\in \mathbb{R}$  and has
+  limit $L$  at infinity, then $f$ is uniformly continuous.
 
-c) $(e^{2(t-5)} + e^{t-5}\cos(2(t-5)))u(t-5)$
+\begin{proof}[Proof with more words.]
+    Let $f\colon [0,\infty)\to \mathbb{R}$ be continuous with limit $L\in \mathbb{R}$ at infinity as given.
 
-d) $(e^{5(t+2)} + e^{t+2}\sin(5(t+2)))u(t+2)$
+    Given $\varepsilon>0$, because $f$ has limit $L$ at infinity, there exists $C>0$ such that if $z>C$, then $\abs{f(z)-L}< \varepsilon/2$.
 
-e) $(e^{2(t-5)} + e^{t-5}\sin(2(t-5)))u(t-5)$ % correct
+    The function $f$ is continuous on $[0,\infty)$, and so $f$ is continuous on the nonempty compact interval $[0,C+1]$. Hence $f$ is uniformly continuous on $[0,C+1]$. Therefore when $x,y\in[0,C+1]$, we can choose $0 < \delta < 1$ such that if $\abs{x-y}< \delta$, then $\abs{f(x)-f(y)}< \varepsilon$.
 
-2. Solve the ODE \[y+ ty^{\prime} = 3\cos(3(t-6))u(t-6).\]
+    When $x,y$ are not both in $[0,C+1]$ (with $x,y\in [0,\infty)$) and $\abs{x-y}<\delta$, it follows that both $x,y > C$ since $\delta < 1$ (without loss of generality, if $x\not\in [0,C+1]$, then $C+1< x$, which implies $C+1-\delta < y$). Thus the only other scenario which remains is to consider when $x,y > C$. When $x,y>C$, \begin{align*}
+        \abs{f(x)-f(y)} &= \abs{f(x)-L+L-f(y)}\\
+        &\leq \abs{f(x)-L} + \abs{L-f(y)}\\
+        &< \varepsilon/2 + \varepsilon/2 = \varepsilon.
+    \end{align*} Note that in this case we did not use the hypothesis that $\abs{x-y}< \delta$. Hence $f$ is uniformly continuous on $[C,\infty)$. Thus $f$ is uniformly continuous on $[0,C+1]$ and $[C,\infty)$.
+    
+    It follows that given $\varepsilon>0$, there exists $\delta >0$ such that for any $x,y\in [0,\infty)$, if $\abs{x-y}< \delta$, then $\abs{f(x)-f(y)} < \varepsilon$ (in particular the choice of $\delta>0$ is the one made in the first case). Hence $f$ is uniformly continuous on $[0,\infty)$.
+\end{proof}
 
-a) $\displaystyle \bigg(\frac{\sin(3(t-6))}{t}\bigg)u(t-6)$ % correct
+\begin{proof}[Proof with fewer words.]
+    Let $f\colon [0,\infty)\to \mathbb{R}$ be continuous and $\lim_{x\to \infty} f(x) = L \in \mathbb{R}$.
 
-b) $\displaystyle \bigg(\frac{\sin(3(t-6))}{t-6}\bigg)u(t-6)$
+    So $\forall \varepsilon>0$, $\lim_{x\to \infty} f(x) = L\implies \exists C>0$ such that $z>C\implies \abs{f(z)-L}< \varepsilon/2$.
 
-c) $\displaystyle \bigg(\frac{\sin(3t)}{t}\bigg)u(t)$
+    The function $f$ is continuous on $[0,\infty)\implies f$ is continuous on $[0,C+1] \implies f$ is uniformly continuous on $[0,C+1]$. Therefore $x,y\in[0,C+1]\implies \exists 0 < \delta < 1$ such that if $\abs{x-y}< \delta \implies \abs{f(x)-f(y)}< \varepsilon$.
 
-d) $\displaystyle \bigg(\frac{\cos(3(t+6))}{t}\bigg)u(t-6)$
-
-e) $\displaystyle \bigg(-\frac{\sin(3(t+6))}{t}\bigg)u(t+6)$
+    So $x,y\not\in [0,C+1] \land \abs{x-y}<\delta\implies x,y > C$ since $\delta < 1$ (without loss of generality,  $x\not\in [0,C+1] \implies C+1< x \implies C+1-\delta < y$). It remains to consider $x,y > C$. When $x,y>C$, \begin{align*}
+        \abs{f(x)-f(y)} &= \abs{f(x)-L+L-f(y)}\\
+        &\leq \abs{f(x)-L} + \abs{L-f(y)}\\
+        &< \varepsilon/2 + \varepsilon/2 = \varepsilon.
+    \end{align*} Note that in this case we did not use the hypothesis that $\abs{x-y}< \delta$. Hence $f$ is uniformly continuous on $[C,\infty) \implies f$ is uniformly continuous on $[0,C+1]$ and $[C,\infty)$.
+    
+    So $\forall \varepsilon>0 \exists \delta >0$ such that $x,y\in [0,\infty)\land \abs{x-y}< \delta\implies \abs{f(x)-f(y)} < \varepsilon\implies f$ is uniformly continuous on $[0,\infty)$.
+\end{proof}
 \end{document}
