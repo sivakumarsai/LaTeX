@@ -36,7 +36,7 @@
 
 % colors
 \definecolor{gold60}{RGB}{245,213,128}
-\definecolor{palettemed}{RGB}{142,139,118}
+\definecolor{palettemed}{RGB}{245,213,128}
 \definecolor{palettelight}{RGB}{214,219,212}
 \definecolor{darkgold60}{RGB}{184,160,96}
 \usecolortheme[named=gold60]{structure}
@@ -54,10 +54,13 @@
 \renewcommand{\baselinestretch}{1.25}
 
 \title
-{\textcolor{black!85}{Fourier analysis on LCA groups}}
+{\textcolor{black!85}{Fourier analysis on LCA groups and Pontryagin Duality}}
 
 \author[Sai Sivakumar]{Sai Sivakumar}
-\date{27 July 2023}
+\date{13 September 2024}
+
+% suppress qed
+\renewcommand{\qedsymbol}{}
 
 \begin{document}
 
@@ -65,17 +68,17 @@
 \frame{\titlepage}
 
 % motivation and history
-\begin{frame}{Some motivation for this talk}
-    Fourier transforms and series have been used in physics to solve partial differential equations like the heat and wave equations. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
+\begin{frame}{The Fourier transform is cool}
+    Partial differential equations. Quantum mechanics. % Sturm-Liouville operators, eigenfunction expansions, also note Poisson summation formula, Heisenberg uncertainty principle
     \pause
 
-    The fast Fourier transform is an improvement ($O(N\log N)$) to the usual discrete Fourier transform of a sequence ($O(N^2)$), and is used in signal processing. % digital recording/encoding, large-integer multiplication, solving recurrence relations
+    The fast Fourier transform (discrete Fourier transform) in signal processing. % digital recording/encoding, large-integer multiplication, solving recurrence relations
     \pause
 
-    A proof of Dirichlet's theorem that there are infinitely many primes in arithmetic progression involves finite Fourier analysis.
+    Dirichlet's theorem on arithmetic progressions.
     \pause
 
-    I find the theory to be quite elegant and I wish to learn more (e.g. noncommutative harmonic analysis).
+    Avatars of the Fourier transform.
 \end{frame}
 
 % section 1
@@ -251,7 +254,7 @@ The characters of $\mathbb{R}/\mathbb{Z}\cong S^1$ are of the form $z\mapsto z^n
 
     That is, $\chi^\prime(x) = \exp(2\pi i x\xi)$ for some real $\xi$. Hence $\chi(x+\mathbb{Z}) = \exp(2\pi i x\xi)$.\pause 
 
-    But then $1 = \chi(1) = \exp(2\pi i \xi)$, so that $\xi\in \mathbb{Z}$ as needed. \pause 
+    But then $1 = \chi(0 + \mathbb Z) = \chi(1 + \mathbb Z) = \exp(2\pi i \xi)$, so that $\xi\in \mathbb{Z}$. \pause 
 
     Identifying $x+\mathbb{Z}$ with $\exp(2\pi i x)$ gives the result.
 \end{proof} \pause
