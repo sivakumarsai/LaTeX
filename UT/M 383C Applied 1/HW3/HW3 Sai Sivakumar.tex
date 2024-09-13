@@ -94,7 +94,18 @@
 \begin{document}
 \subsection*{2.10 Exercises}
 \begin{enumerate}
-  \item[16.] 
+  \item[16.] Let $\Omega\subset \mathbb R^d$ be measurable with finite (of course nonzero) measure, and let $1\leq p\leq q\leq \infty$. 
+  \begin{enumerate}
+    \item Let $f\in L^q(\Omega)$. If $q = \infty$, then it is clear that $f\in L^p(\Omega)$, since $(\int_\Omega \abs{f}^p)^{1/p}\leq (\int_\Omega \norm{f}_\infty^p)^{1/p} = \mu(\Omega)^{1/p}\norm{f}_\infty$. If $q\neq \infty$, then $\int_\Omega \abs{f}^p = \int_{\Omega\cap\cbr{\abs{f}\leq 1}}\abs{f}^p + \int_{\Omega\cap\cbr{\abs{f} > 1}}\abs{f}^p \leq \mu(\Omega) + \int_\Omega \abs{f}^q$. In both cases it follows that $f\in L^p(\Omega)$.
+    
+    If $q = \infty$, we saw above that $\norm{f}_p\leq \mu(\Omega)^{1/p-1/q}\norm{f}_q = \mu(\Omega)^{1/p}\norm{f}_\infty$. It is also clear that the inequality $\norm{f}_p\leq \mu(\Omega)^{1/p-1/q}\norm{f}_q$ holds when $p = q$. So let $1\leq p < q <\infty$.
+    
+    There exists $r>p$ such that $p/q + p/r = 1$; that is, that $1/q + 1/r = 1/p$. Then from Young's inequality, we have $(ab)^p \leq (a^p)^{q/p}/(q/p) + (b^p)^{r/p}/(r/p)$ for $a,b$ nonnegative (so $a^p,b^p$ are also nonnegative). Thus $(ab)^p/p\leq a^q/q + b^r/r$ for $a,b$ nonnegative. Let $f\in L^r(E)$ and $g\in L^q(E)$ for any measurable set $E\subset \mathbb R^d$. It is clear that if $\norm{f}_r = 0$ or $\norm{g}_q=0$, then $fg$ is almost everywhere the zero function, so that the inequality $\int_E\abs{fg}^p \leq \norm{f}_r^p\norm{g}_q^p$ holds. So let $\norm{f}_r > 0$ and $\norm{g}_q > 0$; by choosing $a = \abs{f}/\norm{f}_r$ and $b = \abs{g}/\norm{g}_q$ in the inequality $(ab)^p/p\leq a^q/q + b^r/r$ and integrating, we obtain $\int_E\abs{fg}^p \leq \norm{f}_r^p\norm{g}_q^p$. Hence for $f\in L^r(E)$, $g\in L^q(E)$ for any measurable set $E\subset \mathbb R^d$, $fg\in L^p(E)$ with $\norm{fg}_p \leq \norm{f}_r\norm{g}_q$.
+
+    By specializing to $E = \Omega$, $1\in L^r(\Omega)$, and $f\in L^q(\Omega)$, we have $\norm{f}_p\leq \mu(\Omega)^{1/p-1/q}\norm{f}_q$.
+    
+    \item If $f\in L^\infty(\Omega)$, then $f\in L^p(\Omega)$ with $\norm{f}_p\leq \mu(\Omega)^{1/p}\norm{f}_\infty$ for all $1\leq p< \infty$. Then take $p$ to infinity to deduce that $\limsup_{p\to\infty}\norm{f}_p\leq \norm{f}_\infty$. Let $N>0$. Then for any $p>0$, $\mu(\cbr{\abs{f}>N}) = \int_{\Omega\cap\cbr{\abs{f}>N}} 1\leq \int_{\Omega\cap\cbr{\abs{f}>N}} \abs{f}^p/N^p \leq \norm{f}_p^p/N^p$. Now let $N$ be in $(0,\norm{f}_\infty)$ so that $\mu(\cbr{\abs{f}>N})$ has finite nonzero measure; thus obtain the inequality $\norm{f}_p\geq N\mu(\cbr{\abs{f}>N})^{1/p}$. For fixed $N$, take $p$ to infinity to deduce that $\liminf_{p\to\infty}\geq N$; then take $N$ to $\norm{f}_\infty$ and obtain $\liminf_{p\to\infty}\geq \norm{f}_\infty$. Hence $\lim_{p\to\infty} \norm{f}_p = \norm{f}_\infty$.
+  \end{enumerate}
   
   \item[17.] 
   
