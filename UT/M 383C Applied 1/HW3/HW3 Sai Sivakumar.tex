@@ -104,12 +104,26 @@
 
     By specializing to $E = \Omega$, $1\in L^r(\Omega)$, and $f\in L^q(\Omega)$, we have $\norm{f}_p\leq \mu(\Omega)^{1/p-1/q}\norm{f}_q$.
     
-    \item If $f\in L^\infty(\Omega)$, then $f\in L^p(\Omega)$ with $\norm{f}_p\leq \mu(\Omega)^{1/p}\norm{f}_\infty$ for all $1\leq p< \infty$. Then take $p$ to infinity to deduce that $\limsup_{p\to\infty}\norm{f}_p\leq \norm{f}_\infty$. Let $N>0$. Then for any $p>0$, $\mu(\cbr{\abs{f}>N}) = \int_{\Omega\cap\cbr{\abs{f}>N}} 1\leq \int_{\Omega\cap\cbr{\abs{f}>N}} \abs{f}^p/N^p \leq \norm{f}_p^p/N^p$. Now let $N$ be in $(0,\norm{f}_\infty)$ so that $\mu(\cbr{\abs{f}>N})$ has finite nonzero measure; thus obtain the inequality $\norm{f}_p\geq N\mu(\cbr{\abs{f}>N})^{1/p}$. For fixed $N$, take $p$ to infinity to deduce that $\liminf_{p\to\infty}\geq N$; then take $N$ to $\norm{f}_\infty$ and obtain $\liminf_{p\to\infty}\geq \norm{f}_\infty$. Hence $\lim_{p\to\infty} \norm{f}_p = \norm{f}_\infty$.
+    \item If $f\in L^\infty(\Omega)$, then $f\in L^p(\Omega)$ with $\norm{f}_p\leq \mu(\Omega)^{1/p}\norm{f}_\infty$ for all $1\leq p< \infty$. Then take $p$ to infinity to deduce that $\limsup_{p\to\infty}\norm{f}_p\leq \norm{f}_\infty$. Let $N>0$. Then for any $p>0$, $\mu(\cbr{\abs{f}>N}) = \int_{\Omega\cap\cbr{\abs{f}>N}} 1\leq \int_{\Omega\cap\cbr{\abs{f}>N}} \abs{f}^p/N^p \leq \norm{f}_p^p/N^p$. Now let $N$ be in $(0,\norm{f}_\infty)$ so that $\mu(\cbr{\abs{f}>N})$ has finite nonzero measure; thus obtain the inequality $\norm{f}_p\geq N\mu(\cbr{\abs{f}>N})^{1/p}$. For fixed $N>0$, take $p$ to infinity to deduce that $\liminf_{p\to\infty} \norm{f}_p\geq N$; then take $N$ to $\norm{f}_\infty$ and obtain $\liminf_{p\to\infty} \norm{f}_p\geq \norm{f}_\infty$. Hence $\lim_{p\to\infty} \norm{f}_p = \norm{f}_\infty$.
+    
+    \item Let $f\in L^p(\Omega)$ for all $p$ with $1\leq p <\infty$, but let $f\not\in L^\infty(\Omega)$; that is, $\norm{f}_\infty >K$ for any $K>0$. In other words, for any $K>0$ the set $\cbr{\abs{f}>K}$ has positive finite measure. Fix $K>0$. Then for any $p>0$, $\mu(\cbr{\abs{f}>K})\leq \norm{f}_p^p/K^p$; hence $\norm{f}_p\geq K\mu(\cbr{\abs{f}>K})^{1/p}$. Thus $\liminf_{p\to\infty}\norm{f}_p \geq K$. Now take $K$ arbitrarily large to deduce that $\norm{f}_p$ has no uniform upper bound in $p$.
   \end{enumerate}
   
-  \item[17.] 
+  \item[17.] Let $1\leq p<\infty$.
+  \begin{enumerate}
+    \item For each $r\in \mathbb R^d$, the translation operator $\tau_r$ is linear and maps into $L^p(\mathbb R^d)$: For $f,g\in L^p(\mathbb R^d)$ and $r,x\in \mathbb R^d$, $\tau_r(f+g)(x) = (f+g)(x+r) = f(x+r)+ g(x+r) = \tau_rf + \tau_rg$. Furthermore, $\norm{\tau_r f}_p^p = \int \abs{f(\cdot+r)}^p = \int \abs{f}^p = \norm{f}_p^p$ since the Lebesgue integral is translation invariant (since the Lebesgue measure is translation invariant, approximate by translated simple functions to see this). This computation shows that $\tau_r$ is bounded for any $r\in\mathbb R^d$, and that $\norm{\tau_r} = 1$. 
+    
+    \item Because the translation operators are bounded, for $f_n\to f$ in $L^p(\mathbb R^d)$, we have $\tau_rf_n\to \tau_rf$ for any $r\in \mathbb R^d$. By density of $C_c^0(\mathbb R^d)$ in $L^p(\mathbb R^d)$, choose $f_n$ to be compactly supported and continuous. Then $\norm{\tau_rf - \tau_s f}_p\leq \norm{\tau_rf - \tau_rf_n}_p + \norm{\tau_rf_n - \tau_sf_n}_p + \norm{\tau_sf_n - \tau_s f}_p$, and the quantities $\norm{\tau_rf - \tau_rf_n}_p$, $\norm{\tau_sf_n - \tau_s f}_p$ may be made arbitrarily small with large $n$.
+    
+    By the dominated convergence theorem and continuity of $f$ (i.e., of $\tau_rf,\tau_sf$), $\lim_{r\to s} \norm{\tau_sf_n - \tau_s f}_p^p = \lim_{r\to s} \int \abs{\tau_sf_n - \tau_s f}^p = \int \abs{\lim_{r\to s}(\tau_sf_n - \tau_s f)}^p = 0$. Thus $\lim_{r\to s}\norm{\tau_rf - \tau_s f}_p = 0$.
+  \end{enumerate}
   
-  \item[19.] 
+  \item[19.] Let $Y$ be a subspace of a vector space $X$.
+  \begin{enumerate}
+    \item Let $\cbr{x_i + Y}_{i\in I}$ be the set of all distinct cosets of $Y$ in $X$; that is for $i\neq j$, $x_i+ Y\neq x_j + Y$, and this set is maximal (no further cosets may be added). Then for $i\neq j$, $(x_i + Y)\cap (x_j + Y) = \emptyset$, since otherwise there exist $y_{x_i},y_{x_j}\in Y$ such that $x_i + y_{x_i} = x_j + y_{x_j}$, from which it follows that $x_i = x_j + y_{x_j} - y_{x_i}\in x_j + Y$; similarly $x_j\in x_i + Y$ and so $x_i+ Y = x_j + Y$, impossible. The union $\bigcup_{i\in I}(x_i + Y)$ must be equal to $X$, otherwise, there is some $x\in X$ not in any coset $x_i + Y$ for all $i\in I$. Then $x + Y$ is necessarily a distinct coset from each coset $x_i + Y$ for each $i\in I$, otherwise $x +Y = x_i+Y$ for some $i$ implies that $x\in x_i + Y$. But $\cbr{x_i + Y}_{i\in I}$ was chosen maximally; that is, no further distinct cosets exist.
+    
+    We show that the addition and scalar multiplication of cosets of $Y$ is well defined. 
+  \end{enumerate}
   
   \item[20.] 
 \end{enumerate}
