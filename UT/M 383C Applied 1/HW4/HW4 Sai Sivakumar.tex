@@ -16,7 +16,7 @@
 \usepackage{float}
 \usepackage{siunitx}
 \usepackage{esint}
-\usepackage{cancel}
+\usepackage{color}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
 \usepackage{hyperref}
@@ -58,7 +58,7 @@
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[L]{M 383C}
-\fancyhead[C]{practice problems}
+\fancyhead[C]{HW4}
 \fancyhead[R]{Sai Sivakumar}
 \fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{1pt}
@@ -85,6 +85,7 @@
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 
 % set page count index to begin from 1
@@ -92,5 +93,16 @@
 
 \begin{document}
 \subsection*{2.10 Exercises}
-2, 5, 6, 7, 9, 11, 13, 15, 18, 21, 22, 25, 26, 27, 28, 33, 36, 37
+\begin{enumerate}
+  \item[29.] Let $X,Y,Z$ be Banach spaces and $T\colon X\times Y\to Z$ be bilinear.
+  \begin{enumerate}
+    \item Let $T$ be continuous. Then for fixed $y\in Y$, the map $T(\cdot,y)\colon X\to Z$ is continuous: Let $i_y\colon X\to X\times Y$ be the inclusion map sending $x\in X$ to $(x,y)$, which is \textit{not} linear. The map $i_y$ is continuous since preimages under $i_y$ of the open sets $U\times V$ in $X\times Y$ for $U\subset X$, $V\subset Y$ open are either the empty set or $U$. It follows that $T(\cdot,y) = T\circ i_y$ is continuous, and hence bounded so that $\norm{T(x,y)}\leq \norm{T(\cdot,y)}\norm{x}$ for all $x\in X$. Similarly, for fixed $x\in X$, the map $T(x,\cdot)$ is bounded with $\norm{T(x,y)}\leq \norm{T(x,\cdot)}\norm{y}$
+  \end{enumerate}
+  
+  \item[30.] 
+  
+  \item[31.] 
+  
+  \item[34.] 
+\end{enumerate}
 \end{document}
