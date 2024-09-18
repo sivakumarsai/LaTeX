@@ -110,7 +110,11 @@
     It follows that $T$ is continuous at $(x,y)\in X\times Y$, hence is continuous on $X\times Y$.
   \end{enumerate}
   
-  \item[30.] 
+  \item[30.] Let $X$ be a Banach space with linear subspaces $M,N$ such that $X = M\oplus M$. Then the projection map $P\colon X \to M$ onto $M$ is well defined and linear: If $x= m+n= r+s\in X = M\oplus N$, then $m-r = n-s \in M\cap N = 0$ so that $m = r$ and $n = s$; thus $P(m+n) = m = r = P(r+s)$. If $x,y\in X$ with $x = m+n$ and $y = r+s$ for some $m,r\in M$ and $n,s\in N$, then $P(x+y)= m+r = P(x) + P(y)$. Note also that $P$ is idempotent, that is, $P^2 = P$.
+
+  Assume that $P$ is bounded, that is, continuous, and let $\cbr{m_i}\subset M$ and $\cbr{n_i}\subset N$ be sequences converging to $m,n$ respectively in $X$. Then $\cbr{m_i + n_i}$ converges to $m+n$ in $X$, and since $P$ is continuous, $m_i = P(m_i+n_i)$ converges to $P(m+n) = m$, from which it follows that $m\in M$. We also have that $m+n-P(m+n) = n\in N$ (otherwise we obtain $P(n) = P(m+n-P(m+n)) = 0$, a contradiction). Thus $M,N$ are closed.
+
+  Assume that $M,N$ are closed. Then $P$ is bounded if and only if the graph $\cbr{(x,P(x))}$ of $P$ is closed in $X\times M$. Suppose that $\cbr{x_i,P(x_i)}$ converges to $(x,m)$ in $X\times M$. Then $\max\cbr{}$
   
   \item[31.] 
   
