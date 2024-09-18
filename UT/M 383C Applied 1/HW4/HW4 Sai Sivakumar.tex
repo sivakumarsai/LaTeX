@@ -96,7 +96,18 @@
 \begin{enumerate}
   \item[29.] Let $X,Y,Z$ be Banach spaces and $T\colon X\times Y\to Z$ be bilinear.
   \begin{enumerate}
-    \item Let $T$ be continuous. Then for fixed $y\in Y$, the map $T(\cdot,y)\colon X\to Z$ is continuous: Let $i_y\colon X\to X\times Y$ be the inclusion map sending $x\in X$ to $(x,y)$, which is \textit{not} linear. The map $i_y$ is continuous since preimages under $i_y$ of the open sets $U\times V$ in $X\times Y$ for $U\subset X$, $V\subset Y$ open are either the empty set or $U$. It follows that $T(\cdot,y) = T\circ i_y$ is continuous, and hence bounded so that $\norm{T(x,y)}\leq \norm{T(\cdot,y)}\norm{x}$ for all $x\in X$. Similarly, for fixed $x\in X$, the map $T(x,\cdot)$ is bounded with $\norm{T(x,y)}\leq \norm{T(x,\cdot)}\norm{y}$
+    \item Let $T$ be continuous. Then for fixed $y\in Y$, the map $T(\cdot,y)\colon X\to Z$ is continuous: Let $i_y\colon X\to X\times Y$ be the inclusion map sending $x\in X$ to $(x,y)$, which is \textit{not} linear. The map $i_y$ is continuous since preimages under $i_y$ of the open sets $U\times V$ in $X\times Y$ for $U\subset X$, $V\subset Y$ open are either the empty set or $U$. It follows that $T(\cdot,y) = T\circ i_y$ is continuous, hence bounded so that $\norm{T(x,y)}\leq \norm{T(\cdot,y)}\norm{x}$ for all $x\in X$. Similarly, for fixed $x\in X$, the map $T(x,\cdot)\colon Y\to Z$ is bounded with $\norm{T(x,y)}\leq \norm{T(x,\cdot)}\norm{y}$.
+    
+    By bilinearity $T(0,y) = T(x,0) = T(0,0) = 0$ for any $x\in X$ and $y\in Y$. So let $x\in X$ and $y\in Y$ be nonzero. Then $\norm{T(x,y)}\leq \norm{T(\cdot,y)}\norm{x} = \norm{T(\cdot,y/\norm{y})}\norm{x}\norm{y}$. Therefore it suffices to show that the family of bounded linear functionals $\cbr{T(\cdot,y)}_{\norm{y} = 1}$ is uniformly bounded. Suppose that there exists $w\in X$ with a sequence $\cbr{y_n}\subset Y$ such that $\norm{T(w,y_n)}$ diverges. This is impossible since $\norm{T(w,y_n)}\leq \norm{T(w,\cdot)}\norm{y_n} = \norm{T(w,\cdot)}$. Thus by the Uniform Boundedness Principle, we must have that $\cbr{T(\cdot,y)}_{\norm{y} = 1}$ is uniformly bounded, from which it follows that there is a constant $M$ such that $\norm{T(x,y)}\leq M\norm{x}\norm{y}$ for all $x\in X$ and $y\in Y$.
+
+    Only completeness of $X$ was used in the above argument; by symmetry only one of $X,Y$ needs to be complete, and $Z$ does not need to be complete.
+
+    \item It remains to prove that continuity of $T$ at the origin $(0,0)$ implies continuity at any point $(x,y)\in X\times Y$. Let $T$ be continuous at $(0,0)$, so there exists $\delta>0$ such that if $\norm{(x,y)} = \max\cbr{\norm{x},\norm{y}} <\leq \delta$, then $\norm{T(x,y)} \leq 1$. Since $\norm{(\delta x/\norm{x},\delta y/\norm{y})} = \delta$, we have $\norm{T(x,y)} = \norm{\norm{x}\norm{y}T(\delta x/\norm{x},\delta y/\norm{y})/\delta^2} = \norm{x}\norm{y}\norm{T(\delta x/\norm{x},\delta y/\norm{y})}/\delta^2\leq \norm{x}\norm{y}/\delta^2$.
+    
+    \item There exists a constant $M$ such that $\norm{T(x,y)}\leq M\norm{x}\norm{y}$ for all $x\in X$ and $y\in Y$. Fix $(x,y)\in X\times Y$. Let $\varepsilon>0$ be given, and choose $\delta = \varepsilon/M$. If $\norm{(x,y) - (a,b)} = \max\cbr{\norm{x-a},\norm{y-b}}\leq\delta$, then \begin{multline*}
+      \norm{T(x,y) - T(a,b)} \leq \norm{T(x,y) - T(a,y)} + \norm{T(a,y) - T(a,b)} = \norm{T(x-a,y)} + \norm{T(a,y-b)}\\ \leq M(\norm{x-a}\norm{y} + \norm{a}\norm{y-b})\leq \varepsilon(\norm{y} + \norm{a})\leq \varepsilon(\norm{x} + \norm{y} + \delta).
+    \end{multline*}
+    It follows that $T$ is continuous at $(x,y)\in X\times Y$, hence is continuous on $X\times Y$.
   \end{enumerate}
   
   \item[30.] 
