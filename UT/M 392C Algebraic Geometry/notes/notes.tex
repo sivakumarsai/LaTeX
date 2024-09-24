@@ -8,7 +8,7 @@
 \usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
 \usepackage{hanging}
 \usepackage{amsfonts, amsmath, amssymb, amsthm}
-\usepackage{systeme}
+\usepackage{extarrows}
 \usepackage[none]{hyphenat}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
@@ -83,16 +83,60 @@
 \setcounter{page}{1}
 
 \begin{document}
-Dr. Chiara Damiolini's notes, \TeX ed by Sai Sivakumar. From M 392C Algebraic Geometry, Fall 2024.
+M 392C Algebraic Geometry, Fall 2024: Dr. Chiara Damiolini's notes, augmented and \TeX ed by Sai Sivakumar. Text references: \textit{Algebraic Geometry I: Schemes} by G\"ortz and Wedhorn, and \textit{Algebraic Geometry} by Hartshorne.
 \subsection*{08/26}
+Some examples of objects in algebraic geometry:
+
+Consider the quadric surface in $\mathbb R^3$ given by the solution set of the equation $xy = z$.
+\textcolor{red}{insert picture}
+Sometimes families of geometric objects (e.g., hyperbolae) are not compact, but degenerate into objects of different natures.
+We would like to be able to treat degenerate curves as well using algebraic geometry.
+
+Consider the curve $C$ in $\mathbb R^2$ given by the solution set of the equation $y^2 = x^3$.
+\textcolor{red}{insert picture}
+We parameterize $C$ by $t\mapsto (t^2,t^3)$ for $t$ a real parameter (a bijection), but we would like to say that $C$ and the real line $\mathbb R$ are not ``isomorphic'' curves due to the cusp $C$ has that $\mathbb R$ does not have (though we say that these curves are \textit{birational} to each other). The parameterization $t\mapsto (t^2, t^3)$ induces the following map of rings
+\begin{equation}
+  \frac{\mathbb C[x,y]}{(y^2-x^3)}\to \mathbb C[t]\quad \text{given by}\quad  x\mapsto t^2, y\mapsto t^3.
+\end{equation}
+We would like to use commutative algebra to study curves like the ones above.
+
+Some important spaces are not given by solution sets to systems of polynomial equations, but are instead defined implicitly or even by universal properties.
+Consider the real projective line $\mathbb P_{\mathbb R}^1 = \cbr{\text{linear subspaces of }\mathbb R^2} = (\mathbb R^2\setminus\cbr{0})/\mathbb R^\times$, in which points are identified under scaling: $(x,y)\equiv (\lambda x,\lambda y)$ for $\lambda\in \mathbb R^\times$, and denote the equivalence class of $(x,y)$ by $[x:y]$. \textcolor{red}{insert picture}
+Observe that $\mathbb P_{\mathbb R}^1$ is covered by two copies of $\mathbb R$; that is, we can find two open subsets of $\mathbb P_{\mathbb R}^1$ each homeomorphic to $\mathbb R$ whose union is $\mathbb P_{\mathbb R}^1$: The subsets $\cbr{[a:1]\mid a\in\mathbb R}$ and $\cbr{[1:b]\mid b\in \mathbb R}$ form a cover of $\mathbb P_{\mathbb R}^1$, noting that for $c\in\mathbb R^\times$, $[c:1] = [1:c^{-1}]$.
+We seek to generalize this example, but run into difficulties. 
+In considering the quotient $\mathbb R^2/\mathbb R^\times$, one complication is that the origin $(0,0)$ is fixed, so finding a parameterization is not easy.
+
+The choice of coefficients is necessary data when posing questions. Consider the polynomial equation $x^2+y^2 = -1$. If $x,y$ take on real values, there are no solutions, whereas complex solutions exist.
+In particular, if $x,y\in \mathbb C$, then we may factor $x^2 + y^2$ to obtain $(x+iy)(x-iy) = -1$. The change of coordinates given by $s = x+iy$ and $t = -(x-iy)$ yields the polynomial equation $st = 1$, whose solution set is $(\mathbb C^\ast)^2$.
+Another example: Fermat's last theorem says that the equation $x^n + y^n = 1$ for $n\geq 3$ has no solutions over $\mathbb Q$ unless $x = 0$ or $y = 0$, but this is false over $\mathbb R$.
+
 \newpage\subsection*{08/28}
+Throughout this course, rings are commutative and unital; in turn ideals are two-sided.
+Recall that if $\mathfrak p$ is a prime ideal of a ring $R$, then $R/\mathfrak p$ is an integral domain (in what follows, we suppress ``integral'' in ``integral domain'').
+If $\mathfrak m$ is a maximal ideal in $R$, then $R/\mathfrak m$ is a field.
+
+We explore the relationship between maximal ideals and solution sets to polynomial equations.
+For $K$ a field, let $R = K[x_1,\dots,x_n]$. Recall that $R$ is a Noetherian ring, that is, every ideal $I$ of $R$ is finitely generated, so $I = \abr{f_1,\dots,f_m}$.
+That $R$ is Noetherian follows from Hilbert's basis theorem, which states that if $A$ is Noetherian, then $A[x]$ is also Noetherian.
+
+Let $I$ be an ideal of $R$ and consider the map
+\begin{equation}
+  V(I)\coloneqq\cbr{\underline a = (a_1,\dots,a_n)\in K^n \mid f_i(\underline a) = 0}\xlongrightarrow{\varphi}\cbr{\text{max. ideals of }R/I}\cong\cbr{\text{max. ideals of $R$ containing $I$}}
+\end{equation}
+that sends $\underline a$ to $\mathfrak m_{\underline a} \coloneqq \abr{(x_1-a_1),\dots,(x_n-a_n)}$. Note that $I$ is contained in $\mathfrak m_{\underline a}$ if and only if $f(\underline a) = 0$ for all $f\in I$, because $\mathfrak m_{\underline a} = \ker (R\to R/\mathfrak m_{\underline a}\cong K)$, where $R\to R/\mathfrak m_{\underline a}$ is the quotient map.
+
+
 \newpage\subsection*{08/30}
+
 \newpage\subsection*{09/09}
+
 \newpage\subsection*{09/11}
+
 \newpage\subsection*{09/13}
 Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way: 
 \begin{enumerate}[label=(\arabic*)]
     \item (Separatedness)
     \item (Gluing)
 \end{enumerate}
+
 \end{document}
