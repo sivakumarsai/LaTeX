@@ -17,8 +17,9 @@
 \usepackage{imakeidx}
     % \AtBeginDocument{\renewcommand\indexname{Index}}
     \makeindex
-\indexsetup{level=\section*,toclevel=section,noclearpage,firstpagestyle=fancy}
+\indexsetup{level=\section,toclevel=section,noclearpage,firstpagestyle=fancy}
 \usepackage{color}
+\newcommand{\sai}[1]{\textcolor{red}{#1}}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
 \usepackage{hyperref}
@@ -26,6 +27,9 @@
 \crefformat{equation}{equation~#2#1#3}
 \crefformat{lemma}{\textrm{Lemma}~#2#1#3}
 \usepackage{quiver}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\bfseries}{Lecture \thesection}{1em}{}
 
 % theorems
 \theoremstyle{plain}
@@ -86,10 +90,14 @@
 
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Max}{Max}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Frac}{Frac}
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
+\newcommand{\Ring}{\catname{Ring}}
 \newcommand{\Kalg}{K\text{-}\catname{Alg}}
 
 % set page count index to begin from 1
@@ -98,25 +106,26 @@
 \begin{document}
 M 392C Algebraic Geometry, Fall 2024: Dr. Chiara Damiolini's notes, augmented and \TeX ed by Sai Sivakumar. Text references: \textit{Algebraic Geometry I: Schemes} by G\"ortz and Wedhorn, and \textit{Algebraic Geometry} by Hartshorne.
 
-\textcolor{red}{ask jemma for her notes at some point for inspiring art}
-\subsection*{08/26}
-Some examples of objects in algebraic geometry:
+\sai{ask jemma for her notes at some point for inspiring art}
+\sai{italicize nice words/phrases throughout tastefully}
+\section{08/26}
+We briefly show some examples of objects in algebraic geometry.
 
 Consider the quadric surface in $\mathbb R^3$ given by the solution set of the equation $xy = z$.
-\textcolor{red}{insert picture}
+\sai{insert picture}
 Sometimes families of geometric objects (e.g., hyperbolae) are not compact, but degenerate into objects of different natures.
 We would like to be able to treat degenerate curves as well using algebraic geometry.
 
 Consider the curve $C$ in $\mathbb R^2$ given by the solution set of the equation $y^2 = x^3$.
-\textcolor{red}{insert picture}
-We parameterize $C$ by $t\mapsto (t^2,t^3)$ for $t$ a real parameter (a bijection), but we would like to say that $C$ and the real line $\mathbb R$ are not ``isomorphic'' curves due to the cusp $C$ has that $\mathbb R$ does not have (though we say that these curves are \textit{birational} to each other). The parameterization $t\mapsto (t^2, t^3)$ induces the following map of rings
+\sai{insert picture}
+We parameterize $C$ by $t\mapsto (t^2,t^3)$ for $t$ a real parameter (a bijection), but we would like to say that $C$ and the real line $\mathbb R$ are not ``isomorphic'' curves due to the cusp $C$ has that $\mathbb R$ does not have (though we say that these curves are birational to each other). The parameterization $t\mapsto (t^2, t^3)$ induces the following map of rings
 \begin{equation}
   \frac{\mathbb C[x,y]}{(y^2-x^3)}\to \mathbb C[t]\quad \text{given by}\quad  x\mapsto t^2, y\mapsto t^3.
 \end{equation}
 We would like to use commutative algebra to study curves like the ones above.
 
 Some important spaces are not given by solution sets to systems of polynomial equations, but are instead defined implicitly or even by universal properties.
-Consider the real projective line $\mathbb P_{\mathbb R}^1 = \cbr{\text{linear subspaces of }\mathbb R^2} = (\mathbb R^2\setminus\cbr{0})/\mathbb R^\times$, in which points are identified under scaling: $(x,y)\equiv (\lambda x,\lambda y)$ for $\lambda\in \mathbb R^\times$, and denote the equivalence class of $(x,y)$ by $[x:y]$. \textcolor{red}{insert picture}
+Consider the real projective line $\mathbb P_{\mathbb R}^1 = \cbr{\text{linear subspaces of }\mathbb R^2} = (\mathbb R^2\setminus\cbr{0})/\mathbb R^\times$, in which points are identified under scaling; that is, $(x,y)\equiv (\lambda x,\lambda y)$ for $\lambda\in \mathbb R^\times$. Denote the equivalence class of $(x,y)$ by $[x:y]$. \sai{insert picture}
 Observe that $\mathbb P_{\mathbb R}^1$ is covered by two copies of $\mathbb R$; that is, we can find two open subsets of $\mathbb P_{\mathbb R}^1$ each homeomorphic to $\mathbb R$ whose union is $\mathbb P_{\mathbb R}^1$: The subsets $\cbr{[a:1]\mid a\in\mathbb R}$ and $\cbr{[1:b]\mid b\in \mathbb R}$ form a cover of $\mathbb P_{\mathbb R}^1$, noting that for $c\in\mathbb R^\times$, $[c:1] = [1:c^{-1}]$.
 We seek to generalize this example, but run into difficulties. 
 In considering the quotient $\mathbb R^2/\mathbb R^\times$, one complication is that the origin $(0,0)$ is fixed, so finding a parameterization is not easy.
@@ -125,7 +134,7 @@ The choice of coefficients is necessary data when posing questions. Consider the
 In particular, if $x,y\in \mathbb C$, then we may factor $x^2 + y^2$ to obtain $(x+iy)(x-iy) = -1$. The change of coordinates given by $s = x+iy$ and $t = -(x-iy)$ yields the polynomial equation $st = 1$, whose solution set is $(\mathbb C^\ast)^2$.
 Another example: Fermat's last theorem says that the equation $x^n + y^n = 1$ for $n\geq 3$ has no solutions over $\mathbb Q$ unless $x = 0$ or $y = 0$, but this is false over $\mathbb R$.
 
-\newpage\subsection*{08/28}
+\newpage\section{08/28}
 Throughout this course, rings are commutative and unital; in turn ideals are two-sided.
 Recall that if $\mathfrak p$ is a prime ideal of a ring $R$, then $R/\mathfrak p$ is an integral domain (in what follows, we suppress ``integral'' in ``integral domain'').
 If $\mathfrak m$ is a maximal ideal in $R$, then $R/\mathfrak m$ is a field.
@@ -142,7 +151,7 @@ that sends $\underline a$ to $\mathfrak m_{\underline a} \coloneqq \abr{(x_1-a_1
 The map $\varphi$ is injective. and if $K$ is not algebraically closed, the map $\varphi$ may not be surjective. For example, take $K = \mathbb R$, $n =1$, and $I = 0$; the ideal $\abr{x^2+1}$ has no preimage under $\varphi$. Another possibility if $K$ is not algebraically closed is that $V(I)$ may be empty. For example, take $K = \mathbb R$, $n=1$, and $I= \abr{x^2+1}$; in this case $V(I)$ is empty but $R/I$ is a field.
 
 A version of Hilbert's Nullstellensatz implies that $\varphi$ is a bijection if $K$ is algebraically closed.
-\begin{theorem}[Hilbert's \idx{Nullstellensatz} \cite{gw}*{Theorem 1.7}]
+\begin{theorem}[Hilbert's \idx{Nullstellensatz} \cite{gw}*{Theorem 1.7}]\label{thm: nullstellensatz 1.7}
   Let $K$ be a \textup{(}not necessarily algebraically closed\textup{)} field and let $A$ be a finitely generated $K$-algebra. Then for every prime ideal $\mathfrak p\subset A$ we have
   \begin{equation}
     \mathfrak p = \bigcap_{\substack{\mathfrak m \supseteq \mathfrak p \\ \textup{max. ideal}}} \mathfrak m;
@@ -156,34 +165,116 @@ This thought experiment reveals some limitations of using maximal ideals to para
 
 We continue, using the language of category theory. A summary of basic definitions and results in category theory is found in \cite{gw}*{Appendix A}.
 
-In what follows, we do not assume that $K$ is algebraically closed. We can ``upgrade'' the map $\varphi$ above into a natural transformation. The bijection of sets 
+In what follows, we do not assume that $K$ is algebraically closed. We seek to ``upgrade'' the map $\varphi$ above into a natural transformation. The bijection of sets 
 \begin{equation}
   V(I)\cong \Hom_{\Kalg}(R/I,K)\quad \text{given by}\quad  \underline a\mapsto f\colon x_i\mapsto a_i
 \end{equation}
 (which holds since any homomorphism $R/I\to K$ of $K$-algebras is uniquely determined by its action on each $x_i$) implies that we may ``upgrade'' $V(-)$ to the functor $\Hom_{\Kalg}(-,K)\colon \Kalg\to\Set$. (Here we can think of $V(-)$ as a map that takes in $R/I$ and returns $V(I)$)
 
-We want to refashion taking the set of maximal ideals of $R/I$ into a functor $\Kalg\to\Set$ given by the assignment
+We want to refashion taking the set of maximal ideals of $R/I$ into a functor $\Max\colon \Kalg\to\Set$ given by the assignment
 \begin{equation}
   \begin{tikzcd}[ampersand replacement=\&]
-    A \& {\cbr{\text{max. ideals of }A}} \&\& A \& {\cbr{\text{max. ideals of }A}} \\
-    \&\&\& B \& {\cbr{\text{max. ideals of }B}}
+    A \& {\cbr{\text{max. ideals of }A}\eqqcolon \Max(A)} \&\& A \& {\Max(A)} \\
+    \&\&\& B \& {\Max(B)}
     \arrow[maps to, from=1-1, to=1-2]
     \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
     \arrow[""{name=1, anchor=center, inner sep=0}, "{f^{-1}}"', from=2-5, to=1-5]
     \arrow[shorten <=12pt, shorten >=12pt, maps to, from=0, to=1]
   \end{tikzcd},
 \end{equation}
-but this assignment is not functorial unless we restrict . It suffices to show that preimages of maximal ideals under $K$-algebra homomorphisms are maximal ideals. Let $f\colon A\to B$ be a $K$-algebra homomorphism and let $\mathfrak m$
+but this assignment is not functorial unless we restrict to the subcategory of finitely generated $K$-algebras. It suffices to show that if $f\colon A\to B$ is a morphism of finitely generated $K$-algebras, then the preimage of a maximal ideal $\mathfrak m\subset B$ under $f$ is a maximal ideal of $A$. We start with the exact sequences below: 
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    0 \& {f^{-1}(\mathfrak m)} \& A \& {A/f^{-1}(\mathfrak m)} \& 0 \\
+    0 \& {\mathfrak m} \& B \& {B/\mathfrak m} \& 0
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-3, to=1-4]
+    \arrow["f", from=1-3, to=2-3]
+    \arrow[from=1-4, to=1-5]
+    \arrow[from=1-4, to=2-4]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-3, to=2-4]
+    \arrow[from=2-4, to=2-5]
+  \end{tikzcd}
+\end{equation}
+The preimage $f^{-1}(\mathfrak m)$ is certainly a prime ideal of $A$, so from the map $A\to B/\mathfrak m$, we find that the domain $A/f^{-1}(\mathfrak m)$ is contained in $B/\mathfrak m$. But $K$ is contained in $A/f^{-1}(\mathfrak m)$ and $B/\mathfrak m$ is a finite extension of $K$ by the Nullstellensatz (\cref{thm: nullstellensatz 1.7}). It follows that every nonzero element in $A/f^{-1}(\mathfrak m)$ is algebraic over $K$ and hence invertible, so $A/f^{-1}(\mathfrak m)$ is a field. Thus $f^{-1}(\mathfrak m)$ is a maximal ideal.
 
+In what follows, we restrict the functors $\Hom_{\Kalg}(-,K)$ and $\Max$ to the subcategory of finitely generated $K$-algebras. 
 
-\newpage\subsection*{08/30}
+\newpage\section{08/30}
+The map $\varphi$ from earlier induces a natural transformation of the functors $\Hom_{\Kalg}(-,K)$ and $\Max$ (restricting both functors to the category of finitely generated $K$-algebras)
+\begin{equation}
+  \varphi\colon \Hom_{\Kalg}(-,K)\xLongrightarrow{\ker}\Max,
+\end{equation}
+given by $\varphi_A\colon \Hom_{\Kalg}(A,K)\xlongrightarrow{\ker}\Max(A)$, the assignment sending a homomorphism to its kernel.
+We check that $\varphi$ is a natural transformation; that is, given $f\colon A\to B$, we check that the following diagram commutes:
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    {\Hom_{\Kalg}(A,K)} \& {\Max(A)} \\
+    {\Hom_{\Kalg}(B,K)} \& {\Max(B)}
+    \arrow["\ker", from=1-1, to=1-2]
+    \arrow["{-\circ f}"', from=2-1, to=1-1]
+    \arrow["\ker", from=2-1, to=2-2]
+    \arrow["{f^{-1}}"', from=2-2, to=1-2]
+  \end{tikzcd}
+\end{equation}
+Indeed, given $g\in \Hom_{\Kalg}(B,K)$, $a\in f^{-1}(\ker g)$ if and only if $f(a)\in \ker g$, that is $gf(a) = 0$, which is to say $a\in \ker (g\circ f)$.
 
-\newpage\subsection*{09/09}
+If $K$ is algebraically closed, then $\varphi$ is a natural isomorphism since each $\varphi_A$ is surjective. In this case we say that $\Max$ is representable by the field $K$ (up to isomorphism). In this case we can extract some nice results very quickly. For example, if $V(I)$ is empty, the fact that $\varphi$ is a natural isomorphism implies that $\emptyset = V(I)\cong \Hom_{\Kalg}(K[x_1,\dots,x_n]/I,K)\cong \Max(K[x_1,\dots,x_n]/I)$, from which we deduce that $I= \abr{1} = K[x_1,\dots,x_n]$.
 
-\newpage\subsection*{09/11}
+So far, we have looked at zeroes of $f_i\in I$ as points $\underline a\in K^n$, and in the preceding discussion we have identified these points with $\Hom_{\Kalg}(K[x_,1\dots,x_n]/I, K)$. In this spirit, we introduce a new definition.
+\begin{definition}
+  Let $A$ be any $K$-algebra (not necessarily finitely generated). Then the set of \bidx{rational points} (also called \bidx{$K$-points}) of $A$ is the set $\Hom_{\Kalg}(A,K)$.
 
-\newpage\subsection*{09/13}
-Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way: 
+  If $L$ if a field extension of $K$ (which could be infinite), the set of \bidx{$L$-points} of $A$ is the set $\Hom_{\Kalg}(A,L)$.
+
+  The set of \bidx{geometric points} of $A$ is the set $\big(\bigcup_{L\supseteq K}\Hom_{\Kalg}(A,L)\big)/\!\sim$, where $f\colon A\to L$ is equivalent to $g\colon A\to L^\prime$ under $\sim$ if and only if there exists a field $F$ containing $L$ and $L^\prime$ such that
+  \begin{equation}\label{eq: geometric points equivalence}
+    \begin{tikzcd}[ampersand replacement=\&]
+      \& L \\
+      A \&\& F \\
+      \& {L^\prime}
+      \arrow["i", hook, from=1-2, to=2-3]
+      \arrow["f", from=2-1, to=1-2]
+      \arrow["g"', from=2-1, to=3-2]
+      \arrow["j"', hook, from=3-2, to=2-3]
+    \end{tikzcd}
+  \end{equation}
+  commutes.
+\end{definition}
+Note that $\Hom_{\Kalg}(A,K)\xlongrightarrow{\ker}\Max(A)$ ($K$-algebra homomorphisms send $K$ to $K$, since the unit is preserved). In contrast, we have that $\Hom_{\Kalg}(A,L)\xlongrightarrow{\ker}\Spec(A)\coloneqq \cbr{\text{prime ideals of }A}$ (images of maps in $\Hom_{\Kalg}(A,L)$ are domains). So the set of geometric points of $A$ generally captures more information than just the set of rational points of $A$. We parameterized the rational points of $A$ via maximal ideals, and we seek to parameterize the set of geometric points of $A$ via prime ideals of $A$.
+\begin{theorem}\label{thm: spec and geometric points}
+  The sets $\Spec(A)$ and the set of geometric points of $A$ are in one-to-one correspondence.
+\end{theorem}
+Indeed, map a prime ideal $\mathfrak p\subset A$ to the composite map $A\to A/\mathfrak p \hookrightarrow \Frac(A/\mathfrak p)$. An inverse is given by sending a map $A\to L$ to its kernel, which is well defined. If $f\colon A\to L$ is equivalent to $g\colon A\to L^\prime$, there is a field $F$ containing both $L,L^\prime$ with $if = jg$ as in \cref{eq: geometric points equivalence}. Then $\ker f = \ker if = \ker jg = \ker g$. Indeed, these maps are inverse to each other in both ways. A prime ideal $\mathfrak p$ is sent to $A\to A/\mathfrak p \hookrightarrow \Frac(A/\mathfrak p)$, whose kernel is indeed $\mathfrak p$. Conversely, given $f\colon A\to L$, write this map as the composite $A\to \im f\eqqcolon R\hookrightarrow \Frac(R) \hookrightarrow L$, so that $\ker f$ is mapped to $A\to \Frac(A/\ker f) = \Frac(R)\hookrightarrow L$. The equality $\Frac(A/\ker f) = \Frac(R)$ holds since $\Frac R$ is the smallest field containing $R$.
+
+It is crucial that we allowed non-finite extensions of $K$ in the definition of the set of geometric points of a $K$-algebra $A$ in order to recover all the prime ideals of $A$. If $K$ is algebraically closed and we consider only finitely generated $K$-algebras, then $\Hom_{\Kalg}(A,K) = \Max(A)$. Furthermore, there are no finite extensions of $K$ aside from itself. Typically, $\Spec(A)$ is strictly larger than $\Max(A)$. Therefore, in order to capture the prime ideals of $A$, we need to also consider maps $A\to L$ for $L$ a non-finite extension of $K$.
+
+For example, if we want to recover the zero ideal in $\mathbb C[t]$, we take the kernel of the map $\mathbb C[t]\hookrightarrow \Frac(\mathbb C[t]/0) = \Frac(\mathbb C[t]) = \mathbb C(t)$.
+
+For any ring $R$, we can define the set of geometric points of $R$ to be $\big(\bigcup_{L \text{ a field}}\Hom_{\Kalg}(R,L)\big)/\!\sim$ where $\sim$ is defined like before. Like \cref{thm: spec and geometric points}, we have that $\Spec(R)\coloneqq\cbr{\text{prime ideals of }R}$ is in one-to-one correspondence with the set of geometric points of $R$. \sai{fill out these details} 
+
+In particular, $\Spec\colon \Ring\to \Set$ is a functor given by
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    R \& {\cbr{\text{prime ideals of }R}\eqqcolon \Spec(A)} \&\& A \& {\Spec(A)} \\
+    \&\&\& B \& {\Spec(B)}
+    \arrow[maps to, from=1-1, to=1-2]
+    \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "{f^{-1}}"', from=2-5, to=1-5]
+    \arrow[shorten <=12pt, shorten >=12pt, maps to, from=0, to=1]
+  \end{tikzcd}
+\end{equation}
+is a functor, since preimages of prime ideals under ring homomorphisms are prime ideals. We call $\Spec(R)$ the spectrum of $R$. The spectrum of a field consists of only the zero ideal. There exist rings for which their spectrum consists of one prime ideal, but are not fields; for example, consider $\mathbb C[t]/\abr{t^n}$ for $n\geq 2$ (it is fruitful to view $\mathbb C[t]/\abr{t^n}$ as a graded ring), or $\mathbb Z/4\mathbb Z$.
+\newpage\section{09/09}
+
+\newpage\section{09/11}
+
+\newpage\section{09/13}
+Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
 \begin{enumerate}[label=(\arabic*)]
     \item (Separatedness)
     \item (Gluing)
