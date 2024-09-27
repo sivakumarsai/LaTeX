@@ -14,8 +14,10 @@
 \usepackage{graphicx}
 \graphicspath{{./images/}}
 \usepackage{float}
-\usepackage{siunitx}
-\usepackage{esint}
+\usepackage{imakeidx}
+    % \AtBeginDocument{\renewcommand\indexname{Index}}
+    \makeindex
+\indexsetup{level=\section*,toclevel=section,noclearpage,firstpagestyle=fancy}
 \usepackage{color}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
@@ -23,6 +25,7 @@
 \usepackage[noabbrev, capitalise]{cleveref}
 \crefformat{equation}{equation~#2#1#3}
 \crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{quiver}
 
 % theorems
 \theoremstyle{plain}
@@ -73,17 +76,29 @@
 \newcommand{\sbr}[1]{\left[#1\right]}
 \newcommand{\cbr}[1]{\left\{#1\right\}}
 \newcommand{\eq}[1]{\overset{(#1)}{=}}
+\newcommand{\idx}[1]{#1\index{#1}} % adds to index
+\newcommand{\bidx}[1]{\textbf{#1\index{#1}}} % adds to index
 
 % bracket notation for inner product
 \usepackage{mathtools}
 
 \DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
 
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+
+% categories
+\newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Kalg}{K\text{-}\catname{Alg}}
+
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
 M 392C Algebraic Geometry, Fall 2024: Dr. Chiara Damiolini's notes, augmented and \TeX ed by Sai Sivakumar. Text references: \textit{Algebraic Geometry I: Schemes} by G\"ortz and Wedhorn, and \textit{Algebraic Geometry} by Hartshorne.
+
+\textcolor{red}{ask jemma for her notes at some point for inspiring art}
 \subsection*{08/26}
 Some examples of objects in algebraic geometry:
 
@@ -119,11 +134,46 @@ We explore the relationship between maximal ideals and solution sets to polynomi
 For $K$ a field, let $R = K[x_1,\dots,x_n]$. Recall that $R$ is a Noetherian ring, that is, every ideal $I$ of $R$ is finitely generated, so $I = \abr{f_1,\dots,f_m}$.
 That $R$ is Noetherian follows from Hilbert's basis theorem, which states that if $A$ is Noetherian, then $A[x]$ is also Noetherian.
 
-Let $I$ be an ideal of $R$ and consider the map
-\begin{equation}
-  V(I)\coloneqq\cbr{\underline a = (a_1,\dots,a_n)\in K^n \mid f_i(\underline a) = 0}\xlongrightarrow{\varphi}\cbr{\text{max. ideals of }R/I}\cong\cbr{\text{max. ideals of $R$ containing $I$}}
-\end{equation}
+Let $I = \abr{f_1,\dots,f_m}$ be an ideal of $R$ and consider the map
+\begin{multline}
+  V(I)\coloneqq\cbr{\underline a = (a_1,\dots,a_n)\in K^n \mid f_i(\underline a) = 0, 1\leq i\leq n}\xlongrightarrow{\varphi}\cbr{\text{max. ideals of }R/I}\\(\cong\cbr{\text{max. ideals of $R$ containing $I$}})
+\end{multline}
 that sends $\underline a$ to $\mathfrak m_{\underline a} \coloneqq \abr{(x_1-a_1),\dots,(x_n-a_n)}$. Note that $I$ is contained in $\mathfrak m_{\underline a}$ if and only if $f(\underline a) = 0$ for all $f\in I$, because $\mathfrak m_{\underline a} = \ker (R\to R/\mathfrak m_{\underline a}\cong K)$, where $R\to R/\mathfrak m_{\underline a}$ is the quotient map.
+The map $\varphi$ is injective. and if $K$ is not algebraically closed, the map $\varphi$ may not be surjective. For example, take $K = \mathbb R$, $n =1$, and $I = 0$; the ideal $\abr{x^2+1}$ has no preimage under $\varphi$. Another possibility if $K$ is not algebraically closed is that $V(I)$ may be empty. For example, take $K = \mathbb R$, $n=1$, and $I= \abr{x^2+1}$; in this case $V(I)$ is empty but $R/I$ is a field.
+
+A version of Hilbert's Nullstellensatz implies that $\varphi$ is a bijection if $K$ is algebraically closed.
+\begin{theorem}[Hilbert's \idx{Nullstellensatz} \cite{gw}*{Theorem 1.7}]
+  Let $K$ be a \textup{(}not necessarily algebraically closed\textup{)} field and let $A$ be a finitely generated $K$-algebra. Then for every prime ideal $\mathfrak p\subset A$ we have
+  \begin{equation}
+    \mathfrak p = \bigcap_{\substack{\mathfrak m \supseteq \mathfrak p \\ \textup{max. ideal}}} \mathfrak m;
+  \end{equation}
+  in other words, $A$ is Jacobson.
+  Furthermore, if $\mathfrak m \subset A$ is a maximal ideal, the field extension $K\subseteq A/\mathfrak m$ is finite.
+\end{theorem}
+Let $K$ be algebraically closed, and let $\mathfrak m$ be a maximal ideal of $R$ containing $I$. Then with $R/\mathfrak m\cong K$, let $a_i$ be the image of $x_i$ in $K$. Then $\underline a = (a_1,\dots,a_n)$ is a suitable preimage of $\mathfrak m$ under $\varphi$.
+
+This thought experiment reveals some limitations of using maximal ideals to parameterize solutions to systems of polynomial equations, since the map $\varphi$ above is not surjective in general. It may be helpful to consider a slightly more general perspective.
+
+We continue, using the language of category theory. A summary of basic definitions and results in category theory is found in \cite{gw}*{Appendix A}.
+
+In what follows, we do not assume that $K$ is algebraically closed. We can ``upgrade'' the map $\varphi$ above into a natural transformation. The bijection of sets 
+\begin{equation}
+  V(I)\cong \Hom_{\Kalg}(R/I,K)\quad \text{given by}\quad  \underline a\mapsto f\colon x_i\mapsto a_i
+\end{equation}
+(which holds since any homomorphism $R/I\to K$ of $K$-algebras is uniquely determined by its action on each $x_i$) implies that we may ``upgrade'' $V(-)$ to the functor $\Hom_{\Kalg}(-,K)\colon \Kalg\to\Set$. (Here we can think of $V(-)$ as a map that takes in $R/I$ and returns $V(I)$)
+
+We want to refashion taking the set of maximal ideals of $R/I$ into a functor $\Kalg\to\Set$ given by the assignment
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    A \& {\cbr{\text{max. ideals of }A}} \&\& A \& {\cbr{\text{max. ideals of }A}} \\
+    \&\&\& B \& {\cbr{\text{max. ideals of }B}}
+    \arrow[maps to, from=1-1, to=1-2]
+    \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "{f^{-1}}"', from=2-5, to=1-5]
+    \arrow[shorten <=12pt, shorten >=12pt, maps to, from=0, to=1]
+  \end{tikzcd},
+\end{equation}
+but this assignment is not functorial unless we restrict . It suffices to show that preimages of maximal ideals under $K$-algebra homomorphisms are maximal ideals. Let $f\colon A\to B$ be a $K$-algebra homomorphism and let $\mathfrak m$
 
 
 \newpage\subsection*{08/30}
@@ -139,4 +189,30 @@ Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf
     \item (Gluing)
 \end{enumerate}
 
+\newpage
+\printindex\newpage
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{gw}{book}{
+    title = {Algebraic Geometry I: Schemes},
+    author = {G\"ortz, Ulrich},
+    author = {Wedhorn, Torsten},
+    isbn = {978-3-658-30732-5},
+    series = {Springer Studium Mathematik - Master},
+    year = {2020},
+    publisher = {Springer Spektrum Wiesbaden}
+}
+
+\bib{h}{book}{
+    title = {Algebraic Geometry},
+    author = {Hartshorne, Robin},
+    isbn = {978-0-387-90244-9},
+    series = {Graduate Texts in Mathematics},
+    year = {1977},
+    publisher = {Springer New York, NY}
+}
+
+\end{biblist}
+\end{bibdiv}
 \end{document}
