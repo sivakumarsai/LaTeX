@@ -17,7 +17,7 @@
 \usepackage{imakeidx}
     % \AtBeginDocument{\renewcommand\indexname{Index}}
     \makeindex
-\indexsetup{level=\section,toclevel=section,noclearpage,firstpagestyle=fancy}
+\indexsetup{level=\section*,toclevel=section,noclearpage,firstpagestyle=fancy}
 \usepackage{color}
 \newcommand{\sai}[1]{\textcolor{red}{#1}}
 \usepackage{enumitem}
@@ -89,6 +89,7 @@
 \DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
 
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Max}{Max}
 \DeclareMathOperator{\Spec}{Spec}
@@ -255,7 +256,7 @@ It is crucial that we allowed non-finite extensions of $K$ in the definition of 
 
 For example, if we want to recover the zero ideal in $\mathbb C[t]$, we take the kernel of the map $\mathbb C[t]\hookrightarrow \Frac(\mathbb C[t]/0) = \Frac(\mathbb C[t]) = \mathbb C(t)$.
 
-For any ring $R$, we can define the set of geometric points of $R$ to be $\big(\bigcup_{L \text{ a field}}\Hom_{\Kalg}(R,L)\big)/\!\sim$ where $\sim$ is defined like before. Like \cref{thm: spec and geometric points}, we have that $\Spec(R)\coloneqq\cbr{\text{prime ideals of }R}$ is in one-to-one correspondence with the set of geometric points of $R$. \sai{fill out these details} 
+For any ring $R$, we can define the set of geometric points of $R$ to be $\big(\bigcup_{L \text{ a field}}\Hom_{\Ring}(R,L)\big)/\!\sim$ where $\sim$ is defined like before. Like \cref{thm: spec and geometric points}, we have that $\Spec(R)\coloneqq\cbr{\text{prime ideals of }R}$ is in one-to-one correspondence with the set of geometric points of $R$. \sai{fill out these details} 
 
 In particular, $\Spec\colon \Ring\to \Set$ is a functor given by
 \begin{equation}
@@ -270,6 +271,59 @@ In particular, $\Spec\colon \Ring\to \Set$ is a functor given by
 \end{equation}
 is a functor, since preimages of prime ideals under ring homomorphisms are prime ideals. We call $\Spec(R)$ the spectrum of $R$. The spectrum of a field consists of only the zero ideal. There exist rings for which their spectrum consists of one prime ideal, but are not fields; for example, consider $\mathbb C[t]/\abr{t^n}$ for $n\geq 2$ (it is fruitful to view $\mathbb C[t]/\abr{t^n}$ as a graded ring), or $\mathbb Z/4\mathbb Z$.
 \newpage\section{09/09}
+\begin{definition}
+  Let $R$ be a ring. We topologize the set \bidx{$\Spec(R)$}$\coloneqq \cbr{\text{prime ideals of }R}$ by closed sets 
+  \begin{equation}
+    V(I)\coloneqq \cbr{\mathfrak p\in \Spec(R)\mid I\subseteq \mathfrak p}.
+  \end{equation} 
+  This topology is called the \bidx{Zariski topology} on $\Spec(R)$.
+\end{definition}
+(From now on, we will generally suppress parentheses and other repetitive notation wherever reasonable; for example we will usually write $\Spec R$ instead of $\Spec(R)$.)
+
+We check that choosing the closed sets this way defines a topology. Indeed, $V(0) = \Spec(R)$, $V(1) = \emptyset$, and $\bigcap_{i\in I}V(I_i) = \cbr{\mathfrak p \mid I_i\subseteq \mathfrak p} = V(\bigcup_{i\in I}I_i)$. It remains to show that the union of two closed sets is closed. Observe that $V(IJ) = \cbr{\mathfrak p\mid IJ\subseteq \mathfrak p}$ contains both $V(I)$ and $V(J)$ since $IJ$ contains $I$ and $J$; this implies that $V(IJ)\supseteq V(I)\cup V(J)$. On the other hand, if $IJ\subseteq\mathfrak p$, and we assume $I\not\subseteq \mathfrak p$, then there exists $x\in I$ such that $x\not\in\mathfrak p$. However, $yx\in \mathfrak p$ for every $y\in J$, from which we deduce that $y\in\mathfrak p$ for every $y\in J$; that is $J\subseteq \mathfrak p$. Thus $V(I)\cup V(J)\subseteq V(IJ)$, and so $V(I)\cup V(J)= V(IJ)$.
+
+Observe that $A\subseteq B$ implies that $V(B)\subseteq V(A)$, but the converse does not hold. For example, choose $A = \abr{3}$ and $B = \abr{9}$ in $\mathbb Z$. We have $V(B) = \cbr{\abr{3}} = V(A)$, even though $B\not\subseteq A$. (This may be a hint that we should consider radical ideals.)
+
+We consider some examples.
+
+Consider $\Spec \mathbb Z = \cbr{\abr{p}\mid p\text{ prime}}\cup\cbr{\abr{0}}$. The closed subsets of $\Spec \mathbb Z$ are given by $V(I)$ for ideals $I$. Since $\mathbb Z$ is a Euclidean domain, it is a principal ideal domain, so $I = \abr{d} = \abr{p_1^{e_1}\cdots p_r^{e_r}}$ for an integer $d$ with prime factorization $p_1^{e_1}\cdots p_r^{e_r}$. Thus $V(I) = \cbr{\abr{p_1},\dots,\abr{p_r}}$. Note that $V(\abr{0}) = \Spec \mathbb Z$ since every prime ideal contains the zero ideal. \sai{insert picture of points and fuzzy generic zero point}
+It follows that $\Spec \mathbb Z$ is not Hausdorff, and this is typical of the Zariski topology. We have that $\Spec R$ is Hausdorff if and only if every element of $\Spec R$ is a maximal ideal; that is, $\Spec R = \Max R$.
+
+Consider $\Spec \mathbb C[[t]] = \cbr{\abr{0},\abr{t}}$ (here $\mathbb C[[t]]$ is the ring of formal power series in $t$ with coefficients in $\mathbb C$; a useful fact to know is that a formal power series is invertible if and only if its constant term is a unit). Since $\cbr{\abr{t}}$ is closed, $\cbr{\abr{0}}$ is open.
+
+View $V(-)$ as a map
+\begin{equation}
+  V\colon \cbr{\text{ideals of }R}\to \cbr{\text{closed subsets of }\Spec R}\quad\text{given by}\quad I\mapsto \cbr{\mathfrak p\mid I\subseteq \mathfrak p} = V(I).
+\end{equation}
+As observed earlier, note that $V$ is an inclusion-reversing map; that is $I\subseteq J$ implies $V(J)\subseteq V(J)$, and that the converse is not true. We would like to define a map ``in the other direction'', so we define a map
+\begin{equation}
+  I\colon \cbr{\text{subsets of }\Spec R}\to \cbr{\text{ideals of R}}\quad\text{given by}\quad S\mapsto \bigcap_{\mathfrak p\in S}\mathfrak p = I(S).
+\end{equation}
+Let $J$ be an ideal of $R$ and let $S$ be a subset of $\Spec R$. Then
+\begin{align}
+  I(V(J)) &= I(\cbr{\mathfrak p\mid J\subseteq \mathfrak p}) = \bigcap_{I\subseteq \mathfrak p}\mathfrak p = \rad J \coloneqq \cbr{f\in R\mid f^n\in J\text{ for some $n\in \mathbb N$}}\text{ and}\\
+  V(I(S)) &= V\bigg(\bigcap_{\mathfrak q\in S}\mathfrak q\bigg) = \bigg\{\mathfrak p~\bigg\vert\, \bigcap_{\mathfrak q\in S}\mathfrak q\subseteq \mathfrak p\bigg\} = \overline S,
+\end{align}
+from which it follows that $V$ and $I$ mutually inverse bijections:
+\begin{equation}
+  V\colon \cbr{\text{radical ideals of }R}\longleftrightarrow \cbr{\text{closed subsets of }\Spec R}\colon I.
+\end{equation}
+Note that $Y\subseteq V(J)$ if and only if $J\subseteq I(Y)$. \sai{i have a very specific picture in mind for this involving V closing upwards and I taking intersections to find a ``deeper point''}
+
+Some terminology:
+\begin{definition}
+  Let $X$ be a topological space. A point $\eta\in X$ is called a \bidx{generic point} of $X$ if $\overline{\cbr{\eta}} = X$. For $x,y\in X$, we say that $x$ is a \bidx{generization} of $y$ (or that $y$ is a \bidx{specialization} of $x$) if $y\in \overline{\cbr{x}}$.
+\end{definition}
+Therefore $\eta\in\Spec R$ is generic if and only if $\eta$ is a generization of every point in $\Spec R$. A point $\eta\in\Spec R$ is generic if and only if $\eta$ is the unique minimal prime ideal, which only exists if the nilradical of $R$ is a prime ideal. On the other hand, closed points of $\Spec R$ are the maximal ideals of $R$.
+(A point $x$ in a topological space $X$ is closed if $\cbr{x}$ is closed.)
+\begin{definition}
+  A topological space $X$ is \bidx{irreducible} if $X$ cannot be written as the union of two non-empty closed subsets; equivalently, if the intersection of any two non-empty open sets is not empty.
+\end{definition}
+If $X$ is irreducible, then $X$ is connected (that is, $X$ cannot be expressed as the disjoint union of two non-empty closed sets). Also note that the closure of an irreducible set is irreducible.
+
+We prove that that $Y\subseteq \Spec R$ is irreducible if and only if $I(Y)$ is a prime ideal (in which case $\overline{\cbr{I(Y)}} = \overline Y$). In this case, $I(Y)$ is a generic point of $Y$. 
+\sai{proof to fill out tomorrow}
+For example $\Spec R$ is irreducible if the nilradical of $R$ is a prime ideal (in this case, the nilradical of $R$ is the generic point of $\Spec R$). \sai{im sure theres a good way to visualize this via the above red idea}. 
 
 \newpage\section{09/11}
 
