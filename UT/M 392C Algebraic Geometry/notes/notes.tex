@@ -99,7 +99,19 @@
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
 \newcommand{\Ring}{\catname{Ring}}
+\newcommand{\Top}{\catname{Top}}
 \newcommand{\Kalg}{K\text{-}\catname{Alg}}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\raisebox{-.14em}{\smiley}}
+\newcommand{\happy}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\raisebox{-.14em}{\frownie}}
+\newcommand{\sad}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -322,8 +334,35 @@ Therefore $\eta\in\Spec R$ is generic if and only if $\eta$ is a generization of
 If $X$ is irreducible, then $X$ is connected (that is, $X$ cannot be expressed as the disjoint union of two non-empty closed sets). Also note that the closure of an irreducible set is irreducible.
 
 We prove that that $Y\subseteq \Spec R$ is irreducible if and only if $I(Y)$ is a prime ideal (in which case $\overline{\cbr{I(Y)}} = \overline Y$). In this case, $I(Y)$ is a generic point of $Y$. 
-\sai{proof to fill out tomorrow}
-For example $\Spec R$ is irreducible if the nilradical of $R$ is a prime ideal (in this case, the nilradical of $R$ is the generic point of $\Spec R$). \sai{im sure theres a good way to visualize this via the above red idea}. 
+Let $Y$ be irreducible and let $f,g\in R$ such that $fg\in I(Y)$. Then $Y\subseteq V(fg) = V(f)\cup V(g)$. With $Y$ irreducible, we must have that either $Y$ is contained in $V(f)$ or in $V(g)$; that is, either $f\in I(Y)$ or $g\in I(Y)$. Thus $I(Y)$ is a prime ideal. Conversely, suppose that $I(Y)$ is a prime ideal so that $Y\subseteq \overline Y = \overline{\cbr{I(Y)}}$. The subset $\cbr{I(Y)}$ is irreducible, and since the closure of irreducible spaces is irreducible, $\overline{Y}= \overline{\cbr{I(Y)}}$ is irreducible as well. What remains is to show that dense subsets of irreducible spaces are irreducible. For open sets $U,V$ in $Y$, they are also open in $\overline{Y}$ and hence have nontrivial intersection as needed. Thus $Y$ is irreducible.
+
+For example, $\Spec R$ is irreducible if the nilradical of $R$ is a prime ideal (in this case, the nilradical of $R$ is the generic point of $\Spec R$). \sai{im sure theres a good way to visualize this via the above red idea, and i should also talk about reducible spaces and minimal primes somehow}. Consider also the ring $\mathbb C\oplus \mathbb C$. There are no minimal primes in $\Spec(\mathbb C\oplus \mathbb C)$, meaning this space is not irreducible.
+
+Consider $\Spec \mathbb C[x,y]$, which we interpret as a plane of some sort and call $\mathbb A^2$. Typically we think of the ideals $\mathfrak m = \abr{x-1,y}$ and $\mathfrak p = \abr{y}$ being associated to a point and a line with the point being contained in the line as in the (real-valued, since visualizing $\mathbb A^2$ is difficult) picture \sai{picture pls}, but this is not the case. In our setting, the picture really should represent $\mathfrak p\subset \mathfrak m$, where $\mathfrak p$ is a generization of $\mathfrak m$. The point $\abr{x}$ (which looks like a line, amusingly) is not closed in $\mathbb A^2$ since there is no ideal $I$ with $V(I) = \cbr{\abr{x}}$; and in fact, if $I\subseteq \abr{x}$, then $I\subseteq \abr{x,y-\alpha}$ for any $\alpha\in \mathbb C$.
+
+We can even consider curves. Take the ideal $\abr{y^2-x^2(x+1)}$, which produces the curve below. But taking $V(-)$ (i.e., the closure) of this point in $\mathbb A^2$ will fill in the curve with all of the ``points'' coming from the maximal ideals $\abr{y^2-x^2(x+1)}$ is contained in. A similar phenomenon happens for $\abr{y}$.
+
+Now we view $\Spec$ as a functor $\Ring \to \Top$ defined in exactly the same way as before, but we give $\Spec(R)$ for any ring $R$ the Zariski topology:
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    R \& {\cbr{\text{prime ideals of }R}\eqqcolon \Spec(A)} \&\& A \& {\Spec(A)} \\
+    \&\&\& B \& {\Spec(B)}
+    \arrow[maps to, from=1-1, to=1-2]
+    \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "{f^{-1}}"', from=2-5, to=1-5]
+    \arrow[shorten <=12pt, shorten >=12pt, maps to, from=0, to=1]
+  \end{tikzcd}
+\end{equation}
+It remains to check that given a ring homomorphism $f\colon A\to B$, that preimages of closed subsets of $\Spec B$ under the preimage map $f^{-1}\colon \Spec B\to\Spec A$ (this is \textit{not} by taking preimages of closed subsets of $\Spec B$ under $f$) are closed in $\Spec A$; that is, $f^{-1}$ is a continuous map.
+Let $I\subseteq A$ be an ideal and consider the closed subset $V(I)\subseteq\Spec A$. Then
+\begin{multline}
+  (f^{-1})^{-1}(V(I)) = \cbr{\mathfrak p\in\Spec B\mid f^{-1}(\mathfrak p)\in V(I)} = \cbr{\mathfrak p\in \Spec B\mid I\subseteq f^{-1}(\mathfrak p)}\\ \eq{\smallmathhappy} \cbr{\mathfrak p\in\Spec B\mid f(I)\subseteq \mathfrak p} = V(f(I)),
+\end{multline}
+where equality $(\mathhappy)$ is established since taking images and inverse images preserves containment: Let $\mathfrak q$ be a point in $\Spec B$. If $I\subseteq f^{-1}(\mathfrak q)$, then by taking images under $f$ we have $f(I)\subseteq ff^{-1}(\mathfrak q) \subseteq \mathfrak q$. Similarly, if $f(I)\subseteq \mathfrak q$, taking inverse images yields $I\subseteq f^{-1}f(I)\subseteq f^{-1}(\mathfrak q)$ as needed.
+
+Thus every map of rings $A\to B$ yields a map of topological spaces $\Spec B\to\Spec A$, but it is not true that every continuous map $\Spec B\to\Spec A$ is obtained from a ring map $A\to B$. For example, there is no nontrivial map of rings $\mathbb C\to\mathbb Q$ (since maps of fields are either injective or zero), but there are maps from $\Spec \mathbb C \cong \ast \to\Spec \mathbb Q \cong \ast$ (where $\ast$ is the terminal object in $\Top$, the one-point space). The conclusion is that $\Top$ is not rich enough to mirror $\Ring$.
+
+The quest for the so-called ``Algebraic Geometry'' continues.
 
 \newpage\section{09/11}
 
