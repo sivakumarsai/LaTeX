@@ -94,6 +94,7 @@
 \DeclareMathOperator{\Max}{Max}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\res}{res}
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
@@ -101,6 +102,10 @@
 \newcommand{\Ring}{\catname{Ring}}
 \newcommand{\Top}{\catname{Top}}
 \newcommand{\Kalg}{K\text{-}\catname{Alg}}
+\newcommand{\Ouv}{\catname{Ouv}}
+\newcommand{\Psh}{\catname{Psh}}
+\newcommand{\Sh}{\catname{Sh}}
+
 
 % smileys frownies
 \usepackage{wasysym}
@@ -365,7 +370,42 @@ Thus every map of rings $A\to B$ yields a map of topological spaces $\Spec B\to\
 The quest for the so-called ``Algebraic Geometry'' continues.
 
 \newpage\section{09/11}
+\begin{definition}
+    Let $X$ be a topological space. The category \bidx{$\Ouv(X)$} the partially ordered set of open subsets of $X$ ordered by inclusion. That is, the objects in $\Ouv(X)$ are the open subsets of $X$ and the morphisms in $\Ouv(X)$ are the inclusion maps.
+\end{definition}
+If $\cbr{U_i}$ is an open cover of $U\in \Ouv(X)$, then we write $U_{ij}\coloneqq U_i\cap U_j$.
 
+We would like to enrich the category $\Top$ to form a category which mirrors $\Ring$; that is, we would like morphisms in this new category to come from ring homomorphisms, which we saw does not happen if we use the functor $\Spec\colon\Ring \to\Top$. To this end, we need some sheaf theory.
+\begin{definition}
+    A \bidx{presheaf} of sets is a contravariant functor $\mathscr F\colon \Ouv(X)\to\Set$
+    \begin{equation}
+        \begin{tikzcd}
+        	U & {\mathscr FU} && U & {\mathscr FU} \\
+        	&&& V & {\mathscr FV}
+        	\arrow[maps to, from=1-1, to=1-2]
+        	\arrow[""{name=0, anchor=center, inner sep=0}, hook', from=1-4, to=2-4]
+        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\res^V_U}"', from=2-5, to=1-5]
+        	\arrow[shorten <=6pt, shorten >=6pt, maps to, from=0, to=1]
+        \end{tikzcd}
+    \end{equation}
+    where elements of $\mathscr FV$ are called ``sections`` of $\mathscr F$ over $V$, and $s|_U\coloneqq \res^V_U(s)$ is called the restriction of $s\in \mathscr FV$ to $U$. 
+
+    A presheaf of groups/rings/$R$-modules/$K$-vector spaces/etc. is defined in the same way as above but with $\Set$ replaced by the appropriate category.
+\end{definition}
+For $U,V,W\in \Ouv(X)$, note that $\res^V_U\circ \res^W_V = \res^W_U$ and that $\res^U_U$ is the identity map (since it comes from the identity map $U\to U$).
+A morphism of presheaves $\mathscr F\to\mathscr G$ is a natural transformation (as we saw before with $\Spec$).
+A presheaf is called a sheaf if ``you can uniquely recover global sections from local sections that glue''. See \href{https://www.quantamagazine.org/what-are-sheaves-20240719/}{the Quanta article on sheaves}.
+\begin{definition}
+    A \bidx{sheaf} is a presheaf $\mathscr F$ satisfying
+    \begin{enumerate}
+        \item (Separatedness) for any $U\in \Ouv(X)$, for any open cover $\cbr{U_i}$ of $U$, and $s_1,s_2\in \mathscr U$, if $s_1|_{U_i} =s_2|_{U_i}$ for all $i$, then $s_1 = s_2$, and
+        \item (Gluing) for any $U\in\Ouv(X)$ and for any open cover $\cbr{U_i}$ of $U$, if $s_i\in \mathscr FU_i$ satisfy $s_i|_{U_{ij}} = s_j|_{U_{ij}}$ for all $i,j$, then there exists $\in \mathscr FU$ with $s_i = s|_{U_i}$ (and by the previous condition $s$ is unique). \qedhere
+    \end{enumerate}
+\end{definition}
+As a remark, the two conditions above imply that $\mathscr F\emptyset$ is the terminal object in the target category of $\mathscr F$. This follows since the empty set has only the empty covering (that is, the indexing set for the open cover is the empty set).
+Morphisms of sheaves are natural transformations. So for a topological space $X$, we obtain the categories $\Psh(X)$ of presheaves on $X$ and $\Sh(X)$ of sheaves on $X$, where $\Sh(X)$ is a subcategory of $\Psh(X)$.
+
+Some examples. Consider
 
 \newpage\section{09/13}
 Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
