@@ -402,10 +402,38 @@ A presheaf is called a sheaf if ``you can uniquely recover global sections from 
         \item (Gluing) for any $U\in\Ouv(X)$ and for any open cover $\cbr{U_i}$ of $U$, if $s_i\in \mathscr FU_i$ satisfy $s_i|_{U_{ij}} = s_j|_{U_{ij}}$ for all $i,j$, then there exists $\in \mathscr FU$ with $s_i = s|_{U_i}$ (and by the previous condition $s$ is unique). \qedhere
     \end{enumerate}
 \end{definition}
+Taking the contrapositive of the first condition above explains why it is called the ``separatedness'' condition.
 As a remark, the two conditions above imply that $\mathscr F\emptyset$ is the terminal object in the target category of $\mathscr F$. This follows since the empty set has only the empty covering (that is, the indexing set for the open cover is the empty set).
 Morphisms of sheaves are natural transformations. So for a topological space $X$, we obtain the categories $\Psh(X)$ of presheaves on $X$ and $\Sh(X)$ of sheaves on $X$, where $\Sh(X)$ is a subcategory of $\Psh(X)$.
 
-Some examples. Consider
+For example, let $X = \cbr{\ast}$ be the one point space, so that $\Ouv(X) = \cbr{\emptyset, X}$. A presheaf $\mathscr F$ of sets on $X$ is determined by where $\mathscr F$ sends $\emptyset$ and $X$. They can take on any two sets, but since the empty set includes into $X$, we must have a map $\mathscr FX\to\mathscr F\emptyset$. A morphism of presheaves $\varphi\colon\mathscr F\to\mathscr G$ is a natural transformation $\varphi = \cbr{\varphi_\emptyset, \varphi_X}\colon \mathscr F\Rightarrow \mathscr G$ such that the diagram 
+\begin{equation}
+  \begin{tikzcd}[ampersand replacement=\&]
+    {\mathscr F\emptyset} \& {\mathscr G\emptyset} \\
+    {\mathscr FX} \& {\mathscr GX}
+    \arrow["{\varphi_\emptyset}", from=1-1, to=1-2]
+    \arrow[from=2-1, to=1-1]
+    \arrow["{\varphi_X}", from=2-1, to=2-2]
+    \arrow[from=2-2, to=1-2]
+  \end{tikzcd} \quad\text{commutes.}
+\end{equation}
+If $\mathscr F$ is a sheaf, then the empty set must go to $\cbr{\ast}$, the terminal object in $\Set$. It follows that the map $\mathscr FX \to \mathscr F\emptyset$ is unique, from which it follows that $\Sh(X)$ is naturally isomorphic to $\Set$.
+
+There is a way to ``make'' a presheaf into a sheaf.
+\begin{proposition}[Sheafification \cite{gw}*{Proposition 2.24}]
+  For any presheaf $\mathscr F$ on a topological space $X$, there exists a pair $(\tilde{\mathscr F}, \iota_{\mathscr F})$ where $\tilde{\mathscr F}$ is a sheaf on $X$ and $\iota_{\mathscr F}\colon \mathscr F\to\tilde{\mathscr F}$ is a morphism of presheaves (i.e. a natural transformation), satisfying the following universal property: If $\mathscr G$ is a sheaf on $X$ and $\varphi\colon\mathscr F\to G$ is a morphism of presheaves, then there exists a unique morphism of sheaves $\tilde{\varphi}\colon\tilde{\mathscr F}\to \mathscr G$ such that the diagram
+  \begin{equation}
+    \begin{tikzcd}[ampersand replacement=\&]
+      {\mathscr F} \& {\mathscr G} \\
+      {\tilde{\mathscr F}}
+      \arrow["\varphi", from=1-1, to=1-2]
+      \arrow["{\iota_{\mathscr F}}"', from=1-1, to=2-1]
+      \arrow["{\tilde{\varphi}}"', dashed, from=2-1, to=1-2]
+    \end{tikzcd}\quad\text{commutes \textup{(}viewing $\tilde{\varphi}$ in this diagram as a map of presheaves\textup{)}.}
+  \end{equation}
+  This implies that the pair $(\tilde{\mathscr F},\iota_{\mathscr F})$ is unique up to unique isomorphism.
+\end{proposition}
+\sai{transcribe part of the right proof here another time}
 
 \newpage\section{09/13}
 Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
