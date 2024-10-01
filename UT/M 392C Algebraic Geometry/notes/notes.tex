@@ -306,6 +306,8 @@ We consider some examples.
 Consider $\Spec \mathbb Z = \cbr{\abr{p}\mid p\text{ prime}}\cup\cbr{\abr{0}}$. The closed subsets of $\Spec \mathbb Z$ are given by $V(I)$ for ideals $I$. Since $\mathbb Z$ is a Euclidean domain, it is a principal ideal domain, so $I = \abr{d} = \abr{p_1^{e_1}\cdots p_r^{e_r}}$ for an integer $d$ with prime factorization $p_1^{e_1}\cdots p_r^{e_r}$. Thus $V(I) = \cbr{\abr{p_1},\dots,\abr{p_r}}$. Note that $V(\abr{0}) = \Spec \mathbb Z$ since every prime ideal contains the zero ideal. \sai{insert picture of points and fuzzy generic zero point}
 It follows that $\Spec \mathbb Z$ is not Hausdorff, and this is typical of the Zariski topology. We have that $\Spec R$ is Hausdorff if and only if every element of $\Spec R$ is a maximal ideal; that is, $\Spec R = \Max R$.
 
+As a side note, we say that a topological space $X$ is \bidx{quasi-compact} if every open cover of $X$ admits a finite subcover. Typically, the word \textit{compact} is reserved for Hausdorff spaces, which $\Spec R$ is usually not. We will see later that $\Spec R$ has a basis of open sets that are themselves quasi-compact.
+
 Consider $\Spec \mathbb C[[t]] = \cbr{\abr{0},\abr{t}}$ (here $\mathbb C[[t]]$ is the ring of formal power series in $t$ with coefficients in $\mathbb C$; a useful fact to know is that a formal power series is invertible if and only if its constant term is a unit). Since $\cbr{\abr{t}}$ is closed, $\cbr{\abr{0}}$ is open.
 
 View $V(-)$ as a map
@@ -436,11 +438,93 @@ There is a way to ``make'' a presheaf into a sheaf.
 \sai{transcribe part of the right proof here another time}
 
 \newpage\section{09/13}
-Consider presheaves valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
+Consider a presheaf $\mathscr F$ on $X$ valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
 \begin{enumerate}[label=(\arabic*)]
-    \item (Separatedness)
-    \item (Gluing)
+    \item (Separatedness) For $U$ open in $X$ with an open cover $\cbr{U_i}$, the map
+    \begin{equation}
+        \mathscr FU\xlongrightarrow{\prod_i \res^U_{U_i}}\prod_i \mathscr FU_i
+    \end{equation}
+    is injective.
+    \item (Gluing) For $U$ open in $X$ with an open cover $\cbr{U_i}$, the complex
+    \begin{equation}
+        \mathscr FU\xlongrightarrow{\prod_i \res^U_{U_i}}\prod_i \mathscr FU_i\xrightarrow{g} \prod_{i,j}\mathscr FU_{ij},
+    \end{equation}
+    where $g$ is given by $(s_i)\mapsto (\res^{U_i}_{U_{ij}}(s_i) - \res^{U_j}_{U_{ij}}(s_j))$,
+    is exact (this sequence of maps is a complex since $\mathscr F$ is a presheaf, i.e., it preserves commutative diagrams).
 \end{enumerate}
+Therefore $\mathscr F$ is a sheaf if and only if the sequence 
+\begin{equation}
+    0\to \mathscr FU\xlongrightarrow{\prod_i \res^U_{U_i}}\prod_i \mathscr FU_i\xrightarrow{g} \prod_{i,j}\mathscr FU_{ij}\quad\text{is exact.}
+\end{equation}
+Consider the two-point space $X = \cbr{a,b}$ with the discrete topology, and let $\mathscr F$ be a presheaf (say of Abelian groups). Let $\mathscr FX = \mathbb Z/2\mathbb Z$, $\mathscr F\cbr{a} = \mathscr F\cbr{b} = 0$, and $\mathscr F\emptyset = 0$. Then the sequence
+\begin{equation}
+    \begin{tikzcd}
+	0 & {\mathscr FX} & {\mathscr F\cbr{a}\times\mathscr F\cbr{b}} & {\mathscr F\emptyset\times \mathscr F\emptyset} \\
+	& {\mathbb Z/2\mathbb Z} & {0\times 0} & {0\times 0}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[Rightarrow, no head, from=1-3, to=2-3]
+	\arrow[Rightarrow, no head, from=1-4, to=2-4]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}
+\end{equation}
+satisfies the second condition above but not the first, so $\mathscr F$ could not be a sheaf.
+
+The following result helps to simplify our understanding of sheaves.
+\begin{proposition}[cf. \cite{gw}*{Proposition 2.20}]
+    A sheaf $\mathscr F$ on $X$ is determined by $\mathscr FU$ for some basis $\mathcal B = \cbr{U}_{U\in\mathcal B}$ of the topology on $X$, where for any $V\in Ouv(X)$ we have 
+    \begin{equation}
+        \mathscr FV = \varprojlim_{\substack{U\in \mathcal B\\U\subseteq V}}\mathscr FU = \Bigg\{(s_U)\in \prod_{\substack{U\in \mathcal B\\U\subseteq V}}\mathcal FU\mid \text{for all }U,U^\prime\in\mathcal B \text{ such that } U^\prime\subset U, s_U|_{U^\prime} = s_{U^\prime}|_U\Bigg\}
+    \end{equation}.
+\end{proposition}
+In the proposition above, view $\mathcal B$ as a subcategory of $\Ouv(X)$.
+
+We can glue sheaves together in a precise manner to obtain other sheaves. We will need this result later when we discuss schemes.
+\begin{proposition}[\cite{gw}*{Exercise 2.16}]
+    \sai{do it and proof}
+\end{proposition}
+\sai{proof}
+
+Now we return to $\Spec R$ for a ring $R$ and define the so-called \textit{structure sheaf} on it.
+\begin{definition}
+    Let $R$ be a ring. A basis $\mathcal B$ of open sets for $X=\Spec R$ is given by the collection of \textit{principal open sets} 
+    \begin{equation}
+        D(f) \coloneqq X\setminus V(f) = \cbr{\mathfrak p\in\Spec R\mid f\not\in \mathfrak p}
+    \end{equation}
+    for all $f\in R$. Note that $D(f)\cap D(g) = D(fg)$, and that $D(f)$ is quasi-compact.
+    We define a sheaf of rings \bidx{$\mathscr O_X$} on $X$ by its action on the basis of principal open sets, as
+    \begin{equation}
+        \mathscr O_X\colon \mathcal B\to \Ring \quad\text{given by} Df\mapsto R_f = R[1/f].
+    \end{equation}
+    We call $\mathscr O_X$ the \bidx{structure sheaf} on $X$.
+\end{definition}
+The ring $R_f$ is the \textit{localization} of $R$ at $f$, meaning $R_f = S^{-1}R = R[1/f]$, where $S = \cbr{f^i\mid i\geq 0}$. The fact that the definition of $\mathscr O$ above works is not so surprising since $Df$ is homeomorphic to $\Spec R_f$.
+\sai{prove that this defines a sheaf}
+
+For example, if $X = \Spec \mathbb Z$, then the principal open sets are
+\begin{equation}
+    D0 = \emptyset,\quad D1 = X,\quad\text{and }D(p_1^{e_1}\cdots p_r^{a_r}) = X\setminus\cbr{\abr{p_1},\dots,\abr{p_r}}.
+\end{equation}
+In general not all open sets in $\Spec R$ are principal open sets; for example, if $K$ is a field, $\Spec K[x,y]\setminus V\abr{x,y}\cong \mathbb A^2\setminus \cbr{(0,0)}$ is open, but not of the form $Df$ for $f\in K[x,y]$ ($\abr{x,y}$ is not generated by one element). Similarly, removing $V\abr{x-\alpha,y-\beta}$ with $\alpha,\beta\neq 0$ from $\Spec K[x,y]/\abr{y^2-x^3}$ is open but not principally open. The structure sheaf on $X = \Spec\mathbb Z$ assigns the following rings to the aforementioned principal open sets:
+\begin{equation}
+    \mathscr O_X\emptyset = 0,\quad \mathscr O_XX = \mathbb Z,\quad \text{and }\mathscr O_X(Df) = \mathbb Z_f = \mathbb Z[1/f].
+\end{equation}
+We may view the structure sheaf $\mathscr O_X$ in another way via the following theorem.
+\begin{theorem}
+    The structure sheaf $\mathscr O_X$ coincides with the sheaf (also written $\mathscr O_X$) given by, for any $U\in\Ouv(X)$,
+    \begin{equation}
+        \mathscr O_XU = \bigg\{f\colon U\to \coprod_{\mathfrak p\in U}R_{\mathfrak p}~\bigg\vert\, \text{subject to the conditions}\bigg\}
+    \end{equation}
+    \begin{enumerate}
+        \item $\mathfrak p\mapsto R_{\mathfrak p}$,
+        \item for all $\mathfrak p\in U$, there exists $a,b\in R$ and $V$ open\sai{?} with $\mathfrak p\in V\subseteq U$ such that for any $\mathfrak q\in V$, we have $b\not\in \mathfrak q$ and $f(\mathfrak q) = a/b\in R_{\mathfrak q}$.
+    \end{enumerate}
+\end{theorem}
+As a remark, we can think of this sheaf as a ``space of functions, but with a moving target''. That is, 
+For example, if $R$ is a domain, we can choose the ``target'' to be $\Frac R$.
 
 \newpage
 \printindex\newpage
