@@ -423,7 +423,7 @@ For example, let $X = \cbr{\ast}$ be the one point space, so that $\Ouv(X) = \cb
 If $\mathscr F$ is a sheaf, then the empty set must go to $\cbr{\ast}$, the terminal object in $\Set$. It follows that the map $\mathscr FX \to \mathscr F\emptyset$ is unique, from which it follows that $\Sh(X)$ is naturally isomorphic to $\Set$.
 
 There is a way to ``make'' a presheaf into a sheaf.
-\begin{proposition}[Sheafification \cite{gw}*{Proposition 2.24}]
+\begin{proposition}[Sheafification \cite{gw}*{(part of) Proposition 2.24}]
   For any presheaf $\mathscr F$ on a topological space $X$, there exists a pair $(\tilde{\mathscr F}, \iota_{\mathscr F})$ where $\tilde{\mathscr F}$ is a sheaf on $X$ and $\iota_{\mathscr F}\colon \mathscr F\to\tilde{\mathscr F}$ is a morphism of presheaves (i.e. a natural transformation), satisfying the following universal property: If $\mathscr G$ is a sheaf on $X$ and $\varphi\colon\mathscr F\to G$ is a morphism of presheaves, then there exists a unique morphism of sheaves $\tilde{\varphi}\colon\tilde{\mathscr F}\to \mathscr G$ such that the diagram
   \begin{equation}
     \begin{tikzcd}[ampersand replacement=\&]
@@ -436,7 +436,7 @@ There is a way to ``make'' a presheaf into a sheaf.
   \end{equation}
   This implies that the pair $(\tilde{\mathscr F},\iota_{\mathscr F})$ is unique up to unique isomorphism.
 \end{proposition}
-\sai{transcribe part of the right proof here another time}
+We will need to define stalks to prove this result, so we return to this later.
 
 \newpage\section{09/13}
 Consider a presheaf $\mathscr F$ on $X$ valued in Ab or Ring. We can rephrase the axioms for a sheaf $F$ in the following way.
@@ -485,7 +485,9 @@ In the proposition above, view $\mathcal B$ as a subcategory of $\Ouv(X)$.
 
 We can glue sheaves together in a precise manner to obtain other sheaves. We will need this result later when we discuss schemes.
 \begin{proposition}[\cite{gw}*{Exercise 2.16}]
-    \sai{do it and proof}
+    Let $X$ be a topological space and let $\cbr{U_i}$ be an open covering of $X$. For all $i$, let $\mathscr F_i$ be a sheaf on $U_i$. For every $i,j$ let $\varphi_{ij}\colon \mathscr F_j|_{U_i\cap U_j}\to F_i|_{U_i\cap U_j}$ be isomorphisms satisfying the ``cocycle'' condition $\varphi_{ik} = \varphi_{ij}\circ\varphi_{jk}$ on $U_i\cap U_j\cap U_k$ for all $i,j,k$.
+
+    Show that there exists a sheaf $\mathscr F$ on $X$ and that there exists for all $i$ isomorphisms $\psi_i\colon \mathcal F_i \to \mathscr F|_{U_i}$ such that $\psi_i \circ \varphi_{ij} = \psi_j$ on $U_i\cap U_j$ for all $i,j$
 \end{proposition}
 \sai{proof}
 
