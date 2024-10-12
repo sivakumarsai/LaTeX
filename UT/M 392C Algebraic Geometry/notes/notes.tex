@@ -478,8 +478,8 @@ The following result helps to simplify our understanding of sheaves.
 \begin{proposition}[cf. \cite{gw}*{Proposition 2.20}]
     A sheaf $\mathscr F$ on $X$ is determined by $\mathscr FU$ for some basis $\mathcal B = \cbr{U}_{U\in\mathcal B}$ of the topology on $X$, where for any $V\in Ouv(X)$ we have 
     \begin{equation}
-        \mathscr FV = \varprojlim_{\substack{U\in \mathcal B\\U\subseteq V}}\mathscr FU = \Bigg\{(s_U)\in \prod_{\substack{U\in \mathcal B\\U\subseteq V}}\mathcal FU\mid \text{for all }U,U^\prime\in\mathcal B \text{ such that } U^\prime\subset U, s_U|_{U^\prime} = s_{U^\prime}|_U\Bigg\}
-    \end{equation}.
+        \mathscr FV = \varprojlim_{\substack{U\in \mathcal B\\U\subseteq V}}\mathscr FU = \Bigg\{(s_U)\in \prod_{\substack{U\in \mathcal B\\U\subseteq V}}\mathcal FU\mid \text{for all }U,U^\prime\in\mathcal B \text{ such that } U^\prime\subset U, s_U|_{U^\prime} = s_{U^\prime}|_U\Bigg\}.
+    \end{equation}
 \end{proposition}
 In the proposition above, view $\mathcal B$ as a subcategory of $\Ouv(X)$.
 
@@ -487,7 +487,7 @@ We can glue sheaves together in a precise manner to obtain other sheaves. We wil
 \begin{proposition}[\cite{gw}*{Exercise 2.16}]
     Let $X$ be a topological space and let $\cbr{U_i}$ be an open covering of $X$. For all $i$, let $\mathscr F_i$ be a sheaf on $U_i$. For every $i,j$ let $\varphi_{ij}\colon \mathscr F_j|_{U_i\cap U_j}\to F_i|_{U_i\cap U_j}$ be isomorphisms satisfying the ``cocycle'' condition $\varphi_{ik} = \varphi_{ij}\circ\varphi_{jk}$ on $U_i\cap U_j\cap U_k$ for all $i,j,k$.
 
-    Show that there exists a sheaf $\mathscr F$ on $X$ and that there exists for all $i$ isomorphisms $\psi_i\colon \mathcal F_i \to \mathscr F|_{U_i}$ such that $\psi_i \circ \varphi_{ij} = \psi_j$ on $U_i\cap U_j$ for all $i,j$
+    There exists a sheaf $\mathscr F$ on $X$ and that there exists for all $i$ isomorphisms $\psi_i\colon \mathcal F_i \to \mathscr F|_{U_i}$ such that $\psi_i \circ \varphi_{ij} = \psi_j$ on $U_i\cap U_j$ for all $i,j$
 \end{proposition}
 \sai{proof}
 
