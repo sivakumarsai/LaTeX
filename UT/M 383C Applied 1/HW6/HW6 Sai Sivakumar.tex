@@ -94,7 +94,16 @@
 \begin{document}
 \subsection*{2.10 Exercises}
 \begin{enumerate}
-  \item[A]
+    \item[49.] Let $X$ be a normed linear space and let $Y$ be a closed (in norm) linear subspace. Let $\cbr{y_i}$ be a weakly convergent sequence in $Y\subseteq X$; that is, for any functional $f\in X^\ast$, $\cbr{fy_i}$ converges in $\mathbb F$ to $fx$ for some $x\in X$. Suppose that $x\not\in Y$, from which it follows that $\dist(x,Y)>0$. Choose a functional $f\in X^\ast$ with $f(x) = \dist(x,Y)>0$ and $f(y) = 0$ for all $y\in Y$ by the Mazur Separation Lemma I. Thus $\cbr{fy_i} = \cbr{0}$ converges to $fx\neq 0$, a contradiction. Hence $x\in Y$.
+    \item[51.] Let $X$ be a Banach space and let $T\in X^\ast$. Let $\mathbb F = \Span_{\mathbb F}\cbr{1}$ and $\mathbb F^\ast = \Span_{\mathbb F}\cbr{1^\ast}$. Then for any $f = c1^\ast\in \mathbb F^\ast$, $T^\ast f = cT^\ast 1^\ast = c1^\ast T = cT\in X^\ast$, where the last equality holds since for any $x\in X$, $1^\ast Tx = 1^\ast(Tx1) = Tx1$. Since $c$ was arbitrary, the range of $T^\ast$ is $\Span_{\mathbb F}\cbr{T}\subseteq X^\ast$.
+    \item[52.] Let $X$ be a Banach space and let $K\subset X^\ast$ be a weak-$\ast$ compact subset of $X$. The weak-$\ast$ topology is Hausdorff, and since compact subsets of Hausdorff spaces are closed, $K$ is closed.
+    % A basic weak-$\ast$ open set containing $0\in X^\ast$ is given by $V = \cbr{f\in X^\ast\mid \abs{fx_i}<\varepsilon_i, 1\leq i\leq m} = \bigcap_{i=1}^mE_{x_i}^{-1}B_{\varepsilon_i}(0)$ for some $m$, $\varepsilon_i>0$, and $x_i\in X$. Then an open cover of $K$ is given by $\cbr{f + V\mid f\in K}$, so there exists $\cbr{f_1,\dots,f_n}$ such that $K\subset\bigcup_{i=1}^n f_i+V$. 
+    For any $x\in X$, the evaluation map $E_x\in X^{\ast\ast}$ is continuous by definition of the weak-$\ast$ topology, so $E_xK = Kx$ is compact in $\mathbb F$ (the continuous image of a compact set is compact). Compact sets in Euclidean spaces are closed and bounded, so $K$ is pointwise bounded and hence uniformly bounded in norm by the Uniform Boundedness Principle.
 \end{enumerate}
-\subsection*{afadslfkjasd}
+\subsection*{3.6 Exercises}
+\begin{enumerate}
+    \item[3.] Let $H$ be a real Hilbert space and let $S\subset H$ be a closed (nonempty) convex subset. Fix $x\in H$ and $y\in S$.
+    Let $\norm{x-y} = \inf_{z\in S}\norm{x-z}$. Then for $z\in S$ and $\alpha\in[0,1]$, $\alpha y + (1-\alpha)z\in S$. We have by assumption that $0\leq \norm{x-(\alpha y + (1-\alpha)z)}^2 - \norm{x-y}^2 = \norm{(x-y)-((1-\alpha)(z-y))} = -2(1-\alpha)(x-y,z-y) + (1-\alpha)^2\norm{z-y}^2$. Dividing through by $-2(1-\alpha)$ and taking $\alpha\to 1$ yields $0\geq (x-y,z-y)$.
+    Assume that for any $z\in S$, $0\geq (x-y,z-y)$. Then $\norm{x-z}^2 = (x-z,x-z) = ((x-y)-(z-y),(x-y)-(z-y)) = \norm{x-y}^2 -2(x-y,z-y) + \norm{z-y}^2\geq \norm{x-y}^2 + \norm{z-y}^2$. Therefore $\norm{x-y}\leq \norm{x-y}\sqrt{1+\norm{z-y}^2/\norm{x-y}^2}\leq \norm{x-z}$ for any $z\in S$. By taking the infimum over $z\in S$, we have $\norm{x-y} \leq \inf_{z\in S}\norm{x-z}$; since $\norm{x-y} \geq \inf_{z\in S}\norm{x-z}$ is true, we have $\norm{x-y} = \inf_{z\in S}\norm{x-z}$.
+\end{enumerate}
 \end{document}
