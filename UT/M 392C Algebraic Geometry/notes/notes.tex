@@ -480,8 +480,9 @@ The following result helps to simplify our understanding of sheaves.
     \begin{equation}
         \mathscr FV = \varprojlim_{\substack{U\in \mathcal B\\U\subseteq V}}\mathscr FU = \Bigg\{(s_U)\in \prod_{\substack{U\in \mathcal B\\U\subseteq V}}\mathcal FU\mid \text{for all }U,U^\prime\in\mathcal B \text{ such that } U^\prime\subset U, s_U|_{U^\prime} = s_{U^\prime}|_U\Bigg\}.
     \end{equation}
+    We view $\mathcal B$ as a subcategory of $\Ouv(X)$.
 \end{proposition}
-In the proposition above, view $\mathcal B$ as a subcategory of $\Ouv(X)$.
+\sai{proof}
 
 We can glue sheaves together in a precise manner to obtain other sheaves. We will need this result later when we discuss schemes.
 \begin{proposition}[\cite{gw}*{Exercise 2.16}]
@@ -515,7 +516,7 @@ In general not all open sets in $\Spec R$ are principal open sets; for example, 
     \mathscr O_X\emptyset = 0,\quad \mathscr O_XX = \mathbb Z,\quad \text{and}\quad \mathscr O_X(Df) = \mathbb Z_f = \mathbb Z[1/f].
 \end{equation}
 We may view the structure sheaf $\mathscr O_X$ in another way via the following theorem.
-\begin{theorem}
+\begin{theorem}\label{thm: structure sheaf}
     Let $R$ be a ring and $X = \Spec R$. The structure sheaf $\mathscr O_X$ coincides with the sheaf (also written $\mathscr O_X$) given by, for any $U\in\Ouv(X)$,
     \begin{equation}
         \mathscr O_XU = \bigg\{f\colon U\to \coprod_{\mathfrak p\in U}R_{\mathfrak p}~\bigg\vert\, \text{subject to the conditions below}\bigg\}
@@ -525,13 +526,18 @@ We may view the structure sheaf $\mathscr O_X$ in another way via the following 
         \item for all $\mathfrak p\in U$, there exists $a,b\in R$ and $V$ open with $\mathfrak p\in V\subseteq U$ such that for any $\mathfrak q\in V$, we have $b\not\in \mathfrak q$ and $f(\mathfrak q) = a/b\in R_{\mathfrak q}$.
     \end{enumerate}
 \end{theorem}
-As a remark, we can think of this sheaf as a ``space of functions, but with a moving target''. The moving target refers to the fact that $f$ sends $\mathfrak q$ to an element of $R_{\mathfrak q}\subset \coprod_{\mathfrak p\in U}R_{\mathfrak p}$, so in a sense, the codomain of $f$ is shifting. \sai{For example, if $R$ is a domain, we can choose the ``target'' to be $\Frac R$. What? (ask Chiara)} In a way, we can view the elements of $R$ as functions on $\Spec R$.
-
-As a reminder, the localization of a ring $R$ at a prime ideal $\mathfrak p$ is the localization of $R$ at the multiplicative set $S = R\setminus \mathfrak p$. So 
+As a reminder, $R_{\mathfrak p}$, the localization of a ring $R$ at a prime ideal $\mathfrak p$, is the localization of $R$ at the multiplicative set $S = R\setminus \mathfrak p$. So 
 \begin{equation}
   R_{\mathfrak p} = \cbr{(x,s)\mid x\in R, s\in S}/\!\sim, 
 \end{equation}
 where $(x,s)\sim (y,t)$ if and only if there exists $z\in S$ with $(xt-ys)z = 0$. In other words, we are inverting all of the elements of $S$ in $R$. The map $R\to R_{\mathfrak p}$ given by $x\mapsto (x,1)$ is a ring homomorphism, and we write $x/s$ for the equivalence class of $(x,s)$.
+
+\sai{note from sai to include in the notes: defining stalks a lecture early because the following discussion about the sheaf from earlier makes no sense without this.}
+
+We can think of the sheaf in \cref{thm: structure sheaf} as a ``space of functions, but with a moving target''. To explain, recall that the localization of $R$ at a prime ideal $\mathfrak p$, $R_{\mathfrak p}$, is a local ring with maximal ideal $\mathfrak p$. Let $U\in\Ouv(X)$, $\mathfrak p\in U$, and $f\in \mathscr O_XU$. Consider sending $f$ to its germ $f$ (the equivalence class of $(U,f)$) in the stalk $\mathscr O_{X,\mathfrak p} = R_{\mathfrak p}$.
+Then the map $f \mapsto f(\mathfrak p)\colon \mathscr O_{X,\mathfrak p}\to \mathscr O_{X,\mathfrak p}/\mathfrak m_{\mathfrak p}$ 
+% The moving target refers to the fact that $f$ sends $\mathfrak q$ to an element of $R_{\mathfrak q}\subset \coprod_{\mathfrak p\in U}R_{\mathfrak p}$, so in a sense, the codomain of $f$ is shifting. 
+\sai{For example, if $R$ is a domain, we can choose the ``target'' to be $\Frac R$. What? (ask Chiara)} In a way, we can view the elements of $R$ as functions on $\Spec R$.
 
 \newpage\section{09/16}
 Let $R$ be a ring and $X = \Spec R$. We prove that the presheaf $\mathscr O_X$ defined in the previous lecture by $\mathscr O_X(Df) = R_f$ is a sheaf of rings over $X$.
