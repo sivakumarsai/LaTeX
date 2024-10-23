@@ -1,0 +1,127 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383C}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{3.6 Exercises}
+\begin{enumerate}
+    \item[5.] Let $H$ be a Hilbert space, $M$ a closed linear subspace, and $A\colon H\to H$ a bounded linear operator with a bounded inverse.
+    \begin{enumerate}
+        \item Let $x\in H$. Since $A$ is a homeomorphism, $AM$ is a closed subspace of $H$. By the best approximation theorem, there exists a unique $Ay\in AM$ (i.e. a unique $y=y(x)\in M$) such that $\inf_{z\in M}\norm{Ax-Az} = \norm{Ax-Ay}$; that is, $\inf_{z\in M}\norm{A(x-z)} = \norm{A(x-y)}$. This defines a map $P\colon H\to M$ by $Px = y$, since $y$ is uniquely determined by $x$.
+        \item The image of $P$ is $M$ as we saw in the previous part. Let $x\in H$ and consider $P^2x$. Since $Px\in M$, observe that $Px$ satisfies $0= \norm{A(Px-Px)}\leq \norm{A(z-Px)}$ for any $z\in M$. It follows by best approximation that $APx$ is the unique best approximator to $APx$ in $AM$, so $P$ is idempotent.
+        \item We have $\abr{A^\ast A(Px-x),y} = \abr{A(Px-x),Ay} = 0$ for any $y\in M$. Indeed, $APx$ is the best approximator to $Ax$ in $AM$, so by following the proof of Corollary 3.9 in the notes, we have for fixed $y\neq 0$ in $M$ (if $y=0$, the inner product above is zero) and any $\lambda\in \mathbb F$ that $\norm{A(Px-x)}^2\leq \norm{A(Px-x) +\lambda Ay} = \norm{A(Px-x)}^2 + \overline{\lambda}\abr{A(Px-x),Ay} + \lambda\abr{Ay,A(Px-x)} + \abs{\lambda}^2\norm{Ay}^2$. Choose $\lambda = -\abr{A(Px-x),Ay}/\norm{Ay}^2$ so that $0\leq -\overline{\lambda}\lambda\norm{Ay}^2 -\lambda\overline{\lambda}\norm{Ay}^2+ \abs{\lambda}^2\abs{Ay}^2 = -\abs{\lambda}^2\norm{Ay}^2$, which implies $\lambda = 0$. Therefore $\abr{A(Px-x),Ay} = 0$, and since $y$ was arbitrary, $\abr{A^\ast A(Px-x),y} = \abr{A(Px-x),Ay} = 0$ for any $y\in M$.
+        \item We should show that $P$ is linear, but the proof is essentially the same as in Theorem 3.12. We have $\norm{Ax}^2 = \norm{A(Px-x) - APx}^2 = \norm{A(Px-x)}^2-2\Re\abr{A(Px-x), APx} +\norm{APx}^2 = \norm{A(Px-x)}^2 +\norm{APx}^2$, where the last equality is due to part (c) above. Then $\norm{APx}^2\leq \norm{Ax}^2 - \norm{A(Px-x)}^2\leq \norm{Ax}^2$. It follows that $\norm{AP}\leq \norm{A}$; then $\norm{P}= \norm{A^{-1}AP}\leq \norm{A^{-1}}\norm{AP}\leq \norm{A}\norm{A^{-1}}$.
+    \end{enumerate}
+    \item[7.] Let $H$ be a Hilbert space.
+    \begin{enumerate}
+      \item Let $M$ be a nonempty subset of $H$. The set $M^\perp$ is nonempty since it contains the zero vector. If the span of $M$ is dense in $H$, then for any $h\in H$, there is a sequence $\cbr{m_i(h)}\subset \Span M$ converging to $h$. By continuity of the inner product, we have for any $h\in H$ and $x\in M^\perp$ that $\abr{h,x} = \lim_{i\to\infty}\abr{m_i(h),x} = 0$. Thus $x$ is orthogonal to all elements of $\overline{\Span M}= H$. If $x$ is nonzero, then $\abr{x,x} = \lim_{i\to\infty}\abr{m_i(x),x} =0$, impossible. Therefore $M^{\perp} =0$.
+      
+      % Now assume that $M^{\perp}$ contains a nonzero element $x\in H$. If $\Span M$ is dense in $H$ as above, then $\abr{x,x} = \lim_{i\to\infty}\abr{m_i(x),x} =0$, impossible. Therefore $\Span M$ could not be dense.
+      Now assume that $\Span M$ is not dense in $H$, so that there is some $x\in H$ not in the closure of $\Span M$. Then by best approximation there exists $y\in \overline{\Span M}$ such that $x-y$ is orthogonal to $\Span M$, which contains $M$. Since $x-y$ is nonzero, it follows that $M^\perp$ is not $0$.
+      \item Let $T\colon H\to H$ be a bounded linear operator, let $P\colon H\to\ker T$ be orthogonal projection onto $N = \ker T$, and let $S = TP^\perp$. If $N^\perp = 0$, $S|_{N^\perp}$ is automatically injective. Let $x\in N^\perp$ be nonzero. Then $Sx = TP^\perp x = Tx$, and $Tx$ is nonzero since $x\in N^\perp$, which intersects with $N$ exactly at the zero vector. Therefore $S|_{N^\perp}$ is injective. It is clear that $\im S\subset \im T$. Let $h = Tx\in \im T$. If $h = 0$, then $h = S|_{N^\perp}0$. If $h = Tx \neq 0$, then $x\not\in N$ and hence is an element of $N^\perp$ (since $H = N\oplus N^\perp$). Thus $h = Tx = TP^\perp x = S|_{N^\perp}x$. Hence $\im S = \im T$.
+    \end{enumerate}
+    \item[12.] Let $H$ be a Hilbert space.
+    \begin{enumerate}
+      \item Let $Y$ be a subspace of $H$. It is always true that $Y\subset (Y^\perp)^\perp$. Assume $Y$ is closed. The set $(Y^\perp)^\perp$ is a closed linear subspace of $H$ by linearity and continuity of the inner product. Let $\cbr{h_i}_{i\in \mathcal I}$ be a maximal orthonormal basis of $Y$ for some index set $\mathcal I$, since $Y$ is a Hilbert space. Then by Theorem 3.25, there exists a maximal orthonormal basis $\cbr{h_j}_{j\in \mathcal J}$ of $H$ containing $\cbr{h_i}_{i\in \mathcal I}$; that is, $\mathcal I\subset \mathcal J$. Then any element $x\in (Y^\perp)^\perp$ can be written as a Fourier series in the $h_j$, $x = \sum_{j\in \mathcal J}\abr{x,h_j}h_j$. Since $x\in (Y^\perp)^\perp$, the coefficients $\abr{x,h_j}$ for $j\in \mathcal J\setminus \mathcal I$ are all zero. It follows that $x = \sum_{i\in \mathcal I}\abr{x,h_i}h_i\in Y$, so $Y = (Y^\perp)^\perp$.
+      \item Let $X$ be a nonempty subset of $H$. Then any closed subspace $Y$ of $H$ containing $X$ contains $(X^\perp)^\perp$. Indeed, let $\cbr{h_i}_{i\in \mathcal I}$ be a maximal orthonormal basis of $Y$ for some index set $\mathcal I$ and extend to a maximal orthonormal basis $\cbr{h_j}_{j\in \mathcal J}$ of $H$ containing $\cbr{h_i}_{i\in \mathcal I}$. Then any $x\in (X^\perp)^\perp$ may be written as a Fourier series $x = \sum_{j\in \mathcal J}\abr{x,h_j}h_j$; since $Y$ contains $X$, all coefficients $\abr{x,h_j}$ are zero for $j\in \mathcal J\setminus \mathcal I$. Thus $x\in Y$, and since $Y$ was arbitrary, $(X^\perp)^\perp$ is the smallest closed subspace of $H$ containing $X$.
+      
+      Alternatively, since $X\subset Y$, take double orthogonal complements to obtain $(X^\perp)^\perp\subset (Y^\perp)^\perp = Y$ as needed.
+    \end{enumerate}
+    \item[14.] Let $H$ be a Hilbert space and $T\colon H\to H$ a bounded linear transformation that is nonzero. Let $N = \ker T$ and suppose that $M$ is a linear subspace of $H$ such that $H = N\oplus M$. Suppose further that $\im T$ is closed.
+    \begin{enumerate}
+      \item Let $x\in M$ be nonzero. Since $x\not\in \ker T$, $Tx\neq 0$, so $T|_M$ is injective.
+      \item Since $T|_M$ is injective, restrict the codomain to $\im T$ to obtain a bounded linear bijection with inverse $T^{-1}\colon \im T\to M$. By Corollary 2.43 of the open mapping theorem, $T^{-1}$ is bounded (here we use the fact that $\im T$ is closed, hence Banach). Then for any $x\in M$, $\norm{x} = \norm{T^{-1}Tx}\leq \norm{T^{-1}}\norm{Tx}$. Let $\gamma_M = \norm{T^{-1}}^{-1}$; we have $\gamma_M\norm{x}\leq \norm{Tx}$ for all $x\in M$.
+      \item Let $\gamma_M^\ast$ be the maximal value of $\gamma_M$ for which the inequality in (b) holds for all elements of $M$. Let $x\in M$. Then as an element of $H = N\oplus N^\perp$, write $x = x_N + x_{N^\perp}$, so that ${\gamma_M^\ast}^2\norm{x_{N^\perp}}^2\leq {\gamma_M^\ast}^2(\norm{x_{N^\perp}}^2 + \norm{x_N}^2) = {\gamma_M^\ast}^2\norm{x_N + x_{N^\perp}}^2\leq \norm{T(x_N + x_{N^\perp})}^2 = \norm{Tx_{N^\perp}}^2$. The projection $x\mapsto x_{N^\perp}$ is surjective, and so by restricting this map to $M$, we still obtain a surjection (since $N$ is sent to $0$). So since $x\in M$ was arbitrary above, the inequality ${\gamma_M^\ast}^2\norm{x_{N^\perp}}^2\leq\norm{Tx_{N^\perp}}^2$, equivalent to $\gamma_M^\ast\norm{x_{N^\perp}}\leq\norm{Tx_{N^\perp}}$, holds for all $x_{N^\perp}\in N^\perp$. By definition of $\gamma_{N^\perp}^\ast$, we must have $\gamma_M^\ast\leq \gamma_{N^\perp}^\ast$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
