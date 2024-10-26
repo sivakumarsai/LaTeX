@@ -1,0 +1,131 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383C}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{3.6 Exercises}
+\begin{enumerate}
+    \item[21.] Let $\mathcal P$ be the set of polynomials in $C([0,1])$.
+    \begin{enumerate}
+        \item Since $[0,1]$ is compact, Proposition 2.24 implies that $C([0,1])$ is dense in $L^p([0,1])$ for $1\leq p <\infty$. The Weierstrass theorem states that $\mathcal P$ is dense in $C([0,1])$. Thus for $f\in L^p([0,1])$, there exists $g\in C([0,1])$ within $\varepsilon$ of $f$, and there exists $h\in \mathcal P$ within $\varepsilon$ of $g$ so that $\norm{f-h}\leq \norm{f-g} + \norm{g-h}\leq 2\varepsilon$. Thus $\mathcal P$ is dense in $L^p([0,1])$.
+        \item The Legendre polynomials exist. One can construct them explicitly using the Gram-Schmidt process and induction; we will just use induction. That is, we show that there is a (countably infinite) orthonormal set of polynomials containing polynomials of each degree.
+        
+        Observe that $\cbr{p_i(x)}_{i=0}^0 = \cbr{1}$ is an orthonormal set of polynomials of degree at most $0$ where $p_i$ has strict degree $i$. Assume that there exists an orthonormal set $\cbr{p_i(x)}_{i=0}^n$ of polynomials of degree at most $n$ where $p_i$ has strict degree $i$. Then $\mathcal P_n = \Span \cbr{p_i(x)}_{i=0}^n$ is a closed subspace of $L^2([0,1])$. Let $\pi f(x)$ be the orthogonal projection of $f(x) = x^{n+1}$ onto $\mathcal P_n$. Then $p_{n+1}(x) = (f(x)-\pi f(x))/\norm{f(x)-\pi f(x)}$ is of unit norm and is orthogonal to all elements of $\mathcal P_n$, hence also $\cbr{p_i(x)}_{i=0}^n$. The polynomial $p_{n+1}(x)$ must also have strict degree $n+1$ since $\pi f(x)$ has degree at most $n$. Thus $\cbr{p_i(x)}_{i=0}^{n+1}$ is an orthonormal set of polynomials of degree at most $n+1$ where $p_i$ has strict degree $i$. Thus the Legendre polynomials $\cbr{p_i(x)}_{i=0}^\infty$ is an orthonormal set of polynomials where $p_i(x)$ has strict degree $i$.
+
+        Theorem 3.22 implies that the Legendre polynomials form an orthonormal basis of $L^p([0,1])$, since $\mathcal P$ is spanned by the Legendre polynomials and $\mathcal P$ is dense in $L^p([0,1])$.
+        \item Let $f\in L^p([0,1])$. By Theorem 3.12, an explicit expression for the polynomial $q(x)$ of degree $n$ minimizing $\norm{f-p}$ over all $p(x)$ a polynomial of degree $n$ is the orthogonal projection of $f$ onto $\mathcal P_n$ given by $\sum_{i=0}^n \abr{f,p_n}p_n(x)$. (An orthonormal basis of $\mathcal P_n$ is $\cbr{p_i(x)}_{i=0}^n$, which extends to an orthonormal basis $\cbr{p_i(x)}_{i=0}^\infty$ of $L^p([0,1])$; expanding $f$ into a Fourier series and truncating the series to the first $n$ terms is the orthogonal projection of $f$ onto $\mathcal P_n$.)
+    \end{enumerate}
+    \item[24. INCOMPLETE] Let $V$ and $W$ be real Hilbert spaces, $A\in B(V,V)$, and $B\in B(W,V)$. Assume that $A$ is self-adjoint, $B^\ast\in B(V,W)$ is surjective, and that there are constants $\alpha,\gamma>0$ for which 
+    \begin{alignat*}{2}
+        \abr{Av,v}&\geq \alpha \norm{v}^2 &&\quad\text{for all }v\in \ker B^\ast,\\
+        \sup_{v\in V}\frac{\abr{B^\ast v,w}}{\norm{v}}&\geq \gamma\norm{w} &&\quad\text{for all }w\in W.
+    \end{alignat*}
+    Assume also that the following system 
+    \begin{equation*}
+        \begin{cases*}
+            Au+Bp = f\in V \\
+            B^\ast u = g\in W
+        \end{cases*}
+    \end{equation*}
+    has a solution $(u,p)$ with $u\in V$ and $p\in W$.
+\end{enumerate}
+\subsection*{4.8 Exercises}
+\begin{enumerate}
+    \item[2.] Let $X = C([0,1])$.
+    \begin{enumerate}
+        \item Fix $g\in X$ and let $T\colon X\to X$ be given by $Tf = gf$. By Corollary 4.3, $\lambda\in \rho(T)$ if and only if $T_\lambda = T-\lambda I$ is injective and surjective on $X$. Since $T_\lambda f= (g-\lambda)f$, we find that $T_\lambda$ is injective whenever $g$ is not identically $\lambda$, and $T_\lambda$ is surjective whenever $0$ is not an element of $\im (g-\lambda)$. Therefore $\lambda$ is in the spectrum of $T$ if and only if $0\in \im(g-\lambda)$.
+        \item Let $g$ be defined by $g(x) = (b-a)x + a$. Then $g-\lambda$ attains zero if and only if $\lambda\in [a,b]$. Thus $T\colon X\to X$ given by $Tf = gf$ has spectrum $[a,b]$.
+    \end{enumerate}
+    \item[7.] 
+\end{enumerate}
+\end{document}
