@@ -95,7 +95,13 @@
 \begin{document}
 \subsection*{4.8 Exercises}
 \begin{enumerate}
-    \item[13.] 
+    \item[13.] Let $X$ be a Banach space and $S,T\in B(X,X)$ with $T$ compact.
+    \begin{enumerate}
+        \item The operator $TS$ is bounded and linear. Since $S$ is bounded, for any bounded $M\subset X$, $SM$ is bounded. With $T$ compact, $(TS)M = T(SM)$ is precompact, so $TS$ is compact.
+        
+        The operator $ST$ is bounded and linear. Since $T$ is compact, for any bounded $M\subset X$, $TM$ is precompact. Since $S$ is continuous, $S(\overline{TM})\subset \overline{S(TM)}$ and so $\overline{S(\overline{TM})}\subset \overline{S(TM)}$. Similarly, $S(TM)\subset S(\overline{TM})$ implies $\overline{S(TM)}\subset \overline{S(\overline{TM})}$, from which $\overline{S(TM)}= \overline{S(\overline{TM})}$ follows. Since $\overline{S(\overline{TM})}$ is compact, $S(TM)$ is precompact, so $ST$ is compact.
+        \item Let $S$ be invertible and assume that $S+T$ is injective.
+    \end{enumerate}
     \item[19.] 
     \item[20.] 
     \item[22.] 
