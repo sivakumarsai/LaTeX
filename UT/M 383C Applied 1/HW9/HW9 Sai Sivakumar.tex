@@ -100,10 +100,13 @@
         \item The operator $TS$ is bounded and linear. Since $S$ is bounded, for any bounded $M\subset X$, $SM$ is bounded. With $T$ compact, $(TS)M = T(SM)$ is precompact, so $TS$ is compact.
         
         The operator $ST$ is bounded and linear. Since $T$ is compact, for any bounded $M\subset X$, $TM$ is precompact. Since $S$ is continuous, $S(\overline{TM})\subset \overline{S(TM)}$ and so $\overline{S(\overline{TM})}\subset \overline{S(TM)}$. Similarly, $S(TM)\subset S(\overline{TM})$ implies $\overline{S(TM)}\subset \overline{S(\overline{TM})}$, from which $\overline{S(TM)}= \overline{S(\overline{TM})}$ follows. Since $\overline{S(\overline{TM})}$ is compact, $S(TM)$ is precompact, so $ST$ is compact.
-        \item Let $S$ be invertible and assume that $S+T$ is injective.
+        \item Let $S$ be invertible and assume that $S+T$ is injective. Then $A= S^{-1}(S+T) = I+S^{-1}T$ is an injective compact perturbation of the identity. Injectivity of $A$ precludes the conclusion of the Fredholm Alternative that if the equation $Ax=y$ has a solution $x$ for given $y$, there are infinitely many solutions. Therefore, we must have for any $y$ a unique solution $x$ to the equation $Ax=y$. It follows that $S+T$ is invertible on all of $X$.
     \end{enumerate}
-    \item[19.] 
-    \item[20.] 
+    \item[19.] Let $H$ be a complex Hilbert space and $T\colon H\to H$ a bounded linear operator. We are told that $T^\ast T$ and $TT^\ast$ are positive, self-adjoint operators (this is not hard to see). The residual spectra of both $T^\ast T$ and $TT^\ast$ are empty, and the spectra of $T^\ast T$ and $TT^\ast$ are contained in $[0,\infty)$. In particular, $\sigma(T^\ast T)\subset [r,R]\subset [0,\infty)$ where $r = \inf_{\norm{x} =1}\abr{T^\ast Tx, x} = \inf_{\norm{x} =1}\abr{Tx, Tx} = \inf_{\norm{x} =1}\norm{Tx}^2$ and $R = \sup_{\norm{x}=1}\abr{T^\ast Tx,x} = \sup_{\norm{x}=1}\norm{Tx}^2 = \norm{T}^2$. I am not sure how to determine $r$. Similarly, $\sigma(TT^\ast)\subset [s,S]\subset [0,\infty)$ where $s = \inf_{\norm{x} =1}\abr{TT^\ast x, x} = \inf_{\norm{x} =1}\abr{T^\ast x, T^\ast x} = \inf_{\norm{x} =1}\norm{T^\ast x}^2$ and $S = \sup_{\norm{x}=1}\abr{TT^\ast x,x} = \sup_{\norm{x}=1}\norm{T^\ast x}^2 = \norm{T^\ast }^2 = \norm{T}^2$. I am not sure how to determine $s$. We have $(T^\ast T)_{-1} = T^\ast T - (-1)I = I+T^\ast T$ and similarly $(TT^\ast)_{-1} = I+TT^\ast$. Because $-1$ is not contained in the spectrum of the operators $T^\ast T$ and $TT^\ast$, we must have that $(T^\ast T)_{-1}$ and $(TT^\ast)_{-1}$ are boundedly invertible.
+    \item[20.] Let $H$ be a complex Hilbert space and let $A$ be a bounded linear operator on $H$. Define $\abs{A}$ to be the positive square root of the positive self-adjoint operator $A^\ast A$, written $(A^\ast A)^{1/2}$.
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
     \item[22.] 
 \end{enumerate}
 \end{document}
