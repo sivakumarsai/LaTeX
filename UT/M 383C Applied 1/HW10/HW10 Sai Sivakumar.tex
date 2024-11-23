@@ -1,0 +1,132 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383C}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{4.8 Exercises}
+\begin{enumerate}
+    \item[25.] Let $H$ be a separable Hilbert space with $\cbr{e_n}_{i=1}^\infty$ an orthonormal basis for $H$. Let $T$ a positive operator on $H$ and suppose that $\Tr(T)\coloneqq \sum_i\abr{Te_i,e_i}$ is finite.
+    
+    Let $\cbr{f_j}_{j=1}^\infty$ be another orthonormal basis of $H$, and let $S$ be the positive square root of $T$. For fixed $N$, $\sum_{j=1}^N\abr{Tf_j,f_j} =  \sum_{j=1}^N\abr{Sf_j,Sf_j} = \sum_{j=1}^N\sum_i\abs{\abr{Sf_j,e_i}}^2 \eq{1}  \sum_i \sum_{j=1}^N\abs{\abr{f_j,Se_i}}^2$ where (1) holds due to Tonelli's theorem and self-adjointness of $S$. By the dominated convergence theorem, $\sum_j \abr{Tf_j,f_j} = \sum_i \sum_j \abs{\abr{f_j,Se_i}}^2 = \sum_i\abr{Se_i,Se_i} = \sum_i\abr{Te_i,e_i}<\infty$ as needed.
+
+    Consider $H = \ell^2(\mathbb N)$ with orthonormal bases $\mathcal B_1 = \cbr{e_i}_{i=1}^\infty$ and $\mathcal B_2 =\Big\{\Big(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big), \Big(\frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big)$,
+    $\Big(0, \frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \dots\Big), \Big(0, 0, \frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \dots\Big), \dots\Big\} = \cbr{\Big(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big), R^i\Big(\frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big)}_{i\geq 0}$, where $R$ is the right shift operator (the second basis can be obtained by normalizing the orthogonal set $\Big\{\Big(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big),$
+    $\Big(\frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big),\Big(0, \frac{-1}{\sqrt{4}}, \frac{1}{\sqrt{8}}, \dots\Big), \Big(0, 0, \frac{-1}{\sqrt{8}}, \frac{1}{\sqrt{16}}, \dots\Big), \dots\Big\}$). Then with $T = L$ the left shift operator, we have $\Tr_{\mathcal B_1}(T) = 0$ but $\Tr_{\mathcal B_2}(T) = 1/\sqrt{2}$.
+    \item[27.] Let $H$ be a separable Hilbert space with orthonormal basis $\cbr{\phi_i}_{i=1}^\infty$ and suppose $\norm{A}_{\Tr}^2\coloneqq \sum_{i=1}^\infty \norm{A\phi_i}^2<\infty$.
+    \begin{enumerate}
+      \item Let $\cbr{\psi_j}$ be another orthonormal basis of $H$. First, $\sum_i\norm{A\phi_i}^2 = \sum_i\abr{A\phi_i,A\phi_i} = \sum_i\sum_k\abs{\abr{A\phi_i,\phi_k}}^2 = \sum_k\sum_i\abs{\abr{\phi_i,A^\ast\phi_k}}^2 = \sum_k\abr{A^\ast\phi_k,A^\ast\phi_k} = \sum_k \norm{A^\ast \phi_k}^2 < \infty$ (use Tonelli's theorem). Then for fixed $N$, we have $\sum_{j=1}^N \norm{A\psi_j}^2 = \sum_{j=1}^N\abr{A\psi_j,A\psi_j} = \sum_{j=1}^N\sum_i\abs{\abr{A\psi_j,e_i}}^2 = \sum_i\sum_{j=1}^N\abs{\abr{\psi_j,A^\ast e_i}}^2$. Let $N\to\infty$ so that $\sum_j \norm{A\psi_j}^2 = \sum_i\sum_j\abs{\abr{\psi_j,A^\ast \phi_i}}^2 = \sum_i \norm{A^\ast \phi_i}^2 = \sum_i \norm{A \phi_i}^2$ as needed (use the dominated convergence theorem).
+      \item We have $\norm{A}^2 = \sup_{\norm{x} = 1}\norm{Ax}^2 = \sup_{\norm{x} = 1}\sum_i \abs{\abr{Ax,\phi_i}} = \sup_{\norm{x} = 1}\sum_i \abs{\abr{x,A^\ast\phi_i}}^2\leq$\\
+      $\sum_i \big|\sup_{\norm{x} = 1}\abr{x,A^\ast\phi_i}\big|^2 = \sum_i\norm{A^\ast\phi_i}^2 = \sum_i\norm{A\phi_i}^2 = \norm{A}_{\Tr}^2$.
+    \end{enumerate}
+    \item[28.] Let $H$ be a separable Hilbert space, $S = \abr{\cdot,y}\in H^\ast$, and $T\in B(H,H)$ a self-adjoint, compact, strictly positive operator.
+    \begin{enumerate}
+      \item The functional $S$ is compact since $S\colon H\to \mathbb F$ is a bounded map into a finite-dimensional vector space (Proposition 4.11). The operator $T$ is injective since if there were a nonzero $x$ with $Tx = 0$, then $0<\abr{Tx,x}= \abr{0,x} = 0$, impossible.
+      \item Let $\mathbb F = R$ and let $F\colon H\to \mathbb R$ be given by $Fx = \abr{Tx,x} - STx$. An orthonormal basis of $H$ given by eigenvectors of $T$ is $\cbr{u_i}_{i=1}^N$, where $N$ may be infinite and $Tu_i = \lambda_iu_i$ with $\abs{\lambda_{i+1}}\leq \abs{\lambda_i}$ for all $i$. Then $x = \sum_i\alpha_iu_i$ (no additional terms are needed since $T$ is injective), and $Tx = \sum_i\lambda_i\alpha_iu_i$. Thus $Fx = \sum_i\lambda_i[\alpha_i^2-\alpha_iSu_i]$. Minimize $Fx$ by minimizing $\alpha_i^2-\alpha_iSu_i$ in $\alpha_i$ for each $i$. Indeed, choosing $\alpha_i^\ast = Su_i/2 = \abr{u_i,y/2}$ yields a minimizer $x^\ast = \sum_i\alpha_i^\ast u_i = (\sum_i\abr{y,u_i}u_i)/2 = y/2$ for $Fx$.
+    \end{enumerate}
+    \item[34.] Let $\mathbb F = \mathbb R$ and let $V\in L^2((0,1)\times \Omega)$, where $\Omega$ is a bounded domain in $\mathbb R^d$. Let $T\colon L^2(0,1)\to L^2(0,1)$ be given by $(Tf)(x) = \int_0^1\int_\Omega V(x,\omega)V(y,\omega)f(y)\dd \omega\dd y$.
+    \begin{enumerate}
+      \item The operator $T$ is well-defined, self-adjoint, and positive semi-definite: By H\"older's inequality we have $\int_0^1\int_\Omega\abs{V(x,\omega)V(y,\omega)}\abs{f(y)}\dd\omega\dd y\leq \int_0^1 \norm{V(x,\omega)}_{L^2(\Omega)}[\norm{V(y,\omega)}_{L^2(\Omega)}\abs{f(y)}]\dd y\leq \norm{V(x,\omega)}_{L^2(\Omega)}$
+      $\norm{V(y,\omega)}_{L^2((0,1)\times\Omega)}\norm{f}_{L^2(0,1)}<\infty$ for $\mathrm{a.e.}~ x\in(0,1)$. Note also that $T$ takes a.e. zero functions to zero.
+      Fubini's theorem yields $\abr{Tf,g} = \int_0^1[\int_0^1\int_\Omega V(x,\omega)V(y,\omega)f(y)\dd\omega\dd y]g(x)\dd x = \int_0^1[\int_0^1\int_\Omega V(y,\omega)V(x,\omega)$
+      $g(x)\dd\omega\dd x]f(y)\dd y = \abr{f,Tg}$.
+      Similarly, $\abr{Tf,f} = \int_0^1[\int_0^1\int_\Omega V(x,\omega)V(y,\omega)f(y)\dd\omega\dd y]f(x)\dd x$
+      $= \int_\Omega (\int_0^1$
+      $ V(x,\omega)f(x)\dd x)^2\dd\omega$.
+
+      To see that $T$ is compact, we reduce to the case where $V\in C([0,1]\times \overline{\Omega})$ and $T\colon $ since $C(H,H)$ is closed in $B(H,H)$ and $C([0,1]\times \overline{\Omega}), C([0,1])$ with the $L^\infty$ norm (note uniform convergence implies $L^2$ convergence) are dense in $L^2((0,1)\times \Omega), L^2(0,1)$ respectively (the sequence of compact operators is given by a sequence of maps defined like $T$ above but with $V$ replaced by a continuous function belonging to a sequence converging to $V$; the extension of the limit of these compact operators to $L^2(0,1)$ produces $T$ above - c.f. Corollary 4.33).
+
+      Let $\cbr{f_n}$ be a bounded sequence from $C([0,1])$. We have $\norm{Tf_n}_\infty \leq \norm{f}_\infty\norm{V}_\infty^2\mu(\Omega)$, and we have $\abs{(Tf_n)(x) - (Tf_n)(y)} = \big|\int_0^1\int_{\Omega}[V(x,\omega)-V(y,\omega)]V(z,\omega)f(z)\dd\omega\dd z\big|\leq \norm{f_n}_\infty\sup_{z\in [0,1]}\big|\int_\Omega[V(x,\omega)-V(y,\omega)]V(z,\omega)\dd\omega\big|$. The quantity $\sup_{z\in [0,1]}\big|\int_\Omega[V(x,\omega)-V(y,\omega)]V(z,\omega)\dd\omega\big|$ may be made uniformly small by taking $\abs{x-y}$ small enough, since $\int_\Omega V(x,\omega)V(z,\omega)\dd\omega$ is uniformly continuous on $[0,1]^2$. Therefore by Arzel\`a-Ascoli, $\cbr{Tf_n}$ has a bounded subsequence as needed for $T$ to be compact.
+      \item (I am not sure what this part is asking of us) For $\mathrm{a.e.}~ \omega\in\Omega$, $V(\cdot,\omega)\in L^2(0,1)$. Then for an orthonormal basis $\cbr{v_i(x)}_{i\in I}$ of $L^2(0,1)$, we may expand $V(x,\omega)$ as $V(x,\omega) = \sum_i \abr{V(\cdot,\omega),v_i}v_i(x) = \sum_ia_i(\omega)v_i(x)$. Then $a_i(\omega) = \int_0^1V(y,\omega)v_i(y)\dd y$ for $\mathrm{a.e.}~\omega$. (Even specializing to the eigenbasis provided by $T$, I cannot find a non-tautological expression for $a_i(\omega)$?)
+    \end{enumerate}
+\end{enumerate}
+\end{document}
