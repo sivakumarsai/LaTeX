@@ -88,6 +88,8 @@
 \DeclareMathOperator{\co}{co}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -95,7 +97,14 @@
 \begin{document}
 \subsection*{5.8 Exercises}
 \begin{enumerate}
-    \item[14.] 
+    \item[14.] \begin{enumerate}
+      \item Let $\phi\in \mathcal D(\mathbb R)$ with $\supp \phi\subseteq [-R,R]$, and decompose $\phi$ into its even and odd parts by $\phi = \phi_e + \phi_o$.
+      For fixed $n$, we have $\abr{\cos(nx)\PV(1/x), \phi(x)}= \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi(x)\cos(nx)/x \eq{1} \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi_o(x)\allowbreak\cos(nx)/x \eq{2}\int_{-R}^{R}\phi_o(x)\cos(nx)/x$.
+      Equality (1) holds since $\cos(nx)/x$ is an odd function, and equality (2) holds since $\phi_o(0) = 0$ (so $\lim_{x\to 0}\phi_0(x)/x = \phi_o^\prime(0)$). Then by the dominated convergence theorem, $\lim_{n\to\infty}\int_{-R}^{R}\phi_o(x)\cos(nx)/x = 0$, so $\lim_{n\to\infty}\cos(nx)\PV(1/x)= 0$.
+      \item Let $\phi\in \mathcal D(\mathbb R)$ with $\supp \phi\subseteq [-R,R]$, and decompose $\phi$ into its even and odd parts by $\phi = \phi_e + \phi_o$.
+      For fixed $n$, we have $\abr{\sin(nx)\PV(1/x), \phi(x)}= \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi(x)\sin(nx)/x\eq{1} \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi_e(x)\allowbreak\sin(nx)/x\eq{2} \int_{-R}^{R}\phi_e(x)\sin(nx)/x$. Equality (1) holds since $\sin(nx)/x$ is an even function, and equality (2) holds since $\phi_e(0) = \phi(0)$. By Taylor's theorem or the mean value theorem, $\phi_e(x) = \phi(0) + [\phi_e^\prime(0)+r(x)]x$ where $r$ is differentiable with $\lim_{x\to 0}r(x) = 0$. Then $\int_{-R}^{R}\phi_e(x)\sin(nx)/x = \int_{-R}^{R}\phi(0)\sin(nx)/x + \int_{-R}^{R}r(x)\sin(nx)$ and by the dominated convergence theorem, $\lim_{n\to\infty}\int_{-R}^{R}r(x)\sin(nx) = 0$. We have $\lim_{n\to\infty}\int_{-R}^{R}\phi(0)\sin(nx)/x = \phi(0)\lim_{n\to\infty}\int_{-nR}^{nR}\sin(x)/x = \pi\phi(0)$, so $\lim_{n\to\infty}\sin(nx)\PV(1/x)= \pi\delta_0$.
+      \item Let $\phi\in \mathcal D(\mathbb R)$. Then $\abr{e^{inx}\PV(1/x),\phi(x)} = \abr{\cos(nx)\PV(1/x),\phi(x)} + i\abr{\sin(nx)\PV(1/x),x}$, and by parts (a) and (b) above, it follows that $\lim_{n\to\infty}e^{inx}\PV(1/x) = i\pi\delta_0$.
+    \end{enumerate}
     \item[20.] 
     \item[22.] 
     \item[23.] 
