@@ -105,8 +105,21 @@
       For fixed $n$, we have $\abr{\sin(nx)\PV(1/x), \phi(x)}= \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi(x)\sin(nx)/x\eq{1} \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi_e(x)\allowbreak\sin(nx)/x\eq{2} \int_{-R}^{R}\phi_e(x)\sin(nx)/x$. Equality (1) holds since $\sin(nx)/x$ is an even function, and equality (2) holds since $\phi_e(0) = \phi(0)$. By Taylor's theorem or the mean value theorem, $\phi_e(x) = \phi(0) + [\phi_e^\prime(0)+r(x)]x$ where $r$ is differentiable with $\lim_{x\to 0}r(x) = 0$. Then $\int_{-R}^{R}\phi_e(x)\sin(nx)/x = \int_{-R}^{R}\phi(0)\sin(nx)/x + \int_{-R}^{R}r(x)\sin(nx)$ and by the dominated convergence theorem, $\lim_{n\to\infty}\int_{-R}^{R}r(x)\sin(nx) = 0$. We have $\lim_{n\to\infty}\int_{-R}^{R}\phi(0)\sin(nx)/x = \phi(0)\lim_{n\to\infty}\int_{-nR}^{nR}\sin(x)/x = \pi\phi(0)$, so $\lim_{n\to\infty}\sin(nx)\PV(1/x)= \pi\delta_0$.
       \item Let $\phi\in \mathcal D(\mathbb R)$. Then $\abr{e^{inx}\PV(1/x),\phi(x)} = \abr{\cos(nx)\PV(1/x),\phi(x)} + i\abr{\sin(nx)\PV(1/x),x}$, and by parts (a) and (b) above, it follows that $\lim_{n\to\infty}e^{inx}\PV(1/x) = i\pi\delta_0$.
     \end{enumerate}
-    \item[20.] 
-    \item[22.] 
-    \item[23.] 
+    \item[20.] The functional $\delta_0$ is defined on $X$ by the following: Let $\cbr{\phi_i}$ be a Cauchy sequence from $\mathcal D(-1,1)$ converging to $f\in X$. Let $\delta_0f \coloneqq \lim_{i\to\infty}\phi_i(0)$, which we need to show exists. 
+    
+    and this limit exists since $\phi_i(0) = \phi_i(x) - \int_0^x\phi_i^\prime(y)\dd y$ by differentiability of $\phi_i$ Then $\abs{\phi_i(0)-\phi_j(0)} \leq \abs{\phi_i(x)-\phi_j(x)} + \int_0^x\big|\phi_i^\prime(y)-\phi_j^\prime(y)\big|\dd y \leq $
+    
+    Let $\cbr{\phi_i},\cbr{\psi_j}$ be two Cauchy sequences from $\mathcal D(-1,1)$ converging to the same element in $X$. 
+    \item[22.] Let $u\in \mathcal D^\prime(\mathbb R^d)$ be compactly supported on $K$ and let $\phi\in\mathcal D(\mathbb R^d)$. Then $u\ast\phi\in C^\infty$ with $\supp(u\ast\phi)\subseteq K+\supp\phi$, from which it follows that $u\ast\phi$ is compactly supported and hence belongs to $\mathcal D(\mathbb R^d)$. Indeed, for $y\not\in K+\supp\phi$, $\supp(\tau_yR\phi) = -\supp\phi + y$, so $\supp(\tau_yR\phi)\cap K = \emptyset$ and $(u\ast\phi)(y) = \abr{u,\tau_yR\phi} = 0$.
+    
+    Since $u\ast \phi$ is a test function, the convolution $v\ast(u\ast \phi)$ is defined for any $v\in\mathcal D^\prime(\mathbb R^d)$.
+
+    For any $v\in\mathcal D^\prime(\mathbb R^d)$, define $v\ast u$ by $\abr{v\ast u,\phi}\coloneqq \abr{v,\abr{\tau_yu,\phi}}$, and note that $\abr{\tau_yu,\phi} = [R(u\ast R\phi)](y)$ is a test function. Let $\phi,\psi\in\mathcal D(\mathbb R^d)$. Then $\abr{v\ast u,\phi+c\psi} = \abr{v,\abr{\tau_yu,\phi+c\psi}} = \abr{v,\abr{\tau_yu,\phi} + c\abr{\tau_yu,\psi}}$, so $v\ast u$ is linear. Let $\cbr{\phi_i}$ converge to $\phi$. Then $\lim_{i\to\infty}\abr{v\ast u,\phi_i} = \lim_{i\to\infty}\abr{v,\abr{\tau_yu,\phi_i}} = \abr{v,\abr{\tau_yu,\lim_{i\to\infty} \phi_i}} = \abr{v,\abr{\tau_yu,\phi}} = \abr{v\ast u,\phi}$, so $v\ast u\in\mathcal D^\prime(\mathbb R^d)$.
+    
+    We have $(v\ast u)\ast \phi = \abr{v\ast u,\tau_xR\phi} = \abr{v,\abr{\tau_yu,\tau_xR\phi}} = \abr{v,\abr{u,\tau_{-y}\tau_xR\phi}} = \abr{v,\abr{u,\tau_{x-y}R\phi}} = \abr{v,(u\ast\phi)(x-y)} = \abr{v,\tau_xR(u\ast\phi)} = v\ast(u\ast \phi)$.
+    \item[23.] \begin{enumerate}
+      \item Let $v = Du$ and solve $Dv = 0$ to find solutions $v = c$ for constant $c$. Corollary 5.26 implies that solutions to $Du = c$ in $\mathcal D^\prime(\mathbb R)$ are of the form $cx+d$ for constants $c,d$. Thus solutions to $D^2u = 0$ are of the form $cx+d$ for constants $c,d$.
+      \item Solutions to $xD^2u = 0$ are linear combinations of solutions to the equations $D^2u = 0$ and $D^2u = c\delta_0$ for constant $c$, since $xw = 0$ has solutions of the form $c\delta_0$ for constant $c$. A first primitive of $c\delta_0$ is of the form $c_1 + c_2H$ for constants $c_1,c_2$, and a second primitive is of the form $c_1 + c_2x + c_3xH$ for constants $c_1,c_2,c_3$, since the distributional derivative of $xH$ is indeed $H$: $D(xH) = (Dx)H + xDH = H + x\delta_0 = H$. Therefore solutions to $xD^2u = 0$ are of the form $c_1+c_2x+c_3xH$ for constants $c_1,c_2,c_3$.
+    \end{enumerate}
 \end{enumerate}
 \end{document}
