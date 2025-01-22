@@ -83,17 +83,61 @@
 \DeclareMathOperator{\im}{im}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\GL}{\mathrm{GL}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
+I worked on this problem set with Sudharshan KV and Michael Han.
 \begin{enumerate}
-    \item[1.] 
-    \item[2.] 
-    \item[3.] 
-    \item[4.] 
-    \item[5.] 
-    \item[6.] 
+    \item[1.] \begin{enumerate}
+      \item For fixed $x\in \mathbb R^m$ and any nonzero $v\in\mathbb R^m$, the multivariate chain rule applied to the composite $\mathbb R\xrightarrow{j} \mathbb R^m\xrightarrow{f} \mathbb R^n$ given by $t\mapsto x+tv\mapsto f(x+tv)$ yieids (since both maps are differentiable) $D_vf_x = Df_{x+0v}Dj_0 = Df_xv$. A more interesting proof is given by taking the limit 
+      \[0=\lim_{t\to 0}\frac{\norm{f(x+tv)-f(x) - Df_x(tv)}}{\abs{t}\norm{v}} = \lim_{t\to 0}{\norm{\frac{f(x+tv)-f(x)-(Df_xv)t}{t}}}\norm{v}^{-1},\] from which it follows the directional derivative of $f$ at $x$ in the direction $v$ is $Df_xv$.
+      \item Directional derivatives of $f(x,y)$ at the origin in the direction $v=(v_x,v_y)$ are given by derivatives of the map $t\mapsto tv_x^2v_y/\norm{v}^2$; they are $D_vf_0 = v_x^2v_y/\norm{v}^2$, which exist since $v\neq 0$. If $f$ was differentiable, its derivative must be the zero row matrix (directional derivatives along $x = 0$ or $y = 0$ yield zero). But in this case $D_vf_0$ must always be zero, a contradiction.
+    \end{enumerate}
+    \item[2.] \begin{enumerate}
+      \item The set $\im f$ is open, since at every point $f(x)\in \im f$, there are open sets $U$ containing $x$ and $V$ containing $f(x)$ for which $f$ is a homeomorphism of $U$ and $V$. In other words, $V$ is an open set containing $f(x)$ contained in $\im f$. It remains to show that $f$ is injective. If $f$ is not injective, then there is $x_1,x_2$ with $x_1<x_2$ and $f(x_1) = f(x_2)$. The mean value theorem yields $0 = (f(x_2)-f(x_1))/(x_2-x_1) = f^\prime(c)$ for some $c\in (x_1,x_2)$. But $f$ is a local diffeomorphism at $c$, so $f^\prime(c)$ could not be zero, a contradiction. Therefore $f$ is bijective onto its image and has smooth inverse since smoothness is a local condition (at every point $f(x)$, the derivative is provided by $(Df_x)^{-1}$ since the map $f^{-1}$ agrees with any local inverse)
+      \item The map $f\colon\mathbb R^2\to \mathbb R^2$ given by $(r,\theta)\mapsto (e^r\cos \theta, e^r\sin \theta)$ is smooth with derivative $(\!\begin{smallmatrix}
+        e^r\cos \theta & e^r\sin \theta \\ -e^r\sin \theta & e^r\cos \theta
+      \end{smallmatrix}\!)$ which has nonzero determinant $e^{2r}$. Local inverses are provided by the inverse function theorem, but we can calculate them anyways: some of them are of the form $(x,y)\mapsto \pm(\ln\sqrt{x^2+y^2}, T(x,y))$, where $T$ is a suitable trigonometric function returning the angle $(x,y)$ makes with a suitable axis depending on which half-plane $(x,y)$ is in. For example, some local inverses are given by $(x,y)\mapsto (\ln\sqrt{x^2+y^2},\arctan(y/x))$ for $x>0$ and $(x,y)\mapsto -(\ln\sqrt{x^2+y^2},\arctan(y/x))$ for $x<0$. Similar maps can be made for the upper and lower half-planes. Since the map $f$ is not injective, $f$ could not be a diffeomorphism.
+    \end{enumerate}
+    \item[3.] If $Df$ is zero everywhere, $f$ is constant ($\mathbb R^2$ is connected) and hence not injective. Without loss of generality, let $f(0,0) = 0$. Now let $f$ have nonzero derivative at the origin; that is, $f$ is not constant and has surjective derivative $Df_0$. Further assume without loss of generality that $D_xf_0$ is nonzero, so by the mean value theorem there is $(p,0)$ nonzero with $f(p,0)$ nonzero. The interval from $(0,0)$ to $(p,0)$ is path connected, which implies that $0$ to $f(p,0)$ is also path connected (this is just the intermediate value theorem). By continuity of $f$ (and perhaps we need continuity of $f$ restricted to a vertical line passing through $(p,0)$) choose $(p,q)$ with $q\neq 0$ so that $\abs{f(p,q)-f(p,0)}< \abs{f(p,0)}/4$. Again the line segment from $(0,0)$ to $(p,q)$ is path connected, so $0$ to $f(p,q)$ is also path connected. Therefore at least two distinct points in the plane attain the value $f(p,0)/2$.
+    \item[4.] The map $\phi_U\colon S^2\setminus\cbr{n}\to\mathbb R^2\times\cbr{-1}$ takes in $(x,y,z)\in S^2\setminus \cbr{n}$ and returns the intersection of the line passing through $n$ and $(x,y,z)$ with the $z = -1$ plane. The point of intersection is $(-2x/(z-1), -2y/(z-1), -1)$. Thus $\phi_U$ is given by $(x,y,z) \mapsto (-2x/(z-1), -2y/(z-1), -1)$. By reflecting the picture, one can obtain $\phi_V\colon S^2\setminus\cbr{s}\to\mathbb R^2\times\cbr{1}$ given by $(x,y,z) \mapsto (2x/(z+1), 2y/(z+1), 1)$. 
+    
+    The inverse map $\phi_U^{-1}\colon \mathbb R^2\times\cbr{-1}\to S^2\setminus \cbr{n}$ is given by $(a,b,-1)\mapsto (4a/(a^2+b^2-4),4b/(a^2+b^2-4), (a^2+b^2+4)/(a^2+b^2-4)$. We compute the transition function $\phi_V\circ\phi_U^{-1}\colon R^2\setminus\cbr{(0,0,-1)}\to R^2\setminus\cbr{(0,0,1)}$. The ``origin'' is excluded from the domain and the codomain because $\phi_U^{-1}$ takes $(0,0,-1)$ to $s$, which is not a valid point to pass into $\phi_V$, so the image of $R^2\setminus\cbr{(0,0,-1)}$ under $\phi_U^{-1}$ is $S^2\setminus\cbr{n,s}$. As a result $(0,0,1)$ is omitted in the codomain. Some algebra reveals that $\phi_V\circ\phi_U^{-1}$ sends $(a,b,-1)$ to $(4a/(a^2+b^2),4b/a^2+b^2,1)$.
+    \item[5.] \begin{enumerate}
+      \item Let $M$ be a topological manifold and let $O$ be an open subset of $M$. Then $O$ is also a topological manifold: The topological subspace $O$ inherits second-countability and the quality of being Hausdorff from $M$. Given $x\in O$, there exists a homeomorphism $\phi$ of an open set $U$ of $M$ containing $x$ with an open neighborhood $V$ of $\mathbb R^n$ for some $n$. Then $U\cap O$ is open in $U$ so that $\phi(U\cap O)$ is open ($\phi$ is an open map). Thus $\phi$ restricts to a homeomorphism of $U\cap O$ with $\phi(U\cap O)$, so that $O$ is locally Euclidean. 
+      
+      The set of invertible matrices $\GL_2(\mathbb R)$ in $\M_2(\mathbb R) \cong \mathbb R^4$ (via $(\!\begin{smallmatrix}
+      x_1 & x_2 \\ x_3 & x_4
+      \end{smallmatrix}\!)\mapsto (x_1 \, x_2 \, x_3 \, x_4)$) is an open subset of $\M_2(\mathbb R)$, since the determinant $\det\colon \M_2(\mathbb R)\to \mathbb R$ is a continuous function (a polynomial, so it is also smooth). Indeed, $\GL_2(\mathbb R) = \M_2(\mathbb R)\setminus \det^{-1}(\cbr{0})$, which is open. Therefore $\GL_2(\mathbb R)$ is a topological manifold.
+      \item The set of matrices in $\M_2(\mathbb R)$ of determinant $1$ is given by $\det^{-1}(\cbr{1})$. At every element $p = (\!\begin{smallmatrix}
+      a & b \\ c & d
+      \end{smallmatrix}\!) \in \det^{-1}(\cbr{1})$, the derivative $D\det_p = (d \, -c \, -b \, a)$ is surjective since at least one entry of $(\!\begin{smallmatrix}
+        a & b \\ c & d
+      \end{smallmatrix}\!)$ is nonzero. Hence by Proposition 4.2.5 in Manolescu's notes, $\det^{-1}(\cbr{1})$ is a topological manifold.
+      \item Consider the restriction of the determinant $\det\colon \M_2(\mathbb R)\setminus\cbr{(\!\begin{smallmatrix}
+        0 & 0 \\ 0 & 0
+        \end{smallmatrix}\!)}\to \mathbb R$, which is smooth. Observe that $\M_2(\mathbb R)\setminus\cbr{(\!\begin{smallmatrix}
+          0 & 0 \\ 0 & 0
+          \end{smallmatrix}\!)}$ is open. Then the collection of rank-$1$ matrices in $\M_2(\mathbb R)$ is $\det^{-1}(\cbr{0})$. At every element $p = (\!\begin{smallmatrix}
+      a & b \\ c & d
+      \end{smallmatrix}\!) \in \det^{-1}(\cbr{0})$, the derivative $D\det_p = (d \, -c \, -b \, a)$ is surjective since at least one entry of $(\!\begin{smallmatrix}
+        a & b \\ c & d
+      \end{smallmatrix}\!)$ is nonzero. Thus the collection of rank-$1$ matrices is a topological manifold.
+    \end{enumerate}
+    \item[6.] The set $A$ is the zero set of the polynomial $f(x,y,z) = x^2-y^2-z^2$ and the set $B_c$ is the zero set of the polynomial $g(x,y,z) = z-c$. View $f,g$ as functions $\mathbb R^3\to \mathbb R$, and consider the function $h\colon \mathbb R^3\to\mathbb R^2$ given by $h(x,y,z) = \big(\!\begin{smallmatrix}
+      f(x,y,z) \\ g(x,y,z)
+    \end{smallmatrix}\!\big)$. The intersection of $A$ and $B_c$ is $h^{-1}(\!\begin{smallmatrix}
+      0 \\ 0
+    \end{smallmatrix}\!)$. When $c\neq 0$, the derivative of $h$ at any element $x,y,z$ of $h^{-1}(\!\begin{smallmatrix}
+      0 \\ 0
+    \end{smallmatrix}\!)$ is $(\!\begin{smallmatrix}
+      0 & 0 & 1 \\ 2x & -2y & -2c
+    \end{smallmatrix}\!)$, which has rank at least $2$ since $c\neq 0 $ and $x^2-y^2 = c^2$; that is, one of $x,y$ is nonzero. Therefore when $c\neq 0$, $A\cap B_c$ is a topological manifold. 
+
+    When $c = 0$, $A\cap B_0$ is given by the union of the lines $y = x$ and $y = -x$. Assume we can produce a chart about $0 = (0,0,0)$; that is, there is some neighborhood $U$ containing $0\in A\cap B_0$ and a homeomorphism $\phi$ from $U$ to an open subset $V$ of $\mathbb R^n$. Reduce to the case where $U$ is path-connected, so $V$ is also. Then $\phi\colon U\setminus\cbr{0}\to V\setminus\cbr{\phi(0)}$ is also a homeomorphism, but for any $n$, the number of connected components of $U\setminus\cbr{0}$ is four while the number of connected components of $V\setminus\cbr{\phi(0)}$ is either two or one, which is a contradiction since the number of connected components is invariant under homeomorphism.
 \end{enumerate}
 \end{document}
