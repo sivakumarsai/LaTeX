@@ -72,7 +72,9 @@
 \newcommand{\br}[1]{\left(#1\right)}
 \newcommand{\sbr}[1]{\left[#1\right]}
 \newcommand{\cbr}[1]{\left\{#1\right\}}
-\newcommand{\eq}[1]{\overset{(#1)}{=}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+\let\O\relax
+\newcommand{\O}{\mathrm O}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -91,15 +93,55 @@
 \let\PV\relax
 \DeclareMathOperator{\PV}{PV}
 
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
 \subsection*{6.6 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
 \begin{enumerate}
-    \item[1.] 
-    \item[2.] 
-    \item[4.] 
+    \item[1.] Let $f(x) = \exp(-\abs{x})$ for $x\in\mathbb R$. Then \begin{align*}
+      \mathcal Ff(\xi) &= (2\pi)^{-1/2}\int_{\mathbb R} \exp(-\abs{x} - ix\xi)\dd x\\
+      &= (2\pi)^{-1/2}\int_{x>0} \exp((-i\xi-1)x)\dd x + (2\pi)^{-1/2}\int_{x<0} \exp((-i\xi+1)x)\dd x\\
+      &= (2\pi)^{-1/2}(-i/(-i + \xi)) + (2\pi)^{-1/2}(i/(i + \xi))\\
+      &= 2(2\pi)^{-1/2}/(\xi^2+1).
+    \end{align*}
+    \item[2.] Let $f(x) = \exp(-ax^2)$ for $x\in\mathbb R$ and $a>0$. Then \begin{align*}
+      \mathcal Ff(\xi) &= (2\pi)^{-1/2}\int_{\mathbb R} \exp(-ax^2-ix\xi)\dd x\\
+      &= (2\pi)^{-1/2}\exp(-\xi^2/4a)\int_{\mathbb R} \exp(- a (x +i\xi/2a)^2)\dd x\\
+      &\eq{\smallmathhappy} (2\pi)^{-1/2}\exp(-\xi^2/4a)\int_{\mathbb R} \exp(- ax^2)\dd x\\
+      &= (2a)^{-1/2}\exp(-\xi^2/4a),
+    \end{align*}
+    where equality $\mathhappy$ holds due to Cauchy's theorem: The integral of $\exp(- az^2)$ along the vertical line segments $[\pm R,\pm R + i\xi/2a]$ may be made arbitrarily small as $R$ grows unboundedly.
+    \item[4.] That $f(x) = g(\abs{x})$ for some $g$ is equivalent to $f$ being $\O(n)$-invariant; that is, $f(Ax) = f(x)$ for any $A\in \O(n)$. For any $A\in \O(n)$, \begin{align*}
+      \mathcal Ff(A\xi) &= (2\pi)^{d/2}\int_{\mathbb R^d} f(x)\exp(-i\abr{x,A\xi})\dd x \\
+      &= (2\pi)^{d/2}\int_{\mathbb R^d} f(AA^{-1}x)\exp(-i\abr{A^{-1}x,\xi})\dd x \\
+      &\eq{\smallmathsad} (2\pi)^{d/2}\int_{\mathbb R^d} f(Ax)\exp(-i\abr{x,\xi})\dd x\\
+      &= (2\pi)^{d/2}\int_{\mathbb R^d} f(x)\exp(-i\abr{x,\xi})\dd x = \mathcal Ff(\xi), 
+    \end{align*}
+    where equality $\mathsad$ holds by the change of variables $u = A^{-1}x$ ($\det A = \pm 1$). Hence $\mathcal Ff(\xi) = h(\abs{\xi})$ for some $h$. 
+
+    The functions $h$ and $g$ are related by the following calculation: \begin{align*}
+      h(t) &= \mathcal Ff(te_1)\\
+      &= (2\pi)^{d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-i\abr{x,te_1})\dd x\\
+      &= (2\pi)^{d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-itx_1)\dd x \\
+      &= (2\pi)^{d/2}\int_0^\infty r^{d-1}g(r)\int_0^{2\pi}\int_0^\pi\!\!\!\!\cdots\!\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\sin^{d-3}(\theta_2)\cdots\sin(\theta_{d-2})\dd\theta_1\cdots\dd\theta_{d-1}\dd r\\
+      &= (2\pi)^{d/2}\sigma_{n-2}\int_0^\infty r^{d-1}g(r)\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\dd\theta_1\dd r,
+      % &= (2\pi)^{d/2}(2\pi)\pi^{d-3}\int_0^\infty r^{d-1}g(r)\int_0^\pi\exp(-itr\cos(\theta_1))\dd\theta_1\dd r\\
+      % &\eq{\eighthnote} (2/\pi)^{1-d/2}\int_0^\infty r^{d-1}g(r)J_0(tr)\dd r,
+    \end{align*}
+    where $\sigma_{n-1}$ is the surface area of the $n-1$-sphere in $\mathbb R^n$. (If $d$ is odd, we should be able to evaluate the innermost integral...)
+    % where $J_n(z) = i^{-n}\pi^{-1}\int_0^\pi\exp(iz\cos(\theta))\dd\theta$ is the Bessel function of the first kind (\href{https://dlmf.nist.gov/10.9#E2}{dlmf.nist.gov}), which yields equality \resizebox{0.8em}{!}{\eighthnote}.
     \item[11.] 
     \item[15.] 
 \end{enumerate}
