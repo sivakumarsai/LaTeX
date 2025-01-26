@@ -133,16 +133,18 @@
 
     The functions $h$ and $g$ are related by the following calculation: \begin{align*}
       h(t) &= \mathcal Ff(te_1)\\
-      &= (2\pi)^{d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-i\abr{x,te_1})\dd x\\
-      &= (2\pi)^{d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-itx_1)\dd x \\
-      &= (2\pi)^{d/2}\int_0^\infty r^{d-1}g(r)\int_0^{2\pi}\int_0^\pi\!\!\!\!\cdots\!\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\sin^{d-3}(\theta_2)\cdots\sin(\theta_{d-2})\dd\theta_1\cdots\dd\theta_{d-1}\dd r\\
-      &= (2\pi)^{d/2}\sigma_{n-2}\int_0^\infty r^{d-1}g(r)\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\dd\theta_1\dd r,
+      &= (2\pi)^{-d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-i\abr{x,te_1})\dd x\\
+      &= (2\pi)^{-d/2}\int_{\mathbb R^d}g(\abs{x})\exp(-itx_1)\dd x \\
+      &= (2\pi)^{-d/2}\int_0^\infty r^{d-1}g(r)\int_0^{2\pi}\int_0^\pi\!\!\!\!\cdots\!\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\sin^{d-3}(\theta_2)\cdots\sin(\theta_{d-2})\dd\theta_1\cdots\dd\theta_{d-1}\dd r\\
+      &= (2\pi)^{-d/2}\sigma_{n-2}\int_0^\infty r^{d-1}g(r)\int_0^\pi\exp(-itr\cos(\theta_1))\sin^{d-2}(\theta_1)\dd\theta_1\dd r,
       % &= (2\pi)^{d/2}(2\pi)\pi^{d-3}\int_0^\infty r^{d-1}g(r)\int_0^\pi\exp(-itr\cos(\theta_1))\dd\theta_1\dd r\\
       % &\eq{\eighthnote} (2/\pi)^{1-d/2}\int_0^\infty r^{d-1}g(r)J_0(tr)\dd r,
     \end{align*}
-    where $\sigma_{n-1}$ is the surface area of the $n-1$-sphere in $\mathbb R^n$. (If $d$ is odd, we should be able to evaluate the innermost integral...)
+    where $\sigma_{n-1}$ is the surface area of the $(n-1)$-sphere in $\mathbb R^n$. (If $d$ is odd, we should be able to evaluate the innermost integral...)
     % where $J_n(z) = i^{-n}\pi^{-1}\int_0^\pi\exp(iz\cos(\theta))\dd\theta$ is the Bessel function of the first kind (\href{https://dlmf.nist.gov/10.9#E2}{dlmf.nist.gov}), which yields equality \resizebox{0.8em}{!}{\eighthnote}.
-    \item[11.] 
-    \item[15.] 
+    \item[11.] The Fourier transform $\mathcal F\colon L_1(\mathbb R^d)\to C_v(\mathbb R^d)$ is injective. Let $\mathcal Ff = 0$ and let $\cbr{f_n}\subset \mathcal S$ be a sequence of Schwartz class functions converging to $f$ (we may take $f_n = g_n\ast \chi_{B_n(0)}f\in C_c^\infty(\mathbb R^d)$ where $g_n$ are suitably chosen Gaussians such that $\norm{f_n}_1 = \norm{\chi_{B_n(0)}f}_1$, or something similar). Then by continuity of the Fourier transform, the sequence $\cbr{\mathcal Ff_n}\subset \mathcal S$ converges to zero. But $\cbr{\mathcal F\mathcal Ff_n} = \cbr{Rf_n}$ must also converge to zero, so $\cbr{f_n}$ converges to zero. 
+    
+    Now assume that $\mathcal F$ is surjective. Then by the open mapping theorem, $\mathcal F^{-1}\colon C_v(\mathbb R^d)\colon L_1(\mathbb R^d)$ is continuous. But $\norm{\mathcal F^{-1}(\chi_{B_1(0)}\ast \chi_{B_n(0)})}_1 $
+    \item[15.] On the next homework set.
 \end{enumerate}
 \end{document}
