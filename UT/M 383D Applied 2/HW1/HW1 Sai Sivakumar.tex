@@ -104,11 +104,15 @@
 \DeclareMathOperator{\mathsad}{\!\sad\!}
 \DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
 
+% lol
+\newcommand{\gq}[1]{\overset{#1}{\geq}}
+
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
 \subsection*{6.6 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+I worked with or spoke to Michael Han, Sara Ansari, Jake Wellington, Iris Jiang, and John Teague.
 \begin{enumerate}
     \item[1.] Let $f(x) = \exp(-\abs{x})$ for $x\in\mathbb R$. Then \begin{align*}
       \mathcal Ff(\xi) &= (2\pi)^{-1/2}\int_{\mathbb R} \exp(-\abs{x} - ix\xi)\dd x\\
@@ -142,9 +146,15 @@
     \end{align*}
     where $\sigma_{n-1}$ is the surface area of the $(n-1)$-sphere in $\mathbb R^n$. (If $d$ is odd, we should be able to evaluate the innermost integral...)
     % where $J_n(z) = i^{-n}\pi^{-1}\int_0^\pi\exp(iz\cos(\theta))\dd\theta$ is the Bessel function of the first kind (\href{https://dlmf.nist.gov/10.9#E2}{dlmf.nist.gov}), which yields equality \resizebox{0.8em}{!}{\eighthnote}.
-    \item[11.] The Fourier transform $\mathcal F\colon L_1(\mathbb R^d)\to C_v(\mathbb R^d)$ is injective. Let $\mathcal Ff = 0$ and let $\cbr{f_n}\subset \mathcal S$ be a sequence of Schwartz class functions converging to $f$ (we may take $f_n = g_n\ast \chi_{B_n(0)}f\in C_c^\infty(\mathbb R^d)$ where $g_n$ are suitably chosen Gaussians such that $\norm{f_n}_1 = \norm{\chi_{B_n(0)}f}_1$, or something similar). Then by continuity of the Fourier transform, the sequence $\cbr{\mathcal Ff_n}\subset \mathcal S$ converges to zero. But $\cbr{\mathcal F\mathcal Ff_n} = \cbr{Rf_n}$ must also converge to zero, so $\cbr{f_n}$ converges to zero. 
+    \item[11.] The Fourier transform $\mathcal F\colon L_1(\mathbb R^d)\to C_v(\mathbb R^d)$ is injective. Let $\mathcal Ff = 0$ and let $\cbr{f_n}\subseteq \mathcal S$ be a sequence of Schwartz class functions converging to $f$ (we may take $f_n = g_n\ast \chi_{B_n(0)}f\in C_c^\infty(\mathbb R^d)$ where $g_n$ are suitably chosen Gaussians such that $\norm{f_n}_1 = \norm{\chi_{B_n(0)}f}_1$, or something similar). Then by continuity of the Fourier transform, the sequence $\cbr{\mathcal Ff_n}\subseteq \mathcal S$ converges to zero. But $\cbr{\mathcal F\mathcal Ff_n} = \cbr{Rf_n}$ must also converge to zero, so $\cbr{f_n}$ converges to zero. 
     
-    Now assume that $\mathcal F$ is surjective. Then by the open mapping theorem, $\mathcal F^{-1}\colon C_v(\mathbb R^d)\colon L_1(\mathbb R^d)$ is continuous. But $\norm{\mathcal F^{-1}(\chi_{B_1(0)}\ast \chi_{B_n(0)})}_1 $
+    Now assume that $\mathcal F$ is surjective. Then by the open mapping theorem, $\mathcal F^{-1}\colon C_v(\mathbb R^d)\colon L_1(\mathbb R^d)$ is continuous. But for $R_n(0) = [-n,n]^d$, $\norm{\mathcal F^{-1}(\chi_{R_1(0)}\ast \chi_{R_n(0)})}_1 = \norm{(2/\pi)^{1/2}\sin(x)\sin(nx)/x^2}_1^d$. We have \begin{align*}
+      2/\pi\int_{\mathbb R}\abs{\sin(x)\sin(nx)/x^2}\dd x &= 2n/\pi\int_0^n\abs{\sin(x/n)\sin(x)/x^2}\dd x\\
+      &\gq{\quarternote} 10/6\pi \int_0^n \abs{\sin(x)/x}\dd x,
+    \end{align*}
+    where $\quarternote$ holds due to the estimate $\sin(x)\geq x-x^3/6\geq x-x/6 = 5x/6$ on $[0,1]$. But $\int_0^n \abs{\sin(x)/x}\dd x$ grows unboundedly in $n$ whereas $\chi_{R_1(0)}\ast \chi_{R_n(0)}$ is uniformly bounded above for all $n$, which is a contradiction. Therefore $\mathcal F\colon L_1(\mathbb R^d)\to C_v(\mathbb R^d)$ is not surjective. 
+
+    However, $\im \mathcal F$ is dense in $C_v(\mathbb R^d)$ since $C_c^\infty(\mathbb R^d)$ is dense in $C_v(\mathbb R^d)$: $C_c^\infty(\mathbb R^d)$ is dense in $C_c(\mathbb R^d)$, which is dense in $C_v(\mathbb R^d)$ (truncate $f\in C_v(\mathbb R^d)$ to balls of radius $n$ and form continuous extensions from the function on these balls to $0$, via linear functions for example, then convolute with suitably chosen Gaussians to smoothen these functions out on a slightly larger compact set). Since $C_c^\infty\subseteq \mathcal S$, it follows that $C_c^\infty\subseteq \im \mathcal F|_{\mathcal S \subseteq L_1(\mathbb R^n)}$ and hence $\im \mathcal F$ is dense in $C_v(\mathbb R^d)$.
     \item[15.] On the next homework set.
 \end{enumerate}
 \end{document}
