@@ -83,15 +83,48 @@
 \DeclareMathOperator{\im}{im}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
-\newcommand{\M}{\mathrm{M}}
-\newcommand{\GL}{\mathrm{GL}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
-I worked on this problem set with.
+I worked on this problem set with Michael Han and Sudharshan KV.
 \begin{enumerate}
-    \item[1.] 
+    \item \begin{enumerate}
+        \item Let $\mathcal A_1,\mathcal A_2$ be atlases on $X$. Recall that if $\mathcal A$ is an atlas on $X$, then $\mathcal A^{\max}$ is given by the set of all charts on $X$ smoothly compatible with the charts in $\mathcal A$. Suppose that each chart in $\mathcal A_1$ is compatible with every chart in $\mathcal A_2$, and vice-versa. Since every chart in $\mathcal A_2$ is compatible with $\mathcal A_1$, then $\mathcal A_2 \subseteq \mathcal A_1^{\max}$. We showed in class that any two charts in a maximal atlas are smoothly compatible; therefore, $\mathcal A_1^{\max} \subseteq \mathcal A_2^{\max}$. By symmetry $\mathcal A_2^{\max} \subseteq \mathcal A_1^{\max}$, so $\mathcal A_1^{\max} = \mathcal A_2^{\max}$. Conversely, suppose that $\mathcal A_1^{\max} = \mathcal A_2^{\max}$. Then $\mathcal A_1\subset \mathcal A_2^{\max}$ and so every chart in $\mathcal A_2$ is smoothly compatible with every chart in $\mathcal A_1$ and vice-versa.
+        \item That $\mathcal A_1$ and $\mathcal A_2$ are different maximal atlases is to say that there is a chart $(U,\phi_U)\in \mathcal A_1$ not compatible with some chart $(V,\phi_V)\in\mathcal A_2$. Therefore some component of $\phi$, say $(\phi_U)_j\colon U\to\mathbb R$, is not smooth with respect to $(V,\phi_V)$ since $(\phi_U)_j\phi_V^{-1} = \pi_j\phi_U\phi_V^{-1} = (\phi_U\phi_V^{-1})_j$ could not be smooth. Thus by smooth compatibility of all charts in $\mathcal A_2$, $(\phi_U)_j$ is not smooth with respect to $\mathcal A_2$.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item If $\mathcal A_1=\mathcal A_2$, then for any $(U_{1,i},\phi_{1,i})\in\mathcal A_1$ and $(U_{2,j},\phi_{2,j})\in\mathcal A_2$, $\phi_{2,j}\id\phi_{1,i}^{-1} = \phi_{2,j}\phi_{1,i}^{-1}$ is a diffeomorphism, and hence $\id\colon (X,\mathcal A_1)\to (X,\mathcal A_2)$ is also a diffeomorphism. If $\mathcal A_1\neq \mathcal A_2$, then one of $\phi_{2,j}\id\phi_{1,i}^{-1} = \phi_{2,j}\phi_{1,i}^{-1}$ is not a diffeomorphism and hence $\id\colon (X,\mathcal A_1)\to (X,\mathcal A_2)$ could not be a diffeomorphism.
+      \item Let $X_{p} = (\mathbb R,\{(\mathbb R, x\mapsto x^{1/p})\})$, where $p$ is an odd prime. By part (a), the identity map $\id\colon X_q\to X_p$ is not a diffeomorphism since $x\mapsto x^{q/p}$ and $x\mapsto x^{p/q}$ are both not smooth. Therefore $\{(\mathbb R, x\mapsto x^{1/p})\}$ define distinct smooth structures on $\mathbb R$ but $X_q$ is diffeomorphic to $X_p$ since $x\mapsto x^{p/q}$ is a diffeomorphism; in coordinates it becomes the identity map on $\mathbb R$.
+    \end{enumerate}
+    \item The map $f$ is well-defined since each component of $f$ is defined by a homogeneous polynomial: $f(\lambda[X:Y]) = [\lambda^2X^2:\lambda^2XY:\lambda^2Y^2] = [X^2:XY:Y^2]$. We have  
+    \[\phi_jf\phi_i^{-1}(t)=\begin{cases}
+      (t,t^2) \text{ for } (i,j) = (0,0) & (t^2,t^1) \text{ for } (i,j) = (1,2)\\
+      (t^{-1},t) \text{ for } (i,j) = (0,1), ~t\neq 0 & (t,t^{-1}) \text{ for } (i,j) = (1,1),~ t\neq 0\\
+      (t^{-2},t^{-1}) \text{ for } (i,j) = (0,2),~ t\neq 0 & (t^{-1},t^{-2}) \text{ for } (i,j) = (1,0),~ t\neq 0.
+    \end{cases}\]
+    Therefore $f$ is smooth everywhere.
+    \item Let $S^1$ have charts $(S^1\setminus\cbr{n},\phi_n\colon(x,y)\mapsto -2x/(y-1))$ and $(S^1\setminus\cbr{s},\phi_s\colon (x,y)\mapsto 2x/(y+1))$. Then let $f\colon S^1\to \mathbb{RP}^1$ be given by 
+    \[f(x,y) = \begin{cases}
+      [y-1:-2x]& \text{for }(x,y) \neq (0,1)\\
+      [0: 1] & \text{for }(x,y) = (0,1).
+    \end{cases}\]
+    Indeed, for $t\in\mathbb R$ we have 
+    \[\phi_if\phi_\ell^{-1}(t) = \begin{cases}
+       t & \text{for } (i,\ell) = (0,n)\\
+       t/4 & \text{for } (i,\ell) = (1,s),
+    \end{cases}\] so $f$ is smooth.
+    \item If $\deg f < 1$, let $\tilde f$ be defined by $[a:b]\mapsto [1:f(0)]$, which satisfies $\phi_0\tilde f\phi_0^{-1}(t) = \phi_0\tilde f([1:t]) = \phi_0([1:f(t)]) = f(t)$. Constant maps are automatically smooth since they are constant maps when written in coordinates. Let $\deg f \geq 1$ and define $\tilde f$ by $[1:t]\mapsto [1:f(t)]$ and $[0:1]\mapsto [0:1]$. Note for $t$ nonzero $\tilde f([1:t]) = [1:f(t)] = \tilde f([t^{-1}:1])$. Indeed, $\phi_0\tilde f\phi_0^{-1}(t) = f(t)$ and $\phi_1\tilde f\phi_1^{-1}(t) = f(1/t)^{-1}$. The map $\tilde f$ is smooth since $f(t) = \sum_{i=0}^n a_it^i$ is differentiable and $f(1/t)^{-1} = t^n/\sum_{i=0}^n a_ix^{n-i}$ is differentiable in a suitably chosen open set containing $t=0$. 
+    \item She grass on my manian till i Gr?
+    \item Let $(W,\phi_W)$ be a chart containing $p$. Let $V^\prime\subset \im\phi_W$ be an open ball of sufficiently small radius $R$ containing $\phi_W(p)$ and $U^\prime\subset V^\prime$ be any open ball of radius $r<R$ also containing $\phi_W(p)$. With $f(t) = \exp(-1/t^2)\chi_{(0,\infty)}(t)$, $g(t) = f(x-r)f(R-x)$, and $h(t) = (\int_r^xg(t)\dd t)/(\int_r^Rg(t)\dd t)$, let 
+    \[b(x) = \begin{cases}
+      1 & \text{for }x\in U^\prime\\
+      1-h(\abs{x-\phi_W(p)}) & \text{for }x\in V^\prime\setminus U^\prime\\
+      0 & \text{for } x\in \mathbb R^n\setminus V^\prime.
+    \end{cases}\]
+    Then $p$ is contained in open neighborhoods $U = \phi_W^{-1}U^\prime\subset V = \phi_W^{-1}V^\prime$ and $\beta = b\phi_W$, extended to the zero function outside of $W$, defines a smooth function (since $\beta\phi_W^{-1}$ is smooth) on $X$ that is $1$ on $U$, $0$ outside of $V$, and $0\leq \beta(x)\leq 1$ everywhere. 
+
+    Let $f\colon O\to \mathbb R$ be as in Problem 1(b) and let $p\in U$. Then choose a chart $(W,\phi_W)$ on which $f$ is smooth containing $p$ and construct $\beta$ using the chart $(O\cap W,\phi_W|_{O\cap W})$. Then the product $f\cdot\beta\colon X\to\mathbb R$ is compactly supported and smooth (in coordinates the product is $f\phi_W^{-1}\cdot b$, which is smooth).
 \end{enumerate}
 \end{document}
