@@ -117,8 +117,8 @@ I worked on this problem set.
     \item[6.] The canonical example is $f(x) = \prod_{i=1}^d\sin(x_i)/x_i$. The function $f$ is square integrable but not integrable, and since $\mathcal F\chi_{[-1,1]^d}(\xi) = \prod_{i=1}^d(2/\pi)^{d/2}\sin(\xi_i)/\xi_i$, by the Schwartz theory we have $\mathcal Ff = (2/\pi)^{-d/2}\chi_{[-1,1]^d}(\xi)$, which is integrable. \textcolor{red}{when can this happen?}
     \item[7.] Let $f\in L_p(\mathbb R^d)$ for $1 < p < 2$ (there is nothing to show when $p = 1,2$  ). \begin{enumerate}
       \item Let $f_1 = f\chi_{\{\abs{f}>\norm{f}_p\}}$ and $f_2 = f\chi_{\{\abs{f}\leq \norm{f}_p\}}$. If $a\geq b$ and $p\geq q$, then $a^q/b^q\leq a^p/b^p$ so that $a^q\leq a^pb^{q-p}$ and $b^p\leq b^{q}a^{p-q}$. Hence 
-      \[\norm{f_1}_1 = \int \abs{f_1}\leq \norm{f}_p^{1-p}\int \abs{f}^p = \norm{f}_p\text{ and }\norm{f_2}_2^2 = \int \abs{f_2}^2\leq \norm{f}_p^{2-p}\int\abs{f}^p = \norm{f}_p^2.\]
-      \item If $f = f_1 + f_2 = f_1^\prime + f_2^\prime$, then $f_1 - f_1^\prime = f_2^\prime - f_2$. Hence $\hat{f_1} - \hat{f_1^\prime} = \widehat{f_1 - f_1^\prime} = \widehat{f_2^\prime - f_2} = \hat{f_2^\prime} - \hat{f_2}$, so that $\hat{f} = \hat{f_1} + \hat{f_2} = \hat{f_1^\prime} + \hat{f_2^\prime}$ as desired.
+      \[\norm{f_1}_1 = \int \abs{f_1}\leq \norm{f}_p^{1-p}\int \abs{f}^p = \norm{f}_p\quad \text{and}\quad \norm{f_2}_2^2 = \int \abs{f_2}^2\leq \norm{f}_p^{2-p}\int\abs{f}^p = \norm{f}_p^2.\]
+      \item If $f = f_1 + f_2 = f_1^\prime + f_2^\prime$, then $f_1 - f_1^\prime = f_2^\prime - f_2$. By Lemma 6.26, $\hat{f_1} - \hat{f_1^\prime} = \widehat{f_1 - f_1^\prime} = \widehat{f_2^\prime - f_2} = \hat{f_2^\prime} - \hat{f_2}$, so that $\hat{f} = \hat{f_1} + \hat{f_2} = \hat{f_1^\prime} + \hat{f_2^\prime}$ as desired.
     \end{enumerate}
     \item[8.] Observe that $Tf = g\ast f$ with $g(x)= \exp\relax(-\abs{x}^2/2)$. We have 
     \[\abr{Tf,f} = \abr{\mathcal F(g\ast f),\mathcal Ff} = \abr{\mathcal Fg\cdot \mathcal Ff,\mathcal Ff} = \abr{g\cdot \mathcal Ff,\mathcal Ff} = \abr{g^{1/2}\cdot\mathcal Ff,g^{1/2}\cdot\mathcal Ff} = \norm{g^{1/2}\cdot\mathcal Ff}_2^2\geq 0.\]

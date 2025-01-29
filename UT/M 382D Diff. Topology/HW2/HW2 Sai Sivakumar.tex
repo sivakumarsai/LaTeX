@@ -83,6 +83,8 @@
 \DeclareMathOperator{\im}{im}
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\Gr}{\mathrm{Gr}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -116,7 +118,14 @@ I worked on this problem set with Michael Han and Sudharshan KV.
        t/4 & \text{for } (i,\ell) = (1,s),
     \end{cases}\] so $f$ is smooth.
     \item If $\deg f < 1$, let $\tilde f$ be defined by $[a:b]\mapsto [1:f(0)]$, which satisfies $\phi_0\tilde f\phi_0^{-1}(t) = \phi_0\tilde f([1:t]) = \phi_0([1:f(t)]) = f(t)$. Constant maps are automatically smooth since they are constant maps when written in coordinates. Let $\deg f \geq 1$ and define $\tilde f$ by $[1:t]\mapsto [1:f(t)]$ and $[0:1]\mapsto [0:1]$. Note for $t$ nonzero $\tilde f([1:t]) = [1:f(t)] = \tilde f([t^{-1}:1])$. Indeed, $\phi_0\tilde f\phi_0^{-1}(t) = f(t)$ and $\phi_1\tilde f\phi_1^{-1}(t) = f(1/t)^{-1}$. The map $\tilde f$ is smooth since $f(t) = \sum_{i=0}^n a_it^i$ is differentiable and $f(1/t)^{-1} = t^n/\sum_{i=0}^n a_ix^{n-i}$ is differentiable in a suitably chosen open set containing $t=0$. 
-    \item She grass on my manian till i Gr?
+    \item Let $V = \mathbb R^4$. Let $Q$ be any point of $\Gr(4,2)$ and $U_Q = \{\cbr{(x,Ax)\mid x\in Q}\mid A\colon Q\to Q^\perp\}$, which contains $Q$ since we may choose $A = 0$ (here $(x,Ax)\in Q\oplus Q^\perp\cong \mathbb R^4$ and identify $Q$ with $Q\oplus 0$). Let $\psi_{U_Q}^{-1}\colon \Hom(Q,Q^\perp)\to U_Q$ be given by $A\mapsto \cbr{(x,Ax)\mid x\in Q}$. The map $\psi_{U_Q}\colon U_Q\to\Hom(Q,Q^\perp)$ is given by $\cbr{(x,y)\mid x\in Q}\mapsto A\colon x\mapsto y$. To obtain actual charts, let $\phi_{U_Q} = T_Q\psi_{U_Q}$ where $T_Q\colon \Hom(Q,Q^\perp)\to\mathbb R^4$ is the isomorphism taking $A$ to the matrix of $A$ in the standard basis of $V$ (using the change of basis $V \cong Q\oplus Q^\perp$; so $T_Q = \mathbb R^4\cong \Hom(Q,Q^\perp)\hookrightarrow \Hom(V,V)\cong \mathbb R^{16}$).
+    
+    Let $Q,P\in \Gr(4,2)$ be given by $Q = \Span\cbr{e_1,e_2} = P^\perp$ and $P = \Span\cbr{e_3,e_4} = Q^\perp$. Then $\phi_{U_P}\phi_{U_Q}^{-1}$ sends 
+    \[\begin{pmatrix}
+      
+    \end{pmatrix}\]
+    
+    The dimension of $\Gr(4,2)$ is $4$.
     \item Let $(W,\phi_W)$ be a chart containing $p$. Let $V^\prime\subset \im\phi_W$ be an open ball of sufficiently small radius $R$ containing $\phi_W(p)$ and $U^\prime\subset V^\prime$ be any open ball of radius $r<R$ also containing $\phi_W(p)$. With $f(t) = \exp(-1/t^2)\chi_{(0,\infty)}(t)$, $g(t) = f(x-r)f(R-x)$, and $h(t) = (\int_r^xg(t)\dd t)/(\int_r^Rg(t)\dd t)$, let 
     \[b(x) = \begin{cases}
       1 & \text{for }x\in U^\prime\\
