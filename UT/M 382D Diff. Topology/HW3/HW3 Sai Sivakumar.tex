@@ -1,0 +1,122 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\Gr}{\mathrm{Gr}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+I worked on this problem set with Sudharshan KV.
+\begin{enumerate}
+    \item The addition in $T_pM$ is given by $[((U,\phi_U),v)] + [((U,\phi_U),w)] = [((U,\phi_U),v+w)]$. This is well defined since 
+    \item 
+    \item \begin{enumerate}
+      \item Since $Df_{(x,y)} = \Big(\!\begin{smallmatrix}
+        1 & 0 \\
+        0 & 1 \\ 
+        f^\prime_x(x,y) & f^\prime_y(x,y)
+      \end{smallmatrix}\!\Big)$ has full rank for all $(x,y)$, $F$ is an immersion. The quantity $\im(Df_p)$ is the span of the column vectors of $DF_p$, but imagine that the origin of this vector space is translated to $F(p) = (p,f(p))$ (with the coordinate axes parallel to the axes of the $\mathbb R^3$ that $F(p)$ belongs to); that is, $\im (Df_p) = F(p) + \Span\Big\{\Big(\!\begin{smallmatrix}
+        1  \\
+        0  \\ 
+        f^\prime_x(x,y) 
+      \end{smallmatrix}\!\Big), \Big(\!\begin{smallmatrix}
+         0 \\
+         1 \\ 
+         f^\prime_y(x,y)
+      \end{smallmatrix}\!\Big)\Big\}$.
+      \item Since $F$ parametrizes the graph of $f$, we should interpret $\im(Df_p)$ as a ``tangent plane''; that is, a a plane spanned by the columns of $DF_p$ that is translated so that it lies tangent to $F(p) = (p,f(p))$.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item The functions $\phi_0f\phi_0^{-1}(t)=
+      (t,t^2)$ and $\phi_2f\phi_1^{-1}(t)=(t^2,t^1)$ have derivatives of full rank for all $t$. Thus $f$ is an immersion.
+      \item Let $U = \cbr{[1:t]\mid t\in \mathbb R}$ with $\phi_U = \phi_0$ and $V = U_0 = \cbr{[1:s:t]\mid s,t\in\mathbb R}$ with $\phi_V = f\phi_0$, where $f\colon\mathbb R^2\to\mathbb R^2$ is given by $f(x,y) = (x,y-x^2)$. Note that $f$ is a diffeomorphism since it is smooth and has a smooth inverse given by $f^{-1}(x,y) = (x,y+x^2)$. Then $\phi_Vf\phi_U^{-1}(t) = (t,0)$ as needed. The compatibility of $(V = U_0,\phi_V)$ with $(U_j,\phi_j)$ is due to the fact that $f$ is a diffeomorphism: the map $\phi_{j}\phi_{V}^{-1} = \phi_j\phi_0^{-1}f^{-1}\colon f\phi_0(U_0\cap U_j)\to \phi_j(U_0\cap U_j)$ is a diffeomorphism.
+    \end{enumerate}
+    \item Let $g\colon \mathbb R\to\mathbb R$ be given by $g(x) = x\exp(-1/x^2)$ (and $g(0) = 0$). Observe that $g$ is a bijection and is not analytic at $x = 0$, but has vanishing derivatives at every order there. Then the map $f\colon\mathbb R\to \mathbb R^2$ given by $f(x) = (g(x),\sqrt{g(x)^2})$ is a smooth map whose image is $S = \cbr{(x,\abs{x})\mid x\in\mathbb R}$. 
+    
+    Suppose there exists an immersion $f = (f_1,f_2) \colon \mathbb R\to\mathbb R^2$ whose image is $S$, and without loss of generality let $f(0) = (0,0)$. One of $f_1^\prime(0)$ or $f_2^\prime(0)$ is nonzero; without loss of generality let $f_1^\prime(0) = c > 0$. Then in a small neighborhood of $0$, $\abs{f_1(t)} = f_2(t)$. Thus $\lim_{t\to 0^+} f_1(t)/t = c = \lim_{t\to 0^+} f_2(t)/t$ and $\lim_{t\to 0^-} f_1(t)/t = -c = -\lim_{t\to 0^-} f_2(t)/t$. It follows that the derivative of $f$ at $0$ is $0$, which contradicts $f$ being an immersion.
+\end{enumerate}
+\end{document}
