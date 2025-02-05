@@ -84,7 +84,7 @@
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
-\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -92,10 +92,29 @@
 \begin{document}
 I worked on this problem set with Sudharshan KV.
 \begin{enumerate}
-    \item The addition in $T_pM$ is given by $[((U,\phi_U),v)] + [((U,\phi_U),w)] = [((U,\phi_U),v+w)]$. This is well defined since 
-    \item 
+    \item The addition in $T_pM$ is given by $[((U,\phi_U),v)] + [((V,\phi_V),w)] = [((U,\phi_U),v+D(\phi_U\phi_V^{-1})_{\phi_V(p)}w)]$. The addition is well-defined since if $[((U^\prime,\phi_{U^\prime}),v^\prime)] = [((U,\phi_U),v)] $ and $ [((V,\phi_V),w)] \sim [((V^\prime,\phi_{V^\prime}),w^\prime)]$, then 
+    \begin{align*}
+      v^\prime + D(\phi_{U^\prime}\phi_{V^\prime}^{-1})_{\phi_{V^\prime}(p)}w^\prime &= D(\phi_{U^\prime}\phi_U^{-1})_{\phi_U(p)}v + D(\phi_{U^\prime}\phi_{V^\prime}^{-1})_{\phi_{V^\prime}(p)}D(\phi_{V^\prime}\phi_V^{-1})_{\phi_V(p)}w\\
+      &= D(\phi_{U^\prime}\phi_U^{-1})_{\phi_U(p)}(v + D(\phi_U\phi_V^{-1})_{\phi_V(p)}w)
+    \end{align*}
+    and so $[((U,\phi_U),v + D(\phi_U\phi_V^{-1})_{\phi_V(p)}w)] = [((U^\prime,\phi_{U^\prime}),v^\prime + D(\phi_{U^\prime}\phi_{V^\prime}^{-1})_{\phi_{V^\prime}(p)}w^\prime)]$ as needed.
+
+    Since the addition is well-defined, we may fix a chart $(U,\phi_U)$ and add elements of $T_pM$ with representatives labeled by $(U,\phi_U)$; that is, the addition reduces to $[((U,\phi_U),v)] + [((U,\phi_U),w)] = [((U,\phi_U),v+w)]$. Hence the addition is associative and commutative. The zero element under the addition operation is $[(U,\phi_U),0]$ and all elements in $T_pM$ have additive inverses.
+
+    The scalar multiplication on $T_pM$ is given by $c[((U,\phi_U),v)] = [((U,\phi_U),cv)]$. The scalar multiplication is well-defined since if $[((U^\prime,\phi_{U^\prime}),v^\prime)] = [((U,\phi_U),v)]$, then $cv^\prime = cD(\phi_{U^\prime}\phi_U^{-1})_{\phi_U(p)}v = D(\phi_{U^\prime}\phi_U^{-1})_{\phi_U(p)}(cv)$ so that $[((U,\phi_U),cv)] = [((U^\prime,\phi_{U^\prime}),cv^\prime)]$ as needed. Then by fixing a chart $(U,\phi_U)$ for the representatives of $T_pM$, it is clear that scalar multiplication satisfies the remaining unital, associative, and distributive properties required to make $T_pM$ a vector space.
     \item \begin{enumerate}
-      \item Since $Df_{(x,y)} = \Big(\!\begin{smallmatrix}
+      \item Let $(U,\phi_U)$ be a chart containing $p$. The addition in $T_pM^{\mathrm{curv}}$ is given by $\gamma + \beta = \phi_U^{-1}\ell$, where $\ell = \ell_{\gamma,\beta,\epsilon}\colon (-\epsilon,\epsilon)\to \mathbb R^n$ is given by $\ell(t) = \phi_U(p) + t[(\phi_U\gamma)^\prime(0) + (\phi_U\beta)^\prime(0)]$, where $\epsilon$ is chosen sufficiently small so that $B_\epsilon(\phi_U(p))\subset \phi_U(U)$. If $\gamma\sim\tilde\gamma$ and $\beta\sim\tilde\beta$, then $(\phi_U\tilde\gamma)^\prime(0) = (\phi_U\gamma)^\prime(0)$ and $(\phi_U\tilde\beta)^\prime(0) = (\phi_U\beta)^\prime(0)$ so that $\phi_U^{-1}\ell_{\gamma,\beta,\epsilon}\sim \phi_U^{-1}\ell_{\tilde\gamma,\tilde\beta,\tilde\epsilon}$ for any suitable choices of $\epsilon,\tilde\epsilon$. 
+      % We did not have to use the chart $(U,\phi_U)$ to obtain $\gamma + \beta$: If instead we used a chart $(\tilde U,\phi_{\tilde U})$ containing $p$ instead, the curves $\phi_U^{-1}\ell_{\gamma,\beta,\epsilon}$ and $\phi_{\tilde U}^{-1}\tilde\ell_{\gamma,\beta,\tilde\epsilon}$ are equivalent since we may write these maps in coordinates as $\phi_U|_{U\cap \tilde U}\phi_U^{-1}\ell_{\gamma,\beta,\epsilon}$ and $\phi_U|_{U\cap \tilde U}\phi_{\tilde U}^{-1}\tilde\ell_{\gamma,\beta,\tilde\epsilon}$ (we may need to adjust $\epsilon,\tilde\epsilon$). Their derivatives at zero necessarily will agree.
+      Observe that the definition given makes the addition associative and commutative. The zero element is represented by any constant path $\chi\colon (-\epsilon,\epsilon)\to M$ given by $\chi(t) = p$, and additive inverses to curves are given by reversing their orientation: $(\gamma + \gamma(-(\cdot)))(t) = \phi_U^{-1}\phi_U(p) = p$.
+
+      The scalar multiplication on $T_pM^{\mathrm{curv}}$ is given by $c\gamma = \gamma(c(\cdot))\colon (-\epsilon/\abs{c},\epsilon/\abs{c})\to M$. This operation is well-defined since if $\gamma\sim\tilde \gamma$, then $(\phi_Uc\gamma)^\prime(0) = c(\phi_U\gamma)^\prime(0) = c(\phi_U\tilde\gamma)^\prime(0) = (\phi_Uc\tilde\gamma)^\prime(0)$ as needed. Observe that $(a+b)\gamma = a\gamma + b\gamma$ since $\ell_{a\gamma,b\gamma,\epsilon}^\prime = (a+b)(\phi_U\gamma)^\prime(0)$. It follows from the definition that the scalar multiplication satisfies the remaining unital and associative properties required to make $T_pM^{\mathrm{curv}}$ a vector space.
+      \item Let $\gamma\sim\tilde\gamma$ and let $(V,\phi_V)$ be a chart containing $f(p)$. Then $(\phi_Vf\gamma)^\prime(0) = (\phi_Vf\phi_U^{-1})^\prime_{f(p)}(\phi_U\gamma)^\prime(0) = (\phi_Vf\phi_U^{-1})^\prime_{f(p)}(\phi_U\tilde\gamma)^\prime(0) = (\phi_Vf\tilde\gamma)^\prime(0)$ so that $Df_p^{\mathrm{curv}}$ is well-defined. We have $f(c\gamma + \beta) = f\phi_U^{-1}\ell_{c\gamma,\beta,\epsilon} = \phi_V^{-1}(\phi_Vf\phi_U^{-1})\ell_{c\gamma,\beta,\epsilon}$. Furthermore, $[(\phi_Vf\phi_U^{-1})\ell_{c\gamma,\beta,\epsilon}]^\prime(0) = D(\phi_Vf\phi_U^{-1})_{\phi_U(p)}[c(\phi_U\gamma)^\prime(0) + (\phi_U\beta)^\prime(0)] = c(\phi_Vf\gamma)^\prime(0) + (\phi_Vf\beta)^\prime(0) = (\phi_Vcf\gamma)^\prime(0) + (\phi_Vf\beta)^\prime(0)$, which implies that $f\phi_U^{-1}\ell_{c\gamma,\beta,\epsilon} = \phi_V^{-1}\ell_{cf\gamma,f\beta,\tilde\epsilon} = cf\gamma + f\beta$ as required.
+      \item Consider the map $T_pM^{\mathrm{curv}}\to T_pM$ given by $\gamma\mapsto [((U,\phi_U),(\phi_U\gamma)^\prime(0))]$. This is well-defined by definition of $\sim$ on $T_pM^{\mathrm{curv}}$ and is linear since $c\gamma + \beta = \phi_U^{-1}\ell_{c\gamma,\beta,\epsilon}$ is sent to $[(U,\phi_U),c(\phi_U\gamma)^\prime(0) + (\phi_U\beta)^\prime(0)] = c[(U,\phi_U),(\phi_U\gamma)^\prime(0) ] + [(U,\phi_U),(\phi_U\beta)^\prime(0)]$ as needed. If $\gamma$ is in the kernel of this map, then $(\phi_U\gamma)^\prime(0) = 0$ so that $\gamma\sim 0$ and for any $[((U,\phi_U),v)]$, a preimage is given by $\phi_U^{-1}(t\mapsto \phi_U(p) + tv)$ (defined for $t\in (-\epsilon,\epsilon)$ for suitably small $\epsilon$). Hence $T_pM^{\mathrm{curv}}\cong T_pM$.
+      
+      \sloppy Let $(V,\phi_V)$ be a chart containing $f(p)$. Then $Df_p^{\mathrm{curv}}\gamma = f\gamma \mapsto [((V,\phi_V),(\phi_Vf\gamma)^\prime(0))] = [((V,\phi_V),D(\phi_Vf\phi_U^{-1})_{\phi_U(p)}(\phi_U\gamma)^\prime(0))] = Df_p[((U,\phi_U),(\phi_U\gamma)^\prime(0))] \mapsfrom \gamma$. Hence the isomorphism above commutes with differentials.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item Since $DF_{(x,y)} = \Big(\!\begin{smallmatrix}
         1 & 0 \\
         0 & 1 \\ 
         f^\prime_x(x,y) & f^\prime_y(x,y)
@@ -108,14 +127,14 @@ I worked on this problem set with Sudharshan KV.
          1 \\ 
          f^\prime_y(x,y)
       \end{smallmatrix}\!\Big)\Big\}$.
-      \item Since $F$ parametrizes the graph of $f$, we should interpret $\im(Df_p)$ as a ``tangent plane''; that is, a a plane spanned by the columns of $DF_p$ that is translated so that it lies tangent to $F(p) = (p,f(p))$.
+      \item Since $F$ parametrizes the graph of $f$, we should interpret $\im(Df_p)$ as a ``tangent plane''; that is, a plane spanned by the columns of $DF_p$ that is translated so that it lies tangent to $F(p) = (p,f(p))$.
     \end{enumerate}
     \item \begin{enumerate}
       \item The functions $\phi_0f\phi_0^{-1}(t)=
       (t,t^2)$ and $\phi_2f\phi_1^{-1}(t)=(t^2,t^1)$ have derivatives of full rank for all $t$. Thus $f$ is an immersion.
-      \item Let $U = \cbr{[1:t]\mid t\in \mathbb R}$ with $\phi_U = \phi_0$ and $V = U_0 = \cbr{[1:s:t]\mid s,t\in\mathbb R}$ with $\phi_V = f\phi_0$, where $f\colon\mathbb R^2\to\mathbb R^2$ is given by $f(x,y) = (x,y-x^2)$. Note that $f$ is a diffeomorphism since it is smooth and has a smooth inverse given by $f^{-1}(x,y) = (x,y+x^2)$. Then $\phi_Vf\phi_U^{-1}(t) = (t,0)$ as needed. The compatibility of $(V = U_0,\phi_V)$ with $(U_j,\phi_j)$ is due to the fact that $f$ is a diffeomorphism: the map $\phi_{j}\phi_{V}^{-1} = \phi_j\phi_0^{-1}f^{-1}\colon f\phi_0(U_0\cap U_j)\to \phi_j(U_0\cap U_j)$ is a diffeomorphism.
+      \item Let $U = \cbr{[1:t]\mid t\in \mathbb R}$ with $\phi_U = \phi_0$ and $V = U_0 = \cbr{[1:s:t]\mid s,t\in\mathbb R}$ with $\phi_V = f\phi_0$, where $f\colon\mathbb R^2\to\mathbb R^2$ is given by $f(x,y) = (x,y-x^2)$. Note that $f$ is a diffeomorphism since it is smooth and has a smooth inverse given by $f^{-1}(x,y) = (x,y+x^2)$. Then $\phi_Vf\phi_U^{-1}(t) = (t,0)$ as needed. The compatibility of $(V = U_0,\phi_V)$ with $(U_j,\phi_j)$ is due to the fact that $f$ is a diffeomorphism: the map $\phi_{j}\phi_{V}^{-1} = \phi_j\phi_0^{-1}f^{-1}\colon f\phi_0(U_0\cap U_j)\to \phi_j(U_0\cap U_j)$ is a diffeomorphism for all $j$.
     \end{enumerate}
-    \item Let $g\colon \mathbb R\to\mathbb R$ be given by $g(x) = x\exp(-1/x^2)$ (and $g(0) = 0$). Observe that $g$ is a bijection and is not analytic at $x = 0$, but has vanishing derivatives at every order there. Then the map $f\colon\mathbb R\to \mathbb R^2$ given by $f(x) = (g(x),\sqrt{g(x)^2})$ is a smooth map whose image is $S = \cbr{(x,\abs{x})\mid x\in\mathbb R}$. 
+    \item Let $g\colon \mathbb R\to\mathbb R$ be given by $g(x) = x\exp(-1/x^2)$ for nonzero $x$ and $g(0) = 0$. Observe that $g$ is a bijection and is not analytic at $x = 0$, but has vanishing derivatives at every order there. Then the map $f\colon\mathbb R\to \mathbb R^2$ given by $f(x) = (g(x),\sqrt{g(x)^2})$ is a smooth map whose image is $S = \cbr{(x,\abs{x})\mid x\in\mathbb R}$. 
     
     Suppose there exists an immersion $f = (f_1,f_2) \colon \mathbb R\to\mathbb R^2$ whose image is $S$, and without loss of generality let $f(0) = (0,0)$. One of $f_1^\prime(0)$ or $f_2^\prime(0)$ is nonzero; without loss of generality let $f_1^\prime(0) = c > 0$. Then in a small neighborhood of $0$, $\abs{f_1(t)} = f_2(t)$. Thus $\lim_{t\to 0^+} f_1(t)/t = c = \lim_{t\to 0^+} f_2(t)/t$ and $\lim_{t\to 0^-} f_1(t)/t = -c = -\lim_{t\to 0^-} f_2(t)/t$. It follows that the derivative of $f$ at $0$ is $0$, which contradicts $f$ being an immersion.
 \end{enumerate}
