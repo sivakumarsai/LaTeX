@@ -1,0 +1,138 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+\let\O\relax
+\newcommand{\O}{\mathrm O}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+% lol
+\newcommand{\lqq}[1]{\overset{#1}{\leq}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{6.6 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+I worked on this problem set with Michael Han, Jake Wellington, and Iris Jiang.
+\begin{enumerate}
+    \item[16.] If $\abs{a_k}\leq Ck^N$ for some constant $C>0$ and $N$; that is, the $a_k$ are of polynomial order, then $f = \sum_{k\geq 1}a_k\delta_k$ defines a tempered distribution, and this is sharp. Indeed, $\abs{\abr{f,\phi}} \leq \sum_{k\geq 1}\abs{a_k\phi(k)} \leq C\sum_{k\geq 1}k^Nk^{-N-2}\abs{k^{N+2}\phi(k)}\leq MC\sum_{k\geq 1}k^{-2}<\infty$, and the action of $f$ is continuous since if $\phi_n\xrightarrow{\mathcal S} 0$, $\abs{\abr{f,\phi_n}} \leq C\rho_{N+2}(\phi_n)\sum_{k\geq 1}k^{-2}$, which may be made arbitrarily small in $n$.
+    
+    Let $\abs{a_k}>Ck^N$ for any constant $C>0$ and any $N$, and let $\phi\in \mathcal D(\mathbb R)$ have compact support of diameter less than $1/2$, $\norm{\phi}_1 = 1$, and $\phi(0) = 1$. Then $\varphi$ given by $\varphi(x) = \sum_{k\geq 1}a_k^{-1}\phi(x-k)$ belongs to the Schwartz class since test functions belong to the Schwartz class and $a_k^{-1}$ shrinks faster than any polynomial. Then $\abr{f,\varphi} = \sum_{k\geq 1}1$, which diverges.
+    \item[17.] The distribution $\PV(1/x)$ is tempered. For any $\phi\in\mathcal S(\mathbb R)$, $\abr{\PV(1/x),\phi} = \lim_{\varepsilon\to 0^+}\int_{\abs{x}>\varepsilon}\phi(x)/x\dd x = \int_\varepsilon^\infty(\phi(x)-\phi(-x))/x\dd x \eq{\smallmathhappy}\int_0^\infty (\phi(x)-\phi(-x))/x\dd x < \infty$, where equality $\mathhappy$ holds due to $\lim_{x\to 0}(\phi(x)-\phi(-x))/x = 2\phi^\prime(0)$.
+    \sloppy If $\phi_n\xrightarrow{\mathcal S}0$, $\abs{\abr{\PV(1/x),\phi_n}}\leq \big|\int_0^1(\phi_n(x)-\phi_n(-x))/x\dd x\big| + \int_1^\infty \abs{x\phi_n(x)}/x^2\dd x + \int_1^\infty\abs{x\phi_n(-x)}/x^2\dd x\lqq{\smallmathsad} 2\norm{\phi_n^\prime}_\infty + 2\rho_1(\phi_n)$, which may be made arbitrarily small. The inequality $\mathsad$ holds due to $\abs{(\phi_n(x)-\phi_n(-x))/x}\leq (\int_0^x\abs{\phi_n^\prime(t)}\dd t + \int_{-x}^0\abs{\phi_n^\prime(t)}\dd t)/\abs{x}\leq (\int_{-x}^x\abs{\phi_n^\prime(t)}\dd t)/\abs{x}\leq 2\norm{\phi_n^\prime}_\infty$. \begin{enumerate}
+        \item Properties of the Fourier transform yield $D\mathcal F(\PV(1/x))= -i\mathcal F(x\PV(1/x)) = -i\mathcal F(1) = -i\sqrt{2\pi}\delta_0$. An antiderivative of $-i\sqrt{2\pi}\delta_0$ is $-i\sqrt{\pi/2}\sgn$, since $D\sgn = (\lim_{\xi\to 0^+}\sgn(x) - \lim_{\xi\to 0^-}\sgn(x))\delta_0 = 2\delta_0$. Therefore $\mathcal F(\PV(1/x)) = -i\sqrt{\pi/2}\sgn + c$, where $c$ is to be determined. Let $g$ be given by $g(x) = \exp(-x^2/2)$ so that $\abr{\mathcal F(\PV(1/x)),g} = \abr{\PV(1/x),g} = 0$ since $g(x)/x$ is odd. Observe $\abr{-i\sqrt{\pi/2}\sgn,g}= -i\sqrt{\pi/2}\int_0^\infty \sgn(x)g(x)\dd x = 0$ since $\sgn(x)g(x)$ is odd. Thus $c = 0$ as needed.
+        \item Let $\phi\in \mathcal S(\mathbb R)$. We have $\norm{H\phi}_2^2 = \abr{H\phi,H\phi} = \abr{\mathcal FH\phi,\mathcal FH\phi} = \abr{\sgn\cdot\mathcal F\phi,\sgn\cdot\mathcal F\phi} = \norm{\mathcal F\phi}_2^2 = \norm{\phi}_2^2$. Furthermore, we have $HH\phi = \mathcal F^{-1}\mathcal FHH\phi = (-i(2\pi)^{-1/2}\sgn(\cdot/\pi))^2\mathcal F^{-1}\mathcal F\phi = -\phi$ Extend these results to $L_2(\mathbb R)$ by density of $\mathcal S(\mathbb R)\subset L_2(\mathbb R)$.
+    \end{enumerate}
+    \item[23.] The Telegrapher's equation appearing in the current print version of the notes is
+    \[\begin{cases}
+      u_{tt} + \mathcolor{red}{2}u_t + u = c^2u_{xx} & x\in \mathbb R,~ t>0\\
+      u(x,0) = f(x),~ u_t(x,0) = g(x) & f,g\in L_2(\mathbb R).
+    \end{cases}\]
+    We use this equation instead of the one in the online notes since the calculations appear to be easier. \begin{enumerate}
+      \item Applying the Fourier transform in $x$ to the PDE above yields the ODE $[(D_t+1)^2+(c\xi)^2]\mathcal F_xu = 0$ with initial conditions $\mathcal F_xu(\xi,0) = \mathcal Ff(\xi)$ and $D_t\mathcal F_xu(\xi,0) = \mathcal Fg(\xi)$, which has solution $\mathcal F_xu = e^{-t}[\mathcal Ff(\xi)\cos(c\xi t) + (\mathcal Ff(\xi) +\mathcal Fg(\xi))\sin(c\xi t)/c\xi]$. Take the inverse Fourier transform in $x$ to obtain $u = e^{-t}[f\ast (\delta_{ct} + \delta_{-ct})/2 + (f+g)\ast((1/2c)\chi_{[-ct,ct]})] = e^{-t}[(f(x+ct)+f(x-ct))/2 + (1/2c)\int_{-ct}^{ct}(f+g)(x-y)\dd y]$. Curiously, this is just the d'Alembert solution to the usual wave equation but with a damping coefficient and the appearance of $f+g$ inside the integral instead of just $g$. There must be some physical interpretation of this solution as pulses going in opposite directions that fall off in amplitude, but I do not quite understand the meaning of $f$ appearing inside the integral. The function $g$ should represent some kind of initial velocity of the pulse, so its contribution to the motion of the pulse should appear as integrating velocity in some sense, but why also $f$?. 
+      \item What? We would need $f$ twice continuously differentiable in $x$ and once continuously differentiable in $t$, more conditions on $g$...\textcolor{red}{what to do with this?}
+    \end{enumerate}
+    \item[24.] The Fourier transform in $x$ of the Klein-Gordon equation yields the ODE 
+    \item[26.] (31.)
+\end{enumerate}
+\end{document}
