@@ -84,6 +84,9 @@
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Mat}{\mathrm{M}}
 \newcommand{\Sp}{\mathrm{Sp}}
@@ -128,9 +131,25 @@ I worked on this problem set with Sudharshan KV.
     \end{enumerate}
     \item If $A^T\Omega A = \Omega$, then $A$ is invertible since $\Omega$ is invertible, and $A^T\Omega A$ is antisymmetric since $(A^T\Omega A)^T = A^T\Omega^T A = -A^T\Omega A$. Let $\AS_{2n}(\mathbb R)$ denote the antisymmetric matrices of size $2n\times 2n$. Let $f\colon \GL_{2n}(\mathbb R)\to\AS_{2n}(\mathbb R)$ be given by $A\mapsto A^T\Omega A$. Since matrix multiplication is a polynomial in the entries of the matrices, $f$ is smooth. The tangent space of $\GL_{2n}$ is $\Mat_{2n}(\mathbb R)$. The dimension of $\AS_{2n}(\mathbb R)$ is $(2n)(2n-1)/2$ since antisymmetric matrices are determined by the strictly lower-triangular entries. This also implies that the tangent space of $\AS_{2n}(\mathbb R)$ is itself.
     
-    The derivative of $f$ is $Df_A(B) = \lim_{t\to 0}\dv{t}(f(A+tB)) = \lim_{t\to 0}\dv{t}(t(A^T\Omega B + B^T\Omega A) + O(t^2)) = A^T\Omega B + B^T\Omega A$. This map is surjective since for any $C = \Big(\begin{smallmatrix}
+    The derivative of $f$ is $Df_A(B) = \lim_{t\to 0}\dv{t}(f(A+tB)) = \lim_{t\to 0}\dv{t}(t(A^T\Omega B + B^T\Omega A) + O(t^2)) = A^T\Omega B + B^T\Omega A$. This map is surjective on $\Sp_{2n}(\mathbb R) = f^{-1}(\Omega)$ since above we may take $B = AC$ and for any $C = \big(\!\begin{smallmatrix}
+      C_{11} & C_{12} \\
+      C_{21} & C_{22}
+    \end{smallmatrix}\!\big)$ as a block matrix, we have $Df_A(C) = A^T\Omega AC + C^TA^{T}\Omega A = \Omega C +C^T\Omega = \Big(\!\begin{smallmatrix}
+      C_{21} - C_{21}^T & C_{22}+C_{11}^T \\
+      -C_{22}-C_{11}^T & -C_{12} + C_{12}^T
+    \end{smallmatrix}\!\Big)$. For any antisymmetric matrix $M$, we may choose the block matrices $C_{12},C_{21},C_{11},C_{22}$ so that $Df_A(C) = M$ (since the block matrices of $M$ satisfy $M_{21}^T = -M_{12}$, $M_{12}^T = -M_{21}$, $M_{22}^T = -M_{22}$, and $M_{11}^T = -M_{11}$).
+
+    By the preimage theorem, $\Sp_{2n}(\mathbb R)$ is a $4n^2 - (2n)(2n-1)/2 = (2n)(2n+1)/2$-dimensional submanifold of $\GL_{2n}(\mathbb R)$. The tangent space at the identity is the kernel of $Df_{\id}$ given by all matrices $C$ for which by the above calculation requires $C_{12},C_{21}$ to be symmetric and $C_{11} + C_{22}^T = 0$. By the following problem on Lie groups, it follows that the tangent space at any $A$ is given by multiplying all such matrices $C$ on the left by $A$.
+    \item \begin{enumerate}
+      \item The multiplication map on $\GL_n(\mathbb R)$ is a polynomial in the entries of the matrices, hence smooth. The inversion map on $\GL_n(\mathbb R)$ is given by $\det^{-1}(-)\cdot\Adj(-)$, where $\Adj(-)$ is the adjugate of a matrix, which is a polynomial in the entries of the matrix. Since $\det$ does not vanish on $\GL_n(\mathbb R)$, the inversion map is smooth. Hence $\GL_n(\mathbb R)$ is a Lie group.
       
-    \end{smallmatrix}\Big)$
-    \item 
+      Let $i\colon Z\to Y$ be an inclusion of a submanifold $Z$ in $Y$, and let $f\colon X\to Z$ be a smooth map. If $f$ is smooth, then $if$ is evidently smooth. If $if$ is smooth, then we may choose coordinates around $f(p)$ for any fixed $p\in X$ so that in coordinates $i$ is the canonical inclusion of a lower-dimensional Euclidean space into a higher-dimensional one, since $i$ is an immersion. Then for $\pi $ the left inverse of the canonical inclusion above, $f$ in coordinates is just $\pi i f$, which is smooth since $\pi, if$ are smooth. This proves the following:
+
+      If $G$ is a subgroup and submanifold of $\GL_n(\mathbb R)$, the restriction of the smooth multiplication map is $G\times G\to G$, which is smooth because $G\times G\to \GL_n(\mathbb R)\times \GL_n(\mathbb R)\to \GL_n(\mathbb R)$ is smooth. Similarly the inversion map on $G$ is smooth, so $G$ is a Lie group.
+      \item Since $L_g$ is linear, the derivative should be left multiplication by $g$. Indeed, for any curve $\gamma\in T_a\GL_n(\mathbb R)$, the derivative of left multiplication by $g$ is acts by $\gamma\mapsto g\gamma$. By taking the standard charts of $\GL_n(\mathbb R)$ around $a$ and $ga$, we manifest $DL_g$ by left multiplication by $g$.
+      \item Consider the inclusion $i\colon G\to \GL_n(\mathbb R)$ and observe that since $G$ is a submanifold, we may identify the tangent space $T_pG$ with a subspace of $T_p\GL_n(\mathbb R)$ for any $p$; this inclusion is the derivative of $i$ at $p$. Then by identifying $T_p\GL_n(\mathbb R)$ with $\Mat_n(\mathbb R)$, we find that the derivative of $L_g$ is given by left multiplication by $g$ on $\Mat_n(\mathbb R)$. The composite $(DL_g)_e Di_e$ agrees with left multiplying by $g$ on $T_eG$ and then applying $Di_g$; that is, as subspaces of $\Mat_n(\mathbb R)$, $T_gG$ is obtained by left multiplying the tangent vectors of $T_eG$ by $g$.
+      \item For $R_g$ given by right multiplication by $g$, $C_g = L_gR_{g^{-1}}$ so $(DC_g)_e$ is given by $(DL_g)_{g^{-1}}(DR_{g^{-1}})_e$. By similar reasoning as before, $DR_{g^{-1}}$ is right multiplication by $g^{-1}$. Therefore $DC_g$ is given by conjugation by $g$, restricted to the subspace $\mathfrak g$ of $\Mat_n(\mathbb R)$.
+      \item Identify the Lie algebra of $\GL_n(\mathbb R)$ with $\Mat_n(\mathbb R)$ so that $D\Ad_e\colon \Mat_n(\mathbb R)\to \End(\Mat_n(\mathbb R))$ is (roughly) computed as $\lim_{t\to 0}\dv{t}(Y\mapsto\Ad(e+tX)Y) = Y\mapsto \lim_{t\to 0}\dv{t}((e+tX)Y(e+tX)^{-1}) = Y\mapsto XY-YX$ since $(e+tX)^{-1} = e-tX + O(t^2)$ (and in spirit we are using the fact that the derivative of a matrix is the derivative of its entries). Hence $D\Ad_e(Y) = XY-YX$, the Lie bracket on matrices. Restricting this calculation to $\mathfrak g$ yields the same derivative of the adjoint representation on $\mathfrak g$ as needed (it should come as restriction of $D\Ad_e$ to $\mathfrak g$).
+    \end{enumerate}
 \end{enumerate}
 \end{document}
