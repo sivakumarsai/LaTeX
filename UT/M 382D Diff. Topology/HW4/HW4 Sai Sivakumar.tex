@@ -84,7 +84,10 @@
 \newcommand{\res}[1]{\operatorname*{res}_{#1}}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
-\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Mat}{\mathrm{M}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\AS}{\mathrm{AntiSym}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -92,11 +95,42 @@
 \begin{document}
 I worked on this problem set with Sudharshan KV.
 \begin{enumerate}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+    \item \begin{enumerate}
+      \item At each $f(p)\in f(U)$ for $U$ open, there exist open sets $V$ containing $p$ and $W$ containing $f(p)$ such that $f|_V\colon V\to W$ is surjective. By passing to charts, choose $\tilde W\subseteq W$ such that $\tilde V = f^{-1}(\tilde W)$ is contained in $U$. Then $f(\tilde V)$ is open and is contained in $f(U)$, so $f$ is an open map.
+      \item The set $f(X)$ is open since $f$ is an open map by part (a). The set $f(X)$ is closed by compactness of $X$, $Y$ being Hausdorff, and continuity of $f$. Since $f(X)$ is nonempty, connectedness of $Y$ implies $f(X) = Y$.
+    \end{enumerate}
+    \item From the preimage theorem deduce that $f^{-1}(\cbr{y})$ is a discrete set (i.e., a dimension zero submanifold) in $X$; by compactness of $X$ we must have that $f^{-1}(\cbr{y})$ is a finite set of points $\cbr{x_1,\dots,x_n}$. Since $X$ and $Y$ have the same dimension, $Df_{x_i}$ are each invertible. Therefore there exist neighborhoods $\tilde U_i$ containing $x_i$ and $\tilde V_i$ containing $y$ such that $f$ maps $\tilde U_i$ diffeomorphically to $\tilde V_i$. Choose the $\tilde U_i$ to be connected sets, and choose them to be disjoint from each other since $X$ is Hausdorff. With $V^\prime = \bigcap_i \tilde V_i$, the sets $U_i^\prime = (f|_{\tilde U_i})^{-1}(V^\prime)$ also map diffeomorphically onto $V$. 
+    
+    The set $X\setminus (\bigcup_iU_i^\prime)$ is compact so its image $f(X\setminus (\bigcup_iU_i^\prime))$ is closed in $Y$. The set $f(X\setminus (\bigcup_iU_i^\prime))$ does not contain $y$ since $f^{-1}(\cbr{y})\subseteq \bigcup_iU_i^\prime$. So further refine $V^\prime$ by choosing an open subset $V$ of $V^\prime$ that does not intersect $f(X\setminus (\bigcup_iU_i^\prime))$, and let $U_i = (f|_{\tilde U_i})^{-1}(V)$. Thus $V$ is an open neighborhood of $y$ such that $f^{-1}(V) = \bigsqcup_i U_i$ and $f$ maps each of the $U_i$ diffeomorphically onto $V$.
+    \item \begin{enumerate}
+      \item Since $S$ is a smooth $k$-dimensional submanifold of $M$, there exists a chart $(U,\phi)$ of $M$ around $p$ such that $\phi$ maps $S\cap U$ homeomorphically onto $\im \phi\cap \iota(\mathbb R^k)$ where $\iota\colon \mathbb R^k\to \mathbb R^n$ is the canonical inclusion $x\mapsto (x,0)$. Let $f = \pi\phi$, where $\pi\colon \im \phi \to \mathbb R^{n-k}$ is the projection $(x,y)\mapsto y$. Therefore $f^{-1}(0) = \phi^{-1}(\cbr{x,0}) = S\cap U$.
+    
+      The derivative $Df_x$ for $x\in U$ is surjective since $\phi$ is a diffeomorphism and $\pi$ has surjective derivative, so $Df$ is surjective along $S\cap U$ also.
+
+      We check that the inclusion of $S$ in $M$ is an immersion. In coordinates, the inclusion is given by the canonical inclusion $x\mapsto (x,0)$; so its derivative $\big(\!\begin{smallmatrix}
+        I \\ 0
+      \end{smallmatrix}\!\big)$ is injective.
+      \item Consider the inclusion $i\colon S\to \mathbb R^2$ and the identity chart $\id = \pi_x\oplus \pi_y\colon \mathbb R^2\to\mathbb R^2$. Since $i$ is an immersion, its derivative at $p\in S$ in the identity chart given by $(D\pi_x|_S,D\pi_y|_S)_p$ is injective so at least one of $(D\pi_x|_S)_p,(D\pi_y|_S)_p$ is nonzero. Since $S$ is one-dimensional, one of $(D\pi_x|_S)_p,(D\pi_y|_S)_p$ is invertible and hence one of $\pi_x|_S, \pi_y|_S$ is a local diffeomorphism around any $p$.
+      \item The square $S = \cbr{(x,y)\mid \max\cbr{\abs{x},\abs{y}} = 1}$ cannot be a smooth one-dimensional submanifold of $\mathbb R^2$ since the projection maps $\pi_x|_S, \pi_y|_S$ are both not locally injective at any of the corners of the square.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item On $U_0$, the map $f_0\colon U_0\to \mathbb R$ given by $[1:x:y:z]\mapsto z-xy$ is smooth and $H\cap U_0 = f_0^{-1}(0)$. The derivative of $f_0$ along $f^{-1}(0)$ in coordinates is $(-y~-x~1)$, which is surjective. Therefore $H\cap U_0$ is a submanifold of $\mathbb{RP}^3$. Similar arguments on the remaining charts $U_i$ show that $H\cap U_i$ is a submanifold of $\mathbb{RP}^3$ for all $i$, so $H$ is a submanifold of $\mathbb{RP}^3$.
+      \item The product of smooth manifolds $X$ and $Y$ is a smooth manifold: The set $X\times Y$ is Hausdorff, is second countable, and charts are given by taking the products of charts on $X$ and $Y$.
+      
+      The map $\sigma$ in coordinates in the charts $U_0\times U_0$ and $U_0$ is $(x,y)\mapsto (y,x,xy)$, which is smooth and has injective derivative $\Big(\!\begin{smallmatrix}
+        0 & 1 \\
+        1 & 0 \\
+        y & x
+      \end{smallmatrix}\!\Big)$. By repeating the argument on $U_i\times U_i\to U_i$, deduce that $\sigma$ is an immersion.
+      
+      Furthermore, $\sigma$ is injective since, for example, if $[1:y:x:xy] = [1:y^\prime:x^\prime:x^\prime y^\prime]$, then $x = x^\prime$ and $y = y^\prime$. A similar argument can be made on the other charts of $\mathbb{RP}^1\times\mathbb{RP}^1$. The image of $\sigma$ is indeed $H$ (it is clear that $\im \sigma\subseteq H$) since for $[1:z_1:z_2:z_3]\in H$, we may take a preimage to be $([1,z_2],[1,z_1])$, since $z_3 = z_1z_2$. On other charts of $\mathbb{RP}^3$, the argument is similar. Since $\mathbb{RP}^1$ is diffeomorphic to $S^1$, which is compact, and $\sigma$ maps into a Hausdorff space, it follows that $\sigma$ is an embedding. Therefore $\sigma$ is a smooth embedding onto $H$.
+      \item Since $\mathbb{RP}^1\times\mathbb{RP}^1$ is diffeomorphic to the torus $S^1\times S^1$, it follows from (b) that $H$ is diffeomorphic to the torus.
+    \end{enumerate}
+    \item If $A^T\Omega A = \Omega$, then $A$ is invertible since $\Omega$ is invertible, and $A^T\Omega A$ is antisymmetric since $(A^T\Omega A)^T = A^T\Omega^T A = -A^T\Omega A$. Let $\AS_{2n}(\mathbb R)$ denote the antisymmetric matrices of size $2n\times 2n$. Let $f\colon \GL_{2n}(\mathbb R)\to\AS_{2n}(\mathbb R)$ be given by $A\mapsto A^T\Omega A$. Since matrix multiplication is a polynomial in the entries of the matrices, $f$ is smooth. The tangent space of $\GL_{2n}$ is $\Mat_{2n}(\mathbb R)$. The dimension of $\AS_{2n}(\mathbb R)$ is $(2n)(2n-1)/2$ since antisymmetric matrices are determined by the strictly lower-triangular entries. This also implies that the tangent space of $\AS_{2n}(\mathbb R)$ is itself.
+    
+    The derivative of $f$ is $Df_A(B) = \lim_{t\to 0}\dv{t}(f(A+tB)) = \lim_{t\to 0}\dv{t}(t(A^T\Omega B + B^T\Omega A) + O(t^2)) = A^T\Omega B + B^T\Omega A$. This map is surjective since for any $C = \Big(\begin{smallmatrix}
+      
+    \end{smallmatrix}\Big)$
     \item 
 \end{enumerate}
 \end{document}
