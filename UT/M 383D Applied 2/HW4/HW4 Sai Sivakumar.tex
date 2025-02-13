@@ -123,7 +123,24 @@
     
     Then $f_j = \int_0^1f_j(x) - f_j(y)\dd y = \int_0^1\int_y^x f_j^\prime$ so that $\abs{f_j} \leq \int_0^1\int_y^x \abs{f^\prime}\leq \int_0^1\norm{\chi_{[y,x]}}_2\norm{f_j^\prime}_2\leq \norm{f_j^\prime}_2$. Then $\norm{f_j}_2 \leq \norm{f_j^\prime}_2$; by taking limits we obtain $\norm{f}_2\leq \norm{f^\prime}_2$.
     \item[4.] It suffices to prove the result on the dense subspace $C^\infty(0,1)\cap H^1(0,1)$ of $H^1(0,1)$ since uniformly continuous maps on dense subsets of metric spaces may be extended uniquely to the whole space. Let $\cbr{f_j}\subseteq C^\infty(0,1)\cap H^1(0,1)$ converge to zero. The $f_j$ are already continuous, and we have $\abs{f_j}\leq \int_{x_0}^x|f_j^\prime|\leq \norm{\chi_{[x_0,x]}}_2\norm{f_j^\prime}_2 \leq \norm{f_j^\prime}_2$ so that $\norm{f_j}_\infty\leq \norm{f_j^\prime}_2$. Since $\norm{f_j^\prime}_2$ tends to zero, the $f_j$ are bounded and $f_j$ converges to zero in the supremum norm on $C_B(0,1)$. Therefore the identity map is a continuous embedding of $C^\infty(0,1)\cap H^1(0,1)$ in $C_B(0,1)$, which implies $H^1(0,1)$ embeds continuously in $C_B(0,1)$.
-    \item[5.] 
-    \item[6.] 
+    \item[5.] Let $R(x,i)$ be the maximum of $1$ and the maximal radius of a ball centered at $x\in \Omega$ contained in $U_i$. Form an open cover of $\overline \Omega$ by taking the union of balls $B_{R(x,i)}(x)\subseteq U_i$ for each $x\in \Omega$, and by compactness only finitely many $x_i$ are required to produce a cover of $\Omega$. Let $R_i$ be the radius of the ball containing $x_i$ generated above.
+    
+    With $f(t) = \exp(-1/t^2)\chi_{(0,\infty)}(t)$, $g_i(t) = f(x-R_i/2)f(R_i-x)$, and $h_i(t) = (\int_{R_i/2}^xg(t)\dd t)/(\int_{R_i/2}^{R_i}g(t)\dd t)$, let 
+    \[\psi_i(x) = \begin{cases}
+      1 & \text{for }x\in B_{R_i/2}(x_i)\\
+      1-h_i(\abs{x-x_i}) & \text{for }x\in B_{R_i}(x_i)\setminus B_{R_i/2}(x_i)\\
+      0 & \text{for } x\in \mathbb R^d\setminus B_{R_i}(x_i).
+    \end{cases}\]
+
+    Let $\phi_i = \psi_i/(\sum_j\psi_j)$; it follows that each $\phi_i$ is smooth, compactly supported on $B_{R_i}(x_i)\subseteq U_{i_k}$ for some $i_k$, and $\sum_i\phi_i(x) = (\sum_i\psi_i(x))/(\sum_j\psi_j(x)) = 1$ as required.
+    \item[6.] Let $S$ be the set of points of $\Omega$ with rational coordinates, so that $S$ is countable. The countable collection of balls $\big\{B_{R(x)}(x)\mid R(x)\in \mathbb Q,~x\in S,~\overline{B_{R(x)}(x)}\subseteq U_\alpha\text{ for some }\alpha\in \mathcal I\big\}$ constitutes a cover of $\Omega$ and we order the balls by $B_{R_i}(x_i) \coloneqq B_{R(x_i)}(x_i)$ for $x_i\in S$. We repeat the construction in the previous problem: Let $f(t) = \exp(-1/t^2)\chi_{(0,\infty)}(t)$, $g_i(t) = f(x-R_i/2)f(R_i-x)$, and $h_i(t) = (\int_{R_i/2}^xg(t)\dd t)/(\int_{R_i/2}^{R_i}g(t)\dd t)$, let 
+    \[\phi_i(x) = \begin{cases}
+      1 & \text{for }x\in B_{R_i/2}(x_i)\\
+      1-h_i(\abs{x-x_i}) & \text{for }x\in B_{R_i}(x_i)\setminus B_{R_i/2}(x_i)\\
+      0 & \text{for } x\in \mathbb R^d\setminus B_{R_i}(x_i).
+    \end{cases}\]
+    Let $\psi_i = \phi_i\cdot\prod_{j=1}^{i-1}(1-\phi_j)$, where $\prod_{j=1}^{0}(1-\phi_j) = 1$.
+    
+    For $K$ compactly supported in $\Omega$, finitely many balls $B_{R_{i_1}}(x_{i_1}),\dots,B_{R_{i_n}}(x_{i_n})$ constitute a cover of $K$. Choose $j> \max{i_1,\dots,i_n}$ so that $\psi_j$ vanishes on $K$, on account of $K\subseteq \bigcup_kB_{R_{i_k}}(x_k)$ and the product $\prod_k(1-\phi_{i_k})$ appearing in $\psi_j$. Hence all but finitely many $\psi_j$ vanish on $K$. Each $\psi_j$ is nonnegative by construction. Since $\cbr{x}$ is compact for a point $x\in \Omega$ the function $N(x)$, given by the smallest index for which $\phi_{N(x)+1}(x) = 0$, is defined. Then $\phi_{N(x)}(x) = 1$ since $1-\phi_{N(x)}(x) = 0$ in the expansion for $\phi_{N(x)+1}(x)$. Therefore $\sum_{j=1}^\infty\psi_j(x) = \sum_{j=1}^{N(x)}\psi_j(x) = \phi_1(x) + \phi_2(x)(1-\phi_1(x)) + \cdots + \phi_{N(x)-1}(x)(1-\phi_{N(x)-2}(x))\cdots(1-\phi_1(x)) + (1-\phi_{N(x)-1}(x))(1-\phi_{N(x)-2}(x))\cdots(1-\phi_1(x)) = \cdots = 1$. The support of $\psi_j$ is the closure of $B_{R_j}(x_j)\setminus (\bigcup_{i=1}^{j-1}B_{R_i/2}(x_i))$, which is contained in some $U_{\alpha_j}$ by construction.
 \end{enumerate}
 \end{document}
