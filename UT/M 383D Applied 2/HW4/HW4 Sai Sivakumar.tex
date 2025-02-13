@@ -105,6 +105,9 @@
 \DeclareMathOperator{\mathsad}{\!\sad\!}
 \DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
 
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
 % lol
 \newcommand{\lqq}[1]{\overset{#1}{\leq}}
 
@@ -114,8 +117,12 @@
 \begin{document}
 \subsection*{7.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
 \begin{enumerate}
-    \item[2.] 
-    \item[4.] 
+    \item[2.] Let $\cbr{f_j}\subseteq \mathcal D(0,1)\cap H^1_0(0,1)$ converge to $f\in H^1_0(0,1)$. Then $f_j(0) = 0$ since each $f_j$ is compactly supported and $\norm{f_j}_2^2 = \int_0^1|\int_0^x f_j^\prime|^2\leq \int_0^1(\int_0^x|f_j^\prime|)^2\leq \int_0^1\norm{f_j^\prime}_2^2 = \norm{f_j^\prime}_2^2$. By taking limits we have $\norm{f}_2\leq \norm{f^\prime}_2$ (the maps $\norm{\cdot}_2$ and $\norm{D(\cdot)}_2$ are continuous on $H^1_0(0,1)$).
+    
+    Let $\cbr{f_j}\subseteq C^\infty(0,1)\cap H^1(0,1)$ converge to $f\in H^1(0,1)$ with $\int_0^1f_j = 0$ and $\int_0^1f = 0$ This can be done by choosing the $f_j$ in $C^\infty(0,1)\cap H^1(0,1)$ by density, passing to an increasing subsequence that converges almost everywhere to $f$, and shifting them by appropriate constants $c_j = \int_0^1 f_j$. Furthermore, take the $f_j$ to be uniformly bounded above by $\abs{f}$, since $f$ is also in $L_1(0,1)$. Then $\norm{D(f_j-c_j-f)}_2 = \norm{f_j^\prime-f^\prime}$ goes to zero and $\norm{f_j-c_j-f}_2\leq \norm{f_j-f}_2 + \abs{c_j}$, but $c_j$ tends to $0$ by the dominated convergence theorem. Since $\norm{f_j-f}_2$ goes to zero, $f_j-c_j$ converges to $f$. So without loss of generality, we may choose $f_j$ so that $\int_0^1 f_j = 0$.
+    
+    Then $f_j = \int_0^1f_j(x) - f_j(y)\dd y = \int_0^1\int_y^x f_j^\prime$ so that $\abs{f_j} \leq \int_0^1\int_y^x \abs{f^\prime}\leq \int_0^1\norm{\chi_{[y,x]}}_2\norm{f_j^\prime}_2\leq \norm{f_j^\prime}_2$. Then $\norm{f_j}_2 \leq \norm{f_j^\prime}_2$; by taking limits we obtain $\norm{f}_2\leq \norm{f^\prime}_2$.
+    \item[4.] It suffices to prove the result on the dense subspace $C^\infty(0,1)\cap H^1(0,1)$ of $H^1(0,1)$ since uniformly continuous maps on dense subsets of metric spaces may be extended uniquely to the whole space. Let $\cbr{f_j}\subseteq C^\infty(0,1)\cap H^1(0,1)$ converge to zero. The $f_j$ are already continuous, and we have $\abs{f_j}\leq \int_{x_0}^x|f_j^\prime|\leq \norm{\chi_{[x_0,x]}}_2\norm{f_j^\prime}_2 \leq \norm{f_j^\prime}_2$ so that $\norm{f_j}_\infty\leq \norm{f_j^\prime}_2$. Since $\norm{f_j^\prime}_2$ tends to zero, the $f_j$ are bounded and $f_j$ converges to zero in the supremum norm on $C_B(0,1)$. Therefore the identity map is a continuous embedding of $C^\infty(0,1)\cap H^1(0,1)$ in $C_B(0,1)$, which implies $H^1(0,1)$ embeds continuously in $C_B(0,1)$.
     \item[5.] 
     \item[6.] 
 \end{enumerate}
