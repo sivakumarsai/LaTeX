@@ -1,0 +1,130 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+\let\O\relax
+\newcommand{\O}{\mathrm O}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% lol
+\newcommand{\lqq}[1]{\overset{#1}{\leq}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{7.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[1.] Let $f\in H^k(\mathbb R^d)$. Then 
+    \begin{multline*}
+        \norm{f}_{H^1}^2 = \sum_{j=0}^m\sum_{\abs{\alpha} = j}\norm{D^\alpha f}_2^2 = \sum_{j=0}^m\sum_{\abs{\alpha} = j}\norm{\mathcal FD^\alpha f}_2^2 = \sum_{j=0}^m\sum_{\abs{\alpha} = j}\norm{(i\xi)^\alpha \mathcal F f}_2^2 \\ = \int_{\mathbb R^d}\Big[\sum_{j=0}^m\sum_{\abs{\alpha} = j}(\xi^\alpha)^2\Big]\abs{\mathcal Ff}^2 = \int_{\mathbb R^d}\Big[\sum_{j=0}^m\abs{\xi}^{2j}\Big]\abs{\mathcal Ff}^2
+    \end{multline*} and specializing to the case $m = 1$ yields $\norm{f}_{H^1}^2 = \int_{\mathbb R^d}[1+\abs{\xi}^{2}]\abs{\mathcal Ff}^2$.
+    \item[3.] We define $\delta_0$ on $H^1(\mathbb R)$ by the unique extension of $\delta_0$ on the dense subspace $C^\infty(\mathbb R)\cap H^1(\mathbb R)$ to $H^1(\mathbb R)$. For $f\in C^\infty(\mathbb R)\cap H^1(\mathbb R)$ we have the estimate $\abs{f(0)-f(y)} = \big|\int_y^0Df\big|\leq \int_y^0\abs{Df}\leq \abs{y-0}^{1/2}\norm{Df}_2$ (so by density, $H^1(\mathbb R)$ is H\"older continuous with exponent $1/2$). Then $\abs{f(0)} - \abs{f(y)}\leq \abs{y}^{1/2}\norm{Df}_2$ so that $\abs{f(0)} = \int_0^1\abs{f(0)}\leq \int_0^1(\abs{y}^{1/2}\norm{Df}_2 + \abs{f(y)})\leq \norm{Df}_2 + \norm{f}_2$. So if $\cbr{f_n}\subseteq C^\infty(\mathbb R)\cap H^1(\mathbb R)$ converges to zero, then $\cbr{\delta_0f_n}\subseteq$ converges to zero since $\abs{\delta_0f_n} = \abs{f_n(0)}\leq \norm{Df_n}_2 + \norm{f_n}_2$ can be made arbitrarily small.
+    
+    Consider the sequence of functions 
+    \item[7.] 
+    \item[8.] 
+\end{enumerate}
+\end{document}

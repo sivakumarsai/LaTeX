@@ -1,0 +1,127 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Int}{int}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Mat}{\mathrm{M}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\AS}{\mathrm{AntiSym}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+I worked on this problem set with Sudharshan KV.
+\begin{enumerate}
+    \item For positive $a\neq 1$, $H$ is transverse to $S_a$. For $a<1$, $H$ is vacuously transverse to $S_a$ since their intersection is empty. The tangent spaces of $H$ and $S_a$ are the orthogonal complements of the gradients of the functions defining them. So for $a\geq 1$ and $p\in H\cap S_a = \{(x,y,\pm z)\mid x^2+y^2 = (a+1)/2, z= \sqrt{(a-1)/2}\}$, 
+    \begin{align*}
+        T_pH &= \Span\{(x,y,\mp z)\}^\perp = \Span\{(-y,x,0),(\pm x z,\pm y z,+(a+1)/2)\} \text{ and}\\
+        T_pS_a &= \Span\{(x,y,\pm z)\}^\perp = \Span\{(-y,x,0),(\pm x z,\pm y z,-(a+1)/2)\}.
+    \end{align*}
+    Only when $a>1$ do we have $T_pH + T_pS_a = \mathbb R^3$.
+    \item \begin{enumerate}
+        \item The product of smooth manifolds $X$ and $Y$ is a smooth manifold: The set $X\times Y$ is Hausdorff, is second countable, and charts are given by taking the products of charts on $X$ and $Y$. View $X,Y$ as submanifolds of $X\times Y$ via the smooth embeddings $i_{y_0}\colon X\to X\times Y$ given by $x\mapsto (x,y_0)$ and $j_{x_0}\colon Y\to X\times Y$ given by $y\mapsto (x_0,y)$ for any $x_0\in X$ and $y_0\in Y$. Then at $p = (x_0,y_0)\in X\times Y$, $T_p(i_{y_0}X) + T_p(j_{x_0}Y) = T_p(X\times Y)$. Any smooth $\gamma\colon (-\epsilon,\epsilon)\to X\times Y$ may be decomposed into the sum of $\gamma_1\colon (-\epsilon,\epsilon)\to X\times \cbr{y_0}$ plus $\gamma_2\colon (-\epsilon,\epsilon)\to \cbr{x_0}\times Y$. A natural choice is $\gamma_1 = \pi_{y_0}\gamma$ and $\gamma_2 = \tau_{x_0}\gamma$, where $\pi_{y_0}$ and $\tau_{x_0}$ are the corresponding left inverses to $i_{y_0}$ and $j_{x_0}$. But $T_p(i_{y_0}X)$ and $T_p(j_{x_0}Y)$ only intersect at the constant curve to $(x_0,y_0)$. Therefore $T_p(i_{y_0}X) \oplus T_p(j_{x_0}Y) = T_p(X\times Y)$.
+        \item Let $p\in Z_1\cap Z_2$. Since $Z_1\cap Z_2$ is contained in $Z_1$ and $Z_2$, $T_p(Z_1\cap Z_2)\subseteq T_pZ_1\cap T_pZ_2$ From linear algebra and by transversality of $Z_1$ and $Z_2$, $\dim(T_pZ_1\cap T_pZ_2) = \dim(T_pZ_1) + \dim(T_pZ_2) - \dim(T_pZ_1+T_pZ_2) = \dim(T_pZ_1) + \dim(T_pZ_2) - \dim(T_pY)$. Furthermore, transversality implies $\codim(Z_1\cap Z_2) = \codim Z_1  + \codim Z_2$, so that $\dim(T_p(Z_1\cap Z_2)) = \dim(T_pZ_1) + \dim(T_pZ_2) - \dim(T_pY)$. Hence $T_p(Z_1\cap Z_2) = T_pZ_1\cap T_pZ_2$.
+        \item We show that $T_x(f^{-1}Z)$ is the preimage of $T_{f(x)}Z$ under $Df_x$; that is, $T_x(f^{-1}Z) = (Df_x)^{-1}(T_{f(x)}Z)$. Let $\dim Y = m$ and $\dim Z = k$. There is a chart $(U,\phi)$ of $Y$ containing $f(x)$ such that $\phi(Z\cap U)\subseteq \mathbb R^k\times\cbr{0}\subseteq \mathbb R^m$, and let $\pi\colon \mathbb R^m\to \mathbb R^{m-k}$ be the projection to the last $m-k$ entries. Define $g\colon U\to \mathbb R^{m-k}$ so that $g$ is a submersion. Furthermore, $gf$ is a submersion since $f$ is transverse to $Z$ (cf. Manolescu section 4.10). Then $T_x(f^{-1}Z) = \ker(D(gf)_x) = \ker(Dg_{f(x)}Df_x) = (Df_x)^{-1}\ker(Dg_{f(x)}) = (Df_x)^{-1}(T_{f(x)}Z)$ as needed.
+    \end{enumerate}
+    \item Observe that $T_{(x,x)}\Delta = \Delta$ and $T_{(x,Ax)}\Gamma_A = \Gamma_A$. That $\Delta$ and $\Gamma_A$ are transverse is equivalent to $T_p\Delta+T_p\Gamma_A = \Delta+\Gamma_A = \mathbb R^{2n}$ for every $p\in \Delta\cap \Gamma_A$ (note $\Delta\cap \Gamma_A$ is nonempty, since it contains $(0,0)$). This is equivalent to $\Delta\cap \Gamma_A = \cbr{(0,0)}$, since $\dim(\Delta\cap \Gamma_A) = \dim\Delta + \dim\Gamma_A - \dim(\Delta + \Gamma_A) = 2n- \dim(\Delta + \Gamma_A)$. That $\Delta\cap \Gamma_A = \cbr{(0,0)}$ is equivalent to $Ax= x$ having only trivial solution; that is, $A$ does not have $1$ as an eigenvalue. 
+    \item Let $F\colon X\to X\times X$ be given by $\id\times f$ taking $x$ to $(x,f(x))$, which is smooth. Then $F$ is transverse to $\Delta = \cbr{(x,x)\mid x\in X}\subseteq X\times X$: The set $F^{-1}(\Delta)$ is the set of (Lefschetz) fixed points of $f$, so by hypothesis $\im(DF_x) = \im(\id \oplus Df_x)$ and $T_{(x,x)}\Delta = \cbr{(y,y)\mid y\in T_xX}$ span $T_{(x,x)}(X\times X)$ by Problem 3. Therefore $F^{-1}(\Delta)$ is a smooth submanifold of $X$ of dimension $\dim X-\codim \Delta = 0$; that is, a discrete subset of $X$. Recall that $\Delta$ is closed since $X$ is Hausdorff. Since $X$ is compact, $F^{-1}(\Delta)$ is also compact, hence must be finite.
+    \item Let $X = \mathbb R$, $Y = \mathbb R^2$ $Z = \mathbb R\times \cbr{0}\subseteq Y$, and consider $f\colon X\to Y$ given by $f(x) = (x,\cos(x)/(1+x^2))$. If $H\colon X\times (-\epsilon,1)\to Y$ is given by $H(x,t) = f(x)+t$, then $f_0 = f$ is transverse to $Z$ but there exists a sequence $\cbr{t_i}$ converging to zero for which $f_{t_i}$ is not transverse to $Z$. For example, choose $t_i = \cos(c_i)/(1+c_i^2)$, where $c_i$ is the $i$-th nonnegative critical point of the function $x\mapsto \cos(x)/(1+x^2)$. By shifting the graph of $\cos(x)/(1+x^2)$ up by $t_i$, $f_{t_i}$ fails to be transverse to the horizontal axis at exactly $x= \pm c_i$.
+    \item Suppose that $f$ is a smooth map of manifolds $C\to\mathbb R$ and let $k = \dim C$. Then let $(W,\phi)$ be a chart of $\mathbb R^n$ so that $W\cap C$ is a chart of $C$ such that $\phi(W\cap C)\subseteq \mathbb R^k\times \cbr{0}\subseteq \mathbb R^n$. Let $\pi\colon \mathbb R^n\to\mathbb R^k$ be the projection to the first $k$ entries. Then extend $f\phi^{-1}$ to $g\colon \phi(W)\cap \pi^{-1}(\phi(W\cap C))\to \mathbb R$ by $g = f\phi^{-1}\pi$. Then an extension of $f$ is $\tilde f = g\phi$, defined on $\phi^{-1}(\phi(W)\cap \pi^{-1}(\phi(W\cap C)))$, which is smooth since in coordinates it is the map $g$, which is smooth. 
+    
+    Suppose that $f$ is extension-smooth on $C$. Then for a point $p\in C$, there is an extension $\tilde f$ of $f$ defined on some open set $U$ of $\mathbb R^n$ containing $p$. But restriction of a smooth map to a submanifold produces a smooth map; in this case we restrict $\tilde f\colon U\to \mathbb R$ to $\tilde f\colon U\cap C\to \mathbb R$, and the restriction agrees with $f$ by hypothesis. Thus $f$ is a smooth map on $C$.
+    \item \begin{enumerate}
+        \item Suppose $p\in\Int M\cap \partial M$ so that there exists a chart $(U,\phi)$ containing $p$ with $\phi(U)$ homeomorphic to $\mathbb R^n$ and there exists a chart $(V,\psi)$ containing $p$ with $\psi(V)$ homeomorphic to $\mathbb H^n$. Then $U\cap V$ is homeomorphic to both $\mathbb R^n$ and $\mathbb H^n$, which implies $\mathbb R^n$ is homeomorphic to $\mathbb H^n$, a contradiction since $\mathbb R^n$ is not homeomorphic to $\mathbb H^n$ (for example, $\mathbb R^n$ minus the any point has nontrivial homology while $\mathbb H^n$ minus the origin has trivial homology).
+        \item Suppose $p\in \Int M$ and $f(p)\in \partial N$ so that there are charts $(U,\phi)$ containing $p$ and $(V,\psi)$ containing $f(p)$ for which $\phi(U)$ is homeomorphic to $\mathbb R^n$ and $\psi(V)$ is homeomorphic to $\mathbb H^n$. Then in coordinates $f$ becomes a homeomorphism of $\mathbb R^n$ with $\mathbb H^n$, impossible. Similarly $f$ cannot map boundary points of $M$ to interior points of $N$.
+        
+        Therefore the restriction of $f$ to $\Int M$ yields a map $f_{\Int}\colon \Int M\to \Int N$, and this restriction is a diffeomorphism since in coordinates, $f_{\Int}$ is a diffeomorphism. The restriction of $f$ to $\partial M$ also yields a map $f_\partial\colon \partial M\to \partial N$. Let $(U,\phi)$ be any chart of $M$ containing $p\in \partial M$. The map $f$ in coordinates may be extended to a smooth map $\tilde f$ on an open neighborhood containing $\phi(U)\cong \mathbb H^n$ by Problem 6. The restriction $f_\partial$ is equal to $\pi \tilde f$, where $\pi$ is the projection of $\phi(U)$ onto its boundary. Without loss of generality (by adjusting the chart $(U,\phi)$), let $\phi(U) = \mathbb H^n$ so that $\pi$ is the projection $\mathbb H^n\to \mathbb R^{n-1}$. Since $\pi$ and $\tilde f$ are smooth, $f_ \partial$ is also smooth. A similar argument shows that $f_ \partial$ has a smooth inverse, so $f_ \partial$ is a diffeomorphism.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
