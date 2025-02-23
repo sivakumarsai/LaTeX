@@ -2,17 +2,9 @@
 \headheight=13.6pt
 
 % packages
-\usepackage{physics}
-% margin spacing
 \usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
-\usepackage{hanging}
 \usepackage{amsfonts, amsmath, amssymb, amsthm}
-\usepackage[none]{hyphenat}
 \usepackage{fancyhdr}
-\usepackage{graphicx}
-\graphicspath{{./images/}}
-\usepackage{float}
-\usepackage{color}
 \usepackage{enumitem}
 
 % header/footer formatting
@@ -20,39 +12,13 @@
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[L]{Some problems involving binary and n-ary expansion}
-\fancyhead[C]{}
-\fancyhead[R]{}
-\fancyfoot[R]{\thepage}
+\fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{1pt}
 
 % paragraph indentation/spacing
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{10pt}
 \renewcommand{\baselinestretch}{1.25}
-
-% extra commands defined here
-\newcommand{\br}[1]{\left(#1\right)}
-\newcommand{\sbr}[1]{\left[#1\right]}
-\newcommand{\cbr}[1]{\left\{#1\right\}}
-\newcommand{\eq}[1]{\overset{#1}{=}}
-
-% bracket notation for inner product
-\usepackage{mathtools}
-
-\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
-
-\DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\EV}{ev}
-\DeclareMathOperator{\co}{co}
-\newcommand{\res}[1]{\operatorname*{res}_{#1}}
-\DeclareMathOperator{\id}{id}
-\let\PV\relax
-\DeclareMathOperator{\PV}{PV}
-\DeclareMathOperator{\sgn}{sgn}
 
 % smileys frownies
 \usepackage{wasysym}
@@ -65,14 +31,43 @@
 \DeclareMathOperator{\mathsad}{\!\sad\!}
 \DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
 
-\let\norm\undefined % <-- "Undefine" \norm
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}
-
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
+In the decimal system, we use the digits $0$ through $9$ to describe numbers. For example, the number 
+\[\text{one thousand, seven hundred twenty-eight}\]
+is denoted in decimal by
+\[1728.\]
+But what is meant by $1728$ is the sum $8\times 10^0 + 2\times 10^1 + 7\times 10^2 + 1\times 10^3$. That is, given an arbitrary string of digits
+\[a_ma_{m-1}\dots a_1a_0,\]
+the decimal number it represents is the sum
+\[a_0\times 10^0 + a_1\times 10^1+\cdots + a_{m-1}\times 10^{m-1} + a_m\times 10^m.\] Fractions are similar. Digits to the right of the decimal point, called the radix point in general, represent adding negative powers of $10$. For example, 
+\[2.683\]
+represents the sum 
+\[3\times 10^{-3} + 8\times 10^{-2} + 6\times 10^{-1} + 2\times 10^0.\]
+
+Binary, and other bases, are similar to decimal. In binary we only use the digits $0$ and $1$ to represent numbers via sums of powers of $2$. For example, 
+\[10110.101\]
+in binary represents the sum
+\[1\times 2^{-3} + 0\times 2^{-2} + 1\times 2^{-1} + 0\times 2^0 + 1\times 2^1 + 1\times 2^2 + 0\times 2^4 + 1\times 2^5.\]
+To avoid confusion, we should indicate what system we are using whenever we write a string of digits. The following convention is not bad:
+\begin{align*}
+    {\texttt{<digits>}}_{10} &= \text{in decimal system (or base $10$)}\\
+    {\texttt{<digits>}}_{2} &= \text{in binary system (or base $2$)}
+\end{align*}
+
+In general, expressing a number in base $n$ for an integer $n$ means to express that number using the digits $0,\dots,n-1$ as a sum of powers of $n$ via 
+\[a_s\dots a_0.a_{-1}\dots a_{-r} = a_{-r}\times n^{-r} + \cdots a_{-1}\times n^{-1} + a_0\times n^0 + \cdots a_s\times n^s.\]
+\newpage
 \begin{enumerate}
-    \item
+    \item In the decimal system, some numbers have repeating blocks of digits after the decimal point, denoted with a line above the block that repeats. For example, $0.142857142857\cdots_{10} = 0.\overline{142857}_{10}$ can be shown to be the fraction $1/7$, and $0.999\cdots_{10} = 0.\overline{9}_{10} = 1$.
+
+    What is $0.\overline{1}_2$, $0.\overline{101}_2$, and $0.\overline{12}_3$? \vspace*{\fill} 
+    \item Write down a few digits of $\sqrt{2}$ in base $10$ and in base $2$.\vspace*{\fill}
+    \newpage \item Let $B$ be the set of all binary integers that can be written using exactly $5$ zeros and $8$ ones where leading zeros are allowed. If all possible subtractions are performed in which one element of $B$ is subtracted from another, find the number of times the answer $1$ is obtained. \vspace*{\fill} % https://artofproblemsolving.com/wiki/index.php/2012_AIME_I_Problems/Problem_5 
+    \item In the binary expansion of $\dfrac{2^{2007}-1}{2^{225}-1}$, how many of the first $10,000$ digits to the right of the radix point are $0$'s?\vspace*{\fill} % https://artofproblemsolving.com/wiki/index.php/2007_iTest_Problems/Problem_56 
+    \newpage \item  Let $P(x)$ be a polynomial with non-negative integer coefficients. If $P(1) = 7$, and $P(8) = 9352$, determine the coefficients of $P(x)$. \vspace*{\fill} % https://www.reddit.com/r/math/comments/yx0i7r/determine_a_polynomial_from_just_two_inputs/ 
+    \item Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positive integers with the property that the maximum element of $B$ belongs to $A$. Bob's list has 2024 sets. Find the sum of the elements of A. \vspace*{\fill} % https://artofproblemsolving.com/wiki/index.php/2024_AIME_II_Problems/Problem_6 
 \end{enumerate}
 \end{document}
