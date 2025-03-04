@@ -1,0 +1,138 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+\let\O\relax
+\newcommand{\O}{\mathrm O}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\EV}{ev}
+\DeclareMathOperator{\co}{co}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% lol
+\newcommand{\lqq}[1]{\overset{#1}{\leq}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{7.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[9.] We need to also assume that $\Omega$ is bounded and has Lipschitz boundary. Let $g\in \mathcal D(\Omega)$. Then for $\abs{\alpha} = 2$, $\abr{D^\alpha f - g_\alpha,g} = \lim_{j\to\infty}\abr{D^\alpha(f-f_j),g} = \lim_{j\to\infty}\abr{f-f_j,D^\alpha g} = 0$ since $f_j$ converges weakly to $f$ in $H^1(\Omega)$ and hence also weakly in $L^2$. By density of $\mathcal D(\Omega)$ in $L^2(\Omega)$, $D^\alpha f = g_\alpha$ in $L^2$. Since the $H^2$ norm is the sum of the $H^1$ norm and the $L^2$ norm of the second derivatives, $f$ is in $H^2(\Omega)$, and $f_j$ weakly converges to $f$ in $H^2(\Omega)$. By a corollary to the Rellich-Kondrachov theorem (here we are using that $\Omega$ is bounded and has Lipschitz boundary to extend the result and its corollary to the $W^{m,p}$ spaces) there exists a subsequence of $\cbr{f_j}$ that converges strongly to $f$ in $H^1(\Omega)$.
+    \item[10.] Let $\phi\in\mathcal D(\Omega)$ and $\abs{\alpha} = 1$. Pass to a subsequence for which $f_j,g_j$ strongly converge to $f,g$ respectively in $L^2(\Omega)$ by a corollary to the Rellich-Kondrachov theorem. We have $\norm{f_jg_j-fg}_1\leq \norm{f_jg_j-f_jg}_1 + \norm{f_jg-fg}_1 \leq \norm{f_j}_2\norm{g_j-g}_2 + \norm{g}_2\norm{f_j-f}_2$, and $\cbr{\norm{f_j}_2}$ is uniformly bounded due to weak convergence of the $f_j$, so $f_jg_j$ strongly converges to $fg$ in $L_1(\Omega)$. Hence $\abr{D^\alpha(f_jg_j), \phi} = -\int_\Omega f_jg_jD^\alpha \phi$ converges to $-\int_\Omega fgD^\alpha \phi = \abr{D^\alpha(fg),\phi}$; that is, $\nabla(f_jg_j)$ converges to $\nabla(fg)$ in the sense of distributions.
+
+    To improve this convergence to weak $L^p$ convergence, we require for $\abs{\alpha} = 1$ that $D^\alpha(f_jg_j)$ and $D^\alpha(fg)$ are in $L^p$ and $\abr{D^\alpha(f_jg_j),h}$ converges to $\abr{D^\alpha(fg),h}$ for $h$ in $L^q(\Omega)$. Since $D^\alpha(f_ig_i) = f_iD^\alpha g_i + g_iD^\alpha f_i$, by symmetry, it suffices to show that $f_iD^\alpha g_i$ converges weakly to $fD^\alpha g$ in $L^p(\Omega)$. For any $h\in L^q(\Omega)$, $\abr{f_iD^\alpha g_i - fD^\alpha g,h} = \int_\Omega f_iD^\alpha g_i h = \int_\Omega (f_i-f)D^\alpha g_i h + \int_\Omega f(D^\alpha g_i-D^\alpha g) h$. Since $g_i$ converges weakly to $g$ in $H^1(\Omega)$, the same is true in $L^2(\Omega)$, so $\int_\Omega f(D^\alpha g_i-D^\alpha g) h$ converges to zero if $fh\in L^2(\Omega)$. We have $\norm{fh}_2\leq \norm{f}_{2q/(q-2)}\norm{h}_q$, and we will determine $p$ for which $f\in L^{2q/(q-2)}(\Omega)$ after, so for now assume this. Similarly, since $g_i$ converges to $g$ weakly in $H^1(\Omega)$, we need $(f_j-f)h\in L^2$, so by a similar estimate, we need $f_i-f$ to be in $L^{2q/(q-2)}$ as well to ensure this. The space $H^1(\Omega)$ is compactly contained in $L^{2q/(q-2)}$ for $2q/(q-2) \leq 2d/(d-2)$ (i.e., $p\leq d/(d-1)$) if $d\geq 2$, so in this case, pass to a subsequence for which $f_j$ converges strongly to $f$ so that $\cbr{\norm{f_j-f}_2}$ is uniformly bounded. Then the integrals comprising $\abr{f_iD^\alpha g_i - fD^\alpha g,h}$ converge to zero. For $d = 1$, embed $H^1(\Omega)$ into $C^0(\overline{\Omega})$ to see that a subsequence of $f_j$ converges to $f$ and $D^\alpha g_j$ converges to $D^\alpha g$ in $L^\infty(\Omega)$. Then again the integrals in $\abr{f_iD^\alpha g_i - fD^\alpha g,h}$ converge to zero as needed. In both cases it suffices to let $p\leq 2$. 
+
+    Thus for $p\leq 2$, $\nabla (f_jg_j)$ weakly converges to $\nabla(fg)$ in $L^p(\Omega)$.
+    \item[11.]\begin{enumerate}
+        \item We have $q^\ast = (1/2-\varepsilon/d)^{-1} = 2d/(d-2\varepsilon)>2$. In the cases where $2\leq d/\varepsilon$, compactly embed $H^{2+\varepsilon}(\Omega)$ into $H^2(\Omega)$. In the case where $2>d/\varepsilon$, compactly embed $H^{2+\varepsilon}(\Omega)$ into $C^2(\overline{\Omega})\subset H^2(\Omega)$. In all cases there exists a strongly convergent subsequence of $\cbr{u_j}$ in $H^2(\Omega)$.
+        \item Let $q^\ast\in (2,2d/(d-4-2\varepsilon)]$, so that in the case that $2<d/s_2$ for $s_2\in (0,2+\varepsilon]$, compactly embed $H^{2+\varepsilon}$ into $W^{s,q}$ for all $q\in [1,q^\ast)$ where $s = 2-\varepsilon - s_2$. In this case there exists a strongly convergent subsequence of $u_j$ in $W^{s,q}$.
+
+        In the case that $p=d/s_2$ where $s_2\in (0,2+\varepsilon]$, compactly embed $H^{2+\varepsilon}$ into $W^{s,q}$ for all $q\in [1,\infty)$ where $s = 2+\varepsilon - s_2$, and deduce a similar result.
+
+        In the case that $p>d/s_2$ for $s_2\in (0,2+\varepsilon]$, $H^{2+\varepsilon}(\Omega)$ into $C^s(\overline{\Omega})\subset W^{s,q}$ for $q\in [1,\infty]$ and $s = 2+\varepsilon - s_2$, and deduce a similar result.
+        \item As of this time, I did not type up what we got for this part - I will submit again shortly after the due date if possible. \textcolor{red}{EDIT: Now what we did come up with is below.}
+
+        We have for $\abs{\alpha} = 1$ that $\norm{}_2$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
