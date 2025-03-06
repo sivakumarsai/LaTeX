@@ -1,0 +1,125 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{7.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[12.] \begin{enumerate}
+        \item Indeed, $\int_{\mathbb R^d}(1+\abs{\xi}^2)^{-s}\dd \xi = \int_{\abs{\xi}< 1}(1+\abs{\xi}^2)^{-s}\dd \xi + \int_{\abs{\xi}\geq 1}(1+\abs{\xi}^2)^{-s}\dd \xi$ with $\int_{\abs{\xi}< 1}(1+\abs{\xi}^2)^{-s}\dd \xi$ finite and $\int_{\abs{\xi}\geq 1}(1+\abs{\xi}^2)^{-s}\dd \xi\leq \int_{\abs{\xi}\geq 1}\abs{\xi}^{-2s}\dd \xi = \sigma_{d-1}\int_1^\infty r^{d-2s-1}\dd r$, which is finite since $d-2s-1<-1$. Here $\sigma_{d-1}$ denotes the surface area of the $(d-1)$-sphere. Let $B = \int_{\mathbb R^d}(1+\abs{\xi}^2)^{-s}\dd \xi$.
+        \item For $\phi\in \mathcal S$, we have $\abs{\phi(x)} = (2\pi)^{-d/2}\big|\!\int_{\mathbb R^d}\mathcal F \phi (\xi)\exp(i\abr{\xi,x})\dd \xi\big|\leq (2\pi)^{-d/2}\int_{\mathbb R^d}[\abs{\mathcal F\phi(\xi)}(1+\abs{\xi}^2)^{s/2}][(1+\abs{\xi}^2)^{-s/2}]\dd \xi\leq (2\pi)^{-d/2}(\int_{\mathbb R^d}\abs{\mathcal F\phi(\xi)}^2(1+\abs{\xi}^2)^{s}\dd \xi)^{1/2}(\int_{\mathbb R^d}(1+\abs{\xi}^2)^{-s}\dd \xi)^{1/2} = (2\pi)^{-d/2}B^{1/2}\norm{\phi}_{H^s(\mathbb R^d)}$. It follows that $\norm{\phi}_\infty \leq (2\pi)^{-d/2}B^{1/2}\norm{\phi}_{H^s(\mathbb R^d)}$. If $\cbr{\phi_n}\subset \mathcal S$ converges to $0$ in $H^s(\mathbb R^d)$, then $\norm{\phi_n}_\infty \leq (2\pi)^{-d/2}B^{1/2}\norm{\phi_n}_{H^s(\mathbb R^d)}$ tends to zero as $n$ grows unboundedly, so $\mathcal S\subset H^s(\mathbb R^d)$ embeds continuously in $C^0_B(\mathbb R^d)$ for $s>d/2$.
+        \item Since $\mathcal S$ is dense in $H^s(\mathbb R^d)$ and the above continuous embedding of $\mathcal S$ into $C^0_B(\mathbb R^d)$ is linear and continuous, it is also uniformly continuous so that it defines a unique extension to $H^s(\mathbb R^d)$ that is also continuous. Thus $H^s(\mathbb R^d)$ embeds continuously into $C^0_B(\mathbb R^d)$ for $s>d/2$.
+    \end{enumerate}
+    \item[13.] \begin{enumerate}
+        \item If $f\in H^r(\mathbb R^d)$ for $r>s$ and $s\in [0,1]$, $\norm{f}_{H^s(\mathbb R^d)}^2 = \int_{\mathbb R^d}\abs{\mathcal Ff(\xi)}^2(1+\abs{\xi}^2)^s\dd \xi = \int_{\mathbb R^d}\abs{\mathcal Ff(\xi)}^{2s/r}(1+\abs{\xi}^2)^s\abs{\mathcal Ff(\xi)}^{2(r-s)/r}\dd \xi\leq (\int_{\mathbb R^d}\abs{\mathcal Ff(\xi)}^2(1+\abs{\xi}^2)^r\dd \xi)^{s/r}(\int_{\mathbb R^d}\abs{\mathcal Ff(\xi)}^2\dd \xi)^{(r-s)/r} = \norm{f}_{H^r(\mathbb R ^d)}^{2s/r}\norm{\mathcal Ff}_2^{2(r-s)/r}$. Applying Plancherel's theorem and taking square roots yields $\norm{f}_{H^s(\mathbb R^d)}\leq \norm{f}_{H^r(\mathbb R ^d)}^{s/r}\norm{f}_2^{(r-s)/r}$. In the case $r=1$, we obtain $\norm{f}_{H^s(\mathbb R^d)}\leq \norm{f}_{H^1(\mathbb R ^d)}^{s}\norm{f}_2^{1-s}$.
+        \item For $d = 1$, change coordinates so that without loss of generality $\Omega = (0,1)$. For $f\in C^\infty(0,1)\cap H^1(0,1)$, $f(0)^2 = f(x)^2 - \int_0^x \dv{t}[f(t)^2]\dd t$ so that $\norm{f}_{L^2(\partial(0,1))}^2 = f(1)^2 - f(0)^2 = \int_0^1 \dv{t}[f(t)^2]\dd t \leq  2\int_0^1 \abs{f^\prime(t)}\abs{f(t)}\dd t\leq 2(\int_0^1\abs{f^\prime(t)}^2\dd t)^{1/2}(\int_0^1\abs{f(t)}^2\dd t)^{1/2}\leq 2\norm{f}_{H^1(0,1)}\norm{f}_{L^2(0,1)}$. Thus $\norm{f}_{L^2(\partial(0,1))}\leq \sqrt{2}\norm{f}_{H^1(0,1)}^{1/2}\norm{f}_{L^2(0,1)}^{1/2}$. By density of $C^\infty(0,1)$ in $H^1(0,1)$, we obtain the result for any $f\in H^1(0,1)$.
+        
+        For $d>1$, assume that $\Omega$ is the unit rectangle $R = (0,1)^d$ (we should not expect to be able to diffeomorph any connected open $\Omega$ with smooth boundary to $R$, but an approximation may be possible). \sloppy Let $f\in C^\infty(R)\cap H^1(R)$ so that $\norm{f}_{\partial R}^2 = (-1)^j\sum_{j=1}^d\int_{(0,1)^{d-1}} f(x)^2|_{x_j = 1} - f(x)^2|_{x_j = 0}\prod_{i\neq j}\dd x_{i} \leq \sum_{j=1}^d \int_{R}\big|\pdv{x_j}[f(x)^2]\big|\dd x_j\prod_{i\neq j}\dd x_{i}\leq 2\sum_{j=1}^d \int_R\big|\pdv{x_j}f(x)\big|\abs{f(x)}\dd x \leq 2\sum_{j=1}^d(\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}) = 2d\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}$. Thus $\norm{f}_{\partial R}\leq \sqrt{2d}\norm{f}_{H^1(R)}^{1/2}\norm{f}_{L^2(R)}^{1/2}$. Extend this result to $f\in H^1(R)$ by density of smooth functions in $H^1(R)$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
