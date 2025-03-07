@@ -100,7 +100,16 @@
 
 \begin{document}
 \begin{enumerate}
-    \item \begin{enumerate}
+    \setcounter{enumi}{3}
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item[1.] \begin{enumerate}
         \item Let $\dim X = n$, $\dim Y = m$, $\dim Z = k$. Let $N_x(S;X)$ and $M_x(S;X)$ be complementary subspaces of $T_xX$ to $T_xS$. We also have (from a previous homework problem) that $Df_x(N_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$ and $Df_x(M_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$; this is due to injectivity of $Df_x$ on $N_x(S;X)$ and $M_x(S;X)$ and transversality of $f$ and $Z$. Let $\gamma$ be an oriented basis of $T_{f(x)}Z$ and choose bases $\alpha,\tilde\alpha$ of $Df_x(N_x(S;X))$ and $Df_x(M_x(S;X))$ such that we obtain two positive orientations of $T_{f(x)}Y$. The block matrix for the change of basis from $\alpha\cup\gamma$ to $\tilde\alpha\cup\gamma$ is of the form $\big(\!\begin{smallmatrix}
             A & \ast \\ 0 & I
         \end{smallmatrix}\!\big)$; here $A$ has positive determinant. Pull back $\alpha$ and $\tilde\alpha$ along $Df_x$ to bases $\beta$ and $\tilde\beta$ of $N_x(S;X)$ and $M_x(S;X)$, and choose a basis $\delta$ of $T_xS$ so that $\beta\cup\delta$ and $\tilde\beta\cup\delta$ are bases of $T_xX$. It suffices to show that the two orientations given to $T_xX$ in this manner are in the same equivalence class; that is, it is enough to see that the change of basis matrix from $\beta\cup\delta$ to $\tilde\beta\cup\delta$ has positive determinant. Indeed, the change of basis matrix is also of the form $\big(\!\begin{smallmatrix}
@@ -111,7 +120,11 @@
         If $Z$ has positive dimension and $S$ has zero dimension, then choose $N_x(S;X)$ to be $T_xX$. Then $Df_xN_x(S;X)$ has an orientation determined by $T_{f(x)}Z$ and $T_{f(x)}Y$ which we pull back to $N_x(S;X)$. Then if the orientation on $N_x(S;X)$ agrees (disagrees) with the orientation on $T_xX$ then $T_xS$ has positive (negative) orientation.
         \item Let $y\in X\cap Z = S$ and again let $N_y(S;X) = T_yX$ so that an orientation on $T_yS$ is determined by whether $Df_yN_y(S;X) \oplus T_yZ = T_yX \oplus T_yZ = T_yY$ as oriented vector spaces. In particular, if $T_yX \oplus T_yZ = T_yY$ then $T_yS$ must have positive orientation since $N_y(S;X) \oplus T_yS = T_yX \oplus T_yS = T_yX$; if not, then $T_yS$ gets the opposite orientation.
     \end{enumerate}
-    \item Since $X$ and $Z$ are transverse, the orientation of $S = X\cap Z$ is specified by $N_y(S;X) \oplus T_yS = T_yX$ for $y\in S$, from which we obtain also $N_y(S;X)\oplus T_yZ = T_yY$. We also have $N_y(S;Z)\oplus T_yS = T_yZ$ and $N_y(S;Z)\oplus T_yX = T_yY$. Then $N_y(S;X)\oplus [N_y(S;Z)\oplus T_yS] = [N_y(S;X)\oplus  N_y(S;Z)] \oplus T_yS = T_yY$. To exchange $N_y(S;X)$ and $N_y(S;Z)$ in this equality, we do so on their bases. Each transposition of basis vectors reverses orientation, so we reverse the orientation some number of times equal to the codimension of $S$ in $X$ times the codimension of $S$ in $Z$; equivalently we reverse the orientation $(\codim X) (\codim Z)$ times. So $X\cap Z = (-1)^{(\codim X)(\codim Z)}Z\cap X$.
-    \item 
+    \item[2.] Since $X$ and $Z$ are transverse, the orientation of $S = X\cap Z$ is specified by $N_y(S;X) \oplus T_yS = T_yX$ for $y\in S$, from which we obtain also $N_y(S;X)\oplus T_yZ = T_yY$. We also have $N_y(S;Z)\oplus T_yS = T_yZ$ and $N_y(S;Z)\oplus T_yX = T_yY$. Then $N_y(S;X)\oplus [N_y(S;Z)\oplus T_yS] = [N_y(S;X)\oplus  N_y(S;Z)] \oplus T_yS = T_yY$. This equation determines the orientation of $T_yS$, and if we reverse the roles of $X$ and $Z$ we obtain the equation $[N_y(S;Z)\oplus  N_y(S;X)] \oplus T_yS = T_yY$, which determines the orientation of $T_yS$ with $X$ and $Z$ interchanged. To exchange $N_y(S;X)$ and $N_y(S;Z)$ in the equality $[N_y(S;X)\oplus  N_y(S;Z)] \oplus T_yS = T_yY$, we do so on their bases. Each transposition of basis vectors reverses orientation, so we reverse the orientation some number of times equal to the codimension of $S$ in $X$ times the codimension of $S$ in $Z$; equivalently we reverse the orientation $(\codim X) (\codim Z)$ times. So $X\cap Z = (-1)^{(\codim X)(\codim Z)}Z\cap X$.
+    \item[3.] Consider $\mathbb {RP}^n$ using the charts $U_i$ for $0\leq i\leq n$ and the usual chart maps $\varphi_i$ sending $[x_0:\cdots:x_n]$ to $(x_i/x_j)_{i\neq j}$. For $j>i$, the determinant of $D(\varphi_j\varphi_i^{-1})_{(x_1,\dots,x_ n)}$ is $(-1)^{j-i}/x_j^{n+1}$. If $n$ is even, then $(-1)^{j-i}/x_j^{n+1}$ always changes sign from $x_j<0$ to $x_j>0$. Since the $(U_i,\varphi_i)$ are connected charts generating the atlas on $\mathbb {RP}^n$, for $n$ even there is no way to orient $\mathbb {RP}^n$.
+    
+    For $n$ odd, let charts on $\mathbb {RP}^n$ be given by the usual charts $(U_i,\phi_i = \varphi_i)$ for $i$ even and $(U_j, \phi_j = -\varphi_j)$ for $j$ odd, where $-\varphi_j$ is the pointwise negation of $\varphi_j$. Then for $j>i$, the determinant of $D(\phi_j\phi_i^{-1})_{(x_1,\dots,x_n)}$ is $1/x_j^{n+1}$, which is nonnegative for $x_j<0$ and $x_j>0$. (For $x_j = 0$, use different charts.) Hence $\mathbb {RP}^n$ is orientable for odd $n$.
+
+    The Jordan-Brouwer separation theorem implies that compact, connected hypersurfaces in $\mathbb R^{n+1}$ are orientable. Let $n$ be even. If $\mathbb {RP}^{n}$ occurs as a hypersurface (it is compact and connected) in $\mathbb R^{n+1}$, then it is orientable, which is impossible.
 \end{enumerate}
 \end{document}
