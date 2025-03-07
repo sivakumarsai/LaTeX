@@ -1,0 +1,117 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{hanging}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Int}{int}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Mat}{\mathrm{M}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\AS}{\mathrm{AntiSym}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item Let $\dim X = n$, $\dim Y = m$, $\dim Z = k$. Let $N_x(S;X)$ and $M_x(S;X)$ be complementary subspaces of $T_xX$ to $T_xS$. We also have (from a previous homework problem) that $Df_x(N_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$ and $Df_x(M_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$; this is due to injectivity of $Df_x$ on $N_x(S;X)$ and $M_x(S;X)$ and transversality of $f$ and $Z$. Let $\gamma$ be an oriented basis of $T_{f(x)}Z$ and choose bases $\alpha,\tilde\alpha$ of $Df_x(N_x(S;X))$ and $Df_x(M_x(S;X))$ such that we obtain two positive orientations of $T_{f(x)}Y$. The block matrix for the change of basis from $\alpha\cup\gamma$ to $\tilde\alpha\cup\gamma$ is of the form $\big(\!\begin{smallmatrix}
+            A & \ast \\ 0 & I
+        \end{smallmatrix}\!\big)$; here $A$ has positive determinant. Pull back $\alpha$ and $\tilde\alpha$ along $Df_x$ to bases $\beta$ and $\tilde\beta$ of $N_x(S;X)$ and $M_x(S;X)$, and choose a basis $\delta$ of $T_xS$ so that $\beta\cup\delta$ and $\tilde\beta\cup\delta$ are bases of $T_xX$. It suffices to show that the two orientations given to $T_xX$ in this manner are in the same equivalence class; that is, it is enough to see that the change of basis matrix from $\beta\cup\delta$ to $\tilde\beta\cup\delta$ has positive determinant. Indeed, the change of basis matrix is also of the form $\big(\!\begin{smallmatrix}
+            A & \ast \\ 0 & I
+        \end{smallmatrix}\!\big)$ by construction (the size of $I$ may differ of course). Since $A$ has positive determinant, the change of basis matrix from $\beta\cup\delta$ to $\tilde\beta\cup\delta$ has positive determinant as needed. Thus the two orientations that are induced on $T_xS$ are in the same equivalence class as well.
+        \item If $Z$ is zero-dimensional, then $Df_xN_x(S;X) + 0^\pm = T_{f(x)}Y$ so that $Df_xN_x(S;X)$ has the opposite orientation as $T_{f(x)}Y$ if the orientation of $T_{f(x)}Z$ is negative. Pull back the orientation on $Df_xN_x(S;X)$ to $N_x(S;X)$ via $Df_x$. Then if $S$ is zero-dimensional, the orientation of $T_xS$ is determined by comparing the orientations of $T_xX$ and $N_x(S;X)$; if they agree (disagree), $T_xS$ is positively (negatively) oriented. If $S$ has positive dimension, determine the orientation on $T_xS$ via the orientations on $N_x(S;X)$ and $T_xX$ as usual. 
+        
+        If $Z$ has positive dimension and $S$ has zero dimension, then choose $N_x(S;X)$ to be $T_xX$. Then $Df_xN_x(S;X)$ has an orientation determined by $T_{f(x)}Z$ and $T_{f(x)}Y$ which we pull back to $N_x(S;X)$. Then if the orientation on $N_x(S;X)$ agrees (disagrees) with the orientation on $T_xX$ then $T_xS$ has positive (negative) orientation.
+        \item Let $y\in X\cap Z = S$ and again let $N_y(S;X) = T_yX$ so that an orientation on $T_yS$ is determined by whether $Df_yN_y(S;X) \oplus T_yZ = T_yX \oplus T_yZ = T_yY$ as oriented vector spaces. In particular, if $T_yX \oplus T_yZ = T_yY$ then $T_yS$ must have positive orientation since $N_y(S;X) \oplus T_yS = T_yX \oplus T_yS = T_yX$; if not, then $T_yS$ gets the opposite orientation.
+    \end{enumerate}
+    \item Since $X$ and $Z$ are transverse, the orientation of $S = X\cap Z$ is specified by $N_y(S;X) \oplus T_yS = T_yX$ for $y\in S$, from which we obtain also $N_y(S;X)\oplus T_yZ = T_yY$. We also have $N_y(S;Z)\oplus T_yS = T_yZ$ and $N_y(S;Z)\oplus T_yX = T_yY$. Then $N_y(S;X)\oplus [N_y(S;Z)\oplus T_yS] = [N_y(S;X)\oplus  N_y(S;Z)] \oplus T_yS = T_yY$. To exchange $N_y(S;X)$ and $N_y(S;Z)$ in this equality, we do so on their bases. Each transposition of basis vectors reverses orientation, so we reverse the orientation some number of times equal to the codimension of $S$ in $X$ times the codimension of $S$ in $Z$; equivalently we reverse the orientation $(\codim X) (\codim Z)$ times. So $X\cap Z = (-1)^{(\codim X)(\codim Z)}Z\cap X$.
+    \item 
+\end{enumerate}
+\end{document}
