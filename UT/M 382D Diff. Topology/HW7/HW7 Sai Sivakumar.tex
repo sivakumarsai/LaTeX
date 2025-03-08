@@ -104,11 +104,13 @@
     \item 
     \item 
     \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+    \item That the ray $r$ is transversal to $X$ is to say that $X$ is transverse to the preimage of $\vec v$ under $g\colon \mathbb R^n\setminus\cbr{z}\to S^{n-1}$ given by $g(y) = (y-z)/\abs{y-z}$. There is the composition of smooth maps $u\colon X\hookrightarrow \mathbb R^n\setminus\cbr{z}\xrightarrow{g}S^{n-1}$ which by Exercise 1.5.7 implies that $u$ is transverse to $\cbr{\vec v}$ if and only if $X$ is transverse to $g^{-1}(\vec v)$; that is, $r$ is transverse to $X$ if and only if $\vec v$ is a regular value of $u$ (and Sard's theorem says that regular values are of full measure so almost every ray is transverse to $X$).
+    
+    Exercise 1.5.7: Let $f$ be transverse to $g^{-1}W$ so that $\im(Df_x) + T_{fx}(g^{-1}W) = \im(Df_x) + Dg_{fx}^{-1}(T_{gfx}Z) = T_{fx}Y$. As $g$ is transverse to $W$, $\im(Dg_{fx}) + T_{gfx}W = T_{gfx}Z$. Then $T_{gfx}Z = Dg_{fx}(\im(Df_x) + Dg_{fx}^{-1}(T_{gfx}Z)) + T_{gfx}W = \im(Dg_{fx}Df_x) + T_{gfx}W$, so $g\circ f$ is transverse to $W$. Conversely, assume $g\circ f$ is transverse to $W$ so that $T_{gfx}Z = \im(Dg_{fx}Df_x) + T_{gfx}W$. For $\gamma\in T_yY$ there exists $\alpha\in T_xX$ and $\beta\in T_{gfx}W$ such that $Dg_{fx}\gamma = Dg_{fx}Df_x\alpha + \beta$. That $\beta = Dg_{fx}\gamma - Dg_{fx}Df_x\alpha$ is in $T_{gfx}Z$ is due to transversality of $g\circ f$ and $W$ so taking preimages under $Dg_{fx}$ yields the result.
+    \item We saw that the winding number around $z$ is equal to the number of times a transverse ray starting from $z$ intersects $X$ in class. Therefore considering $r$ and another ray with the same direction starting from $z_1$, we have that $W_2(X,z_0) = W_2(X,z_1)+l\pmod 2$.
+    \item Let $x\in X$ and some $z_0\in \mathbb R^n\setminus X$ and a ray $r$ starting from $z_0$. Pick any point $z_1$ on a transverse ray $r$ such that the line segment in between $z_0$ and $z_1$ intersects $X$ once. Then the winding numbers of $z_0$ and $z_1$ differ by $1\pmod 2$ by the previous part. Since winding number is a homotopy invariant, the connected components of $z_0$ and $z_1$ are nonempty and distinct; and so we obtain that there are exactly two distinct components of $\mathbb R^n\setminus X$ given by $D_0$ and $D_1$.
+    \item Since $X$ is compact, there is a half-space (or a large ball) $C$ completely containing $X$. Taking $z$ in the complement of this set $C$, we immediately obtain that the winding number of $z$ is zero since we may choose a ray that misses $X$ starting at $z$. This shows that $D_1$ is bounded.
+    \item Since $D_1$ is bounded and $\mathbb R^n$ is connected, $\overline D_1\cup D_0 = \mathbb R^n$ so that the boundary of $D_1$ must be $X$. As an open subset of $\mathbb R^n$ $D_1$ has natural charts, but the charts on the boundary are obtained by using components of balls centered at points on $X$ contained in $D_1$; and since $X$ is a submanifold we may arrange for these half-balls to be homeomorphic to half-spaces, which gives $\overline D_1$ its smooth structure.
     \item[1.] \begin{enumerate}
         \item Let $\dim X = n$, $\dim Y = m$, $\dim Z = k$. Let $N_x(S;X)$ and $M_x(S;X)$ be complementary subspaces of $T_xX$ to $T_xS$. We also have (from a previous homework problem) that $Df_x(N_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$ and $Df_x(M_x(S;X)) \oplus T_{f(x)}Z = T_{f(x)}Y$; this is due to injectivity of $Df_x$ on $N_x(S;X)$ and $M_x(S;X)$ and transversality of $f$ and $Z$. Let $\gamma$ be an oriented basis of $T_{f(x)}Z$ and choose bases $\alpha,\tilde\alpha$ of $Df_x(N_x(S;X))$ and $Df_x(M_x(S;X))$ such that we obtain two positive orientations of $T_{f(x)}Y$. The block matrix for the change of basis from $\alpha\cup\gamma$ to $\tilde\alpha\cup\gamma$ is of the form $\big(\!\begin{smallmatrix}
             A & \ast \\ 0 & I
@@ -125,6 +127,6 @@
     
     For $n$ odd, let charts on $\mathbb {RP}^n$ be given by the usual charts $(U_i,\phi_i = \varphi_i)$ for $i$ even and $(U_j, \phi_j = -\varphi_j)$ for $j$ odd, where $-\varphi_j$ is the pointwise negation of $\varphi_j$. Then for $j>i$, the determinant of $D(\phi_j\phi_i^{-1})_{(x_1,\dots,x_n)}$ is $1/x_j^{n+1}$, which is nonnegative for $x_j<0$ and $x_j>0$. (For $x_j = 0$, use different charts.) Hence $\mathbb {RP}^n$ is orientable for odd $n$.
 
-    The Jordan-Brouwer separation theorem implies that compact, connected hypersurfaces in $\mathbb R^{n+1}$ are orientable. Let $n$ be even. If $\mathbb {RP}^{n}$ occurs as a hypersurface (it is compact and connected) in $\mathbb R^{n+1}$, then it is orientable, which is impossible.
+    The Jordan-Brouwer separation theorem implies compact, connected hypersurfaces in $\mathbb R^{n+1}$ are orientable (we discussed in class that oriented manifolds with boundary have oriented boundaries). Let $n\geq 2$ be even. If $\mathbb {RP}^{n}$ occurs as a hypersurface (it is compact and connected) in $\mathbb R^{n+1}$, then it is orientable, which is impossible.
 \end{enumerate}
 \end{document}
