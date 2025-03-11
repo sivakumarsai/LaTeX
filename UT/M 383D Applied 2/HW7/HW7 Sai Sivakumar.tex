@@ -120,6 +120,8 @@
         \item For $d = 1$, change coordinates so that without loss of generality $\Omega = (0,1)$. For $f\in C^\infty(0,1)\cap H^1(0,1)$, $f(0)^2 = f(x)^2 - \int_0^x \dv{t}[f(t)^2]\dd t$ so that $\norm{f}_{L^2(\partial(0,1))}^2 = f(1)^2 - f(0)^2 = \int_0^1 \dv{t}[f(t)^2]\dd t \leq  2\int_0^1 \abs{f^\prime(t)}\abs{f(t)}\dd t\leq 2(\int_0^1\abs{f^\prime(t)}^2\dd t)^{1/2}(\int_0^1\abs{f(t)}^2\dd t)^{1/2}\leq 2\norm{f}_{H^1(0,1)}\norm{f}_{L^2(0,1)}$. Thus $\norm{f}_{L^2(\partial(0,1))}\leq \sqrt{2}\norm{f}_{H^1(0,1)}^{1/2}\norm{f}_{L^2(0,1)}^{1/2}$. By density of $C^\infty(0,1)$ in $H^1(0,1)$, we obtain the result for any $f\in H^1(0,1)$.
         
         For $d>1$, assume that $\Omega$ is the unit rectangle $R = (0,1)^d$ (we should not expect to be able to diffeomorph any connected open $\Omega$ with smooth boundary to $R$, but an approximation may be possible). \sloppy Let $f\in C^\infty(R)\cap H^1(R)$ so that $\norm{f}_{\partial R}^2 = (-1)^j\sum_{j=1}^d\int_{(0,1)^{d-1}} f(x)^2|_{x_j = 1} - f(x)^2|_{x_j = 0}\prod_{i\neq j}\dd x_{i} \leq \sum_{j=1}^d \int_{R}\big|\pdv{x_j}[f(x)^2]\big|\dd x_j\prod_{i\neq j}\dd x_{i}\leq 2\sum_{j=1}^d \int_R\big|\pdv{x_j}f(x)\big|\abs{f(x)}\dd x \leq 2\sum_{j=1}^d(\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}) = 2d\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}$. Thus $\norm{f}_{\partial R}\leq \sqrt{2d}\norm{f}_{H^1(R)}^{1/2}\norm{f}_{L^2(R)}^{1/2}$. Extend this result to $f\in H^1(R)$ by density of smooth functions in $H^1(R)$.
+
+        
     \end{enumerate}
 \end{enumerate}
 \end{document}
