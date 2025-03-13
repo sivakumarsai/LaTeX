@@ -121,7 +121,7 @@
         
         For $d>1$, assume that $\Omega$ is the unit rectangle $R = (0,1)^d$ (we should not expect to be able to diffeomorph any connected open $\Omega$ with smooth boundary to $R$, but an approximation may be possible). \sloppy Let $f\in C^\infty(R)\cap H^1(R)$ so that $\norm{f}_{\partial R}^2 = (-1)^j\sum_{j=1}^d\int_{(0,1)^{d-1}} f(x)^2|_{x_j = 1} - f(x)^2|_{x_j = 0}\prod_{i\neq j}\dd x_{i} \leq \sum_{j=1}^d \int_{R}\big|\pdv{x_j}[f(x)^2]\big|\dd x_j\prod_{i\neq j}\dd x_{i}\leq 2\sum_{j=1}^d \int_R\big|\pdv{x_j}f(x)\big|\abs{f(x)}\dd x \leq 2\sum_{j=1}^d(\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}) = 2d\norm{f}_{H^1(R)}\norm{f}_{L^2(R)}$. Thus $\norm{f}_{\partial R}\leq \sqrt{2d}\norm{f}_{H^1(R)}^{1/2}\norm{f}_{L^2(R)}^{1/2}$. Extend this result to $f\in H^1(R)$ by density of smooth functions in $H^1(R)$.
 
-        
+        For $d>1$ consider smooth charts on $\partial \Omega$ $\cbr{\psi_k}_{k=1}^N$ and a partition of unity $\cbr{\phi_j}$ with compact support subordinate to the open sets defining these charts. Then $\int_{\partial \Omega} f(x)^2\dd x = \sum_j\int_{\partial \Omega}(\phi_j \cdot f)(x)^2\dd x = \sum_j\int_{B^{d-1}_1(0)}(\phi_j\cdot f^2)\psi_j^{-1}(y)\dd y$ 
     \end{enumerate}
 \end{enumerate}
 \end{document}
