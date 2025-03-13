@@ -94,12 +94,62 @@
 \newcommand{\Mat}{\mathrm{M}}
 \newcommand{\Sp}{\mathrm{Sp}}
 \newcommand{\AS}{\mathrm{AntiSym}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\Stab}{\mathrm{Stab}}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
 
 \begin{document}
 \begin{enumerate}
-    \item
+    \item Let $D$ be a real symmetric $n\times n$ matrix. Then $\Stab(D)\subseteq \GL_n(\mathbb R)$: for any $A\in \Stab(D)$, $A^TDA = D$ is invertible so that $A$ is invertible also. Moreover, for any $A$, $A^TDA$ is symmetric since $(A^TDA)^T = A^TD^TA = A^TDA$. Define the map $f\colon \GL_n(\mathbb R)\to \Sym_n(\mathbb R)$ taking $A$ to $A^TDA$, which is smooth since matrix multiplication is a polynomial in the entries of the matrices being multiplied. Thus $\Stab(D) = f^{-1}(D)$, so it remains to show that $D$ is a regular value of $f$. For any $A\in f^{-1}(D)$ and $B\in T_A(\GL_n(\mathbb R)) = \Mat_n(\mathbb R)$ (or $A\Mat_n(\mathbb R)$), the derivative $Df_A(B) = \lim_{t\to 0}\dv{t}f(A+tB) = A^TDB + B^TDA$. The tangent space of $\Sym_n(\mathbb R)$ is itself since $n\times n$ symmetric matrices are determined by their $n(n+1)/2$ upper-triangular entries. For any symmetric matrix $C$, a suitable preimage under $Df_A$ is $\frac{1}{2}AD^{-1}C$ as $Df_A(\frac{1}{2}AD^{-1}C) = \frac{1}{2}[A^TD(AD^{-1}C) + (AD^{-1}C)^TDA] = \frac{1}{2}[C + C] = C$ as needed. Therefore by the preimage theorem, $\Stab(D)$ is a dimension $n - n(n+1)/2 = n(n-1)/2$ submanifold of $\GL_n(\mathbb R)$ and hence also of $\Mat_n(\mathbb R)$. The tangent space of $\Stab(D)$ at $A$ is the kernel of $Df_A$, which are all matrices $C$ for which $A^TDC + C^TDA = A^TDC + (A^TDC)^T = 0$; that is, all matrices $C$ for which $A^TDC$ is antisymmetric. Therefore the tangent space at $A$ is $(A^TD)^{-1}\AS_n(\mathbb R)$, where $\AS_n(\mathbb R)$ denotes the $n\times n$ antisymmetric matrices.
+    
+    \textcolor{red}{counterexample?}
+    \item\begin{enumerate}
+      \item \textcolor{red}{tweaking, why is $X$ compact?}
+      \item The image of $X$ under $f$ is a compact subset of $\mathbb R^n$; that is, $\im f$ is closed and bounded so that $\im f$ is contained in $B_R(0)$ for sufficiently large $R>0$. Choose any $v$ in the orthogonal complement of $W$ with norm $1$. Then $W + (R+1)v$ does not intersect $\im f$, so that $f$ is transverse to $W + (R+1)v$. Therefore the preimage of $W+ (R+1)v$ under $f$ is a submanifold of $X$.
+      \item Let $\ell$ first be given by $\Span\cbr{e_n}$. If $\ell$ does not intersect $\im f$, then transversality holds trivially. If $\ell$ does intersect $\im f$, we should be able to perturb (rotate) $\ell$ so that either $\ell$ does not intersect $\im f$ or $\ell$ intersects $\im f$ at finitely many points transversally (we can ensure finitely many points due to compactness of $\im f$). If we cannot rotate $\ell$ in a manner that avoids $\im f$, then by the Thom transversality theorem, transversality is generic and so there is a rotation of $\ell$ which does intersect $\im f$ transversally.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item Let $x\in X$ and choose a chart $(U_x,\varphi_x)$ of $Y$ containing $x$ which sends $x$ to $0$ and $X$ to $\mathbb R^{\dim Y-1}$. Choose a small ball $B_\varepsilon(0)$ around $0$ so that $\varphi_x^{-1}(B_\varepsilon(0))\setminus X$ has two connected components in $Y$. Let $z_0$ and $z_1$ belong to different connected components of $\varphi_x^{-1}(B_\varepsilon(0))\setminus X$. Since $z_0,z_1\in Y\setminus X$, there exist paths from any $y\in Y$ to either $z_0$ or $z_1$ (or both), not intersecting $X$. Hence there are at most two connected components of $Y\setminus X$.
+      \item Let $x,U_x,\varphi_x,\varepsilon,z_0,z_1$ as in the previous part. If $Y\setminus X$ has one connected component, then $z_0$ and $z_1$ are path connected by a (smooth) path $\gamma$ that does not intersect $X$ or itself. But then we may also consider another (smooth) path $\tilde\gamma$ joining $z_0$ and $z_1$ that does intersect $X$ once: in the ball $B_\varepsilon(0)$ there is a path joining $\varphi(z_0)$ and $\varphi(z_1)$ that crosses $\mathbb R^{\dim Y-1}$ once, e.g. through $\varphi(x)$. Pulling back such a path via $\varphi$ to $Y$ is a path connecting $z_0$ and $z_1$ intersecting $X$ once. Perturb $\gamma$ and/or $\tilde\gamma$ so that their concatenation is a smooth path $\gamma^\prime$ that we should also choose to be a smooth embedding (this seems nontrivial and I do not know if this can actually be done in general). Then $Z = \im \gamma^\prime$ is a one-dimensional submanifold of $Y$ that intersects $X$ only once, so $I_2(X,Z) = 1\pmod 2$.
+      \item Let $Z$ be any closed one-dimensional submanifold of $Y$. If it does not intersect $X$ at all, then the intersection number mod $2$ of $X$ with $Z$ is zero. Let $Z$ intersect $X$; since $X$ has codimension $1$, perturb $Z$ so that the intersection of $Z$ and $X$ consists of a finite number of points by compactness of $Y$. It remains to see that the number of intersection points is even. Let $Y_1,Y_2$ be the connected components of $Y\setminus X$. The boundary of $Y_1$ and of $Y_2$ is $X$ by following the procedure in part (a): there are points arbitrarily close to $X$ in coordinates that may be path connected to other points in the same path component. So imagine splitting $Y$ into two manifolds with boundary, $Y_1\sqcup X$ and $Y_2\sqcup X$. Inside each of these manifolds the submanifold $Z$ splits into compact one-dimensional manifolds $Z_1$ and $Z_2$ in each of $Y_1\sqcup X$ and $Y_2\sqcup X$ respectively. By the boundary theorem, the intersection number of $X$ with each of $Z_1,Z_2$ is zero modulo $2$: the inclusion of $X$ into each of $Y_1\sqcup X$, $Y_2\sqcup X$ extends to the rest of $Y_1,Y_2$ respectively and $Z_1,Z_2$ have complimentary dimension to $X$. Since $Z$ is a closed manifold the boundary points of $Z_1,Z_2$ have the same count and meet at the same points of $X$; therefore, the number of intersection points of $Z$ with $X$ is zero modulo $2$ as desired.
+      \item The intersection number of $\mathbb {RP}^n$ (closed, codimension one submanifold of $\mathbb {RP}^n$) given by the image of the smooth embedding $[x_0:\cdots:x_n]\mapsto [x_0:\cdots:x_n:0]$ with $\mathbb {RP}^1$ (closed, dimension one submanifold of $\mathbb {RP}^n$) given by the image of the smooth embedding $[x_0:x_1]\mapsto [x_0:\cdots:0:x_{n+1}]$ in $\mathbb {RP}^{n+1}$ (path connected, compact, without boundary) is one modulo $2$: the only point of intersection is the point $[1:0:\cdots:0]$. At this point in the chart $U_0$, the image of the differentials of the embeddings above are the orthogonal complements of each other in $\mathbb R^n$; they are $\cbr{(x_1,\cdots,x_n,0)}$ and $\cbr{(0,\cdots,0,x_{n+1})}$ and hence sum to $\mathbb R^{n+1}$. Therefore these compact submanifolds of $\mathbb {RP}^n$ are transverse to each other with intersection number $1\pmod 2$ (almost verbatim what I submitted on an earlier homework assignment). Since $I_2(\mathbb {RP}^n,\mathbb {RP}^1) = 1\pmod 2$, $\mathbb {RP}^{n-1}\setminus \mathbb {RP}^n$ could not have exactly two connected components.
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item Explicit calculations yield \begin{align*}
+        D(\varphi_1\varphi_0^{-1})_{(x,y,z,w)} &= \begin{psmallmatrix}
+          (y^2 - x^2)/(x^2 + y^2)^2 & -2 x y/(x^2 + y^2)^2 & 0 & 0\\
+          2 x y/(x^2 + y^2)^2 & (y^2 - x^2)/(x^2 + y^2)^2 & 0 & 0\\
+          (z (y^2 - x^2) - 2 w x y)/(x^2 + y^2)^2 & (w (x^2 - y^2) - 2 x y z)/(x^2 + y^2)^2 & x/(x^2 + y^2) & y/(x^2 + y^2)\\
+          (w (y^2 - x^2) + 2 x y z)/(x^2 + y^2)^2 & (z (y^2 - x^2) - 2 w x y)/(x^2 + y^2)^2 & -y/(x^2 + y^2) & x/(x^2 + y^2)
+        \end{psmallmatrix}\\
+        D(\varphi_2\varphi_0^{-1})_{(x,y,z,w)} &= \begin{psmallmatrix}
+          0 & 0 & (w^2 - z^2)/(w^2 + z^2)^2 & -2 w z/(w^2 + z^2)^2\\
+          0 & 0 & 2 w z/(w^2 + z^2)^2 & (w^2 - z^2)/(w^2 + z^2)^2\\
+          z/(w^2 + z^2) & w/(w^2 + z^2) & (w^2 x - 2 w y z - x z^2)/(w^2 + z^2)^2 & (y z^2 - 2 w x z - w^2 y)/(w^2 + z^2)^2\\
+          -w/(w^2 + z^2) & z/(w^2 + z^2) & (w^2 y + 2 w x z - y z^2)/(w^2 + z^2)^2 & (w^2 x - 2 w y z - x z^2)/(w^2 + z^2)^2
+        \end{psmallmatrix}\\
+        D(\varphi_2\varphi_1^{-1})_{(x,y,z,w)} &= \begin{psmallmatrix}
+          z/(w^2 + z^2) & w/(w^2 + z^2) & (w^2 x - 2 w y z - x z^2)/(w^2 + z^2)^2 & (y z^2 - 2 w x z - w^2 y)/(w^2 + z^2)^2\\
+          -w/(w^2 + z^2) & z/(w^2 + z^2) & (w^2 y + 2 w x z - y z^2)/(w^2 + z^2)^2 & (w^2 x - 2 w y z - x z^2)/(w^2 + z^2)^2\\
+          0 & 0 & (w^2 - z^2)/(w^2 + z^2)^2 & -2 w z/(w^2 + z^2)^2\\
+          0 & 0 & 2 w z/(w^2 + z^2)^2 & (w^2 - z^2)/(w^2 + z^2)^2
+        \end{psmallmatrix}.
+      \end{align*}
+
+      Then 
+      \begin{multline*}
+        \det(D(\varphi_1\varphi_0^{-1})_{(x,y,z,w)}) = (x^2+y^2)^{-3}, \quad \det(D(\varphi_2\varphi_0^{-1})_{(x,y,z,w)})= (z^2+w^2)^{-3},\\\text{and}\quad\det(D(\varphi_2\varphi_1^{-1})_{(x,y,z,w)}) = (z^2+w^2)^{-3}
+      \end{multline*}
+      The domain of $\varphi_1\varphi_0^{-1}$ excludes points where $x=0$ and $y=0$, so $\det(D(\varphi_1\varphi_0^{-1})_{(x,y,z,w)})$ is positive. Similarly we find that the determinants $\det(D(\varphi_2\varphi_0^{-1})_{(x,y,z,w)})$ and $\det(D(\varphi_2\varphi_1^{-1})_{(x,y,z,w)})$ are also positive. The determinants $\det(D(\varphi_j\varphi_i^{-1})_{(x,y,z,w)})$ for $i>j$ are inverses of the positive determinants obtained earlier, so they are also positive. For $j=i$, $D(\varphi_j\varphi_i^{-1})_{(x,y,z,w)}$ is the identity which has determinant $1$. Hence $\mathbb {CP}^2$ is orientable.
+      \item Both copies of $X \cong \mathbb {CP}^2$ have dimension two, so they have complimentary dimension. 
+      % In computing $I(X,X)$, it should not matter how $X$ is oriented since we perturb one copy of $X$ in a manner that preserves the choice of orientation we made in the beginning. So 
+      Let $i_t\colon \mathbb {CP}^1\to\mathbb {CP}^2$ for $t\in [0,1]$ be the inclusion of the submanifold $X_t = \cbr{[z_0:z_1:z_2]\mid tz_0 + (1-t)z_2 = 0}$ into $\mathbb {CP}^2$ (it is the image of a smooth embedding). Then $i_0$ is the inclusion of $X\cong \mathbb {CP}^1$ into $\mathbb {CP}^2$. For $t>0$, $X_t$ intersects $X$ at exactly the point $x=[0:1:0]$, and does so transversally for some $t$; fix this $t$ henceforth. Thus $D(i_t)_xT_xX_t\oplus T_xX = T_xX_t\oplus T_xX = T_x(\mathbb {CP}^2)$. In the chart $(U_1,\varphi_1)$, $\varphi_1(x)$ is the origin and we orient Euclidean space with the standard orientation. The orientation of $\varphi_1(X\setminus \cbr{[z_0:0:0]}) = \cbr{(x,0)}$ in this chart is ``rightwards'' (in the direction of $e_1$), and the orientation of $\varphi_1(X_t\setminus\cbr{[z_0:0:tz_0/(t-1)]}) = \cbr{x,tx/(t-1)}$ in this chart is ``pointing to the bottom right'' (since $t>0$). Therefore the orientation of the point $x$ is positive since the direct sum of the orientations of $X_t$ and $X$ match to the default orientation of $\mathbb R^2$ (or see that the determinant of $\big(\!\begin{smallmatrix}
+        1 & 1 \\ t/(t-1) & 0
+      \end{smallmatrix}$\!\big) is $t/(1-t)$, which is positive). Hence $I(X,X) = 1$. (Reversing the orientations of both $X_t$ and $X$ simultaneously has no effect on the orientation of $x$, since this amounts to rotating the basis vectors $\pi$ radian or otherwise seeing that the determinant of the change of basis matrix is still positive since all the entries are negated.)
+      \item Reversing the orientation of $\mathbb {CP}^2$ has the effect of interchanging the standard basis vectors of $\mathbb R^2$ in the chart $U_1$, so the change of basis matrix picks up a negative sign so that $I(X,X) = -1$.
+      \item \textcolor{red}{examples are hard}
+    \end{enumerate}
 \end{enumerate}
 \end{document}
