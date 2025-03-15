@@ -104,9 +104,24 @@
 \begin{enumerate}
     \item Let $D$ be a real symmetric $n\times n$ matrix. Then $\Stab(D)\subseteq \GL_n(\mathbb R)$: for any $A\in \Stab(D)$, $A^TDA = D$ is invertible so that $A$ is invertible also. Moreover, for any $A$, $A^TDA$ is symmetric since $(A^TDA)^T = A^TD^TA = A^TDA$. Define the map $f\colon \GL_n(\mathbb R)\to \Sym_n(\mathbb R)$ taking $A$ to $A^TDA$, which is smooth since matrix multiplication is a polynomial in the entries of the matrices being multiplied. Thus $\Stab(D) = f^{-1}(D)$, so it remains to show that $D$ is a regular value of $f$. For any $A\in f^{-1}(D)$ and $B\in T_A(\GL_n(\mathbb R)) = \Mat_n(\mathbb R)$ (or $A\Mat_n(\mathbb R)$), the derivative $Df_A(B) = \lim_{t\to 0}\dv{t}f(A+tB) = A^TDB + B^TDA$. The tangent space of $\Sym_n(\mathbb R)$ is itself since $n\times n$ symmetric matrices are determined by their $n(n+1)/2$ upper-triangular entries. For any symmetric matrix $C$, a suitable preimage under $Df_A$ is $\frac{1}{2}AD^{-1}C$ as $Df_A(\frac{1}{2}AD^{-1}C) = \frac{1}{2}[A^TD(AD^{-1}C) + (AD^{-1}C)^TDA] = \frac{1}{2}[C + C] = C$ as needed. Therefore by the preimage theorem, $\Stab(D)$ is a dimension $n - n(n+1)/2 = n(n-1)/2$ submanifold of $\GL_n(\mathbb R)$ and hence also of $\Mat_n(\mathbb R)$. The tangent space of $\Stab(D)$ at $A$ is the kernel of $Df_A$, which are all matrices $C$ for which $A^TDC + C^TDA = A^TDC + (A^TDC)^T = 0$; that is, all matrices $C$ for which $A^TDC$ is antisymmetric. Therefore the tangent space at $A$ is $(A^TD)^{-1}\AS_n(\mathbb R)$, where $\AS_n(\mathbb R)$ denotes the $n\times n$ antisymmetric matrices.
     
-    \textcolor{red}{counterexample?}
+    Let $D_1 = (\!\begin{smallmatrix}
+      1 & 0 \\ 0 & 1
+    \end{smallmatrix}\!)$ and $D_2 = (\!\begin{smallmatrix}
+      0 & 1 \\ 1 & 0
+    \end{smallmatrix}\!)$. Calculating $\Stab(D_1)$ yields $\{(\!\begin{smallmatrix}
+      a & -c \\ c & a
+    \end{smallmatrix}\!)\mid a^2+c^2 = 1\}\sqcup\{(\!\begin{smallmatrix}
+      a & c \\ c & -a
+    \end{smallmatrix}\!)\mid a^2+c^2 = 1\}\cong S^1\sqcup S^1$. Calculating $\Stab(D_2)$ yields $\{(\!\begin{smallmatrix}
+      a & 0 \\ 0 & 1/a
+    \end{smallmatrix}\!)\}\sqcup\{(\!\begin{smallmatrix}
+      0 & a \\ 1/a & 0
+    \end{smallmatrix}\!)\}\cong \mathbb R^1\sqcup \mathbb R^1$. These submanifolds could not be diffeomorphic (the circle and the line are not diffeomorphic).
+  %   (\!\begin{smallmatrix}
+  %     &  \\  & 
+  %  \end{smallmatrix}\!)
     \item\begin{enumerate}
-      \item \textcolor{red}{tweaking, why is $X$ compact?}
+      \item This should be a counterexample: Let $X$ be a torus (dimension $2$) and choose $n = 1$. Then the preimage of $1$ is the circle (codimension $1$) at the top of the torus. Below is a picture since I don't know a convenient way to write the height map $f$ explicitly. The differential at the points on the top circle (the preimage) is the zero map.\vspace*{5em}
       \item The image of $X$ under $f$ is a compact subset of $\mathbb R^n$; that is, $\im f$ is closed and bounded so that $\im f$ is contained in $B_R(0)$ for sufficiently large $R>0$. Choose any $v$ in the orthogonal complement of $W$ with norm $1$. Then $W + (R+1)v$ does not intersect $\im f$, so that $f$ is transverse to $W + (R+1)v$. Therefore the preimage of $W+ (R+1)v$ under $f$ is a submanifold of $X$.
       \item Let $\ell$ first be given by $\Span\cbr{e_n}$. If $\ell$ does not intersect $\im f$, then transversality holds trivially. If $\ell$ does intersect $\im f$, we should be able to perturb (rotate) $\ell$ so that either $\ell$ does not intersect $\im f$ or $\ell$ intersects $\im f$ at finitely many points transversally (we can ensure finitely many points due to compactness of $\im f$). If we cannot rotate $\ell$ in a manner that avoids $\im f$, then by the Thom transversality theorem, transversality is generic and so there is a rotation of $\ell$ which does intersect $\im f$ transversally.
     \end{enumerate}
