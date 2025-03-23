@@ -1,0 +1,135 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{extarrows}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{color}
+\newcommand{\sai}[1]{\textcolor{red}{#1}}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{quiver}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Grothendieck Spectral Sequences}
+\fancyhead[C]{}
+\fancyhead[R]{\thepage}
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% new commands
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Tot}{Tot}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\raisebox{-.14em}{\smiley}}
+\newcommand{\happy}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\raisebox{-.14em}{\frownie}}
+\newcommand{\sad}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\begin{document}
+These notes closely follow \textit{An Introduction to Homological Algebra} by Weibel.
+
+In Abelian categories with enough injectives, there is a procedure for calculating right derived functors out of them by taking injective resolutions of objects, applying the left exact functor which is being derived, and taking cohomology. Let $G\colon \mathcal A\to\mathcal B$ and $F\colon \mathcal B\to\mathcal C$ be left exact functors of Abelian categories. We outline a procedure for calculating $R^i(FG)$ under mild conditions on the categories $\mathcal A$ and $\mathcal B$ and the functors $F$ and $G$. 
+
+\begin{theorem}[Grothendieck spectral sequence]
+  \label[theorem]{thm: gss}
+  Let $\mathcal A$, $\mathcal B$, and $\mathcal C$ be Abelian categories such that $\mathcal A$ and $\mathcal B$ have enough injectives. Let $G\colon \mathcal A\to\mathcal B$ and $F\colon \mathcal B\to\mathcal C$ be left exact functors. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWwgQSJdLFsyLDAsIlxcbWF0aGNhbCBCIl0sWzEsMSwiXFxtYXRoY2FsIEMiXSxbMCwxLCJHIl0sWzEsMiwiRiJdLFswLDIsIkZHIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \[\begin{tikzcd}
+	  {\mathcal A} && {\mathcal B} \\
+	  & {\mathcal C}
+	  \arrow["G", from=1-1, to=1-3]
+	  \arrow["FG"', dashed, from=1-1, to=2-2]
+	  \arrow["F", from=1-3, to=2-2]
+  \end{tikzcd}\]
+  In addition, if $G$ sends injective objects of $\mathcal A$ to $F$-acyclic objects of $B$ (i.e. to elements $B\in \mathcal B$ for which $R^iF(B) = 0$ for $i>0$), then for each $A\in \mathcal A$ there exists a convergent first quadrant cohomological spectral sequence
+  \[\phantom{{}^I\!}E_2^{pq} = (R^pF)(R^qG)(A)\quad\text{converging to}\quad R^{p+q}(FG)(A).\]
+  There are natural edge maps
+  \[(R^pF)(GA)\to R^p(FG)(A)\quad \text{and}\quad R^q(FG)(A)\to F(R^qG(A))\] and an exact sequence of low degree terms
+  \[0\to (R^1F)(GA)\to R^1(FG)(A)\to F(R^1G(A))\to (R^2F)(GA)\to R^2(FG)(A).\]
+\end{theorem}
+
+The main idea of the proof of \cref{thm: gss} relies extensively on spectral sequences arising from two particular filtrations associated to double complexes and Cartan-Eilenberg resolutions of cochain complexes.
+
+Given a double complex $C = C^{\ast\ast}$, filter the (product or direct sum) total complex $\Tot(C)$ by the columns of $C$; that is, let ${}^I\!F^k\Tot(C)$ be given by
+\[({}^I\!F^k\Tot(C))_n = \bigoplus_{\substack{p+q = n\\ p\geq k}} C^{pq}.\] Filter the total complex $\Tot(C)$ by the rows of $C$ so that ${}^{II}\!F^k\Tot(C)$ is given by
+\[({}^{II}\!F^k\Tot(C))_n = \bigoplus_{\substack{p+q = n\\ q\geq k}} C^{pq}.\]
+Filtering by columns yields a spectral sequence $\{{}^{I}\!E_r^{pq}\}$ with ${}^{I}\!E_0^{pq} = ({}^I\!F^p\Tot(C))_{p+q}/({}^I\!F^{p+1}\Tot(C))_{p+q} = C^{pq}$. The maps $d_0$ are the vertical differentials $d^v$ of $C$, so ${}^{I}\!E_1^{pq} = H_v^q(C^{p\ast})$ with differentials $d_1$ given by $d_1^{pq}\colon H_v^q(C^{p\ast})\to H_v^q(C^{(p+1)\ast})$, induced by the horizontal differentials $d_h$ on $C$. Then ${}^{I}\!E_2^{pq} = H_h^pH_v^q(C)$.
+
+Filtering by rows yields a spectral sequence $\{{}^{II}\!E_r^{pq}\}$ with ${}^{II}\!E_0^{pq} = ({}^{II}\!F^p\Tot(C))_{p+q}/({}^{II}\!F^{p+1}\Tot(C))_{p+q} = C^{qp}$. The maps $d_0$ are the horizontal differentials $d^h$ of $C$ (but are vertical in this sheet), so the maps $d_1$ are induced by the vertical differentials of $C$. Then ${}^{II}\!E_2^{pq} = H_v^pH_h^q(C)$.
+
+If $C$ is a first quadrant double complex, the filtrations ${}^I\!F^k\Tot(C)$ and ${}^{II}\!F^k\Tot(C)$ are canonically bounded (in this setting, this means ${}^{I,II}\!F^0\Tot(C) = \Tot(C)$ and $({}^{I,II}\!F^{n+1}\Tot(C))_n = \Tot(C)_n$ for each $n$), so
+\[{}^{I}\!E_2^{pq} = H_h^pH_v^q(C) \quad \text{and}\quad {}^{II}\!E_2^{pq} = H_v^pH_h^q(C) \quad\text{converge to}\quad H^{p+q}(\Tot(C)).\]
+This procedure is nice because it allows us to calculate homology in two different ways. We will use this technology on a Cartan-Eilenberg resolution of a particular cochain complex (yielding a double complex), to obtain the Grothendieck spectral sequence in \cref{thm: gss}.
+
+Let $\mathcal A$ be an Abelian category with enough injectives. A (right) Cartan-Eilenberg resolution of a cochain complex $A^\ast$ in $\mathcal A$ is an upper half-plane complex $I = I^{\ast\ast}$ of injective objects of $\mathcal A$ and a chain map $A^\ast\xrightarrow{\epsilon} I^{\ast 0}$ (called the augmentation map) such that \begin{enumerate}
+  \item the columns $I^{p\ast}$ are injective resolutions of $A^p$,
+  \item the induced maps on coboundaries and cohomology 
+  \begin{align*}
+    B^p(\epsilon)&\colon B^p(I,d_h)\to B^p(A)\\
+    H^p(\epsilon)&\colon H^p(I,d_h)\to H^p(A)
+  \end{align*}
+  form injective resolutions, where $B^p(I,d_h)$ is the cochain complex given by $(B^p(I,d_h))^q = \im(d_h^{(p-1)q})$. The cochain complexes $Z^p(I,d_h)$ and $H^p(I,d_h) = Z^p(I,d_h)/B^p(I,d_h)$ are defined similarly.
+\end{enumerate}
+Every cochain complex $A = A^\ast$ in $\mathcal A$ has a Cartan-Eilenberg resolution $A\to I$. Let $F\colon\mathcal A\to\mathcal B$ be a left exact functor. We may define the (right) hyper-derived functor $\mathbb R^iF$ by $\mathbb R^iF(A) = H^i\Tot^{\Pi}(F(I))$ whenever $\Tot^{\Pi}(F(I))$ exists in $\mathcal B$. In the previous discussion on spectral sequences associated to filtrations of cochain complexes, let $A^p = 0$ for $p<0$ and take $C$ to be $F(I)$ to see that there are two spectral sequences converging to $\mathbb R^iF(A)$.
+
+\begin{proof}[Proof of \cref{thm: gss}.]
+  Let $A\in \mathcal A$ and choose an injective resolution $A\to I$ of $A$ in $\mathcal A$. Apply $G$ to obtain a cochain complex $G(I)$ in $\mathcal B$. Then consider a Cartan-Eilenberg resolution $J$ of $G(I)$. Since $G(I)$ has no terms in degrees less than $0$, $J$, and hence also $F(J)$, is a first quadrant double complex so that $\Tot^\Pi(F(J))$ exists in $\mathcal C$. Thus we may consider $\mathbb R^iF(G(I)) = H^i\Tot^\Pi(F(J))$, and observe that there are two spectral sequences converging to $\mathbb R^iF(G(I))$.
+
+  The first spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by ${}^{I}\!E_2^{pq} = H_h^pH_v^q(F(J)) = H_h^p(R^qF[G(I)])$. But $G$ takes injective objects of $\mathcal A$ to $F$-acyclic objects of $\mathcal B$, so $R^qF[G(I^p)] = 0$ for $q>0$. Then this spectral sequence collapses, leaving only the terms on the horizontal axis ${}^{I}\!E_2^{p0} = H_h^p(FG(I)) = R^p(FG)(A)$, which are the cohomology groups $H^i\Tot^\Pi(F(J)) = \mathbb R^iF(G(I))$.
+
+  On the other hand, the other spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by ${}^{II}\!E_2^{pq} = H_v^pH_h^q(F(J)) \eq{\smallmathhappy} H_v^p(F(H_h^qJ)) = (R^pF)(H^q(GI)) = (R^pF)(R^qG)(A)$. The equality $(\mathhappy)$ involving commuting $F$ with taking cohomology requires some elaboration. \sai{Finish proof: justify equality, point out edge maps, exact sequence of low degree terms}
+\end{proof} 
+
+\sai{A couple examples to follow: maybe a super small example by hand, the Leray spectral sequence. and an application of Leray spectral sequence in algebraic geometry}
+
+\end{document}
