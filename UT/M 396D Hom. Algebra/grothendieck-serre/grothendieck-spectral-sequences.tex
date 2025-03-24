@@ -115,8 +115,9 @@ Let $\mathcal A$ be an Abelian category with enough injectives. A (right) Cartan
   \item the columns $I^{p\ast}$ are injective resolutions of $A^p$,
   \item the induced maps on coboundaries and cohomology 
   \begin{align*}
-    B^p(\epsilon)&\colon B^p(I,d_h)\to B^p(A)\\
-    H^p(\epsilon)&\colon H^p(I,d_h)\to H^p(A)
+    Z^p(\epsilon)&\colon Z^p(A)\to Z^p(I,d_h),\\
+    B^p(\epsilon)&\colon B^p(A)\to B^p(I,d_h),\\
+    H^p(\epsilon)&\colon H^p(A)\to H^p(I,d_h)
   \end{align*}
   form injective resolutions, where $B^p(I,d_h)$ is the cochain complex given by $(B^p(I,d_h))^q = \im(d_h^{(p-1)q})$. The cochain complexes $Z^p(I,d_h)$ and $H^p(I,d_h) = Z^p(I,d_h)/B^p(I,d_h)$ are defined similarly.
 \end{enumerate}
@@ -125,11 +126,22 @@ Every cochain complex $A = A^\ast$ in $\mathcal A$ has a Cartan-Eilenberg resolu
 \begin{proof}[Proof of \cref{thm: gss}.]
   Let $A\in \mathcal A$ and choose an injective resolution $A\to I$ of $A$ in $\mathcal A$. Apply $G$ to obtain a cochain complex $G(I)$ in $\mathcal B$. Then consider a Cartan-Eilenberg resolution $J$ of $G(I)$. Since $G(I)$ has no terms in degrees less than $0$, $J$, and hence also $F(J)$, is a first quadrant double complex so that $\Tot^\Pi(F(J))$ exists in $\mathcal C$. Thus we may consider $\mathbb R^iF(G(I)) = H^i\Tot^\Pi(F(J))$, and observe that there are two spectral sequences converging to $\mathbb R^iF(G(I))$.
 
-  The first spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by ${}^{I}\!E_2^{pq} = H_h^pH_v^q(F(J)) = H_h^p(R^qF[G(I)])$. But $G$ takes injective objects of $\mathcal A$ to $F$-acyclic objects of $\mathcal B$, so $R^qF[G(I^p)] = 0$ for $q>0$. Then this spectral sequence collapses, leaving only the terms on the horizontal axis ${}^{I}\!E_2^{p0} = H_h^p(FG(I)) = R^p(FG)(A)$, which are the cohomology groups $H^i\Tot^\Pi(F(J)) = \mathbb R^iF(G(I))$.
+  The first spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by ${}^{I}\!E_2^{pq} = H_h^pH_v^q(F(J)) = H_h^p(R^qF[G(I)])$. But $G$ takes injective objects of $\mathcal A$ to $F$-acyclic objects of $\mathcal B$, so $R^qF[G(I^p)] = 0$ for $q>0$. Then this spectral sequence collapses, leaving only the terms on the horizontal axis ${}^{I}\!E_2^{p0} = H_h^p(FG(I)) = R^p(FG)(A)$, which are the cohomology groups $H^p\Tot^\Pi(F(J)) = \mathbb R^pF(G(I))$.
 
-  On the other hand, the other spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by ${}^{II}\!E_2^{pq} = H_v^pH_h^q(F(J)) \eq{\smallmathhappy} H_v^p(F(H_h^qJ)) = (R^pF)(H^q(GI)) = (R^pF)(R^qG)(A)$. The equality $(\mathhappy)$ involving commuting $F$ with taking cohomology requires some elaboration. \sai{Finish proof: justify equality, point out edge maps, exact sequence of low degree terms}
+  On the other hand, the other spectral sequence converging to $\mathbb R^{p+q}F(G(I))$ is given by
+  \[{}^{II}\!E_2^{pq} = H_v^pH_h^q(F(J)) \eq{\smallmathhappy} H_v^p(F(H_h^qJ)) = (R^pF)(H^q(GI)) = (R^pF)(R^qG)(A)\]
+  The equality $(\mathhappy)$ involving commuting $F$ with taking cohomology requires some elaboration. Since $J = J^{\ast\ast}$ is a double complex, we obtain the short exact sequences 
+  \[0\to Z^q(J,d_h)^\ast\to J^{q\ast}\to B^{q+1}(J,d_h)^\ast\to 0\quad\text{and}\quad 0\to B^q(J,d_h)^\ast\to Z^q(J,d_h)^\ast\to H^q(J,d_h)^\ast\to 0.\]
+  Since $Z^q(J,d_h)^\ast$ and $B^q(J,d_h)^\ast$ are injective, the above short exact sequences split so that $J^{q\ast} = Z^q(J,d_h)^\ast\oplus B^{q+1}(J,d_h)^\ast$ and $Z^q(J,d_h)^\ast = B^q(J,d_h)^\ast \oplus H^q(J,d_h)^\ast$. Since $F$ is an additive functor, applying $F$ to the above short exact sequences preserves exactness. Thus $H_h^q(F(J)) = FZ^q(J,d_h)^\ast/FB^q(J,d_h)^\ast = (FB^q(J,d_h)^\ast\oplus FH^q(J,d_h)^\ast)/FB^q(J,d_h)^\ast = FH^q(J,d_h)^\ast$ as needed.
+
+  Thus for any $A\in\mathcal A$, the spectral sequence $E_2^{pq} = (R^pF)(R^qG)(A)$ converges to $\mathbb R^{p+q}F(G(I)) = R^{p+q}(FG)(A)$. The edge maps are indeed the natural maps $(R^pF)(GA) = E_2^{p0}\to E_\infty^{p0}\subset H^p\Tot^\Pi(F(J)) = R^p(FG)(A)$ and $R^q(FG)(A) = H^q\Tot^\Pi(F(J))\to E_\infty^{0q}\subset E_2^{0q} = F(R^qG(A))$.
+
+  A first quadrant spectral sequence $\{E_r^{pq}\}_{r\geq 2}$ calculating the cohomology of a total complex $T$ has $E_2^{10} = E_\infty^{10}$, since the differentials mapping to $E_r^{10}$ have zero modules as domain and differentials with $E_r^{10}$ as domain map to zero modules for $r\geq 2$. Then one edge map gives the first inclusion $E_2^{10}\subset H^1(T)$. Since $F^1H^1(T)\cong E_\infty^{10} = E_2^{10}$, the map $H^1(T)\to H^1(T)/F^1H^1(T)\cong E_\infty^{01}\subset E_2^{01}$ has kernel $F^1H^1(T) \cong E_2^{10}$. The differentials mapping to $E_r^{01}$ have zero modules as domain but only the differential $d_2^{01}$ maps to $E_2^{20}$, so the image of $H^1(T)\to H^1(T)/F^1H^1(T)\cong E_\infty^{01}\subset E_2^{01}$ is $\ker d_2^{10}$. Since $E_\infty^{20} = E_2^{20}/\im d_2^{10}$ is a quotient of $E_2^{20}$, the kernel of the edge map $E_2^{20}\to H^2(T)$ is $\im d_2^{10}$. Combining everything together, we obtain the exact sequence 
+  \[0\to E_2^{10}\to H^1(T)\to E_2^{01}\xrightarrow{d_2}E_2^{20}\to H^2(T).\]
+  Specializing this exact sequence to the Grothendieck spectral sequence yields the exact sequence of low degree terms $0\to (R^1F)(GA)\to R^1(FG)(A)\to F(R^1G(A))\to (R^2F)(GA)\to R^2(FG)(A)$.
 \end{proof} 
 
-\sai{A couple examples to follow: maybe a super small example by hand, the Leray spectral sequence. and an application of Leray spectral sequence in algebraic geometry}
+An application of the Grothendieck spectral sequence in geometry is in sheaf cohomology. Let $f\colon X\to Y$ be a continuous map of topological spaces. Consider the pushforward functor $f_\ast$ on sheaves on $X$, which is right adjoint to the pullback functor $f^{-1}$ on sheaves on $Y$. Then $f_\ast$ is left exact. Because $f^{-1}$ is exact, $f_\ast$ preserves injectives. The category of sheaves on a topological space has enough injectives, so we are lead to consider composing $f_\ast$ with the global sections functor $\Gamma$ on sheaves on $Y$ and applying the Grothendieck spectral sequence. The derived functors $R^i\Gamma$ form sheaf cohomology, which is usually written as $H^i(Y,-)$. For a sheaf $\mathcal F$ on $X$, observe that $\Gamma(f_\ast \mathcal F) = (f_\ast\mathcal F)(Y) = \mathcal F(f^{-1}Y) = \mathcal F(X) = \Gamma(\mathcal F)$, which we suggestively summarize as $\Gamma f_\ast = \Gamma$, where the second $\Gamma$ refers to taking global sections of sheaves on $X$. Therefore for any sheaf $\mathcal F$ on $X$, the Grothendieck spectral sequence is $E_2^{pq} = H^p(Y,R^qf_\ast \mathcal F)$, which converges to $H^{p+q}(X,\mathcal F)$.
 
+Pushing forward to a point is the same as taking global sections: The constant map $g\colon Y\to \{\ast\}$ has pushforward $g_\ast$ satisfying $(g_\ast \mathcal G)(\{\ast\}) = \mathcal G(g^{-1}\{\ast\}) = G(Y) = \Gamma(\mathcal G)$. So in general we might consider the composition of two continuous maps $f\colon X\to Y$ and $g\colon Y\to Z$ and the spectral sequence $E_2^{pq} = R^pg_\ast(R^qf_\ast\mathcal F)$ converging to $R^{p+q}(g_\ast f_\ast)\mathcal F = (R^{p+q}(gf)_\ast)\mathcal F$ for any sheaf $\mathcal F$ on $X$. These spectral sequences find much use in algebraic geometry.
 \end{document}
