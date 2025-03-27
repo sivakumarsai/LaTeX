@@ -1,0 +1,132 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW9}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{8.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[2.] The difference $u_1-u_2$ solves the problem of finding $u\in X$ such that $B(u,v) = 0$ for all $v\in Y$. Indeed, $u_1-u_2\in X$ since $x_{0,1} - x_{0,2}\in X$ and $B(u_1-u_2,v) = B(u_1,v) - B(u_2,v) = F(v) - F(v) = 0$. But $u=0$ also solves the problem, so by uniqueness of solutions to the abstract variational problem above we must have $u_1 = u_2$. This implies that Dirichlet boundary value problems are well-posed (maybe this is called well-definedness instead?); that is, perturbing the boundary condition with a function from $H^1_0(\Omega)$ has no effect on the solution obtained.
+    \item[5.] It is clear that $H$ is a subspace of $H^2{\Omega}$, so it suffices to show that $H$ is closed. Let $\cbr{u_i}\subset H$ converge to $u\in H^2(\Omega)$. Then $\abs{\int_\Omega u} = \abs{\int_\Omega u-u_i}\leq \mu(\Omega)^{1/2}\norm{u-u_i}_2\leq \mu(\Omega)^{1/2}\norm{u-u_i}_{H^2(\Omega)}$, which converges to zero, so $\int_\Omega u = 0$. The trace operator $\gamma_1\colon H^2(\Omega)\to H^{1/2}(\partial \Omega)$ is continuous, so $\nabla u\cdot \nu = \lim_{i\to\infty} \gamma_1(u_i) = \lim_{i\to\infty} 0 = 0$. Hence $H$ is closed in $H^2(\Omega)$.
+    
+    Suppose that there is a Cauchy sequence $\cbr{u_j}\subset H$ such that $\norm{u_j}_H = 1$ and $\norm{u_j}_{H^1(\Omega)}>j\norm{D^\alpha u_j}_{L^2(\Omega)}$ for any $\abs{\alpha} = 2$. In particular observe that $\norm{D^\alpha u_j}_{L^2(\Omega)}< \norm{u_j}_{H^1(\Omega)}/j\leq \norm{u_j}_H/j = 1/j$ for $\abs{\alpha} = 2$. Compactly embed $H^2(\Omega)$ into $H^1(\Omega)$ to obtain a convergent subsequence $\cbr{u_{j_k}}$ in $H^1(\Omega)$ converging to some $u\in H^1(\Omega)$; this implies the sequence $\cbr{u_j}$ converges to $u$ in $H^1(\Omega)$. The distributional second derivatives of $u$ are zero, since for any test function $\varphi$ and $\abs{\alpha} = 2$, $\abs{\abr{D^\alpha u,\varphi}} = \abs{\int_\Omega uD^\alpha \varphi} = \lim_{j\to\infty}\abs{\int_\Omega u_jD^\alpha \varphi} = \lim_{j\to\infty}\abs{\int_\Omega D^\alpha u_j\varphi}\leq \lim_{j\to\infty}\norm{D^\alpha u_j}_{L^2(\Omega)}\norm{\varphi}_{L^2(\Omega)} = 0$. Since the $L^2(\Omega)$-norms of the second derivatives of $u_j$ tend to zero, the $H^1(\Omega)$ norms of $u_j$ tend to $1$.
+
+    On the other hand, since the second derivatives of $u$ are zero, the first derivatives of $u$ are constant. The only constant vector perpendicular to the boundary of $\Omega$ is zero (note that the vectors tangent to $\Omega$ span $\mathbb R^d$ since $\partial \Omega$ is a smooth compact hypersurface of $\mathbb R^d$), so the gradient of $u$ is zero along the boundary, but is a constant everywhere, so the first derivatives of $u$ are zero. Therefore $u$ must be a constant function. By completeness of $H$, $u$ is also in $H$ so that $u$ integrates to zero. But the only constant function that integrates to zero is zero. This is in contradiction with the $H^1(\Omega)$-norms of $u_j$ approaching $1$.
+    
+    \item[8.] The PDE $-\Delta u + u = f$ in $\mathbb R^d$ for $f\in L^2(\mathbb R^d)$ is equivalent to the variational problem of finding $u\in H^1(\mathbb R^d)$ satisfying $B(u,v) = F(v)$ with $B\colon H^1(\mathbb R^d)\times H^1(\mathbb R^d)\to \mathbb R$ given by $B(u,v) = \abr{\nabla u,\nabla v}_{(L^2(\mathbb R^d))^d} + \abr{u,v}_{L^2(\mathbb R^d)}$ and $F\colon H^1(\mathbb R)\to\mathbb R$ given by $F(v) = \abr{f,v}_{H^{-1},H^1}$. Assume that $u\in H^1(\mathbb R^d)$ solves the PDE and let $v\in H^1(\mathbb R)$. Let $\cbr{v_j}\subset\mathcal D(\mathbb R)$ be a sequence of test functions converging to $v$. Then $\abr{-\Delta u,v}_{H^{-1},H^1} = \lim_{j\to\infty}\abr{-\nabla\cdot\nabla u,v_j}_{H^{-1},H} = \lim_{j\to\infty}\abr{-\nabla\cdot\nabla u,v_j}_{\mathcal D^{\prime},\mathcal D} = \lim_{j\to\infty}\abr{\nabla u,\nabla v_j}_{\mathcal D^{\prime},\mathcal D} = \abr{\nabla u,\nabla v}_{(L^2(\Omega))^d}$. Therefore $B$ and $F$ may be defined as earlier, and we have shown that solutions of the PDE satisfy the variational problem of finding $u\in H^1(\mathbb R)$ such that $B(u,v) = F(v)$ for all $v\in H^1(\mathbb R)$. Reversing the integration by parts establishes the equivalence of both problems. 
+    
+    The operator $B$ is bilinear, and continuity is established by the estimate $\abs{B(u,v)} \leq \sum_{\abs{\alpha} = 1}\int\abs{D^\alpha u}\abs{D^\alpha v} + \int\abs{u}\abs{v}\leq \sum_{\abs{\alpha}\leq 1}\norm{D^\alpha u}_2\norm{D^\alpha v}_2\leq M\norm{u}_{H^1(\mathbb R^d)}\norm{v}_{H^1(\mathbb R^d)}$. That $B$ is coercive is due to the estimate $B(u,u) = \abr{\nabla u,\nabla u}_{(L^2(\mathbb R^d))^d} + \abr{u,u}_{L^2(\mathbb R^d)}\geq \norm{\nabla u}_{(L^2(\mathbb R^d))^d}^2 \geq (1/C^2)\norm{u}_{H^1(\mathbb R^d)}^2$ for some $C>0$ by Poincar\'e's inequality. Then Lax-Milgram (with $\mathcal H = H = H^1(\mathbb R^d)$ and $x_0 = 0$) provides the existence of a solution $u\in H^1(\mathbb R^d)$ to the variational problem and hence also of the PDE.
+    \item[9.] The boundary value problem is a family of boundary value problems parameterized by $y$: For almost every $y\in (0,1)$, we seek solutions to the ODE $-D^2_xu(\cdot,y)+e^yu(\cdot,y) = f(\cdot,y)$ with boundary conditions $u(0,y) = 0$ and $u(1,y) = \cos(y)$, with $f(\cdot,y)\in L^2(0,1)$ for almost every $y\in (0,1)$ (e.g. $f\in L^2((0,1)^2)$). We will suppress the dependence on $y$ in what follows. Let $B\colon H^1(0,1)\times H^1(0,1)$ be given by $B(u,v) = \abr{D_xu,D_xv}_{L^2(0,1)} + \abr{u,v}_{L^2(0,1)}$ and $F\colon H^1_0(0,1)\to\mathbb R$ be given by $F(v) = \abr{f,v}_{L^2(0,1)}$. The corresponding variational problem is to find $u\in H^1_0(0,1) + u_D$, where $u_D\in H^1(0,1)$ has trace $u_D(0,y) = 0$ and $u_D(1,y) = \cos(y)$, such that $B(u,v) = F(v)$ for all $v\in H^1_0(0,1)$. The bilinear operator $B$ defined earlier is continuous since $\abs{B(u,v)}\leq \int_0^1\abs{D_xu}\abs{D_xv}\dd x + \int_0^1\abs{u}\abs{v}\dd x\leq \norm{D_xu}_2\norm{D_xv}_2 + \norm{u}_2\norm{v}_2\leq M\norm{u}_{H^1(0,1)}\norm{v}_{H^1(0,1)}$. That $B$ is contractive follows from Poincar\'e's inequality: $B(u,u) = \norm{D_xu}_2^2 + \norm{u}_2^2\geq \norm{D_xu}_2^2\geq (1/C^2)\norm{u}_{H^1_0(0,1)}^2$ for some $C>0$. Then Lax-Milgram provides for almost every $y\in (0,1)$ a unique solution $u(\cdot,y)\in H^1_0(0,1) + u_D$ to the variational problem and hence also the ODE above. Assemble these solutions into one function $u = u(x,y)$ to obtain the unique solution (up to almost every $y$) to the original problem.
+    \item[11.] \begin{enumerate}
+        \item For almost every $x\in \mathbb R^d$, $v\in H^1(\mathbb R^d)$ is periodic with period $1$ in each direction if $v(x) = v(x+e_i)$ and $\pdv{x_j}v(x) =\pdv{x_j}v(x+e_i)$ for all $1\leq i,j\leq d$. This should also be equivalent to saying that integrating $v$ or $\pdv{x_j}v$ against $\varphi$ is invariant under translating $\varphi$ by one unit in any axial direction.
+        \item The inner product on $H^1_\#(\Omega)$ is the inner product $\abr{u,v}_{H^1_\#(\Omega)} = \int_{\Omega^\prime}uv + \int_{\Omega^\prime}\nabla u\cdot \nabla v$ where $\Omega^\prime$ is any translate of $\Omega$ (since $u,v$ are periodic the value is the same). Suppose that $\cbr{u_j}\subset H^1_\#(\Omega)$ is a Cauchy sequence. Then on any two translates $\Omega^\prime$ and $\widetilde \Omega$ of $\Omega$, view $\cbr{u_j}$ as converging to functions $u^\prime\in H^1(\Omega^\prime)$ and $\tilde u\in H^1(\widetilde \Omega)$ respectively. Then as distributions they agree when integrating against test functions $\varphi$ supported on points in the intersection $\Omega^\prime\cap \widetilde\Omega$; from $\int_{\Omega^\prime\cap \widetilde\Omega}u^\prime\varphi = \lim_{j\to\infty}\int_{\Omega^\prime\cap \widetilde\Omega}u_j\varphi = \int_{\Omega^\prime\cap \widetilde\Omega}\widetilde u\varphi$ deduce via the Lebesgue lemma that $u^\prime$ and $\tilde u$ agree on the intersection $\Omega^\prime\cap \widetilde\Omega$ (similarly for their derivatives). Thus we may define $u\in H^1_{\text{loc}}(\mathbb R^d)$ by patching together the functions obtained by taking limits in any unit cube. The function $u$ is periodic since the $u_j$ are periodic: we have $\int_{\mathbb R^d}u\varphi = \lim_{j\to\infty}\int_{\supp\varphi}u_j\varphi = \lim_{j\to\infty}\int_{\tau_{e_i}(\supp\varphi)}u_j\tau_{e_i}\varphi = \int_{\mathbb R^d}u\tau_{e_i}\varphi$, and similarly for the derivatives of $u$. The integral of $u$ is zero on $\Omega$: $\abs{\int_\Omega u} = \abs{\int_\Omega u-u_j} \leq \mu(\Omega)^{1/2}\norm{u-u_j}_{L^2(\Omega)}\leq \mu(\Omega)^{1/2}\norm{u-u_j}_{H^1(\Omega)}$, which tends to zero. Hence $u\in H^1_\#(\Omega)$, so $H^1_\#(\Omega)$ is complete.
+        \item The periodic test functions are dense in $H^1_\#(\Omega)$; this is due to periodicity and compactness of $\Omega$ (we shouldn't have to worry about traces of functions on a circle/torus/etc.). Let $v_j$ be a sequence of periodic test functions converging to $v\in H^1_\#(\Omega)$ and integrate $f$ against $v$ to obtain $\int_\Omega fv = \int_\Omega-\Delta u v = \lim_{j\to\infty}\int_\Omega-\Delta u v_j = \lim_{j\to\infty}\int_\Omega\nabla u\cdot \nabla v_j = \abr{\nabla u,\nabla v}_{L^2(\Omega)}$. Define $B\colon H^1_\#(\Omega)\times H^1_\#(\Omega)\to\mathbb R$ by $B(u,v) = \abr{\nabla u,\nabla v}_{L^2(\Omega)}$ and $F\colon H^1_\#(\Omega)\to \mathbb R$ by $F(v) = \abr{f,v}_{H^1_\#(\Omega)^\ast,H^1_\#(\Omega)}$. Then the solution to the PDE is the solution to the variational problem of finding $u\in H^1_\#(\Omega)$ such that $B(u,v) = F(v)$ for all $v\in H^1_\#(\Omega)$. The bilinear operator $B$ is continuous on $H^1_\#(\Omega)$: $\abs{B(u,v)}\leq \norm{\nabla u}_{(L^2(\Omega))^d}\norm{\nabla v}_{(L^2(\Omega))^d}\leq M\norm{u}_{H^1_\#(\Omega)}\norm{v}_{H^1_\#(\Omega)}$ and is contractive due to a periodic version of the Poincar\'e inequality: $B(u,u) = \norm{\nabla u}_{(L^2(\Omega))^d}^2\geq (1/C^2)\norm{u}_{H^1_\#(\Omega)}^2$. Then Lax-Milgram provides a unique solution to the variational problem and hence also the PDE.
+        
+        The periodic version of the Poincar\'e inequality used above should be obtained in a similar manner as in previous exercises: Take a sequence $\cbr{u_j}$ of unit-norm elements in $H^1_\#(\Omega)$ such that their $\norm{u_j}_{L^2(\Omega)}>j\norm{D^\alpha u}_{L^2}$ for any $\abs{\alpha} = 1$. There should be some kind of compactness result that embeds $H^1_\#(\Omega)$ into the periodic $L^2(\Omega)$, so we find a strongly convergent limit $u$ in $L^2$. Distributional derivatives of $u$ are as expected to be zero, which means that $u$ is a constant function; the only constant that integrates to zero on $\Omega$ is zero, so $u$ is zero. This is in contradiction with the fact that the $L^2(\Omega)$-norms of $u_j$ increase to $1$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
