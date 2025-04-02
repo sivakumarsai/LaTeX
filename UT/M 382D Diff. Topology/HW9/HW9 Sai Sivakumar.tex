@@ -105,8 +105,18 @@
     
     The projection map is smooth since for any point $[(U_\alpha,\varphi_\alpha),v]\in T_{\varphi_\alpha^{-1}(x)}X\subset TX$, we have $\varphi_\alpha \pi \tilde\varphi_\alpha^{-1}(x,v) = \varphi_\alpha\pi h_\alpha^{-1}(\varphi_\alpha^{-1}\times \id)(x,v) = \varphi_\alpha\pi h_\alpha^{-1}(\varphi_\alpha^{-1}(x),v) = \varphi_\alpha\pi([(U_\alpha,\varphi_\alpha),v]) = \varphi_\alpha\varphi_\alpha^{-1}(x) = x$. Therefore $\pi$ in coordinates is the projection map $\mathbb R^n\times \mathbb R^n\to \mathbb R^n$ taking $(x,v)$ to $x$, which is smooth, so $\pi\colon TX\to X$ is smooth.
     \item \begin{enumerate}
-        \item 
-        \item 
+        \item The bundle transition function $g_{01} = h_\beta|_{\pi^{-1}(\cdot)}h_\alpha|_{\pi^{-1}(\cdot)}^{-1}$ at a point $[a+bi:1]\in U_0\cap U_1$ is given by $a+bi\mapsto [v\mapsto \big(\!\begin{smallmatrix}
+            b^2-a^2 & 2ab \\ -2ab & b^2-a^2
+        \end{smallmatrix}\!\big)v]\in \GL_2(\mathbb R)$ for $v\in \mathbb R^2 \cong T_{[z:1]}\mathbb{CP}^1$ since in complex coordinates we have $D(\varphi_1\varphi_0^{-1})_{1/(a+bi)}$ is given by multiplication by $ -(a+bi)^2$, which is realized in real coordinates as multiplication by the $2\times 2$ matrix $\big(\!\begin{smallmatrix}
+            b^2-a^2 & 2ab \\ -2ab & b^2-a^2
+        \end{smallmatrix}\!\big)$. 
+        
+        If $a+bi = e^{it}$ (so $[a+bi:1]$ is an element of the equator of $\mathbb{CP}^1$), then $\big(\!\begin{smallmatrix}
+            b^2-a^2 & 2ab \\ -2ab & b^2-a^2
+        \end{smallmatrix}\!\big) = \big(\!\begin{smallmatrix}
+            -\cos(2t) & \sin(2t) \\ -\sin(2t) & -\cos(2t)
+        \end{smallmatrix}\!\big)$.
+        \item The usual norm on the quaternions $\mathbb H$ is given by $\norm{a+bi+cj+dk}_2 = \sqrt{a^2+b^2+c^2+d^2}$. A lengthy calculation shows that the unit sphere $S^3\subset \mathbb H$ inherits the multiplication and inversion in $\mathbb H$. The group operations are smooth in the usual atlas for $S^3$ since smooth maps of manifolds restrict to smooth maps on submanifolds. So $S^3$ is a Lie group, and the tangent space at any point of $S^3$ may be obtained by translating the tangent space at $1$. Since the tangent space at $1$ has three linearly independent basis vectors, all other tangent spaces have three basis vectors, from which it follows that there are three linearly independent sections of the tangent bundle $TS^3$ (in other words, $S^3$ is parallelizable).
     \end{enumerate}
     \item Suppose $\cbr{v_1,\dots,v_k}$ are linearly dependent so that $v_1 = c_2v_2 + \cdots c_kv_k$ for $c_i$ not all zero. Then $v_1\wedge\cdots \wedge v_k = (c_2v_2 + \cdots c_kv_k)\wedge\cdots v_k = \sum_{i=2}^k c_i(v_i\wedge v_2\wedge \cdots\wedge v_k) = 0$ since $v_i\wedge v_2\wedge \cdots\wedge v_k$ contains repeated vectors for all $2\leq i\leq n$.
 
@@ -127,7 +137,7 @@
             &= \frac{1}{a^2 + b^2}\bigg(\frac{2ab}{1 + a^2 + b^2}da + \frac{b^2 - a^2}{1 + a^2 + b^2}\bigg).
         \end{align*}
         Since we cannot smoothly extend the above expressions to $(a,b) = (0,0)$, the forms $dx/(1 + x^2 + y^2)$ and $dy/(1 + x^2 + y^2)$ do not individually extend to smooth $1$-forms on all of $\mathbb{CP}^1$.
-        \item 
+        \item Finite-rank vector bundles are noncanonically self-dual. If there exist $1$-forms $\alpha$ and $\beta$ defined on all of $\mathbb{CP}^1$ such that $\omega = \alpha\wedge \beta$, then $\alpha$ and $\beta$ are linearly independent sections of $T^\ast\mathbb{CP}^1$, so $T^\ast\mathbb{CP}^1\cong T \mathbb{CP}^1\cong TS^2$ is trivializable, which is impossible.
     \end{enumerate}
     \item 
 \end{enumerate}
