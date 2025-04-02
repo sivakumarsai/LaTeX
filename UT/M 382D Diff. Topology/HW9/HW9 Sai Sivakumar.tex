@@ -90,6 +90,7 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\codim}{codim}
 \DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\sgn}{sgn}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Mat}{\mathrm{M}}
 \newcommand{\Sp}{\mathrm{Sp}}
@@ -100,11 +101,34 @@
 
 \begin{document}
 \begin{enumerate}
-    \item 
-    \item
-    \item 
-    \item 
-    \item 
+    \item Let $X$ have a smooth structure given by an atlas $\cbr{(U_\alpha,\varphi_\alpha)}$. On each chart $(U_\alpha,\varphi_\alpha)$, we can trivialize $TX$ via $h_\alpha\colon \pi^{-1}(U_\alpha)\xrightarrow{\cong} U_\alpha\times \mathbb R^n$. For any $\alpha$, define the map $\tilde\varphi_\alpha = (\varphi_\alpha\times \id)h_\alpha \colon \pi^{-1}(U_\alpha) \to \mathbb R^n\times \mathbb R^n$. By definition each $\tilde\varphi_\alpha$ is a homeomorphism. We show that $\cbr{(\pi^{-1}(U_\alpha), \tilde\varphi_\alpha)}$ constitutes an atlas of $TX$. Certainly the collection $\cbr{\pi^{-1}(U_\alpha)}$ covers $TX$. For charts $(\pi^{-1}(U_\alpha), \tilde\varphi_\alpha)$ and $(\pi^{-1}(U_\beta), \tilde\varphi_\beta)$, the transition function $\tilde\varphi_\beta\tilde\varphi_\alpha^{-1} = (\varphi_\beta\times \id)h_\beta h_\alpha^{-1}(\varphi_\alpha^{-1}\times\id)$ acts by $(x,v)\mapsto (\varphi_\alpha^{-1}(x),v)\mapsto [(U_\alpha,\varphi_\alpha),v] = [(U_\beta,\varphi_\beta),D(\varphi_\beta\varphi_\alpha^{-1})_{x}v]\mapsto (\varphi_\alpha^{-1}(x),D(\varphi_\beta\varphi_\alpha^{-1})_{x}v)\mapsto ((\varphi_\beta\varphi_\alpha^{-1})(x),D(\varphi_\beta\varphi_\alpha^{-1})_{x}v)$. Note that $[(U_\alpha,\varphi_\alpha),v] = [(U_\beta,\varphi_\beta),D(\varphi_\beta\varphi_\alpha^{-1})_{x}v]\in T_{\varphi_\alpha^{-1}(x)}X$. Therefore the transition functions are smooth, so $TX$ is a smooth manifold.
+    
+    The projection map is smooth since for any point $[(U_\alpha,\varphi_\alpha),v]\in T_{\varphi_\alpha^{-1}(x)}X\subset TX$, we have $\varphi_\alpha \pi \tilde\varphi_\alpha^{-1}(x,v) = \varphi_\alpha\pi h_\alpha^{-1}(\varphi_\alpha^{-1}\times \id)(x,v) = \varphi_\alpha\pi h_\alpha^{-1}(\varphi_\alpha^{-1}(x),v) = \varphi_\alpha\pi([(U_\alpha,\varphi_\alpha),v]) = \varphi_\alpha\varphi_\alpha^{-1}(x) = x$. Therefore $\pi$ in coordinates is the projection map $\mathbb R^n\times \mathbb R^n\to \mathbb R^n$ taking $(x,v)$ to $x$, which is smooth, so $\pi\colon TX\to X$ is smooth.
+    \item \begin{enumerate}
+        \item 
+        \item 
+    \end{enumerate}
+    \item Suppose $\cbr{v_1,\dots,v_k}$ are linearly dependent so that $v_1 = c_2v_2 + \cdots c_kv_k$ for $c_i$ not all zero. Then $v_1\wedge\cdots \wedge v_k = (c_2v_2 + \cdots c_kv_k)\wedge\cdots v_k = \sum_{i=2}^k c_i(v_i\wedge v_2\wedge \cdots\wedge v_k) = 0$ since $v_i\wedge v_2\wedge \cdots\wedge v_k$ contains repeated vectors for all $2\leq i\leq n$.
+
+    If $\dim V < k$, then the vectors $\cbr{v_1,\dots,v_k}$ appearing in any element $v_1\wedge\cdots \wedge v_k\in \bigwedge^k V$ must be linearly dependent. Hence $\bigwedge^k V = 0$.
+
+    Let $\dim V\geq k$. For any generic $n\times k$ matrix $M$ in $\mathbb R^{n\times k}$, let $m$ be any $k\times k$ minor of $M$. Define the function $\det_m\colon V^k\to \mathbb R$ by sending $(v_1,\dots,v_k)$ to the determinant of the $m$-minor of the matrix $(v_1\,\cdots\,v_k)$ whose columns are the coordinate vectors of $v_1,\dots,v_k$ in any basis for $V$. Since the determinant is alternating and multilinear, there exists a unique linear map $\widetilde{\det}_m\colon \bigwedge^kV\to \mathbb R$ for each $m$ such that $\det_m = \widetilde{\det}_m w$ where $w\colon V^k\to \bigwedge^kV$ sends $(v_1,\dots,v_k)$ to $v_1\wedge\cdots\wedge v_n$. If $v_1\wedge\cdots \wedge v_k = 0$, then $\det_m(v_1,\dots,v_n) = 0$ for all $m$, which implies that the matrix $(v_1\,\cdots\,v_k)$ in any basis of $V$ does not have full rank; that is, $\cbr{v_1,\dots,v_l}$ are linearly dependent.
+    \item Let $A$ be given by multiplication by the matrix $(A_{ij})$ in the given bases for $V$ and $W$. Directly computing yields
+    \begin{multline*}
+        \bigwedge^nA(v_1\wedge \cdots\wedge v_n) = (Av_1)\wedge \cdots \wedge(Av_n) = \Big(\sum_{i_1}A_{i_11}w_{i_1}\Big)\wedge\cdots \wedge \Big(\sum_{i_n}A_{i_nn}w_{i_n}\Big) \\ = \sum_{\mathclap{\substack{i_1,\dots,i_n\\ = 0,\dots,n}}}A_{i_11}\cdots A_{i_nn}(w_{i_1}\wedge\cdots w_{i_n}) = \sum_{\sigma\in S_n}A_{\sigma(1)1}\cdots A_{\sigma(n)n}(w_{\sigma(1)}\wedge\cdots \wedge w_{\sigma(n)}) \\= \Big(\sum_{\sigma\in S_n}\sgn(\sigma)A_{\sigma(1)1}\cdots A_{\sigma(n)n}\Big)(w_{1}\wedge\cdots \wedge w_{n}) = (\det A)(w_{1}\wedge\cdots \wedge w_{n}) 
+    \end{multline*}
+    as needed.
+    \item \begin{enumerate}
+        \item A quick summary of the coordinates on $\mathbb{CP}^1 = \cbr{[z_0,z_1]\mid z_0,z_1\in\mathbb C\text{ not both zero}}\cong S^2$: they are given by the usual atlas $\cbr{(U_0,\varphi_0),(U_1,\varphi_1)}$ where $\varphi_0$ sends $[z_0,z_1]$ to $z_1/z_0\in \mathbb C$; this copy of $\mathbb C$ is identified with $\mathbb R^2 = \cbr{(x,y)\mid x,y\in\mathbb R}$. Similarly $\varphi_1$ sends $[z_0,z_1]$ to $z_0/z_1\in \mathbb C$; this copy of $\mathbb C$ is identified with $\mathbb R^2 = \cbr{(a,b)\mid a,b\in\mathbb R}$. Then avoiding $(x,y) = (0,0)$ and $(a,b) = (0,0)$, we have $x = a/(a^2 + b^2)$, $y = -b/(a^2 + b^2)$, $dx = [(b^2 - a^2)/(a^2 + b^2)^2]da - [2ab/(a^2 + b^2)^2]db$, and $dy = [2ab/(a^2 + b^2)^2]da + [(b^2-a^2)/(a^2 + b^2)^2]db$. It follows that 
+        \begin{align*}
+            \frac{dx}{1 + x^2 + y^2} &= \frac{1}{1 + (a^2 + b^2)^{-1}}\bigg(\frac{b^2 - a^2}{(a^2 + b^2)^2}da - \frac{2ab}{(a^2 + b^2)^2}db\bigg)\\
+            &= \frac{1}{a^2 + b^2}\bigg(\frac{b^2 - a^2}{1 + a^2 + b^2}da - \frac{2ab}{1 + a^2 + b^2}\bigg)\quad\text{and}\\
+            \frac{dy}{1 + x^2 + y^2} &= \frac{1}{1 + (a^2 + b^2)^{-1}}\bigg(\frac{2ab}{(a^2 + b^2)^2}da + \frac{b^2-a^2}{(a^2 + b^2)^2}db\bigg)\\
+            &= \frac{1}{a^2 + b^2}\bigg(\frac{2ab}{1 + a^2 + b^2}da + \frac{b^2 - a^2}{1 + a^2 + b^2}\bigg).
+        \end{align*}
+        Since we cannot smoothly extend the above expressions to $(a,b) = (0,0)$, the forms $dx/(1 + x^2 + y^2)$ and $dy/(1 + x^2 + y^2)$ do not individually extend to smooth $1$-forms on all of $\mathbb{CP}^1$.
+        \item 
+    \end{enumerate}
     \item 
 \end{enumerate}
 \end{document}
