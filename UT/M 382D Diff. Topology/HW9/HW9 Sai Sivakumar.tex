@@ -140,6 +140,31 @@
         Since we cannot smoothly extend the above expressions to $(a,b) = (0,0)$, the forms $dx/(1 + x^2 + y^2)$ and $dy/(1 + x^2 + y^2)$ do not individually extend to smooth $1$-forms on all of $\mathbb{CP}^1$.
         \item Finite-rank vector bundles are noncanonically self-dual. If there exist $1$-forms $\alpha$ and $\beta$ defined on all of $\mathbb{CP}^1$ such that $\omega = \alpha\wedge \beta$, then $\alpha$ and $\beta$ are linearly independent sections of $T^\ast\mathbb{CP}^1$, so $T^\ast\mathbb{CP}^1\cong T \mathbb{CP}^1\cong TS^2$ is trivial, which is impossible.
     \end{enumerate}
-    \item 
+    \item The transition function $\varphi_1\varphi_0^{-1}$ maps $(z_1,z_2)$ to $(1/z_1,z_2/z_1)$. So $z_1(w_1,w_2) = 1/w_1$ and $z_2(w_1,w_2) = w_2/w_1$; using Wirtinger derivatives we obtain the following equalities: 
+    \begin{align*}
+        dz_1 = \pdv{z_1}{w_1}dw_1 + \pdv{z_1}{w_2}dw_2 = \frac{-1}{w_1^2}dw_1 \quad &\quad d\bar z_1 = \pdv{\bar z_1}{\bar w_1}d\bar w_1 + \pdv{\bar z_1}{\bar w_2}d\bar w_2 = \frac{-1}{\bar w_1^2}d\bar w_1\\
+        dz_2 = \pdv{z_2}{w_1}dw_1 + \pdv{z_1}{w_2}dw_2 = \frac{-w_2}{w_1^2}dw_1 + \frac{1}{w_1}dw_2 \quad &\quad d\bar z_2 = \pdv{\bar z_2}{\bar w_1}d\bar w_1 + \pdv{\bar z_2}{\bar w_2}d\bar w_2 = \frac{-\bar w_2}{\bar w_1^2}d\bar w_1 + \frac{1}{\bar w_1}d\bar w_2
+    \end{align*}
+
+    Then 
+    \begin{align*}
+        \frac{i}{2}&\bigg[\frac{1}{(1+\abs{z_1}^2+\abs{z_2}^2)^2}\bigg]\Big[(1+\abs{z_2}^2)dz_1\wedge d\bar z_1 + (1+\abs{z_1}^2)dz_2\wedge d\bar z_2 - \bar z_1z_2dz_1\wedge d\bar z_2 - \bar z_2z_1dz_2\wedge d\bar z_2\Big] \\
+        &= \frac{i}{2}\bigg[\frac{1}{(1+1/\abs{w_1}^2+\abs{w_2}^2/\abs{w_1}^2)^2}\bigg]\bigg[\bigg(1+\frac{\abs{w_2}^2}{\abs{w_1}^2}\bigg)\bigg(\frac{-1}{w_1^2}dw_1\bigg)\wedge\bigg(\frac{-1}{\bar w_1^2}d\bar w_1\bigg) + \\
+        &\hspace{5em}\bigg(1+\frac{1}{\abs{w_1}^2}\bigg)\bigg(\frac{-w_2}{w_1^2}dw_1 + \frac{1}{w_1}dw_2\bigg)\wedge \bigg(\frac{-\bar w_2}{\bar w_1^2}d\bar w_1 + \frac{1}{\bar w_1}d\bar w_2\bigg) + \\
+        &\hspace{5em}\bigg(\frac{-w_2}{\abs{w_1}^2}\bigg)\bigg(\frac{-1}{w_1^2}dw_1\bigg)\wedge\bigg(\frac{-\bar w_2}{\bar w_1^2}d\bar w_1 + \frac{1}{\bar w_1}d\bar w_2\bigg) +\\
+        &\hspace{5em}\bigg(\frac{-\bar w_2}{\abs{w_1}^2}\bigg)\bigg(\frac{-w_2}{w_1^2}dw_1 + \frac{1}{w_1}dw_2\bigg)\wedge\bigg(\frac{-1}{\bar w_1^2}d\bar w_1\bigg)\bigg] \\
+        &= \frac{i}{2}\bigg[\frac{1}{(1+\abs{w_1}^2+\abs{w_2}^2)^2}\bigg]\bigg[\bigg(1+\frac{\abs{w_2}^2}{\abs{w_1}^2}\bigg)dw_1\wedge d\bar w_1 + \\
+        &\hspace{5em}\bigg(1+\frac{1}{\abs{w_1}^2}\bigg)\bigg(\abs{w_2}^2dw_1\wedge d\bar w_1 + \abs{w_1}^2dw_2\wedge d\bar w_2 - \bar w_1w_2dw_1\wedge d\bar w_2 - \bar w_2w_1dw_2\wedge d\bar w_1\bigg) + \\
+        &\hspace{5em}\bigg(\frac{-w_2}{\abs{w_1}^2}\bigg)\bigg(\bar w_2dw_1\wedge d\bar w_1 - \bar w_1 dw_1\wedge d\bar w_2\bigg) +\\
+        &\hspace{5em}\bigg(\frac{-\bar w_2}{\abs{w_1}^2}\bigg)\bigg(w_2dw_1\wedge d\bar w_1 - w_1dw_2\wedge d\bar w_1\bigg)\bigg]\\
+        &= \frac{i}{2}\bigg[\frac{1}{(1+\abs{w_1}^2+\abs{w_2}^2)^2}\bigg]\bigg[\bigg(1+\frac{\abs{w_2}^2}{\abs{w_1}^2} + \abs{w_2}^2 + \frac{\abs{w_2}^2}{\abs{w_1}^2} - \frac{2\abs{w_2}^2}{\abs{w_1}^2}\bigg)dw_1\wedge d\bar w_1 + \\
+        &\hspace{5em}\bigg(1+\frac{1}{\abs{w_1}^2}\bigg)\abs{w_1}^2dw_2\wedge d\bar w_2 + \\
+        &\hspace{5em}\bigg(\bigg(1+\frac{1}{\abs{w_1}^2}\bigg)(-\bar w_1w_2) + \bigg(\frac{-w_2}{\abs{w_1}^2}\bigg)(-\bar w_1)\bigg)dw_1\wedge d\bar w_2 +\\
+        &\hspace{5em}\bigg(\bigg(1+\frac{1}{\abs{w_1}^2}\bigg)(-\bar w_2w_1) + \bigg(\frac{-\bar w_2}{\abs{w_1}^2}\bigg)(-w_1)\bigg)dw_2\wedge d\bar w_1\bigg]\\
+        &= \frac{i}{2}\bigg[\frac{1}{(1+\abs{w_1}^2+\abs{w_2}^2)^2}\bigg]\Big[(1+\abs{w_2}^2)dw_1\wedge d\bar w_1 + (1+\abs{w_1}^2)dw_2\wedge d\bar w_2\\
+        &\hspace{5em} - \bar w_1w_2dw_1\wedge d\bar w_2 - \bar w_2w_1dw_2\wedge d\bar w_2\Big].
+    \end{align*}
+    It follows that the Fubini-Study form on $U_0$ extends to a form on $U_1$, and by a similar computation, also to $U_2$ so that it defines a $2$-form on all of $\mathbb{CP}^2$.
+
 \end{enumerate}
 \end{document}
