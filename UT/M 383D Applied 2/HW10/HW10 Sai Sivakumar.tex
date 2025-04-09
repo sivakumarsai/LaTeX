@@ -1,0 +1,130 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 383D}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{#1}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\let\PV\relax
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\sgn}{sgn}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+\let\norm\undefined % <-- "Undefine" \norm
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\subsection*{8.8 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[14.] 
+    \item[17.] 
+\end{enumerate}
+\subsection*{9.9 Exercises (from \href{https://users.oden.utexas.edu/~arbogast/appMath08c.pdf}{online notes})}
+\begin{enumerate}
+    \item[1.] 
+    \begin{enumerate}
+        \item Bilinearity of $P$ yields $P(y_1+h_1, y_2 + h_2) - P(y_1,y_2) = P(y_1,h_2) + P(h_1,y_2) + P(h_1,h_2)$. Since $P(h_1,h_2)$ is continuous, $P(h_1,h_2) = o((h_1,h_2))$ so that $DP(y_1,y_2)(\hat y_1,\hat y_2) = P(y_1,\hat y_2) + P(\hat y_1,y_2)$.
+        \item The chain rule yields $D(Pf)(x)h = DP(f(x))Df(x)h = P(Df_1(x)h, f_2(x)) + P(f_1(x),Df_2(x)h)$, where $f = (f_1,f_2)$ and $Df(x) = (Df_1(x),Df_2(x))$ as functions on $Y_1\times Y_2$. That $[Df(x)]_1$ agrees with $Df_1(x)$ is due to linearity.
+    \end{enumerate}
+    \item[2.] We have $f(x+h) - f(x) = (\abr{x,A_1h} + \abr{h,A_1x})A_2x + \abr{x,A_1x}A_2h + o(h)$ by continuity of $A_1$, $A_2$, and the inner product on $X$. So for any $x\in X$, $Df(x)h = (\abr{x,A_1h} + \abr{h,A_1x})A_2x + \abr{x,A_1x}A_2h$, which we should expect from a na\"ive product rule, Exercise 1, and that linear maps are their own derivatives.
+    \item[3.] Differentiability of $f$ implies 
+    \[F(u+h) - F(u) = \int_0^1K(-,y)[f(u(y) + h(y)) - f(u(y))]\dd y = \int_0^1K(-,y)[f^\prime(u(y))h(y) + R(u(y), h(y))]\dd y,\]
+    where $R(u(y), h(y)) = f(u(y) + h(y)) - f(u(y)) - $ is continuous and $o(h(y))$ for all $y$. $\norm{\int_0^1K(-,y)R(h(y))\dd y}_\infty$
+    \item[5.] 
+    \item[6.] 
+\end{enumerate}
+\end{document}
