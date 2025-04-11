@@ -103,5 +103,47 @@
 \begin{document}
 \begin{enumerate}
     \item 
+    \item 
+    \item Choose the chart covering $S^1\setminus\cbr{(1,0)}$, parameterized by the interval $(0,2\pi)$ via the map $t\mapsto (\cos(t),\sin(t))$. Then $\int_{S^1}(xdy-ydx) = \int_0^{2\pi}[\cos^2(\theta) + \sin^2(\theta)]\,d\theta = 2\pi$.
+    \item Calculating this integral in a chart given by sterographic projection is slightly miserable but reduces due to the symmetry of the sphere; this suggests that the integral may be easier to calculate in a chart given by the usual spherical change of coordinates. We will calculate the integral both ways.
+    
+    Via the stereographic projection $\varphi^{-1}\colon \mathbb R^2\to\mathbb R^3$\dots
+
+    Via the spherical change of coordinates $\varpi^{-1}\colon \mathbb R^2\to\mathbb R^3$ given by $(\varphi,\theta)\mapsto (\cos(\theta)\sin(\varphi), \sin(\theta)\sin(\varphi), \cos(\varphi))$ (this is orientation-preserving), the subset of $S^2$ missed by the image of $\varpi^{-1}$ is a half-meridian with boundary the north and south poles of $S^2$, which has measure zero. Then $\int_{S^2}(x dy \wedge dz + y dz \wedge dx + z dx \wedge dy) = \int_0^{2\pi}\int_0^\pi [\cos^2(\theta)\sin^3(\varphi) + \sin^2(\theta)\sin^3(\varphi) + \sin(\varphi)\cos^2(\varphi)] \,d\varphi d\theta = 2\pi\int_0^\pi\sin(\varphi)\,d\varphi = 4\pi$.
+    \item The standard copy of $\mathbb{CP}^1 = \cbr{[w_0:w_1:0]}$ inside $\mathbb{CP}^2$, has a subset of full measure ($\mathbb{CP}^1\setminus\cbr{[0:1:0]}$) that belongs to the chart $(U_0,\varphi_0)$, which is given complex coordinates $z_1,z_2$. The points in $\mathbb{CP}^1 = \cbr{[w_0:w_1:0]}$ belonging to $U_0$ in the coordinates $(z_1,z_2)$ are those with $z_2 = 0$. By identifying $x+iy$ with $(x,y)$, parameterize the points $(z_1,0)$ by the map $\mathbb R^2\to \mathbb C^2$ via $(x,y)\mapsto (x+iy,0)$. Pulling back the Fubini-Study form $\omega_{FS}$ along this map yields the form
+    \[\bigg[\frac{1}{(1+x^2+y^2)^2}\bigg]dx\wedge dy,\]
+    which when integrated on $\mathbb R^2$ yields $\int_0^\infty\int_0^\infty (1+x^2+y^2)^{-2} \,dxdy = \int_0^{2\pi}\int_0^\infty (1+r^2)^{-2}r\,drd\theta = \pi\int_1^\infty u^{-2}\, du = \pi$.
+    \item 
+    \item \begin{enumerate}
+      \item 
+      % Let $\omega\in \Omega^0(X)$ be a $0$-form, and choose two charts $(U_\alpha,\varphi_\alpha)$ and $(U_\beta,\varphi_\beta)$ with coordinates $x_1,\dots,x_n$ and $y_1,\dots,y_n$ respectively. In the coordinates $x_1,\dots,x_n$, the form $\omega$ is given by a function $f = f(x_1,\dots,x_n)$. Then change coordinates via the transition function $\varphi_\alpha\varphi_\beta^{-1}$ and then take the exterior derivative to obtain 
+      % \begin{multline*}
+      %   df(x_1(y_1,\dots,y_n),\dots,x_n(y_1,\dots,y_n)) = \\\sum_j\bigg(\sum_i\pdv{f}{x_i}\/(x_1(y_1,\dots,y_n),\dots,x_n(y_1,\dots,y_n))\pdv{x_i}{y_j}\/(y_1,\dots,y_n)\bigg)dy_j.
+      % \end{multline*}
+      % On the other hand, taking the exterior derivative of $f$ first and then changing coordinates yields 
+      % \begin{multline*}
+      %   (df)(x_1(y_1,\dots,y_n),\dots,x_n(y_1,\dots,y_n)) = \\\sum_i\pdv{f}{x_i}\/(x_1(y_1,\dots,y_n),\dots,x_n(y_1,\dots,y_n))\bigg(\sum_j \pdv{x_i}{y_j}\/(y_1,\dots,y_n)dy_j\bigg).
+      % \end{multline*}
+      % Evidently both sums coincide, so for $0$-forms, the exterior derivative is well-defined.
+      
+      % Let $\omega\in \Omega^k(X)$ be a $k$-form, which in the coordinates $x_1,\dots,x_n$ is $\sum_{i_1<\cdots<i_k}f_{i_1,\dots,i_k}dx_{i_1}\wedge\cdots\wedge dx_{i_k}$; we will prove the result for just one summand, which we denote by $f dx_{i_1}\wedge\cdots\wedge dx_{i_k}$, and assume that the exterior derivative is well-defined for $(k-1)$-forms. Then changing coordinates followed by taking the exterior derivative, we obtain 
+      % \[\]
+      
+      % . The exterior derivative of $\omega$ in these coordinates is $\sum_{i_1<\cdots<i_k}\sum_{\ell}f_{i_1,\dots,i_k}dx_{i_1}\wedge\cdots\wedge dx_{i_k}$
+      \item 
+    \end{enumerate}
+    \item Using the result of Problem 7, we have $\int_{[a,b]} \gamma^\ast\omega = \int_{[a,b]}\gamma^\ast df = \int_{[a,b]}d(\gamma^\ast f) = (\gamma^\ast f)(b) - (\gamma^\ast f)(a) = f(\gamma(b)) - f(\gamma(a)) = f(q) - f(p)$.
+    \item \begin{enumerate}
+      \item Directly calculating yields 
+      \begin{align*}
+        d\omega_{(x,y)} &= \bigg[\pdv{x}\bigg(\frac{-y}{x^2+y^2}\bigg)dx + \pdv{y}\bigg(\frac{-y}{x^2+y^2}\bigg)dy\bigg]\wedge dx + \bigg[\pdv{x}\bigg(\frac{x}{x^2+y^2}\bigg)dx + \pdv{y}\bigg(\frac{x}{x^2+y^2}\bigg)dy\bigg]\wedge dy\\
+        &= \bigg(\frac{x^2-y^2}{(x^2+y^2)^2}\bigg) dx\wedge dy + \bigg(\frac{y^2-x^2}{(x^2+y^2)^2}\bigg)dx\wedge dy\\
+        &= 0.
+      \end{align*}
+      \item If $df = \omega$ on $x>0$, then $f$ must satisfy 
+      \[\pdv{f}{x}\/(x,y) = \frac{-y}{x^2+y^2} \quad\text{and}\quad \pdv{f}{y}\/(x,y) = \frac{x}{x^2+y^2}.\]
+      Then $f(x,y) = \int_0^x -y/(t^2+y^2)\,dt + f(0,y) = -\arctan(x/y) + f(0,y)$. Differentiating the previous expression with respect to $y$ yields $\pdv{f}{y}\/(x,y) = \pdv{y}[-\arctan(x/y) + f(0,y)] = x/(x^2+y^2) + \pdv{f}{y}\/(0,y) = x/(x^2+y^2)$, which implies $f(0,y)$ is some constant $c$. Therefore for $x>0$, $f$ may be given by $f(x,y) = -\arctan(x/y) + c$ for any constant $c$.
+      \item If there was a function $f$ defined on all of $\mathbb R^2\setminus\cbr{(0,0)}$ for which $\omega = df$, then Stokes' theorem implies $0 = \int_{\partial S^1}f = \int_{S^1}\omega = \int_0^{2\pi}[\sin^2(\theta) + \cos^2(\theta)]\,d\theta = 2\pi$, impossible.
+    \end{enumerate}
 \end{enumerate}
 \end{document}
