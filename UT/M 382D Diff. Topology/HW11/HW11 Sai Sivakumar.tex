@@ -1,0 +1,144 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{hanging}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{HW11}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Mat}{\mathrm{M}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\AS}{\mathrm{AntiSym}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item Let $H\colon Z\times [0,1]\to X$ be a homotopy of $f_0$ and $f_1$ where $H(\,\cdot\,,0) = f_0$ and $H(\,\cdot\,,1) = f_0$. Then $0 = \int_{Z\times[0,1]}H^\ast d\omega = \int_{Z\times[0,1]}dH^\ast\omega = \int_{\partial(Z\times[0,1])}H^\ast\omega = \int_{-Z}f_0^\ast\omega + \int_Zf_1^\ast\omega = \int_{f_1(Z)}\omega - \int_{f_0(Z)}\omega$.
+    \item \begin{enumerate}
+        \item We have 
+        \begin{multline*}
+            d\omega = \bigg[\pdv{x}\frac{x}{(x^2+y^2+z^2)^{3/2}} + \pdv{y}\frac{y}{(x^2+y^2+z^2)^{3/2}} + \pdv{z}\frac{z}{(x^2+y^2+z^2)^{3/2}}\bigg]dx\wedge dy\wedge dz\\
+            = \bigg[\frac{-2x^2+y^2+z^2}{(x^2+y^2+z^2)^{5/2}} + \frac{-2y^2+x^2+z^2}{(x^2+y^2+z^2)^{5/2}} + \frac{-2z^2+x^2+y^2}{(x^2+y^2+z^2)^{5/2}}\bigg]dx\wedge dy\wedge dz = 0, 
+        \end{multline*}
+        for $(x,y,z)\in\mathbb R^3\setminus\cbr{(0,0,0)}$, but $\int_{S^2}\omega = \int_0^{2\pi}\int_0^\pi [\cos^2(\theta)\sin^3(\varphi) + \sin^2(\theta)\sin^3(\varphi) + \sin(\varphi)\cos^2(\varphi)] \,d\varphi d\theta = 2\pi\int_0^\pi\sin(\varphi)\,d\varphi = 4\pi$, so $\omega$ is closed but not exact.
+        \item By how Wirtinger derivatives are defined, treating $z_1,z_2,\bar z_1,\bar z_2$ as independent coordinates and na\"ively taking the exterior derivative in these coordinates for $U_0$ is the same as taking the exterior derivative in the real coordinates for $U_0$. It suffices to show closedness on $U_0$ by symmetry. 
+        Let $D = D(z_1,\bar z_1, z_2,\bar z_2) = 1 + \bar z_1z_1 + \bar z_2z_2$ so that 
+        \[\omega_{\mathrm{FS}} = \frac{i}{2}\bigg(\frac{1 + \bar z_2z_2}{D^2}\bigg)dz_1\wedge d\bar z_1 + \frac{i}{2}\bigg(\frac{1 + \bar z_1z_1}{D^2}\bigg)dz_2\wedge d\bar z_2 - \frac{i}{2}\bigg(\frac{\bar z_1z_2}{D^2}\bigg)dz_1\wedge d\bar z_2 - \frac{i}{2}\bigg(\frac{\bar z_2z_1}{D^2}\bigg)dz_2\wedge d\bar z_1.\]
+        We have 
+        \begin{align*}
+            -2id\omega_{\mathrm{FS}} &= \bigg(\frac{D\bar z_2-2(1+\bar z_2z_2)\bar z_2 + D\bar z_2-2(\bar z_1z_1)\bar z_2}{D^3}\bigg)dz_2\wedge dz_1\wedge d\bar z_1 \\
+            &\hspace{5em} + \bigg(\frac{D z_2-2(1+\bar z_2z_2) z_2 + D z_2-2(\bar z_1z_1) z_2}{D^3}\bigg)d\bar z_2\wedge dz_1 \wedge d\bar z_1\\
+            &\hspace{5em} + \bigg(\frac{D\bar z_1-2(1+\bar z_1z_1)\bar z_1 + D\bar z_1-2(\bar z_2z_2)\bar z_1}{D^3}\bigg)dz_1\wedge dz_2\wedge d\bar z_2 \\
+            &\hspace{5em} + \bigg(\frac{D z_1-2(1+\bar z_1z_1) z_1 + D z_1-2(\bar z_2z_2) z_1}{D^3}\bigg)d\bar z_1\wedge dz_2\wedge d\bar z_2\\
+            &= 0.
+        \end{align*}
+        That $\omega_{\mathrm{FS}}$ is not exact is due to the calculation $\int_{\mathbb{CP}^1}\omega_{\mathrm{FS}} = \pi$.
+        \item Since $d(\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}}) = d\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}} + (-1)^2\omega_{\mathrm{FS}}\wedge d\omega_{\mathrm{FS}} = 0$, $\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}}$ is closed (in any case there are no $5$-forms on $\mathbb{CP}^2$). It suffices to see that $\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}}$ is a nowhere vanishing $4$-form; that is, a volume form on $\mathbb{CP}^2$ so that the integral $\int_{\mathbb{CP}^2}\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}}$ is nonzero. Indeed, $\omega_{\mathrm{FS}}\wedge \omega_{\mathrm{FS}} = -\frac{1}{2}[1/(1+\abs{z_1}^2 + \abs{z_2}^2)^4][(1+\abs{z_1}^2)(1+\abs{z_2}^2) - \abs{z_1}^2\abs{z_2}^2] = -\frac{1}{2}[1/(1+\abs{z_1}^2 + \abs{z_2}^2)^3]$.
+    \end{enumerate}
+    \item Let $E$ be the region enclosed by the clockwise-oriented ellipse $C$. By directly parameterizing $C$ we obtain 
+    \[\int_C x\,dy = \int_0^{2\pi}\frac{1}{2}\cos^2(\theta)\,d\theta = \frac{\pi}{2};\]
+    by using Stokes' theorem, we obtain
+    \[\int_C x\,dy = \int_E dx\wedge dy = \pi(1)\bigg(\frac{1}{2}\bigg),\]
+    which is the area of the ellipse $E$ we learned from kindergarten.
+    \item \begin{enumerate}
+        \item Directly computing, we have $d\omega = dz\wedge dx\wedge dy$, which is nonzero. Consider the translation $T_v$ with $v = (0,0,1)$. Then $T_v^\ast\omega = dx\wedge dz + (z+1)dx \wedge dy\neq dx\wedge dz + zdx \wedge dy$ (the difference is $dx\wedge dy$, which is nonzero).
+        \item By the Jordan-Brouwer theorem, $S$ is the boundary of some region $E\subset \mathbb R^3$. Then for any $v\in\mathbb R^3$, $\int_S\omega = \int_E dz\wedge dx\wedge dy = \int_{T_v(E)} dz\wedge dx\wedge dy = \int_{T_v(S)} \omega$, since $dz\wedge dx\wedge dy$ is translation invariant and taking the boundary of a manifold commutes with translation.
+    \end{enumerate}
+    \item Observe $X$ has a trivializable tangent bundle so that $\theta$ and $t$ denote coordinates on $X$. Let $\beta\in \Omega^1(X)$ in coordinates be given by any compactly supported $h(t)$ for which $\int_{-1}^1 h(t)\,dt = 1$ (e.g. a bump function with support $[-1/2,1/2]$ that integrates to $1$). Indeed, if $\alpha\in \Omega^1(X)$ is a closed form which in coordinates is $f(\theta,t)\,d\theta + g(\theta,t)\,dt$, then $\int_X\alpha\wedge \beta = \int_{-1}^1\int_0^{2\pi}f(\theta,t)h(t)\,d\theta dt = \int_{-1}^1h(t)\,dt\int_0^{2\pi}f(\theta,0)\,d\theta = \int_0^{2\pi}f(\theta,0)\,d\theta = \int_Z\alpha$ since $\dv{t}\int_0^{2\pi}f(\theta,t)\,d\theta = \int_0^{2\pi}\dv{f}{t}\/(\theta,t)\,d\theta = \int_0^{2\pi}\dv{g}{\theta}\/(\theta,t)\,d\theta = 0$; that is, $\int_0^{2\pi}f(\theta,t)\,d\theta$ is constant in $t$.
+    \item We may homotope any $\gamma\colon S^1\to\mathbb R^2\setminus{(0,0)}$ into a map of the form $\eta \colon z\mapsto z^m$ for some integer $m$, so by a similar result to the first problem, $\frac{1}{2\pi}\int_{S^1}\gamma^\ast\omega = \frac{1}{2\pi}\int_{S^1}\eta^\ast\omega = \frac{1}{2\pi}\int_0^{2\pi}m\,d\theta = m$ (these calculations, which I am mostly omitting, we did in the last homework set), which is the winding number of $\gamma$.
+    \item \begin{enumerate}
+        \item It suffices to see that the wedge product of a closed form against an exact form is exact. If $\alpha\in \Omega^a(X)$ is closed and $\beta\in\Omega^b(X)$ is exact, then $\beta = d\gamma$, so $\alpha\wedge \beta = \alpha\wedge d\gamma = d(-1)^a(\alpha\wedge \gamma)$ is exact.
+        \item The integral of an exact $n$-form over $X$ is zero since $\partial X$ is empty.
+        \item In class we showed $H^1(T^2) = \mathbb R^2 = \Span_{\mathbb R}\cbr{[dx],[dy]}$. Then $([dx],[dy]) = \int_{T^2}dx\wedge dy = 4\pi^2$ and $([dy],[dx]) = -4\pi^2$. Of course the pairing of $[dx]$ or $[dy]$ with itself is zero. Extend by linearity.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
