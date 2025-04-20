@@ -1,0 +1,107 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{hanging}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{HW12}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Mat}{\mathrm{M}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\AS}{\mathrm{AntiSym}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item If $\omega$ is exact, then $\int_{T^2}\omega = \int_{T^2} d\tilde \omega = 0$ by Stokes' theorem (the torus has no boundary.) On the other hand, if $\int_{T^2}\omega = \int_0^{2\pi}\int_0^{2\pi}h(x,y)\,dxdy = 0$, then the function $I(y) = \int_0^{2\pi}h(x,y)\,dx$ satisfies $\int_0^{2\pi}[h(x,y)-\frac{1}{2\pi}I(y)]\,dx = \int_0^{2\pi}h(x,y)\,dx-I(y) = 0$ for any fixed $y$. Let $h^\prime(x,y) = h(x,y) - \frac{1}{2\pi}I(y)$. It follows that $h^\prime$ has an antiderivative in $x$; that is, $h^\prime(x,y) = \pdv{H}{x}\/(x,y) = -\pdv{(-H)}{x}\/(x,y) + \pdv{0}{y}\/(x,y)$ for all $x,y$. So $h^\prime dx\wedge dy$ is exact. Since $\int_0^{2\pi}I(y)\,dy = \int_0^{2\pi}\int_0^{2\pi}h(x,y)\,dx dy = 0$, $I(y)$ has the antiderivative $I(y) = \pdv{y}\int_0^yI(t)\,dt$ and so $hdx\wedge dy$ is exact as well. It follows that any closed form $hdx\wedge dy$ is cohomologous to $(\int_0^{2\pi}\int_0^{2\pi}h(x,y)\,dx dy)dx\wedge dy$; hence $H^2(T^2) = \mathbb R$.
+\end{enumerate}
+\end{document}
