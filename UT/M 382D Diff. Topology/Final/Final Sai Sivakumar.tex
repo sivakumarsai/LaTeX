@@ -1,0 +1,172 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hanging}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{systeme}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{hanging}
+\usepackage{quiver}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 382D}
+\fancyhead[C]{Final}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% extra commands defined here
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\cbr}[1]{\left\{#1\right\}}
+\newcommand{\eq}[1]{\overset{(#1)}{=}}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\im}{im}
+\newcommand{\res}[1]{\operatorname*{res}_{#1}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Int}{int}
+\newcommand{\GL}{\mathrm{GL}}
+
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\smiley}
+\newcommand{\happy}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\frownie}
+\newcommand{\sad}{\raisebox{-.14em}{\resizebox{1.2em}{!}{\frownie}}}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+\begin{document}
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item The identity map is not a Lefschetz map since on the nose it has infinitely many fixed points. A Lefschetz map that is homotopic to the identity is the map $[z_0:z_1:z_2]\mapsto [z_0:2tz_1:2(1-t)z_2]$ for some $1/2<t<1$. Transversality is generic, but probably $t = 3/4$ should work since the only points of intersection in this case are 
+        % The Lefschetz number of $\id\colon\mathbb{CP}^2\to\mathbb{CP}^2$ is \_\_\_, the Euler characteristic of $\mathbb{CP}^2$.
+        \item 
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Up to a set of measure zero, we can directly parameterize $X$ via $\theta\mapsto (\cos(\theta),\sin(\theta))$ for $\theta\in(0,\pi)$. Note $dy = \cos(\theta)\,d\theta$; then $\int_X\omega = \int_0^\pi\cos^2(\theta)\,d\theta = \pi/2$ (half of the area of the unit disk).
+        \item The submanifold $X$ seems to be some kind of torus. Up to a set of measure zero, parameterize $X$ by $(\theta,\varphi)\mapsto (\cos(\theta),\sin(\theta),\cos(\varphi), \sin(\varphi))$ for $\theta,\varphi\in(0,2\pi)$. Note $dx = -\sin(\theta)\,d\theta$ and $dz = -\sin(\varphi)\,d\varphi$ so that $dx\wedge dz = \sin(\theta)\sin(\varphi)\,d\theta\wedge d\varphi$. Then $\int_X\omega = \int_0^{2\pi}\int_0^{2\pi}\sin^2(\theta)\sin^2(\varphi)\cos(\varphi)\,d\theta d\varphi = 0$ by periodicity of $\sin^2(\varphi)\cos(\varphi)$.
+        \item Note that the origin belongs to the set $\cbr{(x,y,z)\mid (x+1)^2/7^2 + y^2/8^2 + (z-1)^2/9^2 \leq 1}\subset \mathbb R^3$. The exterior derivative of the form $\omega$ on $\mathbb R^3\setminus \cbr{(0,0,0)}$ is zero; in other words, the divergence of the vector field $\abr{x,y,z}/(x^2+y^2+z^2)^{3/2}$ is zero on $\mathbb R^3\setminus \cbr{(0,0,0)}$ (the average physics student in an electromagnetism class knows this, and I don't want to type up all of these derivatives despite the symmetry; I think we also did this in HW11). So $\omega$ is a closed form, and from an earlier homework problem (HW11 problem 1), it follows that $\int_X\omega = \int_{S^2}\omega$ (where in the earlier homework problem we take $Z = S^2$, $f_0$ the map translating and scaling the axes so that $f_0(S^2) = X$, and $f_1$ the identity). Directly parameterizing $S^2$ (up to a set of measure zero) by $(\theta,\varphi)\mapsto (\cos(\theta)\sin(\varphi),\sin(\theta)\sin(\varphi),\cos(\varphi))$ for $\theta\in (0,2\pi)$ and $\varphi\in (0,\pi)$, we find that $\int_{S^2}\omega = \int_0^{2\pi}\int_0^\pi [\cos^2(\theta)\sin^3(\varphi) + \sin^2(\theta)\sin^3(\varphi) + \sin(\varphi)\cos^2(\varphi)] \,d\varphi d\theta = 2\pi\int_0^\pi\sin(\varphi)\,d\varphi = 4\pi$ (the restriction of $\omega$ to $S^2$ is three times the usual volume form).
+        \item By inspection $\omega$ is a closed form (in other words, the vector field $\omega$ defines is divergence-free on $\mathbb R^3$). Then by Stokes' theorem, $\int_{S^2}\omega = \int_{\partial B_1(0)}\omega = \int_{B_1(0)}d\omega = \int_{B_1(0)}0 = 0$.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Consider the map $f\colon \mathbb R^4\to \mathbb R^4$ given by $(x_1,y_1,x_2,y_2)\mapsto (x_1^3+x_1,y_1(3x_1^2+1)^{-1}, x_2,y_2)$. It is smooth and has a smooth inverse $(x_1,y_1,x_2,y_2)\mapsto (g(x_1),y_1(3x_1^2+1), x_2,y_2)$ where $g$ is the smooth inverse to $x\mapsto x^3+x$ on $\mathbb R$ (I don't know what $g$ is supposed to be exactly but its first derivative for example is $(3g(x)^2+1)^{-1}$, so all derivatives should exist). Then $f^\ast\omega = (3x_1^2+1)dx_1\wedge [-y_1(6x_1)(3x_1^2+1)^{-2}dx_1 + (3x_1^2+1)^{-1}dy_1] + dx_2\wedge dy_2 = dx_1\wedge dy_2 + dx_2\wedge dy_2 = \omega$ as needed.
+        \item Suppose such a symplectomorphism $f$ existed. Then $\int_D \omega = \int_D f^\ast \omega = \int_{fD}\omega = \int_{D^\prime}\omega$. But $\int_D \omega = \int_D dx_1\wedge dy_1 = \pi$ (the area of the unit disk) and $\int_{D^\prime}\omega = \int_{D^\prime} 0 = 0$ (since $y_1,y_2 = 0$ on $D^\prime$), which is impossible.
+        \item Suppose such a symplectomorphism $f$ existed. Pullback commutes with taking the exterior derivative. Since $\omega = d\tilde\omega$ with $\tilde \omega = x_1dy_1 + x_2dy_2$, combine this fact with Stokes' theorem to obtain $\int_C\tilde\omega = \int_D \omega = \int_D f^\ast\omega = \int_D f^\ast d\tilde\omega = \int_D df^\ast\tilde\omega = \int_C f^\ast \tilde\omega = \int_{fC}\tilde\omega = \int_{C^\prime}\tilde \omega$. But again $\int_C\tilde\omega = \int_Cx_1\,dy_1 = \int_0^{2\pi}\cos^2(\theta)\,d\theta = \pi$ but $\int_{C^\prime}\tilde\omega = \int_{C^\prime} 0 = 0$, which is impossible.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Observe that $U$, $V$ are homotopy equivalent to $S^1$ and $U\cap V$ is homotopy equivalent to $S^1\sqcup S^1$. The de Rham cohomology of a disjoint union of $n$-manifolds $X$ and $Y$ is isomorphic to the direct sum of the de Rham cohomology of each space individually by a Mayer-Vietoris sequence argument: by taking $U = X$ and $V = Y$, the intersection $U\cap V$ is empty so that every cohomology group $H^i(U\cap V)$ is zero. By exactness, we obtain isomorphisms $H^i(X\sqcup Y)\to H^i(X)\oplus H^i(Y)$ for each $i$.
+        
+        From
+\[\begin{tikzcd}
+	0 & {H^0(T^2)} & {H^0(U)\oplus H^0(V)} & {H^0(U\cap V)} \\
+	& {H^1(T^2)} & {H^1(U)\oplus H^1(V)} & {H^1(U\cap V)} \\
+	& {H^2(T^2)} & {H^2(U)\oplus H^2(V)} & {H^2(U\cap V)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=3-5]
+\end{tikzcd}\]
+we obtain 
+\[\begin{tikzcd}
+	0 & {\mathbb R} & {\mathbb R\oplus \mathbb R} & {\mathbb R\oplus\mathbb R} \\
+	& {H^1(T^2)} & {\mathbb R\oplus \mathbb R} & {\mathbb R\oplus \mathbb R} \\
+	& {H^2(T^2)} & {0\oplus 0} & {0\oplus 0} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow["f"{description}, from=1-4, to=2-2]
+	\arrow["g"{description}, from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow["h"{description}, from=2-4, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=3-5]
+\end{tikzcd}\]
+since the number of connected components of the torus is one, the de Rham cohomology agrees on homotopy equivalent spaces, and we know the de Rham cohomology of the circle is $\mathbb R$ in degrees $0$ and $1$. The zeroes appear for dimension reasons (there are no $k$-forms on an $n$-manifold for $k>n$).
+        \item Let $D_i = \dim H^i(T^2)$ for $i = 1,2$. Then by taking the alternating sum of the dimensions of the cohomology groups appearing in the exact sequence we found in part (a), we obtain $1 = D_1-D_2$. The constraints for $D_1$ and $D_2$ we deduce from the rank-nullity theorem and exactness (note $h$ is surjective for example, among many tricks we use below), which we investigate in cases:
+        
+        (0) $D_1=1$, $D_2=0$ is manifested if $h$ has rank $0$ and nullity $2$, in which case $g$ has rank $2$ and nullity $0$, and $f$ has rank $0$ and nullity $2$. (This case is actually not possible since $T^2$ is orientable and hence has a volume form.)
+        
+        (1) $D_1=2$, $D_2=1$ is manifested if $h$ has rank $1$ and nullity $1$, $g$ has rank $1$ and nullity $1$, and $f$ has rank $1$ and nullity $1$.
+
+        (2) $D_1=3$, $D_2=2$ is manifested if $h$ has rank $2$ and nullity $0$, $g$ has rank $2$ and nullity $1$, and $f$ has rank $1$ and nullity $1$. No further cases remain since $h$ is surjective, so $D_2$ could not be greater than or equal to $2$.
+        \item We saw that $H^1(U)$ and $H^1(V)$ are isomorphic to $H^1(S^1)$ since $U,V$ are homotopy equivalent to $S^1$. In particular the homotopy equivalence in one direction is just given by deformation retracting the cylinders defining $U$ and $V$ to a particular $\ast\times S^1\cong S^1$, and in the other direction just inclusion. So generators of $H^1(U)$ and $H^1(V)$ are given by pulling back the equivalence class $[d\theta]$ on $S^1$ along the inclusion of $S^1$ into $U$ or $V$. The inclusion should just extend this constant covector field along the cylinder in the most obvious way, just by spreading it along the cylinders. We will denote these new forms by $d\theta_U, d\theta_V$ to indicate where these forms lie. The generators of $H^1(U\cap V)$ is similarly given by pulling back the $d\theta$ forms in each copy of $S^1$ in $S^1\sqcup S^1$ along the inclusion of $S^1\sqcup S^1$ in $U\cap V$ (this should be thought of as just two circles, one in each half of $U,V$ forming the components of $U\cap V$). The pullback does a similar thing as before, it just takes these covector fields and spreads them across half of the cylinders they belonged to. Denote these generators by $d\theta_1$ and $d\theta_2$, where $d\theta_1$ lives in the $(0,\pi)\times S^1$ part of $U\cap V$ and $d\theta_2$ lives in the $(\pi,2\pi)\times S^1$ part of $U\cap V$.
+        
+        Denote by $j_U,j_V$ the inclusions of $U\cap V$ into $U,V$ respectively. The map $H^1(U)\oplus H^1(V)\to H^1(U\cap V)$ is given by $j_U^\ast - j_V^\ast$. This amounts to restricting forms on $U$ or $V$ to forms on $U\cap V$, and taking their difference. With our notations as before, this map is $a[d\theta_U] \oplus b[d\theta_V]\mapsto (a-b)[d\theta_1 + d\theta_2]$.
+        \item It is clear that the map in the previous part has rank $1$ (and hence nullity $1$). By exactness we are in situation (1) above, meaning $D_1=2$ and $D_2=1$; in other words, $H^1(T^2)\cong \mathbb R^2$ and $H^1(T^2)\cong \mathbb R$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
