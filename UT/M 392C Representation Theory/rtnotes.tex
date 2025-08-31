@@ -30,6 +30,8 @@
 \usepackage{titlesec}
 \titleformat{\section}
   {\bfseries}{Lecture \thesection}{1em}{}
+\titleformat{\subsection}
+  {\bfseries}{}{1em}{}
 
 % theorems
 \theoremstyle{plain}
@@ -64,9 +66,9 @@
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\fancyhead[L]{M 396D}
+\fancyhead[L]{M 392C}
 \fancyhead[C]{}
-\fancyhead[R]{Homological Algebra}
+\fancyhead[R]{Representation Theory}
 \fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{1pt}
 
@@ -89,19 +91,17 @@
 \DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
 
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
-\newcommand{\Set}{\catname{Set}}
-\newcommand{\Ring}{\catname{Ring}}
-\newcommand{\Top}{\catname{Top}}
 \newcommand{\Rmod}{R\text{-}\catname{mod}}
-\newcommand{\modR}{\catname{mod}\text{-}R}
-\newcommand{\Ch}{\catname{Ch}}
-
+\newcommand{\Vect}{\catname{Vect}}
+\newcommand{\Rep}{\catname{Rep}}
 
 % smileys frownies
 \usepackage{wasysym}
@@ -121,7 +121,44 @@
 M 392C, Fall 2025: Dr. David Ben-Zvi's notes, \TeX ed by Sai Sivakumar.
 
 \section{08/26}
+\subsection{Definitions}
+Let $G$ be a group and $k$ be a field. A representation of $G$ is a vector space $V\in \Vect_k$ with a linear action of $G$ on $V$.
 
+This is to say there is a homomorphism $G\xrightarrow{\rho}\Aut(V)$ so that we may define the action of $G$ on $V$ to be $g\cdot v \coloneqq \rho(g)v$ or alternatively a product $G\times V\to V$ given by $(g,v)\mapsto \rho(g)v$ that is linear in $V$ and associative in $G$, among other properties. (We often suppress the $\,\cdot\,$ in the action/product.)
+
+Note $\Aut(V) \eqqcolon \GL(V) \cong \GL_{\dim V}(k)$, so we could even think of the elements of $G$ as matrices if we fix a basis of $V$ (and $V$ is finite dimensional).
+
+The representations $(V,\rho)$ of $G$ over a field $k$ form the objects of a category $\Rep_k(G)$ whose morphisms are linear transformations which commute with the action of $G$; i.e., $\Hom_G(V,W)$ consists of the linear transformations $T\colon V\to W$ for which $g(Tv) = T(gv)$ for all $g\in G$ and $v\in V$. (These are also called intertwining operators or $G$-linear maps, etc. Also note that $\Hom_G(V,W)$ is merely a vector space, but see \href{https://math.stackexchange.com/questions/2334514/whats-the-internal-hom-of-linear-representations-of-categories}{this MSE post}.) 
+
+\subsection{Variants of representations}
+We can add adjectives in various places to the definitions above to get different kinds of representations. 
+
+For example, if $V$ has an inner product we can ask about linear actions of $G$ on $V$ that preserve that inner product. If $V$ is a Hilbert space we can ask about linear actions of $G$ on $V$ for which $\rho(g)$ is a unitary operator; these are the unitary representations of $G$.
+
+If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ is a continuous representation if the product map $G\times V\to V$ defined before is continuous. If $G$ has a smooth structure (e.g. is a Lie group) or is an algebraic group, we can ask about smooth or algebraic representations, respectively.
+
+\subsection{Aspects of representations we study}
+\begin{enumerate}
+    \item Irreducible representations (henceforth called ``irreps''): An irrep of $G$ are the representations $V$ which have no invariant (or stable some might say) subspaces under the group action; that is, if $W$ is a $G$-invariant subspace of $V$ then $W$ is either $0$ or $V$. These are like the ``atoms'' in representation theory.
+    
+    For a given group $G$ one goal of representation theory is to classify up to isomorphism its irreps. One approach is to try to attach numerical invariants to representations and see if they help to classify irreps, and generalizations of this idea lead to character theory. Sometimes there are ``isotopes'' that are not isomorphic but nevertheless cannot be distinguished by certain invariants.
+
+    Another thing we do is to take a subgroup $H$ of $G$ and study how irreps of $G$ decompose when the group action is restricted to $H$. On the other hand, we can also look at how to build bigger representations or ``molecules'' out of the atomic irreps via extension. Of course, it is easy to take direct sums of irreps but depending on the context it may be possible to obtain indecomposable reps which are extensions of irreps but do not decompose into a direct sum of irreps (so to summarize, irreducible implies indecomposable but not the other way around in general).
+
+    Maschke's theorem implies that indecomposable representations of finite groups over fields with characteristic not dividing the order of the group are irreducible. Alternatively, the theorem implies that in this setting, all short exact sequences of representations split.
+    
+    For example, the indecomposable representations over $\mathbb C$ coincide with the irreps when $G$ is finite. On the other hand, the shearing representation 
+    \begin{align*}
+      \mathbb Z &\to \GL_2(\mathbb R)\\
+      1 &\mapsto \big(\!\begin{smallmatrix}
+        1 & 1 \\ 0 & 1
+      \end{smallmatrix}\!\big)
+    \end{align*}
+    preserves the horizontal axis, so it is not an irrep, but is not decomposable since $\big(\!\begin{smallmatrix}
+        1 & 1 \\ 0 & 1
+    \end{smallmatrix}\!\big)$ is not diagonalizable. Up to isomorphism, the representations $k^n$ of $\mathbb Z$ are given by specifying a conjugacy class of an invertible matrix.
+
+\end{enumerate}
 
 % \newpage\section{XX/XX}
 
