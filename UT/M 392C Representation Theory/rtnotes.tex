@@ -116,6 +116,7 @@
 
 \begin{document}
 M 392C, Fall 2025: Dr. David Ben-Zvi's notes, \TeX ed by Sai Sivakumar.
+\tableofcontents\newpage
 
 \section{08/26}
 \subsection{Definitions}
@@ -153,13 +154,13 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
     \end{align*}
     preserves the horizontal axis, so it is not an irrep, but is not decomposable since $\big(\!\begin{smallmatrix}
         1 & 1 \\ 0 & 1
-    \end{smallmatrix}\!\big)$ is not diagonalizable. Up to isomorphism, the representations $k^n$ of $\mathbb Z$ are given by specifying a conjugacy class of an invertible $n\times n$ matrix. If $k$ is algebraically closed, the indecomposable representations in this setting correspond to Jordan blocks. Of course, every representation is the direct sum of indecomposables, and in this setting the Jordan normal form of an $n\times n$ matrix would describe the decomposition of $k^n$ into indecomposables.
+    \end{smallmatrix}\!\big)$ is not diagonalizable. The representations $(k^n,\rho)$ of $\mathbb Z$ are given by specifying an invertible $n\times n$ matrix, and any two such representations are isomorphic if the matrices specifying them are conjugate. If $k$ is algebraically closed, the indecomposable representations in this setting correspond to Jordan blocks. Of course, every representation is the direct sum of indecomposables, and in this setting the Jordan normal form of an $n\times n$ matrix would describe the decomposition of $k^n$ into indecomposables.
 
     \item Harmonic analysis is the study of naturally appearing ``large'' representations; we would like to perform some kind of ``spectroscopy'' to determine what representations appear within them.
     
     If a group $G$ acts on some object $X$ (which could be a set, manifold, or otherwise a ``geometric'' object), we say $X$ has some symmetries which we would like to ``linearize''. We achieve this by considering the $k$-valued functions on $X$ for some field $k$; if $X$ has additional structure we can restrict to functions on $X$ which interact with that structure (e.g. measurable/continuous/etc maps)
 
-    From the action of $G$ on $X$, function spaces on $X$ inherit a natural linear action of $G$; one is given by $gf(x) = f(xg^{-1})$ (in this case $G$ acts on the right of $X$ to obtain a left action on functions). These representations are typically very decomposable or reducible.
+    From a right action of $G$ on $X$, function spaces on $X$ inherit a natural linear left action of $G$; one is given by $gf(x) = f(xg)$. These representations are typically very decomposable or reducible.
 
     \item Different groups give rise to different phenomena. Below are some examples of groups we will see again.
     \begin{table}[H]
@@ -182,7 +183,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
 \end{enumerate}
 
 \subsection{Spectral theory}
-A slogan for what is to come. ``commutativity implies geometry''.
+A slogan for what is to come: ``commutativity implies geometry''.
 
 Let $k = \mathbb C$ and $X$ a set. Then the complex-valued functions on $X$ form a commutative algebra. This is some example of a functor suggestively called $\mathcal O$ from the category of some kind of geometric objects to commutative algebras.
 
@@ -191,20 +192,20 @@ To expand on the previous idea, here is a motto originating from Gelfand and Gro
   \item Any commutative ring should be thought of as functions on some space.
   
   That is, there is some functor going from commutative rings to some category of geometric objects that realizes this idea. In particular we should be able to adjust the functor and its source/target to obtain an equivalence of categories.
-  \[\text{commutative rings}\xlongleftrightarrow{\cong} \text{geometry}\]
+  \[\text{commutative rings}\longleftrightarrow \text{geometry}\]
   \item Once we are in the situation where we have an equivalence of categories between commutative rings and geometric objects, we should further obtain a correspondence between the modules over a ring $R$ and sheaves (special families of vector spaces or Abelian groups) on the corresponding geometric object $X$ to $R$.
   \[R\text{-modules}\longleftrightarrow \text{sheaves on }X\]
 \end{enumerate}
 For example, if $X$ is a finite set, the corresponding ring $R$ is the finite-dimensional commutative algebra of complex valued functions on $X$. This algebra is semisimple with $R = \bigoplus_i \mathbb Ce_i$ where $e_ie_j = \delta_{ij}$. We can think of the $e_i$ as delta/indicator functions on points of $X$.
 
-An $R$-module $M$ has the decomposition $M = \oplus_i e_i M$, so we obtain a sheaf on $X$ where at each point of $X$ we can imagine the corresponding module $e_iM$ lying on it:
+An $R$-module $M$ has the decomposition $M = \oplus_i e_i M$, which corresponds to a sheaf on $X$ where at each point of $X$ we imagine the corresponding module $e_iM$ lying on it:
 \begin{align*}
   M &~~~~ e_1M \phantom{\oplus} e_2M \phantom{\oplus} \cdots \phantom{\oplus} e_n M\\
   X&~~~~~\bullet~\phantom{\oplus}~~\bullet~~\phantom{\oplus} \cdots \phantom{\oplus}~~\bullet
 \end{align*}
 
 \subsection{A short word about the group algebra}
-A representation $V$ of $G$ is given by a group homomorphism $G\xrightarrow{\rho}\Aut(V)$. Since $\Aut(V)$ is contained in $\End(V)$, a $k$-algebra, there is an object $k[G]$ called the group algebra for which the homomorphism $\rho$ factors through $k[G]$; that is, the diagram 
+A representation $V$ of a finite group $G$ is given by a group homomorphism $G\xrightarrow{\rho}\Aut(V)$. Since $\Aut(V)$ is contained in $\End(V)$, a $k$-algebra, there is an object $k[G]$ called the group algebra for which the homomorphism $\rho$ factors through $k[G]$; that is, the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiXFxFbmQoVikiXSxbMCwxLCJrW0ddIl0sWzAsMSwiXFxyaG8iXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsIlxcb3ZlcmxpbmUgXFxyaG8iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
 	G & {\End(V)} \\
@@ -214,7 +215,7 @@ A representation $V$ of $G$ is given by a group homomorphism $G\xrightarrow{\rho
 	\arrow["{\overline \rho}"', dashed, from=2-1, to=1-2]
 \end{tikzcd}\]
 commutes. One explicit description of $k[G]$ is the set of finite linear combinations of elements of $G$ with coefficients in $k$:
-\[k[G] = \{\sum_{g\in G}c_gg\mid c_g\in k, \text{ all but finitely many $c_k$ are zero}\}.\]
+\[k[G] = \biggl\{\sum_{g\in G}c_gg \biggm\vert c_g\in k, \text{ all but finitely many $c_k$ are zero}\biggr\}.\]
 The addition and multiplication in $k[G]$ are defined using the addition in $k$ and multiplication in $G$, respectively. We will return to the group algebra when investigating representations from a module-theoretic point of view.
 
 % \newpage\section{XX/XX}
@@ -253,5 +254,4 @@ The addition and multiplication in $k[G]$ are defined using the addition in $k$ 
 
 \end{biblist}
 \end{bibdiv}
-\sai{benzui}
 \end{document}
