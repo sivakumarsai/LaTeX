@@ -182,7 +182,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
     
     The representation theory of $S^1$ leads to the theory of Fourier series, and in a similar way we can recover the Fourier transform from the representation theory of $\mathbb R$.
 
-    The Lie group $\SO(3)$ can be thought of as the group of rotations of a $2$-sphere. One nice result is that the spherical harmonics are basis functions for the irreducible representations of $\SO(3)$, which occur naturally as the atomic orbitals (see \href{https://en.wikipedia.org/wiki/Spherical_harmonics}{the Wikipedia article on spherical harmonics}).
+    The Lie group $\SO(3)$ can be thought of as the group of rotations of a $2$-sphere. One nice result is that the spherical harmonics are basis functions for the irreps of $\SO(3)$, which occur naturally as the atomic orbitals (see \href{https://en.wikipedia.org/wiki/Spherical_harmonics}{the Wikipedia article on spherical harmonics}).
 
     The representations of the groups $\SL_2(k)$ for various fields $k$ appear all over math.  We can study special functions like the Bessel or hypergeometric functions, or even modular forms. The hard Lefschetz theorem in algebraic geometry says that $\SL_2(\mathbb C)$ acts on $H^\ast(X,\mathbb C)$ for $X$ a nice enough smooth projective variety. In physics, the special linear group sort of appears in the Lorentz group $\SO(1,3)^+ = \PSL_2(\mathbb C)$.
 \end{enumerate}
@@ -305,17 +305,38 @@ What is really happening is that we can take $f,h$ from above and form the box p
 An important observation to make is that complex representations of $G$ coincide with $\mathbb C[G]$-modules. 
 
 \subsection{Representation theory of finite Abelian groups and the dual group}
-If $G$ is Abelian, then $\mathbb C[G]$ is a commutative ring. So representation theory may be thought of as a special case of the study of modules over commutative rings.Using language from earlier, note that the corresponding geometric object to $\mathbb C[G]$ is $\Spec(\mathbb C[G])$, and representations of $G$ correspond to vector bundles or sheaves over $\Spec(\mathbb C[G])$.
+If $G$ is Abelian, then $\mathbb C[G]$ is a commutative ring. So representation theory may be thought of as a special case of the study of modules over commutative rings. Using language from earlier, note that the corresponding geometric object to $\mathbb C[G]$ is $\Spec(\mathbb C[G])$, and representations of $G$ correspond to vector bundles or sheaves over $\Spec(\mathbb C[G])$.
 
 Let $G$ be a finite Abelian group, and let $\widehat G\coloneqq \Spec(\mathbb C[G])$; we call this the dual of $G$. Then $\mathbb C[G]$ (functions on $G$) with multiplication given by convolution is isomorphic as an algebra to $\mathbb C[\widehat G]$ (functions on $\widehat{G}$, which we will see is a finite set) with pointwise multiplication. This isomorphism is usually given by some kind of finite Fourier transform. On the other hand, representations of $G$ correspond to vector bundles (sheaves) on $\widehat G$, and this is some kind of finite spectral theorem.
 
 Let $G = \abr{x}$ be a cyclic group of order $n$. The dual object $\widehat{G}$ is given by the $n$-th roots of unity in $\mathbb C$: \sai{draw picture}
 
-In this case, $\Spec$ is taking the maximal ideals of rings. With $\mathbb C[G]\cong \mathbb C[x]/(x^n-1)$, it is equivalent to describe the elements in $\Hom_\Ring(\mathbb C[x]/(x^n-1),\mathbb C)$, which are characterized by each of the $n$-th roots of unity.
+In this case, $\Spec$ is taking the maximal ideals of rings. With $\mathbb C[G]\cong \mathbb C[x]/(x^n-1)$, it is equivalent to describe the elements in $\Hom_{\mathbb C\alg}(\mathbb C[x]/(x^n-1),\mathbb C)$, which are characterized by each of the $n$-th roots of unity.
 
-Given an irreducible representation $V$ of $G$ (i.e. a simple $\mathbb C[G]$-module), we can try to form a sheaf out of $V$ on $\widehat G$. Since $V$ is irreducible (moreover, it's even one-dimensional), this sheaf has to be concentrated at only one of the points of $\widehat{G}$. The point that $V$ is concentrated at is the root of unity $\zeta$ for which the action of $x$ on $V$ is given by multiplication by $\zeta$. So we can also think of $\widehat G$ as the collection of irreducible representations of $G$.
+We take a small detour to discuss Schur's lemma, which states that for any group $G$, that any $\mathbb C[G]$-module homomorphisms between simple $\mathbb C[G]$-modules are either $0$ or are isomorphisms of $\mathbb C[G]$-modules. This follows by investigating kernels and images since they are submodules of $V,W$ respectively. In particular, any $\mathbb C[G]$-module endomorphism of a simple $\mathbb C[G]$-module is a scalar multiple of the identity, since for any nonzero endomorphism $T$ we can consider $T-\lambda \id_V$, which is no longer an isomorphism and hence must be zero. Here we used the algebraic closedness of $\mathbb C$, and in fact we could have replaced $\mathbb C$ by any algebraically closed field $k$.
 
-Since we're on the subject
+Schur's lemma is used to prove that if $G$ is Abelian then any finite-dimensional irrep of $G$ is one-dimensional. If such an irrep $V$ had finite dimension greater than or equal to $2$, then left multiplication $V\xrightarrow{g}V$ by any element $g\in G$ must be a scalar multiple of $\id_V$, which contradicts the irreducibility of $V$ (since we assumed $\dim V\geq 2$). 
+
+The action of $G$ on the irrep $V$ in this case is given by scalar multiplication by $\chi(g)\in \mathbb C^\ast$ since $V$ is one-dimensional. More importantly, the assignment $g\to\chi(g)$ is a group homomorphism $G\to C^\ast$, which we call a character of $G$.
+
+For $G$ Abelian, $\widehat G$ is the set of maximal ideals of $\mathbb C[G]$, which is in bijection with $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$. By the universal property of the group algebra, $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$ is in bijection with $ \Hom_{\Group}(G,\mathbb C^\ast)$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	G \& {\Aut(\mathbb C)\cong \mathbb C^\ast} \& {\End(\mathbb C)\cong \mathbb C} \\
+	{\mathbb C[G]}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow["{\overline f}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+So in general we can also think of $\widehat G$ as the collection of irreps of $G$.
+
+Given an irrep $V$ of $G$ (i.e. a simple $\mathbb C[G]$-module), we can try to form a sheaf out of $V$ on $\widehat G$. Since $V$ is irreducible, this sheaf has to be concentrated at only one of the points of $\widehat{G}$, and this point is the point corresponding to the irrep $V$ itself. So in the example where $G = \abr{x}$ has order $n$, the point at which an irrep $V$ lies on is the root of unity $\zeta$ for which the action of $x$ on an irrep $V$ is given by multiplication by $\zeta$.
+
+Since $\widehat G$ is in bijection with $\Hom_{\Group}(G,\mathbb C^\ast)$, we can equip $\widehat G$ with a group operation; by doing so, $G$ and $\widehat G$ are non-canonically isomorphic as groups. So in particular finite cyclic groups are (non-canonically) self-dual.
+
+Next time we will explore the Fourier transform, which is a $\mathbb C[G]$-module isomorphism
+\[\mathbb C[G]\xlongrightarrow{\widehat{-}}\mathbb C[\widehat G]\]
+where $\mathbb C[G]$, $\mathbb C[\widehat G]$ are thought of as function spaces and are given convolution and pointwise multiplication, respectively (we will describe the action of $G$ on each of these spaces next time). This isomorphism has some symmetry which is part of the statement of Pontryagin duality.
 
 \newpage\section{09/02}
 \newpage\section{09/04}
