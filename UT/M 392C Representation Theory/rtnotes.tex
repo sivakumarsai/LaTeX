@@ -424,6 +424,23 @@ Next time we will explore the Fourier transform, which is a $\mathbb C[G]$-modul
 where $\mathbb C[G]$, $\mathbb C[\widehat G]$ are thought of as function spaces and are given convolution and pointwise multiplication, respectively (we will describe the action of $G$ on each of these spaces next time). This isomorphism has some symmetry which is part of the statement of Pontryagin duality.
 
 \newpage\section{09/02}
+\subsection{More on the structure of $\widehat G$}
+For $G$ a finite Abelian group, we saw/will see four equivalent descriptions of $\widehat G$:
+\begin{align*}
+	\widehat G &= \text{set of irreps of $G$}\\
+	&= \Hom_{\Group}(G,\mathbb C^\ast) = \Hom_{\Group}(G,U(1))\\
+	&= \text{unitary irreps of $G$} = \Hom_{\Group}(G,U(1))\\
+	&= \Spec(\mathbb C[G]) = \text{maximal ideals of $\mathbb C[G]$} = \Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)
+\end{align*}
+For any commutative ring $R$, recall that we think of $R$ as functions on $\Spec(R)$ with pointwise multiplication. In general there is no reason to expect $\Spec(R)$ to be a group, but we were able to give $\Spec(\mathbb C[G])$ a group operation when $G$ is Abelian. So in this situation something special is happening. 
+
+The deeper lesson: Suppose now that $G$ is any group (not necessarily Abelian). If $V,W$ are representations of $G$ then we can form a new representation $V\otimes_{\mathbb C}W$ where $g(v\otimes w) = gv\otimes gw$. This comes from the diagonal embedding $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ given by $\mathbb C$-linearly extending the assignment $g\mapsto g\otimes g$. By doing so $\Delta$ is a $\mathbb C$-algebra homomorphism; it suffices only to check that it respects the group multiplication:
+\[\Delta(hg) = hg\otimes hg = (h\otimes h)(g\otimes g) = \Delta(h)\Delta(g)\]
+The natural action of $\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ on $V\otimes_{\mathbb C} W$ given by $(f\otimes g)(v\otimes w) = fv\otimes gw$ can be pulled back along the diagonal embedding $\Delta$ to give $V\otimes_{\mathbb C} W$ the action of $G$ mentioned above.
+
+If $A$ is a $\mathbb C$-algebra and $V,W$ are $A$-modules, there is a natural action of $A\otimes_\mathbb CA$ on $V\otimes_{\mathbb C}W$ given by $(a\otimes a^\prime)(v\otimes w) = av\otimes a^\prime w$. But the diagonal map $A\to A\otimes_{\mathbb C}A$ might not be a $\mathbb C$-algebra homomorphism, but only $\mathbb C$-linear. In this case there is no natural way for $A$ to act on $V\otimes_{\mathbb C}W$ like in the case of the group algebra. That the diagonal map $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ for the group algebra is a $\mathbb C$-algebra homomorphism is part of the group algebra really being a Hopf algebra (\href{https://en.wikipedia.org/wiki/Hopf_algebra}{see Wikipedia}), and in this setting $\Delta$ is the comultiplication map. Furthermore, since $\mathbb C[G]$ is a Hopf algebra, 
+
+
 \newpage\section{09/04}
 
 % \newpage\section{XX/XX}
