@@ -535,7 +535,9 @@ From the calculation
 we have $\delta_g\ast\delta_h = \delta_{gh}$. Recalling that $\chi_{gh} = \chi_g\cdot \chi_h$, conclude from the linearity of convolution that for any $f,h\in \Fun(G)$ that $\widehat{f\ast h} = \hat f\cdot \hat h$, which is summarized by saying that the Fourier transform turns convolution to pointwise multiplication. In other words, the Fourier transform diagonalizes the action of $G$ on $\Fun(G)$ since $gf = \delta_g\ast f$. So in order for the Fourier transform to be a $\mathbb C[G]$-module homomorphism, $G$ should act on $\Fun(\widehat G)$ by pointwise multiplication by $\chi_g$; that is, $gF(x) = \chi_g(x)F(x)$ for $F\in \Fun(\widehat G)$.
 
 \subsection{Fourier inversion on finite Abelian groups}
-We will show that the Fourier transform has a $G$-linear inverse and hence is an isomorphism.
+We will show that the Fourier transform has a $G$-linear inverse and hence is an isomorphism. 
+
+From some of the above calculations, we have that $g\delta_h = \delta_g\ast \delta_h = \delta_{gh}$. But this doesn't match what we normally do with functions, which is to pull them back along the action of $G$. That is, the action of $G$ on $\Fun(G)$ given by $gf = f(g^{-1}-)$ is 
 
 \subsection{A preview for locally compact Abelian groups}
 
