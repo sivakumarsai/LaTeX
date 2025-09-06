@@ -23,6 +23,8 @@
 \crefformat{equation}{equation~#2#1#3}
 \crefformat{lemma}{\textrm{Lemma}~#2#1#3}
 \usepackage{quiver}
+\usepackage{tikzit}
+\input{rt.tikzstyles}
 \usepackage{titlesec}
 \titleformat{\section}
   {\bfseries}{Lecture \thesection}{1em}{}
@@ -98,6 +100,7 @@
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
+\renewcommand{\op}{\mathrm{op}} % where is \op defined?
 \newcommand{\Rmod}{R\text{-}\catname{mod}}
 \newcommand{\Vect}{\catname{Vect}}
 \newcommand{\Rep}{\catname{Rep}}
@@ -125,13 +128,15 @@ M 392C Representation Theory, Fall 2025: Dr. David Ben-Zvi's notes, \TeX ed by S
 
 \newpage\section{08/26}
 \subsection{Definitions}
-Let $G$ be a group and $k$ be a field. A representation of $G$ is a vector space $V\in \Vect_k$ with a linear action of $G$ on $V$.
+Let $G$ be a group and $k$ be a field. A representation of $G$ is a vector space $V\in \Vect_k$ with a linear action of $G$ on $V$. (For convenience, let's assume representations are finite-dimensional vector spaces unless otherwise stated.)
 
 This is to say there is a homomorphism $G\xrightarrow{\rho}\Aut(V)$ so that we may define the action of $G$ on $V$ to be $g\cdot v \coloneqq \rho(g)v$ or alternatively a product $G\times V\to V$ given by $(g,v)\mapsto \rho(g)v$ that is linear in $V$ and associative in $G$, among other properties. (We often suppress the $\,\cdot\,$ in the action/product.)
 
-Note $\Aut(V) \eqqcolon \GL(V) \cong \GL_{\dim V}(k)$, so we could even think of the elements of $G$ as matrices if we fix a basis of $V$ (and $V$ is finite dimensional).
+Note $\Aut(V) \eqqcolon \GL(V) \cong \GL_{\dim V}(k)$, so we could even think of the elements of $G$ as matrices if we fix a basis of $V$.
 
-The representations $(V,\rho)$ of $G$ over a field $k$ form the objects of a category $\Rep_k(G)$ whose morphisms are linear transformations which commute with the action of $G$; i.e., $\Hom_G(V,W)$ consists of the linear transformations $T\colon V\to W$ for which $g(Tv) = T(gv)$ for all $g\in G$ and $v\in V$. (These are also called intertwining operators or $G$-linear maps, etc. Also note that $\Hom_G(V,W)$ is merely a vector space, but see \href{https://math.stackexchange.com/questions/2334514/whats-the-internal-hom-of-linear-representations-of-categories}{this MSE post}.) 
+The (finite dimensional) representations $(V,\rho)$ of $G$ over a field $k$ form the objects of a category $\Rep_k(G)$ whose morphisms are linear transformations which commute with the action of $G$; i.e., $\Hom_G(V,W)$ consists of the linear transformations $T\colon V\to W$ for which $g(Tv) = T(gv)$ for all $g\in G$ and $v\in V$. (These are also called intertwining operators or $G$-linear maps, etc. Also note that $\Hom_G(V,W)$ is merely a vector space, but see \href{https://math.stackexchange.com/questions/2334514/whats-the-internal-hom-of-linear-representations-of-categories}{this MSE post}.) 
+
+The field $k$ does matter, but for the majority of what follows $k$ will be $\mathbb C$. Often it may be possible to replace $\mathbb C$ with any algebraically closed field, but the characteristic of the field is rather important (see \href{https://en.wikipedia.org/wiki/Modular_representation_theory}{modular representation theory} for example). 
 
 \subsection{Variants of representations}
 We can add adjectives in various places to the definitions above to get different kinds of representations. 
@@ -201,7 +206,7 @@ To expand on the previous idea, here is a motto originating from Gelfand and Gro
   \item Once we are in the situation where we have an equivalence of categories between commutative rings and geometric objects, we should further obtain a correspondence between the modules over a ring $R$ and sheaves (special families of vector spaces or Abelian groups) on the corresponding geometric object $X$ to $R$.
   \[R\text{-modules}\longleftrightarrow \text{sheaves on }X\]
 \end{enumerate}
-For example, if $X$ is a finite set, the corresponding ring $R$ is the finite-dimensional commutative algebra of complex valued functions on $X$. This algebra is semisimple with $R = \bigoplus_i \mathbb Ce_i$ where $e_ie_j = \delta_{ij}$. We can think of the $e_i$ as delta/indicator functions on points of $X$.
+For example, if $X$ is a finite set, the corresponding ring $R$ is the finite-dimensional commutative algebra of complex-valued functions on $X$. This algebra is semisimple with $R = \bigoplus_i \mathbb Ce_i$ where $e_ie_j = \delta_{ij}$. We can think of the $e_i$ as delta/indicator functions on points of $X$.
 
 An $R$-module $M$ has the decomposition $M = \oplus_i e_i M$, which corresponds to a sheaf on $X$ where at each point of $X$ we imagine the corresponding module $e_iM$ lying on it:
 \begin{align*}
@@ -226,7 +231,53 @@ The addition and multiplication in $k[G]$ are defined using the addition in $k$ 
 \newpage\section{08/28}
 \subsection{Spectral theory over $\mathbb C$}
 Consider an operator $T$ on a finite dimensional complex vector space $V$. The spectrum of $T$, $\sigma(T)$, is a finite subset of $\mathbb C$ consisting of the eigenvalues of $T$. To each $\lambda \in \sigma(T)$ there is a corresponding eigenspace $V_\lambda$ of $V$, and $V = \bigoplus_{\lambda\in \sigma(T)}V_\lambda$. We can visualize placing each of the eigenspaces $V_\lambda$ above each point $\lambda$ in the spirit of sheaf theory:
-\sai{draw picture}
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {};
+		\node [style=none] (1) at (8, 1) {};
+		\node [style=none] (2) at (4, -3) {};
+		\node [style=none] (3) at (12, -2) {};
+		\node [style=none] (4) at (9.75, -1.5) {$\mathbb C$};
+		\node [style=none] (5) at (2.5, -0.75) {$\lambda_1$};
+		\node [style=none] (6) at (4, -2.25) {$\lambda_2$};
+		\node [style=none] (7) at (5.5, -0.25) {$\lambda_3$};
+		\node [style=none] (8) at (8, -2) {$\lambda_n$};
+		\node [style=none] (9) at (7, -0.8) {$\ddots$};
+		\node [style=none] (10) at (3, -0.5) {$\cdot$};
+		\node [style=none] (11) at (4.5, -2) {$\cdot$};
+		\node [style=none] (12) at (8.5, -1.75) {$\cdot$};
+		\node [style=none] (13) at (6, 0) {$\cdot$};
+		\node [style=none] (14) at (3, 1) {};
+		\node [style=none] (16) at (6, 1.5) {};
+		\node [style=none] (18) at (8.5, -0.25) {};
+		\node [style=none] (20) at (4.5, -0.5) {};
+		\node [style=none] (21) at (2.5, 1.5) {$V_{\lambda_1}$};
+		\node [style=none] (22) at (4, 0) {$V_{\lambda_2}$};
+		\node [style=none] (23) at (5.5, 2) {$V_{\lambda_3}$};
+		\node [style=none] (24) at (8, 0.25) {$V_{\lambda_n}$};
+		\node [style=none] (25) at (3, -2) {};
+		\node [style=none] (26) at (4.5, -3.5) {};
+		\node [style=none] (27) at (6, -1.5) {};
+		\node [style=none] (28) at (8.5, -3.25) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+		\draw (2.center) to (3.center);
+		\draw (0.center) to (2.center);
+		\draw (1.center) to (3.center);
+		\draw [style=to] (10.center) to (14.center);
+		\draw [style=to] (11.center) to (20.center);
+		\draw [style=to] (13.center) to (16.center);
+		\draw [style=to] (12.center) to (18.center);
+		\draw [style={to:dash}] (10.center) to (25.center);
+		\draw [style={to:dash}] (11.center) to (26.center);
+		\draw [style={to:dash}] (13.center) to (27.center);
+		\draw [style={to:dash}] (12.center) to (28.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
 
 On $\mathbb C$, the coordinate function $x$ where $x(z) = z$ has the same action as $T$ on the eigenspaces $V_\lambda$:
 \[Tv = \sum_{\lambda\in\sigma(T)}Tv_\lambda = \sum_{\lambda\in\sigma(T)}\lambda v_\lambda = \sum_{\lambda\in\sigma(T)}x(\lambda) v_\lambda = x\cdot \biggl(\sum_\lambda v_\lambda\biggr) = x\cdot v\] 
@@ -309,7 +360,22 @@ If $G$ is Abelian, then $\mathbb C[G]$ is a commutative ring. So representation 
 
 Let $G$ be a finite Abelian group, and let $\widehat G\coloneqq \Spec(\mathbb C[G])$; we call this the dual of $G$. Then $\mathbb C[G]$ (functions on $G$) with multiplication given by convolution is isomorphic as an algebra to $\mathbb C[\widehat G]$ (functions on $\widehat{G}$, which we will see is a finite set) with pointwise multiplication. This isomorphism is usually given by some kind of finite Fourier transform. On the other hand, representations of $G$ correspond to vector bundles (sheaves) on $\widehat G$, and this is some kind of finite spectral theorem.
 
-Let $G = \abr{x}$ be a cyclic group of order $n$. The dual object $\widehat{G}$ is given by the $n$-th roots of unity in $\mathbb C$: \sai{draw picture}
+Let $G = \abr{x}$ be a cyclic group of order $n$. The dual object $\widehat{G}$ is given by the $n$-th roots of unity in $\mathbb C$: (the picture is for $n=6$)
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, -1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, -1.73) {$\bullet$};
+		\node [style=none] (1) at (-5, 0) {$\widehat G = \Spec(\mathbb C[G]) = $};
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
 
 In this case, $\Spec$ is taking the maximal ideals of rings. With $\mathbb C[G]\cong \mathbb C[x]/(x^n-1)$, it is equivalent to describe the elements in $\Hom_{\mathbb C\alg}(\mathbb C[x]/(x^n-1),\mathbb C)$, which are characterized by each of the $n$-th roots of unity.
 
@@ -317,7 +383,7 @@ We take a small detour to discuss Schur's lemma, which states that for any group
 
 Schur's lemma is used to prove that if $G$ is Abelian then any finite-dimensional irrep of $G$ is one-dimensional. If such an irrep $V$ had finite dimension greater than or equal to $2$, then left multiplication $V\xrightarrow{g}V$ by any element $g\in G$ must be a scalar multiple of $\id_V$, which contradicts the irreducibility of $V$ (since we assumed $\dim V\geq 2$). 
 
-The action of $G$ on the irrep $V$ in this case is given by scalar multiplication by $\chi(g)\in \mathbb C^\ast$ since $V$ is one-dimensional. More importantly, the assignment $g\to\chi(g)$ is a group homomorphism $G\to C^\ast$, which we call a character of $G$.
+The action of $G$ on the irrep $V$ is given by scalar multiplication by $\chi_V(g)\in \mathbb C^\ast$ since $V$ is one-dimensional. More importantly, the assignment $g\to\chi_V(g)$ is a group homomorphism $G\to \mathbb C^\ast$, called a character of $G$.
 
 For $G$ Abelian, $\widehat G$ is the set of maximal ideals of $\mathbb C[G]$, which is in bijection with $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$. By the universal property of the group algebra, $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$ is in bijection with $ \Hom_{\Group}(G,\mathbb C^\ast)$:
 \[\begin{tikzcd}[ampersand replacement=\&]
@@ -332,6 +398,28 @@ So in general we can also think of $\widehat G$ as the collection of irreps of $
 
 Given an irrep $V$ of $G$ (i.e. a simple $\mathbb C[G]$-module), we can try to form a sheaf out of $V$ on $\widehat G$. Since $V$ is irreducible, this sheaf has to be concentrated at only one of the points of $\widehat{G}$, and this point is the point corresponding to the irrep $V$ itself. So in the example where $G = \abr{x}$ has order $n$, the point at which an irrep $V$ lies on is the root of unity $\zeta$ for which the action of $x$ on an irrep $V$ is given by multiplication by $\zeta$.
 
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (2, 0) {$\bullet$};
+		\node [style=none] (99) at (1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, -1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, -1.73) {$\bullet$};
+		\node [style=none] (1) at (1, 2.73) {};
+		\node [style=none] (2) at (1, 0.73) {};
+		\node [style=none] (3) at (1.25, 3) {$V$};
+		\node [style=none] (4) at (2.25, 2.25) {$xv=\zeta v$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=to] (99.center) to (1.center);
+		\draw [style=to] (99.center) to (2.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
 Since $\widehat G$ is in bijection with $\Hom_{\Group}(G,\mathbb C^\ast)$, we can equip $\widehat G$ with a group operation; by doing so, $G$ and $\widehat G$ are non-canonically isomorphic as groups. So in particular finite cyclic groups are (non-canonically) self-dual.
 
 Next time we will explore the Fourier transform, which is a $\mathbb C[G]$-module isomorphism
@@ -339,6 +427,35 @@ Next time we will explore the Fourier transform, which is a $\mathbb C[G]$-modul
 where $\mathbb C[G]$, $\mathbb C[\widehat G]$ are thought of as function spaces and are given convolution and pointwise multiplication, respectively (we will describe the action of $G$ on each of these spaces next time). This isomorphism has some symmetry which is part of the statement of Pontryagin duality.
 
 \newpage\section{09/02}
+\subsection{More on the structure of $\widehat G$}
+For $G$ a finite Abelian group, we saw/will see four equivalent descriptions of $\widehat G$:
+\begin{align*}
+	\widehat G &= \text{set of irreps of $G$}\\
+	&= \Hom_{\Group}(G,\mathbb C^\ast)\\
+	&= \text{unitary irreps of $G$} = \Hom_{\Group}(G,U(1))\\
+	&= \Spec(\mathbb C[G]) = \text{maximal ideals of $\mathbb C[G]$} = \Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)
+\end{align*}
+Some of these descriptions for $\widehat G$ stop becoming equivalent to each other if we remove the adjectives finite or Abelian from $G$.
+
+For any commutative ring $R$, recall that we think of $R$ as functions on $\Spec(R)$ with pointwise multiplication. In general there is no reason to expect $\Spec(R)$ to be a group, but we were able to give $\Spec(\mathbb C[G])$ a group operation when $G$ is Abelian. So in this situation something special is happening. 
+
+The deeper lesson: Suppose now that $G$ is any group (not necessarily Abelian). If $V,W$ are representations of $G$ then we can form a new representation $V\otimes_{\mathbb C}W$ where $g(v\otimes w) = gv\otimes gw$. This comes from the diagonal embedding $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ given by $\mathbb C$-linearly extending the assignment $g\mapsto g\otimes g$. By doing so $\Delta$ is a $\mathbb C$-algebra homomorphism; it suffices only to check that it respects the group multiplication:
+\[\Delta(hg) = hg\otimes hg = (h\otimes h)(g\otimes g) = \Delta(h)\Delta(g)\]
+The natural action of $\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ on $V\otimes_{\mathbb C} W$ given by $(f\otimes g)(v\otimes w) = fv\otimes gw$ can be pulled back along the diagonal embedding $\Delta$ to give $V\otimes_{\mathbb C} W$ the action of $G$ mentioned above.
+
+If $A$ is a $\mathbb C$-algebra and $V,W$ are $A$-modules, there is a natural action of $A\otimes_\mathbb CA$ on $V\otimes_{\mathbb C}W$ given by $(a\otimes a^\prime)(v\otimes w) = av\otimes a^\prime w$. But the diagonal map $A\to A\otimes_{\mathbb C}A$ might not be a $\mathbb C$-algebra homomorphism, but only $\mathbb C$-linear. In this case there may not be a natural way for $A$ to act on $V\otimes_{\mathbb C}W$ like in the case of the group algebra. That the diagonal map $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ for the group algebra is a $\mathbb C$-algebra homomorphism is part of the group algebra really being a Hopf algebra (\href{https://en.wikipedia.org/wiki/Hopf_algebra}{see Wikipedia}), and in this setting $\Delta$ is the comultiplication map.
+
+If $V$ is a representation of $G$, another representation of $G$ we can form is the dual space $V^\ast\coloneqq \Hom_{\mathbb C[G]}(V,\mathbb C)$, where the action of $G$ on $\mathbb C$ is the trivial action. The action of $G$ on $V^\ast$ is $(gf)(v) = f(g^{-1}v)$. We may not be able to  construct dual modules for an arbitrary $\mathbb C$-algebra $A$ and $A$-module $V$, since we need some way to invert the action of $A$ when ``passing the action inside the function''. This is related to one other property that Hopf algebras have, which is their antipode or coinverse map. In the case of the group algebra $\mathbb C[G]$, the coinverse map is $g\mapsto g^{-1}$ and this actually gives an isomorphism of $\mathbb C[G]$ and its opposite ring $\mathbb C[G]^{\op}$ (the ring where $g\cdot_{\op}h = gh$).
+
+If $A$ is a Hopf algebra and $V,W$ are $A$-modules it is possible to define actions of $A$ on $V\otimes W$ and on $V^\ast$ in a manner analogous to the above by using the comultiplication and antipode maps on $A$, respectively.
+
+If we want to think of the tensor product as giving a monoid structure to $\Rep_{\mathbb C}(G)$ (the category of dimensional representations of $G$), we might wonder if there is a way to obtain inverses in this category. So far, being able to take tensor products and duals of representations make $\Rep_{\mathbb C}(G)$ a rigid symmetric monoidal category; see the \href{https://ncatlab.org/nlab/show/rigid+monoidal+category}{nLab}. Another question is when the irreps of $G$ form a monoid or even group; and in the case that $G$ is not Abelian it is possible that the tensor product of irreps need not be an irrep... (Maybe look at \href{https://math.stackexchange.com/questions/358104/nonabelian-group-with-all-irreducible-representations-one-dimensional}{this question on MSE}.)
+
+Returning to $G$ finite Abelian, in the description of $\widehat G$ as the collection of irreps of $G$, the group operation in $\widehat G$ is given by the tensor product of representations and inverses are given by taking dual spaces. Of course, the tensor product is associative and commutative in this case, and observe that $V\otimes_{\mathbb C}V^\ast \cong \End(V)\cong \mathbb C$ (since $V$ is one-dimensional). The action of $G$ on $V\otimes_{\mathbb C}V^\ast$ is also trivial: $g(v\otimes f) = gv\otimes gf = \chi_V(g) v\otimes \chi_V^{-1}(g)f = v\otimes f$.
+
+\subsection{The Fourier transform on finite Abelian groups}
+Let $G$ be a finite Abelian group. Then $G\times \widehat G$ has a distinguished complex-valued function 
+
 \newpage\section{09/04}
 
 % \newpage\section{XX/XX}
