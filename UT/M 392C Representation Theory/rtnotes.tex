@@ -109,7 +109,7 @@
 \newcommand{\Ring}{\catname{Ring}}
 % \renewcommand{\ev}{\mathrm{ev}}
 
-% double hat macros
+% double hat, widecheck macros
 \makeatletter
 \newcommand{\dwidehat}[1]{% 
 \begingroup%
@@ -492,9 +492,9 @@ Denote by $\dwidehat G$ the group $\Hom_{\Group}(\widehat G,\mathbb C^\ast)$. Si
 
 An analyst cannot help but think of the universal character $\chi(-,-)$ as being similar to kernels of integral operators (which are usually denoted $K(-,-)$ for example), or in this finite setting it might be more accurate to think of the universal character as similar to a matrix. The similarity is no coincidence. The universal character $\chi(-,-)$ is the kernel for the Fourier transform.
 
-The Fourier transform is a map $\Fun(G)\xrightarrow{\widehat{-}}\Fun(\widehat G)$ which we think of as a linear transformation with matrix $\chi(-,-)$. That is, $f\mapsto \hat f$ where
+The Fourier transform is a map $\Fun(G)\xrightarrow{\widehat{-}}\Fun(\widehat G)$ which we think of as a linear transformation with matrix $\chi(-,-)$. The Fourier transform is given by the formula
 \[\hat f(\hat g) = \sum_{g\in G}\chi(g,\hat g)f(g)\]
-For groups that are not finite admitting a Fourier transform like this, the sum is replaced by an integral of some kind and the kind of function spaces we consider may need adjustment.
+For infinite groups that admit a Fourier transform like this, the sum is replaced by an integral of some kind and the kind of function spaces we consider may need adjustment.
 
 One other perspective of this map is that it comes from a pullback and a pushforward. Consider the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwwLCJHXFx0aW1lcyBcXHdpZGVoYXQgRyJdLFswLDEsIkciXSxbMiwxLCJcXHdpZGVoYXQgRyJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl1d
@@ -575,8 +575,42 @@ Compare the original left action of $G$ (not the natural one defined by pullback
 So this is a reason for why we mentioned above that the delta function was really a distribution or measure. The original definition of the left action of $G$ on $\Fun(G)$ may be thought of as turning the natural right action of $G$ on $\Fun(G)$ into a left action by being clever with signs, or more interestingly as identifying all functions with their corresponding regular distributions.
 
 Now return to the case when $G$ is finite Abelian. View $\chi_{\hat g}$ as an element of $\Fun(G)$. The calculation
-\[g\chi_{\hat g}(h) = \chi_{\hat g}(g^{-1}h) = \chi_{\hat g}(g^{-1})\chi_{\hat g}(h)\]
+\[g\chi_{\hat g}(h) = \chi_{\hat g}(g^{-1}h) = \chi_{\hat g}(g^{-1})\chi_{\hat g}(h) =\chi_{\hat g}(g)^{-1}\chi_{\hat g}(h) = \overline{\chi_{\hat g}(g)}\chi_{\hat g}(h)\]
+shows that under the action of $G$ on $\Fun(G)$, $\chi_{\hat g}$ is an eigenvector with eigenvalue $\chi_{\hat g}(-)^{-1} = \overline{\chi_{\hat g}(-)}$. In the theory of Fourier series (which we will see more later), a character of $U(1) = \mathbb R/\mathbb Z$ is of the form $x\mapsto \exp(2\pi inx)$. The action of $\mathbb R/\mathbb Z$ on $\Fun(\mathbb R/\mathbb Z)$ is given by $(x\cdot f)(\theta) = f(\theta-x)$, so
+\[y\cdot\exp(2\pi inx) = \exp(2\pi in(x-y)) = \overline{\exp(2\pi i n y)}\exp(2\pi inx)\]
+(See \href{https://terrytao.wordpress.com/2009/04/06/the-fourier-transform/#more-2015}{Terence Tao's blog}.)
+
+Earlier we showed that $\widehat{\delta_g} = \chi_g$, and that extending this linearly produces the Fourier transform. We would like for the inverse Fourier transform to send $\delta_{\hat g}$, the indicator function of $\hat g$, to a character, to match the Fourier transform. (Note that the space $\Fun(\widehat G)$ has basis the indicator functions $\delta_{\hat g}$.) But the inverse Fourier transform should also respect the group action on the function spaces. Compared to the action of $G$ on $\Fun(G)$, the action of $G$ on $\Fun(\widehat G)$ is given by identifying $G$ with $\dwidehat{G}\subset \Fun(\widehat G)$ and using pointwise multiplication. That is, $gf = \chi_g\cdot f$. We should try another calculation to see if that provides a clue; in particular, if we want to have a chance at defining the inverse Fourier transform we should try to take Fourier transforms of characters. The Fourier transform of $\chi_{\hat g}\in \Fun(G)$ is given by 
+\[\widehat{\chi_{\hat g}}(\hat h) = \sum_{h\in G}\chi(h,\hat h)\chi_{\hat g}(h) = \sum_{h\in G}\chi(h,\hat h\hat g) = \abs{G}\delta_{\hat g^{-1}},\]
+where in the last equality we used the following result:
+\[\sum_{g\in G}\chi_{g}(\hat h) = \begin{cases*}
+	0 & \text{if } $\hat h \neq 1_{\widehat G}$\\
+	\abs{G} & \text{otherwise}
+\end{cases*}\]
+Indeed, since $\dwidehat{G}$ is a group, if $\hat h\neq 1_{\widehat G}$, then choose $h\in G$ for which $\chi_{\hat h}(h) = \chi_h(\hat h)\neq 1$ (we can do this since $\chi_{\hat h}$ is not the trivial character). Then with $\chi_h\in \dwidehat{G}$, we have
+\[\chi_h(\hat h)\sum_{g\in G}\chi_{g}(\hat h) = \sum_{g\in G}\chi_{hg}(\hat h) = \sum_{g\in G}\chi_{g}(\hat h),\]
+but $\chi_h(\hat h)\neq 1$, so $\sum_{g\in G}\chi_{g}(\hat h)=0$. If $\hat h = 1_{\widehat G}$, then $\sum_{g\in G}\chi_{g}(\hat h) = \sum_{g\in G}1 = \abs{G}$. A similar argument may be done to evaluate the sum $\sum_{\hat g\in \widehat G}\chi_{\hat g}(h)$.
+
+Based on the calculations above, one might try to calculate the Fourier transform of $\overline{\chi_{\hat g}}$, to obtain $\abs{G}\delta_{\hat g}$. So the inverse Fourier transform should send $\delta_{\hat g}$ to $\chi_{\hat g}/\abs{G}$, and by extending linearly we find that the inverse Fourier transform $\Fun(\widehat G)\xrightarrow{-^{\vee}}\Fun(G)$ is given by
+\[F^\vee(g) = \frac{1}{\abs{G}}\sum_{\hat g \in \widehat G}\overline{\chi(g,\hat g)}F(\hat g)\]
+One can calculate that for any $f\in \Fun(G)$ that 
+\[f(g) = \frac{1}{\abs{G}}\sum_{\hat g\in \widehat G}\overline{\chi(g,\hat g)}\hat f(\hat g)\]
+which is the Fourier inversion theorem for finite Abelian groups.
+
+By endowing $\Fun(G)$ with the Hermitian $L^2$ inner product
+\[\abr{f,h} = \sum_{g\in G}f(g)\overline{h}(g)\]
+it turns out that the characters $\chi_{\hat g}$ form an orthonormal basis (use one of the earlier calculations to do this). A similar statement is true for $\Fun(\widehat G)$, and by scaling the Fourier transform, the inverse Fourier transform, and possibly the inner products correctly, we obtain an unitary isomorphism of the Hilbert spaces $\Fun(G)$ and $\Fun(\widehat G)$ (i.e., the inner product is preserved).
+
 \subsection{A preview for locally compact Abelian groups}
+Some examples of locally compact Abelian (LCA) groups are the finite Abelian groups, $\mathbb Z$, $U(1)$, $\mathbb R$, $\mathbb Z_p$ (the $p$-adic integers), and $\mathbb Q_p$ (the $p$-adic numbers). In this setting $\widehat G$ is defined to be the set of unitary irreps, otherwise given by $\Hom_{\Group}(G,U(1))$.
+
+Pontryagin duality still holds in this setting. The result encapsulates the following statements:
+\begin{enumerate}
+	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,U(1))$) is an isomorphism.
+	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and sends delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
+	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \cbr{v\in V\mid gv = \chi_{\hat g}(g)v}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the sheaf $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
+\end{enumerate}
+Next time, we will look at the LCA groups $U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
 
 \newpage\section{09/04}
 
