@@ -97,6 +97,7 @@
 \DeclareMathOperator{\PSL}{PSL}
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\U}{U}
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
@@ -147,7 +148,7 @@
 \setcounter{page}{1}
 
 \begin{document}
-M 392C Representation Theory, Fall 2025: Dr.~David Ben-Zvi's lectures, \TeX ed by Sai Sivakumar. The main goal of these notes was to clarify and even expand on several of the points David made during the lectures. As a warning, I made no effort to reorder the content of the course, and many digressions in these notes are much longer (hopefully clearer) than they actually were in class.
+M 392C Representation Theory, Fall 2025: Dr.~David Ben-Zvi's lectures, \TeX ed by Sai Sivakumar. The main goal of these notes was to clarify and even expand on several of the points David made during the lectures. As a warning, I made minimal effort to reorder the content of the course, and many digressions in these notes are much longer (hopefully clearer) than they actually were in class.
 \tableofcontents
 
 \newpage\section{08/26}
@@ -456,7 +457,7 @@ For $G$ a finite Abelian group, we saw/will see four equivalent descriptions of 
 \begin{align*}
 	\widehat G &= \text{set of irreps of $G$}\\
 	&= \Hom_{\Group}(G,\mathbb C^\ast)\\
-	&= \text{unitary irreps of $G$} = \Hom_{\Group}(G,U(1))\\
+	&= \text{unitary irreps of $G$} = \Hom_{\Group}(G,\U(1))\\
 	&= \Spec(\mathbb C[G]) = \text{maximal ideals of $\mathbb C[G]$} = \Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)
 \end{align*}
 Some of these descriptions for $\widehat G$ stop becoming equivalent to each other if we remove the adjectives finite or Abelian from $G$.
@@ -576,7 +577,7 @@ So this is a reason for why we mentioned above that the delta function was reall
 
 Now return to the case when $G$ is finite Abelian. View $\chi_{\hat g}$ as an element of $\Fun(G)$. The calculation
 \[g\chi_{\hat g}(h) = \chi_{\hat g}(g^{-1}h) = \chi_{\hat g}(g^{-1})\chi_{\hat g}(h) =\chi_{\hat g}(g)^{-1}\chi_{\hat g}(h) = \overline{\chi_{\hat g}(g)}\chi_{\hat g}(h)\]
-shows that under the action of $G$ on $\Fun(G)$, $\chi_{\hat g}$ is an eigenvector with eigenvalue $\chi_{\hat g}(-)^{-1} = \overline{\chi_{\hat g}(-)}$. In the theory of Fourier series (which we will see more later), a character of $U(1) = \mathbb R/\mathbb Z$ is of the form $x\mapsto \exp(2\pi inx)$. The action of $\mathbb R/\mathbb Z$ on $\Fun(\mathbb R/\mathbb Z)$ is given by $(x\cdot f)(\theta) = f(\theta-x)$, so
+shows that under the action of $G$ on $\Fun(G)$, $\chi_{\hat g}$ is an eigenvector with eigenvalue $\chi_{\hat g}(-)^{-1} = \overline{\chi_{\hat g}(-)}$. In the theory of Fourier series (which we will see more later), a character of $\U(1) = \mathbb R/\mathbb Z$ is of the form $x\mapsto \exp(2\pi inx)$. The action of $\mathbb R/\mathbb Z$ on $\Fun(\mathbb R/\mathbb Z)$ is given by $(x\cdot f)(\theta) = f(\theta-x)$, so
 \[y\cdot\exp(2\pi inx) = \exp(2\pi in(x-y)) = \overline{\exp(2\pi i n y)}\exp(2\pi inx)\]
 (See \href{https://terrytao.wordpress.com/2009/04/06/the-fourier-transform/#more-2015}{Terence Tao's blog}.)
 
@@ -602,17 +603,44 @@ By endowing $\Fun(G)$ with the Hermitian $L^2$ inner product
 it turns out that the characters $\chi_{\hat g}$ form an orthonormal basis (use one of the earlier calculations to do this). A similar statement is true for $\Fun(\widehat G)$, and by scaling the Fourier transform, the inverse Fourier transform, and possibly the inner products correctly, we obtain an unitary isomorphism of the Hilbert spaces $\Fun(G)$ and $\Fun(\widehat G)$ (i.e., the inner product is preserved).
 
 \subsection{A preview for locally compact Abelian groups}
-Some examples of locally compact Abelian (LCA) groups are the finite Abelian groups, $\mathbb Z$, $U(1)$, $\mathbb R$, $\mathbb Z_p$ (the $p$-adic integers), and $\mathbb Q_p$ (the $p$-adic numbers). In this setting $\widehat G$ is defined to be the set of unitary irreps, otherwise given by $\Hom_{\Group}(G,U(1))$.
+Some examples of locally compact Abelian (LCA) groups are the finite Abelian groups, $\mathbb Z$, $\U(1)$, $\mathbb R$, $\mathbb Z_p$ (the $p$-adic integers), and $\mathbb Q_p$ (the $p$-adic numbers). In this setting $\widehat G$ is defined to be the set of unitary irreps, otherwise given by $\Hom_{\Group}(G,\U(1))$.
 
 Pontryagin duality still holds in this setting. The result encapsulates the following statements:
 \begin{enumerate}
-	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,U(1))$) is an isomorphism.
+	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,\U(1))$) is an isomorphism.
 	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and sends delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
-	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \cbr{v\in V\mid gv = \chi_{\hat g}(g)v}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the sheaf $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
+	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \cbr{v\in V\mid gv = \chi_{\hat g}(g)v}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the representation (sheaf) $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
 \end{enumerate}
-Next time, we will look at the LCA groups $U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
+Next time, we will look at the LCA groups $\U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
 
 \newpage\section{09/04}
+A category is called semisimple if every object is the direct sum of finitely many simple objects. We will show that $\Rep_{\mathbb C}(G)$ is semisimple.
+
+A complex representation of a group $G$ is unitarizable if there exists a Hermitian inner product (non-degenerate, sesquilinear, positive definite bilinear form) $\abr{-,-}$ on $V$ for which 
+\[\abr{gv,gw} = \abr{v,w}\]
+In other words, $V$ is unitarizable if it can be endowed with a Hermitian inner product that is invariant under the group action, or otherwise we can say that the group acts by unitary transformations on $V$ with this inner product. In the language of diagrams, given the representation $(V,\rho)$, there exists an inner product $\abr{-,-}$ and the map $G\xrightarrow{\rho} \U(V,\abr{-,-})$ (with the same definition as $G\xrightarrow{\rho} \GL(V)$) for which the following diagram commutes
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiXFxHTChWKSJdLFsxLDEsIlxcVShWLFxcYWJyey0sLX0pIl0sWzIsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJcXHJobyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDEsIlxccmhvIl1d
+\[\begin{tikzcd}
+	G & {\GL(V)} \\
+	& {\U(V,\abr{-,-})}
+	\arrow["\rho", from=1-1, to=1-2]
+	\arrow["\rho"', dashed, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=1-2]
+\end{tikzcd}\]
+
+A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$.
+
+Given a representation $(V,\rho)$, recall we can define the dual representation $V^\ast$ where $gf(v) = f(g^{-1}v)$. In this case we think of the action of $G$ as being inverted since we use the inversion map on $G$ to define the action on $V^\ast$. On the other hand, since the action of $G$ on $V$ is by complex-valued matrices, we can pointwise conjugate these matrices to obtain a representation $(\overline V,\overline \rho)$ where the underlying Abelian group $\overline V$ coincides with the Abelian group $V$ but the scalar multiplication is given by $c\cdot_{\overline V} v = \overline{c}\cdot_Vv$. Extending this, the group $G$ acts on $\overline V$ by $gv = \overline{\rho(g)}v$, and in this case we think of the action as being conjugated as opposed to inverted in the case with the dual vector space.
+
+A Hermitian inner product $\abr{-,-}$ on any complex vector space $V$ corresponds to an isomorphism of $\overline V$ with $V^\ast$ given by $v\mapsto \abr{-,v}$, and from any isomorphism $\overline V\xrightarrow{H} V^\ast$, define the inner product $\abr{-,-}$ by $\abr{v,w} = H(v)(w)$.
+
+That a representation $V$ is unitarizable is a property of $V$ as opposed to being part of the structure. On the other hand, if $W$ is a unitary representation, part of the data of $W$ is a fixed $G$-invariant inner product $\abr{-,-}$, as opposed to a unitarizable representation $V$ for which we do not specify any one $G$-invariant inner product. Of course, once we do specify a $G$-invariant inner product $\abr{-,-}_0$, we can speak of the unitary representation $(V,\abr{-,-}_0)$, which is different from the unitary representation $(V,\abr{-,-}_1)$ for a different $G$-invariant inner product $\abr{-,-}_1$.
+
+If $V$ is a finite-dimensional unitarizable representation, then $V$ is a semisimple representation; that is, $V$ is the direct sum of irreps/simples. Assume $V$ is already not simple, and fix a $G$-invariant inner product $\abr{-,-}$ on $V$. Let $W\subset V$ be any $G$-invariant subspace, and see that $W^\perp = \cbr{v\in V\mid \abr{v,w} = 0\text{ for all }w\in W}$ is a $G$-invariant subspace of $V$ since the $W$ and the inner product $\abr{-,-}$ are $G$-invariant:
+\[\abr{gv,w} = \abr{v,g^{-1}w}\quad\text{implies $gv\in W^\perp$ whenever $v\in W^\perp$}\]
+Then induction proves the result (this amounts to iterating this procedure on $W^\perp$ and repeating on each of the resulting subspaces until it cannot be done, which happens because $V$ is finite dimensional).
+
+Another nice result is that if $G$ is finite, then a finite dimensional representation $V$ is unitarizable and hence semisimple.
 
 % \newpage\section{XX/XX}
 
