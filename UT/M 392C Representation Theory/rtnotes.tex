@@ -108,7 +108,7 @@
 \newcommand{\alg}{\text{-}\catname{alg}}
 \newcommand{\Group}{\catname{Group}}
 \newcommand{\Ring}{\catname{Ring}}
-% \renewcommand{\ev}{\mathrm{ev}}
+\newcommand{\av}{\mathrm{av}}
 
 % double hat, widecheck macros
 \makeatletter
@@ -629,7 +629,7 @@ In other words, $V$ is unitarizable if it can be endowed with a Hermitian inner 
 	\arrow[hook, from=2-2, to=1-2]
 \end{tikzcd}\]
 
-A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$.
+A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector space $V$ and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$.
 
 Given a representation $(V,\rho)$, recall we can define the dual representation $V^\ast$ where $gf(v) = f(g^{-1}v)$. In this case we think of the action of $G$ as being inverted since we use the inversion map on $G$ to define the action on $V^\ast$. On the other hand, since the action of $G$ on $V$ is by complex-valued matrices, we can pointwise conjugate these matrices to obtain a representation $(\overline V,\overline \rho)$ where the underlying Abelian group $\overline V$ coincides with the Abelian group $V$ but the scalar multiplication is given by $c\cdot_{\overline V} v = \overline{c}\cdot_Vv$. Extending this, the group $G$ acts on $\overline V$ by $gv = \overline{\rho(g)}v$, and in this case we think of the action as being conjugated as opposed to inverted in the case with the dual vector space.
 
@@ -641,7 +641,32 @@ If $V$ is a finite-dimensional unitarizable representation, then $V$ is a semisi
 \[\abr{gv,w} = \abr{v,g^{-1}w}\quad\text{implies $gv\in W^\perp$ whenever $v\in W^\perp$}\]
 Then induction proves the result (this amounts to iterating this procedure on $W^\perp$ and repeating on each of the resulting subspaces until it cannot be done, which happens because $V$ is finite dimensional).
 
-Another nice result is that if $G$ is finite, then a finite dimensional representation $V$ is unitarizable and hence semisimple.
+Another nice result is that if $G$ is finite, then a finite dimensional representation $V$ is unitarizable and hence semisimple. The heart of this result is due to the existence of an averaging element $\av\in\mathbb C[G]$ given by
+\[\av = \frac{1}{\abs{G}}\sum_{g\in G}g\]
+Note that $\av\in Z(\mathbb C[G])$. To define this averaging element, it is crucial that $G$ is finite and that the characteristic of the field $\mathbb C$ (zero) does not divide the order of the group. The existence of an averaging operator is the content of Maschke's theorem from earlier, since we can use this averaging element to form a projector needed to form complements of $G$-stable subspaces, as we will see. 
+
+Let $V$ be any finite dimensional representation. Then we can define the subspace of $G$-fixed points, $V^G$, by
+\[V^G = \cbr{v\in V\mid gv = v\text{ for all }g\in G}\]
+The subspace $V^G$ is the part of $V$ that $G$ acts trivially on, or in other words is the trivial representation part of $V$ when broken into irreps. For any $v\in V$, $av\cdot v\in V^G$ since for any $h\in G$ we have
+\[h(\av\cdot v) = h\biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}hgv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \av\cdot v\]
+Observe further that because the sum is normalized with the factor $1/\abs{G}$, multiplication by $\av$ defines a projection map to $V^G$, since $\av^2 = \av$, so $\av-$ is an idempotent. The complementary idempotent is $(1-\av)-$, and see that it squares to itself as well. It is complementary since $\av(1-\av) = 0$. It follows that $V = \av V\oplus (1-\av)V = V^G\oplus (1-\av)V$.
+
+An aside: To prove Maschke's theorem, we do a similar trick. Given any $G$-invariant subspace $H$ of a representation $V$, consider the space $\Hom_{\mathbb C}(V,H)$, which contains many projections since short exact sequences in $\Vect_{\mathbb C}$ always split, or this is just true from linear algebra. What we want to find is a projector $\pi$ which is $G$-intertwining; that is, $(g\cdot)\pi(g^{-1}\cdot) = \pi$. Considering the action of $G$ on $\Hom_{\mathbb C}(V,H)$ by conjugation, finding a $G$-intertwining projector $\pi$ amounts to finding a projector that is fixed under conjugation. Pick any one projector $V\xrightarrow{\pi_0}H$, and average $\pi_0$ using $\av$ to get the projector
+\[\pi = \av\cdot\pi_0 = \frac{1}{\abs{G}}\sum_{g\in G}(g\cdot)\pi_0(g^{-1}\cdot)\]
+Hence $\pi$ is a fixed point under the conjugation action and thus is a desired $G$-equivariant projector.
+
+Returning to showing that a finite dimensional representation $V$ is unitarizable and hence semisimple, it amounts to finding a $G$-invariant inner product $\abr{-,-}$. Pick any inner product $\abr{-,-}_0$ on $V$ and make it $G$-invariant by averaging it via $\av$. Define the inner product $\abr{-,-}$ by 
+\[\abr{-,-} = ``\av(\abr{-,-}_0)\textrm{''} = \frac{1}{\abs{G}}\sum_{g\in G}\abr{g-,g-}_0\]
+Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an element $H\in (V\otimes \overline V)^G$ by first forming a projection $V\otimes \overline V\to (V\otimes \overline V)^G$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep_{\mathbb C}(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
+
+\subsection{Distributions and measures}
+When $G$ is finite, then the group algbera $\mathbb C[G]$ can be identified with the algebra $\Fun(G)$ with convolution, and we identify $\av$ with $\mathbf{1}_G/\abs{G}$ ($\mathbf{1}_G$ is the indicator function on $G$) and identify $1_{\mathbb C[G]}$ with $\delta_{1_{G}}$, and everything in between. If $G$ is also Abelian, then $\Fun(G)$ with convolution is isomorphic to $\Fun(\widehat G)$ with pointwise multiplication via the Fourier transform. A short calculation shows that the Fourier transform of $\delta_{1_G}$ is $\mathbf{1}_{\widehat G} = \sum_{\hat g\in\widehat G}\delta_{\hat g}$, which can be thought of as some version of Plancherel's theorem.
+
+So if $G$ acts on $V$, then we know that $V$ decomposes as $V = \bigoplus_{\hat g\in \widehat G}V_{\hat g}$, where $V_{\hat g} = \delta_{\hat g}V$, where we think of the delta functions as being projectors onto subspaces of $V$ for which $G$ acts by multiplication by characters. The notation is suggestive: $g\cdot \delta_{\hat g}V = \chi_{\hat g}(g)\delta_{\hat g}V$.\sai{what, come back to this}
+
+When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1), \mathbb R$ since we will look at $L^2(G)$ primarily. For example, we think of $\mathbf{1}_G/\abs{G}$ more accurately as the distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact.
+
+In this new setting the convolution of distributions $F\ast H$ is given by $m_\ast(f\boxtimes h)$ where $f\boxtimes h$ 
 
 % \newpage\section{XX/XX}
 
