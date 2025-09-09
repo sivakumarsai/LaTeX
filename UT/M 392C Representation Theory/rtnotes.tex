@@ -208,7 +208,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
 \end{tabular}
 \end{table}
     
-    Irreps of compact groups coincide with their indecomposables. Irreps of Abelian groups are all $1$-dimensional.
+    Irreps of compact groups coincide with their indecomposables. Irreps of Abelian groups are all one-dimensional.
     
     The representation theory of $S^1$ leads to the theory of Fourier series, and in a similar way we can recover the Fourier transform from the representation theory of $\mathbb R$.
 
@@ -560,6 +560,7 @@ The right action on $\Fun(G)$ defines a map $\Fun(G)\xrightarrow{\cdot g}\Fun(G)
 \end{tikzcd} \quad \text{pushing forward $T$ by $\cdot g$}\]
 Here, $(\cdot g)_\ast T = T(-g^{-1})$ because
 \[(\cdot g)_\ast T(f) = \sum_{\substack{h\\hg=f}}T(h) = T(fg^{-1})\quad \text{(only one element in the fiber)}\]
+Typically, for a function $f\colon X\to Y$ and a distribution $F\colon \Fun(X)\to \mathbb C$, the pushforward $(f^\ast-)_\ast F$ is denoted by $f_\ast F$, and this is what is meant by the pushforward of the distribution $F$ by $f$ (similarly for measures).
 
 It is instructive to look at the left action of $G$ on the regular distributions, which are the distributions $T_f$ obtained by integration against $f\in\Fun(G)$:
 \[T_f(h) = \sum_{g\in G}f(g)h(g)\]
@@ -657,22 +658,92 @@ Hence $\pi$ is a fixed point under the conjugation action and thus is a desired 
 
 Returning to showing that a finite dimensional representation $V$ is unitarizable and hence semisimple, it amounts to finding a $G$-invariant inner product $\abr{-,-}$. Pick any inner product $\abr{-,-}_0$ on $V$ and make it $G$-invariant by averaging it via $\av$. Define the inner product $\abr{-,-}$ by 
 \[\abr{-,-} = ``\av(\abr{-,-}_0)\textrm{''} = \frac{1}{\abs{G}}\sum_{g\in G}\abr{g-,g-}_0\]
-Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an element $H\in (V\otimes \overline V)^G$ by first forming a projection $V\otimes \overline V\to (V\otimes \overline V)^G$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep_{\mathbb C}(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
+Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an isomorphism $H\in \Hom_{\mathbb C}(\overline V, V^\ast)^G$ by applying the projection $\Hom_{\mathbb C}(\overline V, V^\ast)\to \Hom_{\mathbb C}(\overline V, V^\ast)^G$ obtained via averaging to any isomorphism $H_0\in \Hom_{\mathbb C}(\overline V, V^\ast)$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep_{\mathbb C}(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
 
 \subsection{Distributions and measures}
 When $G$ is finite, then the group algbera $\mathbb C[G]$ can be identified with the algebra $\Fun(G)$ with convolution, and we identify $\av$ with $\mathbf{1}_G/\abs{G}$ ($\mathbf{1}_G$ is the indicator function on $G$) and identify $1_{\mathbb C[G]}$ with $\delta_{1_{G}}$, and everything in between. If $G$ is also Abelian, then $\Fun(G)$ with convolution is isomorphic to $\Fun(\widehat G)$ with pointwise multiplication via the Fourier transform. A short calculation shows that the Fourier transform of $\delta_{1_G}$ is $\mathbf{1}_{\widehat G} = \sum_{\hat g\in\widehat G}\delta_{\hat g}$, which can be thought of as some version of Plancherel's theorem.
 
-So if $G$ acts on $V$, then we know that $V$ decomposes as $V = \bigoplus_{\hat g\in \widehat G}V_{\hat g}$, where $V_{\hat g} = \delta_{\hat g}V$, where we think of the delta functions as being projectors onto subspaces of $V$ for which $G$ acts by multiplication by characters. The notation is suggestive: $g\cdot \delta_{\hat g}V = \chi_{\hat g}(g)\delta_{\hat g}V$.\sai{what, come back to this}
+So if $G$ acts on $V$, then we know that $V$ decomposes as $V = \bigoplus_{\hat g\in \widehat G}V_{\hat g}$, where $V_{\hat g} = \delta_{\hat g}V$, where we think of the delta functions as being projectors onto subspaces of $V$ for which $G$ acts by multiplication by characters. The notation is suggestive: $g\cdot \delta_{\hat g}V = \chi_{\hat g}(g)\delta_{\hat g}V$.
 
-When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1), \mathbb R$ since we will look at $L^2(G)$ primarily. For example, we think of $\mathbf{1}_G/\abs{G}$ more accurately as the distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact.
+When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1)$ or $\mathbb R$ since we will look at $L^2(G)$ primarily. For example, we think of $\mathbf{1}_G/\abs{G}$ more accurately as the distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact, and $\delta_{1_G}$ as the functional which evaluates functions at $1_G$.
 
-In this new setting the convolution of distributions $F\ast H$ is given by $m_\ast(f\boxtimes h)$ where $f\boxtimes h$ 
+Because the convolution of two functions is given by an integral or otherwise a pushforward, secretly somehow what is actually happening is that we are pushing forward a particular distribution or measure. ``You don't integrate functions, you integrate measures.'' So this is more evidence that we should see if we can do an analysis of the representations of infinite Abelian groups using distributions instead of functions.
+
+% The convolution of two distributions $F,H$ in this setting is given by $F\ast H = m_\ast(F\boxtimes H)$ where $\Fun(G)\times \Fun(G)\xrightarrow{F\boxtimes H} \mathbb C$ is given by $(F\boxtimes H)(f,h) = Ff\cdot Hh$ and $m$ is the multiplication map $G\times G\to G$. Explicitly, 
+% \[(F\ast H)(f) = m_\ast(F\boxtimes H)(f) = (m^\ast-)_\ast(F\boxtimes H)(f) = \]
+
+Let $G$ be a locally compact Hausdorff topological group. Then Haar's theorem (see \href{https://en.wikipedia.org/wiki/Haar_measure}{Wikipedia}) states that there is a measure $\mu$ on the Borel subsets of $G$, called the Haar measure, which is:
+\begin{enumerate}
+	\item Left-translation invariant under the left multiplication action of $G$; that is, the pushforward measure $(g\cdot)_\ast \mu$ agrees with $\mu$.
+	\item Finite on compact sets of $G$.
+	\item Outer regular on Borel sets; that is, $\mu(S) = \inf\cbr{\mu(U)\mid S\subseteq U\text{ with $U$ open}}$ for $S$ a Borel set. 
+	\item Inner regular on open sets; that is, $\mu(U) = \sup\cbr{\mu(K)\mid K\subseteq U\text{ with $K$ compact}}$ for $U$ an open set.
+	\item Unique up to positive scaling.
+\end{enumerate}
+
+If $G$ is compact then we can normalize the Haar measure on $G$ to produce a unique Haar measure for which $\mu(G) = 1$. This measure is provided by $\av$, viewed as a measure by the formula $\av(E) = \frac{1}{\mu(G)}\int_E 1 \dd\mu$ where $\mu$ is any Haar measure, or as the regular distribution $T_\av$ where $T_\av(f) = \int_G f(g)\av(g)\dd\mu = \frac{1}{\mu(G)}\int_G f(g) \dd\mu$ where $\mu$ is any Haar measure. So for example, the normalized Haar measure on $\U(1)$ is $\dd\theta/2\pi$.
+
+On a manifold, to be able to integrate we need to be able to find a top differential form. So if $G$ is a Lie group, consider the tangent space $\mathfrak g = T_G(1_G)$, which is the only one we need to consider since all other tangent spaces are obtained via translation of the tangent space at the identity. Then the space of top differential forms $\bigwedge^{\dim \mathfrak g}\mathfrak g^\ast$ is a $1$-dimensional vector space. The normalized Haar measure is the measure induced by the normalized top form in this vector space.
+
+The requirement that $G$ is locally compact probably comes from wanting to be able to approximate integrals using compact exhaustions. The Hausdorff requirement is a consequence of the following result of topological groups: For $G$ a topological group, let $H$ be the closure of the set $\cbr{1_G}$. Then $H$ is a normal subgroup and the quotient $G/H$ is the largest quotient of $G$ that is Hausdorff. Furthermore, every continuous map of $G$ to a Hausdorff space factors through the quotient $G/H$. So in our setting, we will be considering continuous maps from $G$ to the complex numbers, so in this setting $G$ is indistinguishable from its largest Hausdorff quotient. As a consequence, there is no loss in defining LCA groups to be locally compact, Abelian, and Hausdorff.
+
+A fun fact is that if $G$ is compact, then the Haar measure on $G$ is automatically both left and right-translation invariant, even if $G$ is not Abelian. For any Haar measure $\mu$ on $G$ and $g\in G$, the pushforward of $\mu$ by right multiplication by $g^{-1}$ produces another left invariant Haar measure $(\cdot g)_\ast\mu$. So $\mu$ is some multiple of $(\cdot g)_\ast\mu$, denote this multiple by $\bmod(g)$, called the modulus character of $G$. It turns out that this quantity does not depend on the choice of Haar measure $\mu$ we started with, and is also a group homomorphism $G\to \mathbb R_{>0}$, which measures how much the left and right-translation invariance of the Haar measure disagree. The modulus character is trivial if $G$ is Abelian. For $G$ compact, there are no compact subgroups of $\mathbb R_{>0}$ aside from $\cbr{1}$, so in this case the modulus character is also trivial, and hence Haar measures on compact groups are bi-invariant. In other words, the Haar measure is a $G\times G$-invariant measure on $G$ (where $(g,h)\in G\times G$ acts by left translation by $g$ and by right translation by $h^{-1}$). This is because the element $\av\in\mathbb C[G]$ is $G\times G$-invariant (where $(g,h)\in G\times G$ acts by left multiplication by $g$ and by right multiplication by $h^{-1}$); this is stronger than just being invariant under conjugation by $G$.
+
+\subsection{A tiny preview for LCA groups}
+Let $G$ be compact. Then finite dimensional representations of $G$ are semisimple. The proof follows the same ideas as in the finite case, but we replace all sums with integrals using the normalized Haar measure. Note that the normalization of the Haar measure is what will ensure that our desired projector actually is an idempotent as we did in the finite case.
+
+For LCA groups, it is also true that finite dimensional representations are semisimple, and from before we know the irreps are one-dimensional. If $G = \U(1) = S^1$, then we obtain the theory of Fourier series, since the dual group $\widehat{S^1}$ is isomorphic to $\mathbb Z$; each character of $S^1$ is of the form $z\mapsto z^n$ (or $x\mapsto \exp(2\pi i nx)$ if we think of $S^1$ as $\mathbb R/\mathbb Z$) for some integer $n$.
 
 % \newpage\section{XX/XX}
 
-\newpage
-\begin{bibdiv}
-\begin{biblist}
+% \newpage\section*{Exercises}
+% These were suggested problems for the class.
+
+\newpage\section*{References}
+The references below were from the course page.
+{\footnotesize
+\subsection*{\hspace{1em}Basic Lie theory}
+ R.~Carter, G.~Segal and I.MacDonald: Lectures on Lie Groups and Lie Algebras. London Math. Society Student Texts 32. The lectures by Segal are a beautiful overview of the fundamental ideas of Lie groups and algebras, with geometry and examples emphasized.
+
+W.~Fulton and J.~Harris: Representation Theory. Springer GTM 129. The canonical reference for representations, especially for the (Lie) algebraic point of view and basic algebro--geometric aspects.
+\subsection*{\hspace{1em}Review articles}
+G.~Mackey: Harmonic Analysis as the Exploitation of Symmetry. Bull. Amer. Math. Soc. 3/1 (1980) 543-699. Reprinted in: The Scope and History of Commutative and Noncommutative Harmonic Analysis. History of Math Vol.5, Amer. Math Soc./London Math Soc. 1992. My favorite (and first) introduction to representation theory, emphasizing its history and origins in probability, number theory and physics. The reprint appears in a volume devoted to Mackey's wonderful representation theory survey articles.
+
+Other Mackey surveys (besides those in the book above): Unitary Group Representations in physics, probability and number theory (Addison-Wesley 1989) -- a book delving deeper into the ideas of the above survey article.
+
+W.~Schmid: Representations of semi-simple Lie groups. In: Atiyah et al., Representation Theory of Lie Groups. Londom Math Society Lecture Notes 34. Cambridge U. Press 1979. Excellent overview by a master, in a volume full of useful reviews (also Mackey, Bott, Kostant, Kazhdan..)
+
+W.~Schmid: Analytic and Geometric Realization of Representations. In: Tirao and Wallach (eds)., New Developments in Lie Theory and their Applications. Lecture notes overviewing the subject in the title, with a strong emphasis on $\SL_2$.
+\subsection*{\hspace{1em}More advanced, $\SL_2$ specific references}
+K.~Vilonen: Representations of $\SL_2$. Course Notes, Northwestern University.
+
+R.~Howe and E.C.~Tan: Non-abelian harmonic analysis - applications of $\SL(2,\mathbb R)$. Springer Universitext. A very nice introduction to representations of $\SL(2,\mathbb R)$, with interesting applications to classical analysis.
+
+V.S.~Varadarajan: An Introduction to Harmonic Analysis on Semisimple Lie Groups. Cambridge Studies in advanced math 16. Nice textbook, with an emphasis on $\SL_2$ and good introductions to various topics.
+
+S.~Lang: $\SL(2,\mathbb R)$. Springer GTM. Fairly analytical introduction, alas not very coherent -- read the \href{http://www.sunsite.ubc.ca/DigitalMathArchive/Langlands/miscellaneous.html#lang}{review} by \href{http://www.sunsite.ubc.ca/DigitalMathArchive/Langlands}{Robert Langlands}
+\subsection*{\hspace{1em}Other}
+D.~Ramakrishnan and R.~Valenza: Fourier Analysis on Number Fields. Springer GTM 186. Contains an introduction to the Pontrjagin duality theory for locally compact abelian groups, and its applications to number theory (Tate's thesis).
+
+J.~Arthur: Harmonic Analysis and Group Representations. Notices of the AMS. Gorgeous introduction to the ideas of Harish-Chandra. Available off AMS website.
+
+I.~Gelfand, M.~Graev and I.~Piatetskii-Shapiro: Representation Theory and Automorphic Functions. Academic Press. A classic thorough study of representations of SL2 over real, p-adic and adelic fields.
+
+D.~Bump: Automorphic Forms and Representations. Cambridge Studs. Advanced Math. 55. A good and detailed introduction to Langlands program ideas focussed on representations of GL2.
+
+T.~Bailey and A.~Knapp (eds): Representation Theory and Automorphic Forms. Proc. Symp. Pure Math 61. Proceedings of an instructional conference, with a variety of great introductory articles. (In particular Schmid, Knapp and Langlands).
+
+J.~Bernstein and S.~Gelbart (eds): An Introduction to the Langlands Program. Birkhauser. A very timely collection of introductions to the basic constituents of the Langlands program.
+
+A.~Borel and W.~Casselman (eds): Automorphic Forms, Representations and L-functions (the Corvallis volumes). The standard source of information about the Langlands program. Available off the AMS website (see e.g. Arinkin's webpage, below).
+
+J.~Bernstein, Courses on Eisenstein Series and Representations of p-adic Groups. Beautiful expositions. Available at \href{http://www.math.uchicago.edu/~arinkin/langlands}{Dima Arinkin's Langlands page}
+
+\href{http://www.math.ucsd.edu/~wgan}{Wee Teck Gan}, Automorphic Forms and Automorphic Representations: slides for a series of five lectures given in Hangzhou, China giving an excellent overview of the basic theory (available on his web page).}
+
+% \newpage
+% \begin{bibdiv}
+% \begin{biblist}
 
 % \bib{w}{book}{
 %     title = {Algebraic Geometry I: Schemes},
@@ -702,6 +773,6 @@ In this new setting the convolution of distributions $F\ast H$ is given by $m_\a
 %     publisher = {Springer New York, NY}
 % }
 
-\end{biblist}
-\end{bibdiv}
+% \end{biblist}
+% \end{bibdiv}
 \end{document}
