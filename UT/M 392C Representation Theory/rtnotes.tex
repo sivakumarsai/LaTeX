@@ -600,7 +600,7 @@ One can calculate that for any $f\in \Fun(G)$ that
 which is the Fourier inversion theorem for finite Abelian groups.
 
 By endowing $\Fun(G)$ with the Hermitian $L^2$ inner product
-\[\abr{f,h} = \sum_{g\in G}f(g)\overline{h}(g)\]
+\[\abr{f,h} = \sum_{g\in G}f(g)\overline{h(g)}\]
 it turns out that the characters $\chi_{\hat g}$ form an orthonormal basis (use one of the earlier calculations to do this). A similar statement is true for $\Fun(\widehat G)$, and by scaling the Fourier transform, the inverse Fourier transform, and possibly the inner products correctly, we obtain an unitary isomorphism of the Hilbert spaces $\Fun(G)$ and $\Fun(\widehat G)$ (i.e., the inner product is preserved).
 
 \subsection{A preview for locally compact Abelian groups}
@@ -742,7 +742,7 @@ Since $\U(1)$ is thought of as continuous as opposed to discrete, there is an ``
 \[\widehat{\dv{x}f}(n) = -2\pi in\hat f\]
 If $f$ is the character $\chi_m$, then the derivative of $f$ is $2\pi i m f$. The Fourier transform of $2\pi i m f$ is $2\pi i m \delta_{-m}$, so the action of the derivative commutes with the Fourier transform.
 
-What is meant by the ``infinitesimal'' action $\dv{x}$? From the action of $\U(1) = \mathbb R/\mathbb Z$, we define an action of its Lie algebra $\mathbb R$ (the tangent space at the identity $0$ of $\mathbb R/\mathbb Z$) on a function by $y\cdot f = \dv{t}(\tau_{ty}f)|_{t=0}$. In this case, $\dv{x}$ agrees with the action of $-1$ on functions; that is, $\dv{x}f = \dv{t}(\tau_{-t}f)|_{t=0}$. If we want to insist on working in $\U(1)$ given by the unimodular complex numbers, then the Lie algebra of $\U(1)$ in this case is $i\mathbb R$. The action of $i\mathbb R$ on $g$ is given by $iy \cdot g = \dv{t}(\exp(iyt)\cdot g)|_{t=0}$. In this case $z\dv{z}$ is given by the action of $-i$ on functions; that is, $\dv{z}g = \dv{t}(\exp(-it)\cdot g)|_{t=0}$ (note that it's $z\dv{z}$ and not just $\dv{z}$).
+What is meant by the ``infinitesimal'' action $\dv{x}$? From the action of $\U(1) = \mathbb R/\mathbb Z$, we define an action of its Lie algebra $\mathbb R$ (the tangent space at the identity $0$ of $\mathbb R/\mathbb Z$) on a function by $y\cdot f = \dv{t}(\tau_{ty}f)|_{t=0}$. In this case, $\dv{x}$ agrees with the action of $-1$ on functions; that is, $\dv{x}f = \dv{t}(\tau_{-t}f)|_{t=0}$. If we want to insist on working in $\U(1)$ given by the unimodular complex numbers, then the Lie algebra of $\U(1)$ in this case is $i\mathbb R$. The action of $i\mathbb R$ on $g$ (here $g$ is a function of $\theta$; if $g$ is a function of $z$, put $z = \exp(i\theta)$) is given by $iy \cdot g = \dv{t}(\exp(iyt)\cdot g)|_{t=0}$. In this case $\dv{\theta}$ is given by the action of $-i$ on functions; that is, $\dv{\theta}g = \dv{t}(\exp(-it)\cdot g)|_{t=0}$.
 
 Due to Pontryagin duality, we can mirror the above theory by considering taking Fourier transforms of functions on $\mathbb Z$ to get functions on $\widehat{\mathbb Z} = \U(1)$. The universal character $\chi(-,-)$ in this case is the same map (but we should flip the inputs) $(n,x)\mapsto \exp(2\pi inx)$ Even though $\mathbb Z$ is a discrete group, we can still think about difference operators in place of derivatives (these are just linear combinations of differences of translation operators). As desired, the action of $\mathbb Z$ on a function is given by translation, and the Fourier transform exchanges this action with multiplication by a character. That is, for $n\in\mathbb Z$
 \[n\cdot g \eqqcolon \tau_ng = \delta_n\ast g = g((-)-n)\xmapsto{\widehat{-}}\widehat{\delta_n\ast g} = \exp(2\pi in(-)) \hat g\]
@@ -753,6 +753,17 @@ The Fourier transform on $\mathbb Z$, which we also denote by $\mathcal F_{\math
 Even though we understand well how the Fourier transform acts on delta distributions and characters, there is the issue of figuring out how the Fourier transforms extend to larger function spaces. There should be a nice way to package the theory together nicely, in a way that is agnostic to the exact functions appearing in the larger spaces. A nice way to package everything together is via the spectral theorem for the group $\U(1)$.
 
 \subsection{The spectral theorem for $\U(1)$}
+Let $\mathcal H$ be any unitary representation of $\U(1)$ (note that some of the function spaces we mentioned earlier are not Hilbert spaces!). Since we have diagonalized the action of $\U(1)$, it acts on $\mathcal H$ by compact operators (in this case the operators are approximated by finite-rank diagonal operators). By the spectral theorem for compact operators, we can find countably many eigenspaces of $\mathcal H$ whose direct sum is dense in $\mathcal H$.
+
+First we should discuss analogues of the group algebra in this setting. On one hand, compactly supported functions on $G = \mathbb R/\mathbb Z$ would be a good starting place, but we can choose even larger spaces for which the product, convolution, still makes sense. For example, suitable candidates for a group algebra might be the space of continuous or even $L^1$ functions on $G$. For now, consider the continuous functions on $G$ with convolution, denoted by $(C(G),\ast)$. A unitary representation $(\mathcal H,\rho)$ of $G$ is in correspondence with a non-degenerate, bounded ${}^\ast$-representation (whatever this means) $\pi_\rho$ of the algebra $C(G)$. Define $\pi_\rho$ by the \href{https://en.wikipedia.org/wiki/Bochner_integral}{Bochner integral}
+\[\pi_\rho(f) = \int_0^1 f(x)\rho(x)\dd x\]
+In other words, $f$ acts on $v$ by ``convolution against $v$'':
+\[f\cdot v = ``f\ast v\textrm{''} = \int_0^1 f(x)(x\cdot v)\dd x\]
+In this setting the action of the character $\chi_n$ (which is an element of $C(G)$) on $\mathcal H$ is an orthogonal idempotent; that is, the map $\chi_n\ast -$ satisfies 
+\[(\chi_m\ast -)(\chi_n\ast -) = (\chi_m\ast\chi_n)\ast - = \delta_{mn}\chi_n\ast -\]
+To see this, use the Fourier transform: It suffices to see that $\widehat{\chi_m\ast\chi_n} = \delta_m\cdot \delta_n = \delta_{mn}\delta_n$ (here $\delta_{mn}$ is the usual Kronecker delta). balls
+
+The subspaces $\mathcal H_n = \chi_n\ast \mathcal H$ of $H$ combine to form $\mathcal H^{\textrm{alg}} = \bigoplus_{n\in\mathbb Z}\mathcal H_n$. It turns out that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$.
 
 \subsection{Chebyshev polynomials of the first kind}
 
