@@ -73,6 +73,9 @@
 
 % math operators
 \DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Sym}{Sym}
+\renewcommand{\ev}{\mathrm{ev}}
+\DeclareMathOperator{\SL}{SL}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -94,19 +97,19 @@
 \setcounter{page}{1}
 
 \begin{document}
-Sudharshan K.V. (1.1, 1.2) and Sai Sivakumar (1.3, 1.4, 1.5)
+Sudharshan K.V. (1.1, 1.2), Sai Sivakumar (1.3, 1.4), and Ryan Wandsnider
 
 \section{The Schwarzian derivative}
 \begin{definition}
     The \textit{Schwarzian derivative} of a holomorphic function $f\colon \mathbb C\to \mathbb C$ is defined by
     \[\mathscr Sf = \frac{f^{\prime\prime\prime}}{f^\prime}-\frac{3}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 = \biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^\prime - \frac{1}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2.\qedhere\]
 \end{definition}
-The second description of the Schwarzian derivative is as a Riccati equation (see \href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{Ablowitz, Fokas (2003)}, p.383 and the Wolfram MathWorld \href{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{article} on the Riccati equation).
+The second description of the Schwarzian derivative is as a Riccati equation (see \href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{Ablowitz, Fokas (2003)}, p.383).
 \subsection{M\"obius maps}
 The Schwarzian derivative measures a function's deviation from being a M\"obius map.
 \subsection{Jets}
-\subsection{Sturm-Liouville theory}
-Given two linearly independent holomorphic functions $v,w$ on an open set $U\subseteq \mathbb C$ with $w\neq 0$ on $U$, we can define the Schwarzian derivative of $f = v/w$ directly. The Wronskian of $v,w$
+\newpage\subsection{Schwarzian derivatives of quotients and Sturm-Liouville theory}
+Given two linearly independent analytic (or sufficiently smooth enough) functions $v,w$ on an open set $U\subseteq \mathbb R$ with $w\neq 0$ on $U$, we can define the Schwarzian derivative of $f = v/w$ directly. The Wronskian of $v,w$
 \[W = W(v,w) = \det\begin{pmatrix}
     v & w \\ v^\prime & w^\prime
 \end{pmatrix} = vw^\prime - wv^\prime\]
@@ -114,25 +117,70 @@ is not identically zero since $v,w$ are linearly independent and because $w$ is 
 \begin{align*}
     \frac{f^{\prime\prime\prime}}{f^\prime} &= -\frac{6 v{} w^{\prime}{}^3}{w{}^2 (w{} v^{\prime}{} - v{} w^{\prime}{})} + \frac{6 v^{\prime}{} w^{\prime}{}^2}{w{} (w{} v^{\prime}{} - v{} w^{\prime}{})} - \frac{v{} w^{\prime\prime\prime}{}}{w{} v^{\prime}{} - v{} w^{\prime}{}} \\
     &\phantom{=}+ \frac{6 v{} w^{\prime}{} w^{\prime\prime}{}}{w{} (w{} v^{\prime}{} - v{} w^{\prime}{})} - \frac{3 v^{\prime}{} w^{\prime\prime}{}}{w{} v^{\prime}{} - v{} w^{\prime}{}} + \frac{v^{\prime\prime\prime}{} w{}}{w{} v^{\prime}{} - v{} w^{\prime}{}} \\
-    &\phantom{=}- \frac{3 v^{\prime\prime}{} w^{\prime}{}}{w{} v^{\prime}{} - v{} w^{\prime}{}} \\
-    \text{and}\quad -\frac{3}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 &= -\frac{6 v{}^2 w^{\prime}{}^4}{w{}^2 (w{} v^{\prime}{} - v{} w^{\prime}{})^2} + \frac{12 v{} v^{\prime}{} w^{\prime}{}^3}{w{} (w{} v^{\prime}{} - v{} w^{\prime}{})^2} - \frac{6 v^{\prime}{}^2 w^{\prime}{}^2}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2} \\
+    &\phantom{=}- \frac{3 v^{\prime\prime}{} w^{\prime}{}}{w{} v^{\prime}{} - v{} w^{\prime}{}} \\\intertext{and}
+    -\frac{3}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 &= -\frac{6 v{}^2 w^{\prime}{}^4}{w{}^2 (w{} v^{\prime}{} - v{} w^{\prime}{})^2} + \frac{12 v{} v^{\prime}{} w^{\prime}{}^3}{w{} (w{} v^{\prime}{} - v{} w^{\prime}{})^2} - \frac{6 v^{\prime}{}^2 w^{\prime}{}^2}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2} \\
     &\phantom{=}+ \frac{6 v{}^2 w^{\prime}{}^2 w^{\prime\prime}{}}{w{} (w{} v^{\prime}{} - v{} w^{\prime}{})^2} - \frac{6 v{} v^{\prime}{} w^{\prime}{} w^{\prime\prime}{}}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2} - \frac{3 v{}^2 w^{\prime\prime}{}^2}{2 (w{} v^{\prime}{} - v{} w^{\prime}{})^2}\\
     &\phantom{=} - \frac{6 v{} v^{\prime\prime}{} w^{\prime}{}^2}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2} + \frac{6 w{} v^{\prime}{} v^{\prime\prime}{} w^{\prime}{}}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2} - \frac{3 w{}^2 v^{\prime\prime}{}^2}{2 (w{} v^{\prime}{} - v{} w^{\prime}{})^2} + \frac{3 v{} w{} v^{\prime\prime}{} w^{\prime\prime}{}}{(w{} v^{\prime}{} - v{} w^{\prime}{})^2}.
 \end{align*}
-The denominators in every expression above are nonvanishing on $U$ except at possibly a discrete set of points, so the Schwarzian derivative $\mathscr S(v/w)$ is defined on $U$ (or most of it).
+The denominators in every expression above are nonvanishing on $U$ except at possibly a discrete set of points, so the Schwarzian derivative $\mathscr S(v/w)$ is defined on most of $U$, if not all of it.
 
 Further, if $v,w$ satisfy the Sturm-Liouville equation
-\[g^{\prime\prime} + ug = 0;\]
-that is, the solution space of this Sturm-Liouville equation is $\Span_{\mathbb C}\{v,w\}$, then we can further argue that $u = \mathscr S(v/w)/2$.
+\begin{equation}\label{eq: sl}
+    g^{\prime\prime} + ug = 0;
+\end{equation}
+that is, the solution space of this Sturm-Liouville equation is $\Span_{\mathbb R}\{v,w\}$, then we can further argue that $u = \mathscr S(v/w)/2$. We can use a clever ODE-style argument to obtain this. Let $f = v/w$ so that $v = wf$. Repeated differentiation of $v$ gives 
+\begin{align*}
+    v^\prime &= w^\prime f + wf^\prime\\
+    v^{\prime\prime} &= w^{\prime\prime}f + 2w^\prime f^\prime + wf^{\prime\prime}.
+\end{align*}
+Since $v$ and $w$ are solutions to \cref{eq: sl}, we have 
+\[0 = v^{\prime\prime} + uv = (w^{\prime\prime} + uw)f + 2w^\prime f^\prime + wf^{\prime\prime} = 2w^\prime f^\prime + wf^{\prime\prime}\]
+Thus $w^\prime/w = -f^{\prime\prime}/2f^\prime$. Differentiating $w^\prime/w$ yields
+\[\biggl(\frac{w^\prime}{w}\biggr)^\prime = \frac{ww^{\prime\prime}-w^\prime{}^2}{w^2} = \frac{w^{\prime\prime}}{w}-\biggl(\frac{w^\prime}{w}\biggr)^2.\]
+Again since $w$ satisfies \cref{eq: sl}, we finally obtain 
+\[-u = \frac{w^{\prime\prime}}{w} = \biggl(\frac{w^\prime}{w}\biggr)^\prime+\biggl(\frac{w^\prime}{w}\biggr)^2 = \biggl(-\frac{f^{\prime\prime}}{2f^\prime}\biggr)^\prime+\biggl(-\frac{f^{\prime\prime}}{2f^\prime}\biggr)^2 = -\frac{1}{2}\biggl[\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^\prime-\frac{1}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2\biggr]=-\frac{1}{2}\mathscr S\biggl(\frac{v}{w}\biggr);\] that is, $u = \mathscr S(v/w)/2$ as desired. Note that the argument is symmetric in $v$ and $w$.
 
-\subsection{Quadratic differentials}
-\subsection{Cocycles and central extensions}
+Sturm-Liouville equations of the form $g^{\prime\prime} + ug = 0$ on $\mathbb R$ are in one-to-one correspondence with equivalence classes of non-degenerate curves in $\mathbb{RP}^1$. To a Sturm-Liouville equation $g^{\prime\prime} + ug = 0$, we know its solution space $V$ is a two-dimensional real vector space. To each $t\in \mathbb R$, the evaluate at $t$ map $V\xrightarrow{\ev_t} \mathbb R$ has one-dimensional kernel $V_t$ given by all the solutions vanishing at $t$. By identifying $V$ with $\mathbb R^2$ by any choice of basis, the family of subspaces $V_t$ of $V$ depending on $t$ gives rise to a smoothly changing line passing through the origin; in other words, we obtain a curve in $\mathbb{RP}^1$ up to projective equivalence.
+
+Conversely, any non-degenerate curve $\gamma$ in $\mathbb{RP}^1$ can be uniquely lifted to a curve $\Gamma$ in $\mathbb R^2$ for which the usual inner product of the vectors $\Gamma$, $\Gamma^\prime$ always has length $1$; that is, for all $t$ we have $\abs{\abr{\Gamma(t),\Gamma^\prime(t)}} = 1$. By differentiating this we obtain that $\Gamma^{\prime\prime}(t)$ is proportional to $\Gamma(t)$ for all $t$; that is, $\Gamma$ satisfies the Sturm-Liouville equation $g^{\prime\prime} + ug = 0$ where $u$ is $\Gamma^{\prime\prime}/\Gamma$. By replacing $\gamma$ with a projectively equivalen curve, its lift $\Gamma$ is replaced by $A\Gamma$ for $A\in \SL_2(\mathbb R)$, so the Sturm-Liouville equation remains the same (these matrices would preserve the area form on $\mathbb R^2$). The procedure above recovers $u$ in terms of the components of $\gamma$.
+
+\newpage\subsection{Quadratic differentials, cocycles and central extensions}
+Let $f$ be a diffeomorphism of $\mathbb{RP}^1$ with itself (and think of $\mathbb{RP}^1$ as the affine line with coordinate $x$ and the point at infinity). The Schwarzian derivative of $f$ measures how much the cross-ratio of four infinitesimally close points changes under $f$.
+
+Let $x\in\mathbb{RP}^1$ and $v\in T_x\mathbb{RP}^1$. Extend $v$ to a vector field in a neighborhood of $x$, and denote by $\phi_t$ the one-parameter group of flows along this vector field. It turns out that for $\varepsilon> 0$ small, the four points $x, \phi_{\varepsilon}(x), \phi_{2\varepsilon}(x), \phi_{3\varepsilon}(x)$ satisfy 
+\[[f(x),f(\phi_{\varepsilon}(x)), f(\phi_{2\varepsilon}(x)), \phi_{3\varepsilon}(x)] = [x,\phi_{\varepsilon}(x), \phi_{2\varepsilon}(x), \phi_{3\varepsilon}(x)] - 2\varepsilon^2\mathscr Sf(x) + O(\varepsilon^3)\]
+where indeed the first-order term in $\varepsilon$ is zero. The diffeomorphism $f$ only changes the cross-ratio of the four points $x, \phi_{\varepsilon}(x), \phi_{2\varepsilon}(x), \phi_{3\varepsilon}(x)$ in the second-order in $\varepsilon$ and higher.
+
+It also turns out that the coefficient $2\mathscr Sf(x)$ of $\varepsilon^2$ in the expansion above does not depend on the choice of extension of $v$ to a vector field in a neighborhood of $x$ (e.g., it would not matter which chart around $x$ we chose to build this extension on). It will, however, depend on $f$ and $x$, and it is homogeneous of degree $2$ in $v$ (manifested in the expansion above as scaling $2\mathscr Sf(x)$ by $\varepsilon^2$). In this setting the Schwarzian derivative defines a \textit{quadratic differential} 
+\[\mathscr Sf \coloneqq \mathscr Sf(\dd x)^2\in \Sym^2(T^\ast\mathbb{RP}^1),\]
+(so at a point $x$, we have $\mathscr Sf(x)(\dd x)^2\in \Sym^2(T^\ast_x\mathbb{RP}^1)$).
+
+For any quadratic differential $\phi = a(\dd x)^2$, changing coordinates by $h$ is given by the formula $h^\ast\phi = (a\circ h)\cdot h^\prime{}^2(\dd x)^2$. For diffeomorphisms $f,g$ of $\mathbb{RP}^1$ with itself, we have the equality of quadratic differentials
+\[\mathscr S(f\circ g) = g^\ast\mathscr Sf + \mathscr Sg,\]
+which follows from the ordinary chain rule for the Schwarzian, given by
+\[\mathscr S(f\circ g)(z) = (\mathscr Sf)(g(z))\cdot g^{\prime}(z)^2 + \mathscr Sg(z).\]
+Indeed, 
+\begin{align*}
+    (f\circ g)^{\prime} &= g^\prime\cdot (f^\prime\circ g)\\
+    (f\circ g)^{\prime\prime} &= g^\prime{}^2\cdot(f^{\prime\prime}\circ g) + g^{\prime\prime}\cdot (f^\prime\circ g)\\
+    (f\circ g)^{\prime\prime\prime} &= g^\prime{}^3\cdot(f^{\prime\prime\prime}\circ g) + 3g^\prime g^{\prime\prime}\cdot (f^{\prime\prime}\circ g) + g^{\prime\prime\prime}\cdot(f^\prime\circ g)
+\end{align*}
+and 
+\begin{align*}
+    \mathscr S(f\circ g) &= \frac{g^\prime{}^3\cdot(f^{\prime\prime\prime}\circ g) + 3g^\prime g^{\prime\prime}\cdot (f^{\prime\prime}\circ g) + g^{\prime\prime\prime}\cdot(f^\prime\circ g)}{g^\prime\cdot (f^\prime\circ g)} - \frac{3}{2}\biggl(\frac{g^\prime{}^2\cdot(f^{\prime\prime}\circ g) + g^{\prime\prime}\cdot (f^\prime\circ g)}{g^\prime\cdot (f^\prime\circ g)}\biggr)^2\\
+    &=g^\prime{}^2\frac{f^{\prime\prime\prime}\circ g}{f^\prime\circ g} + 3g^{\prime\prime}\frac{f^{\prime\prime}\circ g}{f^\prime\circ g} + \frac{g^{\prime\prime\prime}}{g^\prime} - \frac{3}{2}\biggl(g^\prime\frac{f^{\prime\prime}\circ g}{f^\prime \circ g} + \frac{g^{\prime\prime}}{g^\prime}\biggr)^2\\
+    &= g^\prime{}^2\biggl[\frac{f^{\prime\prime\prime}\circ g}{f^\prime \circ g}-\frac{3}{2}\biggl(\frac{f^{\prime\prime}\circ g}{f^\prime\circ g}\biggr)^2\biggr] + \biggl[\frac{g^{\prime\prime\prime}}{g^\prime} - \frac{3}{2}\biggl(\frac{g^\prime\prime}{g^\prime}\biggr)^2\biggr] = g^{\prime}{}^2\cdot [\mathscr Sf\circ g] + \mathscr Sg.
+\end{align*}
 
 \newpage\section*{References}
 
 Certain cases in which the vanishing of the Wronskian is a sufficient condition for linear dependence by Maxime B\^ocher, in Trans.~Amer.~Math.~Soc.~2 (1901), 139-149. (\href{https://www.ams.org/journals/tran/1901-002-02/S0002-9947-1901-1500560-5/S0002-9947-1901-1500560-5.pdf}{link to PDF})
 
 Complex Variables: Introduction and Applications by Mark J.~Ablowitz and Athanassios S.~Fokas, Cambridge University Press (2003), 383. (\href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{link to PDF})
+
+Projective Differential Geometry Old and New by V. Ovsienko and S. Tabachnikov, Cambridge University Press (2004), section 1.3. (\href{https://drive.google.com/file/d/1pT7cxcGNZxCzmrkcY65SB-9dfruKkrSY/view?usp=share_link}{link to PDF})
+
+The Schwarzian derivative in one-dimensional dynamics by Ben Cooper, UChicago REU (2020), section 3. (\href{https://math.uchicago.edu/~may/REU2020/REUPapers/Cooper.pdf}{link to PDF})
 
 Wolfram MathWorld article on the Riccati equation. (\href{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{link to webpage})
 
