@@ -6,7 +6,6 @@
 \usepackage{physics}
 % margin spacing
 \usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
-\usepackage{hanging}
 \usepackage{amsfonts, amsmath, amssymb, amsthm}
 \usepackage{extarrows}
 \usepackage[none]{hyphenat}
@@ -76,6 +75,12 @@
 \DeclareMathOperator{\Sym}{Sym}
 \renewcommand{\ev}{\mathrm{ev}}
 \DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\GL}{GL}
+\newcommand{\bbC}{\mathbb C}
+\DeclareMathOperator{\Diff}{Diff}
+\newcommand{\Vir}{\mathrm{Vir}}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Vect}{Vect}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -96,19 +101,58 @@
 % set page count index to begin from 1
 \setcounter{page}{1}
 
+% array column and row separation
+\arraycolsep = 2pt
+\renewcommand{\arraystretch}{.8}
+
 \begin{document}
-Sudharshan K.V. (1.1, 1.2), Sai Sivakumar (1.3, 1.4), and Ryan Wandsnider
+Sudharshan K.V. (1.1), Sai Sivakumar (1.2, 1.3)
+% , and Ryan Wandsnider ( )
 
 \section{The Schwarzian derivative}
+Let $f: \mathbb C \to \mathbb C$ be a holomorphic function. 
 \begin{definition}
-    The \textit{Schwarzian derivative} of a holomorphic function $f\colon \mathbb C\to \mathbb C$ is defined by
+    The \textit{Schwarzian derivative} of $f$ is defined by
     \[\mathscr Sf = \frac{f^{\prime\prime\prime}}{f^\prime}-\frac{3}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 = \biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^\prime - \frac{1}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2.\qedhere\]
 \end{definition}
-The second description of the Schwarzian derivative is as a Riccati equation (see \href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{Ablowitz, Fokas (2003)}, p.383).
-\subsection{M\"obius maps}
-The Schwarzian derivative measures a function's deviation from being a M\"obius map.
+The second description of the Schwarzian derivative is as a Riccati equation (see \href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{Ablowitz, Fokas (2003)}, p.383). The Schwarzian is an obstruction to a function being a M\"obius transform. More precisely, for a local diffeomorphism $f$, the Schwarzian $\mathscr Sf$ vanishes if and only if $f$ is locally a M\"obius transform.
+
 \subsection{Jets}
-\newpage\subsection{Schwarzian derivatives of quotients and Sturm-Liouville theory}
+The $k$-jet of $f$ at $z$ is the $k$-tuple $$J^3(f) = (f(z), \dots , f^{(k)}(z)).$$ The jet of $f$ at $x$ records the Taylor expansion coefficients of $f$ at $x$. A M\"obius transform is determined by its $3$-jet at a point - one may see this by a direct computation. Suppose we want to construct a function, the \textit{Schwarzian}, with the property that it evaluates to $0$ precisely at the M\"obius transforms.
+
+We expect the Schwarzian to be a function of the $3$-jet of $f$, and we would like for it to be well-behaved under change of variables. How $\mathscr S$ changes under pullback is given by the cocycle condition (see \cref{s: cocycle}). Recall that for a local diffeomorphism $f$, the derivative $f'$ is non-vanishing. Scaling $f$ by a constant $C$ should preserve the Schwarzian - since scaling is a M\"obius transform. This suggests that the Schwarzian must be a homogeneous expression in $f',f'', f'''$. Since $f'$ is non-zero, we can consider the Schwarzian as a function of $f''/f', f'''/f'$. Changing the variable $z$ by $\lambda z$ should not affect the Schwarzian either, but this transformation scales $f^{(k)}$ by $\lambda^k$. Thus, a suitable candidate for the Schwarzian would be a linear combination of $f'''/f'$ and $(f''/f')^2$. Of course we may normalize the first term to have coefficient $1$. We will explain why the second term has coefficient $-3/2$.
+
+For instance, we can just evaluate the Schwarzian for the function $1/z$. We have $f'''/f' = 6/z^2$ and $(f''/f')^2 = 4/z^2$. This already shows that the second coefficient must be $-3/2$. Furthermore, we have: 
+
+\begin{theorem}
+    For a M\"obius map $M$ corresponding to $\big(\!\begin{smallmatrix}
+        a & b \\ c & d
+    \end{smallmatrix}\!\big)$ in $\GL_2 (\mathbb C)$, the Schwarzian $\mathscr SM$ vanishes.
+\end{theorem}
+\begin{proof}
+    Let $u = \log M'(z)$. See that $\mathscr SM = u''-\frac12 (u')^2$. For a M\"obius function $M$, the log of $M'$ is easy to compute. Indeed, $\log M'(z) = \log \gamma - 2 \log (cz+d)$, where $\gamma = ad-bc$ is non-zero. So one has $$u'(z) = \frac{-2c}{cz+d}, u''(z) = \frac{2c^2}{(cz+d)^2}.$$ It is now clear that $\mathscr SM = u'' - \frac 12 (u')^2 = 0$.
+\end{proof}
+Furthermore, the converse of the above theorem holds: 
+\begin{theorem}
+    For a holomorphic map $f$, if $\mathscr Sf = 0$ then $f$ is locally a M\"obius function.
+\end{theorem}
+\begin{proof}
+    Assume $f$ is not of the form $f(z) = az+b$; that is, $f''\neq 0$ (such functions are locally M\"obius functions and do satisfy $\mathscr Sf = 0$). Then if $\mathscr Sf = 0$, then
+    \[\frac{f^{\prime\prime\prime}}{f^\prime}-\frac{3}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 = \biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^\prime - \frac{1}{2}\biggl(\frac{f^{\prime\prime}}{f^\prime}\biggr)^2 = 0\]
+    Substituting $p = f''/f'$ yields the Riccati equation $p'-p^2/2 = 0$, which by the substitution $p = -2y'/y$ we can reduce to the linear differential equation $y'' = 0$. Solutions are of the form $y = az+b$ for constants $a,b$; assume $a\neq 0$ (if $a = 0$, then $p = 0$, which leads to $f = ax+b$, which was disallowed). By undoing one substitution we obtain $p = -2a/(az+b)$. It remains to solve the differential equation $f''/f' = p = -2a/(az+b)$. This can be done by substituting $u = f'$, which reduces the problem to a first order linear differential equation whose solution is $u = c/(az+b)^2$ for some constant $c$; to obtain nontrivial solutions, let $c\neq 0$. Then $f = -c/(a(az+b)) + d = $ for some constant $d$; by the theory of ordinary differential equations this solution exists at least locally. That $f$ is a M\"obius map requires $a^2c\neq 0$, which we have arranged for.
+\end{proof}
+% \newpage\subsection{Derivation of the Schwarzian Derivative}
+
+% At first glance, the motivation for the definition of the Schwarzian Derivative is difficult to discern. Another method for deriving such a formula that satisfies the desired property of characterizing M\"obius transformations involves the cross-ratio.
+
+% Recall that the cross-ratio for $4$ collinear points $A,B,C,D$ in $\bbC$ is given by
+% $$
+% [A,B;C,D] = \frac{AC\cdot BD}{BC \cdot AD}.
+% $$
+% The group of automorphisms of $\bbC$ cross-ratio is 
+
+
+\subsection{Schwarzian derivatives of quotients and Sturm-Liouville theory}
 Given two linearly independent analytic (or sufficiently smooth enough) functions $v,w$ on an open set $U\subseteq \mathbb R$ with $w\neq 0$ on $U$, we can define the Schwarzian derivative of $f = v/w$ directly. The Wronskian of $v,w$
 \[W = W(v,w) = \det\begin{pmatrix}
     v & w \\ v^\prime & w^\prime
@@ -142,9 +186,9 @@ Again since $w$ satisfies \cref{eq: sl}, we finally obtain
 
 Sturm-Liouville equations of the form $g^{\prime\prime} + ug = 0$ on $\mathbb R$ are in one-to-one correspondence with equivalence classes of non-degenerate curves in $\mathbb{RP}^1$. To a Sturm-Liouville equation $g^{\prime\prime} + ug = 0$, we know its solution space $V$ is a two-dimensional real vector space. To each $t\in \mathbb R$, the evaluate at $t$ map $V\xrightarrow{\ev_t} \mathbb R$ has one-dimensional kernel $V_t$ given by all the solutions vanishing at $t$. By identifying $V$ with $\mathbb R^2$ by any choice of basis, the family of subspaces $V_t$ of $V$ depending on $t$ gives rise to a smoothly changing line passing through the origin; in other words, we obtain a curve in $\mathbb{RP}^1$ up to projective equivalence.
 
-Conversely, any non-degenerate curve $\gamma$ in $\mathbb{RP}^1$ can be uniquely lifted to a curve $\Gamma$ in $\mathbb R^2$ for which the usual inner product of the vectors $\Gamma$, $\Gamma^\prime$ always has length $1$; that is, for all $t$ we have $\abs{\abr{\Gamma(t),\Gamma^\prime(t)}} = 1$. By differentiating this we obtain that $\Gamma^{\prime\prime}(t)$ is proportional to $\Gamma(t)$ for all $t$; that is, $\Gamma$ satisfies the Sturm-Liouville equation $g^{\prime\prime} + ug = 0$ where $u$ is $\Gamma^{\prime\prime}/\Gamma$. By replacing $\gamma$ with a projectively equivalen curve, its lift $\Gamma$ is replaced by $A\Gamma$ for $A\in \SL_2(\mathbb R)$, so the Sturm-Liouville equation remains the same (these matrices would preserve the area form on $\mathbb R^2$). The procedure above recovers $u$ in terms of the components of $\gamma$.
+Conversely, any non-degenerate curve $\gamma$ in $\mathbb{RP}^1$ can be uniquely lifted to a curve $\Gamma$ in $\mathbb R^2$ for which the usual inner product of the vectors $\Gamma$, $\Gamma^\prime$ always has length $1$; that is, for all $t$ we have $\abs{\abr{\Gamma(t),\Gamma^\prime(t)}} = 1$. By differentiating this we obtain that $\Gamma^{\prime\prime}(t)$ is proportional to $\Gamma(t)$ for all $t$; that is, $\Gamma$ satisfies the Sturm-Liouville equation $g^{\prime\prime} + ug = 0$ where $u$ is $\Gamma^{\prime\prime}/\Gamma$. By replacing $\gamma$ with a projectively equivalent curve, its lift $\Gamma$ is replaced by $A\Gamma$ for $A\in \SL_2(\mathbb R)$, so the Sturm-Liouville equation remains the same (these matrices would preserve the area form on $\mathbb R^2$). The procedure above recovers $u$ in terms of the components of $\gamma$.
 
-\newpage\subsection{Quadratic differentials, cocycles and central extensions}
+\subsection{Quadratic differentials, cocycles and central extensions}\label{s: cocycle}
 Let $f$ be a diffeomorphism of $\mathbb{RP}^1$ with itself (and think of $\mathbb{RP}^1$ as the affine line with coordinate $x$ and the point at infinity). The Schwarzian derivative of $f$ measures how much the cross-ratio of four infinitesimally close points changes under $f$.
 
 Let $x\in\mathbb{RP}^1$ and $v\in T_x\mathbb{RP}^1$. Extend $v$ to a vector field in a neighborhood of $x$, and denote by $\phi_t$ the one-parameter group of flows along this vector field. It turns out that for $\varepsilon> 0$ small, the four points $x, \phi_{\varepsilon}(x), \phi_{2\varepsilon}(x), \phi_{3\varepsilon}(x)$ satisfy 
@@ -156,7 +200,9 @@ It also turns out that the coefficient $2\mathscr Sf(x)$ of $\varepsilon^2$ in t
 (so at a point $x$, we have $\mathscr Sf(x)(\dd x)^2\in \Sym^2(T^\ast_x\mathbb{RP}^1)$).
 
 For any quadratic differential $\phi = a(\dd x)^2$, changing coordinates by $h$ is given by the formula $h^\ast\phi = (a\circ h)\cdot h^\prime{}^2(\dd x)^2$. For diffeomorphisms $f,g$ of $\mathbb{RP}^1$ with itself, we have the equality of quadratic differentials
-\[\mathscr S(f\circ g) = g^\ast\mathscr Sf + \mathscr Sg,\]
+\begin{equation}\label{eq: chain}
+    \mathscr S(f\circ g) = g^\ast\mathscr Sf + \mathscr Sg,
+\end{equation}
 which follows from the ordinary chain rule for the Schwarzian, given by
 \[\mathscr S(f\circ g)(z) = (\mathscr Sf)(g(z))\cdot g^{\prime}(z)^2 + \mathscr Sg(z).\]
 Indeed, 
@@ -171,6 +217,14 @@ and
     &=g^\prime{}^2\frac{f^{\prime\prime\prime}\circ g}{f^\prime\circ g} + 3g^{\prime\prime}\frac{f^{\prime\prime}\circ g}{f^\prime\circ g} + \frac{g^{\prime\prime\prime}}{g^\prime} - \frac{3}{2}\biggl(g^\prime\frac{f^{\prime\prime}\circ g}{f^\prime \circ g} + \frac{g^{\prime\prime}}{g^\prime}\biggr)^2\\
     &= g^\prime{}^2\biggl[\frac{f^{\prime\prime\prime}\circ g}{f^\prime \circ g}-\frac{3}{2}\biggl(\frac{f^{\prime\prime}\circ g}{f^\prime\circ g}\biggr)^2\biggr] + \biggl[\frac{g^{\prime\prime\prime}}{g^\prime} - \frac{3}{2}\biggl(\frac{g^\prime\prime}{g^\prime}\biggr)^2\biggr] = g^{\prime}{}^2\cdot [\mathscr Sf\circ g] + \mathscr Sg.
 \end{align*}
+Let $G$ be a group and $(V,\rho)$ a representation of $G$ (here $\rho$ is the homomorphism $G\to \GL(V)$). In this setting, a map $c\colon G\to V$ is called a $1$-cocycle on $G$ with coefficients in $V$ if $c(gh) = \rho(g)c(h) + c(g)$ for all $g,h\in G$. A $1$-cocycle is called a coboundary if $c(g) = \rho(g)v - v$ for some $v\in V$. The cocycles form an Abelian group with the coboundaries an Abelian subgroup; we denote by $H^1(G,V)$ the quotient group of $1$-cocycles by coboundaries.
+
+The group $\Diff(\mathbb{RP}^1)$of diffeomorphisms of $\mathbb{RP}^1$ naturally acts on the space $\mathcal F_2(\mathbb{RP}^1)$ of quadratic differentials on $\mathbb{RP}^1$ by the assignment $f\mapsto T^2_{f^{-1}}$ where $T^2_{f^{-1}}\phi = f^\prime{}^2\cdot f^\ast\phi$ for $f$ a diffeomorphism of $\mathbb{RP}^1$ and $\phi$ a quadratic differential. From \cref{eq: chain} we deduce that the Schwarzian derivative $\mathscr S\colon \Diff(\mathbb{RP}^1)\to \mathcal F_2(\mathbb{RP}^1)$ is a $1$-cocycle. It is not a coboundary; it turns out that coboundaries in this setting will depend only on the $1$-jet of a diffeomorphism, which is not the case of the Schwarzian derivative. A further result says that $H^1(\Diff(\mathbb{RP}^1), \mathcal F_2(\mathbb{RP}^1)) \cong \mathbb R$, and so the Schwarzian derivative is a representative of any $1$-cocycle.
+
+A central extension of a Lie algebra $\mathfrak g$ is a Lie algebra structure on the space $\mathfrak g\oplus \mathbb R$ given by the commutator
+\[[(X,a), (Y,b)] = ([X,Y], c(X,Y))\]
+where $X,Y\in \mathfrak g$, $a,b\in\mathbb R$, and $c\colon \mathfrak g \to \mathbb R$ is a $2$-cocycle (in this setting $c$ is just a skew-symmetric bilinear map). The Virasoro algebra $\Vir$ is obtained by a central extension of the space $\Vect(S^1)$ of vector fields on $S^1$ (equivalently $\mathbb{RP}^1$) by the Gelfand-Fuchs cocycle
+\[c\biggl(g(x)\dv{x}, h(x)\dv{x}\biggr) = \int_{S^1}g^\prime(x)h^{\prime\prime}(x)\dd x = \int_{S^1}g'''(x)h(x)\dd x.\] The Schwarzian derivative tells us everything we need to know about the Gelfand-Fuchs cocycle; for example, that the above formula defines a $2$-cocycle follows from the chain rule of the Schwarzian derivative.
 
 \newpage\section*{References}
 
@@ -178,10 +232,16 @@ Certain cases in which the vanishing of the Wronskian is a sufficient condition 
 
 Complex Variables: Introduction and Applications by Mark J.~Ablowitz and Athanassios S.~Fokas, Cambridge University Press (2003), 383. (\href{https://ftfsite.ru/wp-content/files/tfkp_endlish_2.2.pdf}{link to PDF})
 
-Projective Differential Geometry Old and New by V. Ovsienko and S. Tabachnikov, Cambridge University Press (2004), section 1.3. (\href{https://drive.google.com/file/d/1pT7cxcGNZxCzmrkcY65SB-9dfruKkrSY/view?usp=share_link}{link to PDF})
+Is there an underlying explanation for the magical powers of the Schwarzian derivative? asked by Paul Siegel (2010). (\href{https://mathoverflow.net/questions/38105/is-there-an-underlying-explanation-for-the-magical-powers-of-the-schwarzian-deri}{link to MO})
+
+Projective Differential Geometry Old and New by Valentin Ovsienko and Sergei Tabachnikov, Cambridge University Press (2004), sections 1.3, 1.5. (\href{https://drive.google.com/file/d/1pT7cxcGNZxCzmrkcY65SB-9dfruKkrSY/view?usp=share_link}{link to PDF})
 
 The Schwarzian derivative in one-dimensional dynamics by Ben Cooper, UChicago REU (2020), section 3. (\href{https://math.uchicago.edu/~may/REU2020/REUPapers/Cooper.pdf}{link to PDF})
 
+What is... the Schwarzian Derivative? by Valentin Ovsienko and Sergei Tabachnikov (2009). \href{https://www.ams.org/notices/200901/tx090100034p.pdf}{link to PDF})
+
 Wolfram MathWorld article on the Riccati equation. (\href{https://mathworld.wolfram.com/RiccatiDifferentialEquation.html}{link to webpage})
+
+Zippers and Univalent Functions by William Thurston (1986). (\href{https://people.math.harvard.edu/~ctm/home/text/others/thurston/zippers/zippers.pdf}{link to PDF})
 
 \end{document}
