@@ -75,9 +75,6 @@
 \renewcommand{\baselinestretch}{1.25}
 
 % extra commands defined here
-\newcommand{\br}[1]{\left(#1\right)}
-\newcommand{\sbr}[1]{\left[#1\right]}
-\newcommand{\cbr}[1]{\left\{#1\right\}}
 \newcommand{\eq}[1]{\overset{(#1)}{=}}
 
 % bracket notation for inner product
@@ -97,6 +94,7 @@
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\Ann}{Ann}
 
 % categories
 \newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
@@ -142,6 +140,10 @@
 \DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
 \DeclareMathOperator{\mathsad}{\!\sad\!}
 \DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+% array column and row separation
+\arraycolsep = 2pt
+\renewcommand{\arraystretch}{.8}
 
 % set page count index to begin from 1
 \setcounter{page}{1}
@@ -506,19 +508,19 @@ One other perspective of this map is that it comes from a pullback and a pushfor
 \end{tikzcd}\]
 and consider a function $f\in \Fun(G)$. The Fourier transform $\hat f$ is given by pulling back $f$ along $\pi_1$, multiplying by $\chi(-,-)$, and then pushing forward along $\pi_2$. That is, 
 \[\hat f = {\pi_2}_\ast(\pi_1^\ast f\cdot \chi)\]
-The pushforward just means to sum (integrate) over fibers, and fiber of $\hat g$ is $\cbr{(g,\hat g)\mid g\in G}$. Pulling back $f$ along this projection does nothing but view $f$ as a function on $G\times \widehat G$; that is, $(\pi_1^\ast f)(g,\hat g) = f(g)$. This recovers the first formula above for the Fourier transform.
+The pushforward just means to sum (integrate) over fibers, and fiber of $\hat g$ is $\{(g,\hat g)\mid g\in G\}$. Pulling back $f$ along this projection does nothing but view $f$ as a function on $G\times \widehat G$; that is, $(\pi_1^\ast f)(g,\hat g) = f(g)$. This recovers the first formula above for the Fourier transform.
 
-As a fun fact, we can think about matrix multiplication this way. An $n\times m$ matrix $A = (A_{ij})$ is a function on the set $\cbr{1,\dots,m}\times\cbr{1,\dots,n}$ and a vector $v$ in $\mathbb C^m$ is a function on $\cbr{1,\dots,m}$. There is a diagram 
+As a fun fact, we can think about matrix multiplication this way. An $n\times m$ matrix $A = (A_{ij})$ is a function on the set $\{1,\dots,m\}\times\{1,\dots,n\}$ and a vector $v$ in $\mathbb C^m$ is a function on $\{1,\dots,m\}$. There is a diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXGNicnsxLFxcZG90cyxufVxcdGltZXNcXGNicnsxLFxcZG90cyxtfSJdLFswLDEsIlxcY2JyezEsXFxkb3RzLG19Il0sWzIsMSwiXFxjYnJ7MSxcXGRvdHMsbn0iXSxbMCwxLCJcXHBpXzEiLDJdLFswLDIsIlxccGlfMiJdXQ==
 \[\begin{tikzcd}
-	& {\cbr{1,\dots,m}\times\cbr{1,\dots,n}} \\
-	{\cbr{1,\dots,m}} && {\cbr{1,\dots,n}}
+	& {\{1,\dots,m\}\times\{1,\dots,n\}} \\
+	{\{1,\dots,m\}} && {\{1,\dots,n\}}
 	\arrow["{\pi_1}"', from=1-2, to=2-1]
 	\arrow["{\pi_2}", from=1-2, to=2-3]
 \end{tikzcd}\]
 So $Av$ coincides with ${\pi_2}_\ast(\pi_1^\ast v\cdot A)$; that is, $(Av)_j = \sum_{i=1}^m A_{ij}v_i$ as expected. The same thing can be done for integral operators with kernel $K(-,-)$.
 
-Denote by $\delta_g$ the Kronecker delta or the delta function(al) at $g$, or also the indicator function of $\cbr{g}$:
+Denote by $\delta_g$ the Kronecker delta or the delta function(al) at $g$, or also the indicator function of $\{g\}$:
 \[\delta_g(h) = \delta_{gh} = \begin{cases}
 	1 & \text{if } g = h\\
 	0 & \text{otherwise}
@@ -609,7 +611,7 @@ Pontryagin duality still holds in this setting. The result encapsulates the foll
 \begin{enumerate}
 	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,\U(1))$) is an isomorphism.
 	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and sends delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
-	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \cbr{v\in V\mid gv = \chi_{\hat g}(g)v}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the representation (sheaf) $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
+	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \{v\in V\mid gv = \chi_{\hat g}(g)v\}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the representation (sheaf) $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
 \end{enumerate}
 Soon we will look at the LCA groups $\U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
 
@@ -637,7 +639,7 @@ A Hermitian inner product $\abr{-,-}$ on any complex vector space $V$ correspond
 
 That a representation $V$ is unitarizable is a property of $V$ as opposed to being part of the structure. On the other hand, if $W$ is a unitary representation, part of the data of $W$ is a fixed $G$-invariant inner product $\abr{-,-}$, as opposed to a unitarizable representation $V$ for which we do not specify any one $G$-invariant inner product. Of course, once we do specify a $G$-invariant inner product $\abr{-,-}_0$, we can speak of the unitary representation $(V,\abr{-,-}_0)$, which is different from the unitary representation $(V,\abr{-,-}_1)$ for a different $G$-invariant inner product $\abr{-,-}_1$.
 
-If $V$ is a finite-dimensional unitarizable representation, then $V$ is a semisimple representation; that is, $V$ is the direct sum of irreps/simples. Assume $V$ is already not simple, and fix a $G$-invariant inner product $\abr{-,-}$ on $V$. Let $W\subset V$ be any $G$-invariant subspace, and see that $W^\perp = \cbr{v\in V\mid \abr{v,w} = 0\text{ for all }w\in W}$ is a $G$-invariant subspace of $V$ since the $W$ and the inner product $\abr{-,-}$ are $G$-invariant:
+If $V$ is a finite-dimensional unitarizable representation, then $V$ is a semisimple representation; that is, $V$ is the direct sum of irreps/simples. Assume $V$ is already not simple, and fix a $G$-invariant inner product $\abr{-,-}$ on $V$. Let $W\subset V$ be any $G$-invariant subspace, and see that $W^\perp = \{v\in V\mid \abr{v,w} = 0\text{ for all }w\in W\}$ is a $G$-invariant subspace of $V$ since the $W$ and the inner product $\abr{-,-}$ are $G$-invariant:
 \[\abr{gv,w} = \abr{v,g^{-1}w}\quad\text{implies $gv\in W^\perp$ whenever $v\in W^\perp$}\]
 Then induction proves the result (this amounts to iterating this procedure on $W^\perp$ and repeating on each of the resulting subspaces until it cannot be done, which happens because $V$ is finite dimensional).
 
@@ -646,7 +648,7 @@ Another nice result is that if $G$ is finite, then a finite dimensional represen
 Note that $\av\in Z(\mathbb C[G])$. To define this averaging element, it is crucial that $G$ is finite and that the characteristic of the field $\mathbb C$ (zero) does not divide the order of the group. The existence of an averaging operator is the content of Maschke's theorem from earlier, since we can use this averaging element to form a projector needed to form complements of $G$-stable subspaces, as we will see. 
 
 Let $V$ be any finite dimensional representation. Then we can define the subspace of $G$-fixed points, $V^G$, by
-\[V^G = \cbr{v\in V\mid gv = v\text{ for all }g\in G}\]
+\[V^G = \{v\in V\mid gv = v\text{ for all }g\in G\}\]
 The subspace $V^G$ is the part of $V$ that $G$ acts trivially on, or in other words is the trivial representation part of $V$ when broken into irreps. For any $v\in V$, $av\cdot v\in V^G$ since for any $h\in G$ we have
 \[h(\av\cdot v) = h\biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}hgv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \av\cdot v\]
 Observe further that because the sum is normalized with the factor $1/\abs{G}$, multiplication by $\av$ defines a projection map to $V^G$, since $\av^2 = \av$, so $\av-$ is an idempotent. The complementary idempotent is $(1-\av)-$, and see that it squares to itself as well. It is complementary since $\av(1-\av) = 0$. It follows that $V = \av V\oplus (1-\av)V = V^G\oplus (1-\av)V$.
@@ -675,8 +677,8 @@ Let $G$ be a locally compact Hausdorff topological group. Then Haar's theorem (s
 \begin{enumerate}
 	\item Left-translation invariant under the left multiplication action of $G$; that is, the pushforward measure $(g\cdot)_\ast \mu$ agrees with $\mu$.
 	\item Finite on compact sets of $G$.
-	\item Outer regular on Borel sets; that is, $\mu(S) = \inf\cbr{\mu(U)\mid S\subseteq U\text{ with $U$ open}}$ for $S$ a Borel set. 
-	\item Inner regular on open sets; that is, $\mu(U) = \sup\cbr{\mu(K)\mid K\subseteq U\text{ with $K$ compact}}$ for $U$ an open set.
+	\item Outer regular on Borel sets; that is, $\mu(S) = \inf\{\mu(U)\mid S\subseteq U\text{ with $U$ open}\}$ for $S$ a Borel set. 
+	\item Inner regular on open sets; that is, $\mu(U) = \sup\{\mu(K)\mid K\subseteq U\text{ with $K$ compact}\}$ for $U$ an open set.
 	\item Unique up to positive scaling.
 \end{enumerate}
 
@@ -684,9 +686,9 @@ If $G$ is compact then we can normalize the Haar measure on $G$ to produce a uni
 
 On a manifold, to be able to integrate we need to be able to find a top differential form. So if $G$ is a Lie group, consider the tangent space $\mathfrak g = T_G(1_G)$, which is the only one we need to consider since all other tangent spaces are obtained via translation of the tangent space at the identity. Then the space of top differential forms $\bigwedge^{\dim \mathfrak g}\mathfrak g^\ast$ is a $1$-dimensional vector space. The normalized Haar measure is the measure induced by the normalized top form in this vector space.
 
-The requirement that $G$ is locally compact probably comes from wanting to be able to approximate integrals using compact exhaustions. The Hausdorff requirement is a consequence of the following result of topological groups: For $G$ a topological group, let $H$ be the closure of the set $\cbr{1_G}$. Then $H$ is a normal subgroup and the quotient $G/H$ is the largest quotient of $G$ that is Hausdorff. Furthermore, every continuous map of $G$ to a Hausdorff space factors through the quotient $G/H$. So in our setting, we will be considering continuous maps from $G$ to the complex numbers, so in this setting $G$ is indistinguishable from its largest Hausdorff quotient. As a consequence, there is no loss in defining LCA groups to be locally compact, Abelian, and Hausdorff.
+The requirement that $G$ is locally compact probably comes from wanting to be able to approximate integrals using compact exhaustions. The Hausdorff requirement is a consequence of the following result of topological groups: For $G$ a topological group, let $H$ be the closure of the set $\{1_G\}$. Then $H$ is a normal subgroup and the quotient $G/H$ is the largest quotient of $G$ that is Hausdorff. Furthermore, every continuous map of $G$ to a Hausdorff space factors through the quotient $G/H$. So in our setting, we will be considering continuous maps from $G$ to the complex numbers, so in this setting $G$ is indistinguishable from its largest Hausdorff quotient. As a consequence, there is no loss in defining LCA groups to be locally compact, Abelian, and Hausdorff.
 
-A fun fact is that if $G$ is compact, then the Haar measure on $G$ is automatically both left and right-translation invariant, even if $G$ is not Abelian. For any Haar measure $\mu$ on $G$ and $g\in G$, the pushforward of $\mu$ by right multiplication by $g^{-1}$ produces another left invariant Haar measure $(\cdot g)_\ast\mu$. So $\mu$ is some multiple of $(\cdot g)_\ast\mu$, denote this multiple by $\bmod(g)$, called the modulus character of $G$. It turns out that this quantity does not depend on the choice of Haar measure $\mu$ we started with, and is also a group homomorphism $G\to \mathbb R_{>0}$, which measures how much the left and right-translation invariance of the Haar measure disagree. The modulus character is trivial if $G$ is Abelian. For $G$ compact, there are no compact subgroups of $\mathbb R_{>0}$ aside from $\cbr{1}$, so in this case the modulus character is also trivial, and hence Haar measures on compact groups are bi-invariant. In other words, the Haar measure is a $G\times G$-invariant measure on $G$ (where $(g,h)\in G\times G$ acts by left translation by $g$ and by right translation by $h^{-1}$). This is because the element $\av\in\mathbb C[G]$ is $G\times G$-invariant (where $(g,h)\in G\times G$ acts by left multiplication by $g$ and by right multiplication by $h^{-1}$); this is stronger than just being invariant under conjugation by $G$.
+A fun fact is that if $G$ is compact, then the Haar measure on $G$ is automatically both left and right-translation invariant, even if $G$ is not Abelian. For any Haar measure $\mu$ on $G$ and $g\in G$, the pushforward of $\mu$ by right multiplication by $g^{-1}$ produces another left invariant Haar measure $(\cdot g)_\ast\mu$. So $\mu$ is some multiple of $(\cdot g)_\ast\mu$, denote this multiple by $\bmod(g)$, called the modulus character of $G$. It turns out that this quantity does not depend on the choice of Haar measure $\mu$ we started with, and is also a group homomorphism $G\to \mathbb R_{>0}$, which measures how much the left and right-translation invariance of the Haar measure disagree. The modulus character is trivial if $G$ is Abelian. For $G$ compact, there are no compact subgroups of $\mathbb R_{>0}$ aside from $\{1\}$, so in this case the modulus character is also trivial, and hence Haar measures on compact groups are bi-invariant. In other words, the Haar measure is a $G\times G$-invariant measure on $G$ (where $(g,h)\in G\times G$ acts by left translation by $g$ and by right translation by $h^{-1}$). This is because the element $\av\in\mathbb C[G]$ is $G\times G$-invariant (where $(g,h)\in G\times G$ acts by left multiplication by $g$ and by right multiplication by $h^{-1}$); this is stronger than just being invariant under conjugation by $G$.
 
 \subsection{A tiny preview for LCA groups}
 Let $G$ be compact. Then finite dimensional representations of $G$ are semisimple. The proof follows the same ideas as in the finite case, but we replace all sums with integrals using the normalized Haar measure. Note that the normalization of the Haar measure is what will ensure that our desired projector actually is an idempotent as we did in the finite case.
@@ -722,13 +724,13 @@ Analysts are likely used to the characters being maps $x\mapsto \exp(inx)$ and t
 \subsection{Function spaces}
 An algebraic point of view is to view the algebra spanned by all of the characters as the algebraic functions on the circle; that is,
 \[\bigoplus_{n\in\mathbb Z}\mathbb C\chi_n\cong\mathbb C[z,z^{-1}]\quad\text{where $z = \exp(2\pi ix)$ since $x\in \mathbb R/\mathbb Z$}\]
-The coordinate ring of the affine space $\mathbb C$ is $\mathbb C[z]$. By localizing the coordinate ring at the maximal ideal $m_0 = \cbr{f\in \mathbb C[z]\mid f(0) = 0} = (z)$, we obtain the algebraic functions on $\mathbb C^\ast$, which agree with the algebraic functions on the circle if we restrict $z$ to $z = \exp(2\pi i x)$ for $x\in\mathbb R/\mathbb Z$.
+The coordinate ring of the affine space $\mathbb C$ is $\mathbb C[z]$. By localizing the coordinate ring at the maximal ideal $m_0 = \{f\in \mathbb C[z]\mid f(0) = 0\} = (z)$, we obtain the algebraic functions on $\mathbb C^\ast$, which agree with the algebraic functions on the circle if we restrict $z$ to $z = \exp(2\pi i x)$ for $x\in\mathbb R/\mathbb Z$.
 
 An analytic point of view is to see this space of algebraic functions as being dense in function spaces like $L^2(G)$, $L^1(G)$, $C^\infty(G)$, $C^\omega(G)$ (analytic functions), $C^{-\infty}(G)$ (distributions), or even $C^{-\omega}(G)$ (hyperfunctions?). Let us suppress the $(G)$ for now. Each of these spaces has the algebraic functions above as an ``algebraic core'', for which we understand the Fourier transform on. The question is how the action of the Fourier transform extends to the rest of the function spaces, and this requires analysis. The Fourier transform exchanges the following spaces (this is not to say the Fourier transform is always an isomorphism of these spaces!):
 \begin{align*}
 	L^2 &\longleftrightarrow \ell^2 & L^1 &\longleftrightarrow c_0\\
-	C^\infty &\longleftrightarrow \cbr{f\to 0 \text{ faster than } 1/\text{polynomial}} & C^\omega &\longleftrightarrow \cbr{f\to 0 \text{ faster than } 1/\text{exponential}}\\
-	C^{-\infty} &\longleftrightarrow \cbr{f\to \infty \text{ polynomial order}} & C^{-\omega} &\longleftrightarrow \cbr{f\to \infty \text{ exponential order?}}
+	C^\infty &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{polynomial}\} & C^\omega &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{exponential}\}\\
+	C^{-\infty} &\longleftrightarrow \{f\to \infty \text{ polynomial order}\} & C^{-\omega} &\longleftrightarrow \{f\to \infty \text{ exponential order?}\}
 \end{align*}
 
 It is actually the case that the Fourier transform gives an isomorphism of $L^2$ with $\ell^2$. Harish-Chandra studied similar function spaces for non-Abelian groups and found similar exchanges as above.
@@ -809,7 +811,7 @@ Comparing the real and imaginary parts in de Moivre's formula $(\cos(\theta) + i
 
 The $n$-th Chebyshev polynomial of the first kind $T_n(x)$ is defined to be the polynomial for which
 \[T_n(\cos(\theta)) = \cos(n\theta)\]
-That $\cbr{\cos(n\theta)}$ is an orthogonal basis for a suitable space of even functions on the circle corresponds to $\cbr{T_n(x)}$ being an orthogonal basis of a suitable space of functions on $[-1,1]$ with weighted $L^2$ inner product $\abr{f,g} = \int_{-1}^1f(x)g(x)/\sqrt{1-x^2}\dd x$.
+That $\{\cos(n\theta)\}$ is an orthogonal basis for a suitable space of even functions on the circle corresponds to $\{T_n(x)\}$ being an orthogonal basis of a suitable space of functions on $[-1,1]$ with weighted $L^2$ inner product $\abr{f,g} = \int_{-1}^1f(x)g(x)/\sqrt{1-x^2}\dd x$.
 Some of the first few Chebyshev polynomials of the first kind are 
 \begin{align*}
 	T_0(x) &= 1 & T_1(x) &= x\\
@@ -828,7 +830,7 @@ These polynomials also satisfy the differential equation
 in $x$, so we should obtain a second order algebraic equation in $n$ after applying a suitable Fourier transform to the above differential equation. That the above difference equation and differential equation are of second order should not be surprising since the universal character is $\cos(n\theta)$ in this setting.
 
 From the point of view of trigonometric polynomials, for some space of functions the set
-\[\cbr{\underline{1},\underline{\cos(\theta), \sin(\theta)}, \underline{\cos(2\theta),\sin(2\theta)},\dots}\]
+\[\{\underline{1},\underline{\cos(\theta), \sin(\theta)}, \underline{\cos(2\theta),\sin(2\theta)},\dots\}\]
 is an orthogonal basis. The underlined groups of functions are eigenspaces for the Laplacian $\Delta_{\U(1)} = \pdv[2]{\theta}$ on the circle. We can obtain these functions in a different way by first considering harmonic polynomials in the plane; that is, polynomials $p(x,y)$ for $x,y$ real which satisfy $\Delta_{\mathbb R^2}p = \bigl(\pdv[2]{x} + \pdv[2]{y}\bigr)p = 0$. Then consider the homogeneous polynomials in the plane; these are the polynomials $p$ for $p(kx,ky) = k^{\deg(p)}p(x,y)$; in polar coordinates these polynomials are separable with $p(r,\theta) = r^{\deg p}\tilde p(\theta)$ for some function $\tilde p(\theta)$ ($\deg p$ is the homogeneous degree of $p$). If $p$ is a harmonic homogeneous polynomial,
 \[0 = \Delta_{\mathbb R}p(r,\theta) = \biggl(\dv[2]{r}+\frac{1}{r}\dv{r}+\frac{1}{r^2}\dv[2]{\theta}\biggr)r^{\deg p}\tilde p(\theta) = r^{\deg p - 2}\biggl((\deg p)^2\tilde p(\theta)+\dv[2]{\theta}\tilde p(\theta)\biggr)\]
 By restricting to the circle $r = 1$, observe that $\tilde p$ is an eigenfunction of the Laplacian on the circle, which by the theory of ordinary differential equations tells us that $\tilde p$ is some linear combination of $\cos(n\theta)$ and $\sin(n\theta)$ for $n = \deg p$.
@@ -839,9 +841,9 @@ That the real eigenspaces (that aren't $\mathbb R\{1\}$) for the Laplacian on th
 \subsection{The Fourier transform on $\mathbb R$}
 Let $G$ be the real line $\mathbb R$, which henceforth we will denote by $\mathbb R_x$ to indicate that the coordinate on $\mathbb R$ is $x$. Like before, because $G$ is an LCA group we know that the irreps of $G$ are its one-dimensional unitary representations, which are parameterized by $\widehat G = \mathbb R_t$ (again, this notation means the real line with coordinate $t$, to distinguish this real line with the real line defining $G$). The universal character $\chi$ in this setting is the map $(x,t)\mapsto \exp(ixt)$. 
 
-Let $\mathcal H$ be a unitary representation of $G$; that is, $\mathcal H$ is a Hilbert space that the real line acts on by unitary operators. In this case, the image of $\mathbb R$ in $\U(\mathbb H)$ is a one-parameter subgroup $\cbr{U_x}_{x\in\mathbb R_x}$ of $\U(\mathbb H)$. By Stone's theorem on one-parameter unitary groups (\href{https://en.wikipedia.org/wiki/Stone%27s_theorem_on_one-parameter_unitary_groups}{Wikipedia}), it follows that $U_x = \exp(ixH)$ for some self-adjoint operator $H$ on $\mathcal H$. So the data of a unitary representation $\mathcal H$ of $G$ corresponds to the data of a single self-adjoint operator on $\mathcal H$. By differentiating this action, that is, passing to the action of the Lie algebra of $G$ on $\mathcal H$ we find that the Lie algebra of $G$ acts by the operator $iH$ on $\mathcal H$; this element is called the infinitesimal generator for the group $\cbr{U_x}_{x\in\mathbb R_x}$.
+Let $\mathcal H$ be a unitary representation of $G$; that is, $\mathcal H$ is a Hilbert space that the real line acts on by unitary operators. In this case, the image of $\mathbb R$ in $\U(\mathcal H)$ is a one-parameter subgroup $\{U_x\}_{x\in\mathbb R_x}$ of $\U(\mathcal H)$. By Stone's theorem on one-parameter unitary groups (\href{https://en.wikipedia.org/wiki/Stone%27s_theorem_on_one-parameter_unitary_groups}{Wikipedia}), it follows that $U_x = \exp(ixH)$ for some self-adjoint operator $H$ on $\mathcal H$. So the data of a unitary representation $\mathcal H$ of $G$ corresponds to the data of a single self-adjoint operator on $\mathcal H$. By differentiating this action, that is, passing to the action of the Lie algebra of $G$ on $\mathcal H$, we find that the Lie algebra of $G$ acts by the operator $iH$ on $\mathcal H$; this element (in physics, just $H$) is called the infinitesimal generator for the group $\{U_x\}_{x\in\mathbb R_x}$.
 
-One example of this story is in quantum mechanics, where $\mathcal H$ is the space of states for a quantum mechanical system and $\mathbb R$ acts on $\mathcal H$ by time evolution. The infinitesimal generator of the one-parameter group $\cbr{U_x}_{x\in\mathbb R_x}$ in this setting is the system's Hamiltonian.
+One example of this story is in quantum mechanics, where $\mathcal H$ is the space of states for a quantum mechanical system and $\mathbb R$ acts on $\mathcal H$ by time evolution. The infinitesimal generator of the one-parameter group $\{U_x\}_{x\in\mathbb R_x}$ in this setting is the system's Hamiltonian.
 
 From the spectral theorem for self-adjoint operators on Hilbert spaces, we obtain a kind of dictionary between
 \[\{\text{irreps of unitary reps}\}\longleftrightarrow\{\text{eigenvalues in $\mathbb R$}\}\]
@@ -855,9 +857,40 @@ where as usual we should worry about convergence. We should also care about what
 
 The Fourier transform diagonalizes the translation operators like before. The group $G$ acts naturally on $\Fun(G)$ by translation:
 \[y\cdot f \eqqcolon \tau_yf = f((-)-y)\quad \text{for }y\in\mathbb R_x\]
-and one can calculate the infinitesimal version of this as differentiation. The group algebra version of this action is given by convolution; that is, an element $f$ in the group algebra acts on $\Fun(G)$ by the operator $f\ast -$. By group algebra we might mean a nicer function space like continuous or smooth functions with compact support or even $L^1$ functions, so it makes sense to convolve, but these are matters of analysis. The point is that the Fourier transform takes these translation actions and simultaneously diagonalizes them, turning them into multiplication operators on $\Fun(\widehat G)$. In particular, translation $\tau_y$ is sent to pointwise multiplication by $\chi_y$, differentiation is sent to multiplication by $-it$, and convolution against $f$ is sent to pointwise multiplication by $\hat f$.
+and one can calculate the infinitesimal version of this as differentiation. The group algebra version of this action is given by convolution; that is, an element $f$ in the group algebra acts on $\Fun(G)$ by the operator $f\ast -$. By group algebra we might mean a nicer function space like continuous or smooth functions with compact support or even $L^1$ functions, so it makes sense to convolve, but these are matters of analysis. The point is that the Fourier transform takes these translation actions and simultaneously diagonalizes them, turning them into multiplication operators on $\Fun(\widehat G)$. In particular, translation $\tau_y$ is sent to pointwise multiplication by $\chi_y$, differentiation is sent to multiplication by $-it$ (meaning pointwise multiplication by the map $-i(t\mapsto t)$), and convolution against $f$ is sent to pointwise multiplication by $\hat f$.
 
-The statement that $L^2(\mathbb R_x)$ is isomorphic to $L^2(\mathbb R_t)$ can instead be thought of as a consequence of the spectral theory of the operator $H = -i\dv{x}$. This operator should be thought of as an infinitesimal translation operator, which under the Fourier transform is sent to multiplication by $-t$ (a diagonal operator). The exponential of $H$ yields a translation operator, and the exponential of $-t$??????????
+The statement that $L^2(\mathbb R_x)$ is isomorphic to $L^2(\mathbb R_t)$ can instead be thought of as a consequence of the spectral theory of the operator $H = i\dv{x}$. This operator should be thought of as an infinitesimal translation operator, which under the Fourier transform is sent to multiplication by $t$ (a diagonal operator). The exponential of $iH$, $\exp(-y\dv{x})$, is the translation operator $\tau_y$; the exponential of $it$, $\exp(iyt)$, is the multiplication operator $\chi_y$.
+
+\subsection{Algebraic version of spectral theory}
+Let $V$ be a complex vector space, and fix an element $T\in \End(V)$. Then regard $V$ as a $\mathbb C[x]$-module, where $xv = Tv$ (this formalism is the prototype for the functional calculus). The action of $\mathbb C[x]$ on $V$ of course factors through $\mathbb C[x]/\Ann_{\mathbb C[x]}(V)$, but this ring is isomorphic to $\mathbb C[\Spec(T)]$, the ring of regular functions on the spectrum of the operator $T$, a subset of $\mathbb C$. The isomorphism is to take a polynomial $f(x)$ and send it to the function $f$ as a function of $x\in\mathbb C$. The action of $f$ on $V$ will be more clear later, but here is part of it: We have $f\cdot v = f(\lambda)v$ for $v\in V_\lambda$ and $\lambda\in\Spec(T)$, where $V_\lambda$ is the $\lambda$-isotypic component of $V$. The decomposition of $V$ in this setting is nicest if $T$ is diagonalizable.
+
+Suppose now that $V$ is finitely generated as a $\mathbb C[x]$-module. Since $\mathbb C[x]$ is a principal ideal domain, we can use the structure theorem for finitely generated modules over principal ideals domains to obtain a ``spectral decomposition'' of $V$:
+\[V\cong V^{\textrm{free}}\oplus V^{\textrm{torsion}} \quad \text{(as $\mathbb C[x]$-modules)}\]
+The free part of $V$ corresponds to the continuous spectrum of $T$ and the torsion part of $V$ corresponds to the discrete spectrum of $T$. Note that so far we have not thought about whether $T$ was self-adjoint or not yet; this is all happening purely algebraically. Assume now that $V$ is finite dimensional so that $V^{\textrm{free}}$ in the decomposition above is trivial ($\mathbb C[x]$ is infinite dimensional as a complex vector space). Then from the same structure theorem for finitely generated modules over principal ideals we have
+\[V \cong \bigoplus_{i=1}^m \frac{\mathbb C[x]}{(x-\lambda_i)^{n_i}},\]
+where the $\lambda_i$ may repeat. This decomposition of $V$ is called the primary decomposition of $V$, from which we can obtain the Jordan normal form of $T$. The Jordan normal form of $T$ is a block matrix
+\[\begin{pmatrix}
+	J_1 & & &  \\
+	& J_2 & &  \\
+	& & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}} &  \\
+	& & & J_m
+\end{pmatrix}\]
+where each $J_i$ is the $n_i\times n_i$ matrix
+\[\begin{pmatrix}
+	\lambda_i & 1 \\
+	& \lambda_i & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}}\\
+	& & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}} & 1 \\
+	& & & \lambda_i
+\end{pmatrix}\]
+If $n_i>1$, we say that $\lambda_i$ is a generalized eigenvalue of $T$.
+
+For example, the natural action of $x$ on the $\mathbb C[x]$-module $\mathbb C[x]/(x-\lambda)^n$ with $\mathbb C$-basis $\{1, (x-\lambda),\dots, (x-\lambda)^{n-1}\}$ as a linear operator is given by the $n\times n$ Jordan block with diagonal entries $\lambda$.
+
+An analyst's point of view on this spectral decomposition is that the module $\mathbb C[x]/(x-\lambda)^n$ is isomorphic to the $\mathbb C[x]$-module generated by the $n$-th distributional derivative of the delta distribution concentrated at $\lambda$. The action of $f\in \mathbb C[x]$ on a distribution $\phi$ is given by $(f\phi)(\varphi) = \phi(f\varphi)$, which is usually written in analysis as $\abr{f\phi,\varphi} = \abr{\phi,f\varphi}$.
+
+The defining property of the delta distribution $\delta_\lambda$, which evaluates functions at $\lambda$, is that it is annihilated by the ideal $(x-\lambda)$; that is, $(x-\lambda)\delta_\lambda$ is the zero distribution. In other words, these delta distributions form eigenspaces for the action of $x$. By the $n$-th distributional derivative of $\delta_\lambda$, denoted $\delta_\lambda^{(n)}$, we mean the distribution that acts on test functions by the formula $\delta_\lambda^{(n)}(\varphi) = (-1)^n\delta_\lambda(\varphi^{(n)}) = (-1)^n\varphi^{(n)}(\lambda)$. So in particular 
+\[x\delta_\lambda^\prime(\varphi) = -(x\varphi)^\prime(\lambda) = -\lambda \varphi^\prime(\lambda) - \varphi(\lambda);\]
+that is, the action of $x$ on the vector space 
 
 % \newpage\section{XX/XX}
 
