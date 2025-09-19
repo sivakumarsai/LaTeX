@@ -862,7 +862,9 @@ and one can calculate the infinitesimal version of this as differentiation. The 
 The statement that $L^2(\mathbb R_x)$ is isomorphic to $L^2(\mathbb R_t)$ can instead be thought of as a consequence of the spectral theory of the operator $H = i\dv{x}$. This operator should be thought of as an infinitesimal translation operator, which under the Fourier transform is sent to multiplication by $t$ (a diagonal operator). The exponential of $iH$, $\exp(-y\dv{x})$, is the translation operator $\tau_y$; the exponential of $it$, $\exp(iyt)$, is the multiplication operator $\chi_y$.
 
 \subsection{An algebraic version of spectral theory}
-Let $V$ be a complex vector space, and fix an element $T\in \End(V)$. Then regard $V$ as a $\mathbb C[t]$-module, where $tv = Tv$ (this formalism is the prototype for the functional calculus). The action of $\mathbb C[t]$ on $V$ of course factors through $\mathbb C[t]/\Ann_{\mathbb C[t]}(V)$, but this ring is isomorphic to $\mathbb C[\Spec(T)]$, the ring of regular functions on the spectrum of the operator $T$, a subset of $\mathbb C$. The isomorphism is to take a polynomial $f(t)$ and send it to the function $f$ as a function of $t\in\mathbb C$. The action of $f$ on $V$ will be more clear later, but here is part of it: We have $f\cdot v = f(\lambda)v$ for $v\in V_\lambda$ and $\lambda\in\Spec(T)$, where $V_\lambda$ is the $\lambda$-isotypic component of $V$. The decomposition of $V$ in this setting is nicest if $T$ is diagonalizable.
+Let $V$ be a complex vector space, and fix an element $T\in \End(V)$. Then regard $V$ as a $\mathbb C[t]$-module, where $tv = Tv$ (this formalism is the prototype for the functional calculus). The action of $\mathbb C[t]$ on $V$ factors through $\mathbb C[t]/\Ann_{\mathbb C[t]}(V)$, but this ring is isomorphic to $\mathbb C[\Spec(T)]$, the ring of regular functions on the spectrum of the operator $T$, a subset of $\mathbb C$. The isomorphism is to take a polynomial $f(t)$ and send it to the function $f$ as a function of $t\in\mathbb C$. These regular functions remember the multiplicities of elements of $\Spec(T)$. If the factor $(t-\lambda)^n$ appears in $m(t)\in \Ann_{\mathbb C[t]}(V)$, then the polynomials $f(t), (t-\lambda)f(t),\dots,(t-\lambda)^{n-1}f(t)$ do not vanish at $t=\lambda$ when viewed as functions on $\mathbb C$ In other words, $f$ may have poles (so maybe these are not called regular functions).
+
+The action of $f$ on $V$ will be more clear later, but here is part of it: We have $f\cdot v = f(\lambda)v$ for $v\in V_\lambda$ and $\lambda\in\Spec(T)$, where $V_\lambda$ is the $\lambda$-isotypic component of $V$. The decomposition of $V$ in this setting is nicest if $T$ is diagonalizable.
 
 Suppose now that $V$ is finitely generated as a $\mathbb C[t]$-module. Since $\mathbb C[t]$ is a principal ideal domain, we can use the structure theorem for finitely generated modules over principal ideals domains to obtain a ``spectral decomposition'' of $V$:
 \[V\cong V^{\textrm{free}}\oplus V^{\textrm{torsion}} \quad \text{(as $\mathbb C[t]$-modules)}\]
@@ -899,13 +901,57 @@ show that derivatives of delta distributions are generalized eigenvectors for th
 	\lambda & 1 \\ 0 & \lambda
 \end{smallmatrix}\!\bigr)$. Thus for the case $n = 1$, we have an isomorphism of $\mathbb C[t]$-modules $\mathbb C[t]/(t-\lambda)^2\to \mathbb C[t]\delta_\lambda^\prime$ given by $1\mapsto \delta_\lambda^\prime$. In general, $t$ acts on the complex vector space spanned by $\{(-1)^n\delta_\lambda^{(n-1)}/(n-1)!,\dots,\delta_\lambda^\prime, -\delta_\lambda\}$ by the $n\times n$ Jordan block with diagonal entries $\lambda$. Like before, we obtain an isomorphism of $\mathbb C[t]$-modules $\mathbb C[t]/(t-\lambda)^n\to \mathbb C[t]\delta_\lambda^{(n-1)}$ given by $1\mapsto \delta_\lambda^{(n-1)}$.
 
-So the discrete spectrum of an operator should correspond to derivatives of delta distributions supported at generalized eigenvalues of $T$. But even though these distributions are supported at points, their values on a test function $\varphi$ depend on the values of the derivatives of $\varphi$ (in general distributions may depend on the Taylor series for $\varphi$), so the delta distributions are ``localized'' in this sense. This story can be retold in the language of sheaf theory by thinking of the delta distributions as a sheaf supported at the generalized eigenvalues of $T$. The higher the order of the generalized eigenvalue, the higher its ``multiplicity'' is in this picture.\sai{picture}
+So the discrete spectrum of an operator should correspond to derivatives of delta distributions supported at generalized eigenvalues of $T$. But even though these distributions are supported at points, their values on a test function $\varphi$ depend on the values of the derivatives of $\varphi$ (in general distributions may depend on the Taylor series for $\varphi$), so the delta distributions are ``localized'' in this sense. This story can be retold in the language of sheaf theory by thinking of the delta distributions as a sheaf supported at the generalized eigenvalues of $T$; that is, on $\Spec(\mathbb C[t]/\Ann_{\mathbb C[t]}(V))$ (here $\Spec$ takes the prime spectrum of a ring). The higher the order of the generalized eigenvalue, the higher its ``multiplicity'' is in this setting (and in the picture below, the multiplicity is indicated by concentric disks).
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\path [draw=none,fill=gray, fill opacity = 0.25] (1.75,0) circle (0.27);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (1.75,0) circle (0.17);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (-1, 0.25) circle (0.17);
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2, 1) {};
+		\node [style=none] (1) at (3, 1.5) {};
+		\node [style=none] (2) at (3, -1.5) {};
+		\node [style=none] (3) at (-2, -2) {};
+		\node [style=none] (5) at (3.75, -0.25) {$\mathbb C$};
+		\node [style=none] (6) at (-1, 0.25) {};
+		\node [style=none] (7) at (0, -1) {$\bullet$};
+		\node [style=none] (8) at (1.75, 0) {$\bullet$};
+		\node [style=none] (9) at (-1, 0.25) {$\bullet$};
+		\node [style=none] (10) at (-1.5, -0.25) {$\lambda_1$};
+		\node [style=none] (11) at (1.25, -0.5) {$\lambda_n$};
+		\node [style=none] (12) at (-0.5, -1.5) {$\lambda_2$};
+		\node [style=none] (13) at (0.5, -0.75) {$\mathbin{\rotatebox[origin=c]{70}{$\ddots$}}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+		\draw (1.center) to (2.center);
+		\draw (0.center) to (3.center);
+		\draw (3.center) to (2.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
 
-The infinitesimal action of $G = \mathbb R_x$ on $\Fun(\widehat G)$ by pointwise multiplication by $t$ comes from the Fourier transform of the infinitesimal action of $G$ on $\Fun(G)$ by differentiation. The eigenfunctions of these actions are also expected to be interchanged via the Fourier transform. The delta functions $\delta_\lambda$ for $\lambda\in\mathbb R_t$ are eigenfunctions for pointwise multiplication by $t$; and on the other side of the Fourier transform, the exponentials $\exp(i\lambda x)$ for $\lambda\in \mathbb R_x$ are eigenfunctions of $\dv{x}$. Some analysis is needed to make this rigorous, but thinking of $\exp(i\lambda x)$ as a regular distribution (i.e. as an element of a suitably chosen candidate for the group algebra) we have
-\[\abr{\widehat{\exp(i\lambda(-))},\varphi} = \abr{\exp(i\lambda(-)), \varphi^\vee} = \int_{\mathbb R_x}\varphi^\vee(x)\exp(i\lambda x)\dd x = \widehat{\varphi^\vee}(\lambda) = \varphi(\lambda)\]
-so indeed the Fourier transform of $\exp(i\lambda (-))$ is $\delta_\lambda$.
+The infinitesimal action of $G = \mathbb R_x$ on $\Fun(\widehat G)$ by pointwise multiplication by $t$ comes from the Fourier transform of the infinitesimal action of $G$ on $\Fun(G)$ by differentiation. The eigenfunctions of these actions are also expected to be interchanged via the Fourier transform. The delta functions $\delta_\lambda$ for $\lambda\in\mathbb R_t$ are eigenfunctions for pointwise multiplication by $t$; and on the other side of the Fourier transform, the exponentials $\exp(-i\lambda x)$ for $\lambda\in \mathbb R_x$ are eigenfunctions of $i\dv{x}$. Some analysis is needed to make this rigorous, but thinking of $\exp(-i\lambda x)$ as a regular distribution (i.e. as an element of a suitably chosen candidate for the group algebra) we have
+\[\abr{\widehat{\exp(-i\lambda(-))},\varphi} = \abr{\exp(-i\lambda(-)), \hat \varphi} = \int_{\mathbb R_x}\hat \varphi(x)\exp(-i\lambda x)\dd x = \varphi(\lambda) = \abr{\delta_\lambda,\varphi}\]
+so indeed the Fourier transform of $\exp(-i\lambda (-))$ is $\delta_\lambda$.
 
-Since $G = \mathbb R_x$ is not compact, indecomposable representations of $G$ need not coincide with the irreps of $G$.
+Since $G = \mathbb R_x$ is not compact, indecomposable representations of $G$ need not coincide with the irreps of $G$. One way to obtain these is by taking the inverse Fourier transform of derivatives of delta distributions. Some calculations show that the Fourier transform of the function given by $(ix)^k\exp(-i\lambda x)$ is $\delta_\lambda^{(k)}$. By taking the inverse Fourier transform of the calculations from before involving $t\delta_\lambda^{(k)}$, we obtain the equations
+\begin{align*}
+	i\dv{x}[\exp(-i\lambda x)] &= \lambda \exp(-i\lambda x)\\
+	i\dv{x}[(ix)\exp(-i\lambda x)] &= \lambda(ix)\exp(-i\lambda x) - \exp(-i\lambda x)\\
+	i\dv{x}[(ix)^2\exp(-i\lambda x)] &= \lambda(ix)^2\exp(-i\lambda x)-2(ix)\exp(-i\lambda x)\\
+	&~\,\vdots
+\end{align*}
+from which we can see that $i\dv{x}$ acts on the complex vector space spanned by $\{(-1)^n(ix)^{n-1}\exp(-i\lambda x)/(n-1)!,\dots,(ix)\exp(-i\lambda x), -\exp(-i\lambda x)\}$ by the $n\times n$ Jordan block with diagonal entries $\lambda$. Similarly, if we think of this vector space instead as a $\mathbb C[X]$-module where $X$ acts by $i\dv{x}$, there is an isomorphism $\mathbb C[X]/(X-\lambda)^n\to \mathbb C[X](ix)^{n-1}\exp(-i\lambda x)$ given by $1\mapsto (ix)^{n-1}\exp(-i\lambda x)$. Notice this is all completely symmetric to what we did earlier with the delta distributions. The indecomposable representation we have obtained is the $n$-dimensional representation of the Lie algebra of $\mathbb R_x$ given by the $\mathbb C$-span of $\{(ix)^{n-1}\exp(-i\lambda x),\dots,(ix)\exp(-i\lambda x), \exp(-i\lambda x)\}$ (this is the induced Lie algebra representation given by acting by scalar multiples of $\dv{x}$). It is the case that this vector space is also an indecomposable representation of the original group $\mathbb R_x$ under translation.
+
+So in the usual sheaf picture, given a finite dimensional representation $V$ of $\mathbb R_x$, we can decompose $V$ into the direct sum of indecomposable subrepresentations isomorphic to the ones in the previous paragraph (of possibly different dimensions of course), and each subspace should be viewed as living over the corresponding generalized eigenvalue of the operator $H$ defining the action of $\mathbb R_x$ on $V$.
+
+One objection to the arguments from before is that none of these functions (the exponential, the delta distribution) belong to $L^2(\mathbb R_x)$ or are even functions. So these representations above are not necessarily unitary representations; somehow the Fourier theory is able to see non-unitary representations... 
+
+To address the continuous spectrum, we return to the setting where $V$ is a finitely generated $\mathbb C[t]$-module (where $t$ acts by an operator $T\in\End(V)$), so that $V$ decomposes as $V = V^{\textrm{free}}\oplus V^{\textrm{torsion}}$. We saw earlier that the $V^{\textrm{torsion}}$ summand corresponds to the discrete spectrum of the operator $T$, so on the other side the $V^{\textrm{free}}$ summand corresponds to the continuous spectrum of $T$.
+
+
 
 % \newpage\section{XX/XX}
 
