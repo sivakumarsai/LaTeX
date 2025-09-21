@@ -1,0 +1,197 @@
+\section{08/28}
+\subsection{Spectral theory over $\mathbb C$}
+Consider an operator $T$ on a finite dimensional complex vector space $V$. The spectrum of $T$, $\sigma(T)$, is a finite subset of $\mathbb C$ consisting of the eigenvalues of $T$. To each $\lambda \in \sigma(T)$ there is a corresponding eigenspace $V_\lambda$ of $V$, and $V = \bigoplus_{\lambda\in \sigma(T)}V_\lambda$. We can visualize placing each of the eigenspaces $V_\lambda$ above each point $\lambda$ in the spirit of sheaf theory:
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {};
+		\node [style=none] (1) at (8, 1) {};
+		\node [style=none] (2) at (4, -3) {};
+		\node [style=none] (3) at (12, -2) {};
+		\node [style=none] (4) at (9.75, -1.5) {$\mathbb C$};
+		\node [style=none] (5) at (2.5, -0.75) {$\lambda_1$};
+		\node [style=none] (6) at (4, -2.25) {$\lambda_2$};
+		\node [style=none] (7) at (5.5, -0.25) {$\lambda_3$};
+		\node [style=none] (8) at (8, -2) {$\lambda_n$};
+		\node [style=none] (9) at (7, -0.8) {$\ddots$};
+		\node [style=none] (10) at (3, -0.5) {$\bullet$};
+		\node [style=none] (11) at (4.5, -2) {$\bullet$};
+		\node [style=none] (12) at (8.5, -1.75) {$\bullet$};
+		\node [style=none] (13) at (6, 0) {$\bullet$};
+		\node [style=none] (14) at (3, 1) {};
+		\node [style=none] (16) at (6, 1.5) {};
+		\node [style=none] (18) at (8.5, -0.25) {};
+		\node [style=none] (20) at (4.5, -0.5) {};
+		\node [style=none] (21) at (2.5, 1.5) {$V_{\lambda_1}$};
+		\node [style=none] (22) at (4, 0) {$V_{\lambda_2}$};
+		\node [style=none] (23) at (5.5, 2) {$V_{\lambda_3}$};
+		\node [style=none] (24) at (8, 0.25) {$V_{\lambda_n}$};
+		\node [style=none] (25) at (3, -2) {};
+		\node [style=none] (26) at (4.5, -3.5) {};
+		\node [style=none] (27) at (6, -1.5) {};
+		\node [style=none] (28) at (8.5, -3.25) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+		\draw (2.center) to (3.center);
+		\draw (0.center) to (2.center);
+		\draw (1.center) to (3.center);
+		\draw [style=to] (10.center) to (14.center);
+		\draw [style=to] (11.center) to (20.center);
+		\draw [style=to] (13.center) to (16.center);
+		\draw [style=to] (12.center) to (18.center);
+		\draw [style={to:dash}] (10.center) to (25.center);
+		\draw [style={to:dash}] (11.center) to (26.center);
+		\draw [style={to:dash}] (13.center) to (27.center);
+		\draw [style={to:dash}] (12.center) to (28.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+On $\mathbb C$, the coordinate function $x$ where $x(z) = z$ has the same action as $T$ on the eigenspaces $V_\lambda$:
+\[Tv = \sum_{\lambda\in\sigma(T)}Tv_\lambda = \sum_{\lambda\in\sigma(T)}\lambda v_\lambda = \sum_{\lambda\in\sigma(T)}x(\lambda) v_\lambda = x\cdot \biggl(\sum_\lambda v_\lambda\biggr) = x\cdot v\] 
+In this sense $T$ corresponds to $x\in \Fun(\mathbb C)|_{\sigma(T)}$ (complex-valued functions on $\mathbb C$, restricted to $\sigma(T)$.).
+
+Now consider the commutative ring $R = k[T_1,\dots,T_n]/(f_1,\dots,f_m)$ and an $R$-module $M$. We would like to simultaneously diagonalize the action of the $T_i$ on $M$, or rather, diagonalize the action of $R$ on $M$, which amounts to finding a basis of $M$ where $R$ acts diagonally. Assume we can do this. 
+
+We should attach a set $X = \Spec(R)$ to $R$ called the spectrum of $R$ for which we can decompose $M$ into a direct sum of modules $M_{x_i}$, each summand lying over their corresponding point $x_i\in X$:
+\begin{align*}
+  M &= M_{x_1} \oplus M_{x_2} \oplus \cdots \oplus M_{x_\ell}\\
+  X&~~~~~x_1~\phantom{\oplus}~~x_2~~\phantom{\oplus} \cdots \phantom{\oplus}~~x_\ell
+\end{align*}
+Furthermore, we form an assignment $R\xrightarrow{\varphi} \Fun(X)$ for which we can recast the action of $R$ on $M$ through this assignment:
+\[rm = \varphi(r)\sum_{x\in X}m_x = \sum_{x\in X}\varphi(r)|_{\{x\}}m_x\]
+The idea here is to turn what was an algebraic notion of rings acting on modules to thinking about sheaves on a particular space which ``diagonalize'' the ring action.
+
+\subsection{Some examples of the algebra-geometry dictionary}
+An important philosophy we've been looking at the broad strokes of is this dictionary between algebra and geometry, specifically the two following ideas coming from Gelfand and Grothendieck:
+\begin{enumerate}
+  \item Commutative rings correspond to geometric objects via functors 
+  % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXHRleHR7Y29tbXV0YXRpdmUgcmluZ3N9Il0sWzIsMCwiXFx0ZXh0e2dlb21ldHJpYyBvYmplY3RzfSJdLFswLDEsIlxcU3BlYyIsMCx7ImN1cnZlIjotMX1dLFsxLDAsIlxcbWF0aGNhbCBPIiwwLHsiY3VydmUiOi0xfV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\text{commutative rings}} \&\& {\text{geometric objects}}
+	\arrow["\Spec", curve={height=-6pt}, from=1-1, to=1-3]
+	\arrow["{\mathcal O}", curve={height=-6pt}, from=1-3, to=1-1]
+\end{tikzcd}\]
+In this vague setting we should think of $\Spec$ as in taking the spectrum of some collection of simultaneously diagonalized operators coming from the ring and $\mathcal O$ as returning the space of functions on these geometric objects. Again we should think of $R$ as being the space of functions on $\Spec R$ in this correspondence.
+\item Modules over rings $R$ correspond to sheaves on the corresponding geometric object $\Spec R$ via
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXHRleHR7bW9kdWxlc30iXSxbMiwwLCJcXHRleHR7c2hlYXZlc30iXSxbMCwxLCJcXHRleHR7c3BlY3RyYWwgZGVjb21wb3NpdGlvbn0iLDAseyJjdXJ2ZSI6LTF9XSxbMSwwLCJcXHRleHR7Z2xvYmFsIHNlY3Rpb25zfSIsMCx7ImN1cnZlIjotMX1dXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\text{modules}} \&\& {\text{sheaves}}
+	\arrow["{\text{spectral decomposition}}", curve={height=-6pt}, from=1-1, to=1-3]
+	\arrow["{\text{global sections}}", curve={height=-6pt}, from=1-3, to=1-1]
+\end{tikzcd}\]
+In particular in the previous examples we have that taking global sections amounts to taking the direct sum of modules, but this can also appear as a direct integral of modules in continuous versions of the previous examples. Spectral decomposition as we have seen is to break up a module into submodules where the ring action is pointwise multiplication.
+\end{enumerate}
+
+We look at some examples of part 1. of the above philosophy.
+
+Grothendieck's version of this idea is the heart of modern algebraic geometry. One correspondence is 
+\[\text{commutative rings}\longleftrightarrow\text{affine schemes}\]
+but an earlier version might have been
+\[\text{finitely presented, reduced, etc. $\mathbb C$-algebras}\longleftrightarrow\text{complex affine varieties}\]
+In both correspondences, the $\Spec$ functor is given by taking the set of prime ideals. In the top correspondence, $\mathcal O$ is taking the structure sheaf of a scheme, but this amounts to taking polynomial functions on a space in the bottom correspondence.
+
+Gelfand's version of this idea is the correspondence 
+\[\text{commutative $C^\ast$-algebras}\longleftrightarrow\text{Hausdorff locally compact topological spaces}\]
+The functor $\Spec$ in this case is the eponymous Gelfand spectrum and $\mathcal O$ takes the continuous compactly supported functions on Hausdorff, locally compact spaces.
+
+A special case of the above is the correspondence 
+\[\text{commutative von Neumann algebras}\longleftrightarrow\text{measure spaces}\]
+One direction is some kind of spectrum, but the other direction is taking $L^\infty$ functions on a measure space. As a side remark, there are only five von Neumann algebras up to equivalence; they are: finite sets, $\mathbb N$, $[0,1]$, $[0,1]$ union a finite set, and $[0,1]$ union a countably infinite set.
+
+There is a version of part 2. for each of the above examples involving modules and sheaves, but we will not discuss them here, aside from mentioning that we can talk about algebraic, continuous, or measurable families of vector spaces (sheaves) in the various settings above.
+
+\subsection{The group algebra (over $\mathbb C$)}
+Let $G$ be any group and $(V,\rho)$ any complex representation of $G$ (the below discussion would work for other fields instead of $\mathbb C$). Recall that $\mathbb C[G]$ is the unique object for which the diagram 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHIl0sWzAsMSwiXFxtYXRoYmIgQ1tHXSJdLFsxLDAsIlxcQXV0KFYpIl0sWzIsMCwiXFxFbmQoVikiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsIlxccmhvIl0sWzEsMywiXFxvdmVybGluZVxccmhvIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	G \& {\Aut(V)} \& {\End(V)} \\
+	{\mathbb C[G]}
+	\arrow["\rho", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow["{\overline\rho}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+commutes; moreover, we think of $\mathbb C[G]$ as a ``free'' $\mathbb C$-algebra on $G$. This is because the functor taking $G$ to $\mathbb C[G]$ is the left adjoint to the forgetful functor from $\mathbb C\alg$ to $\Group$ (given by taking the group of units).
+
+An explicit description of $\mathbb C[G]$ is the $\mathbb C$-vector space generated by the elements of $G$ with multiplication induced by the products in $\mathbb C, G$. An alternative description of $\mathbb C[G]$ is the set of finitely supported functions from $G$ to $\mathbb C$, with multiplication given by convolution:
+\[(f\ast h)(g) = \sum_{\substack{(x,y)\\xy=g}}f(x)h(y) = \sum_{x}f(x)h(x^{-1}g)\quad\text{(defined since $f,h$ are finitely supported)}\]
+This product is no different from the product defined in the first description of $\mathbb C[G]$.
+
+What is really happening is that we can take $f,h$ from above and form the box product $f\boxtimes h\colon G\times G \to \mathbb C$, which is just the map $(x,y)\mapsto f(x)h(y)$. We want to form a map from $G$ to $\mathbb C$, so consider $G\times G\xrightarrow{m}G$, the product in $G$. The pushforward of $f\boxtimes h$ via $m$ is $f\ast h$:
+\[m_\ast(f\boxtimes h) \quad\text{also denoted}\quad \int_mf\boxtimes h = \sum_{{\substack{(x,y)\\xy=-}}}f(x)h(y) = f\ast h\]
+
+An important observation to make is that complex representations of $G$ coincide with $\mathbb C[G]$-modules. 
+
+\subsection{Representation theory of finite Abelian groups and the dual group}
+If $G$ is Abelian, then $\mathbb C[G]$ is a commutative ring. So representation theory may be thought of as a special case of the study of modules over commutative rings. Using language from earlier, note that the corresponding geometric object to $\mathbb C[G]$ is $\Spec(\mathbb C[G])$, and representations of $G$ correspond to vector bundles or sheaves over $\Spec(\mathbb C[G])$.
+
+Let $G$ be a finite Abelian group, and let $\widehat G\coloneqq \Spec(\mathbb C[G])$; we call this the dual of $G$. Then $\mathbb C[G]$ (functions on $G$) with multiplication given by convolution is isomorphic as an algebra to $\mathbb C[\widehat G]$ (functions on $\widehat{G}$, which we will see is a finite set) with pointwise multiplication. This isomorphism is usually given by some kind of finite Fourier transform. On the other hand, representations of $G$ correspond to vector bundles (sheaves) on $\widehat G$, and this is some kind of finite spectral theorem.
+
+Let $G = \abr{x}$ be a cyclic group of order $n$. The dual object $\widehat{G}$ is given by the $n$-th roots of unity in $\mathbb C$: (the picture is for $n=6$)
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, -1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, -1.73) {$\bullet$};
+		\node [style=none] (1) at (-5, 0) {$\widehat G = \Spec(\mathbb C[G]) = $};
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+In this case, $\Spec$ is taking the maximal ideals of rings. With $\mathbb C[G]\cong \mathbb C[x]/(x^n-1)$, it is equivalent to describe the elements in $\Hom_{\mathbb C\alg}(\mathbb C[x]/(x^n-1),\mathbb C)$, which are characterized by each of the $n$-th roots of unity.
+
+We take a small detour to discuss Schur's lemma, which states that for any group $G$, that any $\mathbb C[G]$-module homomorphisms between simple $\mathbb C[G]$-modules are either $0$ or are isomorphisms of $\mathbb C[G]$-modules. This follows by investigating kernels and images since they are submodules of $V,W$ respectively. In particular, any $\mathbb C[G]$-module endomorphism of a simple $\mathbb C[G]$-module is a scalar multiple of the identity, since for any nonzero endomorphism $T$ we can consider $T-\lambda \id_V$, which is no longer an isomorphism and hence must be zero. Here we used the algebraic closedness of $\mathbb C$, and in fact we could have replaced $\mathbb C$ by any algebraically closed field $k$.
+
+Schur's lemma is used to prove that if $G$ is Abelian then any finite-dimensional irrep of $G$ is one-dimensional. If such an irrep $V$ had finite dimension greater than or equal to $2$, then left multiplication $V\xrightarrow{g}V$ by any element $g\in G$ must be a scalar multiple of $\id_V$, which contradicts the irreducibility of $V$ (since we assumed $\dim V\geq 2$). 
+
+The action of $G$ on the irrep $V$ is given by scalar multiplication by $\chi_V(g)\in \mathbb C^\times$ since $V$ is one-dimensional. More importantly, the assignment $g\to\chi_V(g)$ is a group homomorphism $G\to \mathbb C^\times$, called a character of $G$.
+
+For $G$ Abelian, $\widehat G$ is the set of maximal ideals of $\mathbb C[G]$, which is in bijection with $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$. By the universal property of the group algebra, $\Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$ is in bijection with $ \Hom_{\Group}(G,\mathbb C^\times)$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	G \& {\Aut(\mathbb C)\cong \mathbb C^\times} \& {\End(\mathbb C)\cong \mathbb C} \\
+	{\mathbb C[G]}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow["{\overline f}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+So in general we can also think of $\widehat G$ as the collection of irreps of $G$.
+
+Given an irrep $V$ of $G$ (i.e. a simple $\mathbb C[G]$-module), we can try to form a sheaf out of $V$ on $\widehat G$. Since $V$ is irreducible, this sheaf has to be concentrated at only one of the points of $\widehat{G}$, and this point is the point corresponding to the irrep $V$ itself. So in the example where $G = \abr{x}$ has order $n$, the point at which an irrep $V$ lies on is the root of unity $\zeta$ for which the action of $x$ on an irrep $V$ is given by multiplication by $\zeta$.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (2, 0) {$\bullet$};
+		\node [style=none] (99) at (1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, 1.73) {$\bullet$};
+		\node [style=none] (0) at (-2, 0) {$\bullet$};
+		\node [style=none] (0) at (1, -1.73) {$\bullet$};
+		\node [style=none] (0) at (-1, -1.73) {$\bullet$};
+		\node [style=none] (1) at (1, 2.73) {};
+		\node [style=none] (2) at (1, 0.73) {};
+		\node [style=none] (3) at (1.25, 3) {$V$};
+		\node [style=none] (4) at (2.25, 2.25) {$xv=\zeta v$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=to] (99.center) to (1.center);
+		\draw [style=to] (99.center) to (2.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+Since $\widehat G$ is in bijection with $\Hom_{\Group}(G,\mathbb C^\times)$, we can equip $\widehat G$ with a group operation; by doing so, $G$ and $\widehat G$ are non-canonically isomorphic as groups. So in particular finite cyclic groups are (non-canonically) self-dual.
+
+Next time, we will explore the Fourier transform, which for $G$ finite Abelian is a $\mathbb C[G]$-module isomorphism
+\[\Fun(G)\xlongrightarrow{\widehat{-}}\Fun(\widehat G)\]
+where $\Fun(G)$, $\Fun(\widehat G)$ are function spaces on $G,\widehat G$ and are given convolution and pointwise multiplication, respectively. Note that in this case $\Fun(G) \cong \mathbb C[G]$, so we give $\Fun(G)$ the corresponding action, which is given by $gf(x) = f(g^{-1}x)$. We will look at the action of $G$ on $\Fun(\hat G)\cong \mathbb C[\widehat G]$ next time. This isomorphism has some symmetry which is part of the statement of Pontryagin duality.

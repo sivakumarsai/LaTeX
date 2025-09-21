@@ -1,0 +1,224 @@
+\section{09/11}
+\subsection{The Fourier transform on $\mathbb R$}
+Let $G$ be the real line $\mathbb R$, which henceforth we will denote by $\mathbb R_x$ to indicate that the coordinate on $\mathbb R$ is $x$. Like before, because $G$ is an LCA group we know that the irreps of $G$ are its one-dimensional unitary representations, which are parameterized by $\widehat G = \mathbb R_t$ (again, this notation means the real line with coordinate $t$, to distinguish this real line with the real line defining $G$). The universal character $\chi$ in this setting is the map $(x,t)\mapsto \exp(ixt)$. 
+
+Let $\mathcal H$ be a unitary representation of $G$; that is, $\mathcal H$ is a Hilbert space that the real line acts on by unitary operators. In this case, the image of $\mathbb R$ in $\U(\mathcal H)$ is a one-parameter subgroup $\{U_x\}_{x\in\mathbb R_x}$ of $\U(\mathcal H)$. By Stone's theorem on one-parameter unitary groups (\href{https://en.wikipedia.org/wiki/Stone%27s_theorem_on_one-parameter_unitary_groups}{Wikipedia}), it follows that $U_x = \exp(ixH)$ for some self-adjoint operator $H$ on $\mathcal H$. So the data of a unitary representation $\mathcal H$ of $G$ corresponds to the data of a single self-adjoint operator on $\mathcal H$. By differentiating this action, that is, passing to the action of the Lie algebra of $G$ on $\mathcal H$, we find that the Lie algebra of $G$ acts by the operator $iH$ on $\mathcal H$; this element (in physics, just $H$) is called the infinitesimal generator for the group $\{U_x\}_{x\in\mathbb R_x}$.
+
+One example of this story is in quantum mechanics, where $\mathcal H$ is the space of states for a quantum mechanical system and $\mathbb R$ acts on $\mathcal H$ by time evolution. The infinitesimal generator of the one-parameter group $\{U_x\}_{x\in\mathbb R_x}$ in this setting is the system's Hamiltonian.
+
+From the spectral theorem for self-adjoint operators on Hilbert spaces, we obtain a kind of dictionary between
+\[\{\text{irreps of unitary reps}\}\longleftrightarrow\{\text{eigenvalues in $\mathbb R$}\}\]
+where the left side lives in the world of representation theory and the right side lives in the world of self-adjoint operator theory. Specifically, for a fixed unitary representation $\mathcal H$ of $G$, decomposing $\mathcal H$ into its irreps amounts to finding the eigenvalues of the operator $H$ defining the representation. More generally, the decomposition of unitary representations $\mathcal H$ of $G$ corresponds to the spectrum of of the operator $H$ defining the representation. We will see this later.
+
+The universal character $\chi$ is used to obtain the Fourier transform $\Fun(G)\to \Fun(\widehat G)$ as usual. It is given by $f\mapsto \hat f$ where
+\[\hat f(t) = \int_{\mathbb R_x}f(x)\exp(itx)\dd x,\]
+and the Fourier inversion theorem in this setting is 
+\[f(x)\approx \int_{\mathbb R_t} \hat f(t)\exp(-itx)\dd t,\]
+where as usual we should worry about convergence. We should also care about what functions we apply the Fourier transform to. For example, a nice result from analysis is that the Fourier transform defines a unitary isomorphism of $L^2(\mathbb R_x)$ with $L^2(\mathbb R_t)$ (that the isomorphism is unitary is usually known as Plancherel's theorem).
+
+The Fourier transform diagonalizes the translation operators like before. The group $G$ acts naturally on $\Fun(G)$ by translation:
+\[y\cdot f \eqqcolon \tau_yf = f((-)-y)\quad \text{for }y\in\mathbb R_x\]
+and one can calculate the infinitesimal version of this as differentiation. The group algebra version of this action is given by convolution; that is, an element $f$ in the group algebra acts on $\Fun(G)$ by the operator $f\ast -$. By group algebra we might mean a nicer function space like continuous or smooth functions with compact support or even $L^1$ functions, so it makes sense to convolve, but these are matters of analysis. The point is that the Fourier transform takes these translation actions and simultaneously diagonalizes them, turning them into multiplication operators on $\Fun(\widehat G)$. In particular, translation $\tau_y$ is sent to pointwise multiplication by $\chi_y$, differentiation is sent to multiplication by $-it$ (meaning pointwise multiplication by the map $-i(t\mapsto t)$), and convolution against $f$ is sent to pointwise multiplication by $\hat f$.
+
+The statement that $L^2(\mathbb R_x)$ is isomorphic to $L^2(\mathbb R_t)$ can instead be thought of as a consequence of the spectral theory of the operator $H = i\dv{x}$. This operator should be thought of as an infinitesimal translation operator, which under the Fourier transform is sent to multiplication by $t$ (a diagonal operator). The exponential of $iH$, $\exp(-y\dv{x})$, is the translation operator $\tau_y$; the exponential of $it$, $\exp(iyt)$, is the multiplication operator $\chi_y$.
+
+\subsection{An algebraic version of spectral theory}
+Let $V$ be a complex vector space, and fix an element $T\in \End(V)$. Then regard $V$ as a $\mathbb C[t]$-module, where $tv = Tv$ (this formalism is the prototype for the functional calculus). The action of $\mathbb C[t]$ on $V$ factors through $\mathbb C[t]/\Ann_{\mathbb C[t]}(V)$, but this ring is isomorphic to $\mathbb C[\Spec(T)]$, the ring of regular functions on the spectrum of the operator $T$, a subset of $\mathbb C$. The isomorphism is to take a polynomial $f(t)$ and send it to the function $f$ as a function of $t\in\mathbb C$. These regular functions remember the multiplicities of elements of $\Spec(T)$. If the factor $(t-\lambda)^n$ appears in $m(t)\in \Ann_{\mathbb C[t]}(V)$, then the polynomials $f(t), (t-\lambda)f(t),\dots,(t-\lambda)^{n-1}f(t)$ do not vanish at $t=\lambda$ when viewed as functions on $\mathbb C$ In other words, $f$ may have poles (so maybe these are not called regular functions).
+
+The action of $f$ on $V$ will be more clear later, but here is part of it: We have $f\cdot v = f(\lambda)v$ for $v\in V_\lambda$ and $\lambda\in\Spec(T)$, where $V_\lambda$ is the $\lambda$-isotypic component of $V$. The decomposition of $V$ in this setting is nicest if $T$ is diagonalizable.
+
+Suppose now that $V$ is finitely generated as a $\mathbb C[t]$-module. Since $\mathbb C[t]$ is a principal ideal domain, we can use the structure theorem for finitely generated modules over principal ideals domains to obtain a ``spectral decomposition'' of $V$:
+\[V\cong V^{\textrm{free}}\oplus V^{\textrm{torsion}} \quad \text{(as $\mathbb C[t]$-modules)}\]
+The free part of $V$ corresponds to the continuous spectrum of $T$ and the torsion part of $V$ corresponds to the discrete spectrum of $T$. Note that so far we have not thought about whether $T$ was self-adjoint or not yet; this is all happening purely algebraically. Assume now that $V$ is finite dimensional so that $V^{\textrm{free}}$ in the decomposition above is trivial ($\mathbb C[t]$ is infinite dimensional as a complex vector space). Then from the same structure theorem for finitely generated modules over principal ideals we have
+\[V \cong \bigoplus_{i=1}^m \frac{\mathbb C[t]}{(t-\lambda_i)^{n_i}},\]
+where the $\lambda_i$ may repeat. This decomposition of $V$ is called the primary decomposition of $V$, from which we can obtain the Jordan normal form of $T$. The Jordan normal form of $T$ is a block matrix
+\[\begin{pmatrix}
+	J_1 & & &  \\
+	& J_2 & &  \\
+	& & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}} &  \\
+	& & & J_m
+\end{pmatrix}\]
+where each $J_i$ is the $n_i\times n_i$ matrix
+\[\begin{pmatrix}
+	\lambda_i & 1 \\
+	& \lambda_i & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}}\\
+	& & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}} & 1 \\
+	& & & \lambda_i
+\end{pmatrix}\]
+If $n_i>1$, we say that $\lambda_i$ is a generalized eigenvalue of $T$.
+
+For example, the natural action of $t$ on the $\mathbb C[t]$-module $\mathbb C[t]/(t-\lambda)^n$ with $\mathbb C$-basis $\{1, (t-\lambda),\dots, (t-\lambda)^{n-1}\}$ as a linear operator is given by the $n\times n$ Jordan block with diagonal entries $\lambda$.
+
+An analyst's point of view on this spectral decomposition is that the module $\mathbb C[t]/(t-\lambda)^n$ is isomorphic to the $\mathbb C[t]$-module generated by the $(n-1)$-th distributional derivative of the delta distribution concentrated at $\lambda$. The action of $f\in \mathbb C[t]$ on a distribution $\phi$ is given by $(f\phi)(\varphi) = \phi(f\varphi)$, which is usually written in analysis as $\abr{f\phi,\varphi} = \abr{\phi,f\varphi}$.
+
+The defining property of the delta distribution $\delta_\lambda$, which evaluates functions at $\lambda$, is that it is annihilated by the ideal $(t-\lambda)$; that is, $(t-\lambda)\delta_\lambda$ is the zero distribution. In other words, these delta distributions are eigenvectors for the action of $t$. By the $n$-th distributional derivative of $\delta_\lambda$, denoted $\delta_\lambda^{(n)}$, we mean the distribution that acts on test functions by the formula $\delta_\lambda^{(n)}(\varphi) = (-1)^n\delta_\lambda(\varphi^{(n)}) = (-1)^n\varphi^{(n)}(\lambda)$. The calculations
+\begin{align*}
+	t\delta_\lambda(\varphi) &= (t\varphi)(\lambda) = \lambda\varphi(\lambda) = \lambda\delta_\lambda\\
+	t\delta_\lambda^\prime(\varphi) &= -(t\varphi)^\prime(\lambda) = -\lambda \varphi^\prime(\lambda) - \varphi(\lambda)  = \lambda\delta_\lambda^\prime(\varphi) - \delta_\lambda(\varphi)\\
+	t\delta_\lambda^{\prime\prime}(\varphi) &= (t\varphi)''(\lambda) = \lambda\varphi''(\lambda) + 2\varphi'(\lambda) = \lambda\delta_\lambda''(\varphi) -2\delta_\lambda'(\varphi)\\
+	&~\,\vdots
+\end{align*}
+show that derivatives of delta distributions are generalized eigenvectors for the action of $t$; that is, $(t-\lambda)^k\delta_\lambda^{(k-1)} = 0$. As a result the action of $t$ on the complex vector space spanned by $\{\delta_\lambda^\prime, -\delta_\lambda\}$ is given by the matrix $\bigl(\!\begin{smallmatrix}
+	\lambda & 1 \\ 0 & \lambda
+\end{smallmatrix}\!\bigr)$. Thus for the case $n = 1$, we have an isomorphism of $\mathbb C[t]$-modules $\mathbb C[t]/(t-\lambda)^2\to \mathbb C[t]\delta_\lambda^\prime$ given by $1\mapsto \delta_\lambda^\prime$. In general, $t$ acts on the complex vector space spanned by $\{(-1)^n\delta_\lambda^{(n-1)}/(n-1)!,\dots,\delta_\lambda^\prime, -\delta_\lambda\}$ by the $n\times n$ Jordan block with diagonal entries $\lambda$. Like before, we obtain an isomorphism of $\mathbb C[t]$-modules $\mathbb C[t]/(t-\lambda)^n\to \mathbb C[t]\delta_\lambda^{(n-1)}$ given by $1\mapsto \delta_\lambda^{(n-1)}$.
+
+So the discrete spectrum of an operator should correspond to derivatives of delta distributions supported at generalized eigenvalues of $T$. But even though these distributions are supported at points, their values on a test function $\varphi$ depend on the values of the derivatives of $\varphi$ (in general distributions may depend on the Taylor series for $\varphi$), so the delta distributions are ``localized'' in this sense. This story can be retold in the language of sheaf theory by thinking of the delta distributions as a sheaf supported at the generalized eigenvalues of $T$; that is, on $\Spec(\mathbb C[t]/\Ann_{\mathbb C[t]}(V))$ (here $\Spec$ takes the prime spectrum of a ring). The higher the order of the generalized eigenvalue, the higher its ``multiplicity'' is in this setting (and in the picture below, the multiplicity is indicated by concentric disks).
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\path [draw=none,fill=gray, fill opacity = 0.25] (1.75,0) circle (0.27);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (1.75,0) circle (0.17);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (-1, 0.25) circle (0.17);
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2, 1) {};
+		\node [style=none] (1) at (3, 1.5) {};
+		\node [style=none] (2) at (3, -1.5) {};
+		\node [style=none] (3) at (-2, -2) {};
+		\node [style=none] (5) at (3.75, -0.25) {$\mathbb C$};
+		\node [style=none] (6) at (-1, 0.25) {};
+		\node [style=none] (7) at (0, -1) {$\bullet$};
+		\node [style=none] (8) at (1.75, 0) {$\bullet$};
+		\node [style=none] (9) at (-1, 0.25) {$\bullet$};
+		\node [style=none] (10) at (-1.5, -0.25) {$\lambda_1$};
+		\node [style=none] (11) at (1.25, -0.5) {$\lambda_m$};
+		\node [style=none] (12) at (-0.5, -1.5) {$\lambda_2$};
+		\node [style=none] (13) at (0.5, -0.75) {$\mathbin{\rotatebox[origin=c]{70}{$\ddots$}}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+		\draw (1.center) to (2.center);
+		\draw (0.center) to (3.center);
+		\draw (3.center) to (2.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+The infinitesimal action of $G = \mathbb R_x$ on $\Fun(\widehat G)$ by pointwise multiplication by $t$ comes from the Fourier transform of the infinitesimal action of $G$ on $\Fun(G)$ by differentiation. The eigenfunctions of these actions are also expected to be interchanged via the Fourier transform. The delta functions $\delta_\lambda$ for $\lambda\in\mathbb R_t$ are eigenfunctions for pointwise multiplication by $t$; and on the other side of the Fourier transform, the exponentials $\exp(-i\lambda x)$ for $\lambda\in \mathbb R_x$ are eigenfunctions of $i\dv{x}$. Some analysis is needed to make this rigorous, but thinking of $\exp(-i\lambda x)$ as a regular distribution (i.e. as an element of a suitably chosen candidate for the group algebra) we have
+\[\abr{\widehat{\exp(-i\lambda(-))},\varphi} = \abr{\exp(-i\lambda(-)), \hat \varphi} = \int_{\mathbb R_x}\hat \varphi(x)\exp(-i\lambda x)\dd x = \varphi(\lambda) = \abr{\delta_\lambda,\varphi}\]
+so indeed the Fourier transform of $\exp(-i\lambda (-))$ is $\delta_\lambda$.
+
+Since $G = \mathbb R_x$ is not compact, indecomposable representations of $G$ need not coincide with the irreps of $G$. One way to obtain these is by taking the inverse Fourier transform of derivatives of delta distributions. Some calculations show that the Fourier transform of the function given by $(ix)^k\exp(-i\lambda x)$ is $\delta_\lambda^{(k)}$. By taking the inverse Fourier transform of the calculations from before involving $t\delta_\lambda^{(k)}$, we obtain the equations
+\begin{align*}
+	i\dv{x}[\exp(-i\lambda x)] &= \lambda \exp(-i\lambda x)\\
+	i\dv{x}[(ix)\exp(-i\lambda x)] &= \lambda(ix)\exp(-i\lambda x) - \exp(-i\lambda x)\\
+	i\dv{x}[(ix)^2\exp(-i\lambda x)] &= \lambda(ix)^2\exp(-i\lambda x)-2(ix)\exp(-i\lambda x)\\
+	&~\,\vdots
+\end{align*}
+from which we can see that $i\dv{x}$ acts on the complex vector space spanned by $\{(-1)^n(ix)^{n-1}\exp(-i\lambda x)/(n-1)!,\dots,(ix)\exp(-i\lambda x), -\exp(-i\lambda x)\}$ by the $n\times n$ Jordan block with diagonal entries $\lambda$. Similarly, if we think of this vector space instead as a $\mathbb C[X]$-module where $X$ acts by $i\dv{x}$, there is an isomorphism $\mathbb C[X]/(X-\lambda)^n\to \mathbb C[X](ix)^{n-1}\exp(-i\lambda x)$ given by $1\mapsto (ix)^{n-1}\exp(-i\lambda x)$. Notice this is all completely symmetric to what we did earlier with the delta distributions. The indecomposable representation we have obtained is the $n$-dimensional representation of the Lie algebra of $\mathbb R_x$ given by the $\mathbb C$-span of $\{(ix)^{n-1}\exp(-i\lambda x),\dots,(ix)\exp(-i\lambda x), \exp(-i\lambda x)\}$ (this is the induced Lie algebra representation given by acting by scalar multiples of $\dv{x}$). It is the case that this vector space is also an indecomposable representation of the original group $\mathbb R_x$ under translation.
+
+So in the usual sheaf picture, given a finite dimensional representation $V$ of $\mathbb R_x$, we can decompose $V$ into the direct sum of indecomposable subrepresentations isomorphic to the ones in the previous paragraph (of possibly different dimensions of course), and each subspace should be viewed as living over the corresponding generalized eigenvalue of the operator $H$ defining the action of $\mathbb R_x$ on $V$.
+
+One objection to the arguments from before is that none of these functions (the exponential, the delta distribution) belong to $L^2(\mathbb R_x)$ or are even functions. So these representations above are not necessarily unitary representations; somehow the Fourier theory is able to see non-unitary representations... 
+
+To address the continuous spectrum, we return to the setting where $V$ is a finitely generated $\mathbb C[t]$-module (where $t$ acts by an operator $T\in\End(V)$), so that $V$ decomposes as $V = V^{\textrm{free}}\oplus V^{\textrm{torsion}}$. We saw earlier that the $V^{\textrm{torsion}}$ summand corresponds to the discrete spectrum of the operator $T$, so on the other side the $V^{\textrm{free}}$ summand corresponds to the continuous spectrum of $T$.
+
+Since $V$ is finitely generated as a $\mathbb C[t]$-module, $V^{\textrm{free}} \cong \mathbb C[t]^\ell$ for $\ell$ finite. Note that $\Spec(\mathbb C[t]/(t-\lambda)^n)$ is the point $\{\lambda\}$ (thought of as having multiplicity $n$), and that $\Spec(\mathbb C[t])$ is the affine line $\mathbb C$. So in contrast to the discrete spectrum, the continuous spectrum in this setting ``lives everywhere'' over $\mathbb C$.
+\sai{fixpicture}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\path [draw=none,fill=gray, fill opacity = 0.25] (1.75,0) circle (0.27);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (1.75,0) circle (0.17);
+		\path [draw=none,fill=gray, fill opacity = 0.5] (-1, 0.25) circle (0.17);
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2, 1) {};
+		\node [style=none] (1) at (3, 1.5) {};
+		\node [style=none] (2) at (3, -1.5) {};
+		\node [style=none] (3) at (-2, -2) {};
+		\node [style=none] (5) at (3.75, -0.25) {$\mathbb C$};
+		\node [style=none] (6) at (-1, 0.25) {};
+		\node [style=none] (7) at (0, -1) {$\bullet$};
+		\node [style=none] (8) at (1.75, 0) {$\bullet$};
+		\node [style=none] (9) at (-1, 0.25) {$\bullet$};
+		\node [style=none] (10) at (-1.5, -0.25) {$\lambda_1$};
+		\node [style=none] (11) at (1.25, -0.5) {$\lambda_m$};
+		\node [style=none] (12) at (-0.5, -1.5) {$\lambda_2$};
+		\node [style=none] (13) at (0.5, -0.75) {$\mathbin{\rotatebox[origin=c]{70}{$\ddots$}}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+		\draw (1.center) to (2.center);
+		\draw (0.center) to (3.center);
+		\draw (3.center) to (2.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+There are no eigenvectors under the action of $t$ in the free module $\mathbb C[t]$; that is, there are no annihilators of $V^{\textrm{free}}$ under the action of $T$. However, there will be ``co-eigenvectors'' or eigenfunctionals belonging to $\mathbb C[t]^\ast = \Hom_{\mathbb C}(\mathbb C[t],\mathbb C)$; for example, the delta distribution $\delta_\lambda$. This is to say there are no subspaces of $\mathbb C[t]$ that are eigenspaces under the action of $t$, but there are quotients of $\mathbb C[t]$ that are eigenspaces: The functional $\delta_\lambda$ defines a surjection $\mathbb C[t]\xrightarrow{\delta_\lambda} \mathbb C$, and by the first isomorphism theorem we obtain the quotient eigenspace $\mathbb C[t]/(t-\lambda)$. Indeed, $t = (t-\lambda) + \lambda$ acts on the $\mathbb C[t]$-module $\mathbb C[t]/(t-\lambda)$ by scalar multiplication by $\lambda$. So in some sense this sheaf that ``lives everywhere'' is some kind of direct integral of delta sheaves living at every point.
+
+Here are some examples that illustrate why $V$ should be finitely generated as a $\mathbb C[t]$-module. Think of the ring $\mathbb C[t]$ as an $\mathbb N$-graded ring consisting of $\mathbb C$ in each degree or graded component, where $t$ acts by moving elements of $\mathbb C$ up one degree:
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhiYiBDIl0sWzEsMCwiXFxtYXRoYmIgQyJdLFsyLDAsIlxcbWF0aGJiIEMiXSxbMywwLCJcXG1hdGhiYiBDIl0sWzQsMCwiXFxjZG90cyJdLFswLDEsInRcXGNkb3QiXSxbMSwyLCJ0XFxjZG90Il0sWzIsMywidFxcY2RvdCJdLFszLDQsInRcXGNkb3QiXSxbMCwwLCIwIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMSwiMSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDIsIjIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywzLCIzIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	{\mathbb C} & {\mathbb C} & {\mathbb C} & {\mathbb C} & \cdots
+	\arrow["0"', draw=none, from=1-1, to=1-1, loop, in=55, out=125, distance=10mm]
+	\arrow["{t\cdot}", from=1-1, to=1-2]
+	\arrow["1"', draw=none, from=1-2, to=1-2, loop, in=55, out=125, distance=10mm]
+	\arrow["{t\cdot}", from=1-2, to=1-3]
+	\arrow["2"', draw=none, from=1-3, to=1-3, loop, in=55, out=125, distance=10mm]
+	\arrow["{t\cdot}", from=1-3, to=1-4]
+	\arrow["3"', draw=none, from=1-4, to=1-4, loop, in=55, out=125, distance=10mm]
+	\arrow["{t\cdot}", from=1-4, to=1-5]
+\end{tikzcd}\]
+In contrast the ring $\mathbb C[t,t^{-1}]$ can be thought of a $\mathbb Z$-graded ring consisting of $\mathbb C$ in each degree, where $t$ acts by moving elements of $\mathbb C$ up one degree, and $t^{-1}$ acts by moving elements of $\mathbb C$ down one degree:
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJcXG1hdGhiYiBDIl0sWzIsMCwiXFxtYXRoYmIgQyJdLFszLDAsIlxcbWF0aGJiIEMiXSxbNCwwLCJcXG1hdGhiYiBDIl0sWzUsMCwiXFxjZG90cyJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCJ0XFxjZG90IiwwLHsiY3VydmUiOi0xfV0sWzEsMiwidFxcY2RvdCIsMCx7ImN1cnZlIjotMX1dLFsyLDMsInRcXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbMyw0LCJ0XFxjZG90IiwwLHsiY3VydmUiOi0xfV0sWzAsMCwiLTIiLDIseyJyYWRpdXMiOjUsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDEsIiIsMix7InJhZGl1cyI6LTEsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDIsIjAiLDIseyJyYWRpdXMiOjUsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDMsIjEiLDIseyJyYWRpdXMiOjUsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDEsIi0xIiwyLHsicmFkaXVzIjo1LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwzLCJ0XnstMX1cXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbMywyLCJ0XnstMX1cXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbMiwxLCJ0XnstMX1cXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbMSwwLCJ0XnstMX1cXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbMCw1LCJ0XnstMX1cXGNkb3QiLDAseyJjdXJ2ZSI6LTF9XSxbNSwwLCJ0XFxjZG90IiwwLHsiY3VydmUiOi0xfV1d
+\[\begin{tikzcd}
+	\cdots & {\mathbb C} & {\mathbb C} & {\mathbb C} & {\mathbb C} & \cdots
+	\arrow["{t\cdot}", curve={height=-6pt}, from=1-1, to=1-2]
+	\arrow["{t^{-1}\cdot}", curve={height=-6pt}, from=1-2, to=1-1]
+	\arrow["{-2}"', draw=none, from=1-2, to=1-2, loop, in=50, out=130, distance=15mm]
+	\arrow["{t\cdot}", curve={height=-6pt}, from=1-2, to=1-3]
+	\arrow["{t^{-1}\cdot}", curve={height=-6pt}, from=1-3, to=1-2]
+	\arrow[draw=none, from=1-3, to=1-3, loop, in=300, out=240, distance=5mm]
+	\arrow["{-1}"', draw=none, from=1-3, to=1-3, loop, in=50, out=130, distance=15mm]
+	\arrow["{t\cdot}", curve={height=-6pt}, from=1-3, to=1-4]
+	\arrow["{t^{-1}\cdot}", curve={height=-6pt}, from=1-4, to=1-3]
+	\arrow["0"', draw=none, from=1-4, to=1-4, loop, in=50, out=130, distance=15mm]
+	\arrow["{t\cdot}", curve={height=-6pt}, from=1-4, to=1-5]
+	\arrow["{t^{-1}\cdot}", curve={height=-6pt}, from=1-5, to=1-4]
+	\arrow["1"', draw=none, from=1-5, to=1-5, loop, in=50, out=130, distance=15mm]
+	\arrow["{t\cdot}", curve={height=-6pt}, from=1-5, to=1-6]
+	\arrow["{t^{-1}\cdot}", curve={height=-6pt}, from=1-6, to=1-5]
+\end{tikzcd}\]
+
+As a $\mathbb C[t]$-module, $\mathbb C[t,t^{-1}]$ is not finitely generated due to the uncountably many copies of $\mathbb C$ in negative degrees. Further, there is no $\mathbb C[t]$-module quotient of $\mathbb C[t,t^{-1}]$ that is concentrated exactly in degree zero (that is, no eigenquotients under the action of $t$); that is, there is no evaluation map $\mathbb C[t,t^{-1}]\to\mathbb C$ that sends $t$ to zero. The algebraic dual space of $\mathbb C[t,t^{-1}]$ is the ring of formal power series over $\mathbb Z$, denoted $\mathbb C[[t,t^{-1}]]$. The delta functional $\delta_\lambda$ lives in this ring for $\lambda\neq 0$, so we obtain a sheaf that lives everywhere except at the origin; we know this because $\Spec(\mathbb C[t,t^{-1}])$ is $\mathbb C^\times$ (since $\mathbb C[t,t^{-1}]$ is the localization of $\mathbb C[t]$ at the ideal $(t)$).
+
+Another example is the ring $\mathbb C(t)$, which is not finitely generated as a $\mathbb C[t]$-module. There are no $\mathbb C[t]$-submodules or quotients of $\mathbb C(t)$ concentrated in degree $0$ (no eigenspaces or eigenquotients under the action of $t$). The spectrum of $\mathbb C(t)$ is the origin, because it is a field; or observe that we have inverted too many elements in $\mathbb C[t]$ (localized away from the zero ideal), so the sheaf we obtain in this case lives over the origin. By assuming $V$ is finitely generated as a $\mathbb C[t]$-module, we are led to study a quasicoherent sheaf over $\Spec(\mathbb C[t]/\Ann_{\mathbb C[t]}(V))$ whose global sections are $V$.
+
+\subsection{An analytic version of spectral theory}
+Let $\mathcal H$ be a Hilbert space. The spectral theorem for self-adjoint operators on Hilbert spaces gives a correspondence 
+\[\{\text{self-adjoint operators $H$ on $\mathcal H$}\}\longleftrightarrow\{\text{measurable fields of Hilbert spaces $\{\mathcal H_t\mid t\in \mathbb R\}$ over $\mathbb R$}\}\]
+A measurable field over $\mathbb R$ is a family of Hilbert spaces $\mathcal H_t$ for each $t\in \mathbb R$ together with a subspace $M$ of $\prod_{t\in\mathbb R}\mathcal H_t$ which denote the measurable sections (the elements of $m$ should be thought of as functions), which satisfy a few properties involving measurability (see the \href{https://ncatlab.org/nlab/show/measurable+field+of+Hilbert+spaces}{nLab}). In some sense the assignment $t\mapsto \mathcal H_t$ should be measurable and $\mathcal H = \int_{\mathbb R}^\oplus \mathcal H_t\dd t$, a direct integral (a continuous analogue of a direct sum).
+
+One idea in functional calculus is to make a commutative algebra out of an operator; this is analogous to the idea of a group algebra. This leads to an action of the von Neumann algebra $L^\infty(\mathbb R)$ on $\mathcal H$ by integrating functions against a projection-valued measure and applying the resulting projection; in this way $\mathcal H$ becomes a $W^\ast$-module. 
+
+A projection-valued measure on a measure space $X$ is a function that takes in measurable sets $E$ of $X$ and returns orthogonal projectors $\pi_E$ onto certain subspaces of a Hilbert space $\mathcal H$. This function needs to take the empty set to the zero operator, $X$ to the identity map, disjoint unions to sums of projectors, and finite intersections to products of projections (compositions of projections; which commute). If $H$ is a self-adjoint operator on $\mathcal H$, then there is a unique projection-valued measure $\pi_H$ on $\mathbb R$ for which $H = \int_{\mathbb R}\lambda\dd\pi_H(\lambda)$ (and this integral is actually just taken over the spectrum of $H$, which is compact).
+
+It turns out that the map $f\mapsto \int_{\mathbb R}f(\lambda)\dd\pi_H(\lambda)$ from $L^\infty(\mathbb R)$ to bounded operators on $\mathcal H$ is a homomorphism of $C^\ast$-algebras, so in particular the product of functions goes to the composition of the resulting operators (and the composition commutes; we should think of this map as returning diagonal operators).
+
+Returning to our unitary representation $\mathcal H$, the action of $\mathbb R_x$ on $\mathcal H$ is determined by the self-adjoint operator $H$ for which $x\in\mathbb R_x$ acts by $U_x = \exp(ixH)$. Then such an $H$ gives us a unique projection-valued measure $\pi_H$ which we use to define the action of $L^\infty(\mathbb R)$ on $\mathcal H$.
+
+For example, if $I$ is an interval in $\mathbb R$, then the characteristic function $\chi_I\in L^\infty(\mathbb R)$ acts on $\mathcal H$ by the operator $\int_{I}\dd \pi_H(\lambda)$, which is an idempotent since $\chi_I^2 = \chi_I$ and integration against $\pi_H$ preserves products. Compare this with the operator given by convolution against a character in the case when $G = \U(1)$. Think of the operator $\int_{I}\dd \pi_H(\lambda)$ as projecting onto the piece of $\mathcal H$ that lives over the interval $I$.
+
+Compare this with the case where $\mathcal H$ is finite-dimensional and $H$ is diagonalizable, in which case the direct integral is reduced to the direct sum and the projection we get by integrating the characteristic function of an eigenvalue $\lambda$ against the projection-valued measure $\pi_H$ is the projection to the eigenspace $\mathcal H_\lambda$. If we like we can integrate other characteristic functions to get direct sums of eigenspaces.
+
+In general $\mathcal H$ need not have eigenspaces or eigenquotients, and the spectral theory of the operator $H$ coming from the group action will tell us how $\mathcal H$ is smeared over the spectrum of $H$, and by using $\pi_H$ we can obtain projections to parts of $\mathcal H$ living over the continuous spectrum. Notice that if $t$ belongs to the continuous spectrum of $H$, we cannot obtain a projection onto $\mathcal H_t$ since such an operator would have to come from integrating a function concentrated at $\lambda = t$ against $\pi_H$, which yields the zero operator since the measure of a point is zero.
+
+The way $\mathcal H$ is smeared over the spectrum of $H$ can be thought of as an analyst's version of a sheaf. We can think of the atoms of the sheaf as eigenspaces (from delta functions), and the molecules as the spaces coming from generalized eigenvalues (from derivatives of delta functions). Unitary representations need not have either of these in the case the discrete spectrum of the operator $H$ defining the representation is empty, but in general the representation is smeared over the continuous spectrum of $H$.
+
+\subsection{A tiny preview of the Heisenberg group}
+The group $\mathbb R_x$ acts on $L^2(\mathbb R_x)$ by translations $\tau_y = \delta_y\ast -$ for $y\in\mathbb R_x$, and on the other side of the Fourier transform, $\mathbb R_x$ acts on $L^2(\mathbb R_t)$ by pointwise multiplication by characters $\chi_y = \chi(y,-)$. Due to Pontryagin duality we can also think about the action of the dual group $\mathbb R_t$ on $L^2(\mathbb R_t)$ by translation and on the other side of the Fourier transform on $\mathbb R_t$ (not the inverse Fourier transform!), $\mathbb R_t$ acts on $L^2(\mathbb R_x)$ by pointwise multiplication by characters $\chi_t = \chi(-,t)$ for $t\in\mathbb R_t$.
+
+These observations may be collected on the side $G = \mathbb R_x$ to see that the group $G\times \widehat G$ acts on $L^2(G)$. One natural question is to ask if the action of $G$ commutes with the action of $\widehat G$ on $L^2(G)$ (where $G,\widehat G$ are henceforth viewed as subgroups of $G\times \widehat G$). The actions of $G,\widehat G$ on $L^2(G)$ should be thought of as belonging to the multiplicative group $\Aut(\Fun(G))$, so to ask if they commute is to calculate the commutator of the action of group elements $g\in G$ and $\hat g\in \widehat G$ denoted by $[g\cdot,\hat g\cdot] = [g,\hat g]\cdot$. On a test function, we have 
+\begin{align*}
+	[g,\hat g]\cdot f &= g^{-1}\hat g^{-1}g\hat g\cdot f \\
+	&= g^{-1}\hat g^{-1}g(\chi(-,\hat g) f) \\
+	&= g^{-1}\hat g^{-1}(\overline{\chi(g,\hat g)}\chi(-,\hat g) f(g^{-1}-)) \\
+	&= g^{-1}(\chi(-,\hat g^{-1})\overline{\chi(g,\hat g)}\chi(-,\hat g) f(g^{-1}-)) \\
+	&= \overline{\chi(g,\hat g)} f(gg^{-1}-) \\
+	&= \overline{\chi(g,\hat g)}f
+\end{align*}
+So the action of $G$ and $\widehat G$ differ by multiplication by $\overline{\chi(g,\hat g)}\in \U(1)$. To account for these additional symmetries, we form the Heisenberg group by forming the central extension of $G\times \widehat G$ by $\U(1)$ (or if $G$ is instead a finite Abelian group, we only instead use the roots of unity that $\overline{\chi(g,\hat g)}$ lie in). The central extension is specifically the short exact sequence of groups
+\[1\to \U(1)\to \Heis\to G\times\widehat G\to 1\]
+Note that $\U(1)$ is central in $\Heis$, that is, viewing $\U(1)$ as a subgroup of $\Heis$, the elements in $\U(1)$ belong to the center $Z(\Heis)$ of the Heisenberg group (since the action of multiplication by scalars commuted with the actions of $G, \widehat G$ to begin with). 
+
+The Heisenberg group acts on $L^2(G)$ in three ways: by scalar multiplication, by translation, and by multiplication by characters (coming from $\U(1), G, \widehat G$ respectively). One advantage of forming the Heisenberg group this way is that it will be easy to show that $L^2(G)$ is actually an irreducible representation of the Heisenberg group, and many results surrounding harmonic analysis are much easier to prove.

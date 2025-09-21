@@ -1,0 +1,141 @@
+\section{09/09}
+\subsection{Fourier series}
+Let $G = \U(1)$, which we know familiarly as the circle. Since $G$ is compact, representations of $G$ are semisimple, and since $G$ is Abelian, irreps of $G$ are one-dimensional. We could decide to stop with the theory here, since at this point we have classified all of the finite-dimensional representations using the dual group $\widehat G$ from before.
+
+The dual group of the circle $\widehat{\U(1)}$ is $\mathbb Z$, where $n\in\mathbb Z$ corresponds to the character $z\mapsto z^n$, or if we think of $U(1)$ as $\mathbb R/\mathbb Z$, the character $x\mapsto \exp(2\pi inx)$. We will think of the circle as $\mathbb R/\mathbb Z$ usually, to appease the analysts (this is a joke). In this setting, the universal character $\chi(-,-)$ is the map $(x,n)\mapsto \exp(2\pi i nx )$ (so $\chi_x = \chi(x,-)$ and $\chi_n = \chi(-,n)$). Then the Fourier transform as we mentioned before is obtained from the maps in the diagram 
+\[\begin{tikzcd}
+	& {G\times \widehat G} \\
+	G && {\widehat G}
+	\arrow["{\pi_1}"', from=1-2, to=2-1]
+	\arrow["{\pi_2}", from=1-2, to=2-3]
+\end{tikzcd}\]
+by pulling back $f\in \Fun(G)$ along $\pi_1$, multiplying by $\chi(-,-)$, and then pushing forward along $\pi_2$. That is, 
+\[\hat f = {\pi_2}_\ast(\pi_1^\ast f\cdot \chi)\quad\text{so }\hat f(n) = \int_0^1 f(x)\exp(2\pi inx)\dd x\]
+
+The Fourier inversion theorem in this setting is
+\[f(x) \approx \sum_{n\in\mathbb Z}\hat f(n)\exp(-2\pi i nx)\]
+where the $\approx$ means that we should worry about convergence. It ends up being the case that we get convergence in the $L^2$ norm, but more analysis is needed for better results.
+
+Another point of view of the Fourier transform is to look at $G = \U(1)= \mathbb R/\mathbb Z$ acting on $L^2(G)$ by translation. The action is 
+\[y\cdot f \eqqcolon \tau_yf = f((-)-y)\quad \text{for }y\in\mathbb R/\mathbb Z\]
+The group action preserves each of the subspaces $\mathbb C\chi_n$ since like before, we have $\tau_y\chi_n(x) = \chi_{-n}(y)\chi_n(x)$. We can think of the Fourier transform in linear algebra terms, since $L^2(G)$ has the Hermitian inner product $\abr{f,g} = \int_0^1f(x)\overline{g(x)}\dd x$. Some analysis shows that the characters $\chi_n$ form an orthonormal basis of $L^2(G)$, so the Fourier transform finds the components of any $f\in L^2(G)$ using the inner product:
+\[\hat f(n) = \abr{f,\chi_{-n}} = \int_0^1 f(x)\exp(2\pi inx)\dd x\]
+The inverse Fourier transform reassembles $f$ from its projections onto each of the subspaces $\mathbb C\chi_n$, but as we noted before, we might need to worry about convergence:
+\[f(x) \approx \sum_{n\in\mathbb Z}\abr{f,\chi_{-n}}\chi_{-n} = \sum_{n\in\mathbb Z}\hat f(n)\exp(-2\pi i nx)\]
+Analysts are likely used to the characters being maps $x\mapsto \exp(inx)$ and the Fourier transform of $f\in L^2(\U(1))$ as $\frac{1}{2\pi}\int_0^{2\pi}f(x)\exp(-inx)\dd x$; to obtain this form we can present $U(1)$ not by $\mathbb R/\mathbb Z$ but as unimodular points in $\mathbb C$, with the Haar measure given by arclength measure, and by reindexing the characters by interchanging $n$ with $-n$.
+
+\subsection{Function spaces}
+An algebraic point of view is to view the algebra spanned by all of the characters as the algebraic functions on the circle; that is,
+\[\bigoplus_{n\in\mathbb Z}\mathbb C\chi_n\cong\mathbb C[z,z^{-1}]\quad\text{where $z = \exp(2\pi ix)$ since $x\in \mathbb R/\mathbb Z$}\]
+The coordinate ring of the affine space $\mathbb C$ is $\mathbb C[z]$. By localizing the coordinate ring at the maximal ideal $m_0 = \{f\in \mathbb C[z]\mid f(0) = 0\} = (z)$, we obtain the algebraic functions on $\mathbb C^\times$, which agree with the algebraic functions on the circle if we restrict $z$ to $z = \exp(2\pi i x)$ for $x\in\mathbb R/\mathbb Z$.
+
+An analytic point of view is to see this space of algebraic functions as being dense in function spaces like $L^2(G)$, $L^1(G)$, $C^\infty(G)$, $C^\omega(G)$ (analytic functions), $C^{-\infty}(G)$ (distributions), or even $C^{-\omega}(G)$ (hyperfunctions?). Let us suppress the $(G)$ for now. Each of these spaces has the algebraic functions above as an ``algebraic core'', for which we understand the Fourier transform on. The question is how the action of the Fourier transform extends to the rest of the function spaces, and this requires analysis. The Fourier transform exchanges the following spaces (this is not to say the Fourier transform is always an isomorphism of these spaces!):
+\begin{align*}
+	L^2 &\longleftrightarrow \ell^2 & L^1 &\longleftrightarrow c_0\\
+	C^\infty &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{polynomial}\} & C^\omega &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{exponential}\}\\
+	C^{-\infty} &\longleftrightarrow \{f\to \infty \text{ polynomial order}\} & C^{-\omega} &\longleftrightarrow \{f\to \infty \text{ exponential order?}\}
+\end{align*}
+
+It is actually the case that the Fourier transform gives an isomorphism of $L^2$ with $\ell^2$. Harish-Chandra studied similar function spaces for non-Abelian groups and found similar exchanges as above.
+
+More than just an orthonormal basis, the algebraic core of characters is the basis in which the action of $G$ is diagonalized via the Fourier transform. This is due to the property that the Fourier transform interchanges convolution of functions with pointwise multiplication of functions. In the setting of the circle group, this is to recast the action of translation as convolution against a delta distribution and to use the Fourier transform to obtain pointwise multiplication by a scalar:
+\[\tau_yf = \delta_y\ast f\xmapsto{\widehat{-}} \widehat{\delta_y\ast f} = \exp(2\pi i(-)y)\hat f.\]
+If $f$ is the character $\chi_n$, then $\tau_y$ acts on $f$ by multiplication by the scalar $\exp(-2\pi iny)$, and this action commutes with the Fourier transform. In general we should worry about what functions it makes sense to convolve against; after all, we are convoluting functions with distributions, so some analysis must be done. If we restrict to continuous functions, then the analysis of $C^\ast$-algebras will appear, for example.
+
+Since $\U(1)$ is thought of as continuous as opposed to discrete, there is an ``infinitesimal'' action of $\U(1)$ on functions given by taking the derivative. The Fourier transform takes differentiation to multiplication by a multiple of the identity function:
+\[\widehat{\dv{x}f}(n) = -2\pi in\hat f\]
+If $f$ is the character $\chi_m$, then the derivative of $f$ is $2\pi i m f$. The Fourier transform of $2\pi i m f$ is $2\pi i m \delta_{-m}$, so the action of the derivative commutes with the Fourier transform.
+
+What is meant by the ``infinitesimal'' action $\dv{x}$? From the action of $\U(1) = \mathbb R/\mathbb Z$, we define an action of its Lie algebra $\mathbb R$ (the tangent space at the identity $0$ of $\mathbb R/\mathbb Z$) on a function by $y\cdot f = \dv{t}(\tau_{ty}f)|_{t=0}$. In this case, $\dv{x}$ agrees with the action of $-1$ on functions; that is, $\dv{x}f = \dv{t}(\tau_{-t}f)|_{t=0}$. If we want to insist on working in $\U(1)$ given by the unimodular complex numbers, then the Lie algebra of $\U(1)$ in this case is $i\mathbb R$. The action of $i\mathbb R$ on $g$ (here $g$ is a function of $\theta$; if $g$ is a function of $z$, put $z = \exp(i\theta)$) is given by $iy \cdot g = \dv{t}(\exp(iyt)\cdot g)|_{t=0}$. In this case $\dv{\theta}$ is given by the action of $-i$ on functions; that is, $\dv{\theta}g = \dv{t}(\exp(-it)\cdot g)|_{t=0}$.
+
+Due to Pontryagin duality, we can mirror the above theory by considering taking Fourier transforms of functions on $\mathbb Z$ to get functions on $\widehat{\mathbb Z} = \U(1)$. The universal character $\chi(-,-)$ in this case is the same map (but we should flip the inputs) $(n,x)\mapsto \exp(2\pi inx)$ Even though $\mathbb Z$ is a discrete group, we can still think about difference operators in place of derivatives (these are just linear combinations of differences of translation operators). As desired, the action of $\mathbb Z$ on a function is given by translation, and the Fourier transform exchanges this action with multiplication by a character. That is, for $n\in\mathbb Z$
+\[n\cdot g \eqqcolon \tau_ng = \delta_n\ast g = g((-)-n)\xmapsto{\widehat{-}}\widehat{\delta_n\ast g} = \exp(2\pi in(-)) \hat g\]
+As before, we should also expect difference operators to correspond to a multiplier operator after taking the Fourier transform.
+
+The Fourier transform on $\mathbb Z$, which we also denote by $\mathcal F_{\mathbb Z}$, is given by $\hat g(x) = \sum_{n\in \mathbb Z}g(n)\exp(2\pi i nx)$, which is different from the inverse Fourier transform of the Fourier transform $\mathcal F_{\U(1)}$ from $\U(1)$ to $\mathbb Z$. Each Fourier transform has order four. Note also that by composing the two Fourier series together, we get $\mathcal F_{\mathbb Z}\mathcal F_{\U(1)}f(x) = f(-x)$. Similarly, $\mathcal F_{\U(1)}\mathcal F_{\mathbb Z}g(n) = g(-n)$. 
+
+Even though we understand well how the Fourier transform acts on delta distributions and characters, there is the issue of figuring out how the Fourier transforms extend to larger function spaces. There should be a nice way to package the theory together nicely, in a way that is agnostic to the exact functions appearing in the larger spaces. A nice way to package everything together is via the spectral theorem for the group $\U(1)$.
+
+\subsection{The spectral theorem for $\U(1)$}
+Let $\mathcal H$ be any unitary representation of $\U(1)$ (note that some of the function spaces we mentioned earlier are not Hilbert spaces!). Since we have diagonalized the action of $\U(1)$, it acts on $\mathcal H$ by compact operators (in this case the operators are approximated by finite-rank diagonal operators). By the spectral theorem for compact operators, we can find countably many eigenspaces of $\mathcal H$ whose direct sum is dense in $\mathcal H$. We find these eigenspaces explicitly using the characters $\chi_n$.
+
+The first part of this is to find analogues of the group algebra in this setting. On one hand, compactly supported functions on $G = \mathbb R/\mathbb Z$ would be a good starting place, but we can choose even larger spaces for which the product, convolution, still makes sense. For example, suitable candidates for a group algebra might be the space of continuous or even $L^1$ functions on $G$. For now, consider the continuous functions on $G$ with convolution, denoted by $(C(G),\ast)$. A unitary representation $(\mathcal H,\rho)$ of $G$ is in correspondence with a non-degenerate, bounded ${}^\ast$-representation (whatever this means, but note that this new representation is not unitary) $\pi_\rho$ of the algebra $C(G)$. Define $\pi_\rho$ by the \href{https://en.wikipedia.org/wiki/Bochner_integral}{Bochner integral}
+\[\pi_\rho(f) = \int_0^1 f(x)\rho(x)\dd x\]
+In other words, $f$ acts on $v$ by ``convolution against $v$'':
+\[f\cdot v = ``f\ast v\textrm{''} = \int_0^1 f(x)(x\cdot v)\dd x\]
+In this setting the action of the character $\chi_n$ (which is an element of $C(G)$) on $\mathcal H$ is an orthogonal idempotent; that is, the map $\chi_n\ast -$ satisfies 
+\[(\chi_m\ast -)(\chi_n\ast -) = (\chi_m\ast\chi_n)\ast - = \delta_{mn}\chi_n\ast -\]
+To see this, use the Fourier transform: It suffices to see that $\widehat{\chi_m\ast\chi_n} = \delta_m\cdot \delta_n = \delta_{mn}\delta_n$ (here $\delta_{mn}$ is the usual Kronecker delta).
+
+The subspaces $\mathcal H_n = \chi_n\ast \mathcal H$ of $H$ combine to form $\mathcal H^{\textrm{alg}} = \bigoplus_{n\in\mathbb Z}\mathcal H_n$. It turns out that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$. As expected, $\U(1)$ acts by pointwise multiplication by characters on the isotypic components of $\mathcal H$, the summands in $\mathcal H^{\textrm{alg}}$. Like before, we can get a sheaf picture where to each point $n$ of $\mathbb Z$ we place above it the vector space $\mathcal H_n$. The picture is a little different since the Hilbert space $\mathcal H$ is the closure of $\mathcal H^{\textrm{alg}}$.
+\begin{align*}
+  \mathcal H &= \overline{\mathcal H_1 \oplus \mathcal H_2 \oplus \cdots \oplus \mathcal H_\ell}\\
+  \mathbb Z&~~~~~1~~\phantom{\oplus}~~2~~\phantom{\oplus} \cdots \phantom{\oplus}~\,\ell
+\end{align*}
+
+The density of $\mathcal H^{\textrm{alg}}$ is due to some version of Plancherel's theorem in this setting. The algebra $C(G)$ does not have a unit, but if it did, it should have been the delta function $\delta_{1_G}$ (which is not a continuous function, or much less a function at all). This is evidence that we should have taken some larger space to be the analogue of the group algebra in this setting; that is, perhaps some space of distributions (with convolution as product) would have been a better choice. If we believe that such an analogue exists, then $\delta_{1_G}$ acts as the identity operator on $\mathcal H$:
+\[\id_{\mathcal H}v = v = \delta_{1_G}\ast v\]
+But by the Fourier transform $\delta_{1_G}$ corresponds to the unit for multiplication in the analogue of the group algebra for $\mathbb Z$ with pointwise multiplication, which is the constant function $\mathbf 1_{\mathbb Z}$ ($\mathbf 1_{\mathbb Z}(n) = 1$, notably not finitely supported). Since $\mathbf 1_{\mathbb Z} = \sum_{n\in\mathbb Z}\delta_n$, taking the inverse Fourier transform shows that $\id_{\mathcal H} = \sum_{n\in\mathbb Z}\chi_n\ast -$; this shows that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$.
+
+\subsection{Chebyshev polynomials of the first kind}
+The Chebyshev polynomials (of the first kind) are special functions, like the characters given by either $n$ or $x$ maps to $\exp(2\pi i nx)$ that play nice with the Fourier theory.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\draw[-] (2,0) arc[
+			start angle = 0,
+			end angle = -330,
+			x radius = 2,
+			y radius = 2
+		];
+		\draw[->] (2,0) arc[
+			start angle = 0,
+			end angle = 30,
+			x radius = 2,
+			y radius = 2
+		];
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2.5, -0.5) {$-1$};
+		\node [style=none] (1) at (2.5, -0.5) {$1$};
+		\node [style=none] (2) at (-2, 0) {};
+		\node [style=none] (3) at (2, 0) {};
+		\node [style=none] (5) at (0.5, -0.5) {$x$};
+		\node [style=none] (6) at (0.5, 0) {};
+		\node [style=none] (7) at (2.25, 1.25) {$\theta$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=to] (2.center) to (6.center);
+		\draw (6.center) to (3.center);
+	\end{pgfonlayer}
+	\end{tikzpicture}
+\end{figure}
+Comparing the real and imaginary parts in de Moivre's formula $(\cos(\theta) + i\sin(\theta))^n = \cos(n\theta) + i\sin(n\theta)$, one can prove that $\cos(n\theta)$ is a polynomial in $\cos(\theta)$. The change of coordinates $x = \cos(\theta) = (\exp(i\theta)+\exp(-i\theta))/2$ can now be used to turn power series in $\exp(i\theta),\exp(-i\theta)$ (Fourier series) representing even functions on the circle to power series in $x$. We can use a different change of coordinates $\sin(\theta) = (\exp(i\theta)-\exp(-i\theta))/2i$ to handle odd functions on the circle; these will lead to Chebyshev polynomials of the second kind.
+
+The $n$-th Chebyshev polynomial of the first kind $T_n(x)$ is defined to be the polynomial for which
+\[T_n(\cos(\theta)) = \cos(n\theta)\]
+That $\{\cos(n\theta)\}$ is an orthogonal basis for a suitable space of even functions on the circle corresponds to $\{T_n(x)\}$ being an orthogonal basis of a suitable space of functions on $[-1,1]$ with weighted $L^2$ inner product $\abr{f,g} = \int_{-1}^1f(x)g(x)/\sqrt{1-x^2}\dd x$.
+Some of the first few Chebyshev polynomials of the first kind are 
+\begin{align*}
+	T_0(x) &= 1 & T_1(x) &= x\\
+	T_2(x) &= 2x^2-1& T_3(x) &=4x^3-3x \\
+	T_4(x) &= 8x^4-8x^2+1& T_5(x) &= 16x^5-20x^3+5x
+\end{align*}
+
+We should think of the $T_n(x)$ as characters; in particular we can undo the change of coordinates $x = \cos(\theta)$ to obtain the universal character $(n,\theta)\mapsto T_n(\cos(\theta)) = \cos(n\theta) = (\exp(in\theta)-\exp(-in\theta))/2$.
+
+These polynomials satisfy the recurrence relation
+\[T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x)\]
+which should be thought of as a second order difference equation in $n$; that is, a discrete or otherwise integral version of a second order ODE. The Fourier transform takes shift operators to multiplier operators, so in this setting, undoing the change of coordinates $x = \cos(\theta)$ and applying a suitable Fourier transform to the resulting recurrence relation would return a second order algebraic equation (a quadratic equation) for $\cos(n\theta)$ in $\theta$.
+
+These polynomials also satisfy the differential equation
+\[(1-x^2)\dv[2]{x}T_n(x)-x\dv{x}T_n+ n^2T_n = 0\]
+in $x$, so we should obtain a second order algebraic equation in $n$ after applying a suitable Fourier transform to the above differential equation. That the above difference equation and differential equation are of second order should not be surprising since the universal character is $\cos(n\theta)$ in this setting.
+
+From the point of view of trigonometric polynomials, for some space of functions the set
+\[\{\underline{1},\underline{\cos(\theta), \sin(\theta)}, \underline{\cos(2\theta),\sin(2\theta)},\dots\}\]
+is an orthogonal basis. The underlined groups of functions are eigenspaces for the Laplacian $\Delta_{\U(1)} = \pdv[2]{\theta}$ on the circle. We can obtain these functions in a different way by first considering harmonic polynomials in the plane; that is, polynomials $p(x,y)$ for $x,y$ real which satisfy $\Delta_{\mathbb R^2}p = \bigl(\pdv[2]{x} + \pdv[2]{y}\bigr)p = 0$. Then consider the homogeneous polynomials in the plane; these are the polynomials $p$ for $p(kx,ky) = k^{\deg(p)}p(x,y)$; in polar coordinates these polynomials are separable with $p(r,\theta) = r^{\deg p}\tilde p(\theta)$ for some function $\tilde p(\theta)$ ($\deg p$ is the homogeneous degree of $p$). If $p$ is a harmonic homogeneous polynomial,
+\[0 = \Delta_{\mathbb R}p(r,\theta) = \biggl(\dv[2]{r}+\frac{1}{r}\dv{r}+\frac{1}{r^2}\dv[2]{\theta}\biggr)r^{\deg p}\tilde p(\theta) = r^{\deg p - 2}\biggl((\deg p)^2\tilde p(\theta)+\dv[2]{\theta}\tilde p(\theta)\biggr)\]
+By restricting to the circle $r = 1$, observe that $\tilde p$ is an eigenfunction of the Laplacian on the circle, which by the theory of ordinary differential equations tells us that $\tilde p$ is some linear combination of $\cos(n\theta)$ and $\sin(n\theta)$ for $n = \deg p$.
+
+That the real eigenspaces (that aren't $\mathbb R\{1\}$) for the Laplacian on the circle are two-dimensional comes from the action of the Laplacian on a suitable function space on the circle. Other differential operators may have different eigenspaces, of possibly different dimensions. In a Lie algebra, there is no notion of squaring elements, only taking their bracket. The universal enveloping algebra for a Lie algebra is an algebra which makes it possible to multiply elements of the Lie algebra together, and from a representation of a Lie group we should obtain a module over the universal enveloping algebra in a similar way to how we did so with the group algebra. We saw before how to obtain the derivative $\dv{\theta}$ from the action of the Lie algebra of $\U(1)$ on functions. In the universal enveloping algebra it makes sense to square the element producing the derivative (it was $-1$ for the Lie algebra of $\mathbb R/\mathbb Z$ or $-i$ for the Lie algebra of $\U(1)$), which would then act on functions as the Laplacian.

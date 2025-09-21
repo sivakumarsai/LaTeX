@@ -1,0 +1,79 @@
+\section{09/04}
+\subsection{Unitarizable representations and semisimplicity}
+A category is called semisimple if every object is the direct sum of finitely many simple objects. We will show that $\Rep_{\mathbb C}(G)$ is semisimple for $G$ finite.
+
+A complex representation of a group $G$ is unitarizable if there exists a Hermitian inner product (non-degenerate, sesquilinear, positive definite bilinear form) $\abr{-,-}$ on $V$ for which 
+\[\abr{gv,gw} = \abr{v,w}\]
+In other words, $V$ is unitarizable if it can be endowed with a Hermitian inner product that is invariant under the group action, or otherwise we can say that the group acts by unitary transformations on $V$ with this inner product. In the language of diagrams, given the representation $(V,\rho)$, there exists an inner product $\abr{-,-}$ and the map $G\xrightarrow{\rho} \U(V,\abr{-,-})$ (with the same definition as $G\xrightarrow{\rho} \GL(V)$) for which the following diagram commutes
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiXFxHTChWKSJdLFsxLDEsIlxcVShWLFxcYWJyey0sLX0pIl0sWzIsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJcXHJobyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDEsIlxccmhvIl1d
+\[\begin{tikzcd}
+	G & {\GL(V)} \\
+	& {\U(V,\abr{-,-})}
+	\arrow["\rho", from=1-1, to=1-2]
+	\arrow["\rho"', dashed, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=1-2]
+\end{tikzcd}\]
+
+A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector space $V$ and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$.
+
+Given a representation $(V,\rho)$, recall we can define the dual representation $V^\ast$ where $gf(v) = f(g^{-1}v)$. In this case we think of the action of $G$ as being inverted since we use the inversion map on $G$ to define the action on $V^\ast$. On the other hand, since the action of $G$ on $V$ is by complex-valued matrices, we can pointwise conjugate these matrices to obtain a representation $(\overline V,\overline \rho)$ where the underlying Abelian group $\overline V$ coincides with the Abelian group $V$ but the scalar multiplication is given by $c\cdot_{\overline V} v = \overline{c}\cdot_Vv$. Extending this, the group $G$ acts on $\overline V$ by $gv = \overline{\rho(g)}v$, and in this case we think of the action as being conjugated as opposed to inverted in the case with the dual vector space.
+
+A Hermitian inner product $\abr{-,-}$ on any complex vector space $V$ corresponds to an isomorphism of $\overline V$ with $V^\ast$ given by $v\mapsto \abr{-,v}$, and from any isomorphism $\overline V\xrightarrow{H} V^\ast$, define the inner product $\abr{-,-}$ by $\abr{v,w} = H(v)(w)$.
+
+That a representation $V$ is unitarizable is a property of $V$ as opposed to being part of the structure. On the other hand, if $W$ is a unitary representation, part of the data of $W$ is a fixed $G$-invariant inner product $\abr{-,-}$, as opposed to a unitarizable representation $V$ for which we do not specify any one $G$-invariant inner product. Of course, once we do specify a $G$-invariant inner product $\abr{-,-}_0$, we can speak of the unitary representation $(V,\abr{-,-}_0)$, which is different from the unitary representation $(V,\abr{-,-}_1)$ for a different $G$-invariant inner product $\abr{-,-}_1$.
+
+If $V$ is a finite-dimensional unitarizable representation, then $V$ is a semisimple representation; that is, $V$ is the direct sum of irreps/simples. Assume $V$ is already not simple, and fix a $G$-invariant inner product $\abr{-,-}$ on $V$. Let $W\subset V$ be any $G$-invariant subspace, and see that $W^\perp = \{v\in V\mid \abr{v,w} = 0\text{ for all }w\in W\}$ is a $G$-invariant subspace of $V$ since the $W$ and the inner product $\abr{-,-}$ are $G$-invariant:
+\[\abr{gv,w} = \abr{v,g^{-1}w}\quad\text{implies $gv\in W^\perp$ whenever $v\in W^\perp$}\]
+Then induction proves the result (this amounts to iterating this procedure on $W^\perp$ and repeating on each of the resulting subspaces until it cannot be done, which happens because $V$ is finite dimensional).
+
+Another nice result is that if $G$ is finite, then a finite dimensional representation $V$ is unitarizable and hence semisimple. The heart of this result is due to the existence of an averaging element $\av\in\mathbb C[G]$ given by
+\[\av = \frac{1}{\abs{G}}\sum_{g\in G}g\]
+Note that $\av\in Z(\mathbb C[G])$. To define this averaging element, it is crucial that $G$ is finite and that the characteristic of the field $\mathbb C$ (zero) does not divide the order of the group. The existence of an averaging operator is the content of Maschke's theorem from earlier, since we can use this averaging element to form a projector needed to form complements of $G$-stable subspaces, as we will see. 
+
+Let $V$ be any finite dimensional representation. Then we can define the subspace of $G$-fixed points, $V^G$, by
+\[V^G = \{v\in V\mid gv = v\text{ for all }g\in G\}\]
+The subspace $V^G$ is the part of $V$ that $G$ acts trivially on, or in other words is the trivial representation part of $V$ when broken into irreps. For any $v\in V$, $av\cdot v\in V^G$ since for any $h\in G$ we have
+\[h(\av\cdot v) = h\biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}hgv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \av\cdot v\]
+Observe further that because the sum is normalized with the factor $1/\abs{G}$, multiplication by $\av$ defines a projection map to $V^G$, since $\av^2 = \av$, so $\av-$ is an idempotent. The complementary idempotent is $(1-\av)-$, and see that it squares to itself as well. It is complementary since $\av(1-\av) = 0$. It follows that $V = \av V\oplus (1-\av)V = V^G\oplus (1-\av)V$.
+
+An aside: To prove Maschke's theorem, we do a similar trick. Given any $G$-invariant subspace $H$ of a representation $V$, consider the space $\Hom_{\mathbb C}(V,H)$, which contains many projections since short exact sequences in $\Vect_{\mathbb C}$ always split, or this is just true from linear algebra. What we want to find is a projector $\pi$ which is $G$-intertwining; that is, $(g\cdot)\pi(g^{-1}\cdot) = \pi$. Considering the action of $G$ on $\Hom_{\mathbb C}(V,H)$ by conjugation, finding a $G$-intertwining projector $\pi$ amounts to finding a projector that is fixed under conjugation. Pick any one projector $V\xrightarrow{\pi_0}H$, and average $\pi_0$ using $\av$ to get the projector
+\[\pi = \av\cdot\pi_0 = \frac{1}{\abs{G}}\sum_{g\in G}(g\cdot)\pi_0(g^{-1}\cdot)\]
+Hence $\pi$ is a fixed point under the conjugation action and thus is a desired $G$-equivariant projector.
+
+Returning to showing that a finite dimensional representation $V$ is unitarizable and hence semisimple, it amounts to finding a $G$-invariant inner product $\abr{-,-}$. Pick any inner product $\abr{-,-}_0$ on $V$ and make it $G$-invariant by averaging it via $\av$. Define the inner product $\abr{-,-}$ by 
+\[\abr{-,-} = ``\av(\abr{-,-}_0)\textrm{''} = \frac{1}{\abs{G}}\sum_{g\in G}\abr{g-,g-}_0\]
+Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an isomorphism $H\in \Hom_{\mathbb C}(\overline V, V^\ast)^G$ by applying the projection $\Hom_{\mathbb C}(\overline V, V^\ast)\to \Hom_{\mathbb C}(\overline V, V^\ast)^G$ obtained via averaging to any isomorphism $H_0\in \Hom_{\mathbb C}(\overline V, V^\ast)$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep_{\mathbb C}(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
+
+\subsection{Distributions and measures}
+When $G$ is finite, then the group algbera $\mathbb C[G]$ can be identified with the algebra $\Fun(G)$ with convolution, and we identify $\av$ with $\mathbf{1}_G/\abs{G}$ ($\mathbf{1}_G$ is the indicator function on $G$) and identify $1_{\mathbb C[G]}$ with $\delta_{1_{G}}$, and everything in between. If $G$ is also Abelian, then $\Fun(G)$ with convolution is isomorphic to $\Fun(\widehat G)$ with pointwise multiplication via the Fourier transform. A short calculation shows that the Fourier transform of $\delta_{1_G}$ is $\mathbf{1}_{\widehat G} = \sum_{\hat g\in\widehat G}\delta_{\hat g}$, which can be thought of as some version of Plancherel's theorem.
+
+So if $G$ acts on $V$, then we know that $V$ decomposes as $V = \bigoplus_{\hat g\in \widehat G}V_{\hat g}$, where $V_{\hat g} = \delta_{\hat g}V$, where we think of the delta functions as being projectors onto subspaces of $V$ for which $G$ acts by multiplication by characters. The notation is suggestive: $g\cdot \delta_{\hat g}V = \chi_{\hat g}(g)\delta_{\hat g}V$.
+
+When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1)$ or $\mathbb R$ since we will look at $L^2(G)$ primarily. For example, we think of $\mathbf{1}_G/\abs{G}$ more accurately as the distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact, and $\delta_{1_G}$ as the functional which evaluates functions at $1_G$.
+
+Because the convolution of two functions is given by an integral or otherwise a pushforward, secretly somehow what is actually happening is that we are pushing forward a particular distribution or measure. ``You don't integrate functions, you integrate measures.'' So this is more evidence that we should see if we can do an analysis of the representations of infinite Abelian groups using distributions instead of functions.
+
+% The convolution of two distributions $F,H$ in this setting is given by $F\ast H = m_\ast(F\boxtimes H)$ where $\Fun(G)\times \Fun(G)\xrightarrow{F\boxtimes H} \mathbb C$ is given by $(F\boxtimes H)(f,h) = Ff\cdot Hh$ and $m$ is the multiplication map $G\times G\to G$. Explicitly, 
+% \[(F\ast H)(f) = m_\ast(F\boxtimes H)(f) = (m^\ast-)_\ast(F\boxtimes H)(f) = \]
+
+Let $G$ be a locally compact Hausdorff topological group. Then Haar's theorem (see \href{https://en.wikipedia.org/wiki/Haar_measure}{Wikipedia}) states that there is a measure $\mu$ on the Borel subsets of $G$, called the Haar measure, which is:
+\begin{enumerate}
+	\item Left-translation invariant under the left multiplication action of $G$; that is, the pushforward measure $(g\cdot)_\ast \mu$ agrees with $\mu$.
+	\item Finite on compact sets of $G$.
+	\item Outer regular on Borel sets; that is, $\mu(S) = \inf\{\mu(U)\mid S\subseteq U\text{ with $U$ open}\}$ for $S$ a Borel set. 
+	\item Inner regular on open sets; that is, $\mu(U) = \sup\{\mu(K)\mid K\subseteq U\text{ with $K$ compact}\}$ for $U$ an open set.
+	\item Unique up to positive scaling.
+\end{enumerate}
+
+If $G$ is compact then we can normalize the Haar measure on $G$ to produce a unique Haar measure for which $\mu(G) = 1$. This measure is provided by $\av$, viewed as a measure by the formula $\av(E) = \frac{1}{\mu(G)}\int_E 1 \dd\mu$ where $\mu$ is any Haar measure, or as the regular distribution $T_\av$ where $T_\av(f) = \int_G f(g)\av(g)\dd\mu = \frac{1}{\mu(G)}\int_G f(g) \dd\mu$ where $\mu$ is any Haar measure. So for example, the normalized Haar measure on $\U(1)$ is $\dd\theta/2\pi$.
+
+On a manifold, to be able to integrate we need to be able to find a top differential form. So if $G$ is a Lie group, consider the tangent space $\mathfrak g = T_G(1_G)$, which is the only one we need to consider since all other tangent spaces are obtained via translation of the tangent space at the identity. Then the space of top differential forms $\bigwedge^{\dim \mathfrak g}\mathfrak g^\ast$ is a $1$-dimensional vector space. The normalized Haar measure is the measure induced by the normalized top form in this vector space.
+
+The requirement that $G$ is locally compact probably comes from wanting to be able to approximate integrals using compact exhaustions. The Hausdorff requirement is a consequence of the following result of topological groups: For $G$ a topological group, let $H$ be the closure of the set $\{1_G\}$. Then $H$ is a normal subgroup and the quotient $G/H$ is the largest quotient of $G$ that is Hausdorff. Furthermore, every continuous map of $G$ to a Hausdorff space factors through the quotient $G/H$. So in our setting, we will be considering continuous maps from $G$ to the complex numbers, so in this setting $G$ is indistinguishable from its largest Hausdorff quotient. As a consequence, there is no loss in defining LCA groups to be locally compact, Abelian, and Hausdorff.
+
+A fun fact is that if $G$ is compact, then the Haar measure on $G$ is automatically both left and right-translation invariant, even if $G$ is not Abelian. For any Haar measure $\mu$ on $G$ and $g\in G$, the pushforward of $\mu$ by right multiplication by $g^{-1}$ produces another left invariant Haar measure $(\cdot g)_\ast\mu$. So $\mu$ is some multiple of $(\cdot g)_\ast\mu$, denote this multiple by $\bmod(g)$, called the modulus character of $G$. It turns out that this quantity does not depend on the choice of Haar measure $\mu$ we started with, and is also a group homomorphism $G\to \mathbb R_{>0}$, which measures how much the left and right-translation invariance of the Haar measure disagree. The modulus character is trivial if $G$ is Abelian. For $G$ compact, there are no compact subgroups of $\mathbb R_{>0}$ aside from $\{1\}$, so in this case the modulus character is also trivial, and hence Haar measures on compact groups are bi-invariant. In other words, the Haar measure is a $G\times G$-invariant measure on $G$ (where $(g,h)\in G\times G$ acts by left translation by $g$ and by right translation by $h^{-1}$). This is because the element $\av\in\mathbb C[G]$ is $G\times G$-invariant (where $(g,h)\in G\times G$ acts by left multiplication by $g$ and by right multiplication by $h^{-1}$); this is stronger than just being invariant under conjugation by $G$.
+
+\subsection{A tiny preview of LCA groups}
+Let $G$ be compact. Then finite dimensional representations of $G$ are semisimple. The proof follows the same ideas as in the finite case, but we replace all sums with integrals using the normalized Haar measure. Note that the normalization of the Haar measure is what will ensure that our desired projector actually is an idempotent as we did in the finite case.
+
+For LCA groups, it is also true that finite dimensional representations are semisimple, and from before we know the irreps are one-dimensional. If $G = \U(1) = S^1$, then we obtain the theory of Fourier series, since the dual group $\widehat{S^1}$ is isomorphic to $\mathbb Z$; each character of $S^1$ is of the form $z\mapsto z^n$ (or $x\mapsto \exp(2\pi i nx)$ if we think of $S^1$ as $\mathbb R/\mathbb Z$) for some integer $n$.

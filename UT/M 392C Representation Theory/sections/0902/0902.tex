@@ -1,0 +1,162 @@
+\section{09/02}
+\subsection{More on the structure of $\widehat G$}
+For $G$ a finite Abelian group, we saw/will see four equivalent descriptions of $\widehat G$:
+\begin{align*}
+	\widehat G &= \text{set of irreps of $G$}\\
+	&= \Hom_{\Group}(G,\mathbb C^\times)\\
+	&= \text{unitary irreps of $G$} = \Hom_{\Group}(G,\U(1))\\
+	&= \Spec(\mathbb C[G]) = \text{maximal ideals of $\mathbb C[G]$} = \Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)
+\end{align*}
+Some of these descriptions for $\widehat G$ stop becoming equivalent to each other if we remove the adjectives finite or Abelian from $G$.
+
+For any commutative ring $R$, recall that we think of $R$ as functions on $\Spec(R)$ with pointwise multiplication. In general there is no reason to expect $\Spec(R)$ to be a group, but we were able to give $\Spec(\mathbb C[G])$ a group operation when $G$ is Abelian. So in this situation something special is happening. 
+
+The deeper lesson: Suppose now that $G$ is any group (not necessarily Abelian). If $V,W$ are representations of $G$ then we can form a new representation $V\otimes_{\mathbb C}W$ where $g(v\otimes w) = gv\otimes gw$. This comes from the diagonal embedding $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ given by $\mathbb C$-linearly extending the assignment $g\mapsto g\otimes g$. By doing so $\Delta$ is a $\mathbb C$-algebra homomorphism; it suffices only to check that it respects the group multiplication:
+\[\Delta(hg) = hg\otimes hg = (h\otimes h)(g\otimes g) = \Delta(h)\Delta(g)\]
+The natural action of $\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ on $V\otimes_{\mathbb C} W$ given by $(f\otimes g)(v\otimes w) = fv\otimes gw$ can be pulled back along the diagonal embedding $\Delta$ to give $V\otimes_{\mathbb C} W$ the action of $G$ mentioned above.
+
+If $A$ is a $\mathbb C$-algebra and $V,W$ are $A$-modules, there is a natural action of $A\otimes_\mathbb CA$ on $V\otimes_{\mathbb C}W$ given by $(a\otimes a^\prime)(v\otimes w) = av\otimes a^\prime w$. But the diagonal map $A\to A\otimes_{\mathbb C}A$ might not be a $\mathbb C$-algebra homomorphism, but only $\mathbb C$-linear. In this case there may not be a natural way for $A$ to act on $V\otimes_{\mathbb C}W$ like in the case of the group algebra. That the diagonal map $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ for the group algebra is a $\mathbb C$-algebra homomorphism is part of the group algebra really being a Hopf algebra (\href{https://en.wikipedia.org/wiki/Hopf_algebra}{see Wikipedia}), and in this setting $\Delta$ is the comultiplication map.
+
+If $V$ is a representation of $G$, another representation of $G$ we can form is the dual space $V^\ast\coloneqq \Hom_{\mathbb C}(V,\mathbb C)$, where the action of $G$ on $\mathbb C$ is the trivial action. The action of $G$ on $V^\ast$ is $(gf)(v) = f(g^{-1}v)$. We may not be able to  construct dual modules for an arbitrary $\mathbb C$-algebra $A$ and $A$-module $V$, since we need some way to invert the action of $A$ when ``passing the action inside the function''. This is related to one other datum that Hopf algebras have, which is their coinverse (also called antipode) map. In the case of the group algebra $\mathbb C[G]$, the coinverse map is $g\mapsto g^{-1}$ and this actually gives an isomorphism of $\mathbb C[G]$ and its opposite ring $\mathbb C[G]^{\op}$ (the ring where $g\cdot_{\op}h = hg$).
+
+If $A$ is a Hopf algebra over $\mathbb C$ and $V,W$ are $A$-modules it is possible to define actions of $A$ on $V\otimes_{\mathbb C} W$ and on $V^\ast\coloneqq \Hom_{\mathbb C}(V,\mathbb C)$ in a manner analogous to the above by using the comultiplication and antipode maps on $A$, respectively.
+
+If we want to think of the tensor product as giving a monoid structure to $\Rep_{\mathbb C}(G)$ (the category of dimensional representations of $G$), we might wonder if there is a way to obtain inverses in this category. So far, being able to take tensor products and duals of representations make $\Rep_{\mathbb C}(G)$ a rigid symmetric monoidal category; see the \href{https://ncatlab.org/nlab/show/rigid+monoidal+category}{nLab}. Another question is when the irreps of $G$ form a monoid or even a group; in the case that $G$ is not Abelian the tensor product of irreps need not be an irrep...
+
+Returning to $G$ finite Abelian, in the description of $\widehat G$ as the collection of irreps of $G$, the group operation in $\widehat G$ is given by the tensor product of representations and inverses are given by taking dual spaces. Of course, the tensor product is associative and commutative in this case, and observe that $V\otimes_{\mathbb C}V^\ast \cong \End(V)\cong \mathbb C$ (since $V$ is one-dimensional). The action of $G$ on $V\otimes_{\mathbb C}V^\ast$ is also trivial: $g(v\otimes f) = gv\otimes gf = \chi_V(g) v\otimes \chi_V^{-1}(g)f = v\otimes f$.
+
+\subsection{The Fourier transform on finite Abelian groups}
+Let $G$ be a finite Abelian group. Then $G\times \widehat G$ has a distinguished complex-valued function $G\times \widehat G\xrightarrow{\chi}\mathbb C^\times$ called the universal character, defined by 
+\[\chi(g,\hat g) = \chi_{\hat g}(g)\quad \text{($=\hat g(g)$ if we think of $\hat g$ as a character)}\]
+where $\chi_{\hat g}$ is the character corresponding to $\hat g\in \widehat G$ (here $\widehat G$ is thought of as a set of points). Observe that $\chi$ is multiplicative in each component; that is,
+\[\chi(hg,\hat h\hat g) = \chi_{\hat h\hat g}(hg) = \chi_{\hat h\hat g}(h)\chi_{\hat h\hat g}(g) = \chi_{\hat h}(h)\chi_{\hat g}(h)\chi_{\hat h}(g)\chi_{\hat g}(g)\]
+
+To each $g\in G$, the function $\chi_g\coloneqq \chi(g,-)\colon \widehat G\to\mathbb C^\times$ is a group homomorphism: 
+\[\chi_g(\hat h\hat g) = \chi(g,\hat h\hat g) = \chi_{\hat h}(g)\chi_{\hat g}(g) = \chi_g(\hat h)\chi_g(\hat g)\]
+The assignment $g\mapsto \chi_g$ is a group homomorphism $G\xrightarrow{\chi_{-}} \Hom_{\Group}(\widehat G,\mathbb C^\times)$ that informally speaking, takes an element $g$ to the map $\widehat G\to\mathbb C^\times$ which evaluates a character at $g$:
+\[\chi_{gh}(\hat g) = \chi(gh,\hat g) = \chi(g,\hat g)\chi(h,\hat g) = \chi_g(\hat g)\chi_h(\hat g)\quad \text{Thus $\chi_{gh} = \chi_g\cdot \chi_h$ (pointwise multiplication)}\]
+
+Denote by $\dwidehat G$ the group $\Hom_{\Group}(\widehat G,\mathbb C^\times)$. Since the kernel of $\chi_-$ is trivial and the image of $\chi_-$ is all of $\dwidehat G$, we obtain a (canonical) isomorphism of $G$ with $\dwidehat G$. This is the content of Pontryagin duality for finite Abelian groups. The same result is true for locally compact Abelian groups, but requires some more tools to prove.
+
+An analyst cannot help but think of the universal character $\chi(-,-)$ as being similar to kernels of integral operators (which are usually denoted $K(-,-)$ for example), or in this finite setting it might be more accurate to think of the universal character as similar to a matrix. The similarity is no coincidence. The universal character $\chi(-,-)$ is the kernel for the Fourier transform.
+
+The Fourier transform is a map $\Fun(G)\xrightarrow{\widehat{-}}\Fun(\widehat G)$ which we think of as a linear transformation with matrix $\chi(-,-)$. The Fourier transform is given by the formula
+\[\hat f(\hat g) = \sum_{g\in G}\chi(g,\hat g)f(g)\]
+For infinite groups that admit a Fourier transform like this, the sum is replaced by an integral of some kind and the kind of function spaces we consider may need adjustment.
+
+One other perspective of this map is that it comes from a pullback and a pushforward. Consider the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJHXFx0aW1lcyBcXHdpZGVoYXQgRyJdLFswLDEsIkciXSxbMiwxLCJcXHdpZGVoYXQgRyJdLFswLDEsIlxccGlfMSIsMl0sWzAsMiwiXFxwaV8yIl1d
+\[\begin{tikzcd}
+	& {G\times \widehat G} \\
+	G && {\widehat G}
+	\arrow["{\pi_1}"', from=1-2, to=2-1]
+	\arrow["{\pi_2}", from=1-2, to=2-3]
+\end{tikzcd}\]
+and consider a function $f\in \Fun(G)$. The Fourier transform $\hat f$ is given by pulling back $f$ along $\pi_1$, multiplying by $\chi(-,-)$, and then pushing forward along $\pi_2$. That is, 
+\[\hat f = {\pi_2}_\ast(\pi_1^\ast f\cdot \chi)\]
+The pushforward just means to sum (integrate) over fibers, and fiber of $\hat g$ is $\{(g,\hat g)\mid g\in G\}$. Pulling back $f$ along this projection does nothing but view $f$ as a function on $G\times \widehat G$; that is, $(\pi_1^\ast f)(g,\hat g) = f(g)$. This recovers the first formula above for the Fourier transform.
+
+As a fun fact, we can think about matrix multiplication this way. An $n\times m$ matrix $A = (A_{ij})$ is a function on the set $\{1,\dots,m\}\times\{1,\dots,n\}$ and a vector $v$ in $\mathbb C^m$ is a function on $\{1,\dots,m\}$. There is a diagram 
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXGNicnsxLFxcZG90cyxufVxcdGltZXNcXGNicnsxLFxcZG90cyxtfSJdLFswLDEsIlxcY2JyezEsXFxkb3RzLG19Il0sWzIsMSwiXFxjYnJ7MSxcXGRvdHMsbn0iXSxbMCwxLCJcXHBpXzEiLDJdLFswLDIsIlxccGlfMiJdXQ==
+\[\begin{tikzcd}
+	& {\{1,\dots,m\}\times\{1,\dots,n\}} \\
+	{\{1,\dots,m\}} && {\{1,\dots,n\}}
+	\arrow["{\pi_1}"', from=1-2, to=2-1]
+	\arrow["{\pi_2}", from=1-2, to=2-3]
+\end{tikzcd}\]
+So $Av$ coincides with ${\pi_2}_\ast(\pi_1^\ast v\cdot A)$; that is, $(Av)_j = \sum_{i=1}^m A_{ij}v_i$ as expected. The same thing can be done for integral operators with kernel $K(-,-)$.
+
+Denote by $\delta_g$ the Kronecker delta or the delta function(al) at $g$, or also the indicator function of $\{g\}$:
+\[\delta_g(h) = \delta_{gh} = \begin{cases}
+	1 & \text{if } g = h\\
+	0 & \text{otherwise}
+\end{cases}\]
+Since $G$ is finite, these delta functions span $\Fun(G)$. The Fourier transform of the delta function is calculated by
+\[\widehat{\delta_g}(\hat g) = \sum_{h\in G}\chi(h,\hat g)\delta_g(h) = \chi(g,\hat g), \quad\text{so }\widehat{\delta_g} = \chi_g\]
+which we summarize by saying that Fourier transforms of delta functions are characters.
+
+From the calculation 
+\[(\delta_g\ast\delta_h)(x) = \sum_{y}\delta_g(y)\delta_h(y^{-1}x) = \delta_h(g^{-1}x) = \begin{cases}
+	1 & \text{if } x = gh\\
+	0 & \text{otherwise}
+\end{cases}\]
+we have $\delta_g\ast\delta_h = \delta_{gh}$. Recalling that $\chi_{gh} = \chi_g\cdot \chi_h$, conclude from the linearity of convolution that for any $f,h\in \Fun(G)$ that $\widehat{f\ast h} = \hat f\cdot \hat h$, which is summarized by saying that the Fourier transform turns convolution to pointwise multiplication. In other words, the Fourier transform diagonalizes the action of $G$ on $\Fun(G)$ since $gf = \delta_g\ast f$. So in order for the Fourier transform to be a $\mathbb C[G]$-module homomorphism, $G$ should act on $\Fun(\widehat G)$ by pointwise multiplication by $\chi_g$; that is, $gF(x) = \chi_g(x)F(x)$ for $F\in \Fun(\widehat G)$.
+
+\subsection{Fourier inversion on finite Abelian groups}
+We will show that the Fourier transform has a $G$-linear inverse and hence is an isomorphism. 
+
+From some of the above calculations, we have that $g\delta_h = \delta_g\ast \delta_h = \delta_{gh}$. This equation shows that the action of $G$ on the delta functions is by pushforward via left multiplication. So in reality the delta function in this case is a distribution or measure as opposed to a function.
+
+Let $G$ be any finite group. The left multiplication of $G$ on itself gives rise to a natural right action on functions by pullback along the left multiplication map and a natural left action on distributions (or measures) by pushforward via the right action map on $\Fun(G)$. That is, given a complex-valued function $G\xrightarrow{f}\mathbb C$, the right action of $G$ on $f$ is given by $fg = (g\cdot)^\ast f = f(g-)$:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiRyJdLFsxLDEsIlxcbWF0aGJiIEMiXSxbMCwxLCJnXFxjZG90Il0sWzEsMiwiZiJdLFswLDIsImYoZy0pPShnXFxjZG90KV5cXGFzdCBmIiwyXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	G \& G \\
+	\& {\mathbb C}
+	\arrow["{g\cdot}", from=1-1, to=1-2]
+	\arrow["{f(g-)=(g\cdot)^\ast f}"', from=1-1, to=2-2]
+	\arrow["f", from=1-2, to=2-2]
+\end{tikzcd} \quad \text{pulling back $f$ along $g\cdot$}\]
+The right action on $\Fun(G)$ defines a map $\Fun(G)\xrightarrow{\cdot g}\Fun(G)$, by which we will pushforward distributions. Given a distribution on $G$; that is, a linear function $\Fun(G)\xrightarrow{T}\mathbb C$, the left action of $G$ on $T$ is given by $gT = (\cdot g)_\ast T = T(-g^{-1})$:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEZ1bihHKSJdLFsxLDAsIlxcRnVuKEcpIl0sWzAsMSwiXFxtYXRoYmIgQyJdLFswLDEsIlxcY2RvdCBnIl0sWzAsMiwiVCIsMl0sWzEsMiwiKFxcY2RvdCBnKV9cXGFzdCBUPSBUKC1nXnstMX0pIl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\Fun(G)} \& {\Fun(G)} \\
+	{\mathbb C}
+	\arrow["{\cdot g}", from=1-1, to=1-2]
+	\arrow["T"', from=1-1, to=2-1]
+	\arrow["{(\cdot g)_\ast T= T(-g^{-1})}", from=1-2, to=2-1]
+\end{tikzcd} \quad \text{pushing forward $T$ by $\cdot g$}\]
+Here, $(\cdot g)_\ast T = T(-g^{-1})$ because
+\[(\cdot g)_\ast T(f) = \sum_{\substack{h\\hg=f}}T(h) = T(fg^{-1})\quad \text{(only one element in the fiber)}\]
+Typically, for a function $f\colon X\to Y$ and a distribution $F\colon \Fun(X)\to \mathbb C$, the pushforward $(f^\ast-)_\ast F$ is denoted by $f_\ast F$, and this is what is meant by the pushforward of the distribution $F$ by $f$ (similarly for measures).
+
+It is instructive to look at the left action of $G$ on the regular distributions, which are the distributions $T_f$ obtained by integration against $f\in\Fun(G)$:
+\[T_f(h) = \sum_{g\in G}f(g)h(g)\]
+and the action of $G$ on a regular distribution looks like
+\begin{multline*}
+	(gT_f)(h) = ((\cdot g)_\ast T_f)(h) = T_f(hg) = T_f(h(g-)) \\ = \sum_{x\in G} f(x)h(gx) = \sum_{x\in G} f(g^{-1}x)h(x) = \sum_{x\in G} (fg^{-1})(x)h(x) = T_{fg^{-1}}(h)
+\end{multline*}
+To summarize, for any $f\in \Fun(G)$, $gT_f = T_{fg^{-1}}$. For finite groups, every distribution on $G$ is a regular distribution. Given a distribution $T$ on $G$, define $f\in \Fun(G)$ by $f(g) = T(\delta_g)$. Then by linearity of $T$ the calculation
+\[T_f(\delta_h) = \sum_{x\in G}f(x)\delta_h(x) = \sum_{x\in G}T(\delta_x)\delta_h(x) = T(\delta_h)\]
+implies that $T = T_f$ (and that $f$ is unique).
+
+Compare the original left action of $G$ (not the natural one defined by pullbacks above) on the function $\delta_h$ with the left action of $G$ on the regular distribution $T_{\delta_h}$:
+\[g\delta_h = \delta_{gh}\quad \text{and}\quad gT_{\delta_h} = T_{\delta_hg^{-1}} = T_{\delta_{gh}}\]
+So this is a reason for why we mentioned above that the delta function was really a distribution or measure. The original definition of the left action of $G$ on $\Fun(G)$ may be thought of as turning the natural right action of $G$ on $\Fun(G)$ into a left action by being clever with signs, or more interestingly as identifying all functions with their corresponding regular distributions.
+
+Now return to the case when $G$ is finite Abelian. View $\chi_{\hat g}$ as an element of $\Fun(G)$. The calculation
+\[g\chi_{\hat g}(h) = \chi_{\hat g}(g^{-1}h) = \chi_{\hat g}(g^{-1})\chi_{\hat g}(h) =\chi_{\hat g}(g)^{-1}\chi_{\hat g}(h) = \overline{\chi_{\hat g}(g)}\chi_{\hat g}(h)\]
+shows that under the action of $G$ on $\Fun(G)$, $\chi_{\hat g}$ is an eigenvector with eigenvalue $\chi_{\hat g}(-)^{-1} = \overline{\chi_{\hat g}(-)}$. In the theory of Fourier series (which we will see more later), a character of $\U(1) = \mathbb R/\mathbb Z$ is of the form $x\mapsto \exp(2\pi inx)$. The action of $\mathbb R/\mathbb Z$ on $\Fun(\mathbb R/\mathbb Z)$ is given by $(x\cdot f)(\theta) = f(\theta-x)$, so
+\[y\cdot\exp(2\pi inx) = \exp(2\pi in(x-y)) = \overline{\exp(2\pi i n y)}\exp(2\pi inx)\]
+(See \href{https://terrytao.wordpress.com/2009/04/06/the-fourier-transform/#more-2015}{Terence Tao's blog}.)
+
+Earlier we showed that $\widehat{\delta_g} = \chi_g$, and that extending this linearly produces the Fourier transform. We would like for the inverse Fourier transform to send $\delta_{\hat g}$, the indicator function of $\hat g$, to a character, to match the Fourier transform. (Note that the space $\Fun(\widehat G)$ has basis the indicator functions $\delta_{\hat g}$.) But the inverse Fourier transform should also respect the group action on the function spaces. Compared to the action of $G$ on $\Fun(G)$, the action of $G$ on $\Fun(\widehat G)$ is given by identifying $G$ with $\dwidehat{G}\subset \Fun(\widehat G)$ and using pointwise multiplication. That is, $gf = \chi_g\cdot f$. We should try another calculation to see if that provides a clue; in particular, if we want to have a chance at defining the inverse Fourier transform we should try to take Fourier transforms of characters. The Fourier transform of $\chi_{\hat g}\in \Fun(G)$ is given by 
+\[\widehat{\chi_{\hat g}}(\hat h) = \sum_{h\in G}\chi(h,\hat h)\chi_{\hat g}(h) = \sum_{h\in G}\chi(h,\hat h\hat g) = \abs{G}\delta_{\hat g^{-1}},\]
+where in the last equality we used the following result:
+\[\sum_{g\in G}\chi_{g}(\hat h) = \begin{cases*}
+	0 & \text{if } $\hat h \neq 1_{\widehat G}$\\
+	\abs{G} & \text{otherwise}
+\end{cases*}\]
+Indeed, since $\dwidehat{G}$ is a group, if $\hat h\neq 1_{\widehat G}$, then choose $h\in G$ for which $\chi_{\hat h}(h) = \chi_h(\hat h)\neq 1$ (we can do this since $\chi_{\hat h}$ is not the trivial character). Then with $\chi_h\in \dwidehat{G}$, we have
+\[\chi_h(\hat h)\sum_{g\in G}\chi_{g}(\hat h) = \sum_{g\in G}\chi_{hg}(\hat h) = \sum_{g\in G}\chi_{g}(\hat h),\]
+but $\chi_h(\hat h)\neq 1$, so $\sum_{g\in G}\chi_{g}(\hat h)=0$. If $\hat h = 1_{\widehat G}$, then $\sum_{g\in G}\chi_{g}(\hat h) = \sum_{g\in G}1 = \abs{G}$. A similar argument may be done to evaluate the sum $\sum_{\hat g\in \widehat G}\chi_{\hat g}(h)$.
+
+Based on the calculations above, one might try to calculate the Fourier transform of $\overline{\chi_{\hat g}}$, to obtain $\abs{G}\delta_{\hat g}$. So the inverse Fourier transform should send $\delta_{\hat g}$ to $\chi_{\hat g}/\abs{G}$, and by extending linearly we find that the inverse Fourier transform $\Fun(\widehat G)\xrightarrow{-^{\vee}}\Fun(G)$ is given by
+\[F^\vee(g) = \frac{1}{\abs{G}}\sum_{\hat g \in \widehat G}\overline{\chi(g,\hat g)}F(\hat g)\]
+One can calculate that for any $f\in \Fun(G)$ that 
+\[f(g) = \frac{1}{\abs{G}}\sum_{\hat g\in \widehat G}\overline{\chi(g,\hat g)}\hat f(\hat g)\]
+which is the Fourier inversion theorem for finite Abelian groups.
+
+By endowing $\Fun(G)$ with the Hermitian $L^2$ inner product
+\[\abr{f,h} = \sum_{g\in G}f(g)\overline{h(g)}\]
+it turns out that the characters $\chi_{\hat g}$ form an orthonormal basis (use one of the earlier calculations to do this). A similar statement is true for $\Fun(\widehat G)$, and by scaling the Fourier transform, the inverse Fourier transform, and possibly the inner products correctly, we obtain an unitary isomorphism of the Hilbert spaces $\Fun(G)$ and $\Fun(\widehat G)$ (i.e., the inner product is preserved).
+
+\subsection{A preview for locally compact Abelian groups}
+Some examples of locally compact Abelian (LCA) groups are the finite Abelian groups, $\mathbb Z$, $\U(1)$, $\mathbb R$, $\mathbb Z_p$ (the $p$-adic integers), and $\mathbb Q_p$ (the $p$-adic numbers). In this setting $\widehat G$ is defined to be the set of unitary irreps, otherwise given by $\Hom_{\Group}(G,\U(1))$.
+
+Pontryagin duality still holds in this setting. The result encapsulates the following statements:
+\begin{enumerate}
+	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,\U(1))$) is an isomorphism.
+	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and sends delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
+	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \{v\in V\mid gv = \chi_{\hat g}(g)v\}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the representation (sheaf) $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
+\end{enumerate}
+Soon we will look at the LCA groups $\U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
