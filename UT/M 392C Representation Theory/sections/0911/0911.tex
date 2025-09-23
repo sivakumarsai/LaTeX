@@ -224,4 +224,15 @@ So the action of $G$ and $\widehat G$ differ by multiplication by $\overline{\ch
 Note that $\U(1)$ is central in $\Heis$, that is, viewing $\U(1)$ as a subgroup of $\Heis$, the elements in $\U(1)$ belong to the center $Z(\Heis)$ of the Heisenberg group (since the action of multiplication by scalars commuted with the actions of $G, \widehat G$ to begin with). 
 
 The Heisenberg group acts on $L^2(G)$ in three ways: by scalar multiplication, by translation, and by multiplication by characters (coming from $\U(1), G, \widehat G$ respectively). One advantage of forming the Heisenberg group this way is that it will be easy to show that $L^2(G)$ is actually an irreducible representation of the Heisenberg group, and many results surrounding harmonic analysis are much easier to prove.
+
+The discussion above about the commutator of the group actions of $G,\widehat G$ can be differentiated to recover a fundamental commutation relation the physicists and analysts are deeply familiar with. Let $\mathfrak g,\widehat{\mathfrak g}$ denote the Lie algebras of $G,\widehat G$ respectively. The infinitesimal actions of $\mathfrak g,\mathfrak{\widehat g}$ on $\Fun(G)$ are given by the following: $y\in \mathfrak g$ acts on $f\in \Fun(G)$ by $y\cdot f = \dv{t}(\exp(yt)\cdot f)|_{t=0} = Df(-y)$ and $\hat y\in \widehat{\mathfrak g}$ acts on $f\in \Fun(G)$ by $\hat y\cdot f = \dv{t}(\exp(\hat yt)\cdot f)|_{t=0} = \bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)f$. View $\mathfrak g,\widehat{\mathfrak g}$ as subspaces of the Lie algebra $\mathfrak g\oplus\widehat{\mathfrak g}$.
+
+In general, a representation of a Lie group $G$ given by $G\xrightarrow \rho \GL(V)$ gives rise to a Lie algebra representation $\mathfrak g \xrightarrow{\dd\rho} \mathfrak{gl}(V) = \End(V)$ by the above formulas. What is meant by the commutation relation of the actions of $y,\hat y$, we mean the commutation relation as operators in $\End(V)$, so we calculate the ordinary commutator of operators. On a test function, we have
+\begin{align*}
+	[y\cdot ,\hat y\cdot]f &= y\cdot (\hat y\cdot f) - \hat y\cdot(y\cdot f)\\
+	&= D_g\bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)(-y)f + \bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)Df(-y) - \bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)Df(-y)\\
+	&= D_g\bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)(-y)f
+\end{align*}
+So the commutation relation is $[y\cdot,\hat y\cdot] = D_g\bigl(D_{\hat g}\chi(-,1_{\widehat G})\bigr)(\hat y)(-y)$ (the right hand side is a number, so we mean scalar multiplication by this number). In the case that $G = \mathbb R_x$ and $\widehat G = \mathbb R_t$, $\chi(x,t) = \exp(ixt)$ so by choosing $y = -1$, $\hat y = -i$ we obtain the anticipated commutation relation
+\[[(-1)\cdot,(-i)\cdot] = \Bigl[\dv{x}\cdot,x\cdot\Bigr] = 1\]
 \end{document}
