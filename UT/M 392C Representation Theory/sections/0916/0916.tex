@@ -6,5 +6,28 @@ We slowly transition away from Abelian groups by first discussing a slightly non
 
 In general, a central extension of the group $H$ (which need not be Abelian) by an Abelian group $A$ is a group $\tilde H$ which fits in the short exact sequence of groups 
 \[1\to A\to \widetilde H\to H \to 1\]
-(so $A\to \widetilde H$ is injective and $\widetilde H \to H$ is surjective)  $A\hookrightarrow Z(\widetilde H)$. If $H$ is Abelian then the group $\widetilde H$ is close to being Abelian in the sense that it is a nilpotent group with nilpotency class $2$ (Abelian groups are class $1$).
+(so $A\to \widetilde H$ is injective and $\widetilde H \to H$ is surjective)  with $A\hookrightarrow Z(\widetilde H)$. If $H$ is Abelian then the group $\widetilde H$ is close to being Abelian in the sense that it is a nilpotent group with nilpotency class $2$ (Abelian groups have nilpotency class $1$). 
+
+A nilpotent group $G$ of nilpotency class $n$ is a group whose central series of shortest length terminates in the whole group after $n$ many steps; that is, there is a series of normal subgroups $G_i$   
+\[1=G_0\lhd G_1\lhd\cdots\lhd G_n = G\]
+with $G_{i+1}/G_i\leq Z(G/G_i)$ (or equivalently $[G,G_{i+1}]\leq G_i$).
+With this definition it is clear that if $H$ is Abelian, then $\widetilde H$ is of nilpotency class $2$ since its upper central series is
+\[1\lhd A\lhd \widetilde H\]
+
+To classify central extensions of $H$ (which need not be Abelian) by $A$, we turn to group cohomology. By some process in group cohomology, we can produce a set (really a group) denoted $H^2(H,A)$, which classifies central extensions of $H$ by $A$ up to isomorphism. As a set, $\widetilde H \cong H\times A$. The multiplication in $\widetilde H$ is given by 
+\[(g,a)(h,b) = (gh,f(g,h)ab)\]
+where $f\colon H\times H \to A$ is a set map satisfying the $2$-cocycle conditions
+\[f(1_H,1_H) = 1_A\quad\text{and}\quad f(g,h)f(gh,j) = f(g,hj)f(h,j)\]
+for $g,h,j\in H$. The first condition is needed if we want the restriction of the product to $A$ viewed as a subgroup of $\widetilde H$, as $\{1_H\}\times A \subseteq \widetilde H$, to agree with the product in $A$. The second condition is to ensure the multiplication is associative. (See \href{https://www.mathematik.uni-muenchen.de/~schotten/LNP-cft-pdf/03_978-3-540-68625-5_Ch03_23-08-08.pdf}{this MSE question}.)
+
+It is important to note that a central extension is not necessarily a semidirect product of $H$ and $A$; the semidirect products of $H$ and $A$ are the split extensions; that is, the extensions
+\[1\to A\to \widetilde H\xrightarrow p H\to 1\]
+where we do not assume $A\hookrightarrow Z(\widetilde H)$ (or that $A$ is Abelian) but there is a homomorphism $s\colon H \to\widetilde H$ that is a section; that is, $ps=\id_H$. A central extension of $H$ by $A$ that is also a split extension makes $\widetilde H$ isomorphic to the direct product of $H$ and $A$; that is, $\widetilde H \cong H\times A$ (see this \href{https://math.stackexchange.com/questions/2386212/central-extensions-versus-semidirect-products}{MSE} question). The split central extensions correspond to the identity element in the group $H^2(H,A)$.
+
+Now we return to the Heisenberg group. Let $G$ be Abelian and let $\widehat G = \Hom_{\Group}(G,\U(1))$. Then the universal character $\chi(-,-)$ is a map from $G\times \widehat G$ to $\U(1)$, and if $G$ is finite the universal character really maps into a finite set of roots of unity $\mu_n$ for some $n$. The Heisenberg group $\Heis$ is obtained as a central extension 
+\[1\to \U(1)\to \Heis\to G\times \widehat G\to 1\]
+(where if $G$ is finite, we could replace $\U(1)$ by $\mu_n$ if desired) and the $2$-cocycle $f\colon (G\times \widehat G)\times (G\times \widehat G)\to \U(1)$ appearing in the multiplication formula
+\[(g,\hat g, z)(h,\hat h,w) = (gh,\hat g\hat h,f(g,\hat g,h,\hat h)zw)\]
+in $\Heis$ (viewed as the set $(G\times \widehat G)\times \U(1)$) is given by 
+\[\] 
 \end{document}
