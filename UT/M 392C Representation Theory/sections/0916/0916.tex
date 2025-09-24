@@ -22,21 +22,98 @@ for $g,h,j\in H$. The first condition is needed if we want the restriction of th
 
 It is important to note that a central extension is not necessarily a semidirect product of $H$ and $A$; the semidirect products of $H$ and $A$ are the split extensions; that is, the extensions
 \[1\to A\to \widetilde H\xrightarrow p H\to 1\]
-where we do not assume $A\hookrightarrow Z(\widetilde H)$ (or that $A$ is Abelian) but there is a homomorphism $s\colon H \to\widetilde H$ that is a section; that is, $ps=\id_H$. A central extension of $H$ by $A$ that is also a split extension makes $\widetilde H$ isomorphic to the direct product of $H$ and $A$; that is, $\widetilde H \cong H\times A$ (see this \href{https://math.stackexchange.com/questions/2386212/central-extensions-versus-semidirect-products}{MSE} question). The split central extensions correspond to the identity element in the group $H^2(H,A)$.
+where we do not assume $A\hookrightarrow Z(\widetilde H)$ (or that $A$ is Abelian; i.e., a possibly non-central extension) but there is a homomorphism $s\colon H \to\widetilde H$ that is a section; that is, $ps=\id_H$. A central extension of $H$ by $A$ that is also a split extension makes $\widetilde H$ isomorphic to the direct product of $H$ and $A$; that is, $\widetilde H \cong H\times A$ (see this \href{https://math.stackexchange.com/questions/2386212/central-extensions-versus-semidirect-products}{MSE} question). The split central extensions correspond to the identity element in the group $H^2(H,A)$.
 
-Now we return to the Heisenberg group. Let $G$ be Abelian and let $\widehat G = \Hom_{\Group}(G,\U(1))$. Then the universal character $\chi(-,-)$ is a map from $G\times \widehat G$ to $\U(1)$, and if $G$ is finite the universal character really maps into a finite set of roots of unity $\mu_n$ for some $n$. The Heisenberg group $\Heis$ is obtained as a central extension 
+\subsection{The Heisenberg group}
+We return to the Heisenberg group. Let $G$ be an LCA group and let $\widehat G = \Hom_{\Group}(G,\U(1))$. Then the universal character $\chi(-,-)$ is a map from $G\times \widehat G$ to $\U(1)$, and if $G$ is finite the universal character really maps into a finite set of roots of unity $\mu_n$ for some $n$. The Heisenberg group $\Heis$ is obtained as a central extension 
 \[1\to \U(1)\to \Heis\to G\times \widehat G\to 1\]
 (where if $G$ is finite, we could replace $\U(1)$ by $\mu_n$ if desired) and the $2$-cocycle $f\colon (G\times \widehat G)\times (G\times \widehat G)\to \U(1)$ appearing in the multiplication formula
 \[(g,\hat g, z)(h,\hat h,w) = (gh,\hat g\hat h,f(g,\hat g,h,\hat h)zw)\]
 in $\Heis$ (viewed as the set $(G\times \widehat G)\times \U(1)$) is given by 
-\[f(g,\hat g,h,\hat h) = \overline{\chi(h,\hat g)}\chi(g,\hat h)\] 
+\[f(g,\hat g,h,\hat h) = \overline{\chi(g,\hat h)}\]
+% \[f(g,\hat g,h,\hat h) = \overline{\chi(h,\hat g)}\chi(g,\hat h)\] 
 By comparing the results of the following calculations it follows that $f$ really is a $2$-cocycle:
 \begin{align*}
-    f(g,\hat g,h,\hat h)f(gh,\hat g\hat h,j,\hat j) &= \overline{\chi(h,\hat g)}\chi(g,\hat h)\overline{\chi(j,\hat g \hat h)}\chi(gh,\hat j)\\
-    f(g,\hat g,hj,\hat h \hat j)f(h,\hat h,j,\hat j) &= \overline{\chi(hj,\hat g)}\chi(g,\hat h\hat j)\overline{\chi(j,\hat h)}\chi(h,\hat j)
+    f(g,\hat g,h,\hat h)f(gh,\hat g\hat h,j,\hat j) &= \overline{\chi(g,\hat h)\chi(gh,\hat j)}\\
+    f(g,\hat g,hj,\hat h \hat j)f(h,\hat h,j,\hat j) &= \overline{\chi(g,\hat h\hat j)\chi(h,\hat j)}
+\end{align*}
+We can obtain an isomorphic group by using the $2$-cocycle $\tilde f$ given by $\tilde f(g,\hat g,h,\hat h) = \chi(h,\hat g)$ instead of $f$ in the multiplication formula above. Results from group cohomology imply that we obtain isomorphic groups if $f$ and $\tilde f$ differ by a $2$-coboundary, which is the case:
+\[\tilde f(g,\hat g,h,\hat h)^{-1} f(g,\hat g,h,\hat h) = \chi(h,\hat h)\overline{\chi(gh,\hat g\hat h)}\chi(g,\hat g)\]
+The $2$-coboundary in this situation is the image of $\chi \colon G\times \widehat G\to \U(1)$ under a particular differential $d^1$ coming from a bar complex, that is, the $2$-coboundary is $d^1\chi \colon (G\times \widehat G)\times (G\times \widehat G)\to \U(1)$ given by $d^1\chi(g,\hat g,h,\hat h) = \chi(h,\hat h)\chi(gh,\hat g\hat h)^{-1}\chi(g,\hat g)$.
+% \begin{align*}
+%     f(g,\hat g,h,\hat h)f(gh,\hat g\hat h,j,\hat j) &= \overline{\chi(h,\hat g)}\chi(g,\hat h)\overline{\chi(j,\hat g \hat h)}\chi(gh,\hat j)\\
+%     f(g,\hat g,hj,\hat h \hat j)f(h,\hat h,j,\hat j) &= \overline{\chi(hj,\hat g)}\chi(g,\hat h\hat j)\overline{\chi(j,\hat h)}\chi(h,\hat j)
+% \end{align*}
+
+As an aside, some Abelian subgroups of $\Heis$ are $G\times \{1_{\widehat G}\}\times \U(1)$, $\{1_G\}\times\widehat G\times \U(1)$, $G\cong G\times\{1_{\widehat G}\}\times \{1_{\U(1)}\}$, and $\widehat G\cong \{1_G\}\times \widehat G\times \{1_{\U(1)}\}$. The subgroups  $G\times \{1_{\widehat G}\}\times \U(1)$ and $\{1_G\}\times\widehat G\times \U(1)$ do not commute with each other!
+
+In the past, we had three group actions on $\Fun(G)$. One was the action of $G$ by translation, another was the action of $\widehat G$ by multiplication by characters, and lastly the usual scalar multiplication by $\U(1)$. The action of $\U(1)$ commutes with the first two group actions (and of course with its own group action). We saw before that the actions of $G,\widehat G$ do not commute, which was why we formed the Heisenberg group in the first place. These three group actions can be thought of as living in $\Aut(\Fun(G))$. The Heisenberg group collects all the commutation relations between the different group actions, and so we can say that the Heisenberg group can be presented as generated by the group actions of $G$, $\widehat G$, and $\U(1)$ modulo their relations in $\Aut(\Fun(G))$. For example, we recover the commutation relation $[g\cdot,\hat g\cdot] = \overline{\chi(g,\hat g)}$ as the commutator of the corresponding elements in $\Heis$:
+\begin{align*}
+    [(g,1,1),(1,\hat g,1)] &= (g^{-1},1,1)(1,\hat g^{-1},1)(g,1,1)(1,\hat g,1)\\
+    &= (g^{-1},\hat g^{-1},\overline{\chi(g,\hat g)})(g,\hat g,\overline{\chi(g,\hat g)})\\
+    &= (1,1,\overline{\chi(g,\hat g)})
 \end{align*}
 
-As an aside, some Abelian subgroups of $\Heis$ are $G\times \{1_{\widehat G}\}\times U_1$, $\{1_G\}\times\widehat G\times U_1$, $G\cong G\times\{1_{\widehat G}\}\times \{1_{\U(1)}\}$, and $\widehat G\cong \{1_G\}\times \widehat G\times \{1_{\U(1)}\}$.
+One particular form of the Heisenberg group for $G = \mathbb R_x^n$ that may be familiar is as a matrix group. To make this identification, first see that the dual group $\widehat G = \mathbb R_t^n$ is really the dual vector space to $G$; that is, there is a natural isomorphism between $\widehat G = \Hom_{\Group}(\mathbb R_x^n,\U(1))$ and $G^\ast = \Hom_{\mathbb R}(\mathbb R_x^n,\mathbb R)$ that identifies $x\mapsto \exp(i\abr{x,t})$ with $x\mapsto \abr{x,t}$ for $t\in\mathbb R_t$. Then the Heisenberg group for $G = \mathbb R_x$ (i.e., $n=1$) is obtained from the central extension
+\[1\to \U(1)\to \Heis\to \mathbb R_x\times\mathbb R_x^\ast\to 0\]
+Further identifications of 
+\begin{align*}
+    \U(1)\quad&\text{with}\quad\Bigl\{\Bigl(\!\begin{smallmatrix}
+    1 & 0 & z\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigm\vert z\in\mathbb R/\mathbb Z\Bigr\}
+\intertext{and}
+\mathbb R_x\times\mathbb R_x^\ast\quad&\text{with}\quad \Bigl\{\Bigl(\!\begin{smallmatrix}
+    1 & x & 0\\
+    0 & 1 & t\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigm\vert x\in\mathbb R_x,t\in\mathbb R_t\Bigr\}
+\end{align*}
+imply that $\Heis$ can be identified with the matrix ``group''
+\[\Bigl\{\Bigl(\!\begin{smallmatrix}
+    1 & x & z\\
+    0 & 1 & t\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigm\vert x\in\mathbb R_x,t\in\mathbb R_t, z\in\mathbb R/\mathbb Z\Bigr\}\]
+where the multiplication law is matrix multiplication but we reduce modulo $\mathbb Z$ in the top right entry. Somehow the $2$-cocycle appearing after multiplying two elements doesn't exactly match the sign conventions in the usual $2$-cocycle we use for the Heisenberg group, but nevertheless we recover the commutation relation
+\[\Bigl[\Bigl(\!\begin{smallmatrix}
+    1 & x & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr),\Bigl(\!\begin{smallmatrix}
+    1 & 0 & 0\\
+    0 & 1 & t\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigr] = \Bigl(\!\begin{smallmatrix}
+    1 & 0 & -xt\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\]
+Then in general the Heisenberg group for $G = \mathbb R_x^n$ can be thought of as the matrix ``group''
+\[\Bigl\{\Bigl(\!\begin{smallmatrix}
+    1 & x & z\\
+    0 & 1 & t\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigm\vert x\in\mathbb R_x,t\in\mathbb R_t, z\in\mathbb R/\mathbb Z\Bigr\}\] where the multiplication law is given by
+\[\Bigl(\!\begin{smallmatrix}
+    1 & x & z\\
+    0 & 1 & t\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\Bigl(\!\begin{smallmatrix}
+    1 & y & w\\
+    0 & 1 & s\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr) = \Bigl(\!\begin{smallmatrix}
+    1 & x+y & z+w+\abr{x,s}\\
+    0 & 1 & t+s\\
+    0 & 0 & 1
+\end{smallmatrix}\!\Bigr)\]
+where the top right entry is reduced modulo $\mathbb Z$. In any case, this point of view is very coordinate-ful and thus might not be a good way to think about the Heisenberg group in general.
 
-In the past, we had three group actions on $\Fun(G)$. One was the action of $G$ by translation, another was the action of $\widehat G$ by multiplication by characters, and lastly the usual scalar multiplication by $\U(1)$. The action of $\U(1)$ commutes with the first two group actions (and of course with its own group action). We saw before that the actions of $G,\widehat G$ do not commute, which was why we formed the Heisenberg group in the first place. These three group actions can be thought of as living in $\Aut(\Fun(G))$. The Heisenberg group collects all the commutation relations between the different group actions, and so we can say that the Heisenberg group can be presented as generated by the group actions of $G$, $\widehat G$, and $\U(1)$ modulo their relations in $\Aut(\Fun(G))$. For example, 
+\subsection{Representation theory of the Heisenberg group}
+The representation theory of the Heisenberg group can be used to obtain slick proofs of results in Fourier analysis.
+
+One important result in this vein is that $\Fun(G)$ (whatever this is) is an irrep of $\Heis$. Indeed, given any $f\in \Fun(G)$ that is not the zero function, we can act on $f$ by elements of $\mathbb C[\Heis]$ which take $f$ to $\delta_{1_G}$. Since $f(g) \neq 0$ for some $g\in G$, translate and scale $f$ so that $f(1_G) = 1$. We would like to take the pointwise product $\delta_{1_G}\cdot f$ to obtain $\delta_{1_G}$, but we obtain this product by taking the inverse Fourier transform of 
+
 \end{document}
