@@ -114,6 +114,28 @@ where the top right entry is reduced modulo $\mathbb Z$. In any case, this point
 \subsection{Representation theory of the Heisenberg group}
 The representation theory of the Heisenberg group can be used to obtain slick proofs of results in Fourier analysis.
 
-One important result in this vein is that $\Fun(G)$ (whatever this is) is an irrep of $\Heis$. Indeed, given any $f\in \Fun(G)$ that is not the zero function, we can act on $f$ by elements of $\mathbb C[\Heis]$ which take $f$ to $\delta_{1_G}$. Since $f(g) \neq 0$ for some $g\in G$, translate and scale $f$ so that $f(1_G) = 1$. We would like to take the pointwise product $\delta_{1_G}\cdot f$ to obtain $\delta_{1_G}$, but we obtain this product by taking the inverse Fourier transform of 
+One important result in this vein is that $\Fun(G)$ is an irrep of $\Heis$ (it will not be exactly $\Fun(G)$ but some analysis is needed to get the function space correct; we need to have an inner product, for example, so we should think of $L^2(G)$ instead). This is to say that $\Fun(G)$ is a simple $\mathbb C[\Heis]$-module, and again what is meant by the group algebra is not clear, but it should include things like delta distributions and other odd elements that might not be nice functions. Contained inside this group algebra are the group algebras $(\mathbb C[G],\ast)$ and $(\mathbb C[\widehat G],\ast)$. The action of $\mathbb C[G]$ on $\Fun(G)$ is given by convolution; that is,
+\[F\cdot f = F\ast f\]
+for $F\in\mathbb C[G]$. Indeed, thinking of $g\in G$ as the element $\delta_g\in \mathbb C[G]$, we recover the usual action $g\cdot f = \delta_g\ast f = f(g^{-1}-)$. The action of $\mathbb C[\widehat G]$ on $\Fun(G)$ is given by first identifying $(\mathbb C[\widehat G],\ast)$ with $(\mathbb C[G],\cdot)$ by taking the inverse Fourier transform and then pointwise multiplying. Specifically this is
+\[H\cdot f = (H\ast \hat f)^\vee = H^\vee \cdot f\]
+for $H\in\mathbb C[\widehat G]$. Indeed, thinking of $\hat g\in \widehat G$ as the element $\delta_{\hat g}$, we recover the usual action $\hat g\cdot f = (\delta_{\hat g}\ast \hat f)^\vee = \chi(-,\hat g)f$.
+
+To show that $\Fun(G)$ is an irrep of $\Heis$ we show that any nonzero function $f$ can be sent to $\delta_{1_G}$ by acting on $f$ by elements of the group algebra of $\Heis$ (and from the delta function we can reconstruct any other function in $\Fun(G)$). Indeed, given any $f\in \Fun(G)$ that is not the zero function, we can act on $f$ by elements of $\mathbb C[\Heis]$ which take $f$ to $\delta_{1_G}$. Since $f(g) \neq 0$ for some $g\in G$, translate and scale $f$ so that $f(1_G) = 1$. We would like to take the pointwise product $\delta_{1_G}\cdot f$ to obtain $\delta_{1_G}$, but we obtain this product by taking the inverse Fourier transform of convolution against the character $\chi(1_G,-)\in\mathbb C[\widehat G]$. That is,
+\[\chi(1_G,-)\cdot f = (\chi(1_G,-)\ast\hat f)^\vee = \delta_{1_G}\cdot f = \delta_{1_G}\]
+In general we need some analysis to approximate these delta distributions with nice enough functions to obtain the result, but this is a good enough sketch of a proof.
+
+The action of the Heisenberg group on $L^2(\widehat G)$ is given by swapping the roles of $G$ and $\widehat G$ up to a sign since we want the action to commute with taking the Fourier transform. The element $(g,\hat g, z)\in \Heis$ acts on $f\in \Fun(G)$ by
+\[(g,\hat g, z)\cdot f = z\chi(-,\hat g)f(g^{-1}-)\]
+and on $F\in \Fun(\widehat G)$ by 
+\[(g,\hat g, z)\cdot F = z\chi(g,\hat g)\chi(g,-)F(\hat g-)\]
+(this is just interchanging the roles of $G$ and $\widehat G$ in some sense.) Then the Fourier transform (and hence also the inverse Fourier transform) intertwines with this action:
+\[\widehat{(g,\hat g,z)\cdot f} = \widehat{z\chi(g,-)\delta_g\ast f} = z\delta_{\hat g^{-1}}\ast(\chi(g,-)\hat f) = z\chi(g,\hat g)\chi(g,-)\hat f(\hat g-) = (g,\hat g, z)\cdot \hat f\]
+Since this action is not really any different than the original action we defined, $\Fun(\widehat G)$ is also an irrep of $\Heis$ (and we can repeat this as well for $\Fun(\dwidehat G)$).
+
+That the Fourier transform is a unitary isomorphism of $L^2(G)$ with $L^2(\widehat G)$ can also be proved knowing some kind of unitary Schur's lemma, which comes from analysis. 
+% Because the Fourier transform is densely defined and can be closed (we can take limits of Fourier transforms), its adjoint is also densely defined so the Fourier transform must be unitary up to a constant multiple. 
+This is Plancherel's theorem.
+
+To prove that $~\dhat{\!\!f}(g) = f(g^{-1})$, observe that applying the Fourier transform twice intertwines with correctly chosen actions of the Heisenberg groups. The reflection map $\Fun(G)\xrightarrow{R}\Fun(G)$ given by $Rf = f((-)^{-1})$ also intertwines with the action of the Heisenberg group, so applying the Fourier transform twice is a scalar multiple of $R$. To find out what the multiple is, it suffices to calculate the twice Fourier transform of a single element; usually we pick a convenient element. In the case when $G = \mathbb R$, the Gaussian $f(x) = \exp(-x^2/2)$ is self-dual, meaning $\hat f(t) = \exp(-t^2/2)$ from which it follows that taking the Fourier transform twice really does agree with the reflection map. But this is not too bad to do since $f$ satisfies the differential equation $\dv{x}u+xu = 0$. The Fourier transform of this differential equation is $-it\hat u - i\dv{t}\hat u = 0$; that is, $\dv{t}\hat u+t\hat u = 0$, from which it follows that the Fourier transform of the aforementioned Gaussian is itself.
 
 \end{document}
