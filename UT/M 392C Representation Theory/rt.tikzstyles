@@ -9,3 +9,4 @@
 \tikzstyle{to}=[->]
 \tikzstyle{dash}=[-, dashed]
 \tikzstyle{to:dash}=[->, dashed]
+\tikzstyle{new edge style 0}=[<->]

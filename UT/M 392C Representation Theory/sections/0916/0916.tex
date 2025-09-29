@@ -132,10 +132,108 @@ and on $F\in \Fun(\widehat G)$ by
 \[\widehat{(g,\hat g,z)\cdot f} = \widehat{z\chi(g,-)\delta_g\ast f} = z\delta_{\hat g^{-1}}\ast(\chi(g,-)\hat f) = z\chi(g,\hat g)\chi(g,-)\hat f(\hat g-) = (g,\hat g, z)\cdot \hat f\]
 Since this action is not really any different than the original action we defined, $\Fun(\widehat G)$ is also an irrep of $\Heis$ (and we can repeat this as well for $\Fun(\dwidehat G)$).
 
-That the Fourier transform is a unitary isomorphism of $L^2(G)$ with $L^2(\widehat G)$ can also be proved knowing some kind of unitary Schur's lemma, which comes from analysis. 
-% Because the Fourier transform is densely defined and can be closed (we can take limits of Fourier transforms), its adjoint is also densely defined so the Fourier transform must be unitary up to a constant multiple. 
-This is Plancherel's theorem.
+Let $G = \mathbb R_x$. That the Fourier transform is a unitary isomorphism of $L^2(G)$ with $L^2(\widehat G)$ can also be proved knowing some kind of unitary Schur's lemma, which comes from analysis. Identify $G$ and $\widehat G$, as well as $L^2(G)$ with $\overline{L^2(G)}$ and $L^2(G)^\ast$. The argument in analysis is that the Fourier transform is densely defined and can be closed (we can take limits of Fourier transforms), so its adjoint is also densely defined so the Fourier transform must be unitary up to a constant multiple. Morally what is happening is that intertwining operators of unitary representations are typically unitary operators (they would ``have to be terrible not to be unitary'' according to \href{https://utexas.instructure.com/courses/1428938/files/86306747?wrap=1}{Howe}). This is usually known as Plancherel's theorem. (See p.452 in \href{https://59clc.wordpress.com/wp-content/uploads/2012/08/real-and-functional-analysis-lang.pdf}{Real and Functional Analysis} by Lang.) In other words, the Fourier transform takes an invariant Hermitian form $\abr{-,-}$ on $L^2(G)$; that is, an isomorphism of $\Heis$-representations $\overline{L^2(G)}\to L^2(G)^\ast$ to another invariant Hermitian form $\abr{\widehat -,\widehat -}$ on $L^2(G)$; that is, to another isomorphism $\overline{L^2(G)}\to L^2(G)^\ast$. But by Schur's lemma these two forms should only differ by a constant multiple and to find out which multiple it suffices to calculate the new Hermitian form on a convenient element to see that the Fourier transform is unitary.
 
 To prove that $~\dhat{\!\!f}(g) = f(g^{-1})$, observe that applying the Fourier transform twice intertwines with correctly chosen actions of the Heisenberg groups. The reflection map $\Fun(G)\xrightarrow{R}\Fun(G)$ given by $Rf = f((-)^{-1})$ also intertwines with the action of the Heisenberg group, so applying the Fourier transform twice is a scalar multiple of $R$. To find out what the multiple is, it suffices to calculate the twice Fourier transform of a single element; usually we pick a convenient element. In the case when $G = \mathbb R$, the Gaussian $f(x) = \exp(-x^2/2)$ is self-dual, meaning $\hat f(t) = \exp(-t^2/2)$ from which it follows that taking the Fourier transform twice really does agree with the reflection map. But this is not too bad to do since $f$ satisfies the differential equation $\dv{x}u+xu = 0$. The Fourier transform of this differential equation is $-it\hat u - i\dv{t}\hat u = 0$; that is, $\dv{t}\hat u+t\hat u = 0$, from which it follows that the Fourier transform of the aforementioned Gaussian is itself.
 
+One of the most important results about the Heisenberg group is the Stone-von Neumann theorem, which roughly says that $\Fun(G)$ is the only genuine irrep of the Heisenberg group up to isomorphism, where by a genuine representation $V$ we mean that the subgroup $\U(1)\subset \Heis$ acts on $V$ by the usual scalar multiplication of complex numbers on $V$.
+
+A stronger result is that the categories $\Rep_{\textrm{genuine}}(\Heis)$ and $\Vect_{\mathbb C}$ are equivalent, which implies the Stone-von Neumann theorem since in this setting $\Fun(G)$ corresponds to the one-dimensional vector space $\mathbb C$. Let $W$ be a genuine representation of $\Heis$. Restricting to the action of $G,\widehat G$ in $\Heis$, view $W$ as a representation of $\widehat G$, which from before it follows that $W$ can be thought of as global sections of a sheaf over $\dwidehat{G}\cong G$. The following picture is slightly inaccurate but we will fix it shortly:
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node [style=none] (0) at (-2.25, 0) {$\bullet$};
+		\node [style=none] (2) at (-0.75, 0) {$\bullet$};
+		\node [style=none] (3) at (0.75, 0) {$\bullet$};
+		\node [style=none] (4) at (2.25, 0) {$\bullet$};
+		\node [style=none] (5) at (-3, 0) {};
+		\node [style=none] (6) at (3, 0) {};
+		\node [style=none] (7) at (-2.25, -0.5) {$g_{-1}$};
+		\node [style=none] (9) at (-0.75, -0.5) {$1_G$};
+		\node [style=none] (10) at (0.75, -0.5) {$g_1$};
+		\node [style=none] (11) at (2.25, -0.5) {$g_2$};
+		\node [style=none] (12) at (-2.25, 3) {};
+		\node [style=none] (13) at (-2.25, 1) {};
+		\node [style=none] (14) at (-0.75, 3) {};
+		\node [style=none] (15) at (-1.25, 2.25) {};
+		\node [style=none] (16) at (-0.75, 1) {};
+		\node [style=none] (17) at (-0.25, 1.75) {};
+		\node [style=none] (18) at (0.75, 3) {};
+		\node [style=none] (19) at (0.75, 1) {};
+		\node [style=none] (20) at (2.25, 3) {};
+		\node [style=none] (21) at (1.75, 2.25) {};
+		\node [style=none] (22) at (2.25, 1) {};
+		\node [style=none] (23) at (2.75, 1.75) {};
+		\node [style=none] (24) at (-2.25, 3.5) {$W_{g_{-1}}$};
+		\node [style=none] (25) at (-0.75, 3.5) {$W_{1_G}$};
+		\node [style=none] (26) at (0.75, 3.5) {$W_{g_{1}}$};
+		\node [style=none] (27) at (2.25, 3.5) {$W_{g_{2}}$};
+        \begin{pgfonlayer}{edgelayer}
+		\draw [style=new edge style 0] (5.center) to (6.center);
+		\draw [style=new edge style 0] (12.center) to (13.center);
+		\draw [style=new edge style 0] (18.center) to (19.center);
+        \draw [fill=gray!15] (14.center) -- (15.center) -- (16.center) -- (17.center) -- (14.center);
+        \draw [fill=gray!15] (20.center) -- (21.center) -- (22.center) -- (23.center) -- (20.center);
+	\end{pgfonlayer}
+    \end{tikzpicture}
+\end{figure}
+(The inaccuracy is that the vector spaces $W_g$ have different dimensions; the picture is an example where the drawn vector spaces have dimension $1$ or $2$.)
+\newpage
+On $W_g$, the group $\widehat G$ acts by multiplication by $\chi(g,\hat g)$. Think of $W_g$ as the $\chi(g,-)$-eigenspace for the $\widehat G$-action on $W$. On the other hand, $G$ acts on $w\in W_g$ by translation, specifically by translating the eigenspace $w$ belongs to. That is, if $h\in G$ and $w\in W_g$, then by the commutation relation of $G$ and $\widehat G$ in $\Heis$ we have 
+\[\hat g(hw) = (\hat g h)w = \chi(h,\hat g)(h\hat g)w = \chi(hg,\hat g)(gw)\]
+
+So $h\in G$ sends $w\in W_g$ to $hw\in W_{hg}$. Since multiplication by group elements in $G$ is invertible, the eigenspaces $W_g$ are all isomorphic to each other (i.e. for any $h,g\in G$, $W_g\cong W_{hg}$ as $\widehat G$-representations), so the picture from earlier is more accurately depicted with each stalk the same dimension.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node [style=none] (0) at (-2.25, 0) {$\bullet$};
+		\node [style=none] (2) at (-0.75, 0) {$\bullet$};
+		\node [style=none] (3) at (0.75, 0) {$\bullet$};
+		\node [style=none] (4) at (2.25, 0) {$\bullet$};
+		\node [style=none] (5) at (-3, 0) {};
+		\node [style=none] (6) at (3, 0) {};
+		\node [style=none] (7) at (-2.25, -0.5) {$g_{-1}$};
+		\node [style=none] (9) at (-0.75, -0.5) {$1_G$};
+		\node [style=none] (10) at (0.75, -0.5) {$g_1$};
+		\node [style=none] (11) at (2.25, -0.5) {$g_2$};
+		\node [style=none] (14) at (-0.75, 3) {};
+		\node [style=none] (15) at (-1.25, 2.25) {};
+		\node [style=none] (16) at (-0.75, 1) {};
+		\node [style=none] (17) at (-0.25, 1.75) {};
+		\node [style=none] (20) at (2.25, 3) {};
+		\node [style=none] (21) at (1.75, 2.25) {};
+		\node [style=none] (22) at (2.25, 1) {};
+		\node [style=none] (23) at (2.75, 1.75) {};
+		\node [style=none] (24) at (-2.25, 3.5) {$W_{g_{-1}}$};
+		\node [style=none] (25) at (-0.75, 3.5) {$W_{1_G}$};
+		\node [style=none] (26) at (0.75, 3.5) {$W_{g_{1}}$};
+		\node [style=none] (27) at (2.25, 3.5) {$W_{g_{2}}$};
+		\node [style=none] (28) at (-2.25, 3) {};
+		\node [style=none] (29) at (-2.75, 2.25) {};
+		\node [style=none] (30) at (-2.25, 1) {};
+		\node [style=none] (31) at (-1.75, 1.75) {};
+		\node [style=none] (32) at (0.75, 3) {};
+		\node [style=none] (33) at (0.25, 2.25) {};
+		\node [style=none] (34) at (0.75, 1) {};
+		\node [style=none] (35) at (1.25, 1.75) {};
+        \draw [fill=gray!15] (14.center) -- (15.center) -- (16.center) -- (17.center) -- (14.center);
+        \draw [fill=gray!15] (20.center) -- (21.center) -- (22.center) -- (23.center) -- (20.center);
+        \draw [fill=gray!15] (28.center) -- (29.center) -- (30.center) -- (31.center) -- (28.center);
+        \draw [fill=gray!15] (32.center) -- (33.center) -- (34.center) -- (35.center) -- (32.center);
+        \draw [style=new edge style 0] (5.center) to (6.center);
+    \end{tikzpicture}
+\end{figure}
+
+The equivalence $\Rep_{\textrm{genuine}}(\Heis)\to \Vect_{\mathbb C}$ is given by taking the stalk of the sheaf we get by smearing a representation $W$ at $1_G$. The functor going the other way is given by taking a complex vector space $V$, letting $\widehat G$ act on it by multiplication by multiplication by $\chi(1_G,-)$; that is, thinking of $V$ as the stalk of a sheaf at $1_G$. Then ``translate'' $V_{1_G} = V$ by $G$ to form copies $V_g$ for which $\widehat G$ acts by multiplication by $\chi(g,-)$. The global section of the sheaf we obtain by translating $V$ this way is a genuine representation of $\Heis$ if throughout we let $\U(1)$ act by usual scalar multiplication. The only way to obtain an irrep of $\Heis$ through this functor is by starting with $V = \mathbb C$, which when translated over $G$ yields a sheaf whose global sections is exactly $\Fun(G)$.
+
+So the role of $\widehat G$ in this picture is to spectrally decompose a representation $W$ and $G$ translates the eigenspaces around. Of course, there is a symmetric picture if we swap the roles of $G$ and $\widehat G$ around.
+
+In physics, we look at the infinitesimal actions of translation from $G = \mathbb R_x$ and multiplication from $\widehat G = \mathbb R_t\cong \mathbb R_x$. From some calculations from earlier, we saw that these correspond to $\dv{x}$ and $x$; the observables of position and momentum (in physics some additional constants are present). These two operators do not commute, and hence cannot be simultaneously diagonalized, which is the content of the Heisenberg uncertainty principle. The Stone-von Neumann theorem says that this is pretty much the only case up to scale.
+
+\subsection{A short preview of the Weyl algebra}
+Let $G = \mathbb R_x$. The Weyl algebra is a non-commuting $\mathbb C$-algebra of polynomial differential operators:
+\[A = \frac{\mathbb C\abr{x,\partial_x}}{(\partial_xx-x\partial_x - 1)}\]
+The Weyl algebra naturally acts on $\Fun(G)$ or rather $L^2(G)$ by unbounded operators, and Hermann Weyl used this algebra and related algebras to study the Heisenberg uncertainty principle in quantum mechanics. It is related to the Heisenberg group from earlier since differentiation and multiplication by $x$ are the infinitesimal actions of $G, \widehat G$ on $L^2(G)$, but there are very interesting differences in the theories surrounding representations of the Weyl algebra and of the Heisenberg group.
+
+The Weyl algebra appears in the theory of $D$-modules, which from one point of view is a way to study the theory of systems of linear partial differential equations using algebra and algebraic geometry. It is (one of) David's favorite algebras.
 \end{document}
