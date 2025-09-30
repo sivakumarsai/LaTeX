@@ -23,11 +23,52 @@ This result may be thought of as an algebraic version of the Heisenberg uncertai
 The exponentials $\exp(iy-)$ of $i\partial_x$ and of $x$ give the translation $\tau_{y}$ and multiplication by the character $\exp(iyx)$, and these generate the Heisenberg group. By starting with a $D$-module, we can obtain a module over $\Heis$ by differentiating the action of $G,\widehat G$ to obtain differentiation and multiplication by $x$. To be careful, we need analysis because $D$-modules are not finite-dimensional.
 
 \subsection{Quick introduction to $D$-modules}
-The data of a finitely presented $D$-module is the same as a system of linear partial differential equations with polynomial coefficients. We will come back to this claim after looking at small examples.
+The data of a finitely presented $D$-module is the same as a system of linear differential equations with polynomial coefficients. We will come back to this claim after looking at small examples.
 
-Let $M = D/D(\partial_x-\lambda)$ be a left $D$-module (left, right are important since $D$ is not commutative). Then for some other $D$-module $F$ which is typically a nice function space, $f\in \Hom_D(M,F)$ can be thought of as a solution to the differential equation $(\partial_x-\lambda)u = 0$ living in the function space $F$. This is because any $f\in \Hom_D(M,F)$ is zero on $D(\partial_x-\lambda)$ and any $f\in \Hom_D(D,F)$ which is zero on $D(\partial_x-\lambda)$ descends to a well defined homomorphism $f\in \Hom_D(M,F)$. That is, 
+Let $M = D/D(\partial_x-\lambda)$ be a left $D$-module (left, right are important since $D$ is not commutative). Then for some other left $D$-module $F$, which is typically a nice function space, $f\in \Hom_D(M,F)$ can be thought of as a solution to the differential equation $(\partial_x-\lambda)u = 0$ living in $F$. This is because any $f\in \Hom_D(M,F)$ is zero on $D(\partial_x-\lambda)$ and any $f\in \Hom_D(D,F)$ which is zero on $D(\partial_x-\lambda)$ descends to a well defined homomorphism $f\in \Hom_D(M,F)$. That is, 
 \[\Hom_D(M,F)\cong \{f\in \Hom_D(D,F)\mid f(\partial_x-\lambda) = 0\}\]
-The map $f\mapsto f(1)$ defines an isomorphism of $\Hom_D(D,F)$ with $F$, so in particular 
-\[\{f\in \Hom_D(D,F)\mid f(\partial_x-\lambda) = (\partial_x-\lambda)f(1) = 0\}\cong \{f\in F\mid (\partial_x-\lambda)f = 0\}\]
-So if $F$ is a $D$-module that contains $\exp(\lambda x)$, then $\Hom_D(M,F)$ is $\mathbb C\exp(\lambda x)$, otherwise $\Hom_D(M,F)$ is zero. One example of an $F$ that has exponentials is the continuous dual of $C_c^\infty(\mathbb R)$, the usual space of distributions on $\mathbb R$ (analysis shows that $\exp(\lambda x)$ does not define a tempered distribution on $\mathbb R$).
+The map $f\mapsto f(1_M)$ defines an isomorphism of $\Hom_D(D,F)$ with $F$, so in particular 
+\[\{f\in \Hom_D(D,F)\mid f(\partial_x-\lambda) = (\partial_x-\lambda)f(1_M) = 0\}\cong \{f\in F\mid (\partial_x-\lambda)f = 0\}\]
+So if $F$ is a $D$-module that contains $\exp(\lambda x)$, then $\Hom_D(M,F)$ is $\mathbb C\exp(\lambda x)$, otherwise $\Hom_D(M,F)$ is zero. One example of a $D$-module $F$ that has exponentials is the continuous dual of $C_c^\infty(\mathbb R)$, the usual space of distributions on $\mathbb R$ (analysis shows that $\exp(\lambda x)$ does not define a tempered distribution on $\mathbb R$). As a vector space (or $\mathbb C[x]$-module), the module $M$ is isomorphic to the graded vector space $\mathbb C[x]1_M$. The calculation $(\partial_x-\lambda)x = 1-x\partial_x - x\lambda = 1$ shows that left multiplication by $(\partial_x-\lambda)$ gives maps between graded components of $\mathbb C[x]1_M$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	0 \\
+	{\mathbb C1_M} \\
+	{\mathbb Cx} \\
+	\vdots
+	\arrow["{(\partial_x-\lambda)}", curve={height=-12pt}, from=2-1, to=1-1]
+	\arrow["{(\partial_x-\lambda)}", curve={height=-12pt}, from=3-1, to=2-1]
+	\arrow["{(\partial_x-\lambda)}", curve={height=-12pt}, from=4-1, to=3-1]
+\end{tikzcd}\]
+This graded point of view is interesting because now we can see that if $f\in F$ is a solution to $(\partial_x-\lambda)u = 0$; that is, $f$ is a homomorphism of $D$-modules $D/D(\partial_x-\lambda)\to F$, then $x^nf(x)$ is a solution to $(\partial_x-\lambda)^{n+1}u = 0$. This is because $(\partial_x-\lambda)x^n = 0$ in $M$. So in particular, we recover the expected solutions $x^n\exp(\lambda x)$.
+
+Consider the left $D$-module $M = D/D(x-\lambda)$. Its solutions in $\mathcal S'(\mathbb R)$ are $\mathbb C\delta_\lambda$. As a vector space (or $\mathbb C[\partial_x]$-module), the module $M$ is isomorphic to the graded vector space $\mathbb C[\partial_x]1_M$. We obtain a similar picture as above, with $x$ and $\partial_x$ interchanged. Similarly, solutions to the equation $(x-\lambda)^nu = 0$ are derivatives of $\delta_\lambda$. We actually already observed these facts when discussing the indecomposable representations of $\mathbb R$, from the point of view of Jordan blocks and Fourier duality, so this is just another perspective.
+
+A finitely presented left $D$-module $M$ is a module with the free resolution
+\[0\to D^n\xrightarrow P D^m\to M\to 0\]
+where $m$ denotes the number of generators of $M$ and the map $P$, which can be thought of as right multiplication by an $n\times m$ matrix $P$ (with entries in $D$), encodes the $n$ relations that the $m$ generators of $M$ are subject to. In other words, $M$ is isomorphic to the left $D$-module $D^m/D^nP$. Like before, if $F$ is a left $D$-module, then $f\in \Hom_D(M,F)$ can be identified with solutions $f = (f_1,\dots,f_m)$ to the system of differential equations
+\[\sum_{i=1}^nP_{ij}f_j = 0\quad\text{for }j = 1,\dots,m\]
+This is because $f = (f_1,\dots,f_m)\in\Hom_D(M,F)$ is really a homomorphism $f = (f_1,\dots,f_m)$ from $D^m$ to $F$ vanishing on $1_{D^n}P = (\sum_{i=1}^nP_{i1},\dots,\sum_{i=1}^nP_{im})$, and we identify $\Hom_D(D,F)$ with $F$ in the same way as before.
+
+If $D = \mathbb C\abr{x_1,\dots,x_n,\partial_{x_1},\dots,\partial_{x_n}}/([x_i,x_j],[\partial_{x_i},\partial_{x_j}],[\partial_{x_i},x_j]-\delta_{ij}\mid 1\leq i,j\leq n)$, then the data of a finitely presented D-module is the same as a system of linear partial differential equations with polynomial
+coefficients.
+
+The Fourier transform takes $\dv{x}$ to $-it$ and $x$ to $-i\dv{t}$. It follows that $1 = \partial_xx-x\partial_x$ is sent to $1 = (-it)(-i\partial_t)-(-i\partial_t)(-it) = \partial_tt-t\partial_t$, so the Fourier transform negates the commutation relation between differentiation and multiplication by the coordinate. Since $\mathcal S'(\mathbb R)$ is a $D$-module, the Fourier transform of $\mathcal S'(\mathbb R)$, which is itself $\mathcal S'(\mathbb R)$, is a $\widehat D = \mathbb C\abr{t,\partial_t}/([\partial_t,t]+1)$-module (a module for some kind of opposite version of $D$). So if $f$ satisfies a linear differential equation with polynomial coefficients $Pu = 0$ for a left $D$-module $M$, then $\hat f$ satisfies the Fourier transformed partial differential equation $\hat P\hat u = 0$, so for the left $D$-module $\widehat M$ which is $M$ with $\partial_x,x$ replaced by $-it,-i\partial_t$.
+
+Indeed, the Gaussian $g = \exp(-x^2/2)$ satisfies the differential equation $(\partial_x+x)u=0$. It defines a tempered distribution as well; that is, $g\in\mathcal S'(\mathbb R)$. The Fourier transform takes this differential equation to $(-it-i\partial_t)\hat u = 0$, so $(\partial_t+t)\hat u = 0$. So the Fourier transform of the Gaussian is itself (we did this calculation before). As a vector space, the corresponding $D$-module for $g$ is $M= D/D(\partial_x+x)$, which is isomorphic as a vector space to the graded vector space $\mathbb C[x-\partial_x]1$. The calculation $(\partial_x+x)(x-\partial_x) = 1+x^2-\partial_x^2 = 2 + (x-\partial_x)(\partial_x+x) = 2$ shows that left multiplication by $(\partial_x+x)$ gives maps between graded components of $\mathbb C[x-\partial_x]1$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	0 \\
+	{\mathbb C1} \\
+	{\mathbb C(x-\partial_x)} \\
+	\vdots
+	\arrow["{(\partial_x+x)}", curve={height=-12pt}, from=2-1, to=1-1]
+	\arrow["{(\partial_x+x)}", curve={height=-12pt}, from=3-1, to=2-1]
+	\arrow["{(\partial_x+x)}", curve={height=-12pt}, from=4-1, to=3-1]
+\end{tikzcd}\]
+The homomorphism $M\to \mathcal S'(\mathbb R)$ corresponding to the solution $g$ of the differential equation $(\partial_x+x)u = 0$ is the one where $1\in M$ is sent to $g\in \mathcal S'(\mathbb R)$. Then $(x-\partial_x)$ is sent to $2xg$, and $(x-\partial_x)^2$ is sent to $(4x^2-2)g$. By continuing this process we recover the \href{https://en.wikipedia.org/wiki/Hermite_polynomials}{physicist's Hermite polynomials} $H_n(x)$: the image of $(x-\partial_x)^n$ is $H_n(x)g$, where the first few Hermite polynomials are
+\begin{align*}
+	H_0(x) &= 1 & H_1(x) &= 2x\\
+	H_2(x) &= 4x^2-2& H_3(x) &=8x^3-12x \\
+	H_4(x) &= 16x^4-48x^2+12& H_5(x) &= 32x^5-160x^3+120x
+\end{align*}
+The Hermite polynomials, like the Chebyshev polynomials of the first kind we found earlier, are special functions. They satisfy nice orthogonality relations and recurrence relations which can of course be obtained through the lens of representation theory. The Hermite polynomials form a basis of $L^2(\mathbb R)$ with inner product $\abr{-,-} = \abr{-g,-g}_{L^2(\mathbb R)}$ because they form a maximal orthonormal family. The $(x-\partial_x)^i$ constitute a basis for $M$ as a vector space
 \end{document}
