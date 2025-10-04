@@ -1,10 +1,110 @@
 \documentclass[../../rtnotes.tex]{subfiles}
 \begin{document}
-\section{09/23}
-\subsection{Prologue to finding representations of $\SU_2$}
-There are several ways to study representations of $\SU_2$, but the approach we will take is to start by first using the representation theory of $\U(1)$ to extract interesting information about representations of $\SU_2$ as opposed to constructing them explicitly via a robust structure theory or some other approach.
+\section{09/20}
+\subsection{Prologue to representation theory of $\SU(2)$}
+There are several ways to study representations of $\SU(2)$, but the approach we will take is to start by first using the representation theory of $\U(1)$ to extract interesting information about representations of $\SU(2)$ as opposed to constructing them explicitly via a robust structure theory or some other approach.
 
-Let $V$ be a finite dimensional complex (continuous) representation of $\SU_2$. Since $\SU_2$ is not Abelian, we don't immediately get to use the nice theory of LCA groups we discussed earlier. So instead we look at the action of a $\U(1)\subset \SU_2$ on $V$; that is, we think of $V$ first as a $\U(1)$-representation. There are lots of different copies of $\U(1)$ inside of $\SU_2$, but for now think of the copy given by $\{\cos(\theta) + \sin(\theta)i\}\subset \SU_2$ (the unit quaternions where the coefficients of $j,k$ are zero).
+Let $V$ be a finite dimensional complex (continuous) representation of $\SU(2)$. Since $\SU(2)$ is not Abelian, we do not immediately get to use the nice theory of LCA groups we discussed earlier. So instead we look at the action of a copy of $\U(1)$ living inside $\SU(2)$ on $V$; that is, we think of $V$ first as a $\U(1)$-representation. There are lots of different copies of $\U(1)$ inside of $\SU(2)$, but for now think of the copy given by $\{\cos(\theta) + \sin(\theta)i\}\subset \SU(2)$ (the unit quaternions where the coefficients of $j,k$ are zero). A copy of $\U(1)$ in $\SU(2)$ is called a torus, usually denoted $T$ (there is a similar but general definition of a torus that we will not see for a while).
 
-From the earlier $\U(1)$-theory, $V$ decomposes into isotypic components $V = \bigoplus_{n\in\mathbb Z}V_n$
+From the earlier $\U(1)$-theory, $V$ is unitarizable under the action of $T$ and hence decomposes into isotypic components $V = \bigoplus_{n\in\mathbb Z}V_n$ where each $V_n$ is $\dim V_n$ many copies of the $n$-th irrep $\mathbb C_{\chi_n}$ of $T$ where $z\cdot w = \chi_n(z)w$ where $\chi_n$ is a characrer of $T$; that is,
+\[V_n = \mathbb C^{\dim V_n}\otimes_{\mathbb C}\mathbb C_{\chi_n}\]
+In other words, $V_n$ keeps track of the possibly repeated $1$-dimensional irreps. All but finitely many $\dim V_n$ are zero since $V$ is finite dimensional. This decomposition of $V$ is called the weight space decomposition with respect to the (maximal; we will also see this later) torus $T$ inside $\SU(2)$, and the $V_n$ are called the weight spaces.
+
+One function we can get from this decomposition is a function $\mathbb Z\to\mathbb Z$ given by $n\mapsto \dim V_n$ (which is of course finitely supported since $V$ is finite dimensional). From this function form the Laurent polynomial $\chi_V(z)$ given by
+\[z\mapsto \chi_V(z) = \sum_{n\in \mathbb Z}(\dim V_n)z^n\in\mathbb C[z,z^{-1}]\]
+
+If we use the symbol $z$ for an element $\exp(i\theta)\in \U(1)\cong T$ (identifying $z$ with $\bigl(\!\begin{smallmatrix}
+    z & 0 \\ 0 & \overline z
+\end{smallmatrix}\!\bigr)$), then $z\cdot v$ for $v\in V_n$ is $z^nv$. The $\dim V_n\times \dim V_n$ matrix for the action of $z$ on $V_n = \mathbb C^{\dim V_n}\otimes_{\mathbb C}C_{\chi_n}$ is given by
+\[z\cdot v = \begin{pmatrix}
+    z^n & & \\
+    & \mathbin{\rotatebox[origin=c]{-10}{$\ddots$}} & \\
+    & & z^n
+\end{pmatrix}v\]
+Thus if $z\in\U(1)$, then $\Tr_{V_n}(z\cdot) = (\dim V_n)z^n$; similarly, $\chi_V(z) = \sum_{n\in\mathbb Z}(\dim V_n)z^n$ is the trace $\Tr_V(z\cdot)$. So think of the Laurent polynomial $\chi_V(z)$ as a function $\U(1)\to \mathbb C$, which we call the character of the $\U(1)$-representation $V$.
+
+But we don't need to restrict $\chi_V$ to $\U(1)\cong T$; since $V$ is finite-dimensional, the quantity $\chi_V(g) = \Tr_V(g\cdot)$ makes sense; additionally, $\chi_V$ is invariant under conjugation since the trace is: $\chi_V(hgh^{-1}) = \Tr_V(hgh^{-1}\cdot) = \Tr_V(g\cdot) = \chi_V(g)$. Functions that are invariant under conjugation are called class functions. The approach we are heading towards to study the representation theory of $\SU(2)$ is called character theory.
+
+\subsection{The Weyl group}
+Let $V$ be an irrep of a group $G$. By Schur's lemma $Z(G)\subset G$ acts on $V$ by scalar multiples of $\id_V$ since acting on $V$ by an element of $Z(G)$ defines an intertwining operator $V\to V$ (because elements of $Z(G)$ commute with every element of $G$).
+
+The center of $\SU(2)$ is $\{\pm 1\}$: any matrix $\bigl(\!\begin{smallmatrix}
+	z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)$ in the center of $\SU(2)$ must satisfy $\bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 1 & 0
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 1 & 0
+\end{smallmatrix}\!\bigr)^{-1} = \bigl(\!\begin{smallmatrix}
+	z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)$, so we observe first that $\Im z = 0$ and $\Re w  = 0$, then from $\bigl(\!\begin{smallmatrix}
+	i & 0 \\ 0 & -i
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	z & w \\ w & z
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	i & 0 \\ 0 & -i
+\end{smallmatrix}\!\bigr)^{-1} = \bigl(\!\begin{smallmatrix}
+	z & w \\ w & z
+\end{smallmatrix}\!\bigr)$, deduce that $\Im w = 0$. Then $\det \bigl(\!\begin{smallmatrix}
+	z & 0 \\ 0 & z
+\end{smallmatrix}\!\bigr) = 1$ so that $z = \pm 1$. 
+
+The observations of the previous two paragraphs combine to reveal that $-1\in \SU(2)$ acts on an irrep $V$ of $\SU(2)$ by a scalar multiple of $\id_V$. Since $-1^2 = 1$, we are limited to the cases that either $-1$ can act as $\id V$ or $-\id_V$. Sort irreps of $\SU(2)$ by whether $-1$ acts trivially by $\id_V$ or ``genuinely'' by $-\id_V$. The irreps in the first collection are called even irreps of $\SU(2)$, and the irreps in the second collection are called odd irreps of $\SU(2)$. The even irreps of $\SU(2)$ may be viewed as an irrep of $\SO_3(\mathbb R)$, since last time we saw that $\SO_3(\mathbb R)\cong \SU(2)/\{\pm 1\}$ (if both $\pm 1$ act trivially on an even irrep $V$ of $\SU(2)$, then the action of the quotient $\SU(2)/\{\pm 1\}$ on $V$ is well-defined and $V$ will remain irreducible under the new action).
+
+As a side note, the calculation of the center of $\SU(2)$ shows that $\SU(2)$ is a central extension of $\SO_3(\mathbb R)$ by $\mathbb Z/2\mathbb Z \cong \{\pm 1\}$ (but not a semidirect product, the extension is not split).
+
+If $V$ is an even irrep of $\SU(2)$, its decomposition as a $\U(1)$-representation is $V = \bigoplus_{n\in\mathbb Z}V_n$ where $\dim V_n$ for $n$ odd is zero. This is because $-1$ is contained in $\U(1)$, and the the action of $-1$ on $\mathbb C_{\chi_n}$ is given by scalar multiplication by $(-1)^n$, so in order for the action of $-1$ on $V_n$ to be trivial for odd $n$, $\dim V_n$ must be zero.
+
+Consider a representation $V$ of $\SU(2)$. As before, the weight space decomposition of $V$ with respect to $T$ is $V = \bigoplus_{n\in\mathbb Z}V_n$. Let $h$ be an element of the normalizer $N(T)\subset \SU(2)$ of the torus $T$. Observe that $\chi_n(h^{-1}(-)h)$ defines a character of the torus $T$, which we know is of the form $\chi_m$ for some $m$ (where it is of course possible that $m = n$).
+
+Then for any $t\in T$ and $v\in V_n$, 
+\[t\cdot (h\cdot v) = th\cdot v = hh^{-1}th\cdot v = h\cdot (\chi_n(h^{-1}th)v) = \chi_m(t)(h\cdot v)\]
+This shows that the action of the normalizer of $T$ on elements of the weight spaces $V_n$ is to possibly move elements between weight spaces. Furthermore, $h\cdot V_n$ is isomorphic to $V_n$ since multiplication by $h$ is invertible. So the action of $h$ on the weight spaces is a permutation of the weight spaces. Observe that the action of $T\subset N(T)$ does not move elements of weight spaces out of their weight space. The action of $N(T)$ on elements of weight spaces descends to an action of $N(T)/T$ on elements of the weight spaces, but in order to know more we would need to calculate $N(T)$.
+
+In $\SU(2)$ the copy of $T$ we started with was the one with $i$ in it; that is, we started with $T = \{\bigl(\!\begin{smallmatrix}
+    z & 0 \\ 0 & \overline z
+\end{smallmatrix}\!\bigr)\}\subset \SU(2)$ (note $\overline z = z^{-1}$ since $z\in \U(1)$). We calculate the normalizer of $T$ in $\SU(2)$: For any $\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)\in T$ and $g\in N(T)\subset \SU(2)$, there exists $\bigl(\!\begin{smallmatrix}
+    s & 0 \\ 0 & \overline s
+\end{smallmatrix}\!\bigr)\in T$ for which $g\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)g^{-1} = \bigl(\!\begin{smallmatrix}
+    s & 0 \\ 0 & \overline s
+\end{smallmatrix}\!\bigr)$. Put $v_1 = g^{-1}e_1$, so that 
+\[g\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)v_1 = \bigl(\!\begin{smallmatrix}
+    s & 0 \\ 0 & \overline s
+\end{smallmatrix}\!\bigr)gg^{-1}e_1 = se_1\]
+Then $\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)v_1 = sv_1$, which in other words is to say $v_1$ is an eigenvector of $\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)$ with eigenvalue $s$. The eigenvalue $s$ must be equal to one of $t$ or $\overline t$. In the case that $s = t$, the element $g$ must be of the form $\bigl(\!\begin{smallmatrix}
+    z & 0 \\ 0 & \overline z
+\end{smallmatrix}\!\bigr)$ for $z\in \U(1)$. In the case that $s = \overline t$, the element $g$ must be of the form $\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+    z & 0 \\ 0 & \overline z
+\end{smallmatrix}\!\bigr) = \bigl(\!\begin{smallmatrix}
+    0 & \overline z \\ -z & 0
+\end{smallmatrix}\!\bigr)$ for $z\in \U(1)$. Therefore $N(T)\subset \SU(2)$ is the product of the subgroups $\{1,\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)\}\cong \mathbb Z/2\mathbb Z$ and $T$, which intersect trivially. It follows that 
+\[N(T) = T\rtimes \mathbb Z/2\mathbb Z\]
+(since by definition $T$ is normal in $N(T)$), and by identifying $T$ with $\SO_2(\mathbb R)$ (via $\bigl(\!\begin{smallmatrix}
+    x+iy & 0 \\ 0 & x-iy
+\end{smallmatrix}\!\bigr)\mapsto \bigl(\!\begin{smallmatrix}
+    x & y \\ -y & x
+\end{smallmatrix}\!\bigr)$), the split extension $1\to T \to N(T) \to \{1,\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)\}\ \to 1$ is isomorphic to the split extension
+\[1\to \SO_2(\mathbb R) \to \O_2(\mathbb R) \to \{1,\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)\}\ \to 1\]
+In other words, $N(T)$ is isomorphic to $\O_2(\mathbb R)$.
+
+Interestingly, the quotient map $\SU(2)\to \SU(2)/\U(1)$ viewed as a quotient map of topological spaces is the Hopf fibration $S^3\to S^2$ (where $\SU(2)/\U(1)\cong S^2$ is thought of as the unit pure quaternions in $j,k$). 
 \end{document}

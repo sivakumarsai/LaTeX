@@ -25,7 +25,7 @@ The exponentials $\exp(iy-)$ of $i\partial_x$ and of $x$ give the translation $\
 \subsection{Quick introduction to $D$-modules}
 The data of a finitely presented $D$-module is the same as a system of linear differential equations with polynomial coefficients. We will come back to this claim after looking at small examples.
 
-Let $M = D/D(\partial_x-\lambda)$ be a left $D$-module (left, right are important since $D$ is not commutative). Then for some other left $D$-module $F$, which is typically a nice function space, $f\in \Hom_D(M,F)$ can be thought of as a solution to the differential equation $(\partial_x-\lambda)u = 0$ living in $F$. This is because any $f\in \Hom_D(M,F)$ is zero on $D(\partial_x-\lambda)$ and any $f\in \Hom_D(D,F)$ which is zero on $D(\partial_x-\lambda)$ descends to a well defined homomorphism $f\in \Hom_D(M,F)$. That is, 
+Let $M = D/D(\partial_x-\lambda)$ be a left $D$-module (left, right are important since $D$ is not commutative). Then for some other left $D$-module $F$, which is typically a nice function space, $f\in \Hom_D(M,F)$ can be thought of as a solution to the differential equation $(\partial_x-\lambda)u = 0$ living in $F$. This is because any $f\in \Hom_D(M,F)$ is zero on $D(\partial_x-\lambda)$ and any $f\in \Hom_D(D,F)$ which is zero on $D(\partial_x-\lambda)$ descends to a well-defined homomorphism $f\in \Hom_D(M,F)$. That is, 
 \[\Hom_D(M,F)\cong \{f\in \Hom_D(D,F)\mid f(\partial_x-\lambda) = 0\}\]
 The map $f\mapsto f(1_M)$ defines an isomorphism of $\Hom_D(D,F)$ with $F$, so in particular 
 \[\{f\in \Hom_D(D,F)\mid f(\partial_x-\lambda) = (\partial_x-\lambda)f(1_M) = 0\}\cong \{f\in F\mid (\partial_x-\lambda)f = 0\}\]
@@ -102,14 +102,14 @@ Repeated application of these identities will show that
 \[\abr{H_j(x),H_i(x)}_g = \abr{H_j(x)g,H_i(x)g}_{L^2(\mathbb R)} = \abr{(x-\partial_x)^jg,(x-\partial_x)^ig}_{L^2(\mathbb R)}\]
 is nonzero only if $j = i$.
 
-\subsection{Introduction to $\SU_2$}
-The main groups we would like to get to are $\SU_2(\mathbb R)$, $\SO_3(\mathbb R)$, and of course, $\SL_2(\mathbb R)$. For now, we suppress notating the field $\mathbb R$ and refer to these groups by $\SU_2$, $\SO_3$, and $\SL_2$. By studying the representation theory of the first two groups (which are subgroups of $\SL_2$), we will gain some insight for how to study the representation theory of $\SL_2$.
+\subsection{Introduction to $\SU(2)$}
+The main groups we would like to get to are $\SU(2)$, $\SO_3(\mathbb R)$, and of course, $\SL_2(\mathbb R)$. By studying the representation theory of the first two groups (which are subgroups of $\SL_2(\mathbb R)$), we will gain some insight for how to study the representation theory of $\SL_2(\mathbb R)$.
 
 By identifying complex numbers $z = x+iy$ with real matrices $\bigl(\!\begin{smallmatrix}
 	x & y \\ -y & x
 \end{smallmatrix}\!\bigr)$, we can identify $\U(1) = \{z\in\mathbb C\mid \abs{z} = 1\}$ with the real matrix group $\{\bigl(\!\begin{smallmatrix}
 	x & y \\ -y & x
-\end{smallmatrix}\!\bigr)\}\cap\SL_2$. There is a natural complexification of this idea (it's unclear whether this was a pun or not).
+\end{smallmatrix}\!\bigr)\}\cap\SL_2(\mathbb R)$. There is a natural complexification of this idea (it's unclear whether this was a pun or not).
 
 One way to describe the quaternions is as a complex matrix group; that is, 
 \[\mathbb H = \{\bigl(\!\begin{smallmatrix}
@@ -125,35 +125,35 @@ viewed as a subgroup of the $2\times 2$ complex matrices. The quaternions form a
 	0 & i \\ i & 0
 \end{smallmatrix}\!\bigr)$.
 
-In the same way that we think of $\U(1)$ as the determinant $1$ matrices in $\SL_2$, we can define $\SU_2$ as the unit quaternions; that is, 
-\[\SU_2= \mathbb H\cap \SL_2(\mathbb C)\]
+In the same way that we think of $\U(1)$ as the determinant $1$ matrices in $\SL_2(\mathbb R)$, we can define $\SU(2)$ as the unit quaternions; that is, 
+\[\SU(2)= \mathbb H\cap \SL_2(\mathbb C)\]
 The determinant $1$ matrices $\bigl(\!\begin{smallmatrix}
 	z & w \\ -\overline w & \overline z
-\end{smallmatrix}\!\bigr)$ are those with $\abs{z}^2+\abs{w}^2=1$; if $z = z_1+iz_2$ and $w = w_1 + iw_2$, then $z_1^2+z_2^2+w_1^2+w_2^2 = 1$. So the elements of $\SU_2$, the unit quaternions, can be thought of the $3$-sphere $S^3$. 
+\end{smallmatrix}\!\bigr)$ are those with $\abs{z}^2+\abs{w}^2=1$; if $z = z_1+iz_2$ and $w = w_1 + iw_2$, then $z_1^2+z_2^2+w_1^2+w_2^2 = 1$. So the elements of $\SU(2)$, the unit quaternions, can be thought of the $3$-sphere $S^3$. 
 
-Related is the group of $2\times 2$ unitary matrices $\U(2)$, whose elements satisfy $U\overline U^\top = \overline U^\top U = 1$ (so $\abs{\det U} = 1$). The group $\SU_2$ is a subgroup of $\U(2)$, and we can also write $\SU_2 = \U(2)\cap \SL_2(\mathbb C)$.
+Related is the group of $2\times 2$ unitary matrices $\U(2)$, whose elements satisfy $U\overline U^\top = \overline U^\top U = 1$ (so $\abs{\det U} = 1$). The group $\SU(2)$ is a subgroup of $\U(2)$, and we can also write $\SU(2) = \U(2)\cap \SL_2(\mathbb C)$.
 
 That we can identify the unit quaternions with $S^3$ shows that we can endow $S^3$ with a group structure. Similarly, the unit magnitude elements of $\mathbb C$ may be identified with $S^1$ to give $S^1$ a group structure, and the same can be said about $S^0$ and the unit magnitude elements $\{-1,1\}$ of $\mathbb R$.
 
-Some easy complex representations of $\SU_2$ are $\mathbb H\cong\mathbb C^2$, one where $\SU_2$ acts by left multiplication and another where $\SU_2$ acts by conjugation. The first representation is irreducible, since any element of a proper subspace of $\mathbb H$ can be translated out of that subspace by a suitably chosen element of $\SU_2$. The conjugation representation viewed as a real representation is reducible, since by viewing $\mathbb H$ as $\mathbb R^4$, the subspace $\mathbb R1$ is preserved under conjugation by unit quaternions. It is also the case that the complement of $\mathbb R1$, the pure quaternions (which we identify as $\mathbb R^3$ so that $\mathbb H = \mathbb R1\oplus \mathbb R^3$ as a real vector space), is also preserved under conjugation by unit quaternions. This is because for a unit quaternion $q$ and quaternions $g,h$, the real part of $h$ is $(h+\overline{h})/2$ and the pure quaternion part of $h$ is $(h-\overline{h})/2$, conjugation of a product is order-reversing: $\overline{gh}= \overline{h}\overline{g}$, and conjugation by $q$ commutes with conjugation $q\overline{h}q^{-1} = q\overline{h}\overline{q} = \overline{qh\overline{q}} = \overline{qhq^{-1}}$.
+Some easy complex representations of $\SU(2)$ are $\mathbb H\cong\mathbb C^2$, one where $\SU(2)$ acts by left multiplication and another where $\SU(2)$ acts by conjugation. The first representation is irreducible, since any element of a proper subspace of $\mathbb H$ can be translated out of that subspace by a suitably chosen element of $\SU(2)$. The conjugation representation viewed as a real representation is reducible, since by viewing $\mathbb H$ as $\mathbb R^4$, the subspace $\mathbb R1$ is preserved under conjugation by unit quaternions. It is also the case that the complement of $\mathbb R1$, the pure quaternions (which we identify as $\mathbb R^3$ so that $\mathbb H = \mathbb R1\oplus \mathbb R^3$ as a real vector space), is also preserved under conjugation by unit quaternions. This is because for a unit quaternion $q$ and quaternions $g,h$, the real part of $h$ is $(h+\overline{h})/2$ and the pure quaternion part of $h$ is $(h-\overline{h})/2$, conjugation of a product is order-reversing: $\overline{gh}= \overline{h}\overline{g}$, and conjugation by $q$ commutes with conjugation $q\overline{h}q^{-1} = q\overline{h}\overline{q} = \overline{qh\overline{q}} = \overline{qhq^{-1}}$.
 
-That the pure quaternions are a $3$-dimensional real representation of $\SU_2$ under conjugation is to say there is a particular homomorphism $\SU_2\to\GL(\mathbb R^3)$ which manifests the conjugation action. Conjugation by (nonzero) quaternions preserves the norm of any quaternion (it is easier to see this by returning to the matrix form of quaternions and observing that conjugation by a quaternion preserves the determinant, since the determinant of a matrix is invariant under conjugation). A calculation (not shown here, but see \href{https://en.wikipedia.org/wiki/Versor#Representation_of_SO(3)}{Wikipedia}) shows that the orientation of a pure quaternion viewed as an element of $\mathbb R^3$ is also preserved under conjugation. It follows that the image of the homomorphism $\SU_2$ to $\GL(\mathbb R^3)$ is a subgroup of $\SO_3$. This amounts to viewing conjugation of pure quaternions by a unit quaternion as rotations of vectors in $\mathbb R^3$.
+That the pure quaternions are a $3$-dimensional real representation of $\SU(2)$ under conjugation is to say there is a particular homomorphism $\SU(2)\to\GL(\mathbb R^3)$ which manifests the conjugation action. Conjugation by (nonzero) quaternions preserves the norm of any quaternion (it is easier to see this by returning to the matrix form of quaternions and observing that conjugation by a quaternion preserves the determinant, since the determinant of a matrix is invariant under conjugation). A calculation (not shown here, but see \href{https://en.wikipedia.org/wiki/Versor#Representation_of_SO(3)}{Wikipedia}) shows that the orientation of a pure quaternion viewed as an element of $\mathbb R^3$ is also preserved under conjugation. It follows that the image of the homomorphism $\SU(2)$ to $\GL(\mathbb R^3)$ is a subgroup of $\SO_3(\mathbb R)$. This amounts to viewing conjugation of pure quaternions by a unit quaternion as rotations of vectors in $\mathbb R^3$.
 
-The map from $\SU_2$ to $\SO_3$ is actually a surjective two-to-one map with kernel $\{\pm 1\}\cong\mathbb Z/2\mathbb Z$. So we get an exact sequence 
-\[1\to \{\pm 1\}\to \SU_2\to\SO_3\to 1\]
-where $\SO_3 = \SU_2/\{\pm 1\}$. By identifying $\SU_2$ with $S^3$, quotienting out by $\{\pm 1\}$ amounts to identifying antipodal points of $S^3$, so as a topological space, $\SO_3$ is identified with $\mathbb{RP}^3$. We say that $\SU_2$ is a double cover of $\SO_3$.
+The map from $\SU(2)$ to $\SO_3(\mathbb R)$ is actually a surjective two-to-one map with kernel $\{\pm 1\}\cong\mathbb Z/2\mathbb Z$. So we get an exact sequence 
+\[1\to \{\pm 1\}\to \SU(2)\to\SO_3(\mathbb R)\to 1\]
+where $\SO_3(\mathbb R) = \SU(2)/\{\pm 1\}$. By identifying $\SU(2)$ with $S^3$, quotienting out by $\{\pm 1\}$ amounts to identifying antipodal points of $S^3$, so as a topological space, $\SO_3(\mathbb R)$ is identified with $\mathbb{RP}^3$. We say that $\SU(2)$ is a double cover of $\SO_3(\mathbb R)$.
 
-David brought an interesting prop made of a belt and a piece of cardboard that represents the double cover of $\SO_3$ by $\SU_2$. The belt is supposed to keep track of the twisting by $\{\pm I\}$ and the cardboard is supposed to keep track of the position of an element of $\SO_3$. I would like to make a video about this that I can link here. \sai{TODO}
+David brought an interesting prop made of a belt and a piece of cardboard that represents the double cover of $\SO_3(\mathbb R)$ by $\SU(2)$. The belt is supposed to keep track of the twisting by $\{\pm 1\}$ and the cardboard is supposed to keep track of the position of an element of $\SO_3(\mathbb R)$. I would like to make a video about this that I can link here. \sai{TODO}
 
 A fun fact: Let $u$ be a pure quaternion of unit length and let $g_\theta = \cos(\theta/2) + \sin(\theta/2)u$. Then $g_\theta$ is a unit quaternion and conjugation of a pure quaternion $v$ by $g_\theta$ (or $-g_\theta$) can be viewed in $\mathbb R^3$ (viewing $u,v$ as elements of $\mathbb R^3$) as rotating $v$ by $\theta$ radians about the axis $u$ (i.e. counterclockwise about $u$ if we move our point of view so that $u$ points towards us).
 
-By letting $\theta$ vary, we can identify $\{g_\theta\}\subset \SU_2 = S^3$ with a copy of $\U(1)=\U(1)$. Then we can draw the commutative cube
+By letting $\theta$ vary, we can identify $\{g_\theta\}\subset \SU(2) = S^3$ with a copy of $\U(1)=S^1$. Then we can draw the commutative cube
 % https://q.uiver.app/#q=WzAsOCxbMCwxLCJcXFUoMSkiXSxbMSwwLCJcXG1hdGhiYiBDXlxcdGltZXMiXSxbMywwLCJcXFNMXzIoXFxtYXRoYmIgQykiXSxbMiwxLCJcXFNVXzJcXGNvbmcgU14zIl0sWzAsMywiXFxVKDEpL1xce1xccG0gMVxcfSJdLFsyLDMsIlxcU09fMlxcY29uZyBcXG1hdGhiYntSUH1eMyJdLFsxLDIsIlxcbWF0aGJiIENeXFx0aW1lcy9cXHtcXHBtIDFcXH0iXSxbMywyLCJcXFNMXzIoXFxtYXRoYmIgQykvXFx7XFxwbSAxXFx9XFxjb25nIFxcUFNMXzIoXFxtYXRoYmIgQykiXSxbMCw0XSxbMCwxXSxbMywyXSxbMSwyXSxbNiw3XSxbMCwzXSxbNCw2XSxbNSw3XSxbMiw3XSxbMyw1XSxbNCw1XSxbMSw2XV0=
 \[\begin{tikzcd}[ampersand replacement=\&]
 	\& {\mathbb C^\times} \&\& {\SL_2(\mathbb C)} \\
-	{\U(1)} \&\& {\SU_2\cong S^3} \\
+	{\U(1)\cong S^1} \&\& {\SU(2)\cong S^3} \\
 	\& {\mathbb C^\times/\{\pm 1\}} \&\& {\SL_2(\mathbb C)/\{\pm 1\}\cong \PSL_2(\mathbb C)} \\
-	{\U(1)/\{\pm 1\}} \&\& {\SO_2\cong \mathbb{RP}^3}
+	{\U(1)/\{\pm 1\}} \&\& {\SO_3(\mathbb R)\cong \mathbb{RP}^3}
 	\arrow[from=1-2, to=1-4]
 	\arrow[from=1-2, to=3-2]
 	\arrow[from=1-4, to=3-4]
@@ -167,5 +167,5 @@ By letting $\theta$ vary, we can identify $\{g_\theta\}\subset \SU_2 = S^3$ with
 	\arrow[from=4-1, to=4-3]
 	\arrow[from=4-3, to=3-4]
 \end{tikzcd}\]
-We will try to study the representation theory of $\SU_2$ and $\SO_3$ by first using the representation theory of $\U(1)$, which we have already studied in detail.
+We will try to study the representation theory of $\SU(2)$ and $\SO_3(\mathbb R)$ by first using the representation theory of $\U(1)$, which we have already studied in detail.
 \end{document}
