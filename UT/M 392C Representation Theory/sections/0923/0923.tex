@@ -100,11 +100,51 @@ Then $\bigl(\!\begin{smallmatrix}
     x & y \\ -y & x
 \end{smallmatrix}\!\bigr)$), the split extension $1\to T \to N(T) \to \{1,\bigl(\!\begin{smallmatrix}
     0 & 1 \\ -1 & 0
-\end{smallmatrix}\!\bigr)\}\ \to 1$ is isomorphic to the split extension
+\end{smallmatrix}\!\bigr)\} \to 1$ is isomorphic to the split extension
 \[1\to \SO_2(\mathbb R) \to \O_2(\mathbb R) \to \{1,\bigl(\!\begin{smallmatrix}
     0 & 1 \\ -1 & 0
 \end{smallmatrix}\!\bigr)\}\ \to 1\]
 In other words, $N(T)$ is isomorphic to $\O_2(\mathbb R)$.
 
-Interestingly, the quotient map $\SU(2)\to \SU(2)/\U(1)$ viewed as a quotient map of topological spaces is the Hopf fibration $S^3\to S^2$ (where $\SU(2)/\U(1)\cong S^2$ is thought of as the unit pure quaternions in $j,k$). 
+Interestingly, the quotient map $\SU(2)\to \SU(2)/\U(1)$ viewed as a quotient map of topological spaces is the Hopf fibration $S^3\to S^2$ (where $\SU(2)/\U(1)\cong S^2$ is thought of as the unit pure quaternions in $1,j,k$). The group $N(T)$ acts on $\SU(2)\cong S^3$ by conjugation, and by quotienting by $T$ we obtain the action of $N(T)/T \cong \mathbb Z/2\mathbb Z$ on $\SU(2)/\U(1)\cong S^2$ by conjugation, which amounts to swapping the north and south poles of $S^2$ via a rotation:
+\begin{figure}[h]
+    \centering
+\begin{tikzpicture}
+  \shade[ball color = green!40, opacity = 0.4] (0,0) circle (2cm);
+  \draw (0,0) circle (2cm);
+  \draw (-2,0) arc (180:360:2 and 0.6);
+  \draw[dashed] (2,0) arc (0:180:2 and 0.6);
+  \node [style=none] (0) at (0,2) {$\bullet$};
+  \node [style=none] (0) at (0,-2) {$\bullet$};
+  \node [style=none] (0) at (2,0) {$\bullet$};
+  \node [style=none] (0) at (-2,0) {$\bullet$};
+  \node [style=none] (0) at (0.57,0.57) {$\bullet$};
+  \node [style=none] (0) at (-0.58,-0.58) {$\bullet$};
+  \node [style=none] (0) at (0,2.5) {$k$};
+  \node [style=none] (0) at (0,-2.5) {$-k$};
+  \node [style=none] (0) at (2.5,0) {$1$};
+  \node [style=none] (0) at (-2.5,0) {$-1$};
+  \node [style=none] (0) at (-1,-1) {$j$};
+  \node [style=none] (0) at (1,1) {$-j$};
+  \draw[->] (-2.5,1.767766) arc (135:225:2.5);
+  \draw[->] (2.5,-1.767766) arc (-45:45:2.5);
+  \node [style=none] (0) at (-4,1) {$j(-)\overline j$};
+  \node [style=none] (0) at (4,-1) {$j(-)\overline j$};
+\end{tikzpicture}
+\end{figure}\\
+By quotienting out by $T$, we are agnostic to which axis about which we swap the north and south poles of $S^2$.
+
+The quotient group $N(T)/T$ is called the Weyl group, denoted $W$, which in this setting is isomorphic to $\mathbb Z/2\mathbb Z$. We can also think of the Weyl group as the symmetric group on two elements. The action of $W$ on $T$ by conjugation is to swap the eigenvalues of elements of $T$, but there is a second manifestation of this idea if we return to representations of $\SU(2)$.
+
+Let $V$ be a representation of $\SU(2)$ and consider its weight space decomposition $V = \bigoplus_{n\in\mathbb Z}V_n$ with respect to $T$. Since $T$ centralizes $T$, the conjugation action of $N(T)$ on $T$ we can instead think of as a conjugation action of $N(T)/T$ on $T$. We saw before that for $h\in N(T)/T$, $\chi_n(h^{-1}(-)h)$ defines a character of the torus denoted $\chi_m$; now that we know that the action of $h$ is an involution, $\chi_m = \chi_{-n}$. Therefore the action of $h$ on $V$ interchanges $V_n$ with $V_{-n}$ (which also implies $V_n\cong V_{-n}$) for all $n$.
+
+It follows that characters of representations of $\SU(2)$ viewed as polynomials in $z$ are palindromic; that is, if $cz^n$ appears as a term in $\chi_V(z)$, then $cz^{-n}$ must also appear as a term. In particular, for even irreps of $\SU(2)$, the only powers of $z$ that could appear in $\chi_V(z)$ are $z^n,z^{-n}$ for $n$ even. An example of a palindromic polynomial that might occur for an irrep $V$ (even or odd, this would just determine if $n$ was even or odd in the following expression) was 
+\[z^n + 72z^{n-2} + 46z^{n-4} + 46z^{-n+4} + 72z^{-n+2} + z^{-n}\]
+We will see later that this Laurent polynomial actually could not be a character of an irrep $V$; with the theory we have so far we cannot see this just yet.
+
+For $V = \mathbb C^2$ with $\SU(2)$ acting on $V$ by matrix multiplication, $\mathbb C^2$ has weight space decomposition $\mathbb C^2 = \mathbb Ce_1 + \mathbb Ce_2$ that is just the standard basis decomposition. The action of an element of the torus $T$ on the first summand is to scale by one eigenvalue (its top-left entry), and the action of an element of the torus $T$ on the second summand is to scale by the other eigenvalue. Therefore the character of this representation is $\chi_V(z) = z+z^{-1}$.
+
+\subsection{Choice of torus?}
+
+\subsection{Matrix elements}
 \end{document}
