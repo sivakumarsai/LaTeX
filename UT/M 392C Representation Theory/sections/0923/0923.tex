@@ -4,7 +4,7 @@
 \subsection{Prologue to representation theory of $\SU(2)$}
 There are several ways to study representations of $\SU(2)$, but the approach we will take is to start by first using the representation theory of $\U(1)$ to extract interesting information about representations of $\SU(2)$ as opposed to constructing them explicitly via a robust structure theory or some other approach.
 
-Let $V$ be a finite dimensional complex (continuous) representation of $\SU(2)$. Since $\SU(2)$ is not Abelian, we do not immediately get to use the nice theory of LCA groups we discussed earlier. So instead we look at the action of a copy of $\U(1)$ living inside $\SU(2)$ on $V$; that is, we think of $V$ first as a $\U(1)$-representation. There are lots of different copies of $\U(1)$ inside of $\SU(2)$, but for now think of the copy given by $\{\cos(\theta) + \sin(\theta)i\}\subset \SU(2)$ (the unit quaternions where the coefficients of $j,k$ are zero). A copy of $\U(1)$ in $\SU(2)$ is called a torus, usually denoted $T$ (there is a similar but general definition of a torus that we will not see for a while).
+Let $V$ be a finite dimensional complex (continuous) representation of $\SU(2)$. Since $\SU(2)$ is not Abelian, we do not immediately get to use the nice theory of LCA groups we discussed earlier. So instead we look at the action of a copy of $\U(1)$ living inside $\SU(2)$ on $V$; that is, we think of $V$ first as a $\U(1)$-representation. There are lots of different copies of $\U(1)$ inside of $\SU(2)$, but for now think of the copy given by $\{\cos(\theta) + \sin(\theta)i\}\subset \SU(2)$ (the unit quaternions where the coefficients of $j,k$ are zero). A copy of $\U(1)$ in $\SU(2)$ is called a (maximal) torus, usually denoted $T$ (a torus in a compact Lie group $G$ is a compact, connected, Abelian Lie subgroup of $G$, and a maximal torus is a torus that is maximal under inclusion of tori).
 
 From the earlier $\U(1)$-theory, $V$ is unitarizable under the action of $T$ and hence decomposes into isotypic components $V = \bigoplus_{n\in\mathbb Z}V_n$ where each $V_n$ is $\dim V_n$ many copies of the $n$-th irrep $\mathbb C_{\chi_n}$ of $T$ where $z\cdot w = \chi_n(z)w$ where $\chi_n$ is a characrer of $T$; that is,
 \[V_n = \mathbb C^{\dim V_n}\otimes_{\mathbb C}\mathbb C_{\chi_n}\]
@@ -48,11 +48,9 @@ The center of $\SU(2)$ is $\{\pm 1\}$: any matrix $\bigl(\!\begin{smallmatrix}
 	z & w \\ w & z
 \end{smallmatrix}\!\bigr)$, deduce that $\Im w = 0$. Then $\det \bigl(\!\begin{smallmatrix}
 	z & 0 \\ 0 & z
-\end{smallmatrix}\!\bigr) = 1$ so that $z = \pm 1$. 
+\end{smallmatrix}\!\bigr) = 1$ so that $z = \pm 1$. As a side note, it follows that $\SU(2)$ is an extension of $\SU(2)/\{\pm 1\} \cong \SO_3(\mathbb R)$ by $Z(\SU(2)) = \{\pm 1\}\cong \mathbb Z/2\mathbb Z$, which is central but non-split. This is because a section $\SO_3(\mathbb R)\to \SU(2)$ must be continuous and hence preserve loops. Consider the element in $\SO_3(\mathbb R)$ given by fixing an axis $u$ and rotating counterclockwise by an angle $\theta$, denote this element by $R_{u,\theta}$. The element $R_{u,\theta}$ should be sent to the element $g_\theta = \cos(\theta/2)+u\sin(\theta/2)$ in $\SU(2)$ (here we are identifying the pure unit quaternions with $\mathbb R^3$). So when $\theta = 0$, $g_\theta = 1$ and when $\theta = 2\pi$, $g_\theta = -1$. But the collection $\{R_{u,\theta}\mid 0\leq \theta\leq 2\pi\}$ forms a loop in $\SO_3(\mathbb R)$, but this loop is not sent to a loop in $\SU(2)$. So no section can exist.
 
 The observations of the previous two paragraphs combine to reveal that $-1\in \SU(2)$ acts on an irrep $V$ of $\SU(2)$ by a scalar multiple of $\id_V$. Since $-1^2 = 1$, we are limited to the cases that either $-1$ can act as $\id V$ or $-\id_V$. Sort irreps of $\SU(2)$ by whether $-1$ acts trivially by $\id_V$ or ``genuinely'' by $-\id_V$. The irreps in the first collection are called even irreps of $\SU(2)$, and the irreps in the second collection are called odd irreps of $\SU(2)$. The even irreps of $\SU(2)$ may be viewed as an irrep of $\SO_3(\mathbb R)$, since last time we saw that $\SO_3(\mathbb R)\cong \SU(2)/\{\pm 1\}$ (if both $\pm 1$ act trivially on an even irrep $V$ of $\SU(2)$, then the action of the quotient $\SU(2)/\{\pm 1\}$ on $V$ is well-defined and $V$ will remain irreducible under the new action).
-
-As a side note, the calculation of the center of $\SU(2)$ shows that $\SU(2)$ is a central extension of $\SO_3(\mathbb R)$ by $\mathbb Z/2\mathbb Z \cong \{\pm 1\}$ (but not a semidirect product, the extension is not split).
 
 If $V$ is an even irrep of $\SU(2)$, its decomposition as a $\U(1)$-representation is $V = \bigoplus_{n\in\mathbb Z}V_n$ where $\dim V_n$ for $n$ odd is zero. This is because $-1$ is contained in $\U(1)$, and the the action of $-1$ on $\mathbb C_{\chi_n}$ is given by scalar multiplication by $(-1)^n$, so in order for the action of $-1$ on $V_n$ to be trivial for odd $n$, $\dim V_n$ must be zero.
 
@@ -64,9 +62,11 @@ This shows that the action of the normalizer of $T$ on elements of the weight sp
 
 In $\SU(2)$ the copy of $T$ we started with was the one with $i$ in it; that is, we started with $T = \{\bigl(\!\begin{smallmatrix}
     z & 0 \\ 0 & \overline z
-\end{smallmatrix}\!\bigr)\}\subset \SU(2)$ (note $\overline z = z^{-1}$ since $z\in \U(1)$). We calculate the normalizer of $T$ in $\SU(2)$: For any $\bigl(\!\begin{smallmatrix}
+\end{smallmatrix}\!\bigr)\}\subset \SU(2)$ (note $\overline z = z^{-1}$ since $z\in \U(1)$). We calculate the normalizer of $T$ in $\SU(2)$: An element $g\in N(T)\subset \SU(2)$ will normalize all elements $\bigl(\!\begin{smallmatrix}
     t & 0 \\ 0 & \overline t
-\end{smallmatrix}\!\bigr)\in T$ and $g\in N(T)\subset \SU(2)$, there exists $\bigl(\!\begin{smallmatrix}
+\end{smallmatrix}\!\bigr)\in T$; that is, for each $\bigl(\!\begin{smallmatrix}
+    t & 0 \\ 0 & \overline t
+\end{smallmatrix}\!\bigr)\in T$ there exists $\bigl(\!\begin{smallmatrix}
     s & 0 \\ 0 & \overline s
 \end{smallmatrix}\!\bigr)\in T$ for which $g\bigl(\!\begin{smallmatrix}
     t & 0 \\ 0 & \overline t
@@ -90,23 +90,43 @@ Then $\bigl(\!\begin{smallmatrix}
     z & 0 \\ 0 & \overline z
 \end{smallmatrix}\!\bigr) = \bigl(\!\begin{smallmatrix}
     0 & \overline z \\ -z & 0
-\end{smallmatrix}\!\bigr)$ for $z\in \U(1)$. Therefore $N(T)\subset \SU(2)$ is the product of the subgroups $\{1,\bigl(\!\begin{smallmatrix}
-    0 & 1 \\ -1 & 0
-\end{smallmatrix}\!\bigr)\}\cong \mathbb Z/2\mathbb Z$ and $T$, which intersect trivially. It follows that 
-\[N(T) = T\rtimes \mathbb Z/2\mathbb Z\]
-(since by definition $T$ is normal in $N(T)$), and by identifying $T$ with $\SO_2(\mathbb R)$ (via $\bigl(\!\begin{smallmatrix}
-    x+iy & 0 \\ 0 & x-iy
-\end{smallmatrix}\!\bigr)\mapsto \bigl(\!\begin{smallmatrix}
-    x & y \\ -y & x
-\end{smallmatrix}\!\bigr)$), the split extension $1\to T \to N(T) \to \{1,\bigl(\!\begin{smallmatrix}
-    0 & 1 \\ -1 & 0
-\end{smallmatrix}\!\bigr)\} \to 1$ is isomorphic to the split extension
-\[1\to \SO_2(\mathbb R) \to \O_2(\mathbb R) \to \{1,\bigl(\!\begin{smallmatrix}
-    0 & 1 \\ -1 & 0
-\end{smallmatrix}\!\bigr)\}\ \to 1\]
-In other words, $N(T)$ is isomorphic to $\O_2(\mathbb R)$.
+\end{smallmatrix}\!\bigr)$ for $z\in \U(1)$. We can obtain the outcome of either case by taking $t = i$ and solving a small system of equations obtained after conjugation by $\bigl(\!\begin{smallmatrix}
+    a& b \\ c & d
+\end{smallmatrix}\!\bigr)\in N(T)$ in each case. 
 
-Interestingly, the quotient map $\SU(2)\to \SU(2)/\U(1)$ viewed as a quotient map of topological spaces is the Hopf fibration $S^3\to S^2$ (where $\SU(2)/\U(1)\cong S^2$ is thought of as the unit pure quaternions in $1,j,k$). The group $N(T)$ acts on $\SU(2)\cong S^3$ by conjugation, and by quotienting by $T$ we obtain the action of $N(T)/T \cong \mathbb Z/2\mathbb Z$ on $\SU(2)/\U(1)\cong S^2$ by conjugation, which amounts to swapping the north and south poles of $S^2$ via a rotation:
+From the above calculations see that $N(T)$ is the group generated by the order $4$ element $\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)$ and $T$. The quotient $N(T)/T$ is isomorphic to $\mathbb Z/2\mathbb Z$ since the coset $\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)T$ in $N(T)$ has order $2$. Therefore there is a short exact sequence 
+\[1\to T\to N(T)\to \mathbb Z/2\mathbb Z\to 0\]
+but this short exact sequence does not split. There is no homomorphism $\mathbb Z/2\mathbb Z\to N(T)$ which when followed by the quotient map is the identity on $\mathbb Z/2\mathbb Z$. The generator $-1$ of $\mathbb Z/2\mathbb Z$ would need to be sent to an order $2$ element of $N(T)$, but $\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)$ has order $4$, which is why no section $\mathbb Z/2\mathbb Z\to N(T)$ exists. So $N(T)$ is a non-split extension of $\mathbb Z/2\mathbb Z$ by $T$. As a side remark, if we consider the maximal torus $\widetilde T = T/\{\pm 1\}$ inside $\SU(2)/\{\pm 1\}\cong \SO_3(\mathbb R)$, then the normalizer $N(\widetilde T)$ in $ \SO_3(\mathbb R)$ is a split extension of $\mathbb Z/2\mathbb Z$ by $\widetilde T$.
+
+% Therefore $N(T)\subset \SU(2)$ is the product of the subgroups $\{1,\bigl(\!\begin{smallmatrix}
+%     0 & 1 \\ -1 & 0
+% \end{smallmatrix}\!\bigr)\}\cong \mathbb Z/2\mathbb Z$ and $T$, which intersect trivially. It follows that 
+% \[N(T) = T\rtimes \mathbb Z/2\mathbb Z\]
+% (since by definition $T$ is normal in $N(T)$), and by identifying $T$ with $\SO_2(\mathbb R)$ (via $\bigl(\!\begin{smallmatrix}
+%     x+iy & 0 \\ 0 & x-iy
+% \end{smallmatrix}\!\bigr)\mapsto \bigl(\!\begin{smallmatrix}
+%     x & y \\ -y & x
+% \end{smallmatrix}\!\bigr)$), the split extension $1\to T \to N(T) \to \{1,\bigl(\!\begin{smallmatrix}
+%     0 & 1 \\ -1 & 0
+% \end{smallmatrix}\!\bigr)\} \to 1$ is isomorphic to the split extension
+% \[1\to \SO_2(\mathbb R) \to \O_2(\mathbb R) \to \{1,\bigl(\!\begin{smallmatrix}
+%     0 & 1 \\ -1 & 0
+% \end{smallmatrix}\!\bigr)\}\ \to 1\]
+% In other words, $N(T)$ is isomorphic to $\O_2(\mathbb R)$.
+
+Interestingly, the quotient map $\SU(2)\to T\backslash\SU(2)$ viewed as a quotient map of topological spaces is the Hopf fibration $S^3\to S^2$, where $T\backslash\SU(2)\cong S^2$. Consider the map $\SU(2)\to \mathbb C^2\setminus \{0\}$ given by $\bigl(\!\begin{smallmatrix}
+    z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)\to (z,w)$. Then project onto $\mathbb{CP}^1$ by $(z,w)\mapsto [z:w]$. The fibers of the composite map $\SU(2)\to \mathbb{CP}^1$ are the right cosets $T\bigl(\!\begin{smallmatrix}
+    z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)$. Therefore we can identify $\mathbb{CP}^1$ with the right coset space $T\backslash\SU(2)$, and $\mathbb{CP}^2\cong S^2$. 
+
+The group $N(T)$ acts on $\SU(2)$ by conjugation, and the action descends to an action $N(T)$ on $T\backslash\SU(2)$ by conjugation because $N(T)$ normalizes $T$. The action of conjugation by an element of $T$ fixes orbits in $T\backslash \SU(2)$, so we can further define an action of $N(T)/T$ on $T\backslash \SU(T)$. Identifying $T\backslash \SU(2)$ with $S^2$, the action of $N(T)/T$ looks like reflection across a plane:
 \begin{figure}[h]
     \centering
 \begin{tikzpicture}
@@ -120,19 +140,31 @@ Interestingly, the quotient map $\SU(2)\to \SU(2)/\U(1)$ viewed as a quotient ma
   \node [style=none] (0) at (-2,0) {$\bullet$};
   \node [style=none] (0) at (0.57,0.57) {$\bullet$};
   \node [style=none] (0) at (-0.58,-0.58) {$\bullet$};
-  \node [style=none] (0) at (0,2.5) {$k$};
-  \node [style=none] (0) at (0,-2.5) {$-k$};
-  \node [style=none] (0) at (2.5,0) {$1$};
-  \node [style=none] (0) at (-2.5,0) {$-1$};
-  \node [style=none] (0) at (-1,-1) {$j$};
-  \node [style=none] (0) at (1,1) {$-j$};
-  \draw[->] (-2.5,1.767766) arc (135:225:2.5);
-  \draw[->] (2.5,-1.767766) arc (-45:45:2.5);
-  \node [style=none] (0) at (-4,1) {$j(-)\overline j$};
-  \node [style=none] (0) at (4,-1) {$j(-)\overline j$};
+  \node [style=none] (0) at (0,2.5) {$1$};
+  \node [style=none] (0) at (0,-2.5) {$\bigl(\!\begin{smallmatrix}
+    0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)$};
+  \node [style=none] (0) at (3,0) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+    1 & 1 \\ -1 & 1
+\end{smallmatrix}\!\bigr)$};
+  \node [style=none] (0) at (-3,0) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+    -1 & 1 \\ -1 & -1
+\end{smallmatrix}\!\bigr)$};
+  \node [style=none] (0) at (-0.75,-1) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+    -i & 1 \\ -1 & i
+\end{smallmatrix}\!\bigr)$};
+  \node [style=none] (0) at (0.75,1) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+    i & 1 \\ -1 & -i
+\end{smallmatrix}\!\bigr)$};
+\draw[dashed] (-2,0) -- (2,0);
+\draw [fill=blue!70, opacity = 0.1] (-5,-3) rectangle (5,3);
+%   \draw[->] (-2.5,1.767766) arc (135:225:2.5);
+%   \draw[->] (2.5,-1.767766) arc (-45:45:2.5);
+%   \node [style=none] (0) at (-4,1) {$j(-)\overline j$};
+%   \node [style=none] (0) at (4,-1) {$j(-)\overline j$};
 \end{tikzpicture}
-\end{figure}\\
-By quotienting out by $T$, we are agnostic to which axis about which we swap the north and south poles of $S^2$.
+\end{figure}
+In the picture the reflection is across the light blue plane splitting the sphere in half through the middle. We have suppressed notating the $T$ for each of the points belonging to $T\backslash \SU(2)$. Observe that the four points on the top, left, bottom, and right are fixed by the reflection, but the other two points are interchanged.
 
 The quotient group $N(T)/T$ is called the Weyl group, denoted $W$, which in this setting is isomorphic to $\mathbb Z/2\mathbb Z$. We can also think of the Weyl group as the symmetric group on two elements. The action of $W$ on $T$ by conjugation is to swap the eigenvalues of elements of $T$, but there is a second manifestation of this idea if we return to representations of $\SU(2)$.
 
@@ -145,6 +177,16 @@ We will see later that this Laurent polynomial actually could not be a character
 For $V = \mathbb C^2$ with $\SU(2)$ acting on $V$ by matrix multiplication, $\mathbb C^2$ has weight space decomposition $\mathbb C^2 = \mathbb Ce_1 + \mathbb Ce_2$ that is just the standard basis decomposition. The action of an element of the torus $T$ on the first summand is to scale by one eigenvalue (its top-left entry), and the action of an element of the torus $T$ on the second summand is to scale by the other eigenvalue. Therefore the character of this representation is $\chi_V(z) = z+z^{-1}$.
 
 \subsection{Choice of torus?}
+At the beginning we chose $T$ to be the maximal torus generated by $1,i$; that is, by the matrices $\bigl(\!\begin{smallmatrix}
+    z & 0 \\ 0 & \overline z
+\end{smallmatrix}\!\bigr)$ for $z\in\U(1)$. But there are several (infinitely many) other isomorphic copies of $\U(1)$ in $\SU(2)$ that could have been chosen in place of $T$. One might object and say that the above theory might have depended on this particular choice of $T$. We will see that it did not matter. 
+
+The first fact we need is that any two maximal toruses in $\SU(2)$ are conjugate to each other. This does not constitute a proof, but we can see this visually:  A maximal torus of $\SU(2)$ is the same as the group of counterclockwise rotations of $S^2$ about a fixed axis (this picture also exhibits the fact that a maximal torus is isomorphic to $\U(1)^k$ if and only if $k = 1$). Any two maximal toruses then differ only by which axis we choose to rotate about. Obtain an isomorphism of any two maximal toruses by conjugation by a suitable element of $\SU(2)$ which rotates one axis to the other. In other words, the action of $\SU(2)$ on the set of maximal tori by conjugation is transitive. 
+
+The set of maximal tori is isomorphic to $\SU(2)/\Stab(T)\cong \SU(2)/N(T)\cong $.
 
 \subsection{Matrix elements}
+We take a detour to discuss matrix elements, which will explain where characters come from, and will lead to the Peter-Weyl theorem.
+
+Let $V$ be a finite-dimensional representation of a group $G$. From $v\in V$ and $w\in V^\ast$, define $f_{v,w}\colon G\to \mathbb C$ by $g\mapsto \abr{w,gv}\coloneqq w(gv)$. We call the functions $f_{v,w}$ for $v\in V$ and $w\in V^\ast$ matrix elements, and $f_{v,w}(g)$ the matrix elements of $g$. Note that this definition in terms of $V$ and $V^\ast$ is coordinate-free, but recovers what we think are ``matrix elements''. If we fix a basis $\{e_i\}$ of $V$ and give $V^\ast$ the dual basis, then $f_{e_j^\ast,e_k}(g) = \abr{e_j^\ast,ge_k}$ denotes the $(j,k)$-entry in the matrix for $g\cdot$ in the given basis for $V$. 
 \end{document}
