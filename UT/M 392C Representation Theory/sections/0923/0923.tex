@@ -23,7 +23,7 @@ If we use the symbol $z$ for an element $\exp(i\theta)\in \U(1)\cong T$ (identif
 \end{pmatrix}v\]
 Thus if $z\in\U(1)$, then $\Tr_{V_n}(z\cdot) = (\dim V_n)z^n$; similarly, $\chi_V(z) = \sum_{n\in\mathbb Z}(\dim V_n)z^n$ is the trace $\Tr_V(z\cdot)$. So think of the Laurent polynomial $\chi_V(z)$ as a function $\U(1)\to \mathbb C$, which we call the character of the $\U(1)$-representation $V$.
 
-But we don't need to restrict $\chi_V$ to $\U(1)\cong T$; since $V$ is finite-dimensional, the quantity $\chi_V(g) = \Tr_V(g\cdot)$ makes sense; additionally, $\chi_V$ is invariant under conjugation since the trace is: $\chi_V(hgh^{-1}) = \Tr_V(hgh^{-1}\cdot) = \Tr_V(g\cdot) = \chi_V(g)$. Functions that are invariant under conjugation are called class functions. The approach we are heading towards to study the representation theory of $\SU(2)$ is called character theory.
+But we don't need to restrict $\chi_V$ to $T$; since $V$ is finite-dimensional, we could instead define more generally define the character $\chi_V$ by $\chi_V(g) = \Tr_V(g\cdot)$; that is, by taking the trace of the group action on $V$. Another observation is that the character $\chi_V$ is invariant under conjugation since the trace is: $\chi_V(hgh^{-1}) = \Tr_V(hgh^{-1}\cdot) = \Tr_V(g\cdot) = \chi_V(g)$. Functions that are invariant under conjugation are called class functions. The approach we are heading towards to study the representation theory of $\SU(2)$ is called character theory.
 
 \subsection{The Weyl group}
 Let $V$ be an irrep of a group $G$. By Schur's lemma $Z(G)\subset G$ acts on $V$ by scalar multiples of $\id_V$ since acting on $V$ by an element of $Z(G)$ defines an intertwining operator $V\to V$ (because elements of $Z(G)$ commute with every element of $G$).
@@ -48,7 +48,7 @@ The center of $\SU(2)$ is $\{\pm 1\}$: any matrix $\bigl(\!\begin{smallmatrix}
 	z & w \\ w & z
 \end{smallmatrix}\!\bigr)$, deduce that $\Im w = 0$. Then $\det \bigl(\!\begin{smallmatrix}
 	z & 0 \\ 0 & z
-\end{smallmatrix}\!\bigr) = 1$ so that $z = \pm 1$. As a side note, it follows that $\SU(2)$ is an extension of $\SU(2)/\{\pm 1\} \cong \SO_3(\mathbb R)$ by $Z(\SU(2)) = \{\pm 1\}\cong \mathbb Z/2\mathbb Z$, which is central but non-split. This is because a section $\SO_3(\mathbb R)\to \SU(2)$ must be continuous and hence preserve loops. Consider the element in $\SO_3(\mathbb R)$ given by fixing an axis $u$ and rotating counterclockwise by an angle $\theta$, denote this element by $R_{u,\theta}$. The element $R_{u,\theta}$ should be sent to the element $g_\theta = \cos(\theta/2)+u\sin(\theta/2)$ in $\SU(2)$ (here we are identifying the pure unit quaternions with $\mathbb R^3$). So when $\theta = 0$, $g_\theta = 1$ and when $\theta = 2\pi$, $g_\theta = -1$. But the collection $\{R_{u,\theta}\mid 0\leq \theta\leq 2\pi\}$ forms a loop in $\SO_3(\mathbb R)$, but this loop is not sent to a loop in $\SU(2)$. So no section can exist.
+\end{smallmatrix}\!\bigr) = 1$ so that $z = \pm 1$. As a side note, it follows that $\SU(2)$ is an extension of $\SU(2)/\{\pm 1\} \cong \SO_3(\mathbb R)$ by $Z(\SU(2)) = \{\pm 1\}\cong \mathbb Z/2\mathbb Z$, which is central but non-split. This is because a section $\SO_3(\mathbb R)\to \SU(2)$ must be continuous and hence preserve loops. Consider the element in $\SO_3(\mathbb R)$ given by fixing an axis $u\in\mathbb R^3$ (with $u$ of unit length) and rotating counterclockwise by an angle $\theta$, denote this element by $R_{u,\theta}$. The element $R_{u,\theta}$ should be sent to the element $g_\theta = \cos(\theta/2)+u\sin(\theta/2)$ in $\SU(2)$ (here we are identifying the unit pure quaternions with $S^2\subset \mathbb R^3$). So when $\theta = 0$, $g_\theta = 1$ and when $\theta = 2\pi$, $g_\theta = -1$. But the collection $\{R_{u,\theta}\mid 0\leq \theta\leq 2\pi\}$ forms a loop in $\SO_3(\mathbb R)$, but this loop is not sent to a loop in $\SU(2)$. So no section can exist.
 
 The observations of the previous two paragraphs combine to reveal that $-1\in \SU(2)$ acts on an irrep $V$ of $\SU(2)$ by a scalar multiple of $\id_V$. Since $-1^2 = 1$, we are limited to the cases that either $-1$ can act as $\id V$ or $-\id_V$. Sort irreps of $\SU(2)$ by whether $-1$ acts trivially by $\id_V$ or ``genuinely'' by $-\id_V$. The irreps in the first collection are called even irreps of $\SU(2)$, and the irreps in the second collection are called odd irreps of $\SU(2)$. The even irreps of $\SU(2)$ may be viewed as an irrep of $\SO_3(\mathbb R)$, since last time we saw that $\SO_3(\mathbb R)\cong \SU(2)/\{\pm 1\}$ (if both $\pm 1$ act trivially on an even irrep $V$ of $\SU(2)$, then the action of the quotient $\SU(2)/\{\pm 1\}$ on $V$ is well-defined and $V$ will remain irreducible under the new action).
 
@@ -126,7 +126,7 @@ Interestingly, the quotient map $\SU(2)\to T\backslash\SU(2)$ viewed as a quotie
     z & w \\ -\overline w & \overline z
 \end{smallmatrix}\!\bigr)$. Therefore we can identify $\mathbb{CP}^1$ with the right coset space $T\backslash\SU(2)$, and $\mathbb{CP}^1\cong S^2$. 
 
-The group $N(T)$ acts on $\SU(2)$ by conjugation, and the action descends to an action $N(T)$ on $T\backslash\SU(2)$ by conjugation because $N(T)$ normalizes $T$. The action of conjugation by an element of $T$ fixes orbits in $T\backslash \SU(2)$, so we can further define an action of $N(T)/T$ on $T\backslash \SU(T)$ by conjugation. Identifying $T\backslash \SU(2)$ with $S^2$, the action of $N(T)/T$ looks like reflection across a plane:
+The group $N(T)$ acts on $\SU(2)$ by conjugation, and the action descends to an action $N(T)$ on $T\backslash\SU(2)$ by conjugation because $N(T)$ normalizes $T$. The action of conjugation by an element of $T$ fixes orbits in $T\backslash \SU(2)$, so we can further define an action of $T\backslash N(T) = N(T)/T$ on $T\backslash \SU(T)$ by conjugation. Identifying $T\backslash \SU(2)$ with $S^2$, the action of $T\backslash N(T)$ looks like reflection across a plane:
 \begin{figure}[h]
     \centering
 \begin{tikzpicture}
@@ -140,20 +140,20 @@ The group $N(T)$ acts on $\SU(2)$ by conjugation, and the action descends to an 
   \node [style=none] (0) at (-2,0) {$\bullet$};
   \node [style=none] (0) at (0.57,0.57) {$\bullet$};
   \node [style=none] (0) at (-0.58,-0.58) {$\bullet$};
-  \node [style=none] (0) at (0,2.5) {$1$};
-  \node [style=none] (0) at (0,-2.5) {$\bigl(\!\begin{smallmatrix}
+  \node [style=none] (0) at (0,2.5) {$T1$};
+  \node [style=none] (0) at (0,-2.5) {$T\bigl(\!\begin{smallmatrix}
     0 & 1 \\ -1 & 0
 \end{smallmatrix}\!\bigr)$};
-  \node [style=none] (0) at (3,0) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+  \node [style=none] (0) at (3.25,0) {$T\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
     1 & 1 \\ -1 & 1
 \end{smallmatrix}\!\bigr)$};
-  \node [style=none] (0) at (-3,0) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+  \node [style=none] (0) at (-3.25,0) {$T\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
     -1 & 1 \\ -1 & -1
 \end{smallmatrix}\!\bigr)$};
-  \node [style=none] (0) at (-0.75,-1) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+  \node [style=none] (0) at (-0.5,-1) {$T\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
     -i & 1 \\ -1 & i
 \end{smallmatrix}\!\bigr)$};
-  \node [style=none] (0) at (0.75,1) {$\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
+  \node [style=none] (0) at (0.5,1) {$T\frac{1}{\sqrt{2}}\bigl(\!\begin{smallmatrix}
     i & 1 \\ -1 & -i
 \end{smallmatrix}\!\bigr)$};
 \draw[dashed] (-2,0) -- (2,0);
@@ -164,11 +164,31 @@ The group $N(T)$ acts on $\SU(2)$ by conjugation, and the action descends to an 
 %   \node [style=none] (0) at (4,-1) {$j(-)\overline j$};
 \end{tikzpicture}
 \end{figure}
-In the picture the reflection is across the light blue plane splitting the sphere in half through the middle. We have suppressed notating the $T$ for each of the points belonging to $T\backslash \SU(2)$. Observe that the four points on the top, left, bottom, and right are fixed by the reflection, but the other two points are interchanged.
+In the picture the reflection is across the light blue plane splitting the sphere in half through the middle (through the dashed diameter). Observe that the four points on the top, left, bottom, and right are fixed by the reflection, but the other two points are interchanged. In general, $T\bigl(\!\begin{smallmatrix}
+    0 & t \\ -\overline t & 0
+\end{smallmatrix}\!\bigr)\in T\backslash N(T)$ acts by conjugation on an element $T\bigl(\!\begin{smallmatrix}
+    z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)\in T\backslash \SU(2)$ by
+\[\bigl(\!\begin{smallmatrix}
+    0 & t \\ -\overline t & 0
+\end{smallmatrix}\!\bigr)T\bigl(\!\begin{smallmatrix}
+    z & w \\ -\overline w & \overline z
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+    0 & -t \\ \overline t & 0
+\end{smallmatrix}\!\bigr) = T\bigl(\!\begin{smallmatrix}
+    0 & t \\ -\overline t & 0
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+    z & w \\ -\overline w & \overline v
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+    0 & -t \\ \overline t & 0
+\end{smallmatrix}\!\bigr) = T\bigl(\!\begin{smallmatrix}
+    \overline z & \overline w \\ -w & z
+\end{smallmatrix}\!\bigr).\] 
+The corresponding action on $\mathbb{CP}^1$ is the involution $[z:w]\mapsto [\overline z:\overline w]$.
 
-The quotient group $N(T)/T$ is called the Weyl group, denoted $W$, which in this setting is isomorphic to $\mathbb Z/2\mathbb Z$. We can also think of the Weyl group as the symmetric group on two elements. The action of $W$ on $T$ by conjugation is to swap the eigenvalues of elements of $T$, but there is a second manifestation of this idea if we return to representations of $\SU(2)$.
+The quotient group $N(T)/T$ is called the Weyl group, denoted $W$, which in this setting is isomorphic to $\mathbb Z/2\mathbb Z$. We can also think of the Weyl group as the symmetric group on two elements. The action of $W$ on $T$ by conjugation is to swap the eigenvalues of elements of $T$, but there is another manifestation of this idea if we return to representations of $\SU(2)$.
 
-Let $V$ be a representation of $\SU(2)$ and consider its weight space decomposition $V = \bigoplus_{n\in\mathbb Z}V_n$ with respect to $T$. Since $T$ centralizes $T$, the conjugation action of $N(T)$ on $T$ we can instead think of as a conjugation action of $N(T)/T$ on $T$. We saw before that for $h\in N(T)/T$, $\chi_n(h^{-1}(-)h)$ defines a character of the torus denoted $\chi_m$; now that we know that the action of $h$ is an involution, $\chi_m = \chi_{-n}$. Therefore the action of $h$ on $V$ interchanges $V_n$ with $V_{-n}$ (which also implies $V_n\cong V_{-n}$) for all $n$.
+Let $V$ be a representation of $\SU(2)$ and consider its weight space decomposition $V = \bigoplus_{n\in\mathbb Z}V_n$ with respect to $T$. Since $T$ centralizes $T$, the conjugation action of $N(T)$ on $T$ can be replaced by the conjugation action of $N(T)/T$ on $T$. We saw before that for $h\in N(T)/T$, $\chi_n(h^{-1}(-)h)$ defines a character of the torus denoted $\chi_m$; now that we know that the action of $h$ is an involution, $\chi_m = \chi_{-n}$. Therefore the action of $h$ on $V$ interchanges $V_n$ with $V_{-n}$ (which also implies $V_n\cong V_{-n}$) for all $n$.
 
 It follows that characters of representations of $\SU(2)$ viewed as polynomials in $z$ are palindromic; that is, if $cz^n$ appears as a term in $\chi_V(z)$, then $cz^{-n}$ must also appear as a term. In particular, for even irreps of $\SU(2)$, the only powers of $z$ that could appear in $\chi_V(z)$ are $z^n,z^{-n}$ for $n$ even. An example of a palindromic polynomial that might occur for an irrep $V$ (even or odd, this would just determine if $n$ was even or odd in the following expression) was 
 \[z^n + 72z^{n-2} + 46z^{n-4} + 46z^{-n+4} + 72z^{-n+2} + z^{-n}\]
@@ -183,11 +203,31 @@ At the beginning we chose $T$ to be the maximal torus generated by $1,i$; that i
 
 The first fact we need is that any two maximal toruses in $\SU(2)$ are conjugate to each other. This does not constitute a proof, but we can see this visually:  A maximal torus of $\SU(2)$ is the same as the group of counterclockwise rotations of $S^2$ about a fixed axis (this picture also exhibits the fact that a maximal torus is isomorphic to $\U(1)^k$ if and only if $k = 1$). Any two maximal toruses then differ only by which axis we choose to rotate about. Obtain an isomorphism of any two maximal toruses by conjugation by a suitable element of $\SU(2)$ which rotates one axis to the other. In other words, the action of $\SU(2)$ on the set of maximal tori by conjugation is transitive. 
 
-The $\SU(2)$-set of maximal tori (with the conjugation action) is isomorphic to the coset space $\SU(2)/\Stab(T)\cong \SU(2)/N(T)\cong (T\backslash \SU(2))/(T\backslash N(T))\cong S^2/(\mathbb Z/2\mathbb Z)$. The action of $\mathbb Z/2\mathbb Z$ on $S^2$ in this case is the antipodal map, so the set of maximal tori can be identified with $\mathbb{RP}^2$.
+The $\SU(2)$-set of maximal tori (with the conjugation action) is isomorphic to the coset space $\SU(2)/\Stab(T)\cong \SU(2)/N(T)\cong (T\backslash \SU(2))/(T\backslash N(T))\cong S^2/(\mathbb Z/2\mathbb Z)$. The action of $\mathbb Z/2\mathbb Z$ on $S^2$ in this case is the antipodal map, so the set of maximal tori can be identified with $\mathbb{RP}^2$. Recall the action of $\SU(2)$ on pure quaternions by conjugation; we identified this with the representation $\mathbb R^3$ of $\SU(2)$. From this representation we obtained a two-to-one map $\SU(2)\to\SO_3(\mathbb R)$. The action of $\SO_3(\mathbb R)$ on $\mathbb R^3$ is transitive, and therefore the action of $\SU(2)$ on $\mathbb R^3$ is also. Furthermore, the actions of $\SU(2),\SO_3(\mathbb R)$ on $\mathbb R^3$ descend to transitive actions on $\mathbb{RP}^2$, since the actions move one-dimensional subspaces to one-dimensional subspaces. The stabilizer in $\SO_3(\mathbb R)$ of a point in $\mathbb{RP}^2$, or rather of a line passing through the origin in $\mathbb R^3$, is a copy of $\O_2(\mathbb R)$ in $\SO_3(\mathbb R)$. For example, the stabilizer of the line through the standard basis vector $e_1$ is the copy of $\O_2(\mathbb R)$ generated by 
+\[\begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & a & b \\
+    0 & c & d
+\end{pmatrix}, \begin{pmatrix}
+    -1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & -1
+\end{pmatrix}\]
+where $\bigl(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\bigr)\in \SO_2(\mathbb R)$. So $\SO_3(\mathbb R)/\O_2(\mathbb R)$ is isomorphic to $\mathbb{RP}^2$. The preimage of this copy of $\O_2(\mathbb R)$ in $\SU(2)$ is $N(T)$, since the map $\SU(2)\to\SO_3(\mathbb R)$ is given by 
+\[\begin{pmatrix}
+    z & w \\
+    -\overline w & \overline z
+\end{pmatrix}\mapsto \begin{pmatrix}
+    \abs{z}^2-\abs{w}^2 & iw\overline z-iz\overline w & w\overline z + z\overline w\\
+    -izw+i\overline z\overline w & (w^2+\overline w^2 + z^2+\overline z^2)/2 & -i(w^2-\overline w^2-z^2+\overline z^2)/2\\
+-zw-\overline z\overline w & -i(w^2-\overline w^2+z^2-\overline z^2)/2 & -(w^2+\overline w^2-z^2-\overline z^2)/2\end{pmatrix}\]
+The representation $\SU(2)\to \SO_3(\mathbb R)$ above is sometimes called the adjoint representation of $\SU(2)$.
 
-Maximal tori are superficially similar to Sylow subgroups in that the maximal tori are all conjugate to each other and that every element of $\SU(2)$ belongs to a maximal torus, since conjugation by an element of $\SU(2)$ fixes an axis; that is, the $\mathbb R$-span of a unit pure quaternion.
+Maximal tori are superficially(?) similar to Sylow subgroups in that the maximal tori are all conjugate to each other and that every element of $\SU(2)$ belongs to a maximal torus, since conjugation by an element of $\SU(2)$ fixes an axis; that is, the $\mathbb R$-span of a unit pure quaternion.
 
-If $T$ and $T^\prime$ are two tori of $\SU(2)$ and $V$ is a finite-dimensional representation of $\SU(2)$, then 
+Since any element $g\in \SU(2)$ belongs to a maximal torus $T^\prime$, we may conjugate $g$ by a suitable element $h\in G$ so that $hgh^{-1}\in T$. Then $\chi_v(g) = \chi_V(hgh^{-1})$ can be explicitly computed. This shows that the choice of the torus $T$ does not change the form of the Laurent polynomial representing $\chi_V(z)$.
 
 \subsection{Matrix elements}
 We take a detour to discuss matrix elements, which will explain where characters come from, and will lead to the Peter-Weyl theorem.
