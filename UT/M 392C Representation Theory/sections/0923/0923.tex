@@ -188,11 +188,11 @@ The corresponding action on $\mathbb{CP}^1$ is the involution $[z:w]\mapsto [\ov
 
 The quotient group $N(T)/T$ is called the Weyl group, denoted $W$, which in this setting is isomorphic to $\mathbb Z/2\mathbb Z$. We can also think of the Weyl group as the symmetric group on two elements. The action of $W$ on $T$ by conjugation is to swap the eigenvalues of elements of $T$, but there is another manifestation of this idea if we return to representations of $\SU(2)$.
 
-Let $V$ be a representation of $\SU(2)$ and consider its weight space decomposition $V = \bigoplus_{n\in\mathbb Z}V_n$ with respect to $T$. Since $T$ centralizes $T$, the conjugation action of $N(T)$ on $T$ can be replaced by the conjugation action of $N(T)/T$ on $T$. We saw before that for $h\in N(T)/T$, $\chi_n(h^{-1}(-)h)$ defines a character of the torus denoted $\chi_m$; now that we know that the action of $h$ is an involution, $\chi_m = \chi_{-n}$. Therefore the action of $h$ on $V$ interchanges $V_n$ with $V_{-n}$ (which also implies $V_n\cong V_{-n}$) for all $n$.
+Let $V$ be a representation of $\SU(2)$ and consider its weight space decomposition $V = \bigoplus_{n\in\mathbb Z}V_n$ with respect to $T$. Since $T$ centralizes $T$, the conjugation action of $N(T)$ on $T$ can be replaced by the faithful conjugation action of $N(T)/T$ on $T$. We saw before that for $h\in N(T)/T$, $\chi_n(h^{-1}(-)h)$ defines a character of the torus denoted $\chi_m$. Since the action of $h$ by conjugation is by complex conjugation, $\chi_m = \chi_{-n}$. Therefore the action of $h$ on $V$ interchanges $V_n$ with $V_{-n}$ (which also implies $V_n\cong V_{-n}$) for all $n$.
 
 It follows that characters of representations of $\SU(2)$ viewed as polynomials in $z$ are palindromic; that is, if $cz^n$ appears as a term in $\chi_V(z)$, then $cz^{-n}$ must also appear as a term. In particular, for even irreps of $\SU(2)$, the only powers of $z$ that could appear in $\chi_V(z)$ are $z^n,z^{-n}$ for $n$ even. An example of a palindromic polynomial that might occur for an irrep $V$ (even or odd, this would just determine if $n$ was even or odd in the following expression) was 
 \[z^n + 72z^{n-2} + 46z^{n-4} + 46z^{-n+4} + 72z^{-n+2} + z^{-n}\]
-We will see later that this Laurent polynomial actually could not be a character of an irrep $V$; with the theory we have so far we cannot see this just yet.
+We will see much later that this Laurent polynomial actually could not be a character of an irrep $V$.
 
 For $V = \mathbb C^2$ with $\SU(2)$ acting on $V$ by matrix multiplication, $\mathbb C^2$ has weight space decomposition $\mathbb C^2 = \mathbb Ce_1 + \mathbb Ce_2$ that is just the standard basis decomposition. The action of an element of the torus $T$ on the first summand is to scale by one eigenvalue (its top-left entry), and the action of an element of the torus $T$ on the second summand is to scale by the other eigenvalue. Therefore the character of this representation is $\chi_V(z) = z+z^{-1}$.
 
@@ -225,12 +225,20 @@ where $\bigl(\!\begin{smallmatrix}
 -zw-\overline z\overline w & -i(w^2-\overline w^2+z^2-\overline z^2)/2 & -(w^2+\overline w^2-z^2-\overline z^2)/2\end{pmatrix}\]
 The representation $\SU(2)\to \SO_3(\mathbb R)$ above is sometimes called the adjoint representation of $\SU(2)$.
 
-Maximal tori are superficially(?) similar to Sylow subgroups in that the maximal tori are all conjugate to each other and that every element of $\SU(2)$ belongs to a maximal torus, since conjugation by an element of $\SU(2)$ fixes an axis; that is, the $\mathbb R$-span of a unit pure quaternion.
+Maximal tori are similar to Sylow subgroups in that the maximal tori are all conjugate to each other and that every element of $\SU(2)$ belongs to a maximal torus since conjugation by an element of $\SU(2)$ fixes an axis in $\mathbb R^3$; that is, conjugation fixes some pure quaternion.
 
-Since any element $g\in \SU(2)$ belongs to a maximal torus $T^\prime$, we may conjugate $g$ by a suitable element $h\in G$ so that $hgh^{-1}\in T$. Then $\chi_v(g) = \chi_V(hgh^{-1})$ can be explicitly computed. This shows that the choice of the torus $T$ does not change the form of the Laurent polynomial representing $\chi_V(z)$.
+Since any element $g\in \SU(2)$ belongs to a maximal torus $T^\prime$, we may conjugate $g$ by a suitable element $h\in \SU(2)$ so that $hgh^{-1}\in T$. Then $\chi_V(g) = \chi_V(hgh^{-1})$ can be explicitly computed using the Laurent polynomial expression for $\chi_V$ obtained from the weight space decomposition of $V$ with respect to $T$. This shows that the choice of the torus $T$ does not change the form of the Laurent polynomial representing $\chi_V(z)$ (any two such Laurent polynomials would agree on an infinite number of points).
 
 \subsection{Matrix elements}
 We take a detour to discuss matrix elements, which will explain where characters come from, and will lead to the Peter-Weyl theorem.
 
-Let $V$ be a finite-dimensional representation of a group $G$. From $v\in V$ and $w\in V^\ast$, define $f_{v,w}\colon G\to \mathbb C$ by $g\mapsto \abr{w,gv}\coloneqq w(gv)$. We call the functions $f_{v,w}$ for $v\in V$ and $w\in V^\ast$ matrix elements, and $f_{v,w}(g)$ the matrix elements of $g$. Note that this definition in terms of $V$ and $V^\ast$ is coordinate-free, but recovers what we think are ``matrix elements''. If we fix a basis $\{e_i\}$ of $V$ and give $V^\ast$ the dual basis, then $f_{e_j^\ast,e_k}(g) = \abr{e_j^\ast,ge_k}$ denotes the $(j,k)$-entry in the matrix for $g\cdot$ in the given basis for $V$. 
+Let $V$ be a finite-dimensional representation of a group $G$. From $v\in V$ and $w\in V^\ast$, define $f_{v,w}\colon G\to \mathbb C$ by $g\mapsto \abr{w,gv}\coloneqq w(gv)$. We call the functions $f_{v,w}$ for $v\in V$ and $w\in V^\ast$ matrix elements, and $f_{v,w}(g)$ the matrix elements of $g$. Note that this definition in terms of $V$ and $V^\ast$ is coordinate-free, but recovers what we think are ``matrix elements''. If we fix a basis $\{e_i\}$ of $V$ and give $V^\ast$ the dual basis, then $f_{e_j^\ast,e_k}(g) = \abr{e_j^\ast,ge_k}$ denotes the $(j,k)$-entry in the matrix for $g\cdot$ in the given basis for $V$.
+
+Collect all the matrix elements via a map $V\otimes V^\ast\xrightarrow{f_{-,-}} \Fun(G)$. We would like to investigate what kinds of functions the matrix elements are. For example, if $V$ is a continuous representation, then the matrix elements are continuous functions, and if $G$ is compact, then the matrix elements are also $L^2$-integrable. 
+
+If $G$ is finite, then consider the map $\mathbb C[G]\to \End(V)\cong V\otimes V^\ast$. This map is actually the adjoint to the matrix elements map $V\otimes V^\ast\to\Fun(G)$ in a particular way: \sai{try}
+
+Since $V^\ast$ is a representation of $G$, the vector space $V\otimes V^\ast$ is a $G\times G$-representation by the action $(g,h)(v\otimes w) = gv\otimes hw$. The space $\Fun(G)$ is also a $G\times G$-representation where $(g,h)f = f(g^{-1}(-)h)$ (combining both the left and right actions of $G$ on $\Fun(G)$). Then the matrix elements map $V\otimes V^\ast\to \Fun(G)$ is a $G\times G$-equivariant map: \sai{try} 
+
+If $V$ is an irrep of $G$ then $V\otimes V^\ast$ is an irrep of $G\times G$. Then the matrix element map $f_{-,-}$ is either zero or injective. In the case that $V$ is not the zero space, then as a vector space $V\otimes V^\ast\cong \End(V)$, which is not trivial since it has $\id_V$. (This is a basis free way of finding $\id_V$ in $V\otimes V^\ast$; if we fix)
 \end{document}
