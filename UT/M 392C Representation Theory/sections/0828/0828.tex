@@ -151,7 +151,7 @@ Let $G = \abr{x}$ be a cyclic group of order $n$. The dual object $\widehat{G}$ 
 
 In this case, $\Spec$ is taking the maximal ideals of rings. With $\mathbb C[G]\cong \mathbb C[x]/(x^n-1)$, it is equivalent to describe the elements in $\Hom_{\mathbb C\alg}(\mathbb C[x]/(x^n-1),\mathbb C)$, which are characterized by each of the $n$-th roots of unity.
 
-We take a small detour to discuss Schur's lemma, which states that for any group $G$, that any $\mathbb C[G]$-module homomorphisms between simple $\mathbb C[G]$-modules are either $0$ or are isomorphisms of $\mathbb C[G]$-modules. This follows by investigating kernels and images since they are submodules of $V,W$ respectively. In particular, any $\mathbb C[G]$-module endomorphism of a simple $\mathbb C[G]$-module is a scalar multiple of the identity, since for any nonzero endomorphism $T$ we can consider $T-\lambda \id_V$, which is no longer an isomorphism and hence must be zero. Here we used the algebraic closedness of $\mathbb C$, and in fact we could have replaced $\mathbb C$ by any algebraically closed field $k$.
+We take a small detour to discuss Schur's lemma, which states that for any group $G$, $\mathbb C[G]$-module homomorphisms between simple $\mathbb C[G]$-modules are either $0$ or are isomorphisms. This follows by investigating kernels and images since they are submodules of $V,W$ respectively. In particular, any $\mathbb C[G]$-module endomorphism of a simple $\mathbb C[G]$-module is a scalar multiple of the identity, since for any nonzero endomorphism $T$ we can consider $T-\lambda \id_V$, which is no longer an isomorphism and hence must be zero. Here we used the algebraic closedness of $\mathbb C$, and in fact we could have replaced $\mathbb C$ by any algebraically closed field $k$.
 
 Schur's lemma is used to prove that if $G$ is Abelian then any finite-dimensional irrep of $G$ is one-dimensional. If such an irrep $V$ had finite dimension greater than or equal to $2$, then left multiplication $V\xrightarrow{g}V$ by any element $g\in G$ must be a scalar multiple of $\id_V$, which contradicts the irreducibility of $V$ (since we assumed $\dim V\geq 2$). 
 
@@ -166,7 +166,7 @@ For $G$ Abelian, $\widehat G$ is the set of maximal ideals of $\mathbb C[G]$, wh
 	\arrow[hook, from=1-2, to=1-3]
 	\arrow["{\overline f}"', dashed, from=2-1, to=1-3]
 \end{tikzcd}\]
-So in general we can also think of $\widehat G$ as the collection of irreps of $G$.
+Every map $\overline f\in \Hom_{\mathbb C\alg}(\mathbb C[G],\mathbb C)$ corresponds uniquely to a map $f\in \Hom_{\Group}(G,\mathbb C^\times)$. So in general we can also think of $\widehat G$ as the collection of irreps of $G$.
 
 Given an irrep $V$ of $G$ (i.e. a simple $\mathbb C[G]$-module), we can try to form a sheaf out of $V$ on $\widehat G$. Since $V$ is irreducible, this sheaf has to be concentrated at only one of the points of $\widehat{G}$, and this point is the point corresponding to the irrep $V$ itself. So in the example where $G = \abr{x}$ has order $n$, the point at which an irrep $V$ lies on is the root of unity $\zeta$ for which the action of $x$ on an irrep $V$ is given by multiplication by $\zeta$.
 
@@ -196,5 +196,5 @@ Since $\widehat G$ is in bijection with $\Hom_{\Group}(G,\mathbb C^\times)$, we 
 
 Next time, we will explore the Fourier transform, which for $G$ finite Abelian is a $\mathbb C[G]$-module isomorphism
 \[\Fun(G)\xlongrightarrow{\widehat{-}}\Fun(\widehat G)\]
-where $\Fun(G)$, $\Fun(\widehat G)$ are function spaces on $G,\widehat G$ and are given convolution and pointwise multiplication, respectively. Note that in this case $\Fun(G) \cong \mathbb C[G]$, so we give $\Fun(G)$ the corresponding action, which is given by $gf(x) = f(g^{-1}x)$. We will look at the action of $G$ on $\Fun(\hat G)\cong \mathbb C[\widehat G]$ next time. This isomorphism has some symmetry which is part of the statement of Pontryagin duality.
+where $\Fun(G)$, $\Fun(\widehat G)$ are function spaces on $G,\widehat G$ and are given convolution and pointwise multiplication, respectively. Note that in this case $\Fun(G) \cong \mathbb C[G]$, so we give $\Fun(G)$ the corresponding action, which is given by $gf(x) = f(g^{-1}x)$. We will look at the action of $G$ on $\Fun(\widehat G)\cong \mathbb C[\widehat G]$ next time. This isomorphism has some symmetry which is part of the statement of Pontryagin duality.
 \end{document}
