@@ -16,7 +16,7 @@ In other words, $V$ is unitarizable if it can be endowed with a Hermitian inner 
 	\arrow[hook, from=2-2, to=1-2]
 \end{tikzcd}\]
 
-A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector space $V$ and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$.
+A non-example of a unitarizable representation: If $\mathbb Z$ acts on a one-dimensional vector space $V$ and $1\in \mathbb Z$ acts by an operator outside of $\U(V)$, then there is no way to unitarize $V$. The key point here is that since $V$ is one-dimensional, the definition of $\U(V)$ does not depend on any choice of Hermitian inner product on $V$.
 
 Given a representation $(V,\rho)$, recall we can define the dual representation $V^\ast$ where $gf(v) = f(g^{-1}v)$. In this case we think of the action of $G$ as being inverted since we use the inversion map on $G$ to define the action on $V^\ast$. On the other hand, since the action of $G$ on $V$ is by complex-valued matrices, we can pointwise conjugate these matrices to obtain a representation $(\overline V,\overline \rho)$ where the underlying Abelian group $\overline V$ coincides with the Abelian group $V$ but the scalar multiplication is given by $c\cdot_{\overline V} v = \overline{c}\cdot_Vv$. Extending this, the group $G$ acts on $\overline V$ by $gv = \overline{\rho(g)}v$, and in this case we think of the action as being conjugated as opposed to inverted in the case with the dual vector space.
 
@@ -34,7 +34,7 @@ Note that $\av\in Z(\mathbb C[G])$. To define this averaging element, it is cruc
 
 Let $V$ be any finite-dimensional representation. Then we can define the subspace of $G$-fixed points, $V^G$, by
 \[V^G = \{v\in V\mid gv = v\text{ for all }g\in G\}\]
-The subspace $V^G$ is the part of $V$ that $G$ acts trivially on, or in other words is the trivial representation part of $V$ when broken into irreps. For any $v\in V$, $av\cdot v\in V^G$ since for any $h\in G$ we have
+The subspace $V^G$ is the part of $V$ that $G$ acts trivially on, or in other words is the trivial representation part of $V$ when broken into irreps. For any $v\in V$, $\av\cdot v\in V^G$ since for any $h\in G$ we have
 \[h(\av\cdot v) = h\biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}hgv\biggr) = \biggl(\frac{1}{\abs{G}}\sum_{g\in G}gv\biggr) = \av\cdot v\]
 Observe further that because the sum is normalized with the factor $1/\abs{G}$, multiplication by $\av$ defines a projection map to $V^G$, since $\av^2 = \av$, so $\av-$ is an idempotent. The complementary idempotent is $(1-\av)-$, and see that it squares to itself as well. It is complementary since $\av(1-\av) = 0$. It follows that $V = \av V\oplus (1-\av)V = V^G\oplus (1-\av)V$.
 
@@ -51,7 +51,7 @@ When $G$ is finite, then the group algbera $\mathbb C[G]$ can be identified with
 
 So if $G$ acts on $V$, then we know that $V$ decomposes as $V = \bigoplus_{\hat g\in \widehat G}V_{\hat g}$, where $V_{\hat g} = \delta_{\hat g}V$, where we think of the delta functions as being projectors onto subspaces of $V$ for which $G$ acts by multiplication by characters. The notation is suggestive: $g\cdot \delta_{\hat g}V = \chi_{\hat g}(g)\delta_{\hat g}V$.
 
-When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1)$ or $\mathbb R$ since we might consider the function space $L^2(G)$ instead of $\Fun(G)$. For example, we think of $\mathbf{1}_G/\abs{G}$ more accurately as the distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact, and $\delta_{1_G}$ as the functional which evaluates functions at $1_G$.
+When we consider groups $G$ that are not finite, we may need to consider a smaller function space than all of $\Fun(G)$ in order for the theory to be nicer. In doing so, the functions $\delta_{1_G}$, $\mathbf{1}_G/\abs{G}$ cease to belong in these new function spaces or even in $\Fun(G)$ to begin with, and should be thought of as distributions or measures. For example, this will happen with $G = \U(1)$ or $\mathbb R$ since we might consider the function space $L^2(G)$ instead of $\Fun(G)$. For example, the function $\mathbf{1}_G/\abs{G}$ corresponds to the regular distribution $1/\mu(G)\int_G-\dd\mu$ for a correctly chosen measure $\mu$ on $G$, for $G$ compact, and $\delta_{1_G}$ as the functional which evaluates functions at $1_G$.
 
 Because the convolution of two functions is given by an integral or otherwise a pushforward, secretly somehow what is actually happening is that we are pushing forward a particular distribution or measure. ``You don't integrate functions, you integrate measures.'' So this is more evidence that we should see if we can do an analysis of the representations of infinite Abelian groups using distributions instead of functions.
 
