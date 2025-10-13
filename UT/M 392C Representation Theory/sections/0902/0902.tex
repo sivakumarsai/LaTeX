@@ -11,9 +11,9 @@ For $G$ a finite Abelian group, we saw/will see four equivalent descriptions of 
 \end{align*}
 Some of these descriptions for $\widehat G$ stop becoming equivalent to each other if we remove the adjectives finite or Abelian from $G$.
 
-For any commutative ring $R$, recall that we think of $R$ as functions on $\Spec(R)$ with pointwise multiplication. In general there is no reason to expect $\Spec(R)$ to be a group, but we were able to give $\Spec(\mathbb C[G])$ a group operation when $G$ is Abelian. So in this situation something special is happening. 
+For any commutative ring $R$, recall that we think of $R$ as functions on $\Spec(R)$ with pointwise multiplication. In general there is no reason to expect $\Spec(R)$ to be a group, but we were able to give $\Spec(\mathbb C[G])$ a group operation when $G$ is Abelian. So in this situation something special is happening.
 
-The deeper lesson: Suppose now that $G$ is any group (not necessarily Abelian). If $V,W$ are representations of $G$ then we can form a new representation $V\otimes_{\mathbb C}W$ where $g(v\otimes w) = gv\otimes gw$. This comes from the diagonal embedding $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ given by $\mathbb C$-linearly extending the assignment $g\mapsto g\otimes g$. By doing so $\Delta$ is a $\mathbb C$-algebra homomorphism; it suffices only to check that it respects the group multiplication:
+The deeper lesson is that the group algebra $\mathbb C[G]$ is distinguished among $\mathbb C$-algebras: Suppose now that $G$ is any group (not necessarily Abelian). If $V,W$ are representations of $G$ then we can form a new representation $V\otimes_{\mathbb C}W$ where $g(v\otimes w) = gv\otimes gw$. This comes from the diagonal embedding $\mathbb C[G]\xrightarrow{\Delta}\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ given by $\mathbb C$-linearly extending the assignment $g\mapsto g\otimes g$. By doing so $\Delta$ is a $\mathbb C$-algebra homomorphism; it suffices only to check that it respects the group multiplication:
 \[\Delta(hg) = hg\otimes hg = (h\otimes h)(g\otimes g) = \Delta(h)\Delta(g)\]
 The natural action of $\mathbb C[G]\otimes_{\mathbb C} \mathbb C[G]$ on $V\otimes_{\mathbb C} W$ given by $(f\otimes g)(v\otimes w) = fv\otimes gw$ can be pulled back along the diagonal embedding $\Delta$ to give $V\otimes_{\mathbb C} W$ the action of $G$ mentioned above.
 
@@ -23,7 +23,7 @@ If $V$ is a representation of $G$, another representation of $G$ we can form is 
 
 If $A$ is a Hopf algebra over $\mathbb C$ and $V,W$ are $A$-modules it is possible to define actions of $A$ on $V\otimes_{\mathbb C} W$ and on $V^\ast\coloneqq \Hom_{\mathbb C}(V,\mathbb C)$ in a manner analogous to the above by using the comultiplication and antipode maps on $A$, respectively.
 
-If we want to think of the tensor product as giving a monoid structure to $\Rep_{\mathbb C}(G)$ (the category of dimensional representations of $G$), we might wonder if there is a way to obtain inverses in this category. So far, being able to take tensor products and duals of representations make $\Rep_{\mathbb C}(G)$ a rigid symmetric monoidal category; see the \href{https://ncatlab.org/nlab/show/rigid+monoidal+category}{nLab}. Another question is when the irreps of $G$ form a monoid or even a group; in the case that $G$ is not Abelian the tensor product of irreps need not be an irrep...
+The tensor product of representations gives $\Rep_{\mathbb C}(G)$ (the category of finite-dimensional representations of $G$) a monoidal structure. Since we can also define duals of representations, $\Rep_{\mathbb C}(G)$ is a rigid symmetric monoidal category; see the \href{https://ncatlab.org/nlab/show/rigid+monoidal+category}{nLab}.
 
 Returning to $G$ finite Abelian, in the description of $\widehat G$ as the collection of irreps of $G$, the group operation in $\widehat G$ is given by the tensor product of representations and inverses are given by taking dual spaces. Of course, the tensor product is associative and commutative in this case, and observe that $V\otimes_{\mathbb C}V^\ast \cong \End(V)\cong \mathbb C$ (since $V$ is one-dimensional). The action of $G$ on $V\otimes_{\mathbb C}V^\ast$ is also trivial: $g(v\otimes f) = gv\otimes gf = \chi_V(g) v\otimes \chi_V^{-1}(g)f = v\otimes f$.
 
@@ -33,7 +33,7 @@ Let $G$ be a finite Abelian group. Then $G\times \widehat G$ has a distinguished
 where $\chi_{\hat g}$ is the character corresponding to $\hat g\in \widehat G$ (here $\widehat G$ is thought of as a set of points). Observe that $\chi$ is multiplicative in each component; that is,
 \[\chi(hg,\hat h\hat g) = \chi_{\hat h\hat g}(hg) = \chi_{\hat h\hat g}(h)\chi_{\hat h\hat g}(g) = \chi_{\hat h}(h)\chi_{\hat g}(h)\chi_{\hat h}(g)\chi_{\hat g}(g)\]
 
-To each $g\in G$, the function $\chi_g\coloneqq \chi(g,-)\colon \widehat G\to\mathbb C^\times$ is a group homomorphism: 
+For each $g\in G$, the function $\chi_g\coloneqq \chi(g,-)\colon \widehat G\to\mathbb C^\times$ is a group homomorphism: 
 \[\chi_g(\hat h\hat g) = \chi(g,\hat h\hat g) = \chi_{\hat h}(g)\chi_{\hat g}(g) = \chi_g(\hat h)\chi_g(\hat g)\]
 The assignment $g\mapsto \chi_g$ is a group homomorphism $G\xrightarrow{\chi_{-}} \Hom_{\Group}(\widehat G,\mathbb C^\times)$ that informally speaking, takes an element $g$ to the map $\widehat G\to\mathbb C^\times$ which evaluates a character at $g$:
 \[\chi_{gh}(\hat g) = \chi(gh,\hat g) = \chi(g,\hat g)\chi(h,\hat g) = \chi_g(\hat g)\chi_h(\hat g)\quad \text{Thus $\chi_{gh} = \chi_g\cdot \chi_h$ (pointwise multiplication)}\]
@@ -56,7 +56,7 @@ One other perspective of this map is that it comes from a pullback and a pushfor
 \end{tikzcd}\]
 and consider a function $f\in \Fun(G)$. The Fourier transform $\hat f$ is given by pulling back $f$ along $\pi_1$, multiplying by $\chi(-,-)$, and then pushing forward along $\pi_2$. That is, 
 \[\hat f = {\pi_2}_\ast(\pi_1^\ast f\cdot \chi)\]
-The pushforward just means to sum (integrate) over fibers, and fiber of $\hat g$ is $\{(g,\hat g)\mid g\in G\}$. Pulling back $f$ along this projection does nothing but view $f$ as a function on $G\times \widehat G$; that is, $(\pi_1^\ast f)(g,\hat g) = f(g)$. This recovers the first formula above for the Fourier transform.
+The pushforward just means to sum (integrate) over fibers, and the fiber of $\hat g$ is $\{(g,\hat g)\mid g\in G\}$. Pulling back $f$ along this projection does nothing but view $f$ as a function on $G\times \widehat G$; that is, $(\pi_1^\ast f)(g,\hat g) = f(g)$. This recovers the first formula above for the Fourier transform.
 
 As a fun fact, we can think about matrix multiplication this way. An $n\times m$ matrix $A = (A_{ij})$ is a function on the set $\{1,\dots,m\}\times\{1,\dots,n\}$ and a vector $v$ in $\mathbb C^m$ is a function on $\{1,\dots,m\}$. There is a diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXGNicnsxLFxcZG90cyxufVxcdGltZXNcXGNicnsxLFxcZG90cyxtfSJdLFswLDEsIlxcY2JyezEsXFxkb3RzLG19Il0sWzIsMSwiXFxjYnJ7MSxcXGRvdHMsbn0iXSxbMCwxLCJcXHBpXzEiLDJdLFswLDIsIlxccGlfMiJdXQ==
@@ -109,7 +109,7 @@ The right action on $\Fun(G)$ defines a map $\Fun(G)\xrightarrow{\cdot g}\Fun(G)
 \end{tikzcd} \quad \text{pushing forward $T$ by $\cdot g$}\]
 Here, $(\cdot g)_\ast T = T(-g^{-1})$ because
 \[(\cdot g)_\ast T(f) = \sum_{\substack{h\\hg=f}}T(h) = T(fg^{-1})\quad \text{(only one element in the fiber)}\]
-Typically, for a function $f\colon X\to Y$ and a distribution $F\colon \Fun(X)\to \mathbb C$, the pushforward $(f^\ast-)_\ast F$ is denoted by $f_\ast F$, and this is what is meant by the pushforward of the distribution $F$ by $f$ (similarly for measures).
+A distribution in this setting is a continuous linear functional on $\Fun(G)$; where $\Fun(G)\cong \mathbb C^{\abs{G}}$ is given the norm topology For other groups, $\Fun(G)$ is replaced by some other function space with a different topology. Typically, for a function $f\colon X\to Y$ and a distribution $F\colon \Fun(X)\to \mathbb C$, the pushforward $(f^\ast-)_\ast F$ is denoted by $f_\ast F$, and this is what is meant by the pushforward of the distribution $F$ by $f$ (similarly for measures). 
 
 It is instructive to look at the left action of $G$ on the regular distributions, which are the distributions $T_f$ obtained by integration against $f\in\Fun(G)$:
 \[T_f(h) = \sum_{g\in G}f(g)h(g)\]
@@ -158,7 +158,7 @@ Some examples of locally compact Abelian (LCA) groups are the finite Abelian gro
 Pontryagin duality still holds in this setting. The result encapsulates the following statements:
 \begin{enumerate}
 	\item The canonical map $G\to\dwidehat{G}$ (where $\dwidehat G = \Hom_{\Group}(\widehat G,\U(1))$) is an isomorphism.
-	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and sends delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
+	\item The Fourier transform and its inverse are Hilbert space isomorphisms (i.e. unitary isomorphisms) of $L^2(G)$ with $L^2(\widehat G)$ (with the correct measures on $G$, $\widehat G$). The transforms interchange convolution with pointwise multiplication, and send delta ``functions'' to characters (neither of which are $L^2$ functions, so this is meant in the sense of distributions).
 	\item A spectral theorem: Representations of LCA groups are in correspondence with sheaves of vector spaces on $\widehat G$. Given a finite-dimensional representation $V$ of $G$, decompose $V$ into its invariant subspaces (otherwise called isotypic components) $V = \bigoplus_{\hat g}V_{\hat g}$ where $V_{\hat g} = \{v\in V\mid gv = \chi_{\hat g}(g)v\}$. The Fourier transform in this setting takes the representation (sheaf) $\Fun(G)$ and spits out the representation (sheaf) $\Fun(\widehat G) = \bigoplus_{\hat g\in\widehat G}\mathbb C$...
 \end{enumerate}
 Soon we will look at the LCA groups $\U(1)$ and $\mathbb R$. There we can recover the usual Fourier series and real Fourier transform theory.
