@@ -4,7 +4,7 @@
 \subsection{Fourier series}
 Let $G = \U(1)$, which we know familiarly as the circle. Since $G$ is compact, representations of $G$ are semisimple, and since $G$ is Abelian, irreps of $G$ are one-dimensional. We could decide to stop with the theory here, since at this point we have classified all of the finite-dimensional representations using the dual group $\widehat G$ from before.
 
-The dual group of the circle $\widehat{\U(1)}$ is $\mathbb Z$, where $n\in\mathbb Z$ corresponds to the character $z\mapsto z^n$, or if we think of $U(1)$ as $\mathbb R/\mathbb Z$, the character $x\mapsto \exp(2\pi inx)$. We will think of the circle as $\mathbb R/\mathbb Z$ usually, to appease the analysts (this is a joke). In this setting, the universal character $\chi(-,-)$ is the map $(x,n)\mapsto \exp(2\pi i nx )$ (so $\chi_x = \chi(x,-)$ and $\chi_n = \chi(-,n)$). Then the Fourier transform as we mentioned before is obtained from the maps in the diagram 
+The dual group of the circle $\widehat{\U(1)}$ is $\mathbb Z$, where $n\in\mathbb Z$ corresponds to the character $z\mapsto z^n$, or if we think of $\U(1)$ as $\mathbb R/\mathbb Z$, the character $x\mapsto \exp(2\pi inx)$. We will think of the circle as $\mathbb R/\mathbb Z$ usually, to appease the analysts (this is a joke). In this setting, the universal character $\chi(-,-)$ is the map $(x,n)\mapsto \exp(2\pi i nx )$ (so $\chi_x = \chi(x,-)$ and $\chi_n = \chi(-,n)$). Then the Fourier transform as we mentioned before is obtained from the maps in the diagram 
 \[\begin{tikzcd}
 	& {G\times \widehat G} \\
 	G && {\widehat G}
@@ -31,7 +31,7 @@ An algebraic point of view is to view the algebra spanned by all of the characte
 \[\bigoplus_{n\in\mathbb Z}\mathbb C\chi_n\cong\mathbb C[z,z^{-1}]\quad\text{where $z = \exp(2\pi ix)$ since $x\in \mathbb R/\mathbb Z$}\]
 The coordinate ring of the affine space $\mathbb C$ is $\mathbb C[z]$. By localizing the coordinate ring at the maximal ideal $m_0 = \{f\in \mathbb C[z]\mid f(0) = 0\} = (z)$, we obtain the algebraic functions on $\mathbb C^\times$, which agree with the algebraic functions on the circle if we restrict $z$ to $z = \exp(2\pi i x)$ for $x\in\mathbb R/\mathbb Z$.
 
-An analytic point of view is to see this space of algebraic functions as being dense in function spaces like $L^2(G)$, $L^1(G)$, $C^\infty(G)$, $C^\omega(G)$ (analytic functions), $C^{-\infty}(G)$ (distributions), or even $C^{-\omega}(G)$ (hyperfunctions?). Let us suppress the $(G)$ for now. Each of these spaces has the algebraic functions above as an ``algebraic core'', for which we understand the Fourier transform on. The question is how the action of the Fourier transform extends to the rest of the function spaces, and this requires analysis. The Fourier transform exchanges the following spaces (this is not to say the Fourier transform is always an isomorphism of these spaces!):
+An analytic point of view is to see this space of algebraic functions as being dense in function spaces like $L^2(G)$, $L^1(G)$, $C^\infty(G)$, $C^\omega(G)$ (analytic functions), $C^{-\infty}(G)$ (distributions), or even $C^{-\omega}(G)$ (hyperfunctions?). Let us suppress the $(G)$ for now. Each of these spaces has the algebraic functions above as an ``algebraic core'', which we understand the Fourier transform on. The question is how the action of the Fourier transform extends to the rest of the function spaces, and this requires analysis. The Fourier transform exchanges the following spaces (this is not to say the Fourier transform is always an isomorphism of these spaces!):
 \begin{align*}
 	L^2 &\longleftrightarrow \ell^2 & L^1 &\longleftrightarrow c_0\\
 	C^\infty &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{polynomial}\} & C^\omega &\longleftrightarrow \{f\to 0 \text{ faster than } 1/\text{exponential}\}\\
@@ -52,7 +52,7 @@ What is meant by the ``infinitesimal'' action $\dv{x}$? From the action of $\U(1
 
 Due to Pontryagin duality, we can mirror the above theory by considering taking Fourier transforms of functions on $\mathbb Z$ to get functions on $\widehat{\mathbb Z} = \U(1)$. The universal character $\chi(-,-)$ in this case is the same map (but we should flip the inputs) $(n,x)\mapsto \exp(2\pi inx)$ Even though $\mathbb Z$ is a discrete group, we can still think about difference operators in place of derivatives (these are just linear combinations of differences of translation operators). As desired, the action of $\mathbb Z$ on a function is given by translation, and the Fourier transform exchanges this action with multiplication by a character. That is, for $n\in\mathbb Z$
 \[n\cdot g \eqqcolon \tau_ng = \delta_n\ast g = g((-)-n)\xmapsto{\widehat{-}}\widehat{\delta_n\ast g} = \exp(2\pi in(-)) \hat g\]
-As before, we should also expect difference operators to correspond to a multiplier operator after taking the Fourier transform.
+As before, we should also expect difference operators to correspond to multiplier operators after taking the Fourier transform.
 
 The Fourier transform on $\mathbb Z$, which we also denote by $\mathcal F_{\mathbb Z}$, is given by $\hat g(x) = \sum_{n\in \mathbb Z}g(n)\exp(2\pi i nx)$, which is different from the inverse Fourier transform of the Fourier transform $\mathcal F_{\U(1)}$ from $\U(1)$ to $\mathbb Z$. Each Fourier transform has order four. Note also that by composing the two Fourier series together, we get $\mathcal F_{\mathbb Z}\mathcal F_{\U(1)}f(x) = f(-x)$. Similarly, $\mathcal F_{\U(1)}\mathcal F_{\mathbb Z}g(n) = g(-n)$. 
 
@@ -69,7 +69,7 @@ In this setting the action of the character $\chi_n$ (which is an element of $C(
 \[(\chi_m\ast -)(\chi_n\ast -) = (\chi_m\ast\chi_n)\ast - = \delta_{mn}\chi_n\ast -\]
 To see this, use the Fourier transform: It suffices to see that $\widehat{\chi_m\ast\chi_n} = \delta_m\cdot \delta_n = \delta_{mn}\delta_n$ (here $\delta_{mn}$ is the usual Kronecker delta).
 
-The subspaces $\mathcal H_n = \chi_n\ast \mathcal H$ of $H$ combine to form $\mathcal H^{\textrm{alg}} = \bigoplus_{n\in\mathbb Z}\mathcal H_n$. It turns out that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$. As expected, $\U(1)$ acts by pointwise multiplication by characters on the isotypic components of $\mathcal H$, the summands in $\mathcal H^{\textrm{alg}}$. Like before, we can get a sheaf picture where to each point $n$ of $\mathbb Z$ we place above it the vector space $\mathcal H_n$. The picture is a little different since the Hilbert space $\mathcal H$ is the closure of $\mathcal H^{\textrm{alg}}$.
+The subspaces $\mathcal H_n = \chi_n\ast \mathcal H$ of $\mathcal H$ combine to form $\mathcal H^{\textrm{alg}} = \bigoplus_{n\in\mathbb Z}\mathcal H_n$. It turns out that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$. As expected, $\U(1)$ acts by pointwise multiplication by characters on the isotypic components of $\mathcal H$, the summands in $\mathcal H^{\textrm{alg}}$. Like before, we can get a sheaf picture where to each point $n$ of $\mathbb Z$ we place above it the vector space $\mathcal H_n$. The picture is a little different since the Hilbert space $\mathcal H$ is the closure of $\mathcal H^{\textrm{alg}}$.
 \begin{align*}
   \mathcal H &= \overline{\mathcal H_1 \oplus \mathcal H_2 \oplus \cdots \oplus \mathcal H_\ell}\\
   \mathbb Z&~~~~~1~~\phantom{\oplus}~~2~~\phantom{\oplus} \cdots \phantom{\oplus}~\,\ell
@@ -80,8 +80,9 @@ The density of $\mathcal H^{\textrm{alg}}$ is due to some version of Plancherel'
 But by the Fourier transform $\delta_{1_G}$ corresponds to the unit for multiplication in the analogue of the group algebra for $\mathbb Z$ with pointwise multiplication, which is the constant function $\mathbf 1_{\mathbb Z}$ ($\mathbf 1_{\mathbb Z}(n) = 1$, notably not finitely supported). Since $\mathbf 1_{\mathbb Z} = \sum_{n\in\mathbb Z}\delta_n$, taking the inverse Fourier transform shows that $\id_{\mathcal H} = \sum_{n\in\mathbb Z}\chi_n\ast -$; this shows that $\mathcal H^{\textrm{alg}}$ is dense in $\mathcal H$.
 
 \subsection{Chebyshev polynomials of the first kind}
-The Chebyshev polynomials (of the first kind) are special functions, like the characters given by either $n$ or $x$ maps to $\exp(2\pi i nx)$ that play nice with the Fourier theory.
+The Chebyshev polynomials (of the first kind) are special functions, like the characters given by $n\mapsto \exp(2\pi i nx)$ or $x\mapsto \exp(2\pi i nx)$ that interact nicely with the Fourier theory.
 
+Comparing the real and imaginary parts in de Moivre's formula $(\cos(\theta) + i\sin(\theta))^n = \cos(n\theta) + i\sin(n\theta)$, one can prove that $\cos(n\theta)$ is a polynomial in $\cos(\theta)$. The change of coordinates $x = \cos(\theta) = (\exp(i\theta)+\exp(-i\theta))/2$ can now be used to turn power series in $\exp(i\theta),\exp(-i\theta)$ (Fourier series) representing even functions on the circle to power series in $x$. We can use a different change of coordinates $\sin(\theta) = (\exp(i\theta)-\exp(-i\theta))/2i$ to handle odd functions on the circle; these will lead to Chebyshev polynomials of the second kind.
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
@@ -112,7 +113,6 @@ The Chebyshev polynomials (of the first kind) are special functions, like the ch
 	\end{pgfonlayer}
 	\end{tikzpicture}
 \end{figure}
-Comparing the real and imaginary parts in de Moivre's formula $(\cos(\theta) + i\sin(\theta))^n = \cos(n\theta) + i\sin(n\theta)$, one can prove that $\cos(n\theta)$ is a polynomial in $\cos(\theta)$. The change of coordinates $x = \cos(\theta) = (\exp(i\theta)+\exp(-i\theta))/2$ can now be used to turn power series in $\exp(i\theta),\exp(-i\theta)$ (Fourier series) representing even functions on the circle to power series in $x$. We can use a different change of coordinates $\sin(\theta) = (\exp(i\theta)-\exp(-i\theta))/2i$ to handle odd functions on the circle; these will lead to Chebyshev polynomials of the second kind.
 
 The $n$-th Chebyshev polynomial of the first kind $T_n(x)$ is defined to be the polynomial for which
 \[T_n(\cos(\theta)) = \cos(n\theta)\]
