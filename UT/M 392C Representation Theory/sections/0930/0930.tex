@@ -1,0 +1,43 @@
+\documentclass[../../rtnotes.tex]{subfiles}
+\begin{document}
+\section{09/30}
+\subsection{Weyl integration formula}
+We know from the Peter-Weyl theorem that $L^2(G)^G$, the $L^2$-integrable class functions on $G$, is isomorphic to $\ell^2(\widehat G,1/\dim)$ where $\widehat G$ is the set of irreducible unitary representations of $G$; an orthonormal basis of $L^2(G)^G$ is given by characters of irreps of $G$.
+
+Let $G=\SU(2)$. We can restrict any class function on $G$ to a maximal torus $T$ of $G$ (any maximal torus will do since they are all conjugate to each other) to obtain a palindromic function on $T$, since we saw before that characters of representations restrict to palindromic polynomials on $T$. Denote the subspace of $L^2(T)$ of palindromic functions by $L^2(T)^W$. These palindromic functions should be thought of as even functions on a circle, since they are invariant under conjugation. But the restriction map $L^2(G)^G\to L^2(T)^W$ is not an isometry. The Weyl integration formula measures the difference.
+
+Consider the following ``radial parts construction''. The surjective map $G\times T\to G$ given by $(g,t)\mapsto gtg^{-1}$ descends to a surjective map $G/T\times T\xrightarrow{r} G$ given by $(\overline g,t)\mapsto gtg^{-1}$ since $T$ centralizes $T$. The map $r$ is a local diffeomorphism and has degree two; indeed, the preimage of a generic point $gtg^{-1}$ is $\{(\overline{g},t),(\overline{gw},w^{-1}tw)\}$, where $\overline w\in N(T)/T\cong \mathbb Z/2\mathbb Z$ is the nonidentity element. So $G/T\times T$ is a two-fold cover of $G$. Pictorially, $r$ looks like the following:
+\sai{picture}
+Observe that since $T$ has $\pm 1_G$, the spheres at the right and left sides of the above picture really are pinched to a point (the identity conjugates to the identity).
+
+We will take for granted that $G/T$ has a left and right $G$-invariant (bi-invariant) measure normalized so that $G/T$, which is compact, has measure $1$. This comes from the bi-invariant measure on $G$. Taking the product with the Haar measure on $T$, form a measure $\mu$ on $G/T\times T$. If $f$ is a function on $G$, then 
+\[\int_G f\dd g = \frac{1}{2}\int_{G/T\times T}r^\ast(f\dd g) = \frac{1}{2}\int_{G/T\times T}r^\ast fr^\ast(\dd g) = \frac{1}{2}\int_{G/T\times T}(r^\ast f)J\dd \mu\]
+where $J$ is the Jacobian of $r$. The appearance of the factor $1/2$ after the first equality is because $r$ is generically a two-to-one map. Now assume $f$ is a class function, so $(r^\ast f)(\overline{g},t) = f(gtg^{-1}) = f(t)$. Then 
+\[\frac{1}{2}\int_{G/T\times T}(r^\ast f)J\dd \mu = \frac{1}{2}\int_Tf\int_{G/T}J\dd t\dd \overline g\]
+Because the measure on $G/T$ is bi-invariant, it turns out that $J$ does not depend on $G/T$. That is, $J$ is a function of $T$ only, so
+\[\frac{1}{2}\int_Tf\int_{G/T}J\dd t\dd \overline g = \frac{1}{2}\int_TfJ\int_{G/T}\dd \overline g\dd t = \frac{1}{2}\int_T fJ\dd t\]
+
+We calculate $J$. The Lie algebra $\mathfrak t$ of $T$ lives inside the Lie algebra $\mathfrak g$ of $G$, and we can identify the tangent space of $G/T$ at $\overline 1_G$ with the orthogonal complement of $\mathfrak t$ in $\mathfrak g$ (with respect to the Killing form on $\mathfrak g$). A back-of-the-envelope calculation shows that by perturbing $t\in T$ in the direction of $\xi\in \mathfrak t$ and $1_G\in G$ in the direction of $\eta\in \mathfrak t^\perp$, the change in $1_Gt1_G^{-1}$ to first order is 
+\[\rho = (1+\eta)t(1+\xi)(1-\eta) - t = t\xi + \eta t - t\eta,\]
+so $t^{-1}\rho = \xi + (t^{-1}\eta t-\eta)\in \mathfrak t \oplus \mathfrak t^\perp =\mathfrak g$, from which taking determinants yields $J(t) = \det(\id_{\mathfrak t}\oplus (A(t^{-1})-\id_{\mathfrak t^\perp})) = \det(A(t^{-1})-\id_{\mathfrak t^\perp})$, where $A$ is the adjoint action of $T$ on $\mathfrak t^\perp$ (obtained by restricting the adjoint action of $G$ on $\mathfrak g$ to $T$ on $\mathfrak t^\perp$).
+
+Since $\mathfrak g$ is spanned by $i = \bigl(\!\begin{smallmatrix}
+	i & 0 \\ 0 & -i
+\end{smallmatrix}\!\bigr)$, $j = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)$, and $k = \bigl(\!\begin{smallmatrix}
+	0 & i \\ i & 0
+\end{smallmatrix}\!\bigr)$ we have that $\mathfrak t^\perp$ is spanned by $j,k$. The adjoint action of $T$ on $\mathfrak t^\perp$ is given by conjugation by elements of $T$. If $t = \bigl(\!\begin{smallmatrix}
+	e^{is} & 0 \\ 0 & e^{-is}
+\end{smallmatrix}\!\bigr)$, 
+\[tjt^{-1} = \bigl(\!\begin{smallmatrix}
+	0 & e^{2is} \\ -e^{-2is} & 0
+\end{smallmatrix}\!\bigr) = \cos(2s)j + \sin(2s)k \quad \text{and} \quad tkt^{-1} = \bigl(\!\begin{smallmatrix}
+	0 & ie^{2is} \\ ie^{-2is} & 0
+\end{smallmatrix}\!\bigr) = -\sin(2s)j + \cos(2s)k\]
+then $A(t) = \bigl(\!\begin{smallmatrix}
+	\cos(2s) & -\sin(2s) \\ \sin(2s) & \cos(2s)
+\end{smallmatrix}\!\bigr)$. It follows that $J(t) = \det(A(t^{-1})-\id_{\mathfrak t^\perp})$ is $4\sin^2(s) = \abs{e^{is}-e^{-is}}^2 = \abs{\Delta(t)}^2$ where $\Delta(t)$ is the Vandermonde determinant $\det\bigl(\!\begin{smallmatrix}
+	1 & 1 \\ e^{-is} & e^{is}
+\end{smallmatrix}\!\bigr)$. So for a class function $f$, the Weyl integration formula is $\int_Gf\dd g = \frac{1}{2}\int_Tf(t) \abs{\Delta(t)}^2\dd t$. Notice that the normalizations we chose were all correct; that is, take $f$ to be the constant $1$ function and see that we do get equality. This is because the Haar measures we chose for $G$ and $T$ were normalized Haar measures.
+\end{document}
