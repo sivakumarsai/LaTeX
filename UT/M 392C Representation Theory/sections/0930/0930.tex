@@ -1,7 +1,7 @@
 \documentclass[../../rtnotes.tex]{subfiles}
 \begin{document}
 \section{09/30}
-\subsection{Weyl integration formula}
+\subsection{Weyl integration and character formulas}
 We know from the Peter-Weyl theorem that $L^2(G)^G$, the $L^2$-integrable class functions on $G$, is isomorphic to $\ell^2(\widehat G,1/\dim)$ where $\widehat G$ is the set of irreducible unitary representations of $G$; an orthonormal basis of $L^2(G)^G$ is given by characters of irreps of $G$.
 
 Let $G=\SU(2)$. We can restrict any class function on $G$ to a maximal torus $T$ of $G$ (any maximal torus will do since they are all conjugate to each other) to obtain a palindromic function on $T$, since we saw before that characters of representations restrict to palindromic polynomials on $T$. Denote the subspace of $L^2(T)$ of palindromic functions by $L^2(T)^W$. These palindromic functions should be thought of as even functions on a circle, since they are invariant under conjugation. But the restriction map $L^2(G)^G\to L^2(T)^W$ is not an isometry. The Weyl integration formula measures the difference.
@@ -40,4 +40,26 @@ then $A(t) = \bigl(\!\begin{smallmatrix}
 \end{smallmatrix}\!\bigr)$. It follows that $J(t) = \det(A(t^{-1})-\id_{\mathfrak t^\perp})$ is $4\sin^2(s) = \abs{e^{is}-e^{-is}}^2 = \abs{\Delta(t)}^2$ where $\Delta(t)$ is the Vandermonde determinant $\det\bigl(\!\begin{smallmatrix}
 	1 & 1 \\ e^{-is} & e^{is}
 \end{smallmatrix}\!\bigr)$. So for a class function $f$, the Weyl integration formula is $\int_Gf\dd g = \frac{1}{2}\int_Tf(t) \abs{\Delta(t)}^2\dd t$. Notice that the normalizations we chose were all correct; that is, take $f$ to be the constant $1$ function and see that we do get equality. This is because the Haar measures we chose for $G$ and $T$ were normalized Haar measures.
+
+Let $V,W$ be unitary irreps of $G$ so that $\abr{\chi_V,\chi_W}_{L^2(G)} = \delta_{V,W}$. We turn the integral over the group $G$ to an integral over the torus $T$ using the Weyl integration formula, since characters are class functions. We have 
+\[\delta_{V,W} = \abr{\chi_V,\chi_W}_{L^2(G)} = \int_G \chi_V\overline{\chi_W}\dd g = \frac{1}{2}\int_T\chi_V\Delta \overline{\chi_W\Delta}\dd t = \frac{1}{2}\abr{\chi_V\Delta,\chi_W \Delta}_{L^2(T)}\]
+We proceed with the calculation in the case that $V = W$. Change coordinates from the torus $T$ to $\U(1)$ (the Jacobian of this transformation is $1$). Then $\chi_V(t) = \chi_V(z) = \sum_{p\in \mathbb Z}m_pz^p$ is palindromic; that is, $m_p = m_{-p}$. Then $\Delta(z) = z-z^{-1}$ so that $\Delta(z)\chi_V(z) = \sum_{p\in \mathbb Z}m_pz^{p+1}-m_pz^{p-1} = \sum_p(m_{p-1}-m_{p+1})z^p$. This sum is anti-palindromic; that is, if $a_p = m_{p-1}-m_{p+1}$, then $a_p = -a_{-p}$.
+
+We have 
+\begin{align*}
+	1 &= \frac{1}{2}\int_T\abs{\delta \chi_V}^2\dd t\\
+	&=\frac{1}{2}\int_{\U(1)}\Delta\chi_v\overline{\Delta\chi_V}\dd z\\
+	&= \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}\overline{a_qz^{q}}\biggr)\dd z\\
+	&\eq{4} \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}a_qz^{-q}\biggr)\dd z\\
+	&= \frac{1}{2}\int_{\U(1)}\sum_{p,q\in\mathbb Z}a_pa_qz^{p-q}\dd z\\
+	&\eq{6} \frac{1}{2}\sum_{p\in\mathbb Z}a_p^2\\
+	&\eq{7} \sum_{p=1}^\infty a_p^2,
+\end{align*}
+where equality (4) holds since the $m_p$ are integers and hence also the $a_p$; equalities (6), (7) (haha six-seven hahaha *vomits*; see \href{https://youtu.be/HgfHt52vys8}{South Park}) hold because $\int_{\U(1)}z^{p-q}\dd z = \delta_{pq}$ and because the $a_p$ satisfy $a_p = -a_{-p}$. From this string of equalities conclude that only one of the $a_p$ must be nonzero; say for some $n$, $a_{n+1}$ is nonzero with $a_{n+1} = \pm 1$ (note also $a_{-n-1} = -a_{n+1}=\mp 1$ as a result). Thus $\chi_V(z) = \Delta(z)\chi_V(z)/\Delta(z) = \sum_{p\in\mathbb Z}a_pz^p/(z-z^{-1}) = a_{n+1}(z^{n+1}-z^{-n-1})/(z-z^{-1}) = a_{n+1}\sum_{p=0}^\infty z^{n-2p}$. Since the $m_p$ are nonnegative, it follows that $a_{n+1}$ is $1$.
+
+We have proved the Weyl character formula: For any nonnegative integer $n$, there exists an irreducible representation $V_n$ of $G$ with character
+\[\chi_{V_n}(z) = \frac{z^{n+1}-z^{-n-1}}{z-z^{-1}} = z^n + z^{n-2} +\cdots + z^{-n+2} + z^{-n}\]
+and that characters of irreps of $G$ occur in this way. Furthermore, the dimension of $V_n$ is $\chi_{V_n}(1) = n+1$. This allows us to deduce that the expression $z^n + 72z^{n-2} + 46z^{n-4} + 46z^{-n+4} + 72z^{-n+2} + z^{-n}$ from before could not have been a character of a representation of $G$, since even though it is palindromic, the coefficients could not be obtained by adding together the characters of irreps of $G$.
+
+We still do not have a description of each $V_n$; that will come soon, but at least for now we know their characters.
 \end{document}
