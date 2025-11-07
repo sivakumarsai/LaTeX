@@ -43,11 +43,11 @@ then $A(t) = \bigl(\!\begin{smallmatrix}
 
 Let $V,W$ be unitary irreps of $G$ so that $\abr{\chi_V,\chi_W}_{L^2(G)} = \delta_{V,W}$. We turn the integral over the group $G$ to an integral over the torus $T$ using the Weyl integration formula, since characters are class functions. We have 
 \[\delta_{V,W} = \abr{\chi_V,\chi_W}_{L^2(G)} = \int_G \chi_V\overline{\chi_W}\dd g = \frac{1}{2}\int_T\chi_V\Delta \overline{\chi_W\Delta}\dd t = \frac{1}{2}\abr{\chi_V\Delta,\chi_W \Delta}_{L^2(T)}\]
-We proceed with the calculation in the case that $V = W$. Change coordinates from the torus $T$ to $\U(1)$ (the Jacobian of this transformation is $1$). Then $\chi_V(t) = \chi_V(z) = \sum_{p\in \mathbb Z}m_pz^p$ is palindromic; that is, $m_p = m_{-p}$. Then $\Delta(z) = z-z^{-1}$ so that $\Delta(z)\chi_V(z) = \sum_{p\in \mathbb Z}m_pz^{p+1}-m_pz^{p-1} = \sum_p(m_{p-1}-m_{p+1})z^p$. This sum is anti-palindromic; that is, if $a_p = m_{p-1}-m_{p+1}$, then $a_p = -a_{-p}$.
+We proceed with the calculation in the case that $V = W$. Change coordinates from the torus $T$ to $\U(1)$ (the Jacobian of this transformation is $1$). Then $\chi_V(t) = \chi_V(z) = \sum_{p\in \mathbb Z}m_pz^p$ is a finite sum and is palindromic; that is, $m_p = m_{-p}$. Then $\Delta(z) = z-z^{-1}$ so that $\Delta(z)\chi_V(z) = \sum_{p\in \mathbb Z}m_pz^{p+1}-m_pz^{p-1} = \sum_p(m_{p-1}-m_{p+1})z^p$. This sum is anti-palindromic; that is, if $a_p = m_{p-1}-m_{p+1}$, then $a_p = -a_{-p}$.
 
 We have 
 \begin{align*}
-	1 &= \frac{1}{2}\int_T\abs{\delta \chi_V}^2\dd t\\
+	1 &= \frac{1}{2}\int_T\abs{\Delta \chi_V}^2\dd t\\
 	&=\frac{1}{2}\int_{\U(1)}\Delta\chi_v\overline{\Delta\chi_V}\dd z\\
 	&= \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}\overline{a_qz^{q}}\biggr)\dd z\\
 	&\eq{4} \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}a_qz^{-q}\biggr)\dd z\\
