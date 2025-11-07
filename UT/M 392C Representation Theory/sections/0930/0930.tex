@@ -6,9 +6,60 @@ We know from the Peter-Weyl theorem that $L^2(G)^G$, the $L^2$-integrable class 
 
 Let $G=\SU(2)$. We can restrict any class function on $G$ to a maximal torus $T$ of $G$ (any maximal torus will do since they are all conjugate to each other) to obtain a palindromic function on $T$, since we saw before that characters of representations restrict to palindromic polynomials on $T$. Denote the subspace of $L^2(T)$ of palindromic functions by $L^2(T)^W$. These palindromic functions should be thought of as even functions on a circle, since they are invariant under conjugation. But the restriction map $L^2(G)^G\to L^2(T)^W$ is not an isometry. The Weyl integration formula measures the difference.
 
-Consider the following ``radial parts construction''. The surjective map $G\times T\to G$ given by $(g,t)\mapsto gtg^{-1}$ descends to a surjective map $G/T\times T\xrightarrow{r} G$ given by $(\overline g,t)\mapsto gtg^{-1}$ since $T$ centralizes $T$. The map $r$ is a local diffeomorphism and has degree two; indeed, the preimage of a generic point $gtg^{-1}$ is $\{(\overline{g},t),(\overline{gw},w^{-1}tw)\}$, where $\overline w\in N(T)/T\cong \mathbb Z/2\mathbb Z$ is the nonidentity element. So $G/T\times T$ is a two-fold cover of $G$. Pictorially, $r$ looks like the following:
-\sai{picture}
-Observe that since $T$ has $\pm 1_G$, the spheres at the right and left sides of the above picture really are pinched to a point (the identity conjugates to the identity).
+Consider the following ``radial parts construction''. The surjective map $G\times T\to G$ given by $(g,t)\mapsto gtg^{-1}$ descends to a surjective map $G/T\times T\xrightarrow{r} G$ given by $(\overline g,t)\mapsto gtg^{-1}$ since $T$ centralizes $T$. The map $r$ is a local diffeomorphism and has degree two; indeed, the preimage of a generic point $gtg^{-1}$ is $\{(\overline{g},t),(\overline{gw},w^{-1}tw)\}$, where $\overline w\in N(T)/T\cong \mathbb Z/2\mathbb Z$ is the nonidentity element. So $G/T\times T$ is a two-fold cover of $G$. The map $r$ kind of looks like
+\begin{figure}[h]
+    \centering
+\begin{tikzpicture}
+  \shade[ball color = green!40, opacity = 0.4] (-10,0) circle (1cm);
+  \draw (-10,0) circle (1cm);
+  \draw (-11,0) arc (180:360:1 and 0.3);
+  \draw[dashed] (-9,0) arc (0:180:1 and 0.3);
+  \node [style=none] (0) at (-10,1.5) {$G/T\cong S^2$};
+  \node [style=none] (0) at (-8,0) {$\times$};
+  \draw (-5,0) arc (0:360:1 and 0.3);
+  \node [style=none] (0) at (-6,0.75) {$T\cong S^1$};
+  \node [style=none] (0) at (-7,0) {$\bullet$};
+  \node [style=none] (0) at (-5,0) {$\bullet$};
+  \node [style=none] (0) at (-5,-0.5) {$1_G$};
+  \node [style=none] (0) at (-7,-0.5) {$-1_G$};
+  \node [style=none] (0) at (-3.75,0) {$\longrightarrow$};
+  \node [style=none] (0) at (-3.75,0.5) {$r$};
+  \draw (0,0) circle (2cm);
+  \draw (-2,0) arc (180:360:2 and 0.6);
+  \draw[dashed] (2,0) arc (0:180:2 and 0.6);
+  \node [style=none] (0) at (2,0) {$\bullet$};
+  \node [style=none] (0) at (-2,0) {$\bullet$};
+  \node [style=none] (0) at (2.5,-0.25) {$1_G$};
+  \node [style=none] (0) at (-2.5,-0.25) {$-1_G$};
+
+%   \node [style=none] (0) at (-1.5,-0.4) {$\bullet$};
+%   \node [style=none] (0) at (-0.8,-0.55) {$\bullet$};
+%   \node [style=none] (0) at (0,-0.6) {$\bullet$};
+%   \node [style=none] (0) at (0.8,-0.55) {$\bullet$};
+%   \node [style=none] (0) at (1.5,-0.4) {$\bullet$};
+
+%   \node [style=none] (0) at (-1.5,0.4) {$\bullet$};
+%   \node [style=none] (0) at (-0.8,0.55) {$\bullet$};
+%   \node [style=none] (0) at (0,0.6) {$\bullet$};
+%   \node [style=none] (0) at (0.8,0.55) {$\bullet$};
+%   \node [style=none] (0) at (1.5,0.4) {$\bullet$};
+
+  \shade[ball color = red!90, opacity = 0.4] (-1.5,-0.4) circle (0.4cm);
+  \shade[ball color = orange!90, opacity = 0.4] (-0.8,-0.55) circle (0.98cm);
+  \shade[ball color = yellow!90, opacity = 0.4] (0,-0.6) circle (1.35cm);
+  \shade[ball color = green!90, opacity = 0.4] (0.8,-0.55) circle (0.98cm);
+  \shade[ball color = blue!90, opacity = 0.4] (1.5,-0.4) circle (0.4cm);
+
+  \shade[ball color = red!20, opacity = 0.4] (-1.5,0.4) circle (0.4cm);
+  \shade[ball color = orange!20, opacity = 0.4] (-0.8,0.55) circle (0.98cm);
+  \shade[ball color = yellow!20, opacity = 0.4] (0,0.6) circle (1.35cm);
+  \shade[ball color = green!20, opacity = 0.4] (0.8,0.55) circle (0.98cm);
+  \shade[ball color = blue!20, opacity = 0.4] (1.5,0.4) circle (0.4cm);
+  \node [style = none] (0) at (0,2.5) {$G\cong S^3$};
+\end{tikzpicture}
+\end{figure}
+
+Observe that since $T$ has $\pm 1_G$, the spheres at the right and left sides of the $S^3$ above picture really are pinched to a point (the identity conjugates to the identity).
 
 We will take for granted that $G/T$ has a left and right $G$-invariant (bi-invariant) measure normalized so that $G/T$, which is compact, has measure $1$. This comes from the bi-invariant measure on $G$. Taking the product with the Haar measure on $T$, form a measure $\mu$ on $G/T\times T$. If $f$ is a function on $G$, then 
 \[\int_G f\dd g = \frac{1}{2}\int_{G/T\times T}r^\ast(f\dd g) = \frac{1}{2}\int_{G/T\times T}r^\ast fr^\ast(\dd g) = \frac{1}{2}\int_{G/T\times T}(r^\ast f)J\dd \mu\]
@@ -48,7 +99,7 @@ We proceed with the calculation in the case that $V = W$. Change coordinates fro
 We have 
 \begin{align*}
 	1 &= \frac{1}{2}\int_T\abs{\delta \chi_V}^2\dd t\\
-	&=\frac{1}{2}\int_{\U(1)}\Delta\chi_v\overline{\Delta\chi_V}\dd z\\
+	&=\frac{1}{2}\int_{\U(1)}\Delta\chi_V\overline{\Delta\chi_V}\dd z\\
 	&= \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}\overline{a_qz^{q}}\biggr)\dd z\\
 	&\eq{4} \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}a_qz^{-q}\biggr)\dd z\\
 	&= \frac{1}{2}\int_{\U(1)}\sum_{p,q\in\mathbb Z}a_pa_qz^{p-q}\dd z\\
@@ -57,9 +108,36 @@ We have
 \end{align*}
 where equality (4) holds since the $m_p$ are integers and hence also the $a_p$; equalities (6), (7) (haha six-seven hahaha *vomits*; see \href{https://youtu.be/HgfHt52vys8}{South Park}) hold because $\int_{\U(1)}z^{p-q}\dd z = \delta_{pq}$ and because the $a_p$ satisfy $a_p = -a_{-p}$. From this string of equalities conclude that only one of the $a_p$ must be nonzero; say for some $n$, $a_{n+1}$ is nonzero with $a_{n+1} = \pm 1$ (note also $a_{-n-1} = -a_{n+1}=\mp 1$ as a result). Thus $\chi_V(z) = \Delta(z)\chi_V(z)/\Delta(z) = \sum_{p\in\mathbb Z}a_pz^p/(z-z^{-1}) = a_{n+1}(z^{n+1}-z^{-n-1})/(z-z^{-1}) = a_{n+1}\sum_{p=0}^\infty z^{n-2p}$. Since the $m_p$ are nonnegative, it follows that $a_{n+1}$ is $1$.
 
-We have proved the Weyl character formula: For any nonnegative integer $n$, there exists an irreducible representation $V_n$ of $G$ with character
+We have proved the Weyl character formula: For any nonnegative integer $n$, there exists an irreducible representation $V_n$ of $G=\SU(2)$ with character
 \[\chi_{V_n}(z) = \frac{z^{n+1}-z^{-n-1}}{z-z^{-1}} = z^n + z^{n-2} +\cdots + z^{-n+2} + z^{-n}\]
 and that characters of irreps of $G$ occur in this way. Furthermore, the dimension of $V_n$ is $\chi_{V_n}(1) = n+1$. This allows us to deduce that the expression $z^n + 72z^{n-2} + 46z^{n-4} + 46z^{-n+4} + 72z^{-n+2} + z^{-n}$ from before could not have been a character of a representation of $G$, since even though it is palindromic, the coefficients could not be obtained by adding together the characters of irreps of $G$.
 
-We still do not have a description of each $V_n$; that will come soon, but at least for now we know their characters.
+Typically $V_n$ is drawn as a collection of nodes labeled by integers. On the line of integers, $V_n$ looks like 
+% https://q.uiver.app/#q=WzAsOSxbMywwLCJcXHVuZGVyc2V0e24tNH17XFxidWxsZXR9Il0sWzQsMCwiXFx1bmRlcnNldHtuLTN9e1xcYnVsbGV0fSJdLFs1LDAsIlxcdW5kZXJzZXR7bi0yfXtcXGJ1bGxldH0iXSxbNiwwLCJcXHVuZGVyc2V0e24tMX17XFxidWxsZXR9Il0sWzcsMCwiXFx1bmRlcnNldHtufXtcXGJ1bGxldH0iXSxbMiwwLCJcXGRvdHMiXSxbMSwwLCJcXHVuZGVyc2V0ey1ufXtcXGJ1bGxldH0iXSxbOCwwLCJcXGNkb3RzIl0sWzAsMCwiXFxjZG90cyJdLFs0LDIsIiIsMix7ImN1cnZlIjozfV0sWzIsMCwiIiwyLHsiY3VydmUiOjN9XSxbMCw2LCIiLDIseyJjdXJ2ZSI6M31dXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\cdots \& {\underset{-n}{\bullet}} \& \dots \& {\underset{n-4}{\bullet}} \& {\underset{n-3}{\bullet}} \& {\underset{n-2}{\bullet}} \& {\underset{n-1}{\bullet}} \& {\underset{n}{\bullet}} \& \cdots
+	\arrow[curve={height=18pt}, from=1-4, to=1-2]
+	\arrow[curve={height=18pt}, from=1-6, to=1-4]
+	\arrow[curve={height=18pt}, from=1-8, to=1-6]
+\end{tikzcd}\]
+In the picture the arrows do have meaning, but we will come to them later. There are arrows which do go in the opposite direction as well, as we will see. We think of each node as being a one-dimensional vector space, but which ones and its significance will also come later.
+
+We still do not have a description of each $V_n$; that will come soon, but at least for now we know their characters. From the Peter-Weyl theorem, we can think of the ``dual'' of $G = \SU(2)$ as $\mathbb N$ with a counting measure whose weight is $1/\dim$, which will end up being $1/n$ for each $V_n$.
+
+\subsection{Lie algebras}
+We would like to do more algebra and geometry to study representation theory, so we start by looking at Lie algebras of the Lie groups we've been studying. This will also lead us to understanding what those arrows were in the above picture of $V_n$; they will end up being elements of the Lie algebra of $G = \SU(2)$ viewed as operators on $V_n$.
+
+Let $G$ be any Lie group. The group algebra $\mathbb C[G]$ acts on $G$, but there is more that also acts on $G$, since $G$ is smooth. A Lie algebra is essentially an algebraic structure of vector fields on a manifold. A vector field on a manifold is a first-order differential operator with no constant term; that is, the first-order differential operators which annihilate constant functions. In local coordinates $x_i$, a vector field looks like $\sum_if_i\pdv{x_i}$. A purely algebraic definition of a vector field is as a derivation on the space of smooth functions.
+
+To elaborate, if $\mathcal O$ denotes the space of smooth functions on a manifold, we denote by $\Der(\mathcal O)$ the subspace of endomorphisms of $\mathcal O$ which satisfy the Leibniz rule; that is,
+\[\Der(\mathcal O) = \{\xi\in \End(\mathcal O)\mid \xi(fg) = \xi fg + f\xi g\}\]
+Alternatively the Leibniz rule can be formulated as a commutation relation in $\End(\mathcal O)$: we have $[\xi\cdot,f\cdot] = \xi\cdot f\cdot - f\cdot\xi\cdot = (\xi f)\cdot$ where here we embed $\mathcal O$ in $\End(\mathcal O)$ by taking $f$ to pointwise multiplication by $f$.
+
+From calculus we know that mixed partial derivatives of smooth enough functions can be taken in any order. The same result should hold for the action of vector fields on functions; that is, for vector fields $\xi,\eta$, the endomorphism $[\xi,\eta] = \xi\eta-\eta\xi$ is actually also a vector field itself (it does not act by any second-order differential operators or higher).
+
+A Lie algebra over a field $k$ is a vector space $\mathfrak g$ over $k$ equipped with a skew-symmetric bilinear map $[-,-]\colon \bigwedge^2\mathfrak g\to \mathfrak g$ satisfying the Jacobi identity
+\[[\xi,[\eta,\chi]] = [[\xi,\eta],\chi] + [\eta,[\xi,\chi]]\]
+Roughly speaking, $[-,-]$ is a ``derivation of itself''. We will see later why this condition is natural.
+
+
 \end{document}
