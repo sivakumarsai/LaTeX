@@ -98,7 +98,7 @@ We proceed with the calculation in the case that $V = W$. Change coordinates fro
 
 We have 
 \begin{align*}
-	1 &= \frac{1}{2}\int_T\abs{\delta \chi_V}^2\dd t\\
+	1 &= \frac{1}{2}\int_T\abs{\Delta \chi_V}^2\dd t\\
 	&=\frac{1}{2}\int_{\U(1)}\Delta\chi_V\overline{\Delta\chi_V}\dd z\\
 	&= \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}\overline{a_qz^{q}}\biggr)\dd z\\
 	&\eq{4} \frac{1}{2}\int_{\U(1)}\biggl(\sum_{p\in\mathbb Z}a_pz^p\biggr)\biggl(\sum_{q\in\mathbb Z}a_qz^{-q}\biggr)\dd z\\
@@ -124,14 +124,14 @@ In the picture the arrows do have meaning, but we will come to them later. There
 
 We still do not have a description of each $V_n$; that will come soon, but at least for now we know their characters. From the Peter-Weyl theorem, we can think of the ``dual'' of $G = \SU(2)$ as $\mathbb N$ with a counting measure whose weight is $1/\dim$, which will end up being $1/n$ for each $V_n$.
 
-\subsection{Lie algebras}
+\subsection{Introduction to Lie algebras}
 We would like to do more algebra and geometry to study representation theory, so we start by looking at Lie algebras of the Lie groups we've been studying. This will also lead us to understanding what those arrows were in the above picture of $V_n$; they will end up being elements of the Lie algebra of $G = \SU(2)$ viewed as operators on $V_n$.
 
 Let $G$ be any Lie group. The group algebra $\mathbb C[G]$ acts on $G$, but there is more that also acts on $G$, since $G$ is smooth. A Lie algebra is essentially an algebraic structure of vector fields on a manifold. A vector field on a manifold is a first-order differential operator with no constant term; that is, the first-order differential operators which annihilate constant functions. In local coordinates $x_i$, a vector field looks like $\sum_if_i\pdv{x_i}$. A purely algebraic definition of a vector field is as a derivation on the space of smooth functions.
 
-To elaborate, if $\mathcal O$ denotes the space of smooth functions on a manifold, we denote by $\Der(\mathcal O)$ the subspace of endomorphisms of $\mathcal O$ which satisfy the Leibniz rule; that is,
+To elaborate, if $\mathcal O$ denotes the space of smooth functions on a manifold, we denote by $\Der(\mathcal O)$ the subspace of endomorphisms of $\mathcal O$ which satisfy the Leibniz (product) rule; that is,
 \[\Der(\mathcal O) = \{\xi\in \End(\mathcal O)\mid \xi(fg) = \xi fg + f\xi g\}\]
-Alternatively the Leibniz rule can be formulated as a commutation relation in $\End(\mathcal O)$: we have $[\xi\cdot,f\cdot] = \xi\cdot f\cdot - f\cdot\xi\cdot = (\xi f)\cdot$ where here we embed $\mathcal O$ in $\End(\mathcal O)$ by taking $f$ to pointwise multiplication by $f$.
+Alternatively the Leibniz rule can be formulated as a commutation relation in $\End(\mathcal O)$: we have $[\xi\cdot,f\cdot] = \xi\cdot f\cdot - f\cdot\xi\cdot = (\xi f)\cdot$ where here we embed $\mathcal O$ in $\End(\mathcal O)$ by taking $f$ to pointwise multiplication by $f$. Notice that derivations are zero on constants; to see this, apply the product rule to $1 = 1\cdot 1$.
 
 From calculus we know that mixed partial derivatives of smooth enough functions can be taken in any order. The same result should hold for the action of vector fields on functions; that is, for vector fields $\xi,\eta$, the endomorphism $[\xi,\eta] = \xi\eta-\eta\xi$ is actually also a vector field itself (it does not act by any second-order differential operators or higher).
 
@@ -139,5 +139,50 @@ A Lie algebra over a field $k$ is a vector space $\mathfrak g$ over $k$ equipped
 \[[\xi,[\eta,\chi]] = [[\xi,\eta],\chi] + [\eta,[\xi,\chi]]\]
 Roughly speaking, $[-,-]$ is a ``derivation of itself''. We will see later why this condition is natural.
 
+So $\Der(\mathcal O)$ with Lie bracket $[-,-]$ the commutator of operators is a prototypical Lie algebra. In general we should think of Lie algebras as linearizations of Lie groups, and these are how they occur in nature. There is a functor $\Lie$ from the category of Lie groups to Lie algebras taking $G$ to its Lie algebra $\mathfrak g$ which we will define in the future. On morphisms, a map of Lie groups $G\xrightarrow{f}H$ is sent to its differential $\mathfrak g\xrightarrow{Df}\mathfrak h$. This functor is an equivalence of categories when restricted to the subcategory of simply connected Lie groups. This is relevant because $\SU(2)$ is a simply connected (compact) Lie group. 
 
+It is reasonable to deal with only the connected Lie groups, but to restrict further to the simply connected Lie groups is not that much of an ask. This is because the universal cover of a connected Lie group is a simply connected Lie group with the same Lie algebra. 
+
+We give three definitions of the Lie algebra of a real Lie group $G$.
+\begin{enumerate}
+  \item $\Lie(G) = \Hom_{\LieGrp}(\mathbb R, G)$. This is to say that the Lie functor is represented by the Lie group $\mathbb R$. The elements of $\Hom_{\LieGrp}(\mathbb R, G)$ are called one-parameter subgroups of $G$, since the image of a homomorphism of Lie groups $\mathbb R \to G$ is a subgroup of $G$, parameterized by e.g., $t\in \mathbb R$. For $g\in \Hom_{\LieGrp}(\mathbb R, G)$ the picture of a one-parameter subgroup looks like   
+  \begin{figure}[h]
+    \centering
+\begin{tikzpicture}
+  \shade[ball color = blue!20, opacity = 0.4] (-10,0) circle (2cm);
+  \draw (-10,0) circle (2cm);
+  % \draw (-12,0) arc (180:360:2 and 0.6);
+  % \draw[dashed] (-8,0) arc (0:180:2 and 0.6);
+  \node [style=none] (0) at (-10.5,-0.3) {$\bullet$};
+  \node [style=none] (0) at (-9,0) {$\bullet$};
+  \draw (-11.5,0) arc (225:360:1.75 and 1) node[pos=0.5, xscale=1, sloped, scale=1]{\tikz\draw[->] (-1pt,0) -- (1pt,0);};
+  \node [style=none] (0) at (-10.5,0.2) {$g(t_1)$};
+  \node [style=none] (0) at (-9.1,0.5) {$g(t_2)$};
+  \node [style=none] (0) at (-9,-1) {$G$};
+\end{tikzpicture}
+\end{figure}
+
+where $g(t_1+t_2) = g(t_1)g(t_2)$. The vector space structure is annoying to write down. It makes sense to define the scalar multiplication by $\lambda g = g(\lambda -)$ but defining $g+h$ is not so easy to guess (and it is annoying to write down). This is one of the downsides of this definition. The bracket $[-,-]$ of maps in $\Hom_{\LieGrp}(\mathbb R, G)$ is given by $[g,h](t) = g(t)h(t)g^{-1}(t)h^{-1}(t)$. Without supplying a definition for the addition of maps in $\Hom_{\LieGrp}(\mathbb R, G)$, it will not be possible to verify that this bracket satisfies the Jacobi identity.
+\item Following the discussion about derivations from earlier, one might think to define $\Lie(G)$ as $\Der(C^\infty(G))$, which can be interpreted as the space of vector fields on $G$. But this space is infinite-dimensional, which will be intractable for our uses. So instead define $\Lie(G)$ by the space of left-invariant vector fields; that is, by $\Der(C^\infty(G))^G$ where $G$ acts on a derivation/vector field $\xi$ by left translation. The action is given by $g\xi = \xi(g^{-1} - )$, and the left-invariant vector fields are those that are fixed under the left action. By passing to the left-invariant vector fields, we do obtain a finite-dimensional vector space. 
+
+For example, on $G = \mathbb R^n$, the left-invariant (and simultaneously right-invariant) derivations are the constant coefficient first order differential operators, which are spanned by the differential operators $\pdv{x_i}$.
+
+The bracket $[-,-]$ on $\Der(C^\infty(G))$ can be restricted to $\Der(C^\infty(G))^G$; that is, the bracket (commutator) of left-invariant derivations is again left-invariant. Henceforth, we denote the space of left-invariant derivations/vector fields by $\mathfrak X(G)$.
+
+What does the left-invariant condition look like? At a point $g$ we can look at a vector field $\xi$ at $g$ to obtain an element $\xi|_g\in T_g(G)$ in Euclidean space (a tangent vector). That $\xi$ is left invariant means that for any $h\in G$, $D(h\cdot)_g\xi|_g$ agrees with $\xi|_{hg}$ in $T_{hg}(G)$.
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+%% Blob
+\path[draw,use Hobby shortcut,closed=true]
+(0,1) .. (3,2) .. (5,0) .. (3,-1) .. (-2,-0.5) .. (-3,0);
+\node ;
+\node ;
+\end{tikzpicture}
+\end{figure}
+
+\item The last definition is the most concrete: The Lie algebra of $G$ is the tangent space of $G$ at the identity $1_G$, $T_{1_G}G$. The tangent space of $G$ at the identity is the space of smooth maps from $\mathbb R$ to $G$ where $0$ is sent to $1_G$ up to second order and higher (the space of $1$-jets at $1_G$).
+\end{enumerate}
+
+The three definitions above are all equivalent to each other
 \end{document}
