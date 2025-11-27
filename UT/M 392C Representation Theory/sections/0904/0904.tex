@@ -2,7 +2,7 @@
 \begin{document}
 \section{September 04}
 \subsection{Unitarizable representations and semisimplicity}
-A category is called semisimple if every object is the direct sum of finitely many simple objects. We will show that $\Rep_{\mathbb C}(G)$ is semisimple for $G$ finite.
+A category is called semisimple if every object is the direct sum of finitely many simple objects. We will show that $\Rep(G)$ is semisimple for $G$ finite.
 
 A complex representation of a group $G$ is unitarizable if there exists a Hermitian inner product (positive definite, sesquilinear bilinear form) $\abr{-,-}$ on $V$ for which 
 \[\abr{gv,gw} = \abr{v,w}\]
@@ -44,7 +44,7 @@ Hence $\pi$ is a fixed point under the conjugation action and thus is a desired 
 
 Returning to showing that a finite-dimensional representation $V$ is unitarizable and hence semisimple, it amounts to finding a $G$-invariant inner product $\abr{-,-}$. Pick any inner product $\abr{-,-}_0$ on $V$ and make it $G$-invariant by averaging it via $\av$. Define the inner product $\abr{-,-}$ by 
 \[\abr{-,-} = ``\av(\abr{-,-}_0)\textrm{''} = \frac{1}{\abs{G}}\sum_{g\in G}\abr{g-,g-}_0\]
-Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an isomorphism $H\in \Hom_{\mathbb C}(\overline V, V^\ast)^G$ by applying the projection $\Hom_{\mathbb C}(\overline V, V^\ast)\to \Hom_{\mathbb C}(\overline V, V^\ast)^G$ obtained via averaging to any isomorphism $H_0\in \Hom_{\mathbb C}(\overline V, V^\ast)$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep_{\mathbb C}(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
+Observe that this new inner product is $G$-invariant as desired, and is really a Hermitian inner product because $\abr{-,-}_0$ was to begin with. (In other words, we have found an isomorphism $H\in \Hom_{\mathbb C}(\overline V, V^\ast)^G$ by applying the projection $\Hom_{\mathbb C}(\overline V, V^\ast)\to \Hom_{\mathbb C}(\overline V, V^\ast)^G$ obtained via averaging to any isomorphism $H_0\in \Hom_{\mathbb C}(\overline V, V^\ast)$.) Since $V$ is unitarizable, $V$ is semisimple. This shows that $\Rep(G)$ is semisimple. The slickness of the argument above gives a compelling reason to use the group algebra $\mathbb C[G]$.
 
 \subsection{Distributions and measures}
 When $G$ is finite, then the group algbera $\mathbb C[G]$ can be identified with the algebra $\Fun(G)$ with convolution, and we identify $\av$ with $\mathbf{1}_G/\abs{G}$ ($\mathbf{1}_G$ is the indicator function on $G$) and identify $1_{\mathbb C[G]}$ with $\delta_{1_{G}}$, and everything in between. If $G$ is also Abelian, then $\Fun(G)$ with convolution is isomorphic to $\Fun(\widehat G)$ with pointwise multiplication via the Fourier transform. A short calculation shows that the Fourier transform of $\delta_{1_G}$ is $\mathbf{1}_{\widehat G} = \sum_{\hat g\in\widehat G}\delta_{\hat g}$, which can be thought of as some version of Plancherel's theorem.

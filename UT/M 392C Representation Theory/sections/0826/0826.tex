@@ -44,7 +44,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
     
     If a group $G$ acts on some object $X$ (which could be a set, manifold, or otherwise a ``geometric'' object), we say $X$ has some symmetries which we would like to ``linearize''. We achieve this by considering the $k$-valued functions on $X$ for some field $k$; if $X$ has additional structure we can restrict to functions on $X$ which interact with that structure (e.g. measurable/continuous/etc maps)
 
-    From a right action of $G$ on $X$, function spaces on $X$ inherit a natural linear left action of $G$; one is given by $gf(x) = f(xg)$. These representations are typically very decomposable or reducible.
+    From a right action of $G$ on $X$, function spaces on $X$ inherit a natural linear left action of $G$; one is given by $gf(x) = f(xg)$. These representations are typically very decomposable or reducible. The usual birthplace of harmonic analysis is $G = X = \mathbb R^n$, as it acts on itself by translation. Much of the harmonic analysis on $\mathbb R^n$ can be discovered without using representation theory, but if we want to do a similar analysis on other spaces, representation theory is usually required.
 
     \item Different groups give rise to different phenomena. Below are some examples of groups we will see again.
     \begin{table}[H]
@@ -52,7 +52,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
 \begin{tabular}{lllll}
 \multicolumn{1}{l|}{}        & \multicolumn{1}{l|}{compact} & noncompact  &  &  \\ \cline{1-3}
 \multicolumn{1}{l|}{Abelian} & \multicolumn{1}{l|}{$S^1$}   & $\mathbb R$ &  &  \\ \cline{1-3}
-\multicolumn{1}{l|}{non-Abelian} & \multicolumn{1}{l|}{$\SO(3)$} & $\SL_2(\mathbb R)$, $\SL_2(\mathbb C)$ &  &  \\
+\multicolumn{1}{l|}{non-Abelian} & \multicolumn{1}{l|}{$\SO_3(\mathbb R)$} & $\SL_2(\mathbb R)$, $\SL_2(\mathbb C)$ &  &  \\
                              &                              &             &  & 
 \end{tabular}
 \end{table}
@@ -61,7 +61,7 @@ If $G$ has a topology and $V$ is a topological vector space, we say $(V,\rho)$ i
     
     The representation theory of $S^1$ leads to the theory of Fourier series, and in a similar way we can recover the Fourier transform from the representation theory of $\mathbb R$.
 
-    The Lie group $\SO(3)$ can be thought of as the group of rotations of a $2$-sphere. One nice result is that the spherical harmonics are basis functions for the irreps of $\SO(3)$, which occur naturally as the atomic orbitals (see \href{https://en.wikipedia.org/wiki/Spherical_harmonics}{the Wikipedia article on spherical harmonics}).
+    The Lie group $\SO_3(\mathbb R)$ can be thought of as the group of rotations of a $2$-sphere. One nice result is that the spherical harmonics are basis functions for the irreps of $\SO_3(\mathbb R)$, which occur naturally as the atomic orbitals (see \href{https://en.wikipedia.org/wiki/Spherical_harmonics}{the Wikipedia article on spherical harmonics}).
 
     The representations of the groups $\SL_2(k)$ for various fields $k$ appear all over math.  We can study special functions like the Bessel or hypergeometric functions, or even modular forms. The hard Lefschetz theorem in algebraic geometry says that $\SL_2(\mathbb C)$ acts on $H^\ast(X,\mathbb C)$ for $X$ a nice enough smooth projective variety. In physics, the special linear group sort of appears in the Lorentz group $\SO(1,3)^+ = \PSL_2(\mathbb C)$.
 \end{enumerate}
