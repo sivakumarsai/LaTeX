@@ -1,5 +1,83 @@
 \documentclass[../../rtnotes.tex]{subfiles}
 \begin{document}
 \section{October 07}
-\subsection{}
+\subsection{Short peek back at the Peter-Weyl theorem}
+The approach to start with finite-dimensional representations of $\SU(2)$ and follow the arrows in the diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXFJlcChcXFNVKDIpKSJdLFsxLDEsIlxcUmVwKFxcU0xfMihcXG1hdGhiYiBDKSkiXSxbMCwwLCJcXFJlcChcXHN1KDIpKSJdLFsxLDAsIlxcUmVwKFxcc2xfMihcXG1hdGhiYiBDKSkiXSxbMCwyLCJcXGNvbmciXSxbMiwzLCJcXGNvbmciXSxbMywxLCJcXGNvbmciXV0=
+\[\begin{tikzcd}
+	{\Rep(\su(2))} & {\Rep(\sl_2(\mathbb C))} \\
+	{\Rep(\SU(2))} & {\Rep(\SL_2(\mathbb C))}
+	\arrow["\cong", from=1-1, to=1-2]
+	\arrow["\cong", from=1-2, to=2-2]
+	\arrow["\cong", from=2-1, to=1-1]
+\end{tikzcd}\]
+to obtain finite-dimensional representations of $\SL_2(\mathbb C)$ is comparable to the following ``Abelian case'' of passing from finite-dimensional representations of $\U(1)$ to finite-dimensional representations of $\mathbb C^\times$ following arrows in a similar diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXFJlcChcXFUoMSkpIl0sWzEsMSwiXFxSZXAoXFxtYXRoYmIgQ15cXHRpbWVzKSJdLFswLDAsIlxcUmVwKGlcXG1hdGhiYiBSKSJdLFsxLDAsIlxcUmVwKFxcbWF0aGJiIEMpIl0sWzAsMiwiXFxjb25nIl0sWzIsMywiXFxjb25nIl0sWzMsMSwiXFxjb25nIl1d
+\[\begin{tikzcd}
+	{\Rep(i\mathbb R)} & {\Rep(\mathbb C)} \\
+	{\Rep(\U(1))} & {\Rep(\mathbb C^\times)}
+	\arrow["\cong", from=1-1, to=1-2]
+	\arrow["\cong", from=1-2, to=2-2]
+	\arrow["\cong", from=2-1, to=1-1]
+\end{tikzcd}\]
+Here the Lie algebras $i\mathbb R$ and $\mathbb C$ have the trivial (zero) Lie bracket, and note also that $\mathbb C^\times \cong \U(1)\times \mathbb R_{>0}$ (polar decomposition). The irreps of $\U(1)$ are indexed by $n\in\mathbb Z$, and the irreps of $\mathbb R_{>0}\cong \mathbb R$ are indexed by $t\in\mathbb R$. In order to match the irreps, we should restrict the kinds of representations appearing in $\Rep(\mathbb C^\times)$; that is, $\Rep(\mathbb C^\times)$ is the category of finite-dimensional algebraic or holomorphic representations of $\mathbb C^\times$. Indeed, a character of $\mathbb C^\times$ is a group homomorphism $\mathbb C^\times \to\mathbb C^\times$, which can either take the forms $z\mapsto z^n$ for $n\in\mathbb Z$ or $z \mapsto \overline z^n$ for $n\in\mathbb Z$. Only the first collection of maps are holomorphic (or algebraic), and these are exactly the same characters of $\U(1)$.
+
+Let $G$ be a compact Lie group. In the discussion of the Peter-Weyl theorem, we mentioned that the functions obtained from applying the matrix elements map to $\bigoplus_{V\text{ irrep}}V\oplus V^\ast$, which we denoted by $C(G)^\fin$, coincide with the algebraic functions on $G$, denoted $\mathbb C[G]$. We say that a representation $V$ of $G$ is algebraic if $V = V^\fin$. This is equivalent to $V$ decomposing as a direct sum of its irreps (and not as a completion, e.g. in the case of $V = L^2(G)$, $V$ is not algebraic unless $G$ is finite probably). Another equivalent description of an algebraic representation is that the matrix elements of $V$ are algebraic functions. Take $G = \U(1)$ for example; the algebraic functions on $G$ are given by polynomials in $\mathbb C[z,z^{-1}]$. The same is true for $G = \mathbb C^\times$; that is, $\mathbb C[\mathbb C^\times] \cong \mathbb C[z,z^{-1}]$. The most basic description of an algebraic representation $V$ of $G$ is that the map $G\to\GL(V)$ is an algebraic map.
+
+A fact we will not prove: that an algebraic representation of $\mathbb C^\times$ or $\SL_2(\mathbb C)$ is holomorphic (and vice versa); in other words, that the matrix elements are algebraic functions implies they are holomorphic and vice versa. (This is true of semisimple complex linear algebraic groups according to this \href{https://mathoverflow.net/questions/27836/algebraicity-of-holomorphic-representations-of-a-semisimple-complex-linear-algeb}{MathOverflow} post.)
+
+Consider the algebraic (holomorphic) representation $\mathbb C[\SL_2(\mathbb C)] = C(\SL_2(\mathbb C))^\fin$ of $\SL_2(\mathbb C)$, which by restricting the functions to $\SU(2)$, we obtain an isomorphic ring of functions $\mathbb C[\SU(2)] = C(\SU(2))^\fin$, which $\SU(2)$ acts on naturally. So in view of the diagram of part of the unitary trick above, this is following the not-drawn restriction map from $\Rep(\SL_2(\mathbb C))$ to $\Rep(\SU(2))$. A similar thing can be done for $\mathbb C[\mathbb C^\times]$; restriction of this representation of $\mathbb C^\times$ yields the representation $\mathbb C[\U(1)]$ of $\U(1)$. That function restriction in both examples is an isomorphism of rings requires proof (e.g. by analysis). As a fun fact, it is possible to define the complexification of a compact Lie group $G$ as $\Spec(\mathbb C[G])$; this complexification is a complex algebraic group which is denoted $G_{\mathbb C}$ (\sai{source}??).
+
+\subsection{Start of highest weight theory of $\sl_2(\mathbb C)$}
+Recall that $\sl_2(\mathbb C)$ is the $\mathbb C$-span of $\{e = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr), h = \bigl(\!\begin{smallmatrix}
+	1 & 0 \\ 0 & -1
+\end{smallmatrix}\!\bigr), f = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr)\}$ satisfying 
+\[[e,f] = h,\quad [h,e] = 2e,\quad [h,f] = -2f\]
+and that $\mathbb Ch$ is the Lie algebra of the subgroup $H = \{\bigl(\!\begin{smallmatrix}
+	a & 0 \\ 0 & a^{-1}
+\end{smallmatrix}\!\bigr)\mid a\in\mathbb C^\times\}\cong \mathbb C^\times$ of $\SL_2(\mathbb C)$, viewed as a Lie subalgebra of $\sl_2(\mathbb C)$.
+
+Let $V$ be a finite-dimensional representation of $\sl_2(\mathbb C)$, and suppose that $v\in V$ is an eigenvector with eigenvalue $\lambda\in\mathbb C$ of the action of $h$ on $V$; that is, $hv = \lambda v$. Then $hev = ehv + [h,e]v = e(\lambda v) + 2ev = (\lambda + 2)ev$. So if $ev\neq 0$, $ev$ is an eigenvector of $h$ with eigenvalue $\lambda+2$. A similar calculation shows that $fv$ (when it's nonzero) is an eigenvector of $h$ with eigenvalue $\lambda - 2$. The action of $h$ on $V$ need not be diagonalizable, but since $V$ is finite-dimensional, we will obtain finitely many generalized eigenvectors of $h$ (by finding the Jordan normal form for $h$). However, there will be at least one eigenvector $v$ of $h$. For an eigenvector $v$ of $h$, $e^n v = e\cdots ev = 0$ for some $n$ and $f^mv = f\cdots fv = 0$ (where the smallest values for $n,m$ satisfying these equations of course depend on $v$). Indeed, $h$ can only have finitely many eigenvalues.
+
+By repeated application of $e$ on some eigenvector of $h$, there exists an eigenvector $v$ of $h$ with $hv = \lambda v$ for which $ev = 0$, which we call a highest weight vector of $V$ with weight $\lambda$. There can be more than one highest weight vectors in $V$; the adjective ``highest'' refers to highest weight vectors being annihilated by $e$. Let $v = v_\lambda$ be a highest weight vector of $V$ of weight $\lambda$. Then repeated application of $f$ to $v$ produces a finite collection of vectors which are usually drawn in the following way: 
+% https://q.uiver.app/#q=WzAsNSxbNCwwLCJcXHVuZGVyc2V0e1xcbGFtYmRhfXtcXG92ZXJzZXR7dl9cXGxhbWJkYX17XFxidWxsZXR9fSJdLFszLDAsIlxcdW5kZXJzZXR7XFxsYW1iZGEtMn17XFxvdmVyc2V0e2Z2X1xcbGFtYmRhfXtcXGJ1bGxldH19Il0sWzIsMCwiXFx1bmRlcnNldHtcXGxhbWJkYS00fXtcXG92ZXJzZXR7Zl4ydl9cXGxhbWJkYX17XFxidWxsZXR9fSJdLFswLDAsIlxcdW5kZXJzZXR7XFxsYW1iZGEtMm19e1xcb3ZlcnNldHtmXm12X1xcbGFtYmRhfXtcXGJ1bGxldH19Il0sWzEsMCwiXFxjZG90cyJdLFswLDEsImYiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6Mn1dLFsxLDIsImYiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6Mn1dLFsyLDQsImYiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6Mn1dLFs0LDMsImYiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6Mn1dXQ==
+\[\begin{tikzcd}
+	{\underset{\lambda-2m}{\overset{f^mv_\lambda}{\bullet}}} & \cdots & {\underset{\lambda-4}{\overset{f^2v_\lambda}{\bullet}}} & {\underset{\lambda-2}{\overset{fv_\lambda}{\bullet}}} & {\underset{\lambda}{\overset{v_\lambda}{\bullet}}}
+	\arrow["f"', shift left, curve={height=12pt}, from=1-2, to=1-1]
+	\arrow["f"', shift left, curve={height=12pt}, from=1-3, to=1-2]
+	\arrow["f"', shift left, curve={height=12pt}, from=1-4, to=1-3]
+	\arrow["f"', shift left, curve={height=12pt}, from=1-5, to=1-4]
+\end{tikzcd}\]
+Each bullet is labeled above by the vector obtained by repeated application of $f$ on $v_\lambda$ and the corresponding weight (the $h$-eigenvalue) is labeled below. For example, $hfv_\lambda = (\lambda-2)fv_\lambda$. Implicit in the diagram is that $f^{m+1}v_\lambda = 0$. The vector $f^mv_\lambda$ is called a lowest weight vector. Observe further that the subspace of $V$ spanned by $\{f^mv_\lambda,\dots,v_\lambda\}$ is preserved by the action of $h$ and $f$. In particular each $f^iv_\lambda$ spans a one-dimensional $h$-eigenspace of $V$, and $f$ moves down eigenspaces, lowering the weight. A natural question to ask is if this subspace is preserved by the action of $e$.
+
+The calculation $efv_\lambda = fev_\lambda + [e,f]v_\lambda = 0 + hv_\lambda = \lambda v_\lambda$ provides some hope. Indeed, the related calculation $ef^iv_\lambda = i(\lambda-i+1)f^{i-1}v_\lambda$ shows that the action of $e$ on each $h$-eigenspace moves vectors up weight spaces, but also multiplies by a scalar. So the action of $e$ preserves the subspace spanned by the $f^iv_\lambda$; it follows that this subspace is an irrep of $\sl_2(\mathbb C)$
+
+As a corollary, if $V$ is a finite-dimensional irrep of $\sl_2(\mathbb C)$, then $V$ is spanned by $\{f^mv_\lambda,\dots,v_\lambda\}$ for some highest weight vector $v_\lambda$ of weight $\lambda$ in $V$. The weight $\lambda$ in this case is the greatest eigenvalue of the action of $h$ on $V$. The integer $m$ as before depends on $v_\lambda$, and is the dimension of $V$. To find the irreps of $\sl_2(\mathbb C)$, we should first calculate the possible highest weights $\lambda$ and the possible values of $m$.
+
+One approach which gets close is to restrict an irrep $V$ of $\sl_2(\mathbb C)$ to a representation of $\Lie(H) = \mathbb Ch$. in this case $V$ would decompose into a direct sum of each of each $h$-eigenspace, but more importantly we can exponentiate the action of $h$ on $V$ to obtain a representation of $H\cong \U(1)$ on $V$, where the decomposition of $V$ into each of the $h$-eigenspaces is preserved as we pass to a representation of $\U(1)$. The action of $h$ on $f^iv_\lambda$ is by multiplication by $\lambda-2i$, so by exponentiating this action, we obtain the action of $\bigl(\!\begin{smallmatrix}
+    \exp(it) & 0 \\ 0 & \exp(-it)
+\end{smallmatrix}\!\bigr)\in H\cong \U(1)$ on $f^iv_\lambda$ by the formula
+\[\bigl(\!\begin{smallmatrix}
+    \exp(it) & 0 \\ 0 & \exp(-it)
+\end{smallmatrix}\!\bigr)\cdot f^iv_\lambda = \exp(it(\lambda-2i))f^iv_\lambda\]
+This formula comes from following the maps in the diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIXFxjb25nIFxcVSgxKSJdLFswLDEsIlxcbWF0aGJiIENoIl0sWzEsMSwiXFxFbmQoXFxtYXRoYmIgQ2ZeaXZfXFxsYW1iZGEpIl0sWzEsMCwiXFxHTChcXG1hdGhiYiBDZl5pdl9cXGxhbWJkYSkiXSxbMCwxLCJcXGxvZyIsMl0sWzEsMl0sWzIsMywiXFxleHAiLDJdXQ==
+\[\begin{tikzcd}
+	{H\cong \U(1)} & {\GL(\mathbb Cf^iv_\lambda)} \\
+	{\mathbb Ch} & {\End(\mathbb Cf^iv_\lambda)}
+	\arrow["\log"', from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\exp"', from=2-2, to=1-2]
+\end{tikzcd}\]
+In order for the formula above to define an action, $\lambda-2i$ must be an integer, so $\lambda$ must be an integer. So only integer weights are permitted for highest weights appearing in irreps of $\sl_2(\mathbb C)$.
+
+We can further recall the representation theory of $\SU(2)$ to remember that characters of representations of $\SU(2)$ appear as palindromic polynomials in $z,z^{-1}$. By passing from a representation of $\sl_2(\mathbb C)$ to a representation of $\SU(2)$, it follows that an irrep $V$ with highest weight vector of weight $\lambda$ should have a lowest weight vector of weight $-\lambda$. So $\lambda$ can be assumed to be a nonnegative integer. It remains to find the permissible values of $m = \lambda$ (since the action of $f$ reduces the weight by two), which amount to finding which nonnegative integers $\lambda$ occur for irreps.
+
+The other approach only uses Lie algebras to determine that $\lambda$ is a nonnegative integer. Let $V$ be an irrep of $\sl_2(\mathbb C)$ and let $f^mv_\lambda$ be the lowest weight vector for $V$. Since it is a lowest weight vector, $f^{m+1}v_\lambda = 0$, hence also $ef^{m+1}v_\lambda = 0$. On the other hand, $ef^{m+1}v_\lambda$ is equal to $(m+1)(\lambda-m)f^mv_\lambda$. Certainly $m+1$ is not zero since $m$ is a nonnegative integer. So $\lambda = m$ as we discovered earlier. We can find examples for small $m$, but we still don't know which nonnegative integers occur for irreps.
+
+For $m = 0$, the zero vector space does the job. For $m = 1$, take the trivial representation. For $m = 2$, consider $\mathbb C^2$ as a representation of $\sl_2(\mathbb C)$ where the action is by usual matrix multiplication. The weight spaces in this case are $\mathbb C$ with weight $-1$ and $1$. Indeed, the eigenvectors for $h$ in this case are $e_2$ and $e_1$ with weights $-1$ and $1$ respectively. For $m = 3$, let $\sl_2(\mathbb C)$ act on itself by the Lie bracket; that is, $a\cdot b = [a,b]$. This is called the adjoint representation of $\sl_2(\mathbb C)$. In this case the $\mathbb C$-spans of $f$, $h$, and $e$ form the weight spaces with weights $-2$, $0$, and $2$ respectively, from the relations $ [h,e] = 2e$ and $ [h,f] = -2f$ ($h$ commutes with itself of course). For the other nonnegative integers, we should try a more robust approach.
 \end{document}
