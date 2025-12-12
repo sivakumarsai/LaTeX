@@ -1,0 +1,195 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{extarrows}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{color}
+\newcommand{\sai}[1]{\textcolor{red}{#1}}
+\usepackage{enumitem}
+% \usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{quiver}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{M 392C}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Riemann Surfaces}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% mathscript S
+\usepackage[mathscr]{euscript}
+
+% math operators
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Sym}{Sym}
+\renewcommand{\ev}{\mathrm{ev}}
+\DeclareMathOperator{\SL}{SL}
+\newcommand{\smod}[1]{\;(\bmod\; #1)}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\GL}{GL}
+\newcommand{\bbC}{\mathbb C}
+\DeclareMathOperator{\Diff}{Diff}
+\newcommand{\Vir}{\mathrm{Vir}}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Vect}{Vect}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\raisebox{-.14em}{\smiley}}
+\newcommand{\happy}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\raisebox{-.14em}{\frownie}}
+\newcommand{\sad}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% array column and row separation
+\arraycolsep = 2pt
+\renewcommand{\arraystretch}{.6}
+
+\begin{document}
+Sai Sivakumar
+
+\section{Modular curves and modular forms}
+We fix some conventions and notation via the following definitions.
+\begin{definition}
+    The modular group $\Gamma$ is $\SL_2(\mathbb Z)$. (It is often the case that the modular group is taken to be $\PSL_2(\mathbb Z) = \SL_2(\mathbb Z)/\{\pm I\}$, but the difference will not matter here.)
+\end{definition}
+It is well known that the matrices $T = \bigl(\!\begin{smallmatrix}
+    1 & 1 \\ 0 & 1
+\end{smallmatrix}\!\bigr)$ and $S = \bigl(\!\begin{smallmatrix}
+    0 & -1 \\ 1 & 0
+\end{smallmatrix}\!\bigr)$ generate $\Gamma$ as a group, and that $\Gamma$ acts on the Riemann sphere $\widehat{\mathbb C}$ by fractional linear transformations. In one coordinate patch, $\widehat{\mathbb C}$ is $\mathbb C\cup \{\infty\}$; the action of $\Gamma$ in these coordinates manifests as 
+\[\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}(z) = \frac{az+b}{cz+d}.\]
+For $c$ nonzero, $-d/c$ is sent to $\infty$ and $\infty$ is sent to $a/c$; if $c = 0$ then $\infty$ is sent to $\infty$. We will also look at the action of particular subgroups of $\Gamma$ by fractional linear transformations.
+\begin{definition}
+    For any positive integer $N$, the principal congruence subgroup of level $N$ is 
+    \[\Gamma(N) = \{\gamma\in \SL_2(\mathbb Z)\mid \gamma\equiv I \smod N\}\]
+    where matrix congruence is to be taken entrywise.
+\end{definition} Since $\Gamma(N)$ is the kernel of the natural map $\Gamma = \SL_2(\mathbb Z)\to\SL_2(\mathbb Z/N\mathbb Z)$, $\Gamma(N)$ is normal in $\Gamma$.
+
+The modular group and its subgroups (of which we will only consider $\Gamma$ and $\Gamma(N)$ in this homework) act on the upper half plane $\mathbb H = \{z\in\mathbb C\mid \Im(z)>0\}$ by fractional linear transformations. Denote by $Y$ the quotient space $\mathbb H/\Gamma$; that is, $Y$ is obtained by identifying the orbits of points in $\mathbb H$ under the action of $\Gamma$. Similarly, denote by $Y(N)$ the quotient space $\mathbb H/\Gamma(N)$. Since the action of $\Gamma$ on $\mathbb H$ is properly discontinuous and the maps $\mathbb H\to Y$, $\mathbb H\to Y(N)$ are quotient maps of topological spaces, it is possible to give holomorphic coordinates on $Y$ and $Y(N)$ in a way that would make them Riemann surfaces. These charts are the usual ones for most points of $Y$ or $Y(N)$, but there are finitely many points for which the charts are slightly annoying.
+
+For most points in $\mathbb H$, their stabilizer under the action of $\Gamma$ or $\Gamma(N)$ is $\{\pm I\}$, but there are finitely many points for which the stabilizer is nontrivial; specifically finite cyclic. These points are called elliptic points. Passing to $Y$ or $Y(N)$, a chart can be chosen around an elliptic curve for which the action of the generator of the stabilizer group $G$ for that point in coordinates is multiplication by $\exp(2\pi i/h)$ for some positive integer $h$. The integer $h$ is the ``period'' of the corresponding elliptic point $p$, given by $\abs{\{\pm I\}G/\{\pm I\}}$.
+
+We can complete $Y$ and $Y(N)$ to compact Riemann surfaces by adding in cusps, or ``points at infinity''. Concretely, cusps are the orbits of points in $\mathbb Q\cup\{\infty\}$. Representatives for these orbits need to be added to $\mathbb H$ in a way so that taking the quotient by $\Gamma$, $\Gamma(N)$ yields the compactifications of $Y$, $Y(N)$. The charts around these cusps are not so annoying but come from disks either around $\infty$ or are disks tangent to the real axis. 
+\begin{definition}
+    Denote by $X$, $X(N)$ the compactifications of the Riemann surfaces $Y$, $Y(N)$ respectively.
+\end{definition}
+Modular forms can be defined from different points of view, but the most basic definition is the following.
+\begin{definition}
+    For $\gamma = \bigl(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\bigr)\in \SL_2(\mathbb Z)$, the factor of automorphy is $j(\gamma,z) = cz+d$ for $z\in\mathbb C$.
+\end{definition}
+\begin{definition}
+    For $G = \Gamma$ or $G = \Gamma(N)$, and an integer $k$, a modular form of weight $k$ with respect to $G$ is a holomorphic function $f\colon \mathbb H\to \mathbb C$ for which 
+    \[f(z) = j(\gamma,z)^{-k}f(\gamma(z))\]
+    for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore $f$ should satisfy the property that for any $\alpha\in\SL_2(\mathbb Z)$, $j(\alpha,z)^{-k}f(\alpha(z))$ is holomorphic at $\infty$. This last condition is just saying that $f$ is holomorphic at the cusps for $G$.
+\end{definition}
+We will consider modular forms of even weight, that is, of weight $2k$.
+\subsection{Modular forms as meromorphic differentials}
+% Explain precisely how a modular form of weight 2k for the group Γ(N) ⊂ Γ = PSL_2(Z) can be interpreted as a meromorphic k-fold differential on the curve X(N). You will need to take care over the elliptic points and cusps.
+A weakly modular function (of weight $2k$) is a meromorphic function $f\colon \mathbb H\to \mathbb C$ that transforms with respect to a congruence subgroup like $G = \Gamma$ or $G=\Gamma(N)$ in the same way as the definition of a modular form; that is, for any $\gamma\in G$ and $z\in\mathbb H$ we should have $f(z) = j(\gamma,z)^{-2k}f(\gamma(z))$ (i.e., we do not insist on any holomorphy of any kind). Let $G = \Gamma(N)$ from now on. A weakly modular function (of weight $2k$) for $\Gamma(N)$ can be interpreted as a meromorphic differential on $X(N)$ in the following way: 
+
+We can take a weakly modular function $f$ and map it to the differential form $f(\dd z)^{k}$ on $\mathbb H$. This differential form is genuinely $\Gamma(N)$-invariant, since for any $\gamma = \bigl(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\bigr)\in\Gamma(N)$ we have 
+\[\dd(\gamma(z)) = \dd\Bigl(\bigl(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\bigr)(z)\Bigr)= \dv{z}\frac{az+b}{cz+d}\dd z  = \frac{1}{(cz+d)^2}\dd z = j(\gamma,z)^{-2}\dd z\]
+(since $\det\gamma = 1$). Thus $f(\gamma(z))(\dd(\gamma(z)))^k = j(\gamma,z)^{-2k}f(z)j(\gamma,z)^{2k}(\dd z)^k = f(z)(\dd z)^k$. What remains is to see that we can find meromorphic differentials on $X(N)$ that make sense and which pull back to differential forms of the kind $f(\dd z)^k$ for $f$ weakly modular with respect to $\Gamma(N)$.
+
+\begin{definition}
+    The meromorphic differentials of degree $n$ on an open set $U\subseteq\mathbb C$ are 
+    \[\Omega^n(U) = \{f(z)(\dd z)^n\mid f\text{ meromorphic on $U$}\}.\qedhere\]
+\end{definition}
+If $\varphi\colon U\to V$ is a holomorphic map of open sets in $\mathbb C$, then the pullback map $\varphi^\ast\colon \colon\Omega^n(V)\to \Omega^n(U)$ is given by $f(\dd z)^n\mapsto (f\circ\varphi)(\varphi^\prime)^n(\dd w)^n$ (where $z$ is the coordinate for $V$ and $w$ is the coordinate for $U$).
+%  A nice fact is that if $\pi\colon U\to V$ is a holomorphic surjection of open sets in $\mathbb C$, then the pullback $\pi^\ast\colon\Omega^n(V)\to \Omega^n(U)$ is an injection. 
+
+Since $X(N)$ is a (compact) Riemann surface, (finitely many) charts may be used to cover it. Each chart in $X(N)$ is homeomorphic to an open set of $\mathbb C$, so we obtain the following definition: 
+\begin{definition}
+    Let $U_i$ be charts covering $X(N)$ which are homeomorphic via $\varphi_i$ to open sets $V_i$ in $\mathbb C$. Then a meromorphic differential on $X(N)$ is given by the data of meromorphic differentials $f_i(\dd z)^n$ on each $V_i$ which glue together. That is, for any two charts $V_i$ and $V_j$ if we restrict $f_i(\dd z)^n$ to $\varphi_i(U_i\cap U_j)$ and $f_j(\dd z)^n$ to $\varphi_j(U_i\cap U_j)$, then pulling back the restricted $f_i(\dd z)^n$ along the transition map between $V_j$ and $V_i$ yields equality with the restricted $f_j(\dd z)^n$.
+\end{definition}
+To go from a meromorphic differential on $X(N)$ to a meromorphic differential on $\mathbb H$, we need to pull back along the quotient map $\pi\colon \mathbb H\to X(N)$. To give this map explicitly we start with a known set of charts for $X(N)$ and pull back on each one of those charts. On $X(N)$, these charts are mostly the ones given by taking disks in $\mathbb H$ and quotienting by the group action of $\Gamma(N)$, but for the elliptic points and the cusps some modifications are made. We will not go through the calculations for these pullback maps but the point is that 
+
+
+\subsection{Riemann-Roch and dimension formulas}
+% Use Riemann–Roch to compute a dimension formula for the space M_2k(Γ(N)) of modular forms, and for its subspace M^0_2k(Γ(N)) of cusp forms (modular forms vanishing at the cusps).
+
+
+\subsection{Eisenstein series and cusp forms}
+% In the case of the full modular group Γ, show that the graded algebra M = ⊕ k∈Z M_2k(Γ) is the polynomial algebra C[G4, G6] in the Eisenstein series G4 and G3 (which have degrees 2k = 4, 6 respectively). Show that the cusp forms constitute the ideal ∆ · C[G4, G6] generated by by the modular discriminant ∆ ∈ M^0_12(Γ).
+
+
+\newpage\section*{References}
+
+The course notes.
+
+A First Course in Modular Forms by Fred Diamond and Jerry Shurman, in Graduate Texts in Mathematics. (\href{https://link.springer.com/book/10.1007/978-0-387-27226-9}{link to book})
+
+A Course in Arithmetic by Jean-Pierre Serre, in Graduate Texts in Mathematics. (\href{https://link.springer.com/book/10.1007/978-1-4684-9884-4}{link to book})
+
+\end{document}
