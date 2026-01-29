@@ -80,4 +80,38 @@ We can further recall the representation theory of $\SU(2)$ to remember that cha
 The other approach only uses Lie algebras to determine that $\lambda$ is a nonnegative integer. Let $V$ be an irrep of $\sl_2(\mathbb C)$ and let $f^mv_\lambda$ be the lowest weight vector for $V$. Since it is a lowest weight vector, $f^{m+1}v_\lambda = 0$, hence also $ef^{m+1}v_\lambda = 0$. On the other hand, $ef^{m+1}v_\lambda$ is equal to $(m+1)(\lambda-m)f^mv_\lambda$. Certainly $m+1$ is not zero since $m$ is a nonnegative integer. So $\lambda = m$ as we discovered earlier. We can find examples for small $m$, but we still don't know which nonnegative integers occur for irreps.
 
 For $m = 0$, the zero vector space does the job. For $m = 1$, take the trivial representation. For $m = 2$, consider $\mathbb C^2$ as a representation of $\sl_2(\mathbb C)$ where the action is by usual matrix multiplication. The weight spaces in this case are $\mathbb C$ with weight $-1$ and $1$. Indeed, the eigenvectors for $h$ in this case are $e_2$ and $e_1$ with weights $-1$ and $1$ respectively. For $m = 3$, let $\sl_2(\mathbb C)$ act on itself by the Lie bracket; that is, $a\cdot b = [a,b]$. This is called the adjoint representation of $\sl_2(\mathbb C)$. In this case the $\mathbb C$-spans of $f$, $h$, and $e$ form the weight spaces with weights $-2$, $0$, and $2$ respectively, from the relations $ [h,e] = 2e$ and $ [h,f] = -2f$ ($h$ commutes with itself of course). For the other nonnegative integers, we should try a more robust approach.
+
+From our previous lessons with different groups, it may be helpful to search for other representations inside a suitable version of $\Fun(G)$ via the matrix elements map. After all, at least for compact groups, the Peter-Weyl theorem says that for compact groups their representations lived inside $L^2(G)$ with multiplicity.
+
+Let $V$ be a finite-dimensional representation of $\sl_2(\mathbb C)$ (and remember by exponentiation $V$ may also be regarded as a representation of $\SL_2(\mathbb C)$) and consider its dual representation $V^\ast$ (which is of course isomorphic to $V$). Pick $v_n$ in $V^\ast$ to be a highest weight vector with weight $n$. Exponentiate the action of $e = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr)$ on $V^\ast$ to obtain an action of the subgroup $N = \{\bigl(\!\begin{smallmatrix}
+	1 & \ast \\ 0 & 1
+\end{smallmatrix}\!\bigr)\}\cong \mathbb C$ (note $N$ does not intersect with $\SU(2)\subset \SL_2(\mathbb C)$, and the Lie algebra of $N$ is $\mathbb Ce$).  Since $ev_n = 0$, the action of $N$ on $v_n$ is given by $\bigl(\!\begin{smallmatrix}
+	1 & t \\ 0 & 1
+\end{smallmatrix}\!\bigr)v_n = \exp(te)v_n = \sum_{i=0}^\infty (te)^i/i!v_n = \sum_{i=0}^\infty (t^i/i!) e^iv_n = v_n$. So $v_n$ is $N$-invariant; that is, $v_n\in (V^\ast)^N$.
+
+Now restrict the matrix elements map $V\otimes V^\ast\xrightarrow{f_{-,-}} \mathbb C[\SL_2(\mathbb C)]$ to $V\xrightarrow{f_{-,v_n}} \mathbb C[\SL_2(\mathbb C)]$. The resulting function $f_{-,v_n}$ is $\SL_2(\mathbb C)\times \SL_2(\mathbb C)$-invariant, but because $v_n$ is $N$-invariant, the functions obtained from $f_{-,v_n}$ are left $N$-invariant. Indeed, for any $v\in V$, $\bigl(\!\begin{smallmatrix}
+	1 & t \\ 0 & 1
+\end{smallmatrix}\!\bigr)f_{v,v_n}(-) = \abr{v_n,\bigl(\!\begin{smallmatrix}
+	1 & t \\ 0 & 1
+\end{smallmatrix}\!\bigr)^{-1}(-)v} = \abr{\bigl(\!\begin{smallmatrix}
+	1 & t \\ 0 & 1
+\end{smallmatrix}\!\bigr)v_n,(-)v} = \abr{v_n,(-)v} = f_{v,v_n}(-)$ (in general, $gf_{v,w}h = f_{hv,gw}$). We will denote the space of left $N$-invariant polynomial functions on $\SL_2(\mathbb C)$ by $\mathbb C[\SL_2(\mathbb C)]^N$.
+
+In general, if $X$ is a geometric space of some kind and some group $H$ acts on $\Fun(X)$, then we may identify the left $H$-invariant functions, $\Fun(X)^H$, with the orbit space $H\backslash X$. So in our case, we find that $\mathbb C[\SL_2(\mathbb C)]^N = \mathbb C[N\backslash \SL_2(\mathbb C)]$. Since $N$ is the stabilizer of the vector $\bigl(\!\begin{smallmatrix}
+	1 \\ 0 
+\end{smallmatrix}\!\bigr)$, $N\backslash \SL_2(\mathbb C) = \Stab\{\bigl(\!\begin{smallmatrix}
+	1 \\ 0 
+\end{smallmatrix}\!\bigr)\}\backslash\SL_2(\mathbb C)$ is the orbit of $\bigl(\!\begin{smallmatrix}
+	1 \\ 0 
+\end{smallmatrix}\!\bigr)$ under the action of $\SL_2(\mathbb C)$, which ends up being $\mathbb C^2\setminus \{0\}$. So $\mathbb C[\SL_2(\mathbb C)]^N = \mathbb C[N\backslash \SL_2(\mathbb C)] = \mathbb C[\mathbb C^2\setminus\{0\}]$. We now cite \href{https://en.wikipedia.org/wiki/Hartogs%27s_extension_theorem}{Hartogs' extension theorem} from the theory of functions of several complex variables, stating that a function of more than one complex variable which is holomorphic on a connected set, that is the complement of a compact set, may be extended holomorphically to the compact set. In our case this means that $\mathbb C[\mathbb C^2\setminus \{0\}] = \mathbb C[\mathbb C^2] = \mathbb C[x,y]$, the polynomials in two variables with complex coefficients (a (bi)graded ring). In summary, the matrix coefficients map has the signature $V\xrightarrow{f_{-,v_n}}\mathbb C[\SL_2(\mathbb C)]^N = \mathbb C[x,y]$. That we used Hartogs' extension theorem is not something that appears in the study of representations of most other groups. So far we have only used the ``highest'' part of ``highest weight theory''.
+
+In the case that $V$ is irreducible, the matrix elements map $V\xrightarrow{f_{-,v_n}}\mathbb C[x,y]$ is injective so that $V$ may be identified with some subspace of $C[x,y]$. Now we use the ``weight'' part of ``highest weight theory'' to proceed. Since $hv_n = nv_n$, we may exponentiate $\mathbb Ch$ to find that $\mathbb Cv_n$ is a representation of $H = \{\bigl(\!\begin{smallmatrix}
+	\ast & 0 \\ 0 & \ast
+\end{smallmatrix}\!\bigr)\}\cong \mathbb C^\times$. But $\mathbb Cv_n$ is also a representation of $N = \{\bigl(\!\begin{smallmatrix}
+	1 & \ast \\ 0 & 1
+\end{smallmatrix}\!\bigr)\}\cong \mathbb C$, so by taking their semidirect product inside $\SL_2(\mathbb C)$, $\mathbb Cv_n$ is a representation of $B = N\rtimes H = \{\bigl(\!\begin{smallmatrix}
+	\ast & \ast \\ 0 & \ast
+\end{smallmatrix}\!\bigr)\}$. So the matrix elements map $f_{-,v_n}$ injects $V$ into a further refined collection of functions inside of $\mathbb C[x,y] = \mathbb C[\SL_2(\mathbb C)]^N\subset\mathbb C[\SL_2(\mathbb C)]$, which we denote by $\mathbb C[\SL_2(\mathbb C)]^{B,n}$. In the next lecture we will define this space and finally write down the finite-dimensional irreps of $\SL_2(\mathbb C)$.
 \end{document}
