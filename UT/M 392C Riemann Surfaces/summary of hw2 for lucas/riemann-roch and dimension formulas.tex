@@ -1,0 +1,133 @@
+\documentclass[11pt,leqno]{article}
+\headheight=13.6pt
+
+% packages
+\usepackage[alphabetic]{amsrefs}
+\usepackage{physics}
+% margin spacing
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{extarrows}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+\usepackage{color}
+\newcommand{\sai}[1]{\textcolor{red}{#1}}
+\usepackage{enumitem}
+% \usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[noabbrev, capitalise]{cleveref}
+\crefformat{equation}{equation~#2#1#3}
+\crefformat{lemma}{\textrm{Lemma}~#2#1#3}
+\usepackage{quiver}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{lemma}[lem]{Lemma}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{theorem}[lem]{Theorem}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{proposition}[lem]{Proposition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{corollary}[lem]{Corollary}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{form}[lem]{Formula}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{definition/}[lem]{Definition}
+\newenvironment{definition}
+  {\renewcommand{\qedsymbol}{\textdagger}%
+   \pushQED{\qed}\begin{definition/}}
+  {\popQED\end{definition/}}
+\newtheorem{example}[lem]{Example}
+\newtheorem{remark}[lem]{Remark}
+\newtheorem{exercise}[lem]{Exercise}
+\newtheorem{notation}[lem]{Notation}
+
+\numberwithin{equation}{section}
+\numberwithin{lem}{section}
+
+% header/footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Riemann-Roch and dimension formulas}
+\fancyhead[C]{}
+\fancyhead[R]{Sai Sivakumar}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+
+% paragraph indentation/spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\renewcommand{\baselinestretch}{1.25}
+
+% mathscript S
+\usepackage[mathscr]{euscript}
+
+% math operators
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Sym}{Sym}
+\renewcommand{\ev}{\mathrm{ev}}
+\DeclareMathOperator{\SL}{SL}
+\newcommand{\smod}[1]{\;(\bmod\; #1)}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\GL}{GL}
+\newcommand{\bbC}{\mathbb C}
+\DeclareMathOperator{\Diff}{Diff}
+\newcommand{\Vir}{\mathrm{Vir}}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\Div}{Div}
+\renewcommand{\div}{\text{div}}
+\DeclareMathOperator{\Stab}{Stab}
+
+% bracket notation for inner product
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\abr}[1]{\langle}{\rangle}{#1}
+
+% smileys frownies
+\usepackage{wasysym}
+\newcommand{\smallhappy}{\raisebox{-.14em}{\smiley}}
+\newcommand{\happy}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\smiley}}}
+\newcommand{\smallsad}{\raisebox{-.14em}{\frownie}}
+\newcommand{\sad}{\raisebox{-.24em}{\resizebox{1.2em}{!}{\frownie}}}
+\DeclareMathOperator{\mathhappy}{\!\happy\!}
+\DeclareMathOperator{\smallmathhappy}{\!\smallhappy\!}
+\DeclareMathOperator{\mathsad}{\!\sad\!}
+\DeclareMathOperator{\smallmathsad}{\!\smallsad\!}
+
+% set page count index to begin from 1
+\setcounter{page}{1}
+
+% array column and row separation
+\arraycolsep = 2pt
+\renewcommand{\arraystretch}{.6}
+
+\begin{document}
+
+\section{Conventions, notation, and definitions}
+
+\begin{definition}
+    For $\gamma = \bigl(\!\begin{smallmatrix}
+    a & b \\ c & d
+\end{smallmatrix}\!\bigr)\in \SL_2(\mathbb Z)$, the factor of automorphy is $j(\gamma,z) = cz+d$ for $z\in\mathbb C$.
+\end{definition}
+
+So a modular form of weight $k$ with respect to a congruence subgroup $\Gamma$ is a holomorphic function $f\colon \mathbb H\to \mathbb C$ for which 
+    \[f(\gamma(z))=j(\gamma,z)^kf(z)\]
+    for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore, for any $\alpha\in\SL_2(\mathbb Z)$, $j(\alpha,z)^{-k}f(\alpha(z))$ is holomorphic at $\infty$. This last condition is just saying that $f$ is holomorphic at the cusps for $\Gamma$.
+
+A weakly modular function is a meromorphic function $f\colon \mathbb H\to \mathbb C$ that transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we should have $f(z) = j(\gamma,z)^{-2k}f(\gamma(z))$. Note that we do not insist that $f$ be holomorphic on $\mathbb H$ or at cusps of $\Gamma$.
+
+Let $z$ be a coordinate of $\mathbb H\subseteq \mathbb C$. The meromorphic differentials on $\mathbb H$ are meromorphic sections of the cotangent bundle $\Omega$ of $\mathbb H$, and a meromorphic section of $\Omega$ is a section $\omega = f(z)\dd z\in \Omega(U)$ for some open set $U\subseteq \mathbb H$ where $f(z)$ is meromorphic on $\mathbb H$ and $\mathbb H\setminus U$ contains the poles of $f(z)$. In other words, the meromorphic differentials on $\mathbb H$ are sections of the form $f(z)\dd z$ where $f(z)$ is meromorphic on $\mathbb H$.
+
+The meromorphic differentials of degree $n$ on $\mathbb H$ are meromorphic sections of the $n$-th tensor (or symmetric) power of the cotangent bundle of $\mathbb H$, $\Omega^{\otimes n}$. Since $\Omega$ is a trivial line bundle, its tensor powers are also trivial, so sections of $\Omega^{\otimes n}$ are
+
+\end{document}
