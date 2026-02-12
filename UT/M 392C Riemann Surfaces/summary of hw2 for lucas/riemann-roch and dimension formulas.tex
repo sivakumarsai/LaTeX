@@ -114,19 +114,15 @@
 
 \section{Conventions, notation, and definitions}
 
-\begin{definition}
-    For $\gamma = \bigl(\!\begin{smallmatrix}
+For $\gamma = \bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)\in \SL_2(\mathbb Z)$, the factor of automorphy is $j(\gamma,z) = cz+d$ for $z\in\mathbb C$.
-\end{definition}
 
-So a modular form of weight $k$ with respect to a congruence subgroup $\Gamma$ is a holomorphic function $f\colon \mathbb H\to \mathbb C$ for which 
-    \[f(\gamma(z))=j(\gamma,z)^kf(z)\]
-for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore, for any $\alpha\in\SL_2(\mathbb Z)$, $j(\alpha,z)^{-k}f(\alpha(z))$ is holomorphic at $\infty$. This last condition is just saying that $f$ is holomorphic at the cusps for $\Gamma$.
+A modular form of weight $k$ with respect to a congruence subgroup $\Gamma$ is a holomorphic function $f\colon \mathbb H\to \mathbb C$ for which 
+\[f(\gamma(z))=j(\gamma,z)^kf(z)\]
+for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore, we require that $j(\alpha,z)^{-k}f(\alpha(z))$ is holomorphic at $\infty$ for any $\alpha\in\SL_2(\mathbb Z)$ (meaning the Fourier coefficients of this function are concentrated in indices greater than or equal to zero). This last condition captures the condition that $f$ be holomorphic at the cusps for $\Gamma$.
 
-\begin{definition}
-    A weakly modular function (of weight $k$) is a meromorphic function $f\colon \mathbb H\to \mathbb C$ which is meromorphic at the cusps of $\Gamma$ and transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we should have $f(\gamma(z))=j(\gamma,z)^kf(z)$. 
-\end{definition}
+A weakly modular function (of weight $k$) is a meromorphic function $f\colon \mathbb H\to \mathbb C$ which is meromorphic at the cusps of $\Gamma$ and transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we should have $f(\gamma(z))=j(\gamma,z)^kf(z)$.
 
 Let $z$ be a coordinate of $U\subseteq \mathbb C$. The meromorphic differentials on $U$ are meromorphic (global) sections of the cotangent bundle $\Omega$ of $U$, and a meromorphic section of $\Omega$ is a (holomorphic) section $\omega = f(z)\dd z\in \Omega(V)$ for some open set $V\subseteq U$ where $f(z)$ is meromorphic on $U$ and $U\setminus V$ contains the poles of $f(z)$. In other words, the meromorphic differentials on $U$ are sections of the form $f(z)\dd z$ where $f(z)$ is meromorphic on $U$.
 
@@ -153,15 +149,14 @@ We will show that meromorphic differentials on $X(\Gamma)$ pull back to meromorp
 
 Since $X(\Gamma)$ is a (compact) Riemann surface, (finitely many) charts may be used to cover it. Each chart in $X$ is homeomorphic to an open set of $\mathbb C$, so we obtain the following definition: 
 
-\begin{definition}
-    Let $\{(V_i, V_i\xrightarrow{\varphi_i}U_i)\}$ with $V_i\subseteq X(\Gamma)$ and $U_i\subseteq \mathbb C$ open be a (finite) collection of charts for $X(\Gamma)$.
-    
-    A meromorphic differential on $X(\Gamma)$ is given by the data of meromorphic differentials $f_i(z)(\dd z)^n$ on each $U_i$ which glue together in the right way. 
-    
-    That is, for any two charts $U_i$ and $U_j$, if we restrict $f_i(z)(\dd z)^n$ to $\varphi_i(V_i\cap V_j)$ and $f_j(z)(\dd z)^n$ to $\varphi_j(V_i\cap V_j)$, then the pullback of $f_i(z)(\dd z)^n|_{\varphi_i(V_i\cap V_j)}$ along the transition map $\varphi_j(V_i\cap V_j)\xrightarrow{\varphi_i\varphi_j^{-1}}\varphi_i(V_i\cap V_j)$ is equal to $f_j(\dd z)^n|_{\varphi_j(V_i\cap V_j)}$.
 
-    We will henceforth specify meromorphic differentials on $X(\Gamma)$ using the notation $\{f_i(z)(\dd z)^n\}$.
-\end{definition}
+Let $\{(V_i, V_i\xrightarrow{\varphi_i}U_i)\}$ with $V_i\subseteq X(\Gamma)$ and $U_i\subseteq \mathbb C$ open be a (finite) collection of charts for $X(\Gamma)$.
+    
+A meromorphic differential on $X(\Gamma)$ is given by the data of meromorphic differentials $f_i(z)(\dd z)^n$ on each $U_i$ which glue together in the right way. 
+    
+That is, for any two charts $U_i$ and $U_j$, if we restrict $f_i(z)(\dd z)^n$ to $\varphi_i(V_i\cap V_j)$ and $f_j(z)(\dd z)^n$ to $\varphi_j(V_i\cap V_j)$, then the pullback of $f_i(z)(\dd z)^n|_{\varphi_i(V_i\cap V_j)}$ along the transition map $\varphi_j(V_i\cap V_j)\xrightarrow{\varphi_i\varphi_j^{-1}}\varphi_i(V_i\cap V_j)$ is equal to $f_j(\dd z)^n|_{\varphi_j(V_i\cap V_j)}$.
+
+We will henceforth specify meromorphic differentials on $X(\Gamma)$ using the notation $\{f_i(z)(\dd z)^n\}$.
 
 A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H\subseteq \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $f_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H$.
 
@@ -173,28 +168,30 @@ The above discussion establishes the following map
 \begin{multline*}
     \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}\\\cong \{\text{weakly modular functions }f(z)\text{ of weight $2k$}\}.
 \end{multline*}
-That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show. The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the above map. In summary the three vector spaces below are isomorphic:
+That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the above map. In summary the three vector spaces below are isomorphic:
 \begin{enumerate}
     \item the space of weakly modular functions $f(z)$ of weight $2k$
     \item the space of $\Gamma$-invariant meromorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$
-    \item the space of meromorphic differentials on $X(\Gamma)$ (of degree $k$).
+    \item the space of meromorphic differentials on $X(\Gamma)$ of degree $k$.
 \end{enumerate}
+
+Replacing meromorphic with holomorphic above gives the correspondence of modular forms of weight $2k$ with $\Gamma$-invariant holomorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$ and with holomorphic differentials on $X(\Gamma)$ of degree $k$. We will give a fourth characterization using divisors in the next section.
 
 \newpage
 \section{Riemann-Roch and dimension formulas}
-Due to the elliptic points coming from $\Gamma$, meromorphic modular functions of weight $2k$ may have orders that are fractional and not just integers. So to start we will consider the $\mathbb Q$-vector space of divisors $\Div_{\mathbb Q}(X)$ on $X$ and carefully reduce calculations to ones involving integer coefficients so that we can use the Riemann-Roch theorem. Henceforth we also suppress the argument $(z)$ of functions.
+Due to the elliptic points coming from $\Gamma$, meromorphic modular functions of weight $2k$ may have orders that are fractional and not just integers. So to start we will consider the $\mathbb Q$-vector space of divisors $\Div_{\mathbb Q}(X(\Gamma))=\Div(X(\Gamma))\otimes_{\mathbb Z} \mathbb Q$ on $X(\Gamma)$ and carefully reduce calculations to ones involving integer coefficients so that we can use the Riemann-Roch theorem. Henceforth we also suppress the argument $(z)$ of functions.
 
 Let $f$ be any fixed nonzero weakly modular function of weight $2k$. Since the quotient of two meromorphic modular functions of the same weight is weight zero; that is, just a meromorphic function, it follows that any weakly modular function of weight $2k$ may be obtained by multiplying $f$ by a suitable meromorphic function on $X(\Gamma)$ (in notation an element of $\mathbb C(X(\Gamma))$; which of course pulls back to a weakly modular function on $\mathbb H$).
 
 The space of modular forms $M_{2k}(\Gamma)$ with respect to $\Gamma$ may be described as the elements $f_0f$ with $f_0\in \mathbb C(X(\Gamma))$ such that either $f_0f = 0$ or $\div(f_0f) \geq 0$. Since $f$ is nonzero; the space of modular forms $M_{2k}(\Gamma)$ is isomorphic to the vector space $\{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or } \div(f_0) + \div(f)\geq 0\}$. Since $f_0$ is meromorphic on $X(\Gamma)$, $\div(f_0)$ is integral, so the condition $\div(f_0) + \div(f)\geq 0$ is equivalent to the condition $\div(f_0) + \lfloor\div(f)\rfloor\geq 0$ (where the floor function on divisors means to apply it to the coefficients). It follows that $M_{2k}(\Gamma)$ is isomorphic to $L(\lfloor\div(f)\rfloor) = \{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or }\div(f_0) + \lfloor\div(f)\rfloor\geq 0\}$, so their dimensions are the same; that is, $\dim (M_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor)$.
 
-Let $\omega$ be the meromorphic differential on $X(N)$ of degree $k$ which pulls back to $f(\dd z)^{k}$. Identifying $\omega$ with $f(\dd z)^{k}$, it is the case that (here the divisor of a meromorphic differential is calculated by expanding locally and summing the divisors of the local expansions) $\div(\omega) = \div(f) + (2k/2)(-\sum_{\text{period 2 elliptic points}}(1/2)a_i -\sum_{\text{period 3 elliptic points}}(2/3)b_i - \sum_{\text{cusps from $\Gamma(N)$}}c_i)$. The left hand side has integer coefficients, so by taking the floor and then the degree on both sides we obtain the equation
-\[\deg(\lfloor\div(f)\rfloor) = \deg(\div(\omega)) + \lfloor(2k/4)\rfloor \varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + (2k/2)\varepsilon_\infty,\] where $\varepsilon_2,\varepsilon_3,\varepsilon_\infty$ are the number of period $2$, $3$ elliptic points and cusps respectively. Note further that since $\div(\omega)$ is a $2k$ power of a canonical divisor, its degree is $2k(g-1)$ with $g$ the genus of $X(N)$. Then with $k\geq 1$, simple estimates give $\deg(\lfloor\deg(f)\rfloor)>2g-2$.
+Let $\omega$ be the meromorphic differential on $X(\Gamma)$ of degree $k$ which pulls back to $f(\dd z)^{k}$. Identifying $\omega$ with $f(\dd z)^{k}$, it is the case that (here the divisor of a meromorphic differential is calculated by expanding locally and summing the divisors of the local expansions) $\div(\omega) = \div(f) + (2k/2)(-\sum_{\text{period 2 elliptic points}}(1/2)a_i -\sum_{\text{period 3 elliptic points}}(2/3)b_i - \sum_{\text{cusps from $\Gamma$}}c_i)$. The left hand side has integer coefficients, so by taking the floor and then the degree on both sides we obtain the equation
+\[\deg(\lfloor\div(f)\rfloor) = \deg(\div(\omega)) + \lfloor(2k/4)\rfloor \varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + (2k/2)\varepsilon_\infty,\] where $\varepsilon_2,\varepsilon_3,\varepsilon_\infty$ are the number of period $2$, $3$ elliptic points and cusps respectively. Note further that since $\div(\omega)$ is a $2k$ power of a canonical divisor, its degree is $2k(g-1)$ with $g$ the genus of $X(\Gamma)$. Then with $k\geq 1$, simple estimates give $\deg(\lfloor\deg(f)\rfloor)>2g-2$.
 
 The Riemann-Roch theorem simplifies to the following expression since the degree of $\deg(\lfloor\deg(f)\rfloor)$ is greater than $2g-2$: 
-\[l(\lfloor\deg(f)\rfloor) = (2k-1)(g-1) + \lfloor(k/2)\rfloor\varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + k\varepsilon_\infty;\] this expression is hence equal to the dimension of $M_{2k}(\Gamma(N))$.
+\[l(\lfloor\deg(f)\rfloor) = (2k-1)(g-1) + \lfloor(k/2)\rfloor\varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + k\varepsilon_\infty;\] this expression is hence equal to the dimension of $M_{2k}(\Gamma)$.
 
-To obtain the dimension formula for the space of cusp forms $M^0_{2k}(\Gamma(N))$, observe that since cusp forms vanish at cusps, if $f$ is a weakly meromorphic modular function on $\mathbb H$ then $M^0_{2k}(\Gamma(N))\cong \{f_0\in \mathbb C(X(N))\mid \div(f_0) + \lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor\geq 0\}$; i.e. $M^0_{2k}(\Gamma(N))\cong L(\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor)$. Repeat similar estimates as above (and here we need $k\geq 2$ instead of $k\geq 1$ to use the version of Riemann-Roch as above) and use the Riemann-Roch theorem to find that for $k\geq 2$, $\dim(M^0_{2k}(\Gamma(N))) = l(\lfloor\div(f)\rfloor) - \varepsilon_\infty = \dim(M_{2k}(\Gamma(N)))-\varepsilon_\infty$. For $k = 1$, the divisor $\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor$ is a canonical divisor, so its linear space (which is isomorphic to $M^0_2(\Gamma(N))$) has dimension $g$.
+To obtain the dimension formula for the space of cusp forms $M^0_{2k}(\Gamma)$, observe that since cusp forms vanish at cusps, if $f$ is a weakly meromorphic modular function on $\mathbb H$ then $M^0_{2k}(\Gamma)\cong \{f_0\in \mathbb C(X(\Gamma))\mid \div(f_0) + \lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor\geq 0\}$; i.e. $M^0_{2k}(\Gamma)\cong L(\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor)$. Repeat similar estimates as above (and here we need $k\geq 2$ instead of $k\geq 1$ to use the version of Riemann-Roch as above) and use the Riemann-Roch theorem to find that for $k\geq 2$, $\dim(M^0_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor) - \varepsilon_\infty = \dim(M_{2k}(\Gamma))-\varepsilon_\infty$. For $k = 1$, the divisor $\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor$ is a canonical divisor, so its linear space (which is isomorphic to $M^0_2(\Gamma)$) has dimension $g$.
 
-Observe that modular forms of weight zero correspond to holomorphic functions $X(N)\to\widehat{\mathbb C}$; since $X(N)$ and $\widehat{\mathbb C}$ are compact, such maps are either surjective or constant. Since these maps have no poles they could not be surjective, so they are constants; that is, $M_0(\Gamma(N))\cong \mathbb C$ is the space of constant functions. This implies that $M^0_0(\Gamma(N)) = 0$. For negative $k$, if there were modular forms $f$ of weight $2k$, then $f^6\Delta$ is a weight zero cusp form; that is, the zero function. So $f$ had to be zero. Hence there are no modular forms of negative even weight.
+Observe that modular forms of weight zero correspond to holomorphic functions $X(N)\to\widehat{\mathbb C}$; since $X(N)$ and $\widehat{\mathbb C}$ are compact, such maps are either surjective or constant. Since these maps have no poles they could not be surjective, so they are constants; that is, $M_0(\Gamma)\cong \mathbb C$ is the space of constant functions. This implies that $M^0_0(\Gamma) = 0$. For negative $k$, if there were modular forms $f$ of weight $2k$, then $f^6\Delta$ is a weight zero cusp form; that is, the zero function. So $f$ had to be zero. Hence there are no modular forms of negative even weight.
 \end{document}
