@@ -112,17 +112,17 @@
 
 \begin{document}
 
-\section{Conventions, notation, and definitions}
+\section{Conventions and notations}
 
 For $\gamma = \bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)\in \SL_2(\mathbb Z)$, the factor of automorphy is $j(\gamma,z) = cz+d$ for $z\in\mathbb C$.
 
-A modular form of weight $k$ with respect to a congruence subgroup $\Gamma$ is a holomorphic function $f\colon \mathbb H\to \mathbb C$ for which 
+A modular form of weight $k$ with respect to a congruence subgroup $\Gamma$ is a holomorphic function $f$ on $\mathbb H$ for which 
 \[f(\gamma(z))=j(\gamma,z)^kf(z)\]
 for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore, we require that $j(\alpha,z)^{-k}f(\alpha(z))$ is holomorphic at $\infty$ for any $\alpha\in\SL_2(\mathbb Z)$ (meaning the Fourier coefficients of this function are concentrated in indices greater than or equal to zero). This last condition captures the condition that $f$ be holomorphic at the cusps for $\Gamma$.
 
-A weakly modular function (of weight $k$) is a meromorphic function $f\colon \mathbb H\to \mathbb C$ which is meromorphic at the cusps of $\Gamma$ and transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we should have $f(\gamma(z))=j(\gamma,z)^kf(z)$.
+An automorphic form (of weight $k$) is a meromorphic function $f$ on $\mathbb H$ which is meromorphic at the cusps of $\Gamma$ and transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we have $f(\gamma(z))=j(\gamma,z)^kf(z)$.
 
 Let $z$ be a coordinate of $U\subseteq \mathbb C$. The meromorphic differentials on $U$ are meromorphic (global) sections of the cotangent bundle $\Omega$ of $U$, and a meromorphic section of $\Omega$ is a (holomorphic) section $\omega = f(z)\dd z\in \Omega(V)$ for some open set $V\subseteq U$ where $f(z)$ is meromorphic on $U$ and $U\setminus V$ contains the poles of $f(z)$. In other words, the meromorphic differentials on $U$ are sections of the form $f(z)\dd z$ where $f(z)$ is meromorphic on $U$.
 
@@ -132,56 +132,77 @@ If $\varphi\colon U\to V$ is a holomorphic map of open sets in $\mathbb C$, then
 \[f(w)(\dd w)^n\mapsto f(\varphi(z))(\varphi^\prime(z))^n(\dd z)^n,\]
 where $w$ is the coordinate for $V$ and $z$ is the coordinate for $U$.
 
+Let $R$ be a compact Riemann surface. A meromorphic differential of degree $k$ on $R$ is given by an atlas $\{(V_\alpha,V_\alpha\xrightarrow{\varphi_\alpha}U_\alpha)\}$ of $R$ and a collection of meromorphic functions $\{f_\alpha\}$ on $R$ for which 
+\[f_\alpha(p)\biggl(\dv{\varphi_\alpha}{\varphi_\beta}\/(p)\biggr)^k = f_\beta(p)\]
+for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less confusingly presented as the following condition: The functions $f_\alpha$ in local coordinates determine the meromorphic differentials $(f_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha$ for each $\alpha$, and we require that the pullback of a differential $(f_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k$ along the transition map $U_\alpha \xrightarrow{\varphi_\beta\varphi_\alpha^{-1}}U_\beta$ agrees with $(f_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha\cap U_\beta$; that is, 
+\begin{multline*}
+    (\varphi_\beta\varphi_\alpha^{-1})^\ast((f_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k) = (f_\beta\circ \varphi_\beta^{-1})(\varphi_\beta\varphi_\alpha^{-1}(w))\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k \\= (f_\beta\circ\varphi_\alpha^{-1})(w)\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k
+\end{multline*}
+agrees with \[(f_\alpha\circ \varphi_\alpha^{-1})(w)(\dd w)^k\] on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here.
+
+The order of vanishing of a nonzero meromorphic differential $\omega = \{f_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $f_\alpha$ at $p$ (which is calculated in local coordinates). This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
+\[\div(\omega) = \sum_pv_p(\omega)p\in \Div(R) = \mathbb ZR\]
+makes sense for nonzero differentials. This definition of the divisor function is additive on products of differentials as expected. The degree of a divisor $a = \sum_p a_pp$ is $\deg(a) = \sum_p a_p\in\mathbb Z$.
+
+A divisor $D$ is nonnegative if all of its coefficients are nonnegative, and denote this by $D\geq 0$. The Riemann-Roch space of a divisor $D$ is the vector space 
+\[L(D) = \{f\in \mathbb C(R)^\times\mid f = 0\text{ or } \div(f)+D \geq 0\}\] and its dimension is denoted $l(D)$.
+
+The Riemann-Roch theorem: Let $g$ be the genus of $R$ and choose any nonzero differential $\omega$ of degree $1$ on $R$ (we call $\div(\omega)$ a canonical divisor on $R$). Then for any divisor $a$, 
+\[l(a) = \deg(a) - (g-1) + l(\div(\omega)-a).\]
+
+Note that $l(0) = 1$ since only the constant functions in $\mathbb C(R)$ have divisor greater than or equal to zero (by compactness of $R$, the only holomorphic functions on $R$ are the constants). So with $a = 0$, deduce that for any canonical divisor $\div(\omega)$ on $R$ that $l(\div(\omega)) = g$. With $a = \div(\omega)$, deduce that $\deg(\div(\omega)) = 2(g-1)$. If $l(a)>0$, then we can select a nonzero $f\in L(a)$ from which we see that $\div(f)+a\geq 0$; taking the degree yields $\deg(\div(f))+\deg(a)\geq 0$, so $\deg(a)\geq -\deg(\div(f)) = 0$ (the degree of divisors of meromorphic functions on a compact Riemann surface, called principal divisors, is always zero). By the contrapositive, if $\deg(a)<0$, then $l(a) = 0$. This implies that if $\deg(a)>2(g-1)$; that is, for a canonical divisor $\div(\omega)$ that $\deg(\div(\omega)-a)<0$, then $l(\div(\omega)-a) = 0$.
+
 \newpage
 \section{Meromorphic differentials and modular forms}
 
-A weakly modular function $f(z)$ on $\mathbb H$ can be sent to the meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$. This differential form is $\Gamma$-invariant: for any $\gamma = \bigl(\!\begin{smallmatrix}
+An automorphic form $f(z)$ on $\mathbb H$ can be sent to the meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$. This differential form is $\Gamma$-invariant: for any $\gamma = \bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)\in\Gamma$ we have 
 \[\dd(\gamma(z)) = \dd\Bigl(\bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)(z)\Bigr)= \dv{z}\biggl(\frac{az+b}{cz+d}\biggr)\dd z  = \frac{1}{(cz+d)^2}\dd z = j(\gamma,z)^{-2}\dd z\]
 (since $\det\gamma = 1$). Thus $f(\gamma(z))(\dd(\gamma(z)))^k = j(\gamma,z)^{-2k}f(z)j(\gamma,z)^{2k}(\dd z)^k = f(z)(\dd z)^k$. In other words, this gives a map 
-\[\{\text{weakly modular functions }f(z)\text{ of weight $2k$}\}\xrightarrow{(-)(\dd z)^k} \{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}.\]
+\[\{\text{automorphic forms }f(z)\text{ of weight $2k$}\}\xrightarrow{(-)(\dd z)^k} \{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}.\]
 By reversing the earlier argument, see that the above map is actually an isomorphism of vector spaces.
-
-We will show that meromorphic differentials on $X(\Gamma)$ pull back to meromorphic differentials $f(z)(\dd z)^k$ for $f$ weakly modular with respect to $\Gamma$.
-
-Since $X(\Gamma)$ is a (compact) Riemann surface, (finitely many) charts may be used to cover it. Each chart in $X$ is homeomorphic to an open set of $\mathbb C$, so we obtain the following definition: 
-
-
-Let $\{(V_i, V_i\xrightarrow{\varphi_i}U_i)\}$ with $V_i\subseteq X(\Gamma)$ and $U_i\subseteq \mathbb C$ open be a (finite) collection of charts for $X(\Gamma)$.
-    
-A meromorphic differential on $X(\Gamma)$ is given by the data of meromorphic differentials $f_i(z)(\dd z)^n$ on each $U_i$ which glue together in the right way. 
-    
-That is, for any two charts $U_i$ and $U_j$, if we restrict $f_i(z)(\dd z)^n$ to $\varphi_i(V_i\cap V_j)$ and $f_j(z)(\dd z)^n$ to $\varphi_j(V_i\cap V_j)$, then the pullback of $f_i(z)(\dd z)^n|_{\varphi_i(V_i\cap V_j)}$ along the transition map $\varphi_j(V_i\cap V_j)\xrightarrow{\varphi_i\varphi_j^{-1}}\varphi_i(V_i\cap V_j)$ is equal to $f_j(\dd z)^n|_{\varphi_j(V_i\cap V_j)}$.
-
-We will henceforth specify meromorphic differentials on $X(\Gamma)$ using the notation $\{f_i(z)(\dd z)^n\}$.
 
 A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H\subseteq \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $f_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H$.
 
 Since $\pi$ is the quotient given by identifying orbits of the action of $\Gamma$ on $\mathbb H$ to points, a meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$ obtained by pulling back a meromorphic differential on $X(\Gamma)$ along the quotient map $\pi$ is $\Gamma$-invariant. So for any $\gamma\in \Gamma$, we can pull back $f(z)(\dd z)^n$ along the action of $\gamma$ on $\mathbb H$ to obtain equalities 
 \[f(z)(\dd z)^n = \gamma^\ast(f(z)(\dd z)^n) = f(\gamma(z))(\gamma^\prime(z))^n(\dd z)^n = j(\gamma, z)^{-2n}f(\gamma(z))(\dd z)^n.\]
-This shows that the function $f(z)$ is weakly modular with weight $2n$. To see that $f(z)$ is meromorphic at cusps, it suffices to see that the meromorphic differential it comes from expanded locally around the cusps of $X(\Gamma)$ is given by a function which is meromorphic at zero, so $f(z)$ should also be meromorphic at its cusps.
+This shows that the function $f(z)$ is an automorphic form with weight $2n$. To see that $f(z)$ is meromorphic at cusps, it suffices to see that the meromorphic differential it comes from expanded locally around the cusps of $X(\Gamma)$ is given by a function which is meromorphic at zero, so $f(z)$ should also be meromorphic at its cusps.
 
 The above discussion establishes the following map
 \begin{multline*}
-    \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}\\\cong \{\text{weakly modular functions }f(z)\text{ of weight $2k$}\}.
+    \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}\\\cong \{\text{automorphic forms }f(z)\text{ of weight $2k$}\}.
 \end{multline*}
 That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the above map. In summary the three vector spaces below are isomorphic:
 \begin{enumerate}
-    \item the space of weakly modular functions $f(z)$ of weight $2k$
+    \item the space of automorphic forms $f(z)$ of weight $2k$
     \item the space of $\Gamma$-invariant meromorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$
     \item the space of meromorphic differentials on $X(\Gamma)$ of degree $k$.
 \end{enumerate}
 
-Replacing meromorphic with holomorphic above gives the correspondence of modular forms of weight $2k$ with $\Gamma$-invariant holomorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$ and with holomorphic differentials on $X(\Gamma)$ of degree $k$. We will give a fourth characterization using divisors in the next section.
+The weight zero automorphic forms correspond to the degree $0$ meromorphic differentials on $X(\Gamma)$, in other words, the meromorphic functions on $X(\Gamma)$. Replacing meromorphic with holomorphic in the above list gives the correspondence of modular forms of weight $2k$ with $\Gamma$-invariant holomorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$ and with holomorphic differentials on $X(\Gamma)$ of degree $k$. We will give a fourth characterization using divisors in the next section.
+
+
 
 \newpage
 \section{Riemann-Roch and dimension formulas}
 Due to the elliptic points coming from $\Gamma$, meromorphic modular functions of weight $2k$ may have orders that are fractional and not just integers. So to start we will consider the $\mathbb Q$-vector space of divisors $\Div_{\mathbb Q}(X(\Gamma))=\Div(X(\Gamma))\otimes_{\mathbb Z} \mathbb Q$ on $X(\Gamma)$ and carefully reduce calculations to ones involving integer coefficients so that we can use the Riemann-Roch theorem. Henceforth we also suppress the argument $(z)$ of functions.
 
-Let $f$ be any fixed nonzero weakly modular function of weight $2k$. Since the quotient of two meromorphic modular functions of the same weight is weight zero; that is, just a meromorphic function, it follows that any weakly modular function of weight $2k$ may be obtained by multiplying $f$ by a suitable meromorphic function on $X(\Gamma)$ (in notation an element of $\mathbb C(X(\Gamma))$; which of course pulls back to a weakly modular function on $\mathbb H$).
+Let $f$ be any nonzero automorphic form of weight $2k$ (that these exist for all $k$ is a theorem). First we make some observations. The quotient of two automorphic forms of the same weight is weight zero, so any automorphic form of weight $2k$ may be obtained by multiplying $f$ by a suitable automorphic form of weight zero. The weight zero automorphic forms on $\mathbb H$ may be identified with $\mathbb C(X(\Gamma))$, the meromorphic functions on $X(\Gamma)$.
+
+Let $f$ be any nonzero automorphic form of weight $2$. Let $\omega$ be the corresponding degree $1$ differential on $X(\Gamma)$; observe that $\div(\omega)$ is a canonical divisor on $X(\Gamma)$. Then $\omega^k$ is a degree $k$ differential on $X(\Gamma)$ so 
+\[\deg(\div(\omega^k)) = \deg(k\div(\omega)) = 2k(g-1).\]
+On the other hand, since the space of automorphic forms of weight $2k$ is equal to $f^k$ (which has weight $2k$) times the space of automorphic forms of weight zero, it follows by passing to differentials on $X(\Gamma)$ that $\Omega^k(X(\Gamma)) = \mathbb C(X(\Gamma))\omega^k$. So for any nonzero $\tilde\omega\in \Omega^k(X(\Gamma))$,
+\[\deg(\div(\tilde \omega)) = \deg(\div(\omega_0\omega^k)) = 2k(g-1)\]
+for some $\omega_0\in\mathbb C(X(\Gamma))$ (again since principal divisors on compact Riemann surfaces have degree zero). Therefore every nonzero differential in $\Omega^k(X(\Gamma))$ has divisor with degree $2k(g-1)$.
+
+Let $f$ be a nonzero automorphic form of weight $2k$. A modular form is an automorphic form on $\mathbb H$ which is holomorphic on $\mathbb H$ and at the cusps of $\Gamma$. So the space of modular forms of weight $2k$ may be identified with the space 
+\[\{gf\mid g\text{ is an automorphic form of weight zero}\}.\] Automorphic forms of positive weight $2k$ do not pass to meromorphic functions on $X(\Gamma)$ due to how they transform with respect to $\Gamma$, they pass to meromorphic differentials of degree $k$ as we saw before. What we would like to do is to nevertheless pass to $X(\Gamma)$ and make the following claim: The space of modular forms of weight $2k$ may be identified with the space
+\[\{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div()\}\]
+
+~~~~~~ ADJUST BELOW ~~~~~~\hrulefill
 
 The space of modular forms $M_{2k}(\Gamma)$ with respect to $\Gamma$ may be described as the elements $f_0f$ with $f_0\in \mathbb C(X(\Gamma))$ such that either $f_0f = 0$ or $\div(f_0f) \geq 0$. Since $f$ is nonzero; the space of modular forms $M_{2k}(\Gamma)$ is isomorphic to the vector space $\{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or } \div(f_0) + \div(f)\geq 0\}$. Since $f_0$ is meromorphic on $X(\Gamma)$, $\div(f_0)$ is integral, so the condition $\div(f_0) + \div(f)\geq 0$ is equivalent to the condition $\div(f_0) + \lfloor\div(f)\rfloor\geq 0$ (where the floor function on divisors means to apply it to the coefficients). It follows that $M_{2k}(\Gamma)$ is isomorphic to $L(\lfloor\div(f)\rfloor) = \{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or }\div(f_0) + \lfloor\div(f)\rfloor\geq 0\}$, so their dimensions are the same; that is, $\dim (M_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor)$.
 
