@@ -114,6 +114,8 @@
 
 \section{Conventions and notations}
 
+The upper half plane of $\mathbb C$ is denoted $\mathbb H$. By adding additional points and charts, obtain the Riemann surface $\mathbb H^\ast = \mathbb H\cup \mathbb Q\cup \{\infty\}$. These extra points contain the cusps of congruence subgroups of $\SL_2(\mathbb Z)$. In the analysis below, we ignore cusps in order to streamline this note. For a congruence subgroup $\Gamma$ of $\SL_2(\mathbb Z)$, the corresponding compactified modular curve is the Riemann surface $X(\Gamma) = \Gamma\backslash\mathbb H^\ast$.
+
 For $\gamma = \bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)\in \SL_2(\mathbb Z)$, the factor of automorphy is $j(\gamma,z) = cz+d$ for $z\in\mathbb C$.
@@ -124,23 +126,28 @@ for any $\gamma\in G$ and $z\in\mathbb H$. Furthermore, we require that $j(\alph
 
 An automorphic form (of weight $k$) is a meromorphic function $f$ on $\mathbb H$ which is meromorphic at the cusps of $\Gamma$ and transforms with respect to a congruence subgroup in the same way as in the definition of a modular form. That is, for any $\gamma\in \Gamma$ and $z\in\mathbb H$ we have $f(\gamma(z))=j(\gamma,z)^kf(z)$.
 
+
+
 Let $z$ be a coordinate of $U\subseteq \mathbb C$. The meromorphic differentials on $U$ are meromorphic (global) sections of the cotangent bundle $\Omega$ of $U$, and a meromorphic section of $\Omega$ is a (holomorphic) section $\omega = f(z)\dd z\in \Omega(V)$ for some open set $V\subseteq U$ where $f(z)$ is meromorphic on $U$ and $U\setminus V$ contains the poles of $f(z)$. In other words, the meromorphic differentials on $U$ are sections of the form $f(z)\dd z$ where $f(z)$ is meromorphic on $U$.
 
-The meromorphic differentials of degree $n$ on $U$ are meromorphic (global) sections of the $n$-th tensor (or symmetric) power of the cotangent bundle of $U$, $\Omega^{\otimes n}$. Since $\Omega$ is a trivial line bundle, its tensor powers are also trivial, so sections of $\Omega^{\otimes n}$ are of the form $f(z)(\dd z)^{\otimes n}$. Since the cotangent bundle is rank one, its tensor powers agree with its symmetric powers, so we suppress the notation $\otimes$ from now on. It follows that meromorphic differentials of degree $n$ on $U$ are of the form $f(z)(\dd z)^n$ for $f(z)$ meromorphic on $U$. Denote the space of meromorphic differentials on $U$ by $\Omega^n(U)$.
+The meromorphic differentials of degree $n$ on $U$ are meromorphic (global) sections of the $n$-th tensor (or symmetric) power of the cotangent bundle of $U$, $\Omega^{\otimes n}$. Since $\Omega$ is a trivial line bundle, its tensor powers are also trivial, so sections of $\Omega^{\otimes n}$ are of the form $f(z)(\dd z)^{\otimes n}$. Since the cotangent bundle is rank one, its tensor powers agree with its symmetric powers, so we suppress the notation $\otimes$ from now on. Denote meromorphic differentials of degree $n$ on $U$ by $f(z)(\dd z)^n$ for $f(z)$ meromorphic on $U$ and the space of meromorphic differentials of degree $n$ on $U$ by $\Omega^n(U)$.
 
 If $\varphi\colon U\to V$ is a holomorphic map of open sets in $\mathbb C$, then the pullback map $\varphi^\ast\colon \Omega^n(V)\to \Omega^n(U)$ is given by the change of variables $w = \varphi(z)$:
 \[f(w)(\dd w)^n\mapsto f(\varphi(z))(\varphi^\prime(z))^n(\dd z)^n,\]
 where $w$ is the coordinate for $V$ and $z$ is the coordinate for $U$.
 
-Let $R$ be a compact Riemann surface. A meromorphic differential of degree $k$ on $R$ is given by an atlas $\{(V_\alpha,V_\alpha\xrightarrow{\varphi_\alpha}U_\alpha)\}$ of $R$ and a collection of meromorphic functions $\{f_\alpha\}$ on $R$ for which 
-\[f_\alpha(p)\biggl(\dv{\varphi_\alpha}{\varphi_\beta}\/(p)\biggr)^k = f_\beta(p)\]
-for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less confusingly presented as the following condition: The functions $f_\alpha$ in local coordinates determine the meromorphic differentials $(f_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha$ for each $\alpha$, and we require that the pullback of a differential $(f_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k$ along the transition map $U_\alpha \xrightarrow{\varphi_\beta\varphi_\alpha^{-1}}U_\beta$ agrees with $(f_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha\cap U_\beta$; that is, 
-\begin{multline*}
-    (\varphi_\beta\varphi_\alpha^{-1})^\ast((f_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k) = (f_\beta\circ \varphi_\beta^{-1})(\varphi_\beta\varphi_\alpha^{-1}(w))\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k \\= (f_\beta\circ\varphi_\alpha^{-1})(w)\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k
-\end{multline*}
-agrees with \[(f_\alpha\circ \varphi_\alpha^{-1})(w)(\dd w)^k\] on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here.
+Let $R$ be a compact Riemann surface. A meromorphic differential of degree $k$ on $R$ is given by an atlas $\{(V_\alpha,V_\alpha\xrightarrow{\varphi_\alpha}U_\alpha)\}$ of $R$ and a collection of meromorphic functions $\{\phi_\alpha\}$ on $R$ for which 
+\[\phi_\alpha(p)\biggl(\dv{\varphi_\alpha}{\varphi_\beta}\/(p)\biggr)^k = \phi_\beta(p)\]
+for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less confusingly(?) presented as the following condition: The functions $\phi_\alpha$ in local coordinates determine the meromorphic differentials $(\phi_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha$ for each $\alpha$, and we require that the pullback of a differential $(\phi_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k$ along the transition map $U_\alpha \xrightarrow{\varphi_\beta\varphi_\alpha^{-1}}U_\beta$ agrees with $(\phi_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha\cap U_\beta$; that is, 
+\begin{align*}
+    (\varphi_\beta\varphi_\alpha^{-1})^\ast((\phi_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k) &= (\phi_\beta\circ \varphi_\beta^{-1})(\varphi_\beta\varphi_\alpha^{-1}(w))\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k \\
+    &= (\phi_\beta\circ\varphi_\alpha^{-1})(w)\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k
+    \intertext{agrees with}
+    &(\phi_\alpha\circ \varphi_\alpha^{-1})(w)(\dd w)^k
+\end{align*}
+on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here. Denote the space of meromorphic differentials on $R$
 
-The order of vanishing of a nonzero meromorphic differential $\omega = \{f_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $f_\alpha$ at $p$ (which is calculated in local coordinates). This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
+The order of vanishing of a nonzero meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $\phi_\alpha$ at $p$ (which is calculated in local coordinates). This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
 \[\div(\omega) = \sum_pv_p(\omega)p\in \Div(R) = \mathbb ZR\]
 makes sense for nonzero differentials. This definition of the divisor function is additive on products of differentials as expected. The degree of a divisor $a = \sum_p a_pp$ is $\deg(a) = \sum_p a_p\in\mathbb Z$.
 
@@ -155,17 +162,17 @@ Note that $l(0) = 1$ since only the constant functions in $\mathbb C(R)$ have di
 \newpage
 \section{Meromorphic differentials and modular forms}
 
-An automorphic form $f(z)$ on $\mathbb H$ can be sent to the meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$. This differential form is $\Gamma$-invariant: for any $\gamma = \bigl(\!\begin{smallmatrix}
+Since most of $\mathbb H^\ast$ is $\mathbb H$, we will refer to meromorphic differentials $\{\phi_\alpha\}$ of degree $k$ on $\mathbb H^\ast$ simply by the meromorphic $\phi$ on $\mathbb H$. Since the coordinate on $\mathbb H$ is given by $z$ (the chart map is the identity), $\phi$ determines a meromorphic differential $\phi(z)(\dd z)^k$ on $\mathbb H\subseteq \mathbb C$. We will identify meromorphic differentials on $\mathbb H^\ast$ with meromorphic differentials on $\mathbb H$ in this way.
+
+An automorphic form $f(z)$ on $\mathbb H$ can be sent to the meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H^\ast$. This differential form is $\Gamma$-invariant: for any $\gamma = \bigl(\!\begin{smallmatrix}
     a & b \\ c & d
 \end{smallmatrix}\!\bigr)\in\Gamma$ we have 
-\[\dd(\gamma(z)) = \dd\Bigl(\bigl(\!\begin{smallmatrix}
-    a & b \\ c & d
-\end{smallmatrix}\!\bigr)(z)\Bigr)= \dv{z}\biggl(\frac{az+b}{cz+d}\biggr)\dd z  = \frac{1}{(cz+d)^2}\dd z = j(\gamma,z)^{-2}\dd z\]
+\[\dd(\gamma(z)) = \dv{z}\biggl(\frac{az+b}{cz+d}\biggr)\dd z  = \frac{1}{(cz+d)^2}\dd z = j(\gamma,z)^{-2}\dd z\]
 (since $\det\gamma = 1$). Thus $f(\gamma(z))(\dd(\gamma(z)))^k = j(\gamma,z)^{-2k}f(z)j(\gamma,z)^{2k}(\dd z)^k = f(z)(\dd z)^k$. In other words, this gives a map 
-\[\{\text{automorphic forms }f(z)\text{ of weight $2k$}\}\xrightarrow{(-)(\dd z)^k} \{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}.\]
-By reversing the earlier argument, see that the above map is actually an isomorphism of vector spaces.
+\[\{\text{automorphic forms }f(z)\text{ of weight $2k$}\}\xrightarrow{(-)(\dd z)^k} \{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H^\ast\}.\]
+By reversing the calculation above, it follows that this map is an isomorphism of vector spaces.
 
-A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H\subseteq \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $f_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H$.
+A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H^\ast$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $\phi_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H$.
 
 Since $\pi$ is the quotient given by identifying orbits of the action of $\Gamma$ on $\mathbb H$ to points, a meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$ obtained by pulling back a meromorphic differential on $X(\Gamma)$ along the quotient map $\pi$ is $\Gamma$-invariant. So for any $\gamma\in \Gamma$, we can pull back $f(z)(\dd z)^n$ along the action of $\gamma$ on $\mathbb H$ to obtain equalities 
 \[f(z)(\dd z)^n = \gamma^\ast(f(z)(\dd z)^n) = f(\gamma(z))(\gamma^\prime(z))^n(\dd z)^n = j(\gamma, z)^{-2n}f(\gamma(z))(\dd z)^n.\]
