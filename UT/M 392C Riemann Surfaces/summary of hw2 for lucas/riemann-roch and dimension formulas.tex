@@ -140,8 +140,8 @@ Let $R$ be a compact Riemann surface. A meromorphic differential of degree $k$ o
 \[\phi_\alpha(p)\biggl(\dv{\varphi_\alpha}{\varphi_\beta}\/(p)\biggr)^k = \phi_\beta(p)\]
 for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less confusingly(?) presented as the following condition: The functions $\phi_\alpha$ in local coordinates determine the meromorphic differentials $(\phi_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha$ for each $\alpha$, and we require that the pullback of a differential $(\phi_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k$ along the transition map $U_\alpha \xrightarrow{\varphi_\beta\varphi_\alpha^{-1}}U_\beta$ agrees with $(\phi_\alpha\circ \varphi_\alpha^{-1})(z)(\dd z)^k$ on $U_\alpha\cap U_\beta$; that is, 
 \begin{align*}
-    (\varphi_\beta\varphi_\alpha^{-1})^\ast((\phi_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k) &= (\phi_\beta\circ \varphi_\beta^{-1})(\varphi_\beta\varphi_\alpha^{-1}(w))\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k \\
-    &= (\phi_\beta\circ\varphi_\alpha^{-1})(w)\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}}{w}\/(w)\biggr)^k(\dd w)^k
+    (\varphi_\beta\varphi_\alpha^{-1})^\ast((\phi_\beta\circ \varphi_\beta^{-1})(z)(\dd z)^k) &= (\phi_\beta\circ \varphi_\beta^{-1})(\varphi_\beta\varphi_\alpha^{-1}(w))\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}(w)}{w}\biggr)^k(\dd w)^k \\
+    &= (\phi_\beta\circ\varphi_\alpha^{-1})(w)\biggl(\dv{\varphi_\beta\varphi_\alpha^{-1}(w)}{w}\biggr)^k(\dd w)^k
     \intertext{agrees with}
     &(\phi_\alpha\circ \varphi_\alpha^{-1})(w)(\dd w)^k
 \end{align*}
@@ -172,24 +172,30 @@ An automorphic form $f(z)$ on $\mathbb H$ can be sent to the meromorphic differe
 \[\{\text{automorphic forms }f(z)\text{ of weight $2k$}\}\xrightarrow{(-)(\dd z)^k} \{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H^\ast\}.\]
 By reversing the calculation above, it follows that this map is an isomorphism of vector spaces.
 
-A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H^\ast$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $\phi_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H$.
+A meromorphic differential on $X(\Gamma)$ may be pulled back along the quotient map $\pi\colon \mathbb H^\ast \to X$ to obtain a meromorphic differential on $\mathbb H^\ast$. To understand this pullback explicitly, start with a known set of charts $V_i$ for $X(\Gamma)$ and pull back each $\phi_i(z)(\dd z)^n$ on each one of those charts. We will not record the calculations for the pullback maps using the usual charts for $X(\Gamma)$, but the point is that because a meromorphic differential on $X(\Gamma)$ is specified by a collection of meromorphic differentials on open sets which glue together, these meromorphic differentials will still glue together after being pulled back to meromorphic differentials on $\mathbb H^\ast$.
 
-Since $\pi$ is the quotient given by identifying orbits of the action of $\Gamma$ on $\mathbb H$ to points, a meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H$ obtained by pulling back a meromorphic differential on $X(\Gamma)$ along the quotient map $\pi$ is $\Gamma$-invariant. So for any $\gamma\in \Gamma$, we can pull back $f(z)(\dd z)^n$ along the action of $\gamma$ on $\mathbb H$ to obtain equalities 
+Since $\pi$ is the quotient given by identifying orbits of the action of $\Gamma$ on $\mathbb H^\ast$ to points, a meromorphic differential $f(z)(\dd z)^n$ on $\mathbb H^\ast$ obtained by pulling back a meromorphic differential on $X(\Gamma)$ along the quotient map $\pi$ is $\Gamma$-invariant. So for any $\gamma\in \Gamma$, we can pull back $f(z)(\dd z)^n$ along the action of $\gamma$ on $\mathbb H^\ast$ to obtain equalities 
 \[f(z)(\dd z)^n = \gamma^\ast(f(z)(\dd z)^n) = f(\gamma(z))(\gamma^\prime(z))^n(\dd z)^n = j(\gamma, z)^{-2n}f(\gamma(z))(\dd z)^n.\]
 This shows that the function $f(z)$ is an automorphic form with weight $2n$. To see that $f(z)$ is meromorphic at cusps, it suffices to see that the meromorphic differential it comes from expanded locally around the cusps of $X(\Gamma)$ is given by a function which is meromorphic at zero, so $f(z)$ should also be meromorphic at its cusps.
 
 The above discussion establishes the following map
 \begin{multline*}
-    \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H\}\\\cong \{\text{automorphic forms }f(z)\text{ of weight $2k$}\}.
+    \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H^\ast\}\\\cong \{\text{automorphic forms }f(z)\text{ of weight $2k$}\}.
 \end{multline*}
-That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the composite map above. In summary the three vector spaces below are isomorphic:
+That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the composite map above.
+
+We will do part of the calculation. Let $f(z)$ be an automorphic form of weight $2k$ on $\mathbb H^\ast$. We will describe the component of the meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ it defines on $X(\Gamma)$ around a point $a = \pi(z_0)\in X(\Gamma)$ for $z_0\in \mathbb H$. That is, we will define a meromorphic function $\phi_a$ that $\omega$ looks like around $a$. There is a neighborhood $U_{z_0}$ of $z_0$ in $\mathbb H$ and a chart $(V_\alpha = \pi(U_{z_0}), V_a\xrightarrow{\varphi_a}U_a)$ containing $a$. Consider the function 
+\[g(z)= f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k}\]
+defined on $U_{z_0}$. In principle we could define $g(z)$ on all $\Gamma$-translates of $U_{z_0}$, but since $\pi$ is the quotient map $\mathbb H^\ast\to\Gamma\backslash \mathbb H^\ast$, it is enough to look at $U_{z_0}$. We would like to define a function 
+
+In summary the three vector spaces below are isomorphic:
 \begin{enumerate}
     \item the space of automorphic forms $f(z)$ of weight $2k$
-    \item the space of $\Gamma$-invariant meromorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$
+    \item the space of $\Gamma$-invariant meromorphic differentials $f(z)(\dd z)^k$ on $\mathbb H^\ast$
     \item the space of meromorphic differentials on $X(\Gamma)$ of degree $k$.
 \end{enumerate}
 
-The weight zero automorphic forms correspond to the degree $0$ meromorphic differentials on $X(\Gamma)$, in other words, the meromorphic functions on $X(\Gamma)$. Replacing meromorphic with holomorphic in the above list gives the correspondence of modular forms of weight $2k$ with $\Gamma$-invariant holomorphic differentials $f(z)(\dd z)^k$ on $\mathbb H$ and with holomorphic differentials on $X(\Gamma)$ of degree $k$. We will give a fourth characterization using divisors in the next section.
+The weight zero automorphic forms correspond to the degree $0$ meromorphic differentials on $X(\Gamma)$, in other words, the meromorphic functions on $X(\Gamma)$. Replacing meromorphic with holomorphic in the above list gives the correspondence of modular forms of weight $2k$ with $\Gamma$-invariant holomorphic differentials $f(z)(\dd z)^k$ on $\mathbb H^\ast$ and with holomorphic differentials on $X(\Gamma)$ of degree $k$. We will give a fourth characterization using divisors in the next section.
 
 
 
