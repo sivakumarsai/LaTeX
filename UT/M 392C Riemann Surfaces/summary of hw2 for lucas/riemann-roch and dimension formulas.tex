@@ -147,7 +147,7 @@ for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less conf
 \end{align*}
 on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here. Denote the space of meromorphic differentials of degree $n$ on $R$ by $\Omega^n(R)$ and note that these spaces also assemble into the graded algebra $\Omega^\bullet(R)$.
 
-The order of vanishing of a nonzero meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $\phi_\alpha$ at $p$ (which is calculated in local coordinates). This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
+The order of vanishing of a nonzero meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $\phi_\alpha$ at $p$, calculated in local coordinates by $v_{\varphi_\alpha (p)}(\phi_\alpha\circ\varphi_\alpha^{-1})$. This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
 \[\div(\omega) = \sum_pv_p(\omega)p\in \Div(R) = \mathbb ZR\]
 makes sense for nonzero differentials. This definition of the divisor function is additive on products of differentials as expected. The degree of a divisor $a = \sum_p a_pp$ is $\deg(a) = \sum_p a_p\in\mathbb Z$.
 
@@ -219,7 +219,7 @@ On the other hand, since the space of automorphic forms of weight $2k$ is equal 
 for some $\omega_0\in\mathbb C(X(\Gamma))$ (again since principal divisors on compact Riemann surfaces have degree zero). Therefore every nonzero differential in $\Omega^k(X(\Gamma))$ has divisor with degree $2k(g-1)$.
 
 Let $f$ be a nonzero automorphic form of weight $2k$. A modular form is an automorphic form on $\mathbb H^\ast$ which is holomorphic on $\mathbb H$ and at the cusps of $\Gamma$. So the space of modular forms of weight $2k$ may be identified with the space 
-\[\{gf\mid g\text{ is an automorphic form of weight zero}\}.\] Automorphic forms of positive weight $2k$ do not pass to meromorphic functions on $X(\Gamma)$ due to how they transform with respect to $\Gamma$, they instead pass to meromorphic differentials of degree $k$ as we saw before. What we would like to do is to nevertheless pass to $X(\Gamma)$ and make the following claim: ``The space of modular forms of weight $2k$ may be identified with the space
+\[\{gf\mid g\text{ is an automorphic form of weight zero}\}.\] Automorphic forms of weight zero pass to meromorphic functions on $X(\Gamma)$, so we may identify these collections of functions together. Automorphic forms of positive weight $2k$ do not pass to meromorphic functions on $X(\Gamma)$ due to how they transform with respect to $\Gamma$, they instead pass to meromorphic differentials of degree $k$ as we saw before. What we would like to do is to nevertheless pass to $X(\Gamma)$ and make the following claim: ``The space of modular forms of weight $2k$ may be identified with the space
 \[\{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div(g)+\div(f)\geq 0\}.\text{''}\]
 This sentence does not make sense since $\div(f)$ is not defined. We will extend the definition of $\div\colon \Omega^\bullet(X(\Gamma))\to \Div(X(\Gamma))$ to a function whose codomain is $\Div_{\mathbb Q}(X(\Gamma))$.
 
@@ -233,19 +233,46 @@ Set $w = \rho z$ so that
 \begin{align*}
     (\phi_a\circ\pi\circ \rho^{-1})(w) &= e^{-k}f(\rho^{-1}w)\biggl(\dv{\rho^{-1}w}{w}\biggr)^{k}w^{-k(e-1)}.
 \end{align*}
-The order of 
+Since $(\varphi_a\circ\pi\circ \rho^{-1})(w) = w^e = \varphi_a(p)$ for $p = \pi(z)$, the order of vanishing at $w$ of the left hand side is 
+\[v_w(\phi_a\circ\pi\circ \rho^{-1}) = v_w((\phi_a\circ\varphi_a^{-1})\circ(\varphi_a\circ\pi\circ \rho^{-1})) = ev_{\varphi_a(p)}(\phi_a\circ\varphi_a^{-1}) = ev_p(\phi_a).\]
+The order of vanishing at $w = \rho z$ of the right hand side is 
+\[v_{\rho z}\biggl((f\circ\rho^{-1})(-)\biggl(\dv{\rho^{-1}(-)}{(-)}\biggr)^{k}\biggr)-k(e-1) = v_z(f)-k(e-1)\]
+since $\dv{\rho^{-1}w}{w}$ (equivalently $\dv{\rho z}{z}$) has neither zeroes nor poles around $\rho z_0$ ($z_0$). We calculate $v_z(f)$ by expanding $f$ in a Laurent series around $z_0$ and calculate the order of vanishing at $z$ (the smallest index with nonzero coefficient in the series expansion). Assembling the above calculations and remembering $\omega = \{\phi_\alpha\}$ yields
+\[v_p(\omega) = \frac{1}{e}v_z(f) - k\biggl(1-\frac{1}{e}\biggr)\] so that we should define 
+\[v_p(f) \coloneqq \frac{1}{e}v_z(f)\]
+where $p = \pi(z)$. The above formula even works when $f$ has weight zero. This would allow us to define $\div(f)$ as the formal sum $\sum_pv_p(f)$ as desired. This extended definition of $\div$ does all the right things a function called $\div$ ought to do. In particular, we have
+\[\div(\omega) = \div(f) -k\sum_{\mathclap{\substack{p\\ \text{ period 2}}}}\frac{1}{2}p -k\sum_{\mathclap{\substack{p\\ \text{ period 3}}}}\frac{2}{3}p -k\sum_{\mathclap{\substack{p\\ \text{ cusp of $\Gamma$}}}}p.\]
 
-~~~~~~ ADJUST BELOW ~~~~~~\hrulefill
+We now return to the calculation for the dimensions of spaces of modular forms. Fix a nonzero automorphic form $f$ of weight $2k$. The space of modular forms of weight $2k$ may be identified with the space
+\[\{g\text{ automorphic form of weight zero}\mid g = 0 \text{ or }\div(gf)\geq 0\}\]
+which we identify with
+\[\{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div(g)+\div(f)\geq 0\}\]
+since $f$ is nonzero. Since $g$ is meromorphic on $X(\Gamma)$, $\div(g)$ is integral, so the condition $\div(g) + \div(f)\geq 0$ is equivalent to the condition $\div(g) + \lfloor\div(f)\rfloor\geq 0$ (where the floor function on divisors means to apply it to the coefficients). It follows that $M_{2k}(\Gamma)$ is isomorphic to $L(\lfloor\div(f)\rfloor) = \{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div(g) + \lfloor\div(f)\rfloor\geq 0\}$, so their dimensions are the same; that is, $\dim (M_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor)$.
 
-The space of modular forms $M_{2k}(\Gamma)$ with respect to $\Gamma$ may be described as the elements $f_0f$ with $f_0\in \mathbb C(X(\Gamma))$ such that either $f_0f = 0$ or $\div(f_0f) \geq 0$. Since $f$ is nonzero; the space of modular forms $M_{2k}(\Gamma)$ is isomorphic to the vector space $\{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or } \div(f_0) + \div(f)\geq 0\}$. Since $f_0$ is meromorphic on $X(\Gamma)$, $\div(f_0)$ is integral, so the condition $\div(f_0) + \div(f)\geq 0$ is equivalent to the condition $\div(f_0) + \lfloor\div(f)\rfloor\geq 0$ (where the floor function on divisors means to apply it to the coefficients). It follows that $M_{2k}(\Gamma)$ is isomorphic to $L(\lfloor\div(f)\rfloor) = \{f_0\in \mathbb C(X(\Gamma))\mid f_0 = 0 \text{ or }\div(f_0) + \lfloor\div(f)\rfloor\geq 0\}$, so their dimensions are the same; that is, $\dim (M_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor)$.
-
-Let $\omega$ be the meromorphic differential on $X(\Gamma)$ of degree $k$ which pulls back to $f(\dd z)^{k}$. Identifying $\omega$ with $f(\dd z)^{k}$, it is the case that (here the divisor of a meromorphic differential is calculated by expanding locally and summing the divisors of the local expansions) $\div(\omega) = \div(f) + (2k/2)(-\sum_{\text{period 2 elliptic points}}(1/2)a_i -\sum_{\text{period 3 elliptic points}}(2/3)b_i - \sum_{\text{cusps from $\Gamma$}}c_i)$. The left hand side has integer coefficients, so by taking the floor and then the degree on both sides we obtain the equation
-\[\deg(\lfloor\div(f)\rfloor) = \deg(\div(\omega)) + \lfloor(2k/4)\rfloor \varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + (2k/2)\varepsilon_\infty,\] where $\varepsilon_2,\varepsilon_3,\varepsilon_\infty$ are the number of period $2$, $3$ elliptic points and cusps respectively. Note further that since $\div(\omega)$ is a $k$ power of a canonical divisor, its degree is $2k(g-1)$ with $g$ the genus of $X(\Gamma)$. Then with $k\geq 1$, simple estimates give $\deg(\lfloor\div(f)\rfloor)>2g-2$.
+From 
+\[\div(\omega) = \div(f) -k\sum_{\mathclap{\substack{p\\ \text{ period 2}}}}\frac{1}{2}p -k\sum_{\mathclap{\substack{p\\ \text{ period 3}}}}\frac{2}{3}p -k\sum_{\mathclap{\substack{p\\ \text{ cusp of $\Gamma$}}}}p\]
+we obtain the equation
+\[\deg(\lfloor\div(f)\rfloor) = \deg(\div(\omega)) + \lfloor(k/2)\rfloor \varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + k\varepsilon_\infty,\] where $\varepsilon_2,\varepsilon_3,\varepsilon_\infty$ are the number of period $2$, $3$ elliptic points and cusps respectively. Note further that since $\div(\omega)$ is a $k$ power of a canonical divisor, its degree is $2k(g-1)$ with $g$ the genus of $X(\Gamma)$. Analysis of the right hand side of the above equation yields $\deg(\lfloor\div(f)\rfloor)>2g-2$ when $k\geq 1$.
 
 The Riemann-Roch theorem simplifies to the following expression since the degree of $\deg(\lfloor\div(f)\rfloor)$ is greater than $2g-2$: 
 \[l(\lfloor\div(f)\rfloor) = (2k-1)(g-1) + \lfloor(k/2)\rfloor\varepsilon_2 + \lfloor(2k/3)\rfloor\varepsilon_3 + k\varepsilon_\infty;\] this expression is hence equal to the dimension of $M_{2k}(\Gamma)$.
 
-To obtain the dimension formula for the space of cusp forms $M^0_{2k}(\Gamma)$, observe that since cusp forms vanish at cusps, if $f$ is a weakly meromorphic modular function on $\mathbb H$ then $M^0_{2k}(\Gamma)\cong \{f_0\in \mathbb C(X(\Gamma))\mid \div(f_0) + \lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor\geq 0\}$; i.e. $M^0_{2k}(\Gamma)\cong L(\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor)$. Repeat similar estimates as above (and here we need $k\geq 2$ instead of $k\geq 1$ to use the version of Riemann-Roch as above) and use the Riemann-Roch theorem to find that for $k\geq 2$, $\dim(M^0_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor) - \varepsilon_\infty = \dim(M_{2k}(\Gamma))-\varepsilon_\infty$. For $k = 1$, the divisor $\lfloor\div(f) - \sum_{\text{cusps}}c_i\rfloor$ is a canonical divisor, so its linear space (which is isomorphic to $M^0_2(\Gamma)$) has dimension $g$.
+To calculate the dimensions of spaces of cusp forms $S_{2k}(\Gamma)$, observe that since cusp forms vanish at cusps, then $S_{2k}(\Gamma)\cong \{g\in \mathbb C(X(\Gamma))\mid \div(g) + \lfloor\div(f) - \sum_{\text{cusps}}p\rfloor\geq 0\}$ for a nonzero automorphic form $f$ of weight $2k$. That is, $S_{2k}(\Gamma)\cong L(\lfloor\div(f) - \sum_{\text{cusps}}p\rfloor)$. Repeat similar estimates as above (and here we need $k\geq 2$ instead of $k\geq 1$ to use the version of Riemann-Roch as above) to find that for $k\geq 2$, $\dim(S_{2k}(\Gamma)) = l(\lfloor\div(f)\rfloor) - \varepsilon_\infty = \dim(M_{2k}(\Gamma))-\varepsilon_\infty$. For $k = 1$, the divisor $\lfloor\div(f) - \sum_{\text{cusps}}p\rfloor$ is a canonical divisor, so its linear space (which is isomorphic to $S_2(\Gamma)$) has dimension $g$.
 
-Observe that modular forms of weight zero correspond to holomorphic functions $X(N)\to\widehat{\mathbb C}$; since $X(N)$ and $\widehat{\mathbb C}$ are compact, such maps are either surjective or constant. Since these maps have no poles they could not be surjective, so they are constants; that is, $M_0(\Gamma)\cong \mathbb C$ is the space of constant functions. This implies that $M^0_0(\Gamma) = 0$. For negative $k$, if there were modular forms $f$ of weight $2k$, then $f^6\Delta$ is a weight zero cusp form; that is, the zero function. So $f$ had to be zero. Hence there are no modular forms of negative even weight.
+We handle calculating the dimensions of the remaining spaces $M_0(\Gamma)$, $S_0(\Gamma)$ of modular forms by hand. Observe that modular forms of weight zero correspond to holomorphic functions $X(N)\to\widehat{\mathbb C}$; since $X(N)$ and $\widehat{\mathbb C}$ are compact, such maps are either surjective or constant. Since these maps have no poles they could not be surjective, so they are constants; that is, $M_0(\Gamma)\cong \mathbb C$ is the space of constant functions. This implies that $S_0(\Gamma) = 0$. 
+
+There exists a nonzero cusp form $\Delta$ for the congruence subgroup $\SL_2(\mathbb Z)$, from which it follows $\Delta$ is a cusp form for any congruence subgroup $\Gamma$. If there were modular forms $f$ of weight $2k$ for negative $k$, then $f^6\Delta$ is a weight zero cusp form; in other words, the zero function. So $f$ had to be zero. Hence there are no modular forms of negative even weight.
+
+We obtain the following theorem. Let $k$ be an integer and let $\Gamma$ be a congruence subgroup. Let $g$ be the genus of $X(\Gamma)$, let $\varepsilon_2,\varepsilon_3$ be the number of elliptic points with period $2$, $3$ respectively, and let $\varepsilon_\infty$ be the number of cusps. Then
+\[\dim  M_{2k}(\Gamma) = \begin{cases}
+    (2k-1)(g-1) + \lfloor\frac{k}{2}\rfloor\varepsilon_2 + \lfloor\frac{2k}{3}\rfloor\varepsilon_3 + k\varepsilon_\infty & \text{if $k\geq 1$},\\
+    1 & \text{if $k = 0$},\\
+    0 & \text{if $k<0$},
+\end{cases}\]
+and
+\[\dim  S_{2k}(\Gamma) = \begin{cases}
+    (2k-1)(g-1) + \lfloor\frac{k}{2}\rfloor\varepsilon_2 + \lfloor\frac{2k}{3}\rfloor\varepsilon_3 + (k-1)\varepsilon_\infty & \text{if $k\geq 2$},\\
+    g & \text{if $k = 1$},\\
+    0 & \text{if $k\leq 0$}.
+\end{cases}\]
 \end{document}
