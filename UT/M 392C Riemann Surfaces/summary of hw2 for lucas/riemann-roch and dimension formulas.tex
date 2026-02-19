@@ -130,7 +130,7 @@ An automorphic form (of weight $k$) is a meromorphic function $f$ on $\mathbb H$
 
 Let $z$ be a coordinate of $U\subseteq \mathbb C$. The meromorphic differentials on $U$ are meromorphic (global) sections of the cotangent bundle $\Omega$ of $U$, and a meromorphic section of $\Omega$ is a (holomorphic) section $\omega = f(z)\dd z\in \Omega(V)$ for some open set $V\subseteq U$ where $f(z)$ is meromorphic on $U$ and $U\setminus V$ contains the poles of $f(z)$. In other words, the meromorphic differentials on $U$ are sections of the form $f(z)\dd z$ where $f(z)$ is meromorphic on $U$.
 
-The meromorphic differentials of degree $n$ on $U$ are meromorphic (global) sections of the $n$-th tensor (or symmetric) power of the cotangent bundle of $U$, $\Omega^{\otimes n}$. Since $\Omega$ is a trivial line bundle, its tensor powers are also trivial, so sections of $\Omega^{\otimes n}$ are of the form $f(z)(\dd z)^{\otimes n}$. Since the cotangent bundle is rank one, its tensor powers agree with its symmetric powers, so we suppress the notation $\otimes$ from now on. Denote meromorphic differentials of degree $n$ on $U$ by $f(z)(\dd z)^n$ for $f(z)$ meromorphic on $U$ and the space of meromorphic differentials of degree $n$ on $U$ by $\Omega^n(U)$.
+The meromorphic differentials of degree $n$ on $U$ are meromorphic (global) sections of the $n$-th tensor (or symmetric) power of the cotangent bundle of $U$, $\Omega^{\otimes n}$. Since $\Omega$ is a trivial line bundle, its tensor powers are also trivial, so sections of $\Omega^{\otimes n}$ are of the form $f(z)(\dd z)^{\otimes n}$. Since the cotangent bundle is rank one, its tensor powers agree with its symmetric powers, so we suppress the notation $\otimes$ from now on. Denote meromorphic differentials of degree $n$ on $U$ by $f(z)(\dd z)^n$ for $f(z)$ meromorphic on $U$ and the space of meromorphic differentials of degree $n$ on $U$ by $\Omega^n(U)$. There is a natural way to multiply differentials (of possibly different degrees) together, so these spaces assemble into a graded algebra of differentials $\Omega^\bullet(U)$.
 
 If $\varphi\colon U\to V$ is a holomorphic map of open sets in $\mathbb C$, then the pullback map $\varphi^\ast\colon \Omega^n(V)\to \Omega^n(U)$ is given by the change of variables $w = \varphi(z)$:
 \[f(w)(\dd w)^n\mapsto f(\varphi(z))(\varphi^\prime(z))^n(\dd z)^n,\]
@@ -145,7 +145,7 @@ for all $p\in V_\alpha\cap V_\beta$. This condition is more accurately/less conf
     \intertext{agrees with}
     &(\phi_\alpha\circ \varphi_\alpha^{-1})(w)(\dd w)^k
 \end{align*}
-on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here. Denote the space of meromorphic differentials on $R$
+on $U_\alpha\cap U_\beta$ (and the same can be said about pulling back along the transition function in the other direction). There is a notion of equivalence of meromorphic differentials which we do not record here. Denote the space of meromorphic differentials of degree $n$ on $R$ by $\Omega^n(R)$ and note that these spaces also assemble into the graded algebra $\Omega^\bullet(R)$.
 
 The order of vanishing of a nonzero meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ of $R$ at the point $p\in V_\alpha$, denoted $v_p(\omega)$ is given by the usual order of vanishing of $\phi_\alpha$ at $p$ (which is calculated in local coordinates). This value is independent of the local representative used for $\omega$ because the transition functions are holomorphic and have no zeroes on the intersection of two charts. Therefore the definition of the divisor of $\omega$ given by 
 \[\div(\omega) = \sum_pv_p(\omega)p\in \Div(R) = \mathbb ZR\]
@@ -184,11 +184,18 @@ The above discussion establishes the following map
 \end{multline*}
 That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the composite map above.
 
-We will do part of the calculation. Let $f(z)$ be an automorphic form of weight $2k$ on $\mathbb H^\ast$. We will describe the component of the meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ it defines on $X(\Gamma)$ around a point $a = \pi(z_0)\in X(\Gamma)$ for $z_0\in \mathbb H$. That is, we will define a meromorphic function $\phi_a$ that $\omega$ looks like around $a$. There is a neighborhood $U_{z_0}$ of $z_0$ in $\mathbb H$ and a chart $(V_\alpha = \pi(U_{z_0}), V_a\xrightarrow{\varphi_a}U_a)$ containing $a$. Consider the function 
+We will do part of the calculation. Let $f(z)$ be an automorphic form of weight $2k$ on $\mathbb H^\ast$. We will describe the component of the meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ it defines on $X(\Gamma)$ around a point $a = \pi(z_0)\in X(\Gamma)$ for $z_0\in \mathbb H$. That is, we will define a meromorphic function $\phi_a$ that $\omega$ looks like around $a$. There is a neighborhood $U_{z_0}$ of $z_0$ in $\mathbb H$ such that $\gamma U_{z_0}\cap U_{z_0}\neq \emptyset$ if and only if $\gamma\in \Gamma_{z_0}$, in which case $\gamma U_{z_0} = U_{z_0}$, and a chart $(V_\alpha = \pi(U_{z_0}), V_a\xrightarrow{\varphi_a}U_a)$ containing $a$. Consider the function 
 \[g(z)= f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k}\]
-defined on $U_{z_0}$. In principle we could define $g(z)$ on all $\Gamma$-translates of $U_{z_0}$, but since $\pi$ is the quotient map $\mathbb H^\ast\to\Gamma\backslash \mathbb H^\ast$, it is enough to look at $U_{z_0}$. We would like to define a function 
+defined on $U_{z_0}$. In principle we could define $g(z)$ on all $\Gamma$-translates of $U_{z_0}$, but since $\pi$ is the quotient map $\mathbb H^\ast\to\Gamma\backslash \mathbb H^\ast$, it is enough to look at $U_{z_0}$. We will show that $g(z)$ descends to a meromorphic function on $V_a$; that is, there exists a function $\phi_a$ on $V_a$ such that $(\phi_a\circ\pi)(z) = g(z)$ on $U_{z_0}$. This amounts to checking that $g(z)$ is $\Gamma_{z_0}$-invariant (we don't check that $g(z)$ is $\Gamma$-invariant since the domain of $g(z)$ is $U_{z_0}$ and the automorphisms of that set are $\Gamma_{z_0}$). Indeed, for any $\gamma\in \Gamma_{z_0}\subset\Gamma$, $\pi(\gamma(z)) = \pi(z)$ (as $\pi$ sends $z$ to $\Gamma z$) so
+\begin{align*}
+    g(\gamma(z)) &= f(\gamma z)\biggl(\dv{(\varphi_a\circ\pi)(\gamma z)}{\gamma z}\biggr)^{-k} \\
+    &= j(\gamma,z)^{2k}f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k}\biggl(\dv{(\gamma z)}{z}\biggr)^{-k} \\
+    &= j(\gamma,z)^{2k}f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k}j(\gamma,z)^{-2k}\\
+    &= f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k} = g(z)
+\end{align*}
+Thus $g(z)$ descends to a meromorphic function $\phi_a$ on $V_a$, which is what we sought to calculate.
 
-In summary the three vector spaces below are isomorphic:
+In summary, the three vector spaces below are isomorphic:
 \begin{enumerate}
     \item the space of automorphic forms $f(z)$ of weight $2k$
     \item the space of $\Gamma$-invariant meromorphic differentials $f(z)(\dd z)^k$ on $\mathbb H^\ast$
@@ -201,7 +208,7 @@ The weight zero automorphic forms correspond to the degree $0$ meromorphic diffe
 
 \newpage
 \section{Riemann-Roch and dimension formulas}
-Due to the elliptic points coming from $\Gamma$, meromorphic modular functions of weight $2k$ may have orders that are fractional and not just integers. So to start we will consider the $\mathbb Q$-vector space of divisors $\Div_{\mathbb Q}(X(\Gamma))=\Div(X(\Gamma))\otimes_{\mathbb Z} \mathbb Q$ on $X(\Gamma)$ and carefully reduce calculations to ones involving integer coefficients so that we can use the Riemann-Roch theorem. Henceforth we also suppress the argument $(z)$ of functions.
+Due to the possibility of elliptic points in $X(\Gamma)$, meromorphic modular functions of positive weight $2k$ may have orders of vanishing that are fractional and not just integers. We will make sense of this shortly. To start we will define the $\mathbb Q$-vector space of divisors $\Div_{\mathbb Q}(X(\Gamma))=\Div(X(\Gamma))\otimes_{\mathbb Z} \mathbb Q$ on $X(\Gamma)$ and redefine the divisor function $\div$ to map to $\Div_{\mathbb Q}(X(\Gamma))$. Our goal is to carefully reduce calculations involving divisors with rational coefficients to ones involving integer coefficients so that we can use the Riemann-Roch theorem. Henceforth we also suppress the argument $(z)$ of functions.
 
 Let $f$ be any nonzero automorphic form of weight $2k$ (that these exist for all $k$ is a theorem). First we make some observations. The quotient of two automorphic forms of the same weight is weight zero, so any automorphic form of weight $2k$ may be obtained by multiplying $f$ by a suitable automorphic form of weight zero. The weight zero automorphic forms on $\mathbb H$ may be identified with $\mathbb C(X(\Gamma))$, the meromorphic functions on $X(\Gamma)$.
 
@@ -211,9 +218,22 @@ On the other hand, since the space of automorphic forms of weight $2k$ is equal 
 \[\deg(\div(\tilde \omega)) = \deg(\div(\omega_0\omega^k)) = 2k(g-1)\]
 for some $\omega_0\in\mathbb C(X(\Gamma))$ (again since principal divisors on compact Riemann surfaces have degree zero). Therefore every nonzero differential in $\Omega^k(X(\Gamma))$ has divisor with degree $2k(g-1)$.
 
-Let $f$ be a nonzero automorphic form of weight $2k$. A modular form is an automorphic form on $\mathbb H$ which is holomorphic on $\mathbb H$ and at the cusps of $\Gamma$. So the space of modular forms of weight $2k$ may be identified with the space 
-\[\{gf\mid g\text{ is an automorphic form of weight zero}\}.\] Automorphic forms of positive weight $2k$ do not pass to meromorphic functions on $X(\Gamma)$ due to how they transform with respect to $\Gamma$, they pass to meromorphic differentials of degree $k$ as we saw before. What we would like to do is to nevertheless pass to $X(\Gamma)$ and make the following claim: The space of modular forms of weight $2k$ may be identified with the space
-\[\{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div()\}\]
+Let $f$ be a nonzero automorphic form of weight $2k$. A modular form is an automorphic form on $\mathbb H^\ast$ which is holomorphic on $\mathbb H$ and at the cusps of $\Gamma$. So the space of modular forms of weight $2k$ may be identified with the space 
+\[\{gf\mid g\text{ is an automorphic form of weight zero}\}.\] Automorphic forms of positive weight $2k$ do not pass to meromorphic functions on $X(\Gamma)$ due to how they transform with respect to $\Gamma$, they instead pass to meromorphic differentials of degree $k$ as we saw before. What we would like to do is to nevertheless pass to $X(\Gamma)$ and make the following claim: ``The space of modular forms of weight $2k$ may be identified with the space
+\[\{g\in \mathbb C(X(\Gamma))\mid g = 0 \text{ or }\div(g)+\div(f)\geq 0\}.\text{''}\]
+This sentence does not make sense since $\div(f)$ is not defined. We will extend the definition of $\div\colon \Omega^\bullet(X(\Gamma))\to \Div(X(\Gamma))$ to a function whose codomain is $\Div_{\mathbb Q}(X(\Gamma))$.
+
+Again consider $a = \pi(z_0)\in X(\Gamma)$ for $z_0\in \mathbb H$ and a neighborhood $U_{z_0}$ of $z_0$ in $\mathbb H$ such that $\gamma U_{z_0}\cap U_{z_0}\neq \emptyset$ if and only if $\gamma\in \Gamma_{z_0}$, in which case $\gamma U_{z_0} = U_{z_0}$, and a chart $(V_\alpha = \pi(U_{z_0}), V_a\xrightarrow{\varphi_a}U_a)$ containing $a$. There exists $\rho \in \SL_2(\mathbb Z)$ so that $\rho \mathbb H$ is the open unit disk in $\mathbb C$ and $\rho z_0 = 0$; that is, $\rho$ is the Cayley transform $\rho z = \frac{z-z_0}{z+z_0}$. We can choose the chart around $a$ so that $(\varphi_a\circ \pi)(z) = (\rho z)^e$ for $z\in U_{z_0}$, where $e$ is the order of $\overline \Gamma_{z_0}$ in $\PSL_2(\mathbb Z)$ (this is called the ramification index at $a$). Let $\omega = \{\phi_\alpha\}$ be the differential that $f$ is sent to, and $\phi_a$ the local expression of $\omega$ around $a$ on $V_a$. Thus 
+\begin{align*}
+    (\phi_a\circ\pi)(z) = g(z) &= f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k} \\
+    &= f(z) \biggl(\dv{(\rho z)^e}{z}\biggr)^{-k}\\
+    &= f(z)\biggl(\dv{(\rho z)}{z}\biggr)^{-k}(e(\rho z)^{e-1})^{-k}.
+\end{align*}
+Set $w = \rho z$ so that 
+\begin{align*}
+    (\phi_a\circ\pi\circ \rho^{-1})(w) &= e^{-k}f(\rho^{-1}w)\biggl(\dv{\rho^{-1}w}{w}\biggr)^{k}w^{-k(e-1)}.
+\end{align*}
+The order of 
 
 ~~~~~~ ADJUST BELOW ~~~~~~\hrulefill
 
