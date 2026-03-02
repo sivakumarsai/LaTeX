@@ -112,6 +112,8 @@
 
 \begin{document}
 
+These notes follow \textit{Modular Forms} by Toshitune Miyake and \textit{A First Course in Modular Forms} by Fred Diamond and Jerry Shurman.
+
 \section{Conventions and notations}
 
 The upper half plane of $\mathbb C$ is denoted $\mathbb H$. By adding additional points and charts, obtain the Riemann surface $\mathbb H^\ast = \mathbb H\cup \mathbb Q\cup \{\infty\}$. These extra points contain the cusps of congruence subgroups of $\SL_2(\mathbb Z)$. In the analysis below, we ignore cusps in order to streamline this note. For a congruence subgroup $\Gamma$ of $\SL_2(\mathbb Z)$, the corresponding compactified modular curve is the Riemann surface $X(\Gamma) = \Gamma\backslash\mathbb H^\ast$.
@@ -182,7 +184,7 @@ The above discussion establishes the following map
 \begin{multline*}
     \{\text{meromorphic differentials on $X(\Gamma)$}\}\xlongrightarrow{\pi^\ast}\{\Gamma\text{-invariant meromorphic differentials }f(z)(\dd z)^k\text{ on }\mathbb H^\ast\}\\\cong \{\text{automorphic forms }f(z)\text{ of weight $2k$}\}.
 \end{multline*}
-That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in \cref{miyake}, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the composite map above.
+That $\pi^\ast$ is an isomorphism is not difficult but is tedious to show (this amounts to Theorem 2.3.1 in Miyake, which proves that the composite of the maps above is an isomorphism). The calculation one must do is to show that a weakly meromorphic function $f(z)$ of weight $2k$ gives rise to a meromorphic differential on $X(\Gamma)$ of degree $k$ in a way which is (left and right) inverse to the composite map above.
 
 We will do part of the calculation. Let $f(z)$ be an automorphic form of weight $2k$ on $\mathbb H^\ast$. We will describe the component of the meromorphic differential $\omega = \{\phi_\alpha\}$ of degree $k$ it defines on $X(\Gamma)$ around a point $a = \pi(z_0)\in X(\Gamma)$ for $z_0\in \mathbb H$. That is, we will define a meromorphic function $\phi_a$ that $\omega$ looks like around $a$. There is a neighborhood $U_{z_0}$ of $z_0$ in $\mathbb H$ such that $\gamma U_{z_0}\cap U_{z_0}\neq \emptyset$ if and only if $\gamma\in \Gamma_{z_0}$, in which case $\gamma U_{z_0} = U_{z_0}$, and a chart $(V_\alpha = \pi(U_{z_0}), V_a\xrightarrow{\varphi_a}U_a)$ containing $a$. Consider the function 
 \[g(z)= f(z)\biggl(\dv{(\varphi_a\circ\pi)(z)}{z}\biggr)^{-k}\]
