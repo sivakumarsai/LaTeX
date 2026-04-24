@@ -73,6 +73,8 @@
 % math operators
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\id}{id}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -99,12 +101,39 @@
 
 \begin{document}
 
-These notes follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey and \textit{Group theory and physics} by Shlomo Sternberg.
+These notes loosely follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey and \textit{Group theory and physics} by Shlomo Sternberg.
 
-In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Please contact me if there are typos or more importantly mistakes, since these are rather rough notes.
+In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Please contact me if there are mistakes or if you have suggestions, since these are rather rough notes.
 
-\section{Hilbert bundles}
 \section{Induction}
+\subsection{Vector bundles coming from representations of subgroups}
+Let $G$ be a locally compact separable (i.e., second countable) group. If $X$ is a left $G$-set and $G$ acts transitively on $X$, then $X$ is isomorphic to the right coset space $G/\Stab_Gx$ for any $x\in X$ as left $G$-sets. We can promote this bijection of left $G$-sets to an isomorphism of left $G$-objects for suitable objects if we sprinkle in the appropriate adjectives in the correct places. We will focus on these so-called \textit{homogeneous spaces} $G/H$ (for $H$ a closed subgroup) throughout these notes. In general a left $G$-space action naturally linearizes into a right action on function spaces: If $G$ acts on the left of $X$, then $G$ acts on the right of $\Fun(X)$ by $(fg)(-) = f(g(-))$. We can also obtain a left action on function spaces: $G$ acts on the left of $\Fun(X)$ by $(gf)(-) = f(g^{-1}(-))$. By $\Fun$ we mean spaces of whatever looks like functions (i.e., functions, sections, cohomology classes, etc.). We will always linearize left actions on spaces to left actions on functions in what follows.
+
+Let $H$ be a closed subgroup of $G$ and consider the principal $H$-bundle
+\[\begin{tikzcd}[ampersand replacement=\&]
+	G \& g \\
+	{G/H} \& gH
+	\arrow["\pi", from=1-1, to=2-1]
+	\arrow[maps to, from=1-2, to=2-2]
+\end{tikzcd}\]
+where $H$ acts on the right of $G$ by right multiplication and hence preserves the fibers of $G$. There is also a left action of $G$ on $G$ given by left multiplication, which commutes with the right action of $H$ on $G$ and makes $G$ a $G$-equivariant bundle. The $G$-equivariance condition is that the actions of $G$ on the total space and base space commute with $\pi$. Let $(\rho,V)$ be a representation of $H$. Consider the \textit{associated vector bundle}
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{G\times^H V} \& {(g,v)} \\
+	{G/H} \& gH
+	\arrow["\pi", from=1-1, to=2-1]
+	\arrow[maps to, from=1-2, to=2-2]
+\end{tikzcd}\]
+where $G\times^H V \coloneqq (G\times V)/\sim$ and $(g,v) \sim (gh,\rho(h^{-1})v)$ for all $h\in H$ (equivalently $(gh,v) \sim (g,\rho(h)v)$ for all $h\in H$). By definition of the relation $\sim$, the fibers of $G\times^H V$ are copies of $V$. This bundle is moreover a $G$-equivariant vector bundle, with $G$ acting on the left of $G\times^H V$ by $g^\prime(g,v) = (g^\prime g,v)$.
+
+Global sections of $G\times^H V$ are maps $s\colon G/H\to G\times^H V$ satisfying $\pi\circ s = \id_{G/H}$, which form a vector space $\Gamma(G/H, G\times^H V)$. Since $G$ acts on $G/H$ on the left we obtain a left action on $\Gamma(G/H, G\times^H V)$ by $(gs)(-) = gs(g^{-1}(-))$. Observe that the $G$-equivariance of $G\times^H V$ is necessary for this action to be defined; that is, in order for $\pi\circ (gs) = \id_{G/H}$. Moreover, the calculations 
+\begin{align*}
+  s(gH) &= (g,f(g)) = (gh,\rho(h^{-1})f(g))\\
+  s(ghH)&= (gh,f(gh))
+\end{align*}
+imply that $f(gh) = \rho(h^{-1})f(g)$ for all $h\in H$, so we can identify the global sections $\Gamma(G/H, G\times^H V)$ of $G\times^H V$ with the function space 
+\[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}\}.\]
+The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space. 
+\subsection{Hilbert bundles}
 \section{Semidirect products}
 \section{The Lorentz group}
 \end{document}
