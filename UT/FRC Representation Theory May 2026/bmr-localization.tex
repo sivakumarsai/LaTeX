@@ -56,7 +56,7 @@
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\fancyhead[L]{Beilinson-Bernstein localization}
+\fancyhead[L]{Bezrukavnikov-Mirkovic-Rumynin localization}
 \fancyhead[C]{}
 \fancyhead[R]{Sai Sivakumar}
 \fancyfoot[R]{\thepage}
@@ -73,6 +73,8 @@
 % math operators
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ind}{Ind}
+\let\sl\undefined
+\DeclareMathOperator{\sl}{\mathfrak{sl}}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -99,9 +101,19 @@
 
 \begin{document}
 
-% These notes follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey, \textit{Group theory and physics} by Shlomo Sternberg, and Lucas Mason-Brown's notes from a representation theory course he taught.
+These are notes I took from the 2026 FRC: Representation Theory at Louisiana State University. I was part of Working Group 2: Localization and representations of Lie algebras in positive characteristic, supervised by Pramod Achar and Pablo Boixeda Alvarez. Our TA was John O'Brien.
 
-% In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Please contact me if there are typos or more importantly, mistakes.
+The representation theory of complex semisimple Lie algebras has been studied since the beginning of the 20th century. In 1981, Beilinson-Bernstein and Brylinski-Kashiwara proved a breakthrough result, called the Localization Theorem, relating representations of complex semisimple Lie algebras to differential operators on flag manifolds and thus providing geometric tools to the study of these representations. The representation theory of Lie algebras in characteristic $p$ behaves very differently, but in some ways it is simpler. In particular, all irreducible representations are finite-dimensional. However, the naive analogue of the Localization Theorem is false. Nevertheless, in 2008, Bezrukavnikov-Mirkovic-Rumynin discovered and proved a modified version of the Localization Theorem that is valid in positive characteristic and thus provides similar geometric tools for understanding the representation theory in characteristic $p$. This course will be about this BMR localization theorem. A rough outline of topics to be covered is:
+\begin{enumerate}[label = \roman*.]
+  \item Introduction to Lie algebra representations in characteristic $p$
+  \item Geometry of flag varieties
+  \item Differential operators and $D$-modules in characteristic $p$
+  \item Derived localization
+  \item The Azumaya property and coherent sheaves
+\end{enumerate}
+We'll also work out hands-on examples for the Lie algebra $\sl_2$.
 
-\section{Twisted differential operators}
+The listed prerequisites were Algebraic Geometry (as in Hartshorne Chapters 1-2) and Representation Theory of Lie algebras (as in Fulton and Harris).
+
+\section{what are we doing?}
 \end{document}
