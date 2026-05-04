@@ -80,6 +80,13 @@
 \newcommand{\Mod}{\text{-}\catname{mod}}
 \DeclareMathOperator{\Lie}{Lie}
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\HC}{HC}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Ends}{\mathcal{E}\!\mathit{nd}}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\SL}{SL}
+\let\sl\undefined
+\DeclareMathOperator{\sl}{\mathfrak{sl}}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -104,47 +111,248 @@
 \arraycolsep = 2pt
 \renewcommand{\arraystretch}{.6}
 
-% footnote style
-\renewcommand{\thefootnote}{[\roman{footnote}]}
-
 \begin{document}
 
-We state the Beilinson-Bernstein localization theorem and provide a couple examples. These notes closely follow \sai{TODO source} and borrow examples from \textit{Four examples of Beilinson-Bernstein localization} by Romanov. Attached is also a rough translation of \textit{Localisation de $\mathfrak{g}$-modules} by Beilinson and Bernstein (appearing page \sai{TODO} onwards) This document was submitted for a final project for a course in Archimedean representation theory, following my presentation on the localization theorem.
+We state the Beilinson-Bernstein localization theorem and provide a couple examples.
 
-\newpage\setcounter{section}{0}
-What follows is a rough translation of \textit{Localisation de $\mathfrak{g}$-modules} by Beilinson and Bernstein. Some typographical changes were made and some minor comments added. Contact me if there are any errors.
-\section{$\mathcal D$-affine varieties}
-Let $X$ be a smooth variety over an algebraically closed field $k$ of characteristic $0$. We write $\D_X$ for the sheaf of differential operators on $X$. Denote by $\D_X\Mod$ the category of quasicoherent left $\D_X$-modules on $X$. By a quasicoherent $\D_X$-module we mean a $\D_X$-module which is quasicoherent as an $\O_X$-module.
-\begin{definition}
-  The variety $X$ is \textit{$\D$-affine} if every $\D_X$-module $\mathcal M$ is generated over $\D_X$ by its global sections and $H^i(X,\mathcal M) = 0$ for $i>0$.
-\end{definition}
-\begin{proposition}
-  If $X$ is $\D_X$-affine, the global sections functor $\Gamma\colon \mathcal M\mapsto \Gamma(X,\mathcal M)$ defines an equivalence of $\D_X\Mod$ with the category of left $\Gamma(X,\D_X)$-modules.
-\end{proposition}
-Indeed, since $\Gamma(X,\mathcal M) = \Hom_{\D_X\Mod}(\D_X, \mathcal M)$, the fact that $X$ is $\D$-affine means that $\D_X$ is a projective generator for of $\D_X\Mod$. Since taking global sections preserves direct sums, the assertion follows from general category theory (see [1]).
+These notes follow \textit{$\mathcal{D}$-Modules, Perverse Sheaves, and Representation Theory} by Hotta, Takeuchi, and Tanisaki, \textit{Localization and Representation Theory of
+Reductive Lie Groups} by Mili\v{c}i\'c, \textit{Representations of Reductive Lie Groups} (not yet published) by Mason-Brown, \textit{Localisation de $\mathfrak{g}$-modules} by Beilinson and Bernstein, and summarize examples from \textit{Four examples of Beilinson-Bernstein localization} by Romanov.
 
-It is clear that every affine variety is $\D$-affine, but the converse is false:
+% Attached at the end is a rough translation of \textit{Localisation de $\mathfrak{g}$-modules} by Beilinson and Bernstein for sake of reference.
+
+These notes were submitted for a final project for a course in Archimedean representation theory taught by Lucas Mason-Brown.
+
+\section{Statement of theorem}
 \begin{theorem}
-  The space $\mathbb P^n$ is $\D$-affine.
-\end{theorem}
-This result follows from the more general result in Section 2 that all flag varieties are $\D$-affine.
+  Let $G$ be a connected reductive group over an algebraically closed field $k$ of characteristic $0$, with $\mathfrak g = \Lie(G)$ its Lie algebra. Fix $\mathfrak h$ a Cartan subalgebra of $g$ and a Borel subgroup $B$ of $G$. Let $U(\mathfrak g)$ be the universal enveloping algebra of $\mathfrak g$, and let $Z(\mathfrak g)$ be the center of $U(\mathfrak g)$. Denote by $X$ the flag variety $G/B$ of $G$.
 
-We will need sheaves of rings on $X$ which slightly generalize the sheaf of differential operators $\D_X$. Consider the category of pairs $(\mathcal A,f)$, where $\mathcal A$ is a sheaf of $k$-algebras on $X$ and $f\colon \O_X\to\mathcal A$ is a morphism of sheaves of $k$-algebras. There is the natural inclusion $i\colon \O_X\to\D_X$, so it follows that the pair $(\D_X,i)$ belongs to the aforementioned category.
+  For any dominant and regular $\lambda\in \mathfrak h^\ast$ \textup{(}i.e., $\abr{\lambda, \alpha^\vee}>0$ for all $\alpha\in \Delta$, where $\Delta$ is the root system of $\mathfrak g$.\textup{)}, there is an equivalence of categories
+  % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGZyYWN7VShcXG1hdGhmcmFrIGcpfXtcXGtlclxcY2hpX1xcbGFtYmRhfVxcdGV4dHstbW9kdWxlc30iXSxbMSwwLCJcXHRleHR7cXVhc2ljb2hlcmVudCAkXFxtYXRoY2FsIERfXFxsYW1iZGEkLW1vZHVsZXN9Il0sWzAsMSwiXFxtYXRoY2FsIERfXFxsYW1iZGFcXG90aW1lc197VShcXG1hdGhmcmFrIGcpL1xca2VyXFxjaGlfXFxsYW1iZGF9LSIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIlxcR2FtbWEoLSkiLDAseyJjdXJ2ZSI6LTJ9XV0=
+  \[\begin{tikzcd}[ampersand replacement=\&]
+	{\frac{U(\mathfrak g)}{\ker\chi_\lambda}\text{-modules}} \& {\text{quasicoherent $\mathcal D_\lambda$-modules on $X$,}}
+	\arrow["{\mathcal D_\lambda\otimes_{U(\mathfrak g)/\ker\chi_\lambda}(-)}", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["{\Gamma(-)}", curve={height=-12pt}, from=1-2, to=1-1]
+  \end{tikzcd}\]
+  where by quasicoherent we mean quasicoherent as an $\mathcal O_X$-module. The map $\chi_\lambda\colon Z(\mathfrak g)\to k$ is the central/infinitesimal character corresponding to $\lambda$, and $D_\lambda$ is a sheaf of twisted differential operators corresponding to $\lambda$.
+\end{theorem}
+
+The functor $\mathcal D_\lambda\otimes_{U(\mathfrak g)/\ker\chi_\lambda}(-)$ is called localization. To elaborate on the last sentence of the theorem statement: The way the central character $\chi_\lambda$ is obtained from $\lambda\in\mathfrak h^\ast$ is by the Harish-Chandra isomorphism; specifically, if $\HC\colon Z(\mathfrak g)\to \Sym(\mathfrak h)^W$ is the Harish-Chandra isomorphism (with $W$ the Weyl group obtained from $\mathfrak h$), then $\chi_\lambda(z) = \lambda(\HC(z))$. Because $\lambda$ is linear and $k$ is a commutative algebra, $\lambda$ determines a unique map of algebras $\Sym(\mathfrak h)\to k$, and restriction to $\Sym(\mathfrak h)^W$ gives a map which is unique up to the Weyl group orbit of $\lambda$. That is, any element in the Weyl group orbit of $\lambda$ determines the same infinitesimal character. The trivial infinitesimal character is obtained from any element in the Weyl group orbit of $\lambda = \rho$, the half-sum of the positive roots in $\Delta$.
+
+We will discuss $\mathcal D_\lambda$-modules in the next section, after some exposition on sheaves of twisted differential operators.
+
+\section{Sheaves of twisted differential operators}
+\subsection{Definitions}
+The ordinary sheaf of differential operators $\mathcal D_X$ on $X$ may be obtained in a few ways; one such way is by considering the sheaf generated by $\mathcal O_X$ and the tangent sheaf $\mathcal T_X$, both viewed as subsheaves of $\Ends_{k_X}(\mathcal O_X)$ (where $\mathcal O_X$ includes into $\Ends_{k_X}(\mathcal O_X)$ as multiplication by functions and we view the tangent sheaf as the sheaf of $k_X$-linear derivations of $\mathcal O_X$). We consider sheaves of ``twisted differential operators'', which slightly generalize the ordinary sheaf of differential operators.
+
+Consider the category of pairs $(\mathcal A,f)$, where $\mathcal A$ is a sheaf of $k$-algebras on $X$ and $f\colon \O_X\to\mathcal A$ is a morphism of sheaves of $k$-algebras. There is the natural inclusion $i\colon \O_X\to\D_X$, so it follows that the pair $(\D_X,i)$ belongs to the aforementioned category.
 \begin{definition}
   The pair $(\mathcal A,f)$ (often writing $(\mathcal A,f)$ as $\mathcal A$) is called a sheaf of \textit{twisted differential operators} if $(\mathcal A,f)$ is locally isomorphic to the pair $(\D_X,i)$.
 \end{definition}
-\begin{remark}
-  The automorphisms of $\D_X$ are determined by their restriction to the first-order differential operators in $\D_X$. Such automorphisms are given by $v\mapsto v-i(\abr{\alpha,v})$ for $\alpha$ a closed $1$-form on $X$ (where $v$ is a first-order differential operator). Sheaves of twisted differential operators correspond bijectively to $\Omega_{X,\text{cl}}^1$-torsors, where $\Omega_{X,\text{cl}}^1$ is the sheaf of closed $1$-forms on $X$.
-\end{remark}
-\begin{example}
-  Let $\mathcal L$ be an invertible $\O_X$-module. Then the sheaf of algebras $\D_{\mathcal L}$ of differential operators from $\mathcal L$ to itself constitutes a sheaf of twisted differential operators. The corresponding $\Omega_{X,\text{cl}}^1$-torsor is the logarithmic differential of the $\O_X^\ast$-torsor corresponding to $\mathcal L$.\footnote{\sai{TODO} See .} 
-\end{example}
-For a pair $(A,i)$ as before, denote by $\mathcal A\Mod$ the category of quasicoherent (as $\O_X$-modules) $\mathcal A$-modules; similarly we say that $X$ is $\mathcal A$-affine if every $\mathcal M\in \mathcal A\Mod$ is generated by its global sections and $H^i(X,\mathcal M) = 0$ for $i>0$.
 
-\section{The main theorem}
-Let $G$ be a connected reductive group over $k$, $\mathfrak g = \Lie(G)$ its Lie algebra, $U(\mathfrak g)$ the enveloping algebra of $\mathfrak g$, and $Z(\mathfrak g)$ the center of $U(\mathfrak g)$. Let $X$ be the complete flag variety of $G$; that is, $X$ is the variety $G/B$ which parameterizes the Borel subgroups of $G$. Let $\mathcal T_X$ be the tangent sheaf of $X$, $\alpha\colon \mathfrak g\to\mathcal T_X$ the morphism of sheaves of Lie algebras induced by the action of $G$ on $X$. Let $B_x$ be the Borel subgroup of $G$ corresponding to $x\in X$, $N_x$ its unipotent radical, and $H=B_x/N_x$ a Cartan subgroup (the Cartan subgroups $B_x/N_x$ for each $x\in X$ are canonically isomorphic). Let $\mathfrak b_x = \Lie(B_x)$, $\mathfrak n_x = \Lie(N_x)$, $\mathfrak h = \Lie(H)$. Let $\Delta\subset \mathfrak h^\ast$ be the root system of $g$, $\Delta^+$ the set of roots not contained in $\mathfrak n$(\sai{wat is n these are meant to be positive roots}), and $\rho$ the half-sum of the roots in $\Delta^+$.
+A more concrete description: Let $(\mathcal A,f)$ be a sheaf of twisted differential operators. Then there exists an open cover $\mathcal U = \{U_j\mid 1\leq j\leq n\}$ of $X$ for which $(\mathcal A,f)|_{U_j}$ is isomorphic to $(\mathcal D_{U_j},i_{U_j})$, for each $1\leq j\leq n$. For each $1\leq j\neq k\leq n$, there is also an automorphism $\phi_{jk}$ of $(\mathcal D_{U_j\cap U_k}, i_{U_j\cap U_k})$ for which the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCIoXFxtYXRoY2FsIEEsIGYpfF97VV9qXFxjYXAgVV9rfSJdLFswLDEsIihcXG1hdGhjYWwgRF97VV9qXFxjYXAgVV9rfSwgaV97VV9qXFxjYXAgVV9rfSkiXSxbMiwxLCIoXFxtYXRoY2FsIERfe1VfalxcY2FwIFVfa30sIGlfe1VfalxcY2FwIFVfa30pIl0sWzAsMSwiXFxjb25nIiwyXSxbMCwyLCJcXGNvbmciXSxbMSwyLCJcXHBoaV97amt9IiwyXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& {(\mathcal A, f)|_{U_j\cap U_k}} \& \\
+	{(\mathcal D_{U_j\cap U_k}, i_{U_j\cap U_k})} \&\& {(\mathcal D_{U_j\cap U_k}, i_{U_j\cap U_k})}
+	\arrow["\cong"', from=1-2, to=2-1]
+	\arrow["\cong", from=1-2, to=2-3]
+	\arrow["{\phi_{jk}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+commutes.
 
-Equip $U^0 \coloneqq \mathcal O_X\otimes_k U(\mathfrak g)$ with a multiplication operation extending the algebra structure of $U(\mathfrak g)$ and that of the $\mathcal O_X$-module structure of $U^0$ 
+From a line bundle $L$ over $X$, we can construct a sheaf of twisted differential operators using the following recipe. Consider the corresponding locally free $\mathcal O_X$-module $\mathcal L$ of sections of $L$. We define the sheaf $\mathcal D_X^{\mathcal L}$ by the filtration $\mathcal D_X^{\mathcal L} = \bigcup_{n\in \mathbb Z} F_n\mathcal D_X^{\mathcal L}$, where 
+\[F_n\mathcal D_X^{\mathcal L} =\begin{cases*}
+  0 & $n < 0$,\\
+  \{p\in \Ends_{k_X}(\mathcal L)\mid [p,f]\in F_{n-1}\mathcal D_X^{\mathcal L}\text{ for }f\in \mathcal O_X\subset \Ends_{k_X}(\mathcal L)\} & $n\geq 0$.
+\end{cases*}\]
+Note that $F_0\mathcal D_X^{\mathcal L} = \mathcal O_X\subset \Ends_{k_X}(\mathcal L)$, and that $\mathcal L = \mathcal O_X$ recovers the ordinary sheaf of differential operators; that is, $\mathcal D_X = \mathcal D_X^{\mathcal O_X}$.
 
-\newpage\sai{References}
+The descriptions above tell us that by taking a sheaf of functions $\mathcal L$ given by regular functions on open sets covering $X$ glued together in some way, we can obtain a sheaf of twisted differential operators $\mathcal D$ by taking ordinary sheaves of differential operators on these open sets and gluing them together in a manner compatible with the gluing of the functions in $\mathcal L$.
+
+\subsection{Equivariant sheaves}
+Let $G$ act on $X$. If $\mathcal L$ is a $G$-equivariant sheaf, then there is a ring homomorphism $\varphi\colon U(\mathfrak g)\to \Gamma(X,\mathcal D_X^{\mathcal L})$. In the case that $k = \mathbb C$, we can describe $\phi$ by the familiar formula 
+\[\phi(a)s = \dv{t}(\exp(ta)s(\exp(ta)^{-1}(-)))\Big|_{t=0}\]
+for $a\in\mathfrak g$ and $s\in \mathcal L$.
+
+Since $\Gamma(X,\mathcal L)$ is a representation of $G$, it is also a $U(\mathfrak g)$-module, where the map $U(\mathfrak g)\to \End(\Gamma(X,\mathcal L))$ coincides with the composition of the maps $U(\mathfrak g)\xrightarrow{\varphi}\Gamma(X,\mathcal D_X^{\mathcal L})\subset \End(\Gamma(X,\mathcal L))$.
+
+We are interested in forming these equivariant sheaves in the case when $X$ is the flag variety $G/B$, in order to define the sheaves of twisted differential operators $D_\lambda$. We will restrict ourselves to the case when $\lambda$ is an element of the weight lattice of the root system of $\mathfrak g$; that is, an element of $P = \{\lambda\in\mathfrak h^\ast\mid \abr{\lambda,\alpha^\vee}\in \mathbb Z\text{ for all }\alpha \in \Delta\}$.
+
+Let $\lambda\in P$. Then the element $\lambda-\rho$ determines a character/one-dimensional representation of $B$, which we denote by $\exp(\lambda-\rho)$ (by extending $\lambda-\rho$ to a map on $\mathfrak b$ and exponentiating; maybe we need $G$ to be simply-connected for this to work on the nose?). Form the associated $G$-equivariant line bundle $L = G\times^B\exp(\lambda-\rho)$ and take its sheaf of sections $\mathcal L$. Then $\mathcal D_\lambda$ is defined to be the sheaf of twisted differential operators $\mathcal D_X^{\mathcal L}$. The $\rho$-shift here is needed in order to match the convention that the trivial infinitesimal character corresponds to the Weyl group orbit of $\lambda = \rho$.
+
+It follows that global sections of $\mathcal D_\lambda$-modules are $U(\mathfrak g)$-modules. The content of the Beilinson-Bernstein localization theorem is to add adjectives to $\lambda$, $\mathcal D_\lambda$, and $U(\mathfrak g)$-modules until the global sections and localization functors define an equivalence of categories (and prove that they do so). In these notes we restrict our view to special cases for sake of being able to work out examples, which we do in the following section.
+
+\section{Examples for $\SL_2(\mathbb C)$}
+What follows will be heavily abridged calculations, which we hope are reproducible given the scaffolding below. The details are a combination of my calculations and Romanov's. Let $k = \mathbb C$ and $G = \SL_2(\mathbb C)$. Give $\mathfrak g = \sl_2(\mathbb C)$ the standard basis $\{e = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr), h = \bigl(\!\begin{smallmatrix}
+	1 & 0 \\ 0 & -1
+\end{smallmatrix}\!\bigr), f = \bigl(\!\begin{smallmatrix}
+	0 & 0 \\ 1 & 0
+\end{smallmatrix}\!\bigr)\}$ and choose the Cartan subalgebra $\mathfrak h = \mathbb Ch$. Note that the center $Z(\mathfrak g)$ of the universal enveloping algebra $U(\mathfrak g)$ is the polynomial algebra $\mathbb C[c]$, where $c = h^2/2 + fe + ef$ is the Casimir element for $\sl_2(\mathbb C)$. Choosing $B$ to the be subgroup of upper triangular matrices, we can identify $X=G/B$ with $\mathbb P^1$ via $gB\mapsto g[1:0]$, where $\SL_2(\mathbb C)$ acts on $\mathbb P^1$ by $\bigl(\!\begin{smallmatrix}
+	a & b \\ c & d
+\end{smallmatrix}\!\bigr)[u:v] = [au+bv:cu+dv]$.
+
+Give $\mathbb P^1$ the usual open cover $\{U_0,U_\infty\}$, where $U_0 = \mathbb P^1\setminus \{\infty = [0:1]\}$ and $U_\infty = \mathbb P^1\setminus \{0 = [1:0]\}$. Both open sets are identified with copies of $\mathbb C$, $U_0$ with coordinate $z$ and $U_\infty$ with coordinate $w$. The transition function is the inversion map $z\mapsto 1/z$. In view of the identification $G/B\cong \mathbb P^1$, the open set $U_0$ corresponds to $\{\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\}B$ and $U_\infty$ corresponds to $\{\bigl(\!\begin{smallmatrix}
+	w & -1 \\ 1 & 0
+\end{smallmatrix}\!\bigr)\}B$. The transition function between these two subsets of $G/B$ is the identity map since for $z\neq 0$, $\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	1/z & -1 \\  & z
+\end{smallmatrix}\!\bigr) = \bigl(\!\begin{smallmatrix}
+	1/z & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)$. Both descriptions will be useful.
+
+The root system for $\sl_2(\mathbb C)$ consists of two elements, $\{-2,2\}$, where by $\pm 2$ we mean the maps $h\mapsto \pm 2$. It follows that $\rho$ is the map $1\colon h\mapsto 1$, and that the weight lattice is $\mathbb Z\rho$.
+
+The character/one-dimensional representation of $B$ obtained from the weight $n\rho-\rho$ is the map $\exp(n\rho-\rho)\colon \bigl(\!\begin{smallmatrix}
+	a & \ast \\ 0 & a^{-1}
+\end{smallmatrix}\!\bigr)\mapsto a^{n-1}$. Sections of the associated bundle $G\times^B\exp(n\rho-\rho)$ on the open set $\{\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\}B\cap \{\bigl(\!\begin{smallmatrix}
+	w & -1 \\ 1 & 0
+\end{smallmatrix}\!\bigr)\}B$ look like 
+\begin{align*}
+	s\colon \bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)B\mapsto \Big(\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr), f\bigl(\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\bigr)\Big) &= \Big(\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	1/z & -1 \\  & z
+\end{smallmatrix}\!\bigr), \bigl(\!\begin{smallmatrix}
+	1/z & -1 \\  & z
+\end{smallmatrix}\!\bigr)^{-1}f\bigl(\bigl(\!\begin{smallmatrix}
+	1 & 0 \\ z & 1
+\end{smallmatrix}\!\bigr)\bigl(\!\begin{smallmatrix}
+	1/z & -1 \\  & z
+\end{smallmatrix}\!\bigr)\bigr)\Big) \\
+&= \Big(\bigl(\!\begin{smallmatrix}
+	1/z & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr), z^{n-1}f\bigl(\bigl(\!\begin{smallmatrix}
+	1/z & 1 \\ -1 & 0
+\end{smallmatrix}\!\bigr)\bigr)\Big),
+\end{align*}
+and this back-of-envelope calculation justifies identifying the sheaf of regular sections of $G\times^B\exp(n\rho-\rho)$ with the Serre twisting sheaf $\mathcal O(n-1)$.
+
+The sheaf of twisted differential operators $\mathcal D_{n\rho} = \mathcal D_X^{\mathcal O(n-1)}$ is given explicitly by defining it to be $\mathcal D_{U_i}$ on $U_i$ for $i = 0,\infty$, and gluing on $U_0\cap U_\infty$ by the map
+\[\psi\colon z\mapsto z, \quad \partial_z\mapsto \partial_z-\frac{n-1}{z} = z^{n-1}\partial_z z^{-(n-1)}.\]
+(That is, the differential operator on the right hand side untwists, differentiates, and then retwists).
+
+Since $\mathcal O(n-1)$ is a $G$-equivariant sheaf (by translation), we can realize $e,h,f\in \mathfrak g$ as the following differential operators on $U_0,U_\infty$ (using $z$ as the coordinate on $U_0$ and $w$ as the coordinate on $U_\infty$):
+\begin{alignat*}{2}
+	e &= z^2\partial_z - z(n-1) &&= -\partial_w,\\
+	h &= 2z\partial_z-(n-1) &&= -2w\partial_w+(n-1), \text{ and}\\
+	f &= -\partial_z &&= w^2\partial_w-w(n-1).
+\end{alignat*}
+One can check that these expressions are compatible with the ring map $\psi$ above, meaning that to go from a differential operator in one coordinate to the other, we apply $\psi$. Therefore, $e,h,f$ may be realized as global sections of $\mathcal D_{n\rho}$.
+
+\subsection{Recovering the Borel-Weil theorem}
+Consider $\mathcal O(n-1)$ itself as a $\mathcal D_{n\rho}$-module for $n\geq 0$. Global sections of $\mathcal O(n-1)$ may be identified with the space of homogeneous polynomials in two variables of degree $n-1$. Alternatively, by looking only at the sections on say the $U_\infty$ open set, we can identify global sections of $\mathcal O(n-1)$ with polynomials in $w$ of degree less than or equal to $n-1$. A convenient basis for this vector space is $\{u_k\}_{1\leq k\leq n-1} = \{1, -w,\dots,(-1)^kw^k,\dots, (-1)^{n-1}w^{n-1}\}$; and we calculate the action of the differential operators $e,h,f$ on these basis elements (using the expressions on the right hand side from above):
+\begin{align*}
+	e u_k &= ku_{k-1},\\
+	h u_k &= ((n-1)-2k)u_k,\text{ and}\\
+	f u_k &= ((n-1)-k)u_{k+1}.
+\end{align*}
+A pictorial representation of these actions is given by nodes representing the $\mathbb C$-spans of each basis element $u_k$ and arrows indicating how each differential operator takes the basis element to a scalar multiple of some other basis element.
+% https://q.uiver.app/#q=WzAsNixbNSwwLCJcXHVuZGVyc2V0e3VfMH17XFxidWxsZXR9Il0sWzQsMCwiXFx1bmRlcnNldHt1XzF9e1xcYnVsbGV0fSJdLFszLDAsIlxcdW5kZXJzZXR7dV8yfXtcXGJ1bGxldH0iXSxbMSwwLCJcXHVuZGVyc2V0e3Vfe24tMn19e1xcYnVsbGV0fSJdLFsyLDAsIlxcY2RvdHMiXSxbMCwwLCJcXHVuZGVyc2V0e3Vfe24tMX19e1xcYnVsbGV0fSJdLFswLDEsIm4tMSIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzEsMiwibi0yIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMiw0LCJuLTMiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6MX1dLFs0LDMsIjIiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6MX1dLFszLDUsIjEiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6MX1dLFs1LDMsIm4tMSIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzMsNCwibi0yIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbNCwyLCIzIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMiwxLCIyIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMSwwLCIxIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbNSw1LCItbisxIiwyLHsib2Zmc2V0IjoxLCJyYWRpdXMiOi0zLCJhbmdsZSI6LTE4MH1dLFszLDMsIi1uKzMiLDIseyJvZmZzZXQiOjEsInJhZGl1cyI6LTMsImFuZ2xlIjotMTgwfV0sWzIsMiwibi01IiwyLHsib2Zmc2V0IjoxLCJyYWRpdXMiOi0zLCJhbmdsZSI6LTE4MH1dLFsxLDEsIm4tMyIsMix7Im9mZnNldCI6MSwicmFkaXVzIjotMywiYW5nbGUiOi0xODB9XSxbMCwwLCJuLTEiLDIseyJvZmZzZXQiOjEsInJhZGl1cyI6LTMsImFuZ2xlIjotMTgwfV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\underset{u_{n-1}}{\bullet}} \& {\underset{u_{n-2}}{\bullet}} \& \cdots \& {\underset{u_2}{\bullet}} \& {\underset{u_1}{\bullet}} \& {\underset{u_0}{\bullet}}
+	\arrow["{-n+1}"', shift right, from=1-1, to=1-1, loop, in=125, out=55, distance=10mm]
+	\arrow["{n-1}"', shift left, curve={height=6pt}, from=1-1, to=1-2]
+	\arrow["1"', shift left, curve={height=6pt}, from=1-2, to=1-1]
+	\arrow["{-n+3}"', shift right, from=1-2, to=1-2, loop, in=125, out=55, distance=10mm]
+	\arrow["{n-2}"', shift left, curve={height=6pt}, from=1-2, to=1-3]
+	\arrow["2"', shift left, curve={height=6pt}, from=1-3, to=1-2]
+	\arrow["3"', shift left, curve={height=6pt}, from=1-3, to=1-4]
+	\arrow["{n-3}"', shift left, curve={height=6pt}, from=1-4, to=1-3]
+	\arrow["{n-5}"', shift right, from=1-4, to=1-4, loop, in=125, out=55, distance=10mm]
+	\arrow["2"', shift left, curve={height=6pt}, from=1-4, to=1-5]
+	\arrow["{n-2}"', shift left, curve={height=6pt}, from=1-5, to=1-4]
+	\arrow["{n-3}"', shift right, from=1-5, to=1-5, loop, in=125, out=55, distance=10mm]
+	\arrow["1"', shift left, curve={height=6pt}, from=1-5, to=1-6]
+	\arrow["{n-1}"', shift left, curve={height=6pt}, from=1-6, to=1-5]
+	\arrow["{n-1}"', shift right, from=1-6, to=1-6, loop, in=125, out=55, distance=10mm]
+\end{tikzcd}\]
+Here $e$ acts as a lowering operator, $f$ as a raising operator, and $h$ as a diagonal matrix (this is reversed from the usual roles of $e$ and $f$ since we chose to look at the sections on $U_\infty$ and not $U_0$). The corresponding infinitesimal character can be calculated by explicitly finding out how $c = \frac{1}{2} h^2 + fe + ef$ acts on $u_k$, and it will end up being $(n^2-1)/2$. So we have recovered the irreducible $n$-dimensional representation of $\sl_2(\mathbb C)$ of highest weight $n-1$, which matches the result from the usual Borel-Weil theorem.
+
+\subsection{Recovering Verma modules}
+This example will require some blackboxing of the theory of $\mathcal D$-modules and it would probably be harder to reproduce the result below. Consider the restriction of the action of $G$ on $\mathbb P^1$ to the unipotent subgroup $N = \{\bigl(\!\begin{smallmatrix}
+	1 & \ast \\  & 1
+\end{smallmatrix}\!\bigr)\}$ of $G$. The orbits of this action are $\{0\} = 0$ and $U_\infty$.
+
+We will consider just the point orbit (considering the other orbit is a dual situation to this one). The structure sheaf on $0$ may be pushed forward along the inclusion $i_0\colon 0\to X$ to a $\mathcal D_{n\rho}$-module ${i_0}_+\mathcal O_0$ on $X$. Since $0$ is affine and the support of this pushforward lies entirely in the affine open $U_0$, we only need to look at the $\mathcal D_{U_0}$-module structure of the direct image of $\mathcal O_0$.
+
+This direct image is given by $\mathcal D_{U_0\leftarrow 0}\otimes_{\Gamma(0,\mathcal D_0)}\Gamma(0,\mathcal O_0) = \mathcal D_{U_0\leftarrow 0}\otimes_{\mathbb C}\mathbb C = \mathcal D_{U_0\leftarrow 0}$, where $\mathcal D_{U_0\leftarrow 0} = \Gamma(0,\mathcal O_0)\otimes_{\Gamma(U_0,\mathcal O_{U_0})}\Gamma(U_0,\mathcal D_{U_0})$ is the left $\Gamma(U_0,\mathcal D_{U_0})$-module where the module structure is given by multiplication on the right factor by the transpose/formal adjoint of a differential operator. Since $\Gamma(0,\mathcal O_0)\cong \mathbb C[z]/(z)$ as $\Gamma(U_0,\mathcal O_{U_0})\cong \mathbb C[z]$-modules, the direct image of the structure sheaf on $0$ is isomorphic to the $\Gamma(U_0,\mathcal D_{U_0})\cong \mathbb C\abr{z,\partial_z}/((\partial_zz-z\partial_z - 1))$-module
+\[\Gamma(U_0,\mathcal D_{U_0})/\Gamma(U_0,\mathcal D_{U_0})z = \bigoplus_{i=0}^\infty \partial_z^i\delta,\]
+where $\delta\colon\mathbb C\to\mathbb C$ is the indicator function of $0$ (a Kronecker delta as opposed to a Dirac delta since we are working with left $\mathcal D$-modules $\approx$ spaces of functions, as opposed to right $\mathcal D$-modules $\approx$ spaces of distributions). Nevertheless these derivatives are taken formally or perhaps in the sense of distributions, and we can calculate the action of $e,h,f$ on this space. 
+
+Choose the convenient basis $\{m_k = (-1)^k\partial_z^k\delta/k!\}_{k\geq 0}$ for the direct image module above. Then some direct calculations give 
+\begin{align*}
+	em_k &= (-n-k)m_{k-1} \quad\text{for $k>0$},\\
+	em_0 &= 0,\\
+	hm_k &= (-n-1-2k)m_k,\text{ and}\\
+	fm_k &= (k+1)m_{k+1}.
+\end{align*}
+The picture in this case looks like
+% https://q.uiver.app/#q=WzAsNixbNSwwLCJcXHVuZGVyc2V0e21fMH17XFxidWxsZXR9Il0sWzQsMCwiXFx1bmRlcnNldHttXzF9e1xcYnVsbGV0fSJdLFszLDAsIlxcdW5kZXJzZXR7bV8yfXtcXGJ1bGxldH0iXSxbMSwwLCJcXHVuZGVyc2V0e21fa317XFxidWxsZXR9Il0sWzIsMCwiXFxjZG90cyJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCIxIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMSwyLCIyIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMiw0LCIzIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbNCwzLCJrIiwyLHsib2Zmc2V0IjotMSwiY3VydmUiOjF9XSxbMyw1LCJrKzEiLDIseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6MX1dLFs1LDMsIi1uLTEtayIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzMsNCwiLW4tayIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzQsMiwiLW4tMyIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzIsMSwiLW4tMiIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzEsMCwiLW4tMSIsMix7Im9mZnNldCI6LTEsImN1cnZlIjoxfV0sWzMsMywiLW4tMS0yayIsMix7Im9mZnNldCI6MSwicmFkaXVzIjotMywiYW5nbGUiOi0xODB9XSxbMiwyLCItbi01IiwyLHsib2Zmc2V0IjoxLCJyYWRpdXMiOi0zLCJhbmdsZSI6LTE4MH1dLFsxLDEsIi1uLTMiLDIseyJvZmZzZXQiOjEsInJhZGl1cyI6LTMsImFuZ2xlIjotMTgwfV0sWzAsMCwiLW4tMSIsMix7Im9mZnNldCI6MSwicmFkaXVzIjotMywiYW5nbGUiOi0xODB9XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\cdots \& {\underset{m_k}{\bullet}} \& \cdots \& {\underset{m_2}{\bullet}} \& {\underset{m_1}{\bullet}} \& {\underset{m_0}{\bullet}}
+	\arrow["{-n-1-k}"', shift left, curve={height=6pt}, from=1-1, to=1-2]
+	\arrow["{k+1}"', shift left, curve={height=6pt}, from=1-2, to=1-1]
+	\arrow["{-n-1-2k}"', shift right, from=1-2, to=1-2, loop, in=125, out=55, distance=10mm]
+	\arrow["{-n-k}"', shift left, curve={height=6pt}, from=1-2, to=1-3]
+	\arrow["k"', shift left, curve={height=6pt}, from=1-3, to=1-2]
+	\arrow["{-n-3}"', shift left, curve={height=6pt}, from=1-3, to=1-4]
+	\arrow["3"', shift left, curve={height=6pt}, from=1-4, to=1-3]
+	\arrow["{-n-5}"', shift right, from=1-4, to=1-4, loop, in=125, out=55, distance=10mm]
+	\arrow["{-n-2}"', shift left, curve={height=6pt}, from=1-4, to=1-5]
+	\arrow["2"', shift left, curve={height=6pt}, from=1-5, to=1-4]
+	\arrow["{-n-3}"', shift right, from=1-5, to=1-5, loop, in=125, out=55, distance=10mm]
+	\arrow["{-n-1}"', shift left, curve={height=6pt}, from=1-5, to=1-6]
+	\arrow["1"', shift left, curve={height=6pt}, from=1-6, to=1-5]
+	\arrow["{-n-1}"', shift right, from=1-6, to=1-6, loop, in=125, out=55, distance=10mm]
+\end{tikzcd}\]
+Here $e$ acts as a raising operator, $f$ as a lowering operator, and $h$ semisimply. The corresponding infinitesimal character we calculate by calculating how the Casimir acts on $m_k$, which in this case is also by $(n^2-1)/2$. So this procedure recovers the irreducible Verma module of highest weight $-n-1$.
+
+% \newpage\setcounter{section}{0}
+% What follows is a rough translation of \textit{Localisation de $\mathfrak{g}$-modules} by Beilinson and Bernstein. Minor changes were made and some comments added. Let me know if there are any errors.
+
+% \section{$\mathcal D$-affine varieties}
+% Let $X$ be a smooth variety over an algebraically closed field $k$ of characteristic $0$. We write $\D_X$ for the sheaf of differential operators on $X$. Denote by $\D_X\Mod$ the category of quasicoherent left $\D_X$-modules on $X$. By a quasicoherent $\D_X$-module we mean a $\D_X$-module which is quasicoherent as an $\O_X$-module.
+% \begin{definition}
+%   The variety $X$ is \textit{$\D$-affine} if every $\D_X$-module $\mathcal M$ is generated over $\D_X$ by its global sections and $H^i(X,\mathcal M) = 0$ for $i>0$.
+% \end{definition}
+% \begin{proposition}
+%   If $X$ is $\D_X$-affine, the global sections functor $\Gamma\colon \mathcal M\mapsto \Gamma(X,\mathcal M)$ defines an equivalence of $\D_X\Mod$ with the category of left $\Gamma(X,\D_X)$-modules.
+% \end{proposition}
+% Indeed, since $\Gamma(X,\mathcal M) = \Hom_{\D_X\Mod}(\D_X, \mathcal M)$, the fact that $X$ is $\D$-affine means that $\D_X$ is a projective generator for of $\D_X\Mod$. Since taking global sections preserves direct sums, the assertion follows from general category theory (see [1]).
+
+% It is clear that every affine variety is $\D$-affine, but the converse is false:
+% \begin{theorem}
+%   The space $\mathbb P^n$ is $\D$-affine.
+% \end{theorem}
+% This result follows from the more general result in Section 2 that all flag varieties are $\D$-affine.
+
+% We will need sheaves of rings on $X$ which slightly generalize the sheaf of differential operators $\D_X$. Consider the category of pairs $(\mathcal A,f)$, where $\mathcal A$ is a sheaf of $k$-algebras on $X$ and $f\colon \O_X\to\mathcal A$ is a morphism of sheaves of $k$-algebras. There is the natural inclusion $i\colon \O_X\to\D_X$, so it follows that the pair $(\D_X,i)$ belongs to the aforementioned category.
+% \begin{definition}
+%   The pair $(\mathcal A,f)$ (often writing $(\mathcal A,f)$ as $\mathcal A$) is called a sheaf of \textit{twisted differential operators} if $(\mathcal A,f)$ is locally isomorphic to the pair $(\D_X,i)$.
+% \end{definition}
+% \begin{remark}
+%   The automorphisms of $\D_X$ are determined by their restriction to the first-order differential operators in $\D_X$. Such automorphisms are given by $v\mapsto v-i(\abr{\alpha,v})$ for $\alpha$ a closed $1$-form on $X$ (where $v$ is a first-order differential operator). Sheaves of twisted differential operators correspond bijectively to $\Omega_{X,\text{cl}}^1$-torsors, where $\Omega_{X,\text{cl}}^1$ is the sheaf of closed $1$-forms on $X$.
+% \end{remark}
+% \begin{example}
+%   Let $\mathcal L$ be an invertible $\O_X$-module. Then the sheaf of algebras $\D_{\mathcal L}$ of differential operators from $\mathcal L$ to itself constitutes a sheaf of twisted differential operators. The corresponding $\Omega_{X,\text{cl}}^1$-torsor is the logarithmic differential of the $\O_X^\ast$-torsor corresponding to $\mathcal L$.
+% \end{example}
+% For a pair $(A,i)$ as before, denote by $\mathcal A\Mod$ the category of quasicoherent (as $\O_X$-modules) $\mathcal A$-modules; similarly we say that $X$ is $\mathcal A$-affine if every $\mathcal M\in \mathcal A\Mod$ is generated by its global sections and $H^i(X,\mathcal M) = 0$ for $i>0$.
+
+% \section{The main theorem}
+% Let $G$ be a connected reductive group over $k$, $\mathfrak g = \Lie(G)$ its Lie algebra, $U(\mathfrak g)$ the enveloping algebra of $\mathfrak g$, and $Z(\mathfrak g)$ the center of $U(\mathfrak g)$. Let $X$ be the complete flag variety of $G$; that is, $X$ is the variety $G/B$ which parameterizes the Borel subgroups of $G$. Let $\mathcal T_X$ be the tangent sheaf of $X$, $\alpha\colon \mathfrak g\to\mathcal T_X$ the morphism of sheaves of Lie algebras induced by the action of $G$ on $X$. Let $B_x$ be the Borel subgroup of $G$ corresponding to $x\in X$, $N_x$ its unipotent radical, and $H=B_x/N_x$ a Cartan subgroup (the Cartan subgroups $B_x/N_x$ for each $x\in X$ are canonically isomorphic). Let $\mathfrak b_x = \Lie(B_x)$, $\mathfrak n_x = \Lie(N_x)$, $\mathfrak h = \Lie(H)$. Let $\Delta\subset \mathfrak h^\ast$ be the root system of $\mathfrak g$, $\Delta^+$ the set of positive roots, and $\rho$ the half-sum of the roots in $\Delta^+$.
+
+% Equip $U^0 \coloneqq \mathcal O_X\otimes_k U(\mathfrak g)$ with a multiplication operation extending the algebra structure of $U(\mathfrak g)$ and that of the $\mathcal O_X$-module structure of $U^0$ 
 \end{document}
