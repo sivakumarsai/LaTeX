@@ -75,6 +75,9 @@
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Lie}{Lie}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -101,11 +104,10 @@
 
 \begin{document}
 
-These notes follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey, \textit{Group theory and physics} by Shlomo Sternberg, and Lucas Mason-Brown's notes from a representation theory course he taught.
+These notes follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey, \textit{Group theory and physics} by Shlomo Sternberg, and Lucas Mason-Brown's notes from a representation theory course he taught (unpublished).
 
-In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Please contact me if there are typos or more importantly, mistakes.
+In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Let me know if there are any mistakes.
 
-\section{Bundles}
 \section{Induction}
 \subsection{Vector bundles coming from representations of subgroups}
 Let $G$ be a locally compact separable (i.e., second countable) group. If $X$ is a left $G$-set and $G$ acts transitively on $X$, then $X$ is isomorphic to the right coset space $G/\Stab_Gx$ for any $x\in X$ as left $G$-sets. We can promote this bijection of left $G$-sets to an isomorphism of left $G$-objects for suitable objects if we sprinkle in the appropriate adjectives in the correct places. We will focus on these so-called \textit{homogeneous spaces} $G/H$ (for $H$ a closed subgroup) throughout these notes. In general a left $G$-space action naturally linearizes into a right action on function spaces: If $G$ acts on the left of $X$, then $G$ acts on the right of $\Fun(X)$ by $(fg)(-) = f(g(-))$. We can also obtain a left action on function spaces: $G$ acts on the left of $\Fun(X)$ by $(gf)(-) = f(g^{-1}(-))$. By $\Fun$ we mean spaces of whatever looks like functions (i.e., functions, sections, cohomology classes, etc.). We will always linearize left actions on spaces to left actions on functions in what follows.
@@ -117,7 +119,7 @@ Let $H$ be a closed subgroup of $G$ and consider the principal $H$-bundle
 	\arrow["\pi", from=1-1, to=2-1]
 	\arrow[maps to, from=1-2, to=2-2]
 \end{tikzcd}\]
-where $H$ acts on the right of $G$ by right multiplication and hence preserves the fibers of $G$. There is also a left action of $G$ on $G$ given by left multiplication, which commutes with the right action of $H$ on $G$ and makes $G$ a $G$-equivariant bundle. The $G$-equivariance condition is that the actions of $G$ on the total space and base space commute with $\pi$. Let $(\rho,V)$ be a representation of $H$. Consider the \textit{associated vector bundle}
+where $H$ acts on the right of $G$ by right multiplication and hence preserves the fibers of $G$. There is also a left action of $G$ on $G$ given by left multiplication, which commutes with the right action of $H$ on $G$ and makes $G$ a $G$-equivariant bundle. The $G$-equivariance condition is that the actions of $G$ on the total space and base space commute with $\pi$. Let $(\rho,V)$ be a complex representation of $H$ (which for now we treat as a vector space over $\mathbb R$). Consider the \textit{associated vector bundle}
 \[\begin{tikzcd}[ampersand replacement=\&]
 	{G\times^H V} \& {(g,v)} \\
 	{G/H} \& gH
@@ -134,7 +136,36 @@ Global sections of $G\times^H V$ are maps $s\colon G/H\to G\times^H V$ satisfyin
 imply that $f(gh) = \rho(h^{-1})f(g)$ for all $h\in H$, so we can identify the global sections $\Gamma(G/H, G\times^H V)$ of $G\times^H V$ with the function space 
 \[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}\}.\]
 The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space. 
-\subsection{Hilbert bundles}
+\subsection{Densities on smooth manifolds}
+Let $s>0$. On a real vector space $V$ of dimension $n$, $s$-densities are maps of sets $\mu\colon V^n\to \mathbb R$ such that for any $A\in\End(V)$, 
+\[\mu(Av_1,\dots,Av_n) = \abs{\det A}^s\mu(v_1,\dots,v_n).\]
+Denote by $D^s(V)$ the set of all $s$-densities on $V$. It is the case that $D^s(V)$ is a one-dimensional vector space under pointwise addition and scalar multiplication, and that every $s$-density on $V$ is either positive, negative, or the zero density. Indeed, choose a basis $\{e_1,\dots,e_n\}$ of $V$ so that for any $v_1,\dots,v_n\in V$, there exists $A\in \End(V)$ for which $Ae_i = v_i$. Then the map $D^s(V)\to \mathbb R$ given by $\mu\mapsto \mu(e_1,\dots,e_n)$ is an injection since an $s$-density $\mu$ is the zero density if and only if $\mu(e_1,\dots,e_n) = 0$, since
+\[\mu(v_1,\dots,v_n) = \abs{\det A}^s\mu(e_1,\dots,e_n).\] It remains to exhibit a nonzero density: for this consider the map
+\[(v_1,\dots,v_n)\mapsto \abs{\det A}^s\]
+for $A\in \End(V)$ as before, and this is a density since the determinant is multiplicative. For any $s$-density $\mu$, the earlier calculation $\mu(v_1,\dots,v_n) = \abs{\det A}^s\mu(e_1,\dots,e_n)$ implies that the sign of $\mu$ is the sign of $\mu(e_1,\dots,e_n)$.
+
+Let $X$ be a smooth real manifold of dimension $n$. The frame bundle $F(TX)$ of the tangent bundle, called the tangent frame bundle, is the bundle over $X$ of all ordered bases of the tangent spaces at points of $X$; that is, the fiber over $x\in X$ is the set of ordered bases of $T_xX$. By an ordered basis of a real vector space $V$ we mean a vector space isomorphism $\mathbb R^n\to V^n$. The tangent frame bundle is a principal $\GL_n(\mathbb R)$-bundle; the right action on the fiber over $p$ is given by precomposing an isomorphism $\mathbb R^n\to T_xX$ with multiplication by an element of $\GL_n(\mathbb R)$.
+
+Consider the left action of $\GL_n(\mathbb R)$ on $D^s(\mathbb R^n)$ by $A\mu = \mu(A^{-1}-,\dots,A^{-1}-) = \abs{\det A}^{-s}\mu$ (this is some kind of left regular action if we identify $(\mathbb R^n)^n$ with $\mathbb R^{n\times n}$ by concatenation). This defines a one-dimensional representation of $\GL_n(\mathbb R)$, so we can form the associated bundle
+\[D^s_X\coloneqq F(TX)\times^{\GL_n(\mathbb R)}D^s(\mathbb R^n) = F(TX)\times D^s(\mathbb R^n)/\sim,\]
+where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s\mu)$. We call this bundle the bundle of $s$-densities on $X$. The map $(\beta,\mu)\mapsto \mu\circ \beta^{-1}$ defines an isomorphism of the fiber over $x\in X$ of $D^s_X$ with $D^s(T_xX)$, so we can think of $D^s_X$ as $\coprod_{x\in X}D^s(T_xX)$.
+
+Global sections of $D^s_X$ are called $s$-densities on $X$. These $s$-densities pull back along maps $X\to Y$ in a similar way to differential forms, and pulling back preserves the sign of the $s$-density (so $D^s_{-}$ is a contravariant functor). If $X$ is orientable and $\omega\in \Omega^n(X)$ is a top form on $X$, then $\abs{\omega}^s$ is a smooth $s$-density on $X$ (and every $s$-density on $X$ appears this way!). In general, for any $X$, the bundle of $s$-densities on $X$ is nontrivial. We can construct one by using a partition of unity $\{c_j\}_j$ subordinate to an atlas $\{U_j\}_j$ of $X$, choosing positive $s$-densities $\delta_j$ on each $U_j$ (e.g. by pulling back a positive $s$-density on the copy of $\mathbb R^n$ each $U_j$ is homeomorphic to), and forming the sum $\sum_j c_j\delta_j$, which is the desired nontrivial $s$-density on $X$.
+
+The compactly supported smooth $1$-densities on $X$ may be integrated, by passing to local coordinates and integrating over $\mathbb R^n$ using the Lebesgue integral. This is because the smooth $1$-densities on $\mathbb R^n$ are of the form $f\abs{dx_1\wedge \cdots \wedge dx_n}$ for $f\in C^\infty(\mathbb R^n)$ a real-valued smooth function on $\mathbb R^n$, and the change of coordinates formula for these densities matches the corresponding change of coordinates for the Lebesgue measure on the real line.
+
+Given an $s$-density and a $t$-density on $X$, we may multiply them together to obtain an $s+t$-density on $X$. In other words, multiplication defines a linear map $\Gamma(X,D^s_X)\otimes_{\mathbb R}\Gamma(X,D^t_X)\to \Gamma(X,D^{s+t}_X)$. Therefore we can form an inner product on the vector space $\Gamma^\infty_c(X,D^{1/2}_X)$ of compactly supported smooth half-densities on $X$,
+\[\abr{-,-}\colon \Gamma^\infty_c(X,D^{1/2}_X)\times\Gamma^\infty_c(X,D^{1/2}_X)\to\mathbb R,\]
+given by multiplication and then integration.
+
+\subsection{Unitary induction for Lie groups}
+Let $G$ be a real Lie group with $H$ a closed subgroup, and let $\mathfrak g = \Lie(G)$, $\mathfrak h = \Lie(H)$ be the corresponding Lie algebras. We are interested in the homogeneous space $X = G/H$.
+
+\sai{G-equivariance of bundle of $s$-densities, corresponding one-dim representation by borel-weil(? adjectives on $G$), recipe for unitary induction and corresponding function space view, if $G$ were not a Lie group then we would need to use ``Hilbert bundles''...}
+
 \section{Semidirect products}
+\sai{definitions, want to find representations of semidirect products so for a first step restrict to the nearly Abelian (but not Metabelian this is a reserved term) Lie groups, then proceed with the method of little groups...}
+
 \section{The Lorentz group}
+\sai{define Lorentz group and its double cover, the Poincar\'e group, then demand to find reps of this larger group using the above recipe, and small explanation of what they mean...}
 \end{document}
