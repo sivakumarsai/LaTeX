@@ -148,23 +148,26 @@ Let $X$ be a smooth real manifold of dimension $n$. The frame bundle $F(TX)$ of 
 
 Consider the left action of $\GL_n(\mathbb R)$ on $D^s(\mathbb R^n)$ by $A\mu = \mu(A^{-1}-,\dots,A^{-1}-) = \abs{\det A}^{-s}\mu$ (this is some kind of left regular action if we identify $(\mathbb R^n)^n$ with $\mathbb R^{n\times n}$ by concatenation). This defines a one-dimensional representation of $\GL_n(\mathbb R)$, so we can form the associated bundle
 \[D^s_X\coloneqq F(TX)\times^{\GL_n(\mathbb R)}D^s(\mathbb R^n) = F(TX)\times D^s(\mathbb R^n)/\sim,\]
-where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s\mu)$. We call this bundle the bundle of $s$-densities on $X$. The map $(\beta,\mu)\mapsto \mu\circ \beta^{-1}$ defines an isomorphism of the fiber over $x\in X$ of $D^s_X$ with $D^s(T_xX)$, so we can think of $D^s_X$ as $\coprod_{x\in X}D^s(T_xX)$.
+where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s\mu)$. We call this bundle the bundle of $s$-densities on $X$. The map $(\beta,\mu)\mapsto \mu\circ \beta^{-1}$ defines an isomorphism of the fiber over $x\in X$ of $D^s_X$ with $D^s(T_xX)$, so we can think of $D^s_X$ as $\coprod_{x\in X}D^s(T_xX)$. 
+% The point of constructing the bundle of $s$-densities this way is so that we treat all bases of the tangent spaces of $X$ equally, in view of how densities were defined on vector spaces.
 
 Global sections of $D^s_X$ are called $s$-densities on $X$. These $s$-densities pull back along maps $X\to Y$ in a similar way to differential forms, and pulling back preserves the sign of the $s$-density (so $D^s_{-}$ is a contravariant functor). If $X$ is orientable and $\omega\in \Omega^n(X)$ is a top form on $X$, then $\abs{\omega}^s$ is a smooth $s$-density on $X$ (and every $s$-density on $X$ appears this way!). In general, for any $X$, the bundle of $s$-densities on $X$ is nontrivial. We can construct one by using a partition of unity $\{c_j\}_j$ subordinate to an atlas $\{U_j\}_j$ of $X$, choosing positive $s$-densities $\delta_j$ on each $U_j$ (e.g. by pulling back a positive $s$-density on the copy of $\mathbb R^n$ each $U_j$ is homeomorphic to), and forming the sum $\sum_j c_j\delta_j$, which is the desired nontrivial $s$-density on $X$.
 
 The compactly supported smooth $1$-densities on $X$ may be integrated, by passing to local coordinates and integrating over $\mathbb R^n$ using the Lebesgue integral. This is because the smooth $1$-densities on $\mathbb R^n$ are of the form $f\abs{dx_1\wedge \cdots \wedge dx_n}$ for $f\in C^\infty(\mathbb R^n)$ a real-valued smooth function on $\mathbb R^n$, and the change of coordinates formula for these densities matches the corresponding change of coordinates for the Lebesgue measure on the real line.
 
-Given an $s$-density and a $t$-density on $X$, we may multiply them together to obtain an $s+t$-density on $X$. In other words, multiplication defines a linear map $\Gamma(X,D^s_X)\otimes_{\mathbb R}\Gamma(X,D^t_X)\to \Gamma(X,D^{s+t}_X)$. Therefore we can form an inner product on the vector space $\Gamma^\infty_c(X,D^{1/2}_X)$ of compactly supported smooth half-densities on $X$,
+Given an $s$-density and a $t$-density on $X$, we may multiply them together to obtain an $(s+t)$-density on $X$. In other words, multiplication defines a linear map $\Gamma(X,D^s_X)\otimes_{\mathbb R}\Gamma(X,D^t_X)\to \Gamma(X,D^{s+t}_X)$. Therefore we can form an inner product on the vector space $\Gamma^\infty_c(X,D^{1/2}_X)$ of compactly supported smooth half-densities on $X$,
 \[\abr{-,-}\colon \Gamma^\infty_c(X,D^{1/2}_X)\times\Gamma^\infty_c(X,D^{1/2}_X)\to\mathbb R,\]
 given by multiplication and then integration.
 
 \subsection{Unitary induction for Lie groups}
 Let $G$ be a real Lie group with $H$ a closed subgroup, and let $\mathfrak g = \Lie(G)$, $\mathfrak h = \Lie(H)$ be the corresponding Lie algebras. We are interested in the homogeneous space $X = G/H$.
 
-\sai{G-equivariance of bundle of $s$-densities, corresponding one-dim representation by borel-weil(? adjectives on $G$), recipe for unitary induction and corresponding function space view, if $G$ were not a Lie group then we would need to use ``Hilbert bundles''...}
+\sai{G-equivariance of bundle of $s$-densities, corresponding one-dim representation by borel-weil(? adjectives on $G$), recipe for unitary induction and corresponding function space view, if $G$ were not a Lie group then we would need to use ``Hilbert bundles'' (details about homogeneous spaces not having invariant measures)...}
+
+Since $G$ acts on $X$ by diffeomorphisms and $X\mapsto D^s_X$ is a contravariant functor, $G$ acts on the bundle by 
 
 \section{Semidirect products}
-\sai{definitions, want to find representations of semidirect products so for a first step restrict to the nearly Abelian (but not Metabelian this is a reserved term) Lie groups, then proceed with the method of little groups...}
+\sai{definitions, want to find representations of semidirect products so for a first step restrict to the nearly Abelian (but not Metabelian, this is a reserved term) Lie groups, then proceed with the method of little groups...}
 
 \section{The Lorentz group}
 \sai{define Lorentz group and its double cover, the Poincar\'e group, then demand to find reps of this larger group using the above recipe, and small explanation of what they mean...}
