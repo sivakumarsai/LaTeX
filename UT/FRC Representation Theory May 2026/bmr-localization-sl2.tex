@@ -117,12 +117,47 @@ We'll also work out hands-on examples for the Lie algebra $\sl_2$.
 
 \hrulefill
 
-The listed prerequisites were Algebraic Geometry (as in Hartshorne Chapters 1-2) and Representation Theory of Lie algebras (as in Fulton and Harris).
+The listed prerequisites were algebraic geometry (as in Hartshorne chapters 1-2) and representation theory of Lie algebras (as in Fulton and Harris).
 
-\sai{sources and links}
+Our main source is \href{https://annals.math.princeton.edu/wp-content/uploads/annals-v167-n3-p05.pdf}{Localization of modules for a semisimple
+Lie algebra in prime characteristic} by Bezrukavnikov, Mirkovic, and Rumynin, but we also follow \sai{sources and links}
+
+A \hyperref[glossary]{glossary} is attached at the end of the document.\newpage
 
 \section*{Calculations for $\SL_2$}
-Throughout, let $k$ be an algebraically closed field of characteristic $p>0$, 
-\subsection{Representation theory of $\sl_2$}
+Throughout, let $k$ be an algebraically closed field of characteristic $p>0$, $G = \SL_2$, fix $B$ the Borel subgroup of upper-triangular matrices, $T$ the subgroup of diagonal matrices, $N = [B,B]$ the subgroup of strictly upper-triangular matrices. Denote by $\mathfrak g$, $\mathfrak b$, $\mathfrak t$, $\mathfrak n$ the corresponding Lie algebras. Our preferred presentation of $\mathfrak g= \sl_2$ is $k\{e = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr), h = \bigl(\!\begin{smallmatrix}
+	1 & 0 \\ 0 & -1
+\end{smallmatrix}\!\bigr), f = \bigl(\!\begin{smallmatrix}
+	0 & 0 \\ 1 & 0
+\end{smallmatrix}\!\bigr)\}$, so that $\mathfrak b = k\{e,h\}$, $\mathfrak t = k\{h\}$, and $\mathfrak n = k\{e\}$.
 
+We will introduce more notation as needed throughout, and we will indicate when certain constructions require $p$ to be large enough (i.e., larger than the Coxeter number of $\sl_2$, which is $2$).
+
+\sai{other notations, what theorems we want to manifest}
+\subsection{Representation theory of $\sl_2$}
+\subsection{Sheaf of differential operators on flag variety}
+The flag variety $X\coloneqq G/B$ may be identified with $\mathbb P^1$ via $gB\mapsto g[1:0]$; denote $[1:0]$ by $\infty$ and $[0:1$ by $0$. The flag variety $X$ may also be identified with the collection $\mathcal B$ of Borel subalgebras of $\mathfrak g$ via $gB\mapsto g\mathfrak b g^{-1}$. We will move between both identifications as needed.
+
+The sheaf of (crystalline) differential operators $\mathcal D_X$ on $X$ on the affine open $U \coloneqq \{[z:1]\mid z\in k\}\subseteq \mathbb P^1$ containing $0$ is given by $k\abr{z,\partial_z}$ with relation $[\partial_z,z]=1$. On the affine open $V\coloneqq \{[1:w]\mid w\in k\}\subseteq \mathbb P^1$ containing $\infty$ is given by $k\abr{w,\partial_w}$ with relation $[\partial_w,w]=1$. From now on, we suppress indicating relations for non-commutative algebras. Glue these differential operators on $U\cap V$ via $w = z^{-1}$ and $\partial_w = -z^2\partial_z$ (this is because $\partial_{z^{-1}}(z^n) = -nz^{n+1}$). It follows that the global sections of $\mathcal D_X$ (expressed in the coordinate on $U$) is given by 
+\[k\abr{z^2\partial_z, z\partial_z, \partial_z}.\]
+Recall that since $G$ acts on $X = G/B$, we obtain an injection $U(\mathfrak g)\hookrightarrow \Gamma(X,\mathcal D_X)$; in view of this, note that 
+\begin{align*}
+    z^2\partial_z = -\partial_w &= e = \bigl(\!\begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+\end{smallmatrix}\!\bigr)\\
+    z\partial_z = -w\partial_w &= h/2 = \bigl(\!\begin{smallmatrix}
+	1/2 & 0 \\ 0 & -1/2
+\end{smallmatrix}\!\bigr)\\
+\partial_z = -w^2\partial_w &= -f = \bigl(\!\begin{smallmatrix}
+	0 & 0 \\ -1 & 0
+\end{smallmatrix}\!\bigr).
+\end{align*}
+
+For $p>2$, use the non-degenerate bilinear form $\abr{-,-}\colon \abr{x,y}\mapsto \Tr(xy)/2$ (the Killing form) on $\sl_2$ to obtain an identification of $(\mathfrak g/\mathfrak b)^\ast$ with $\mathfrak b^\perp$. This gives rise to an isomorphism of the cotangent bundle $T^\ast X\to X$ with the associated bundle $G\times^B\mathfrak b^\perp\to \mathcal B$, via the map $(gB, \xi)\mapsto (g, \overline{\xi})$
+
+\newpage
+\section*{Glossary}
+\label{glossary}
 \end{document}
