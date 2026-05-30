@@ -76,6 +76,11 @@
 \let\sl\undefined
 \DeclareMathOperator{\sl}{\mathfrak{sl}}
 \DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Ends}{\mathcal{E}\!\mathit{nd}}
+\renewcommand{\op}{\mathrm{op}}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Spec}{Spec}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -125,7 +130,7 @@ Lie algebra in prime characteristic} by Bezrukavnikov, Mirkovic, and Rumynin, bu
 A \hyperref[glossary]{glossary} is attached at the end of the document.\newpage
 
 \section*{Calculations for $\SL_2$}
-Throughout, let $k$ be an algebraically closed field of characteristic $p>0$, $G = \SL_2$, fix $B$ the Borel subgroup of upper-triangular matrices, $T$ the subgroup of diagonal matrices, $N = [B,B]$ the subgroup of strictly upper-triangular matrices. Denote by $\mathfrak g$, $\mathfrak b$, $\mathfrak t$, $\mathfrak n$ the corresponding Lie algebras. Our preferred presentation of $\mathfrak g= \sl_2$ is $k\{e = \bigl(\!\begin{smallmatrix}
+Throughout, let $k$ be an algebraically closed field of characteristic $p>0$, $G = \SL_2$, fix $B$ the Borel subgroup of upper-triangular matrices, $T$ the subgroup of diagonal matrices, and $N = [B,B]$ the subgroup of strictly upper-triangular matrices. Denote by $\mathfrak g$, $\mathfrak b$, $\mathfrak t$, $\mathfrak n$ the corresponding Lie algebras. Our preferred presentation of $\mathfrak g= \sl_2$ is $k\{e = \bigl(\!\begin{smallmatrix}
 	0 & 1 \\ 0 & 0
 \end{smallmatrix}\!\bigr), h = \bigl(\!\begin{smallmatrix}
 	1 & 0 \\ 0 & -1
@@ -141,22 +146,31 @@ We will introduce more notation as needed throughout, and we will indicate when 
 The flag variety $X\coloneqq G/B$ may be identified with $\mathbb P^1$ via $gB\mapsto g[1:0]$; denote $[1:0]$ by $\infty$ and $[0:1$ by $0$. The flag variety $X$ may also be identified with the collection $\mathcal B$ of Borel subalgebras of $\mathfrak g$ via $gB\mapsto g\mathfrak b g^{-1}$. We will move between both identifications as needed.
 
 The sheaf of (crystalline) differential operators $\mathcal D_X$ on $X$ on the affine open $U \coloneqq \{[z:1]\mid z\in k\}\subseteq \mathbb P^1$ containing $0$ is given by $k\abr{z,\partial_z}$ with relation $[\partial_z,z]=1$. On the affine open $V\coloneqq \{[1:w]\mid w\in k\}\subseteq \mathbb P^1$ containing $\infty$ is given by $k\abr{w,\partial_w}$ with relation $[\partial_w,w]=1$. From now on, we suppress indicating relations for non-commutative algebras. Glue these differential operators on $U\cap V$ via $w = z^{-1}$ and $\partial_w = -z^2\partial_z$ (this is because $\partial_{z^{-1}}(z^n) = -nz^{n+1}$). It follows that the global sections of $\mathcal D_X$ (expressed in the coordinate on $U$) is given by 
-\[k\abr{z^2\partial_z, z\partial_z, \partial_z}.\]
-Recall that since $G$ acts on $X = G/B$, we obtain an injection $U(\mathfrak g)\hookrightarrow \Gamma(X,\mathcal D_X)$; in view of this, note that 
+\[k\abr{\partial_z, z\partial_z, z^2\partial_z}.\]
+Recall that since $G$ acts on (the left of) $X = G/B$, we obtain an injection $U(\mathfrak g)\hookrightarrow \Gamma(X,\mathcal D_X)$ (by the left regular representation); in view of this, note that 
 \begin{align*}
-    z^2\partial_z = -\partial_w &= e = \bigl(\!\begin{smallmatrix}
-	0 & 1 \\ 0 & 0
+    \partial_z = -w^2\partial_w &= -e = \bigl(\!\begin{smallmatrix}
+	0 & -1 \\ 0 & 0
 \end{smallmatrix}\!\bigr)\\
     z\partial_z = -w\partial_w &= h/2 = \bigl(\!\begin{smallmatrix}
 	1/2 & 0 \\ 0 & -1/2
 \end{smallmatrix}\!\bigr)\\
-\partial_z = -w^2\partial_w &= -f = \bigl(\!\begin{smallmatrix}
-	0 & 0 \\ -1 & 0
+z^2\partial_z = -\partial_w &= f = \bigl(\!\begin{smallmatrix}
+	0 & 0 \\ 1 & 0
 \end{smallmatrix}\!\bigr).
 \end{align*}
 
-For $p>2$, use the non-degenerate bilinear form $\abr{-,-}\colon \abr{x,y}\mapsto \Tr(xy)/2$ (the Killing form) on $\sl_2$ to obtain an identification of $(\mathfrak g/\mathfrak b)^\ast$ with $\mathfrak b^\perp$. This gives rise to an isomorphism of the cotangent bundle $T^\ast X\to X$ with the associated bundle $G\times^B\mathfrak b^\perp\to \mathcal B$, via the map $(gB, \xi)\mapsto (g, \overline{\xi})$
+For $p>2$, use the non-degenerate bilinear form $\abr{-,-}\colon \abr{x,y}\mapsto \Tr(xy)$ (the Killing form) on $\sl_2$ to obtain an identification of $(\mathfrak g/\mathfrak b)^\ast$ with $\mathfrak b^\perp$. This gives rise to an isomorphism of the cotangent bundle $T^\ast X\to X$ with the associated bundle $G\times^B\mathfrak b^\perp\to \mathcal B$, via the map $(gB, \xi)\mapsto (g, \xi)$ (where the second $\xi$ we interpret as an element of $\mathfrak b^\perp$). The map $T^\ast X\to X$ takes $(gB,\xi)$ to $gB$ and the map $G\times^B\mathfrak b^\perp\to \mathcal B$ takes $(g,\xi)$ to $g\mathfrak b g^{-1}$.
 
+The isomorphism $\gr\mathcal D_X\cong \mathcal O_{T^\ast X}$ \sai{iso to pushforward also?} given by the symbol map implies that on $U$ $\gr\mathcal D_X$ is given by $k[z,\partial_z]$, and that on $V$ $\gr\mathcal D_X$ is given by $k[w,\partial_w]$. Thus global sections of $\gr\mathcal D_X$ are given by $k[\partial_z, z\partial_z, z^2\partial_z]$.
+
+The map $\mathcal T_X^{(1)}\to \mathcal D_X$ given by $\partial \mapsto \partial^p-\partial^{[p]}$ has image in $Z(\mathcal D_X)$ and extends to an isomorphism of $\mathcal O_{T^\ast X^{(1)}}$ with $Z(\mathcal D_X)$. By explicitly calculating $(-)^{[p]}$ for various differential operators we find that $\Gamma(U,Z(\mathcal D_X)) = k[z^p,\partial_z^p]$, $\Gamma(V,Z(\mathcal D_X)) = k[w^p,\partial_w^p]$, so that $\Gamma(X,Z(\mathcal D_X)) = k[\partial_z^p, (z\partial_z)^p-z\partial_z, (z^2\partial_z)^p]$. Observe that the global sections match the $p$-center of $\sl_2$.
+
+The commutative subalgebra $\mathcal A_X$ of $\mathcal D_X$ is defined to be the centralizer $Z_{\mathcal D_X}(\mathcal O_X)$, which by lemma \sai{which one} is equal to $\mathcal O_X\cdot \mathfrak Z_X$, where $\mathfrak Z_X\coloneqq \mathcal O_{T^\ast X}$\sai{omitting pushforward?}. Using previous calculations \sai{maybe add isos to before calc}, we have $\Gamma(U,\mathcal A_X) = k[z,\partial_z^p]$, $\Gamma(U,\mathcal A_X) = k[w,\partial_w^p]$, and $\Gamma(X,\mathcal A_X) = $.\sai{idk} Observe that $\mathcal D_X$ is a right $A_X$-module, which we denote by $(\mathcal D_X)_{\mathcal A_X}$. Then Proposition 2.2.2 \sai{again find nice way to cite bmr} states that the map $f\otimes a\mapsto f\cdot (-)\cdot a$ is an isomorphism of $\mathcal D_X\otimes_{\mathfrak Z_X}\mathcal A_X$ with $\Ends_{\mathcal A_X}((\mathcal D_X)_{\mathcal A_X})$ (where this $\Ends_{\mathcal A_X}$ means to take the right $\mathcal A_X$-linear endomorphisms; perhaps $\Ends_{\mathcal A_X^\op}(-)$ is the right notation to use here). On $U$ this isomorphism looks like 
+\[k\abr{z,\partial_z}\otimes_{k[z^p,\partial_z^p]}k[z,\partial_z^p]\xrightarrow{\cong}\End_{k[z,\partial_z^p]}(k\abr{z,\partial_z}).\]
+This shows that at least on $U$ (similarly $V$, and even $X$), $\mathcal D_X$ is a split Azumaya algebra over $\Spec(\mathcal A_X) = X\times_{X^{(1)}}T^\ast X^{(1)}\eqqcolon T^{\ast,1}X$.
+
+Consider the $T$-torsor $\widetilde X\coloneqq G/N\xrightarrow{\pi}G/B = X$ given by the natural projection. We can identify $G/N$ with $\mathbb A^2\setminus\{(0,0)\}$ via $gN\mapsto g(1,0)$; this means $\pi$ may be identified with the map $\mathbb A^2\setminus\{(0,0)\}\to\mathbb P^1$ taking $(x,y)$ to $[x:y]$. Deform $\mathcal D_X$ to $\widetilde{\mathcal D}\coloneqq \pi_\ast(\mathcal D_{\widetilde X})^T$; on $U$ the sections of $\widetilde{\mathcal D}$ are $k\abr{z,\partial_z, t\partial_t}$, where the trivialization of the torsor we are choosing over $U\cong \Spec(k[z])$ is $\Spec(k[z,t,t^{-1}])\subseteq \mathbb A^2\setminus\{(0,0)\}$; here we identify the punctured $y$-axis with $\Spec(k[t,t^{-1}])$. One can do a similar calculation for $V$. The global sections of $\widetilde{\mathcal D}$ are given by $k\abr{\partial_z, 2z\partial_z+t\partial_t, -z^2\partial_z+zt\partial_t, t\partial_t}$.
 \newpage
 \section*{Glossary}
 \label{glossary}
