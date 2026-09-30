@@ -1,0 +1,928 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{cancel}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\allowdisplaybreaks
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Hd}{\mathcal H_d}
+\newcommand{\Prim}{\mathcal P}
+\newcommand{\dR}{\mathrm{dR}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\bdel}{\bar\partial}
+\newcommand{\orthsum}{\mathbin{\oplus^{\perp}}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\title{I. Hodge Theory and Periods}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+% Slide 1.
+$(X,\omega)$ compact K\"ahler, $\dim_{\C}X=n$, $L=[\omega]\smile(-)$.
+
+\paragraph{Hodge decomposition.}
+\[
+ H^k(X;\C)=\bigoplus_{p+q=k}H^{p,q}(X).
+\]
+Cohomology splits by complex type.
+
+\paragraph{Lefschetz decomposition and Hard Lefschetz.}
+\[
+ H^k=\bigoplus_{r\geq0}L^rP^{k-2r},
+ \qquad L^{n-k}:H^k\xrightarrow{\sim}H^{2n-k}
+ \quad(0\leq k\leq n).
+\]
+\paragraph{Elliptic PDE.}
+Unique harmonic representatives $+$ K\"ahler identities.
+
+\paragraph{Hodge--Riemann relations.}
+\[
+ i^{p-q}Q_{\omega,k}(\alpha,\bar\alpha)>0,
+ \qquad 0\neq\alpha\in P^{p,q},\quad p+q=k\leq n.
+\]
+\paragraph{Polarized pure Hodge structures.}
+$(P^k(X;\R),Q_{\omega,k})$ of weight $k$. Over $\Q$ if $[\omega]$ is rational.
+
+% Slide 2.
+\section*{Setup and complex types}
+$X$: a complex manifold, with its complex orientation.
+\[
+ J:TX\longrightarrow TX,\qquad J^2=-\id.
+\]
+The complex structure. $g$: a Riemannian metric.
+$A^k=A^k(X;\C)$: smooth complex-valued $k$-forms.
+
+Complex charts determine $J$:
+\[
+ \begin{pmatrix} I&0\\0&-I\end{pmatrix},
+ \qquad T_{\C}X=T^{1,0}X\oplus T^{0,1}X,
+\]
+\[
+ T^{1,0}X=\ker(J-i\id),\qquad
+ T^{0,1}X=\ker(J+i\id).
+\]
+Dualize and take exterior powers:
+\[
+ A^k=\bigoplus_{p+q=k}A^{p,q}.
+\]
+Locally, $d(dz_j)=d(d\bar z_j)=0$. Differentiate a $(p,q)$-form
+$\Rightarrow$ a $(p+1,q)$- or $(p,q+1)$-form:
+\[
+ \partial\alpha:=(d\alpha)^{p+1,q},\qquad
+ \bdel\alpha=(d\alpha)^{p,q+1}.
+\]
+\[
+ d=\partial+\bdel,\qquad
+ \partial^2=\bdel^2=0,\qquad
+ \partial\bdel+\bdel\partial=0.
+\]
+
+% Slides 3--4.
+\section*{Hermitian metrics and the fundamental form}
+\paragraph{Hermitian invariance.}
+A Riemannian metric $g$ is \textbf{Hermitian} if
+\[
+ g(Ju,Jv)=g(u,v)\quad\text{for all }u,v\in T_xX.
+\]
+Consequently, by $J^2$, $g(Ju,v)=-g(u,Jv)$. Put
+\[
+ \omega(u,v):=g(Ju,v).
+\]
+The fundamental form $\omega$ is a real $2$-form, of type $(1,1)$,
+and positive: $\omega(u,Ju)=g(u,u)>0$ for $u\neq0$.
+\[
+ \omega(v,u)=g(Jv,u)=g(u,Jv)=-g(Ju,v)=-\omega(u,v).
+\]
+\[
+ \{\text{Hermitian metrics}\}
+ \xleftrightarrow{\;1:1\;}
+ \{\text{positive real $(1,1)$-forms}\},
+\]
+\[
+ g\longmapsto\bigl(\omega(u,v)=g(Ju,v)\bigr),\qquad
+ g(u,v)=\omega(u,Jv).
+\]
+
+\subsection*{Hermitian metrics in holomorphic coordinates}
+In holomorphic coordinates $z_1,\ldots,z_n$,
+\[
+ g=2\operatorname{Re}\left(\sum_{j,k=1}^n
+ h_{j\bar k}\,dz_j\otimes d\bar z_k\right).
+\]
+The matrix $(h_{j\bar k})$ is Hermitian and positive definite.
+The fundamental form is
+\[
+ \omega=i\sum_{j,k=1}^n h_{j\bar k}\,dz_j\wedge d\bar z_k.
+\]
+Positive definiteness permits diagonalization and normalization.
+Hence a \textbf{unitary basis} of $T_x^{1,0}X$ exists at every $x\in X$.
+
+% Slide 5.
+\section*{The K\"ahler condition and the volume form}
+The Hermitian manifold $(X,J,g)$ is \textbf{K\"ahler} if $d\omega=0$.
+Then $[\omega]\in H^2_{\dR}(X;\R)$ is the K\"ahler class.
+\[
+ dV_g=\frac{\omega^n}{n!},\qquad n=\dim_{\C}X.
+\]
+If $X$ is compact,
+\[
+ 0<\Vol_g(X)=\int_X\frac{\omega^n}{n!}<\infty.
+\]
+
+% Slides 6--7.
+\section*{Examples of K\"ahler manifolds}
+\paragraph{1. Complex curves.}
+Every Hermitian metric on a complex curve is K\"ahler:
+$d\omega$ would be a $3$-form on a real surface.
+
+\paragraph{2. Flat complex tori.}
+The Euclidean metric and form on $\C^n$ are invariant under translations.
+They descend to every complex torus
+\[
+ X=\C^n/\Gamma,\qquad \Gamma\subset\C^n,
+\]
+producing a flat K\"ahler metric.
+\[
+ \omega_0=\sum_{j=1}^n dx_j\wedge dy_j,\qquad
+ g_0=\sum_{j=1}^n(dx_j^2+dy_j^2).
+\]
+
+\paragraph{3. Projective space.}
+\[
+ \mathbf P^n=(\C^{n+1}\setminus\{0\})/\C^{\times},
+ \qquad [Z_0:\cdots:Z_n].
+\]
+On the chart $Z_0\neq0$, put $z^j=Z_j/Z_0$.
+\[
+ \omega_{\mathrm{FS}}=i\partial\bdel
+ \log\left(1+\sum_{j=1}^n|z^j|^2\right).
+\]
+Thus these local forms define the Fubini--Study K\"ahler form on
+$\mathbf P^n$. Its restriction to a complex submanifold is again closed
+and positive.
+
+\paragraph{Complex submanifolds.}
+For a complex submanifold $i:Y\hookrightarrow X$, restrict the K\"ahler
+form of $X$: $\omega_Y:=i^*\omega_X$.
+
+\paragraph{Products.}
+If $(X_1,\omega_1)$ and $(X_2,\omega_2)$ are K\"ahler, their product is
+K\"ahler with
+\[
+ \omega=\pi_1^*\omega_1+\pi_2^*\omega_2,
+ \qquad\pi_a:X_1\times X_2\longrightarrow X_a.
+\]
+
+% Slide 8. Handwritten expressions are retained as written.
+\subsection*{A non-example: the Hopf surface}
+\[
+ X:=(\C^2\setminus\{0\})/\langle z\mapsto2z\rangle.
+\]
+The free, properly discontinuous action is holomorphic, so $X$ is a
+complex surface.
+\[
+ X\cong_{\mathrm{diff}}S^1\times S^3.
+\]
+Write $z=ru$, $r>0$, $u\in S^3$:
+\[
+ z\longmapsto(\log r,u)\in\R^3\times S^3,
+ \qquad z\longmapsto2z\ \leadsto\ \text{translation}.
+\]
+\[
+ H^2(X;\R)=0,\qquad \omega=d\eta,\qquad
+ \frac{\omega^2}{2}=dV_g\geq0.
+\]
+\[
+ d\omega=0,\qquad
+ \omega^2=d\eta\wedge\omega=d(\eta\wedge\omega).
+\]
+By Stokes,
+\[
+ \int_X\omega^2=\int_Xd(\eta\wedge\omega)=0.
+\]
+\[
+ \int_X\omega^n>0,\qquad [\omega]\neq0,\qquad H^2(X;\R)=0
+ \quad\Longrightarrow\quad X\text{ not K\"ahler}.
+\]
+
+% Slide 9.
+\section*{Towards the analytic Hodge theorem: the Hodge star}
+$X$: real dimension $2n$.
+\[
+ *:A^k(X;\R)\longrightarrow A^{2n-k}(X;\R).
+\]
+For a fixed $k$-form $\beta$, the form $*\beta$ is the unique
+$(2n-k)$-form such that
+\[
+ \alpha\wedge *\beta=\langle\alpha,\beta\rangle_g\,dV_g
+ \qquad\text{for all }\alpha\in A^k(X;\R).
+\]
+\textbf{Exercise.} $X$ compact K\"ahler surface: $*\omega=\omega$.
+
+% Slide 10.
+\subsection*{The inner product, adjoints, and Laplacians}
+Assume henceforth that $X$ is compact and without boundary.
+The Hermitian $L^2$ inner product is
+\[
+ \langle\alpha,\beta\rangle_{L^2}=\int_X\alpha\wedge *\bar\beta,
+\]
+linear in $\alpha$. For $D\in\{d,\partial,\bdel\}$, its formal adjoint
+$D^*$ is characterized by
+\[
+ \langle D\alpha,\beta\rangle_{L^2}
+ =\langle\alpha,D^*\beta\rangle_{L^2}.
+\]
+For $D\in\{d,\partial,\bdel\}$, put $\Delta_D=DD^*+D^*D$:
+\[
+ \Delta_d=dd^*+d^*d,\qquad
+ \Delta_{\partial}=\partial\partial^*+\partial^*\partial,\qquad
+ \Delta_{\bdel}=\bdel\bdel^*+\bdel^*\bdel.
+\]
+A form $\alpha\in A^k$ is \textbf{$D$-harmonic} if $\Delta_D\alpha=0$.
+Set
+\[
+ \mathcal H_D^k:=\ker(\Delta_D:A^k\longrightarrow A^k),
+\]
+the space of $D$-harmonic forms.
+
+% Slide 11.
+\subsection*{Harmonic forms are closed}
+\paragraph{The energy identity.}
+For $D\in\{d,\partial,\bdel\}$,
+\[
+ \Delta_D=D^*D+DD^*,\qquad
+ \langle\Delta_D\alpha,\alpha\rangle_{L^2}
+ =\|D\alpha\|_{L^2}^2+\|D^*\alpha\|_{L^2}^2.
+\]
+\[
+ \alpha\text{ is $D$-harmonic}
+ \quad\Longleftrightarrow\quad
+ D\alpha=0,\quad D^*\alpha=0.
+\]
+\paragraph{Review.}
+$X$ compact, complex, without boundary.
+$J\leadsto A^k=\bigoplus_{p+q=k}A^{p,q}$.
+The Hermitian metric $(X,J,g)$ gives the Hodge star $*$ and
+$\langle\cdot,\cdot\rangle_{L^2}$, then adjoints $D^*$ and Laplacians
+$\Delta_D$. $D$-harmonic forms are $D$-closed.
+Additional condition: K\"ahler, $d\omega=0$.
+
+% Slide 12.
+\subsection*{The analytic Hodge theorem}
+On a compact oriented Riemannian manifold without boundary,
+\[
+ A^k=\Hd^k\orthsum dA^{k-1}\orthsum d^*A^{k+1},
+\]
+with orthogonality in $L^2$.
+The harmonic space is finite-dimensional, and every de Rham class has a
+\textbf{unique harmonic representative}.
+\[
+ \phi_d^k:\Hd^k\xrightarrow{\sim}H^k_{\dR}(X;\C),
+ \qquad\alpha\longmapsto[\alpha].
+\]
+\textbf{Black box:} elliptic operator theory.
+\textbf{Goal:} split the harmonic space into Hodge types.
+
+% Slides 13--14.
+\section*{The K\"ahler Laplacian preserves bidegree}
+Now assume $X$ is compact K\"ahler. For $k=p+q$, define
+\[
+ \Hd^{p,q}:=\Hd^k\cap A^{p,q}.
+\]
+% The following definition is crossed out on slide 13.
+\[
+ \cancel{\mathcal H_{\bdel}^{p,q}
+ :=\ker(\Delta_{\bdel}:A^{p,q}\longrightarrow A^{p,q})}.
+\]
+Different types are orthogonal: $A^{p,q}\perp A^{r,s}$ if
+$(p,q)\neq(r,s)$.
+Restrict the Hodge map:
+\[
+ \phi_d^{p,q}:\Hd^{p,q}\xrightarrow{\sim}H^{p,q}_{\dR}(X).
+\]
+Here $H^{p,q}_{\dR}(X)$ consists of classes admitting a $d$-closed
+$(p,q)$-representative.
+
+\textbf{Injectivity:} the analytic Hodge theorem.
+\textbf{Surjectivity:} $\Delta_{\bdel}$ preserves type, so the K\"ahler
+identity implies that $\Delta_d$ preserves type. Therefore the harmonic
+projection $P:A^k\longrightarrow\Hd^k$ also preserves type.
+
+\subsection*{Surjectivity: the harmonic representative has the same type}
+Take $[\alpha]\in H^{p,q}_{\dR}(X)$ with $\alpha\in A^{p,q}$ and
+$d\alpha=0$. Put $k=p+q$.
+Write $Z_d^{p,q}:=\ker(d:A^{p,q}\longrightarrow A^{k+1})$.
+The representative and its class are related by
+\[
+ Z_d^{p,q}\xrightarrow{P}\Hd^{p,q}
+ \xrightarrow{\phi_d^{p,q}}H^{p,q}_{\dR}(X),\qquad
+ \phi_d^{p,q}\circ P=[\,\cdot\,].
+\]
+The analytic Hodge theorem gives a unique $h\in\Hd^k$ with
+$[h]=[\alpha]$. Since $h=P\alpha$ and $P$ preserves type,
+\[
+ h\in\Hd^{p,q},\qquad [\alpha]=\phi_d^{p,q}(h).
+\]
+
+\paragraph{Why harmonic projection preserves type.}
+Let $\pi_{p,q}$ be projection onto the $(p,q)$-part.
+\[
+ \pi_{p,q}:A^k\longrightarrow A^{p,q},\qquad
+ \pi_{p,q}:\Hd^k\longrightarrow\Hd^{p,q},\qquad
+ P\pi_{p,q}=\pi_{p,q}P.
+\]
+$\Delta_{\bdel}$ preserves type and $\Delta_d=2\Delta_{\bdel}$.
+Thus $\Delta_d$ preserves type. Its kernel splits into the mutually
+orthogonal type subspaces, so orthogonal projection onto the kernel
+commutes with $\pi_{p,q}$.
+\[
+ A^k=\Hd^k\orthsum(\Hd^k)^\perp\qquad(L^2).
+\]
+
+% Slide 15.
+\subsection*{Splitting the harmonic space}
+Let $\alpha\in\Hd^k$ and write
+$\alpha=\sum_{p+q=k}\alpha^{p,q}$. Since $\Delta_d$ preserves types,
+\[
+ 0=\Delta_d\alpha=\sum_{p+q=k}\Delta_d\alpha^{p,q}
+ \quad\Longrightarrow\quad
+ \Delta_d\alpha^{p,q}=0\quad\text{for all }p,q.
+\]
+Hence
+\[
+ \Hd^k=\bigoplus_{p+q=k}\Hd^{p,q}.
+\]
+The Hodge decomposition follows through the isomorphisms
+\begin{align*}
+ H^k_{\mathrm{sing}}(X;\C)
+ &\xrightarrow[\text{de Rham}]{\sim}H^k_{\dR}(X;\C)\\
+ &\xrightarrow[\text{analytic Hodge}]{\sim}\Hd^k(X)\\
+ &\xrightarrow[\Delta_d\text{ preserves type}]{\sim}
+   \bigoplus_{p+q=k}\Hd^{p,q}(X)\\
+ &\xrightarrow[\text{restricted Hodge}]{\sim}
+   \bigoplus_{p+q=k}H^{p,q}_{\dR}(X).
+\end{align*}
+
+% Slide 16.
+\section*{Hodge diamond and symmetry}
+\[
+ h^{p,q}:=\dim_{\C}H^{p,q}_{\dR}(X).
+\]
+Schematic for $n=3$:
+\[
+\begin{array}{ccccccc}
+ &&&h^{0,0}&&&\\
+ &&h^{0,1}&&h^{1,0}&&\\
+ &h^{0,2}&&h^{1,1}&&h^{2,0}&\\
+ h^{0,3}&&h^{1,2}&&h^{2,1}&&h^{3,0}\\
+ &h^{1,3}&&h^{2,2}&&h^{3,1}&\\
+ &&h^{2,3}&&h^{3,2}&&\\
+ &&&h^{3,3}&&&
+\end{array}
+\]
+Left--right: complex conjugation. Top--bottom: Hodge star.
+
+\paragraph{Complex conjugation.}
+$\Delta_d$ is real, hence commutes with conjugation:
+\[
+ \overline{\Hd^{p,q}}=\Hd^{q,p},\qquad h^{p,q}=h^{q,p}.
+\]
+\paragraph{Hodge star and analytic Hodge theory.}
+The adjoint formulas give $[*,\Delta_d]=0$, so
+\[
+ *:\Hd^{p,q}\xrightarrow{\sim}\Hd^{n-q,n-p},\qquad
+ h^{p,q}=h^{n-q,n-p}.
+\]
+Together: $h^{p,q}=h^{n-p,n-q}$.
+
+% Slide 17.
+\subsection*{Examples and geometric consequences}
+For a compact K\"ahler manifold, Hodge decomposition gives
+\[
+ b_k(X)=\sum_{p+q=k}h^{p,q}(X),\qquad b_{2m+1}(X)\in2\Z.
+\]
+Here $b_k(X)=\dim_{\R}H^k(X;\R)$. In odd degree, $p\neq q$,
+so conjugation pairs all the summands.
+
+\paragraph{The Hopf surface.}
+\[
+ S:=(\C^2\setminus\{0\})/\langle z\mapsto2z\rangle
+ \cong_{\mathrm{diff}}S^3\times S^1.
+\]
+By the K\"unneth formula,
+\[
+ H^1(S;\R)\cong H^1(S^1;\R)\cong\R,\qquad b_1(S)=1.
+\]
+A compact K\"ahler manifold has even $b_1$.
+Thus the Hopf surface $S$ is \textbf{not K\"ahler}.
+
+% Slide 18.
+\section*{K\"ahler identities}
+On a compact K\"ahler $n$-fold, put
+\[
+ L\alpha=\omega\wedge\alpha,\qquad \Lambda=L^*,\qquad
+ [A,B]=AB-BA.
+\]
+\paragraph{Commutators and their adjoints.}
+\[
+ [\Lambda,\partial]=i\bdel^*,\qquad
+ [\Lambda,\bdel]=-i\partial^*,
+\]
+\[
+ [\partial^*,L]=-i\bdel,\qquad
+ [\bdel^*,L]=i\partial.
+\]
+Since $d\omega=0$, and by adjointness,
+\[
+ [L,\partial]=[L,\bdel]=0,\qquad
+ [\Lambda,\partial^*]=[\Lambda,\bdel^*]=0.
+\]
+\paragraph{Laplacian consequences.}
+\[
+ \partial\bdel^*+\bdel^*\partial=0,\qquad
+ \bdel\partial^*+\partial^*\bdel=0,
+\]
+\[
+ \Delta_d=2\Delta_{\partial}=2\Delta_{\bdel},\qquad
+ [L,\Delta_d]=[\Lambda,\Delta_d]=0.
+\]
+Thus $L$ and $\Lambda$ preserve harmonic forms.
+\paragraph{Pointwise Lefschetz algebra.}
+\[
+ [\Lambda,L]|_{A^k}=(n-k)\id.
+\]
+
+% Slide 19.
+\section*{Hard Lefschetz}
+\[
+ L:A^k\longrightarrow A^{k+2},\qquad\alpha\longmapsto\omega\wedge\alpha.
+\]
+$\omega$ is closed and has even degree:
+\[
+ d(L\alpha)=d\omega\wedge\alpha+\omega\wedge d\alpha=L(d\alpha).
+\]
+Thus $L$ preserves closed forms.
+\[
+ L(\alpha+d\beta)-L(\alpha)=d(\omega\wedge\beta).
+\]
+Consequently,
+\[
+ L:H^k_{\dR}(X;\C)\longrightarrow H^{k+2}_{\dR}(X;\C),
+ \qquad[\alpha]_{\dR}\longmapsto[\omega\wedge\alpha]_{\dR}.
+\]
+In the Hodge diamond for $n=3$, $L$ moves vertically.
+Reflection is realized by powers of $L$:
+\[
+ L^{n-p-q}:H^{p,q}_{\dR}\xrightarrow{\sim}H^{n-q,n-p}_{\dR},
+ \qquad p+q\leq n.
+\]
+$L$ is injective toward the middle ($p+q<n$).
+\textbf{Goal:}
+\[
+ L^{n-k}:H^k(X;\C)\xrightarrow{\sim}H^{2n-k}(X;\C),
+ \qquad0\leq k\leq n.
+\]
+
+% Slide 20.
+\subsection*{Hard Lefschetz: proof strategy}
+Study harmonic forms and transfer to cohomology by analytic Hodge:
+\[
+ \phi_d^k:\Hd^k\xrightarrow{\sim}H^k_{\dR}(X;\C).
+\]
+Primitive decompositions and the primitive-string calculation:
+\[
+ \Hd^k\cong\bigoplus_{r=0}^{\lfloor k/2\rfloor}L^r\Prim^{k-2r},
+ \qquad
+ \Hd^{2n-k}\cong
+ \bigoplus_{r=0}^{\lfloor k/2\rfloor}L^{n-k+r}\Prim^{k-2r},
+\]
+\[
+ L^{n-k}:\Hd^k\xrightarrow{\sim}\Hd^{2n-k}
+ \qquad(0\leq k\leq n).
+\]
+What is $\Prim^k$? $\Hd^k=\Prim^k\orthsum L\Hd^{k-2}$.
+Orthogonality in $L^2$; iterate.
+
+% Slide 21.
+\subsection*{Ingredients for primitive forms and the orthogonal splitting}
+$\Lambda:=L^*$ with respect to the $L^2$ Hermitian inner product.
+The K\"ahler identities
+\[
+ [\Lambda,\partial]=i\bdel^*,\qquad
+ [\Lambda,\bdel]=-i\partial^*,\qquad
+ \Delta_d=2\Delta_{\bdel},
+\]
+together with $d\omega=0$ and the type $(1,1)$ of $\omega$, imply
+\[
+ [L,\Delta_{\bdel}]=[L,\Delta_d]=[\Lambda,\Delta_d]=0.
+\]
+Operators on harmonic forms:
+\[
+ L:\Hd^k\longrightarrow\Hd^{k+2},\quad\text{bidegree }(1,1),
+\]
+\[
+ \Lambda:\Hd^k\longrightarrow\Hd^{k-2},\quad\text{bidegree }(-1,-1).
+\]
+$L$ and $\Lambda$ remain adjoint with respect to $L^2$ on the harmonic spaces.
+
+% Slide 22.
+\subsection*{Primitive harmonic forms: the first splitting}
+\[
+ \Prim^k:=\ker(\Lambda:\Hd^k\longrightarrow\Hd^{k-2}).
+\]
+An element $\alpha\in\Prim^k$ is a \textbf{primitive harmonic form}.
+On the finite-dimensional harmonic spaces, $\Lambda=L^*$, so
+\[
+ \Prim^k=(L\Hd^{k-2})^\perp.
+\]
+Consequently,
+\[
+ \Hd^k=\Prim^k\orthsum L\Hd^{k-2}
+ \quad\text{with respect to }L^2.
+\]
+Next: iterate this splitting.
+
+% Slide 23.
+\subsection*{Primitive harmonic forms: lengths of the strings}
+\[
+ \Prim^j=\ker(\Lambda:\Hd^j\longrightarrow\Hd^{j-2}).
+\]
+Let $0\neq\alpha\in\Prim^j$, with $0\leq j\leq n$.
+The degree-$j$ form $\alpha$ generates the nonzero string
+\[
+ \alpha,L\alpha,\ldots,L^{n-j}\alpha.
+\]
+\textbf{Claim:} $L^{n-j+1}\alpha=0$.
+\[
+ \|L^r\alpha\|_{L^2}^2=\boxed{\,?\,}\,\|\alpha\|_{L^2}^2>0,
+ \qquad
+ L^r:\Prim^j\hookrightarrow\Hd^{j+2r}
+ \quad(0\leq r\leq n-j).
+\]
+\paragraph{Proof.}
+On $j$-forms, $[\Lambda,L]=(n-j)\id$.
+\[
+ \Lambda\alpha=0
+ \quad\Longrightarrow\quad
+ (L\Lambda+(n-j)\id)\alpha=(n-j)\alpha.
+\]
+For every $r\geq1$,
+\[
+ \Lambda L^r\alpha=r(n-j-r+1)L^{r-1}\alpha.
+\]
+Adjointness gives
+\[
+ \|L^r\alpha\|_{L^2}^2
+ =r(n-j-r+1)\|L^{r-1}\alpha\|_{L^2}^2.
+\]
+For $r=1$, $\|L\alpha\|_{L^2}^2=(n-j)\|\alpha\|_{L^2}^2$.
+So $\Prim^j=0$ for all $j>n$.
+
+% Slide 24.
+\subsection*{Primitive strings and the Lefschetz decomposition}
+For $\alpha\in\Prim^j$, the case $r=1$ gives
+\[
+ \|L\alpha\|_{L^2}^2=(n-j)\|\alpha\|_{L^2}^2.
+\]
+Hence $\Prim^j=0$ for $j>n$.
+For $0\neq\alpha\in\Prim^j$ and $0\leq r\leq n-j$,
+\[
+ \|L^r\alpha\|_{L^2}^2
+ =\frac{r!\,(n-j)!}{(n-j-r)!}\|\alpha\|_{L^2}^2>0.
+\]
+\[
+ L^r:\Prim^j\longrightarrow\Hd^{j+2r}
+ \quad\text{is injective for }0\leq r\leq n-j.
+\]
+Iterating the splitting, for a fixed $0\leq j\leq n$,
+\[
+ \Hd^j=\mathop{\bigoplus\!{}^{\perp}}_{r=0}^{\lfloor j/2\rfloor}
+ L^r\Prim^{j-2r}\qquad\text{(orthogonal in }L^2\text{)}.
+\]
+For primitive $a,b$ in the summands and $r<s$, adjointness and the
+lowering formula give
+\[
+ \langle L^ra,L^sb\rangle
+ =\langle a,\Lambda^rL^sb\rangle
+ =c\langle a,L^{s-r}b\rangle=0.
+\]
+
+% Slide 25.
+\subsection*{A picture of the Lefschetz strings}
+Primitive families, illustrated for $n=4$.
+Each arrow is $L$ and raises cohomological degree by $2$.
+\[
+\renewcommand{\arraystretch}{1.35}
+\begin{array}{c|ccccccccc}
+\text{degree}&0&1&2&3&4=n&5&6&7&8\\\hline
+ &\Prim^0&&L\Prim^0&&L^2\Prim^0&&L^3\Prim^0&&L^4\Prim^0\\
+ &&\Prim^1&&L\Prim^1&&L^2\Prim^1&&L^3\Prim^1&\\
+ &&&\Prim^2&&L\Prim^2&&L^2\Prim^2&&\\
+ &&&&\Prim^3&&L\Prim^3&&&\\
+ &&&&&\Prim^4&&&&
+\end{array}
+\]
+\[
+ \Hd^4=L^2\Prim^0\orthsum L\Prim^2\orthsum\Prim^4
+ \qquad(L^2).
+\]
+For $0\neq\alpha\in\Prim^j$, the string
+$\alpha,L\alpha,\ldots,L^{n-j}\alpha$ has $n-j+1$ nonzero terms.
+Its endpoint degrees are $j$ and $2n-j$; every string is centered at
+degree $n$. Each node is a subspace (possibly zero); each row is a
+family of primitive strings.
+
+% Slide 26. The handwritten H^2(X;C)=0 is preserved as written.
+\subsection*{A smooth quintic threefold}
+Let $X=\{F_5=0\}\subset\mathbf P^4$ be smooth, with $n=3$ and
+$\omega=\omega_{\mathrm{FS}}|_X$.
+\[
+ H^1(X;\C)=0\quad\leadsto\quad\text{Lefschetz hyperplane theorem},
+ \qquad H^2(X;\C)=0.
+\]
+The Hodge diamond is
+\[
+\begin{array}{ccccccc}
+ &&&1&&&\\
+ &&0&&0&&\\
+ &0&&1&&0&\\
+ 1&&101&&101&&1\\
+ &0&&1&&0&\\
+ &&0&&0&&\\
+ &&&1&&&
+\end{array}
+\]
+Hodge numbers stated without proof. The top and middle rows are
+primitive; the other nonzero entries are $L$-images.
+
+The complete string picture is
+\[
+ \underset{0}{1}\xrightarrow{L}
+ \underset{2}{\omega}\xrightarrow{L}
+ \underset{4}{\omega^2}\xrightarrow{L}
+ \underset{6}{\omega^3},
+\]
+\[
+ \Prim^3=\Hd^3,\qquad\text{dimension }204;\ \text{one-term strings}.
+\]
+\paragraph{Why are there no intermediate strings?}
+\[
+ \Hd^1=0,\qquad\Hd^2=\C\omega
+ \quad\Longrightarrow\quad\Prim^1=\Prim^2=0.
+\]
+Every middle-degree harmonic form is primitive:
+\[
+ \Lambda:\Hd^3\longrightarrow\Hd^1=0,\qquad
+ b_3=1+101+101+1=204.
+\]
+\textbf{One four-term string $+$ 204 one-term strings.}
+All even cohomology is generated by $[\omega]$; all middle cohomology
+is primitive.
+
+% Slide 27.
+\subsection*{Hard Lefschetz from primitive harmonic strings}
+Fix $0\leq k\leq n$ and $0\leq r\leq\lfloor k/2\rfloor$.
+Put $j=k-2r$, $m=n-k+r$.
+\[
+ L^{n-k}:L^r\Prim^j\xrightarrow{\sim}L^m\Prim^j,
+ \qquad L^r\alpha\longmapsto L^m\alpha.
+\]
+\[
+ \Hd^{2n-k}
+ =\bigoplus_{r=0}^{\lfloor k/2\rfloor}L^{n-k+r}\Prim^{k-2r}.
+\]
+Thus
+\[
+ L^{n-k}:\Hd^k\xrightarrow{\sim}\Hd^{2n-k},\qquad0\leq k\leq n,
+\]
+\[
+ L^r:\Hd^{n-r}\xrightarrow{\sim}\Hd^{n+r},\qquad0\leq r\leq n.
+\]
+
+% Slide 28.
+\subsection*{Refinement by Hodge type}
+Write $H^{p,q}(X)=H^{p,q}_{\dR}(X)$. Since $L$ has type $(1,1)$,
+\[
+ L:H^{p,q}(X)\longrightarrow H^{p+1,q+1}(X).
+\]
+For $k=p+q\leq n$, Hard Lefschetz therefore gives
+\[
+ L^{n-p-q}:H^{p,q}(X)\xrightarrow{\sim}H^{n-q,n-p}(X).
+\]
+\paragraph{Hodge decomposition $+$ Hard Lefschetz.}
+Let $P^k(X)$ consist of classes with primitive harmonic
+representatives, and set $P^{a,b}(X)=P^{a+b}(X)\cap H^{a,b}(X)$.
+\[
+ H^{p,q}(X)=\bigoplus_{r=\max(0,p+q-n)}^{\min(p,q)}
+ L^rP^{p-r,q-r}(X).
+\]
+
+% Slide 29.
+\subsection*{Review: the route to Hard Lefschetz}
+\begin{enumerate}
+\item K\"ahler identities: $[L,\Delta_d]=0$, $[\Lambda,\Delta_d]=0$.
+Pointwise algebra: $\Lambda=L^*$, $[\Lambda,L]|_{A^k}=(n-k)\id$.
+Analytic Hodge theorem: $\dim\Hd^k<\infty$,
+$\phi_d^k:\Hd^k\xrightarrow{\sim}H^k_{\dR}$.
+\item Lefschetz operators on harmonic forms: adjoint operators on the
+finite-dimensional space $\Hd^{\bullet}$, with the degree commutator.
+\item Primitive harmonic strings:
+$\Prim^j=\ker\Lambda|_{\Hd^j}$,
+$\alpha,L\alpha,\ldots,L^{n-j}\alpha$.
+Exact lengths; injective coefficient maps.
+\item Harmonic Lefschetz decomposition:
+$\Hd^k=\bigoplus_rL^r\Prim^{k-2r}$.
+Orthogonal, with unique coefficients.
+\item Hard Lefschetz on harmonic forms:
+$L^{n-k}:\Hd^k\xrightarrow{\sim}\Hd^{2n-k}$.
+Matching primitive coefficients.
+\item Hard Lefschetz on cohomology:
+\[
+ [\omega]^{n-k}\smile(-):H^k_{\mathrm{sing}}(X;\C)
+ \xrightarrow{\sim}H^{2n-k}_{\mathrm{sing}}(X;\C).
+\]
+Transport by $\phi_d$ and de Rham.
+\item Refinement by Hodge type:
+$L^{n-p-q}:H^{p,q}\xrightarrow{\sim}H^{n-q,n-p}$.
+Hodge decomposition yields the type refinement and primitive splitting.
+\end{enumerate}
+
+% Slide 30.
+\section*{Consequences of Hard Lefschetz}
+\paragraph{Growth towards the middle degree.}
+For $k<n$, the map $L:H^k(X;\C)\longrightarrow H^{k+2}(X;\C)$
+is injective:
+\[
+ L\alpha=0\quad\Longrightarrow\quad L^{n-k}\alpha=0
+ \quad\Longrightarrow\quad\alpha=0.
+\]
+Since $L$ has bidegree $(1,1)$, this also holds on each Hodge type.
+\[
+ b_k\leq b_{k+2}\quad(k<n),\qquad
+ h^{p,q}\leq h^{p+1,q+1}\quad(p+q<n).
+\]
+\paragraph{Every even degree has a nonzero K\"ahler-class power.}
+For $k=0$, $H^0(X)\cong H^{2n}(X)$.
+Hard Lefschetz gives $L^n(1)=[\omega]^n\neq0$.
+If $[\omega]^r=0$, multiplying by $[\omega]^{n-r}$ would contradict this.
+\[
+ [\omega]^r\neq0,\qquad h^{r,r}\geq1,\qquad b_{2r}\geq1
+ \quad(0\leq r\leq n).
+\]
+
+% Slide 31.
+\section*{Hodge index for surfaces}
+Let $X$ be a connected compact K\"ahler surface.
+The intersection form
+\[
+ I:H^2(X;\R)\times H^2(X;\R)\longrightarrow\R,
+ \qquad([\alpha],[\beta])\longmapsto\int_X\alpha\wedge\beta
+\]
+is symmetric. For $0\leq k\leq2$, Hard Lefschetz gives
+\[
+ H^k(X)=P^k(X)\oplus LH^{k-2}(X).
+\]
+For $n=k=2$,
+\[
+ H^2(X)=P^2(X)+LH^0(X),\qquad H^0(X)=\C,\qquad L[1]=[\omega].
+\]
+By the Lefschetz decomposition,
+\[
+ H^2(X)=\C[\omega]\orthsum P^2(X)\qquad(L^2).
+\]
+Refine by types:
+\[
+ H^{1,1}(X)_{\R}=\R[\omega]\orthsum P^{1,1}(X)_{\R}.
+\]
+
+% Slide 32. The handwritten final inequality in the norm identity is
+% transcribed literally; no mathematical correction has been made.
+\subsection*{Hodge index: orthogonality and signature}
+\textbf{Goal.} The summands $\R[\omega]$ and $P^{1,1}(X)_{\R}$ are
+$I$-orthogonal; $I$ is positive definite on the first and negative
+definite on the second.
+
+\paragraph{Orthogonality.}
+For $\alpha\in\Prim^2$,
+\[
+ 0=\langle\alpha,\omega\rangle_{L^2}
+ =\int_X\alpha\wedge *\omega
+ =\int_X\alpha\wedge\omega
+ =I([\alpha],[\omega]),
+\]
+since $*\omega=\omega$. Thus
+$\R[\omega]\perp_I P^{1,1}(X)_{\R}$.
+
+\paragraph{The two signs.}
+Let $\alpha\neq0$ be a primitive harmonic $(1,1)$-form.
+\[
+ *\alpha=-\alpha,
+\]
+\[
+ \|\alpha\|_{L^2}^2=\int_X\alpha\wedge *\alpha
+ =-I([\alpha],[\alpha])<0.
+\]
+\[
+ dV_g=\omega^2/2,\qquad
+ I([\omega],[\omega])=\int_X\omega^2=2\Vol_g(X)>0.
+\]
+
+% Slide 33.
+\section*{Generalizing: Hodge--Riemann bilinear relations}
+\paragraph{The Lefschetz bilinear form.}
+Let $X$ be compact K\"ahler of complex dimension $n$, and fix
+$0\leq k\leq n$. For $u=[\alpha]$ and $v=[\beta]$ in $H^k(X;\C)$,
+define
+\[
+ Q_{\omega,k}(u,v)=(-1)^{k(k-1)/2}
+ \int_X\alpha\wedge\beta\wedge\frac{\omega^{n-k}}{(n-k)!}.
+\]
+It depends only on the cohomology classes: change a representative by
+an exact form and apply Stokes' theorem.
+The pairing is $(-1)^k$-symmetric:
+\[
+ Q_{\omega,k}(v,u)=(-1)^kQ_{\omega,k}(u,v).
+\]
+
+% Slide 34.
+\subsection*{Hodge--Riemann bilinear relations}
+\textbf{Theorem.} On $P^k(X;\C)$, the form $Q_{\omega,k}$ is
+nondegenerate, $(-1)^k$-symmetric, and pairs only conjugate Hodge types.
+For $p+q=k$,
+\[
+ i^{p-q}Q_{\omega,k}(\alpha,\bar\alpha)>0
+ \qquad\text{for }0\neq\alpha\in P^{p,q}(X).
+\]
+\paragraph{Proof sketch.}
+For the primitive harmonic representative $\alpha$, positivity is the
+norm identity:
+\[
+ \|\alpha\|_{L^2}^2
+ =i^{p-q}Q_{\omega,k}([\alpha],[\bar\alpha]).
+\]
+For nondegeneracy, pair a nonzero Hodge component with its conjugate.
+Other types contribute zero. Without primitivity, this positivity need
+not hold.
+
+\paragraph{Pointwise linear algebra.}
+For a primitive $(p,q)$-form $\alpha$, with $k=p+q$,
+\[
+ *\bar\alpha=(-1)^{k(k-1)/2}i^{p-q}\bar\alpha
+ \wedge\frac{\omega^{n-k}}{(n-k)!}.
+\]
+Substitute this into
+$\|\alpha\|_{L^2}^2=\int_X\alpha\wedge *\bar\alpha$
+to obtain the norm identity. Pointwise identity; its proof is omitted.
+
+% Slide 35.
+\section*{Polarized pure Hodge structures}
+\paragraph{Pure of weight $k$.}
+A finite-dimensional $\Q$-vector space $V_{\Q}$ with
+\[
+ V_{\C}:=V_{\Q}\otimes_{\Q}\C,\qquad
+ V_{\C}=\bigoplus_{p+q=k}V^{p,q},\qquad
+ \overline{V^{p,q}}=V^{q,p}.
+\]
+\paragraph{A rational polarization.}
+A nondegenerate bilinear form $Q:V_{\Q}\times V_{\Q}\longrightarrow\Q$,
+extended $\C$-bilinearly, such that
+\[
+ Q(\beta,\alpha)=(-1)^kQ(\alpha,\beta),
+\]
+\[
+ Q(V^{p,q},V^{r,s})=0\quad\text{if }(r,s)\neq(q,p),
+\]
+\[
+ i^{p-q}Q(\alpha,\bar\alpha)>0\qquad(0\neq\alpha\in V^{p,q}).
+\]
+For our compact K\"ahler $X$, assume $[\omega]\in H^2(X;\Q)$ and
+$0\leq k\leq n$.
+\[
+ V_{\Q}=P^k(X;\Q)
+ =\ker\bigl(L^{n-k+1}:H^k(X;\Q)\longrightarrow H^{2n-k+2}(X;\Q)\bigr).
+\]
+With its Hodge decomposition, this is polarized by the rational form
+$Q_{\omega,k}$.
+
+% Slide 36.
+\section*{References and credits}
+\begin{enumerate}
+\item Claire Voisin. \emph{Hodge Theory and Complex Algebraic Geometry I.}
+Cambridge Studies in Advanced Mathematics, vol.~76.
+Cambridge University Press, 2002. Translated by Leila Schneps.
+\item Raymond O. Wells, Jr. \emph{Differential Analysis on Complex Manifolds.}
+Third edition. Graduate Texts in Mathematics, vol.~65.
+Springer, 2008.
+\item GPT 6. Assistance with slide preparation and LaTeX typesetting.
+\end{enumerate}
+\end{document}
