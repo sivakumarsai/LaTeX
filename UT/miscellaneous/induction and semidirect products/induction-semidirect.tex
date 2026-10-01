@@ -77,7 +77,7 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\GL}{GL}
-\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Lie}{Lie}\DeclareMathOperator{\Ad}{Ad}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -135,20 +135,24 @@ Global sections of $G\times^H V$ are maps $s\colon G/H\to G\times^H V$ satisfyin
 \end{align*}
 imply that $f(gh) = \rho(h^{-1})f(g)$ for all $h\in H$, so we can identify the global sections $\Gamma(G/H, G\times^H V)$ of $G\times^H V$ with the function space 
 \[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}\}.\]
-The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space. 
+The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space.
+
+When $G$ is a real Lie group, there is an equivalence of the categories of finite-rank $G$-equivariant vector bundles on $G/H$ and finite-dimensional smooth representations of $H$; one functor is the associated bundle construction and the inverse is given by taking the fiber at a point.
 \subsection{Densities on smooth manifolds}
 Let $s>0$. On a real vector space $V$ of dimension $n$, $s$-densities are maps of sets $\mu\colon V^n\to \mathbb R$ such that for any $A\in\End(V)$, 
 \[\mu(Av_1,\dots,Av_n) = \abs{\det A}^s\mu(v_1,\dots,v_n).\]
-Denote by $D^s(V)$ the set of all $s$-densities on $V$. It is the case that $D^s(V)$ is a one-dimensional vector space under pointwise addition and scalar multiplication, and that every $s$-density on $V$ is either positive, negative, or the zero density. Indeed, choose a basis $\{e_1,\dots,e_n\}$ of $V$ so that for any $v_1,\dots,v_n\in V$, there exists $A\in \End(V)$ for which $Ae_i = v_i$. Then the map $D^s(V)\to \mathbb R$ given by $\mu\mapsto \mu(e_1,\dots,e_n)$ is an injection since an $s$-density $\mu$ is the zero density if and only if $\mu(e_1,\dots,e_n) = 0$, since
+Denote by $D^s(V)$ the set of all $s$-densities on $V$. It is the case that $D^s(V)$ is a one-dimensional real vector space under pointwise addition and scalar multiplication, and we may identify $D^s(V)$ with $\abs{\bigwedge^nV^\ast}^s$, where the $\abs{-}^s$ is a suggestive notation.
+
+Every $s$-density on $V$ is either positive, negative, or the zero density. Indeed, choose a basis $\{e_1,\dots,e_n\}$ of $V$ so that for any $v_1,\dots,v_n\in V$, there exists $A\in \End(V)$ for which $Ae_i = v_i$. Then the map $D^s(V)\to \mathbb R$ given by $\mu\mapsto \mu(e_1,\dots,e_n)$ is an injection since an $s$-density $\mu$ is the zero density if and only if $\mu(e_1,\dots,e_n) = 0$, since
 \[\mu(v_1,\dots,v_n) = \abs{\det A}^s\mu(e_1,\dots,e_n).\] It remains to exhibit a nonzero density: for this consider the map
 \[(v_1,\dots,v_n)\mapsto \abs{\det A}^s\]
 for $A\in \End(V)$ as before, and this is a density since the determinant is multiplicative. For any $s$-density $\mu$, the earlier calculation $\mu(v_1,\dots,v_n) = \abs{\det A}^s\mu(e_1,\dots,e_n)$ implies that the sign of $\mu$ is the sign of $\mu(e_1,\dots,e_n)$.
 
-Let $X$ be a smooth real manifold of dimension $n$. The frame bundle $F(TX)$ of the tangent bundle, called the tangent frame bundle, is the bundle over $X$ of all ordered bases of the tangent spaces at points of $X$; that is, the fiber over $x\in X$ is the set of ordered bases of $T_xX$. By an ordered basis of a real vector space $V$ we mean a vector space isomorphism $\mathbb R^n\to V^n$. The tangent frame bundle is a principal $\GL_n(\mathbb R)$-bundle; the right action on the fiber over $p$ is given by precomposing an isomorphism $\mathbb R^n\to T_xX$ with multiplication by an element of $\GL_n(\mathbb R)$.
+Let $X$ be a smooth real manifold of dimension $n$. The frame bundle $F(TX)$ of the tangent bundle, called the tangent frame bundle, is the bundle over $X$ of all ordered bases of the tangent spaces at points of $X$; that is, the fiber over $x\in X$ is the set of ordered bases of $T_xX$. By an ordered basis of a real vector space $V$ we mean a vector space isomorphism $\beta\colon\mathbb R^n\to V$. The tangent frame bundle is a principal $\GL_n(\mathbb R)$-bundle; the right action on the fiber over $p$ is given by precomposing an isomorphism $\mathbb R^n\to T_xX$ with multiplication by an element of $\GL_n(\mathbb R)$.
 
 Consider the left action of $\GL_n(\mathbb R)$ on $D^s(\mathbb R^n)$ by $A\mu = \mu(A^{-1}-,\dots,A^{-1}-) = \abs{\det A}^{-s}\mu$ (this is some kind of left regular action if we identify $(\mathbb R^n)^n$ with $\mathbb R^{n\times n}$ by concatenation). This defines a one-dimensional representation of $\GL_n(\mathbb R)$, so we can form the associated bundle
 \[D^s_X\coloneqq F(TX)\times^{\GL_n(\mathbb R)}D^s(\mathbb R^n) = F(TX)\times D^s(\mathbb R^n)/\sim,\]
-where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s\mu)$. We call this bundle the bundle of $s$-densities on $X$. Note that $D^s_{-}$ is a covariant functor. The map $(\beta,\mu)\mapsto \mu\circ \beta^{-1}$ defines an isomorphism of the fiber over $x\in X$ of $D^s_X$ with $D^s(T_xX)$, so we can think of $D^s_X$ as $\coprod_{x\in X}D^s(T_xX)$. 
+where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s\mu)$. We call this bundle the bundle of $s$-densities on $X$. The map $(\beta,\mu)\mapsto \mu\circ (\beta^{-1})^{\oplus n}$ defines an isomorphism of the fiber over $x\in X$ of $D^s_X$ with $D^s(T_xX)$, so we can think of $D^s_X$ as $\coprod_{x\in X}D^s(T_xX)$; this also shows that $D^s_X$ is a line bundle. Note that $D^s_{-}$ is covariant (maybe we shouldn't call it a functor?), taking a local diffeomorphism $f\colon X\to Y$ to the map $(\beta,\mu)\mapsto (df\circ\beta,\mu)$, which on fibers is just pushforward along $df$.
 % The point of constructing the bundle of $s$-densities this way is so that we treat all bases of the tangent spaces of $X$ equally, in view of how densities were defined on vector spaces.
 
 Global sections of $D^s_X$ are called $s$-densities on $X$. These $s$-densities pull back along maps $X\to Y$ in a similar way to differential forms, and pulling back preserves the sign of the $s$-density. If $X$ is orientable and $\omega\in \Omega^n(X)$ is a top form on $X$, then $\abs{\omega}^s$ is a smooth $s$-density on $X$ (and every $s$-density on $X$ appears this way!). In general, for any $X$, the bundle of $s$-densities on $X$ is nontrivial. We can construct one by using a partition of unity $\{c_j\}_j$ subordinate to an atlas $\{U_j\}_j$ of $X$, choosing positive $s$-densities $\delta_j$ on each $U_j$ (e.g. by pulling back a positive $s$-density on the copy of $\mathbb R^n$ each $U_j$ is homeomorphic to), and forming the sum $\sum_j c_j\delta_j$, which is the desired nontrivial $s$-density on $X$.
@@ -159,12 +163,12 @@ Given an $s$-density and a $t$-density on $X$, we may multiply them together to 
 \[\abr{-,-}\colon \Gamma^\infty_c(X,D^{1/2}_X)\times\Gamma^\infty_c(X,D^{1/2}_X)\to\mathbb R,\]
 given by multiplication and then integration.
 
-\subsection{Unitary induction for Lie groups}
+\subsection{Unitary induction for real Lie groups}
 Let $G$ be a real Lie group with $H$ a closed subgroup, and let $\mathfrak g = \Lie(G)$, $\mathfrak h = \Lie(H)$ be the corresponding Lie algebras. We are interested in the homogeneous space $X = G/H$.
 
 \sai{G-equivariance of bundle of $s$-densities, corresponding one-dim representation by borel-weil(? adjectives on $G$), recipe for unitary induction and corresponding function space view, if $G$ were not a Lie group then we would need to use ``Hilbert bundles'' (details about homogeneous spaces not having invariant measures)...}
 
-Since $G$ acts on $X$ by diffeomorphisms and $X\mapsto D^s_X$ is a contravariant functor, $G$ acts on the bundle by 
+Since $G$ acts on $X$ by diffeomorphisms, it follows that $D^s_X$ is a $G$-equivariant line bundle. The fiber over $1_GH$ is isomorphic to $D^s(T_{1_GH}(G/H)) = D^s(\mathfrak g/\mathfrak h)\cong \abs{\bigwedge^\text{top}(\mathfrak g/\mathfrak h)^\ast}^s$, and the action of $H$ on this one-dimensional real vector space is given by the character $h\mapsto \abs{\det(\Ad(h)^{-1}|_{\mathfrak g/\mathfrak h})}^{s}$.
 
 \section{Semidirect products}
 \sai{definitions, want to find representations of semidirect products so for a first step restrict to the nearly Abelian (but not Metabelian, this is a reserved term) Lie groups, then proceed with the method of little groups...}
