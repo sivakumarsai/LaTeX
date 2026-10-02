@@ -78,6 +78,10 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\Lie}{Lie}\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Mat}{Mat}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -110,7 +114,7 @@ In these notes we describe how to obtain the irreducible representations of the 
 
 \section{Induction}
 \subsection{Vector bundles coming from representations of subgroups}
-Let $G$ be a locally compact separable (i.e., second countable) group. If $X$ is a left $G$-set and $G$ acts transitively on $X$, then $X$ is isomorphic to the right coset space $G/\Stab_Gx$ for any $x\in X$ as left $G$-sets. We can promote this bijection of left $G$-sets to an isomorphism of left $G$-objects for suitable objects if we sprinkle in the appropriate adjectives in the correct places. We will focus on these so-called \textit{homogeneous spaces} $G/H$ (for $H$ a closed subgroup) throughout these notes. In general a left $G$-space action naturally linearizes into a right action on function spaces: If $G$ acts on the left of $X$, then $G$ acts on the right of $\Fun(X)$ by $(fg)(-) = f(g(-))$. We can also obtain a left action on function spaces: $G$ acts on the left of $\Fun(X)$ by $(gf)(-) = f(g^{-1}(-))$. By $\Fun$ we mean spaces of whatever looks like functions (i.e., functions, sections, cohomology classes, etc.). We will always linearize left actions on spaces to left actions on functions in what follows.
+Let $G$ be a locally compact second countable group. If $X$ is a left $G$-set and $G$ acts transitively on $X$, then $X$ is isomorphic to the right coset space $G/\Stab_G(x)$ for any $x\in X$ as left $G$-sets. We can promote this bijection of left $G$-sets to an isomorphism of left $G$-objects for suitable objects if we sprinkle in the appropriate adjectives in the correct places. We will focus on these so-called \textit{homogeneous spaces} $G/H$ (for $H$ a closed subgroup) throughout these notes. In general a left $G$-space action naturally linearizes into a right action on function spaces: If $G$ acts on the left of $X$, then $G$ acts on the right of $\Fun(X)$ by $(fg)(-) = f(g(-))$. We can also obtain a left action on function spaces: $G$ acts on the left of $\Fun(X)$ by $(gf)(-) = f(g^{-1}(-))$. By $\Fun$ we mean spaces of whatever looks like functions (i.e., functions, sections, cohomology classes, etc.). We will always linearize left actions on spaces to left actions on functions in what follows.
 
 Let $H$ be a closed subgroup of $G$ and consider the principal $H$-bundle
 \[\begin{tikzcd}[ampersand replacement=\&]
@@ -135,7 +139,7 @@ Global sections of $G\times^H V$ are maps $s\colon G/H\to G\times^H V$ satisfyin
 \end{align*}
 imply that $f(gh) = \rho(h^{-1})f(g)$ for all $h\in H$, so we can identify the global sections $\Gamma(G/H, G\times^H V)$ of $G\times^H V$ with the function space 
 \[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}\}.\]
-The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space.
+The left action of $G$ on $\Gamma(G/H, G\times^H V)$ is transported to the left action $(gf)(-) = f(g^{-1}(-))$ on the above function space. This function space is usually denoted by $\Ind_H^G(\rho)$ or $\Ind_H^G(V)$, and is called an induced representation of $G$ (of the representation $(\rho, V)$).
 
 When $G$ is a real Lie group, there is an equivalence of the categories of finite-rank $G$-equivariant vector bundles on $G/H$ and finite-dimensional smooth representations of $H$; one functor is the associated bundle construction and the inverse is given by taking the fiber at a point.
 \subsection{Densities on smooth manifolds}
@@ -157,22 +161,57 @@ where $(\beta,\mu)\sim (\beta A,A^{-1}\mu)=(\beta\circ (A\cdot-), \abs{\det A}^s
 
 Global sections of $D^s_X$ are called $s$-densities on $X$. These $s$-densities pull back along maps $X\to Y$ in a similar way to differential forms, and pulling back preserves the sign of the $s$-density. If $X$ is orientable and $\omega\in \Omega^n(X)$ is a top form on $X$, then $\abs{\omega}^s$ is a smooth $s$-density on $X$ (and every $s$-density on $X$ appears this way!). In general, for any $X$, the bundle of $s$-densities on $X$ is nontrivial. We can construct one by using a partition of unity $\{c_j\}_j$ subordinate to an atlas $\{U_j\}_j$ of $X$, choosing positive $s$-densities $\delta_j$ on each $U_j$ (e.g. by pulling back a positive $s$-density on the copy of $\mathbb R^n$ each $U_j$ is homeomorphic to), and forming the sum $\sum_j c_j\delta_j$, which is the desired nontrivial $s$-density on $X$.
 
-The compactly supported smooth $1$-densities on $X$ may be integrated, by passing to local coordinates and integrating over $\mathbb R^n$ using the Lebesgue integral. This is because the smooth $1$-densities on $\mathbb R^n$ are of the form $f\abs{dx_1\wedge \cdots \wedge dx_n}$ for $f\in C^\infty(\mathbb R^n)$ a real-valued smooth function on $\mathbb R^n$, and the change of coordinates formula for these densities matches the corresponding change of coordinates for the Lebesgue measure on the real line.
+The compactly supported continuous $1$-densities on $X$ may be integrated, by passing to local coordinates and integrating over $\mathbb R^n$ using the Lebesgue integral. This is because the continuous $1$-densities on $\mathbb R^n$ are of the form $f\abs{dx_1\wedge \cdots \wedge dx_n}$ for $f\in C(\mathbb R^n)$ a real-valued continuous function on $\mathbb R^n$, and the change of coordinates formula for these densities matches the corresponding change of coordinates for the Lebesgue measure on the real line. Everything works as expected, but notably if $f\colon X\to Y$ is a diffeomorphism and $s\in \Gamma_c(Y,D^1(Y))$, then 
+\[\int_X f^\ast s = \int_Y s.\]
 
-Given an $s$-density and a $t$-density on $X$, we may multiply them together to obtain an $(s+t)$-density on $X$. In other words, multiplication defines a linear map $\Gamma(X,D^s_X)\otimes_{\mathbb R}\Gamma(X,D^t_X)\to \Gamma(X,D^{s+t}_X)$. Therefore we can form an inner product on the vector space $\Gamma^\infty_c(X,D^{1/2}_X)$ of compactly supported smooth half-densities on $X$,
-\[\abr{-,-}\colon \Gamma^\infty_c(X,D^{1/2}_X)\times\Gamma^\infty_c(X,D^{1/2}_X)\to\mathbb R,\]
+Given an $s$-density and a $t$-density on $X$, we may multiply them together to obtain an $(s+t)$-density on $X$. In other words, multiplication defines a linear map $\Gamma(X,D^s_X)\otimes_{\mathbb R}\Gamma(X,D^t_X)\to \Gamma(X,D^{s+t}_X)$. Therefore we can form an inner product on the vector space $\Gamma_c(X,D^{1/2}_X)$ of compactly supported smooth half-densities on $X$,
+\[\abr{-,-}\colon \Gamma_c(X,D^{1/2}_X)\times\Gamma_c(X,D^{1/2}_X)\to\mathbb R,\]
 given by multiplication and then integration.
 
 \subsection{Unitary induction for real Lie groups}
 Let $G$ be a real Lie group with $H$ a closed subgroup, and let $\mathfrak g = \Lie(G)$, $\mathfrak h = \Lie(H)$ be the corresponding Lie algebras. We are interested in the homogeneous space $X = G/H$.
 
-\sai{G-equivariance of bundle of $s$-densities, corresponding one-dim representation by borel-weil(? adjectives on $G$), recipe for unitary induction and corresponding function space view, if $G$ were not a Lie group then we would need to use ``Hilbert bundles'' (details about homogeneous spaces not having invariant measures)...}
+Since $G$ acts on $X$ by diffeomorphisms, it follows that $D^s_X$ is a $G$-equivariant line bundle. The fiber over $1_GH$ is isomorphic to $D^s(T_{1_GH}(G/H)) = D^s(\mathfrak g/\mathfrak h)\cong \abs{\bigwedge^\text{top}(\mathfrak g/\mathfrak h)^\ast}^s$, and the action of $H$ on this one-dimensional real vector space is given by the character $h\mapsto \abs{\det(\Ad(h)^{-1}|_{\mathfrak g/\mathfrak h})}^{s}$ (a fun fact).
 
-Since $G$ acts on $X$ by diffeomorphisms, it follows that $D^s_X$ is a $G$-equivariant line bundle. The fiber over $1_GH$ is isomorphic to $D^s(T_{1_GH}(G/H)) = D^s(\mathfrak g/\mathfrak h)\cong \abs{\bigwedge^\text{top}(\mathfrak g/\mathfrak h)^\ast}^s$, and the action of $H$ on this one-dimensional real vector space is given by the character $h\mapsto \abs{\det(\Ad(h)^{-1}|_{\mathfrak g/\mathfrak h})}^{s}$.
+Let $(\rho,V)$ be a unitary representation of $H$ with $H$-invariant Hermitian inner product $\abr{-,-}_V$. Then form the associated bundle $G\times^H V$ on $X$ and take the tensor product with the bundle of half-densities $D^{1/2}(X)$ on $X$. The compactly supported continuous sections of $(G\times^H V)\otimes D^{1/2}(X)$ form an inner product space, via the Hermitian pairing
+\[\abr{-,-}\colon \Gamma_c(X,(G\times^H V)\otimes D^{1/2}(X))\otimes_{\mathbb R} \Gamma_c(X,(G\times^H V)\otimes D^{1/2}(X))\to \Gamma_c(X,D^1(X))\to \mathbb C,\]
+which explicitly looks like 
+\[\abr{f\abs{\dd x}^{1/2},g\abs{\dd x}^{1/2}} = \int_X\abr{f,g}_V\abs{\dd x},\]
+and this pairing is $G$-invariant. The Hilbert space completion of $\Gamma_c(X,(G\times^H V)\otimes D^{1/2}(X))$ is the induced representation of $V$ to a representation of $G$; it is some kind of $L^2$ space. We can identify this space with the space of functions
+\[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}; \norm{f}^2_{L^2}<\infty\},\]
+where $\norm{f}^2_{L^2}=\int_{G/H}\abr{f,f}_V\abs{\dd x}$ (using $\abs{\dd x}$ to denote the unsigned ``measure'' we get on $G/H$ which is left $G$-invariant since I don't know a better notation). This Hilbert space of functions is denoted by $\Ind_H^G(\rho)$ or $\Ind_H^G(V)$.
+
+Unitary induction can be done in the case when $G$ is merely a locally compact second countable group, but since $G/H$ need not admit a left $G$-invariant Haar measure, we have to use something called a ``Hilbert bundle'' to get around this issue. This procedure and more (i.e. discussion of representations of semidirect products) is explained in Unitary Group Representations in Physics, Probability, and Number Theory by Mackey in sections 7 through 11.
 
 \section{Semidirect products}
-\sai{definitions, want to find representations of semidirect products so for a first step restrict to the nearly Abelian (but not Metabelian, this is a reserved term) Lie groups, then proceed with the method of little groups...}
+Let $G$ be a real Lie group which is the semidirect product of closed subgroups $N$ and $H$; that is, $G = N\rtimes_\varphi H$ where $\phi\colon H\to \Aut(N)$ is smooth. As a set, $G = N\rtimes_\varphi H = N\times H$ with group law
+\[(n_1,h_1)(n_2,h_2) = (n_1\varphi(h_1)n_2,h_1h_2).\]
+
+We now restrict to the case where $N$ is Abelian, and we call groups $G$ appearing as $N\rtimes_\varphi H$ ``almost Abelian''. To find a (unitary, irreducible) representation of $G$, we will carry out a prescribed sequence of inductions of representations, which physicists call ``the method of little groups''. This method is attributed to Wigner and also Mackey. The recipe is as follows:
+
+Step 1. Since $N$ is Abelian, consider the dual group $\widehat N = \Hom(N,S^1)$ which parameterize the irreducible (one-dimensional) representations of $N$. Then both $H$ and $N$ act on $\widehat N$ by 
+\begin{align*}
+	h\chi &= \chi(h(-)h^{-1})\quad\text{and}\\
+	n\chi &= \chi(n(-)n^{-1}) = \chi.
+\end{align*}
+Note that $N$ acts trivially on $\widehat N$. By precomposing characters $\chi\colon N\to S^1$ with the projection to the first component map $\pi_1\colon N\rtimes_\varphi H\to N$, we obtain an action of $G = N\rtimes_\varphi H$ acts on $\widehat N$ by 
+\[(n,h)\chi = \chi(\pi_1((n,h)(-,1_H)(n,h)^{-1})) = \chi(\pi_1((1_N,h)(-,1_H)(1_N,h)^{-1})).\]
+
+Step 2. Calculate the orbits of the action of $G$ on $\widehat N$, so that 
+\[\widehat N = \bigsqcup_{i\in I}G\chi_i\quad\text{and}\quad G\chi_i\cong G/\Stab_G(\chi_i).\]
+Since $N$ acts trivially on $\widehat N$, $\Stab_G(\chi_i)\cong N\rtimes_\varphi L_i$ for some closed subgroup $L_i$ of $H$. We call $L_i$ a ``little group''.
+
+Step 3. Take a representation $(\rho,V)$ of $L_i$ and induce it to a representation of $N\rtimes_\varphi L_i = \Stab_G(\chi_i)$; explicitly the action looks like 
+\[(n,h)v = \chi_i(n)\rho(h)v.\]
+Denote this representation by $\Ind_{L_i}^{\Stab_G(\chi_i)}(V)$.
+
+Step 4. Finally induce the representation $\Ind_{L_i}^{\Stab_G(\chi_i)}(V)$ of $\Stab_G(\chi_i)$ to a representation of $G$; by doing this we obtain the function space $W = \Ind_{\Stab_G(\chi_i)}^G(\Ind_{L_i}^{\Stab_G(\chi_i)}(V))$. We obtain a unitary representation of $G$ if $(\rho,V)$ was a unitary representation of $L_i$, but it's not clear that we obtain an irreducible representation of $G$ if $(\rho,V)$ was an irreducible representation of $L_i$.
+
+It is a theorem that the representation $W$ is irreducible if and only if $(\rho,V)$ is irreducible. But we can see this sort of intuitively by seeing that the induction steps roughly just twist $\rho$ by a character, and then smears the intermediate representation over the orbit $G\chi_i$ (note that $G$ acts transitively on $G\chi_i$) to form the bundle whose sections are $W$. These steps seem to be reversible, and it might be believable that the steps which reverse the recipe above preserve reducibility. A better explanation is in \href{https://math.stackexchange.com/a/5093490}{this StackExchange answer}, for finite groups.
 
 \section{The Lorentz group}
-\sai{define Lorentz group and its double cover, the Poincar\'e group, then demand to find reps of this larger group using the above recipe, and small explanation of what they mean...}
+The space $\mathbb R^4 = \mathbb R^{1+3}$ is called spacetime, and has metric given by any matrix $g$ with signature $\diag(+,-,-,-)$. The orthogonal group preserving this metric is 
+\[O(1,3) = \{A\in \Mat_{4\times 4}(\mathbb R)\mid A^TgA = g\}\subseteq O(4).\]
+
+The group $O(1,3)$ is called the homogeneous Lorentz group. By viewing $\mathbb R^{1+3}$ as an affine space, the isometries of $\mathbb R^{1+3}$ are captured by the group $\mathbb R^{1+3}\rtimes O(1,3)$ (where the action of $O(1,3)$ on $\mathbb R^{1+3}$ is the usual one, so we suppress writing down the homomorphism $O(1,3)\to \Aut(\mathbb R^{1+3})$). The group $\mathbb R^{1+3}\rtimes O(1,3)$ is called the inhomogeneous Lorentz group, also called the Poincar\'e group.
 \end{document}
