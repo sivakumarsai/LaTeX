@@ -1,0 +1,323 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\allowdisplaybreaks
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\XX}{\mathcal X}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\JJ}{\mathcal J}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\UU}{\mathcal U}
+\newcommand{\NN}{\mathcal N}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\bdel}{\bar\partial}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\PGL}{PGL}
+\title{Deformation of complex structures}
+\author{}
+\date{}
+\begin{document}
+\begin{center}
+{\Large Deformation of complex structures}
+\end{center}
+
+% Source: handwritten PDF, page 1.
+\paragraph{Motivation.}
+Last time we had K\"ahler structure; today we do not.
+What happens to Hodge structure when we perturb complex structures?
+
+\paragraph{Motivating example: complex hypersurfaces.}
+Let $X\subset\PP^n_{\C}$. Since $X$ is a hypersurface,
+\[
+ X=\{f=0\},\qquad \deg f=d.
+\]
+We want to deform $X$ to
+\[
+ X_t=\{f+tG=0\}\subset\PP^{n+1}_{\C},
+ \qquad \deg G=\deg f=d,
+\]
+where $t\in\Delta\subset\C^n$, with $\Delta$ a polydisk.
+Or, since $n=1$, $\Delta=\text{disk}$?
+
+% Source: page 2.
+\paragraph{Definition.}
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+ \XX \arrow[r,hook]
+     \arrow[dr,"\pi"']
+ & \PP^{n+1}\times\Delta \arrow[d]\\
+ & \Delta^{(n)}
+\end{tikzcd}
+\qquad \pi^{-1}(\{0\})=X.
+\]
+The embedding is holomorphic, and $\pi$ is a submersion.
+$\Delta^{(n)}$ is a complex manifold.
+$\XX$ should be our family of spaces.
+
+\paragraph{What if I forget the ambient space $\PP^{n+1}_{\C}$?}
+For example,
+\[
+ X=\{\underbrace{z_0z_1-z_2^2}_{f}=0\}\subset\PP^2_{\C},
+ \qquad X_t=\{f+tG=0\},
+\]
+where $X\cong X_t\cong\PP^1_{\C}$.
+So even though there is a deformation, the complex structure stays the
+same. We want to also look at something different. This leads to the
+definition:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+ X \arrow[r,hook] \arrow[d] & \XX \arrow[d,"\pi"]\\
+ 0 \arrow[r,phantom,"\in"] & \Delta
+\end{tikzcd}
+\qquad \pi\text{ a proper holomorphic submersion}.
+\]
+Ehresmann gives
+\[
+ \XX=X\times\Delta\qquad\text{(smooth trivializations)}.
+\]
+\[
+ (X,J)\quad\leadsto\quad\{(X,J_t)\}\quad\text{for }t\in\Delta.
+\]
+
+% Source: page 3.
+For $X\hookrightarrow\PP^{n+1}_{\C}$, get a short exact sequence of
+vector bundles:
+\[
+ 0\longrightarrow T_X\longrightarrow T_{\PP^{n+1}}|_X
+ \longrightarrow
+ \underbrace{T_{\PP^{n+1}}|_X/T_X}_{\NN_{X/\PP^{n+1}}}
+ \longrightarrow0.
+\]
+Then get a long exact sequence of ?-cohomology:
+\[
+\begin{aligned}
+ 0&\longrightarrow H^0(X,T_X)
+ \longrightarrow H^0(X,T_{\PP^{n+1}}|_X)\\
+ &\longrightarrow H^0(X,\NN_{X/\PP^{n+1}})
+ \xrightarrow{\delta}H^1(X,T_X).
+\end{aligned}
+\]
+$\delta$: the Kodaira--Spencer map.
+The cohomology theory is Dolbeault: \textit{see pic 2}.
+% The right-hand side of this isomorphism is left blank in the source.
+\[
+ \underbrace{H^q(X,E)}_{(\mathrm{dR})}
+ \underset{\text{(Dolbeault's theorem)}}{\cong}\quad
+H^{p,q}_{\overline{\partial}}(X,E) = \frac{\text{closed}}{\text{exact}}\]
+
+\paragraph{Main antagonist.}
+\[
+ H^0(X,\NN_{X/\PP^{n+1}})\xrightarrow{\delta}H^1(X,T_X).
+\]
+$H^0(X,\NN_{X/\PP^{n+1}})$: ``embedded first-order deformations of
+$X\subset\PP^{n+1}_{\C}$.''
+
+$H^1(X,T_X)$: ``abstract first-order deformations of $J$.''
+
+$\ker\delta$: all first-order deformations of the complex structure
+which are trivial.
+
+% Source: page 4.
+\paragraph{Question.}
+Does every abstract deformation of $J$ arise from varying the embedding?
+(The example from before is such an example of an element in the kernel.)
+
+For a hypersurface in $\PP^{n+1}_{\C}$, let
+\[
+ S=\C[z_0,\ldots,z_{n+1}].
+\]
+See that it is graded:
+\[
+ S=\bigoplus_{k\geq0}S_k,
+ \qquad S_k:\text{ homogeneous polynomials of degree }k,
+ \qquad e_j=\left(\frac{z_j}{z_i}\right)^d e_i.
+\]
+
+\paragraph{Enter line bundles.}
+Preview:
+\[
+ \C^{n+1}\ni\C z=\ell\qquad(z\neq0).
+\]
+For $d>0$,
+\[
+\begin{tikzcd}[row sep=large,column sep=small]
+ \OO_{\PP^{n+1}}(d) \arrow[d]
+ & \ni (\ell^{\vee})^{\otimes d}\\
+ \PP^{n+1} & \ni[\ell]
+\end{tikzcd}
+\]
+$(\ell^{\vee})^{\otimes d}$ corresponds to homogeneous degree-$d$
+polynomials on $\ell$ (one-dimensional, so $\otimes=\operatorname{Sym}$).
+
+From $S$, get local trivializations with transition map
+\[
+ e_j=\left(\frac{z_j}{z_i}\right)^d e_i
+ \qquad\text{on }\{z_i\neq0\}.
+\]
+For $X\subset\PP^{n+1}_{\C}$,
+\[
+ \NN_{X/\PP^{n+1}}=\OO_X(d)\qquad(d>0).
+\]
+We are working on deforming hypersurfaces cut out by degree-$d$
+homogeneous polynomials.
+
+% Source: pages 4--5. The notation theta_X is retained from the notes.
+\paragraph{Example: quartics in $\PP^3$ ($n=2$).}
+\[
+ H^0(X,\OO_X(4))\xrightarrow{\delta}H^1(X,\theta_X).
+\]
+\textit{Why $\theta_X$?}
+\[
+ H^0(X,\OO_X(4))\cong\C^{34},
+\]
+\[
+ 0\longrightarrow\ker\delta\hookrightarrow\C^{34}
+ \xrightarrow{\delta}H^1(X,\theta_X)\longrightarrow\C\longrightarrow0.
+\]
+\[
+ \ker\delta=\Lie(\PGL_4\C)\quad\text{(15-dimensional)},
+ \qquad H^1(X,\theta_X)\quad\text{(20-dimensional)}.
+\]
+Details in Voisin II.6.
+
+% Source: page 5.
+\paragraph{Abstract deformations.}
+Switch gears to abstract deformations, to see that they are parametrized
+by $H^1(X,T_X)$.
+
+$M=X$, but now with Riemannian structure to make sense of it; and it
+won't matter which $g$.
+\[
+ \EE=\Gamma^{\infty}(X,\End_{\R}(TM)),
+ \qquad
+ \JJ(M)=\{J\in\EE\mid J^2=-\id\}.
+\]
+$\JJ(M)$: all possible complex structures; not a linear space.
+The $C^{\infty}$ topology is given by seminorms
+\[
+ \|A\|_{C^r}=\max_{0\leq j\leq r}\sup_{x\in M}
+ |\nabla^j A(x)|,
+\]
+where $M$ has a Levi-Civita connection $\nabla$ since $M$ has a
+Riemannian metric $g$.
+
+For $J\in\JJ(M)$,
+\[
+ T_{\C}M=T_J^{1,0}M\oplus T_J^{0,1}M,
+\]
+with projectors $\pi_J^{0,1}$ and $\pi_J^{1,0}$.
+For another $J'\in\JJ(M)$, get
+\[
+ P_{J'}:=\pi_J^{0,1}|_{T_{J'}^{0,1}M}:
+ T_{J'}^{0,1}M\longrightarrow T_J^{0,1}M.
+\]
+
+% Source: page 6. Type indices and directions are kept as written.
+\[
+ \UU_J=\{J'\in\JJ(M)\mid P_{J'}\text{ is a pointwise isomorphism}\},
+ \qquad\UU_J\subset\JJ(M)\subset\EE.
+\]
+For $J'\in\UU_J$, $\xi_J\in A^{0,1}(M,T_J^{0,1}M)$, and
+\[
+ \xi_{J'}=\pi_J^{1,0}\circ P_{J'}^{-1}:
+ T_J^{0,1}\longrightarrow T_J^{1,0}.
+\]
+Conversely, given
+\[
+ E=T_J^{1,0}\xrightarrow{\xi}F=T^{0,1},
+\]
+look at its graph
+\[
+ L_{\xi}=\{v+\xi(v)\mid v\in F\}.
+\]
+Define the complex conjugate map $\bar\xi:E\longrightarrow F$ and the
+conjugate graph
+\[
+ \overline{L_{\xi}}=\{u+\bar\xi(u)\}.
+\]
+Then obtain $J'_{\xi}$ which does
+\[
+ J'_{\xi}u=-iu\quad\text{for }u\in L_{\xi},
+\]
+and then get
+\[
+ J_{\xi}u=iu\quad\text{for }u\in\overline{L_{\xi}},
+ \qquad T_{\C}M=L_{\xi}\oplus\overline{L_{\xi}}.
+\]
+\paragraph{Problem.}
+$J_{\xi}$ is not a complex structure, but an almost complex structure.
+% The source writes +id here, although it writes -id earlier.
+We merely have $J_{\xi}^2=\id$. Need to make it a complex structure.
+
+Let $t=(t_1,\ldots,t_n)\in\Delta$, a polydisk. Look at
+\[
+ \xi_1(t)=\sum_{k=1}^{n}t^k\eta_k,
+ \qquad \eta_1,\ldots,\eta_N:F\longrightarrow E,
+\]
+the first-order term of $\xi$. Get
+\[
+ \begin{aligned}
+ \xi:T_0\Delta&\longrightarrow A^{0,1}(X,T_X),\\
+ v=\left.\sum_kv^k\frac{\partial}{\partial t^k}\right|_{t=0}
+ &\longmapsto\sum_kv^k\eta_k.
+ \end{aligned}
+\]
+
+% Source: page 7.
+\section*{Newlander--Nirenberg theorem}
+If
+\[
+ \xi=\xi_{\bar i}^{a}\,d\bar z^{i}\times\partial_a,
+ \qquad Z_i:=\partial_{\bar i}+\xi_{\bar i}^{a}\partial_a,
+\]
+then
+\[
+ [Z_i,Z_j]=C_{ij}^{a},
+\]
+so that we get
+\[
+ \bdel\xi+\frac12[\xi,\xi]=0
+ \qquad\text{(Maurer--Cartan equation)}.
+\]
+So first-order deformations of complex structures correspond to
+elements of $A^{0,1}(X,T_X)$ with $\bdel\eta=0$
+(since, to first order, the bracket actually vanishes).
+
+Now claim that
+\[
+ \xi:T_0\Delta\longrightarrow A^{0,1}(X,T_X)
+\]
+actually maps to
+\[
+ H^{0,1}_{\bdel}(X,T_X)=H^1(X,T_X)
+ \qquad\text{(this is due to Kodaira--Spencer)}.
+\]
+I.e., if you
+
+Since:
+\begin{enumerate}
+ \item closed with respect to $\bdel$;
+ \item $\XX=X\times\Delta\longrightarrow\Delta$.
+\end{enumerate}
+
+\paragraph{Question.}
+Given $\alpha\in H^1(X,T_X)$, can we obtain a family
+$\XX\longrightarrow\Delta$?
+
+Yes! But up to first order, provided $X$ has
+\[
+ H^2(X,T_X)=0.
+\]
+This is due to Kodaira--Nirenberg--Spencer.
+\end{document}
