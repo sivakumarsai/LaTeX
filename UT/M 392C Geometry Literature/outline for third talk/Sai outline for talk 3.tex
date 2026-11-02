@@ -133,10 +133,25 @@
             \item We restrict to the subset of semistable points since we should not send $[v]$ to $[0\colon\cdots\colon 0]$
             \item The points of the variety $V(I)$ are in one to one correspondence with closures of $G$-orbits in the semistable locus $\mathbb P^{ss}$
             \item With $G = \mathbb C^\times$ acting on $\mathbb C^3$ by $t\cdot(x,y,z) = (tx,t^{-1}y,z)$, we obtain the action of $G$ on $\mathbb P^2$ by $t\cdot[x:y:z] = [tx:t^{-1}y:z]$, $R^G = \mathbb C[xy,z]$, $\mathbb P^{ss} = \mathbb P^2\setminus\{[1:0:0], [0:1:0]\}$, $D= 2\cdot \lcm(2,1) = 4$ $f_0^{D/d_0} = x^2y^2$, $f_1^{D/d_1} = z^4$, and $I = 0$ (there are no relations), so $\mathbb P^2/\!/\mathbb C^\times = V(I) = \mathbb P^1$
-            \item Let $G= \mathbb C^\times$ act on $\mathbb C^4$ by $t\cdot(w,x,y,z) = (tw,tx,t^{-1}y,t^{-1}z)$, so that $R^G = \mathbb C[wy,wz,xy,xz]$. We would raise these generators to the fourth power ($D = 4\cdot \lcm(2,2,2,2) = 8$), but already we can see that the relations will be given by the defining ideal $I = \abr{t_0t_4-t_3t_2}$. Therefore $\mathbb P^3/\!/\mathbb C^\times = V(I) \cong \mathbb P^1\times \mathbb P^1\subseteq \mathbb P^3$, and we can see this since the map $[w:x:y:z]\mapsto [wy:wz:xy:xz]$ factors as $[w:x:y:z]\mapsto ([w:x],[y:z])\mapsto[wy:wz:xy:xz]$, where the second map is the Segre embedding.
+            \item Let $G= \mathbb C^\times$ act on $\mathbb C^4$ by $t\cdot(w,x,y,z) = (tw,tx,t^{-1}y,t^{-1}z)$, so that $R^G = \mathbb C[wy,wz,xy,xz]$. We would raise these generators to the fourth power ($D = 4\cdot \lcm(2,2,2,2) = 8$), but already we can see that the relations will be given by the defining ideal $I = \abr{t_0t_4-t_3t_2}$. Therefore $\mathbb P^3/\!/\mathbb C^\times = V(I) \cong \mathbb P^1\times \mathbb P^1\subseteq \mathbb P^3$, and we can see this since the map $[w:x:y:z]\mapsto [wy:wz:xy:xz]$ factors as $[w:x:y:z]\mapsto ([w:x],[y:z])\mapsto[wy:wz:xy:xz]$, where the second map is the Segre embedding
+            \item In our original example with $\mathbb C^\times$ acting on $\mathbb C^2$ by $t\cdot (x,y) = (tx,ty)$, the affine quotient produces a copy of $\mathbb C$ whereas the projective quotient produces only a point. The qualitative difference is that in the copy of $\mathbb C$, each nonzero $a\in\mathbb C$ distinguishes each orbit $xy=a$ in $\mathbb C^2$ and $0\in\mathbb C$ corresponds to the orbits in $\mathbb C^2$ given by $x=0$, $y=0$, and $(0,0)$. The projective quotient forgets the latter orbits and identifies each hyperbola $xy=a$ to a point
+            \item A variant of the first example where $\mathbb C^\times$ acts on $\mathbb C^3$ by $t\cdot(x,y,z) = (t^2x,y,tz)$ produces the same action on $\mathbb P^2$, but the invariants are different: $R^G$ is $\mathbb C[y]$, so the projective quotient is a point. So the data of the action of $G$ on $V$ is required
         \end{enumerate}
     \end{enumerate}
     \item Group actions on symplectic manifolds
+    \begin{enumerate}
+        \item Hidden symplectic theory
+        \begin{enumerate}
+            \item Given a linear action of $G$ on $V = \mathbb C^{n+1}$ ($n\geq 1$ to be safe), we may restrict the action to a maximal (analytic) compact subgroup $K$ of $G$
+            \item A Hermitian inner product on $V$ may be used to define a symplectic $2$-form on $\mathbb P = \mathbb P^n$ (as a real manifold). A symplectic form is a smooth non-degenerate closed $2$-form
+            \item By integrating over $K$, it is possible to choose a $K$-invariant Hermitian inner product on $V$ which then yields a $K$-invariant symplectic form on $\mathbb P^n$
+            \item The only example we will care about in this talk is given by looking at what symplectic form the standard Hermitian inner product on $V$ defines
+        \end{enumerate}
+        \item The Fubini-Study form on $\mathbb P^n$
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
+    \end{enumerate}
     \item Kempf-Ness theorem
 \end{enumerate}
 
