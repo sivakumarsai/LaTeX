@@ -78,8 +78,8 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\SO}{SL}
-\DeclareMathOperator{\Sp}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Sp}{Sp}
 \DeclareMathOperator{\Lie}{Lie}
 \DeclareMathOperator{\diag}{diag}
 
@@ -109,8 +109,8 @@
 \begin{document}
 These are notes which abridge and expand on three talks I gave in the course M 392C Geometry Literature which Dr. Bernd Siebert organized in Fall 2026. He encouraged students in this course to use artificial intelligence to aid in preparation for these talks. I asked GPT-5.6 Sol and GPT-6 Astra various questions and got some help that way, but what appears in these notes is my own writing and appears originally from various texts.
 
-\begin{abstract}
-  \sai{to write}
+\begin{abstract}\noindent
+  In this note we tell a short story chronicling the birth of classical invariant theory, some basic ideas in geometric invariant theory, and finally a brief exposition of the Kempf-Ness theorem. The Kempf-Ness theorem may be used to show that the geometric invariant theory quotient of a complex smooth projective variety $X$ by a complex reductive group $G$ is homeomorphic to the symplectic quotient of $X$ by a maximal compact subgroup of $G$.
 \end{abstract}
 
 \section{The premise}
@@ -145,13 +145,15 @@ Two examples: \begin{enumerate}
   and for any $A\in \GL_n(\mathbb C)$, $f(A) = p(\det(A))$ since $A = g\diag(\det(A),1,\dots,1)$ for some $g\in \SL_2(\mathbb C)$ and $f$ is an $\SL_2(\mathbb C)$-invariant. Then by Zariski density of $\GL_n(\mathbb C)$ in the space of $n\times n$ complex matrices, it follows that $f(A) = p(\det(A))$ for any complex $n\times n$ matrix $A$.
 \end{enumerate}
 
-From now on, we will consider only reductive complex groups, which are a nice collection of algebraic subgroups of $\GL_n(\mathbb C)$ for some $n$. Examples of complex reductive groups are ``groups with a name''; for example, $\GL_n(\mathbb C)$, $\SL_n(\mathbb C)$, $(\mathbb C^\times)^n$, $\SO_n(\mathbb C)$, $\Sp_{2n}(\mathbb C)$, and finite groups, to name a few.
+From now on, we will consider only complex reductive groups, which are a nice collection of algebraic subgroups of $\GL_n(\mathbb C)$ for some $n$. Examples of complex reductive groups are ``groups with a name''; for example, $\GL_n(\mathbb C)$, $\SL_n(\mathbb C)$, $(\mathbb C^\times)^n$, $\SO_n(\mathbb C)$, $\Sp_{2n}(\mathbb C)$, and finite groups, to name a few. Some non-examples of complex reductive groups are the additive group of $\mathbb C$, or the groups of upper triangular/strictly upper triangular matrices over $\mathbb C$.
+
+\sai{algebraic representations and (linear) reductivity via unitary trick}
 
 \section{Finiteness of invariants}
-\sai{statement of theorem, unitary trick, Hilbert basis theorem (modern and Hilbert's formulations but no proof), gesture at 1893 algorithms but these should differ from Gr\"obner basis calculations}
+\sai{statement of theorem, Hilbert basis theorem (modern and Hilbert's formulations but no proof), gesture at 1893 algorithms (GPT is saying there are none?) and these should differ from Gr\"obner basis calculations}
 
 \section{Syzygies of invariants}
-\sai{modern and Hilbert 1893 statements (not proofs) of Syzygy theorem and explain how one could build these free resolutions by hand, what they mean etc. Can gesture at why homological methods in commutative algebra are important cf Eisenbud sequel to comm. alg. w/ view towards alg. geo. and Erman, Berkesch and friends' program (see JMM 2024 Erman talk). Could give small example of Hilbert-Burch resolution for two variables}
+\sai{modern and Hilbert 1893 statements (not proofs) of Syzygy theorem and explain how one could build these free resolutions by hand, what they mean etc. Can gesture at why homological methods in commutative algebra are important cf Eisenbud sequel to comm. alg. w/ view towards alg. geo. and Erman, Berkesch and friends' program (see JMM 2024 Erman talk). Could give small example of Koszul and Hilbert-Burch resolutions}
 
 \section{The variety corresponding to the ring of invariants}
 \sai{in what sense is $V(J)$ a quotient of $\mathbb A^m$? Wrestle with orbit-closure details and state relevant theorems which make sense of or answer this question. Give some examples and explain a little about the subset of stable points and how restriction of the projection map actually is a quotient. But the quotient on the whole affine space results in what is called the geometric invariant theory quotient (GIT quotient)}

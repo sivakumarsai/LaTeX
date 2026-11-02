@@ -82,6 +82,14 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\SU}{SU}
+\let\O\relax
+\DeclareMathOperator{\O}{O}
+\DeclareMathOperator{\SO}{SO}
 
 % bracket notation for inner product
 \usepackage{mathtools}
@@ -110,7 +118,7 @@
 
 These notes follow \textit{Unitary Group Representations in Physics, Probability, and Number Theory} by George Mackey, \textit{Group theory and physics} by Shlomo Sternberg, and Lucas Mason-Brown's notes from a representation theory course he taught (unpublished).
 
-In these notes we describe how to obtain the irreducible representations of the (double cover of the inhomogeneous) Lorentz group, including the unitary ones. Let me know if there are any mistakes.
+In these notes we describe a geometric procedure for inducing representations of subgroups, how to obtain representations of the ``almost Abelian'' semidirect products, and concluding with a brief description of the representation theory of the double cover of the identity component of the Poincar\'e group, minimizing details. Of course, if there are errors, please contact me.
 
 \section{Induction}
 \subsection{Vector bundles coming from representations of subgroups}
@@ -181,7 +189,7 @@ and this pairing is $G$-invariant. The Hilbert space completion of $\Gamma_c(X,(
 \[\{f\colon G\to V\mid f(gh) = \rho(h^{-1})f(g)\text{ for all $h\in H$}; \norm{f}^2_{L^2}<\infty\},\]
 where $\norm{f}^2_{L^2}=\int_{G/H}\abr{f,f}_V\abs{\dd x}$ (using $\abs{\dd x}$ to denote the unsigned ``measure'' we get on $G/H$ which is left $G$-invariant since I don't know a better notation). This Hilbert space of functions is denoted by $\Ind_H^G(\rho)$ or $\Ind_H^G(V)$.
 
-Unitary induction can be done in the case when $G$ is merely a locally compact second countable group, but since $G/H$ need not admit a left $G$-invariant Haar measure, we have to use something called a ``Hilbert bundle'' to get around this issue. This procedure and more (i.e. discussion of representations of semidirect products) is explained in Unitary Group Representations in Physics, Probability, and Number Theory by Mackey in sections 7 through 11.
+Unitary induction can be done in the case when $G$ is merely a locally compact second countable group, but since $G/H$ need not admit a left $G$-invariant Haar measure, we have to use something called a ``Hilbert bundle'' to get around this issue. This procedure and more (i.e. discussion of representations of semidirect products) is explained in Unitary Group Representations in \textit{Physics, Probability, and Number Theory} by Mackey in sections 7 through 11.
 
 \section{Semidirect products}
 Let $G$ be a real Lie group which is the semidirect product of closed subgroups $N$ and $H$; that is, $G = N\rtimes_\varphi H$ where $\phi\colon H\to \Aut(N)$ is smooth. As a set, $G = N\rtimes_\varphi H = N\times H$ with group law
@@ -210,8 +218,117 @@ Step 4. Finally induce the representation $\Ind_{L_i}^{\Stab_G(\chi_i)}(V)$ of $
 It is a theorem that the representation $W$ is irreducible if and only if $(\rho,V)$ is irreducible. But we can see this sort of intuitively by seeing that the induction steps roughly just twist $\rho$ by a character, and then smears the intermediate representation over the orbit $G\chi_i$ (note that $G$ acts transitively on $G\chi_i$) to form the bundle whose sections are $W$. These steps seem to be reversible, and it might be believable that the steps which reverse the recipe above preserve reducibility. A better explanation is in \href{https://math.stackexchange.com/a/5093490}{this StackExchange answer}, for finite groups.
 
 \section{The Lorentz group}
+\subsection{Definitions}
 The space $\mathbb R^4 = \mathbb R^{1+3}$ is called spacetime, and has metric given by any matrix $g$ with signature $\diag(+,-,-,-)$. The orthogonal group preserving this metric is 
-\[O(1,3) = \{A\in \Mat_{4\times 4}(\mathbb R)\mid A^TgA = g\}\subseteq O(4).\]
+\[\O(1,3) = \{A\in \Mat_{4\times 4}(\mathbb R)\mid A^TgA = g\}\subseteq \O(4).\]
 
-The group $O(1,3)$ is called the homogeneous Lorentz group. By viewing $\mathbb R^{1+3}$ as an affine space, the isometries of $\mathbb R^{1+3}$ are captured by the group $\mathbb R^{1+3}\rtimes O(1,3)$ (where the action of $O(1,3)$ on $\mathbb R^{1+3}$ is the usual one, so we suppress writing down the homomorphism $O(1,3)\to \Aut(\mathbb R^{1+3})$). The group $\mathbb R^{1+3}\rtimes O(1,3)$ is called the inhomogeneous Lorentz group, also called the Poincar\'e group.
+The group $\O(1,3)$ is called the homogeneous Lorentz group. By viewing $\mathbb R^{1+3}$ as an affine space, the isometries of $\mathbb R^{1+3}$ are captured by the group $\mathbb R^{1+3}\rtimes \O(1,3)$ (where the action of $\O(1,3)$ on $\mathbb R^{1+3}$ is the usual one, so we suppress writing down the homomorphism $\O(1,3)\to \Aut(\mathbb R^{1+3})$). The group $\mathbb R^{1+3}\rtimes \O(1,3)$ is called the inhomogeneous Lorentz group, also called the Poincar\'e group. The Lorentz group is the group of changes of coordinates of spacetime which preserve the speed of light, so it and the Poincar\'e group are studied in special relativity.
+
+The homogeneous Lorentz group is a six-dimensional real Lie group which is not compact and not connected. The four connected components are each not simply connected (with fundamental group $\mathbb Z/2\mathbb Z$), and each component is determined by the values of the homomorphisms
+\[\O(1,3)\xrightarrow{\det}\{\pm 1\}\quad\text{and}\quad \O(1,3)\xrightarrow{\sgn(-_{00})}\{\pm 1\}\]
+where $\sgn(A_{00})$ is the sign of $A_{00}$. The proper (or special) Lorentz group is $\ker(\det) \eqqcolon \SO(1,3)$, and preserves the orientation of spacetime. The orthochronous Lorentz group is $\ker(\sgn(-_{00})) \eqqcolon O^\uparrow(1,3)$, and preserves the orientation of time. The connected component of the identity 
+\[\SO^\uparrow(1,3)\coloneqq \SO(1,3)\cap O^\uparrow(1,3)\]
+is the proper orthochronous (or also called restricted) Lorentz group.
+
+The double cover (universal cover) of the proper orthochronous Lorentz group $\SO^\uparrow(1,3)$ is $\SL_2(\mathbb C)$: Consider the space of $2\times 2$ Hermitian matrices, which is the $\mathbb R$-span of the identity and Pauli matrices
+\[\begin{pmatrix}
+	1 & \\ & 1
+\end{pmatrix}, \begin{pmatrix}
+	& 1 \\ 1 & 
+\end{pmatrix}, \begin{pmatrix}
+	& -i \\ i & 
+\end{pmatrix},\quad\text{and}\quad \begin{pmatrix}
+	1 & \\ & -1
+\end{pmatrix}.\]
+Thus any Hermitian matrix is of the form
+\[\begin{pmatrix}
+	t+z & x-iy \\ x+iy & t-z
+\end{pmatrix}.\] Crucially, the determinant of this matrix is $t^2-x^2-y^2-z^2$, so we may identify $\mathbb R^{1+3}$ with the space of Hermitian matrices. The group $\SL_2(\mathbb C)$ acts on the space of Hermitian matrices by $H\mapsto A H A^\ast$ for $H$ a Hermitian matrix and $A\in \SL_2(\mathbb C)$. It follows that $\SL_2(\mathbb C)$ acts on $\mathbb R^{1+3}$, and we obtain a representation $\kappa\colon \SL_2(\mathbb C)\to \GL(\mathbb R^{1+3})$. It can be shown that $\im(\kappa)\subseteq \O(1,3)$, $\ker(\kappa) = \{\pm I\}$, and that $\kappa$ is a local isomorphism. Since $\SL_2(\mathbb C)$ is connected, $\im(\kappa)$ is $\SO^\uparrow(1,3)$.
+
+\subsection{Representation theory}
+We follow Wigner's approach. To avoid dealing with possibly projective representations of the Poincar\'e group (as it is not simply connected), we pass to the double cover of its identity component, $\mathbb R^{1+3}\rtimes_\kappa\SL_2(\mathbb R)$. As a consequence, we may obtain more representations than we originally intended to, and in some sense we are missing some representations as well, since we are not able to obtain representations of the whole Poincar\'e group this way (we do not incorporate space parity inversion $P = \diag(1,-1,-1,-1)$ or time reversal $T = \diag(-1,1,1,1)$ this way). 
+
+Following the recipe from the previous section, in order to determine the representation theory of $\mathbb R^{1+3}\rtimes_\kappa\SL_2(\mathbb R)$, we first calculate the orbits of the action of $\SL_2(\mathbb C)$ on $\widehat{\mathbb R^{1+3}}$, which we identify with $\mathbb R^{1+3}$. We will also continue to identify spacetime with the space of Hermitian matrices. If $H$ is a Hermitian matrix, the action of $\SL_2(\mathbb C)$ preserves the determinant. If we denote the determinant of a generic Hermitian matrix by $m^2$ (so from an earlier description, this means $m^2 = t^2-x^2-y^2-z^2$), then the orbits of the action of $\SL_2(\mathbb C)$ on $\mathbb R^{1+3}$ are contained in the following level sets of $m^2$:
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  % Coordinates
+  \coordinate (A) at (-2.00, 2.00);
+  \coordinate (B) at (2.00, -2.00);
+  \coordinate (C) at (2.00, 2.00);
+  \coordinate (D) at (-2.00, -2.00);
+  \coordinate (E) at (-1.00, 2.00);
+  \coordinate (F) at (1.00, 2.00);
+  \coordinate (G) at (-0.50, 1.50);
+  \coordinate (H) at (0.50, 1.50);
+  \coordinate (I) at (-1.00, -2.00);
+  \coordinate (J) at (1.00, -2.00);
+  \coordinate (K) at (-0.50, -1.50);
+  \coordinate (L) at (0.50, -1.50);
+  \coordinate (M) at (-2.00, 1.00);
+  \coordinate (N) at (-2.00, -1.00);
+  \coordinate (O) at (-1.50, 0.50);
+  \coordinate (P) at (-1.50, -0.50);
+  \coordinate (Q) at (2.00, 1.00);
+  \coordinate (R) at (2.00, -1.00);
+  \coordinate (S) at (1.50, 0.50);
+  \coordinate (T) at (1.50, -0.50);
+  \coordinate (U) at (-0.50, 0.50);
+  \coordinate (X) at (0.50, 0.50);
+  \coordinate (Y) at (-0.25, 0.25);
+  \coordinate (Z) at (0.25, 0.25);
+  \coordinate (AA) at (-0.25, 0.70);
+  \coordinate (AB) at (0.25, 0.70);
+  \coordinate (AC) at (-1.70, 0.52);
+  \coordinate (AD) at (1.70, 0.49);
+  \coordinate (AE) at (-0.50, 0.00);
+  \coordinate (AF) at (0.50, 0.00);
+  \coordinate (AG) at (-0.50, 0.95);
+  \coordinate (AH) at (0.50, 0.95);
+  \coordinate (AI) at (0.75, 2.23);
+  \coordinate (AJ) at (2.25, 0.75);
+
+  % Drawing
+  \draw[thick] (A) -- (B);
+  \draw[thick] (C) -- (D);
+  \draw[thick] (E) .. controls (-0.50, 1.50) and (0.50, 1.50) .. (F);
+  \draw[thick] (I) .. controls (-0.50, -1.50) and (0.50, -1.50) .. (J);
+  \draw[thick] (M) .. controls (-1.50, 0.50) and (-1.50, -0.50) .. (N);
+  \draw[thick] (Q) .. controls (1.50, 0.50) and (1.50, -0.50) .. (R);
+  \draw (U) .. controls (-0.25, 0.25) and (0.25, 0.25) .. (X);
+  \draw[dashed] (U) .. controls (-0.25, 0.70) and (0.25, 0.70) .. (X);
+  \draw (AC) .. controls (-0.50, 0.00) and (0.50, 0.00) .. (AD);
+  \draw[dashed] (AC) .. controls (-0.50, 0.95) and (0.50, 0.95) .. (AD);
+  \node[above right, black] at (C) {$m^2 = 0$};
+  \node[above right, black] at (AI) {$m^2>0$};
+  \node[above right, black] at (AJ) {$m^2<0$};
+\end{tikzpicture}
+\end{center}
+The origin is an orbit. Thus for the level sets where $m^2>0$ and $m^2 = 0$ the level sets each have two sheets corresponding to whether $t$ is positive or negative, and each sheet is an orbit. For $m^2 = 0$ the sheets are suggestively called the forward and backwards light cones. The level sets for $m^2<0$ are each connected and hence are orbits. What remains now is a lot of calculations according to the recipe above, so we summarize them in the table below. 
+\begin{center}
+\begin{tabular}{ c|c|c } 
+orbit & representing point $\chi_i$ & Little group $L_i$ \\
+\hline
+$m^2>0$, $t>0$ & $\begin{pmatrix}
+	m & \\ & m
+\end{pmatrix}$ & $\SU(2)$ \\
+$m^2>0$, $t<0$ & $\begin{pmatrix}
+	-m & \\ & -m
+\end{pmatrix}$ & $\SU(2)$ \\
+$m^2=0$, $t>0$ & $\begin{pmatrix}
+	2 & 0\\0 & 0
+\end{pmatrix}$ & $\mathbb R^2\rtimes_{2\theta}\SO(2)$ \\
+$m^2=0$, $t<0$ & $\begin{pmatrix}
+	-2 & 0\\0 & 0
+\end{pmatrix}$ & $\mathbb R^2\rtimes_{2\theta}\SO(2)$ \\
+$m^2=0$, $t=0$ & $\begin{pmatrix}
+	0 & 0\\0 & 0
+\end{pmatrix}$ & $\SL_2(\mathbb C)$ \\
+$m^2<0$ & $\begin{pmatrix}
+	 & \abs{m}i\\-\abs{m}i & 
+\end{pmatrix}$ & $\SL_2(\mathbb R)$
+\end{tabular}
+\end{center}
+Without getting into the details (since these are well documented elsewhere), the irreps of $\SU(2)$ are parameterized by half-integers $s = k/2$ for $k\geq 0$. They are unitary and finite-dimensional. The irreps of $\mathbb R^2\rtimes_{2\theta}\SO(2)$ (where the $2\theta$ just indicates that $\SO(2)$ acts on $\mathbb R^2$ by rotation through twice the specified angle, but this is not so important) may be obtained by the same recipe as before, and of these, the ``physically relevant representations'' are parameterized by half-integers $s = k/2$ for $k\in \mathbb Z$. They are unitary and one-dimensional. From $\SL_2(\mathbb C)$ we can obtain finite-dimensional representations parameterized by half-integers $s = k/2$ for $k\geq 0$ which are not unitary (aside from the one yielding the trivial representation). We may also obtain unitary infinite-dimensional representations from the so-called principal series, parameterized by the line $i\mathbb R$ and the choice of a sign $0,1$, or from the complementary series parameterized by an open interval, say $0<t<2$. The representation theory of $\SL_2(\mathbb R)$ is similar.
+
+The variable names $m$ and $s$ are suggestive. The physically relevant representations should correspond to particles with mass $m$ and spin $s$. But this is beyond my understanding, since I do not know any physics.
 \end{document}
